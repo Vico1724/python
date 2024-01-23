@@ -10,6 +10,10 @@ class VehiculeUnmanned(ABC):
     def status(self):
         pass
 
+    @abstractmethod
+    def santé(self):
+        pass
+
     def demarrer(self):
         print("Démarrage du véhicule.")
 
@@ -35,6 +39,9 @@ class UUV(VehiculeUnmanned, CapaciteSousMarine):
     def status(self):
         print("UUV prêt pour la mission.")
 
+    def santé(self):
+        print("New")
+
 class UAV(VehiculeUnmanned, CapaciteAerienne):
     def executer_mission(self):
         print("Exécution d'une mission aérienne avec l'UAV.")
@@ -42,6 +49,10 @@ class UAV(VehiculeUnmanned, CapaciteAerienne):
 
     def status(self):
         print("UAV prêt pour la mission.")
+    
+    
+    def santé(self):
+        print("Ancien")
 
 class UGV(VehiculeUnmanned, CapaciteTerrestre):
     def executer_mission(self):
@@ -51,10 +62,14 @@ class UGV(VehiculeUnmanned, CapaciteTerrestre):
     def status(self):
         print("UGV prêt pour la mission.")
 
+    def santé(self):
+        print("New")
+
 # Exemple d'utilisation
 uuv = UUV()
 uuv.demarrer()
 uuv.status()
+uuv.santé()
 uuv.executer_mission()
 
 uav = UAV()
