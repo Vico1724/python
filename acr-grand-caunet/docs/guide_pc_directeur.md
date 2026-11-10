@@ -2,46 +2,35 @@
 
 *10 novembre 2026. Rien ici n'est urgent ; chaque point débloque une étape précise.*
 
-## 1. Essayer « Chile BioBio »
+## 1. Reçu
 
-C'est la référence choisie pour le projet : une spéciale originale, au rendu réaliste, jouable dans Assetto Corsa Rally.
+- La liste des fichiers du jeu avec BioBio installé, et le numéro de version (25170642). L'analyse est dans `01_etude_faisabilite.md`, § 4.
+- Reste votre avis sur BioBio en jeu : rendu du sol, de la végétation, des bords de route, et copilote.
 
-1. Télécharger l'archive sur <https://sandorally.com/original-stages> (3,8 Go).
-2. Fermer le jeu, extraire toute l'archive dans un dossier, lancer `Sando-Rally-Original-Stage-Manager.exe`.
-3. Lancer le jeu et choisir la spéciale en Free Practice.
+## 2. Les sommaires des deux archives de BioBio
 
-Ce que j'aimerais savoir ensuite :
-- la spéciale se lance-t-elle, et votre avis sur le rendu (sol, végétation, bords de route) et sur le copilote ;
-- la **liste des fichiers installés**, pour comprendre comment la spéciale est rangée dans le jeu. Dans PowerShell, en adaptant le chemin de Steam :
+Deux petits fichiers suffisent à savoir comment la spéciale est construite. Ils ne contiennent que la liste des éléments de l'archive, pas les éléments eux-mêmes. Dans le dossier `Z:\Steamlibrary\steamapps\common\Assetto Corsa Rally\acr\Content\Paks`, déposez dans la conversation :
 
-```powershell
-Get-ChildItem -Recurse "C:\Program Files (x86)\Steam\steamapps\common\Assetto Corsa Rally\acr\Content\Paks" |
-  Select-Object FullName, Length | Export-Csv "$HOME\Desktop\acr_paks.csv" -NoTypeInformation
-```
+- `pakchunk99-ChileBioBio_P.utoc` (1,4 Mo) ;
+- `pakchunk99-SandoRegistry_2_P.utoc` (2 ko).
 
-Le fichier `acr_paks.csv` apparaît sur le Bureau ; il ne contient que des noms et des tailles de fichiers. Déposez-le dans la conversation.
-
-La licence de BioBio autorise le jeu personnel, pas la modification ni la réutilisation sans accord. Je ne reprendrai donc aucun de ses fichiers : la liste sert seulement à comprendre l'organisation.
-
-## 2. Le numéro de version du jeu
-
-Les mods sont liés à la version exacte du jeu. Dans PowerShell :
+Si possible, ajoutez les sommaires du jeu lui-même, qui me donneront le catalogue des arbres, matériaux et surfaces que notre spéciale pourra référencer. Dans PowerShell :
 
 ```powershell
-Select-String -Path "C:\Program Files (x86)\Steam\steamapps\appmanifest_3917090.acf" -Pattern '"buildid"'
+Compress-Archive -Path "Z:\Steamlibrary\steamapps\common\Assetto Corsa Rally\acr\Content\Paks\*.utoc" -DestinationPath "$HOME\Desktop\acr_utoc.zip"
 ```
 
-Envoyez-moi la ligne affichée.
+Le fichier `acr_utoc.zip` (17 Mo avant compression) apparaît sur le Bureau.
 
 ## 3. Les vidéos embarquées
 
-Oui, téléchargez-les et déposez-les dans la conversation. Par ordre d'utilité (liens dans `references_videos.md`) :
+Les fichiers en 720p sont trop lourds pour la conversation. Par ordre de préférence :
 
-1. la n° 1 (2025, Clio Rally5) : elle fixe les lignes de départ et d'arrivée ;
-2. la n° 2 (2025, régularité) : le rythme lent permet de relever le décor ;
-3. la n° 5 (2023, BMW M3) : à vitesse de course, pour le ressenti de la route.
+1. **Un lien de partage** : déposez les vidéos sur Google Drive, OneDrive ou Dropbox, réglez le partage sur « toute personne disposant du lien » et collez le lien ici. Je les téléchargerai depuis le serveur du projet.
+2. **Une qualité plus basse** : 360p suffit pour situer les lignes et relever le décor.
+3. **Des captures d'écran** : le départ, l'arrivée, le carrefour du Lion d'Or, puis une toutes les 15 à 20 secondes.
 
-Une qualité de 720p suffit. Si un fichier est trop lourd pour la conversation, des captures d'écran font l'affaire : le départ, l'arrivée, le carrefour du Lion d'Or, puis une toutes les 15 à 20 secondes.
+Vidéos utiles, par ordre (liens dans `references_videos.md`) : la n° 1 (2025, Clio Rally5) pour les lignes de départ et d'arrivée, la n° 2 (2025, régularité) pour le décor, la n° 5 (2023, BMW M3) pour le ressenti de la route.
 
 ## 4. Écrire à l'auteur de BioBio (facultatif, mais utile)
 

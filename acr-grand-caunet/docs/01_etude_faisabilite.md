@@ -101,6 +101,17 @@ Ce que cela change pour nous :
 - le décor réaliste passe par la réutilisation des arbres et matériaux du jeu, référencés par leur chemin ; il faudra donc en dresser la liste à partir du jeu installé sur le PC du directeur ;
 - **la façon dont BioBio est assemblé et chargé par le jeu n'est pas publiée.** Deux voies sont possibles : la spéciale hôte décrite par ACR Extra Stages, ou un niveau neuf construit dans Unreal Engine 5.6. Je ne sais pas laquelle BioBio utilise. La liste des fichiers qu'il installe, et une question à son auteur, le diront (voir `guide_pc_directeur.md`).
 
+**Ce que montre l'installation de BioBio sur le PC du directeur** (liste des fichiers du 10/11/2026, `data/reference/acr_paks_build_25170642.csv`) :
+
+| Constat | Ce que j'en déduis |
+|---|---|
+| Le jeu est en version de construction 25170642, celle pour laquelle BioBio est faite. | Le PC est dans la configuration de référence. |
+| BioBio ajoute deux archives dans le dossier `Paks` du jeu, à côté des 51 archives d'origine : `pakchunk99-ChileBioBio_P` (3,76 Go) et `pakchunk99-SandoRegistry_2_P` (1,8 Mo). Aucun fichier du jeu n'est remplacé, et il n'y a pas de dossier `~mods`. | Une spéciale se livre comme une archive autonome, que le jeu charge en plus des siennes. |
+| L'archive de la spéciale pèse 3,76 Go alors que l'auteur dit ne redistribuer aucun fichier du jeu. | Elle contient son propre monde visible (terrain, textures, objets) : ce n'est pas un simple remplacement de la surface de roulage d'une spéciale existante. *Déduction, non vérifiée.* |
+| Une seconde archive, très petite, s'appelle « Registry ». | Elle porte probablement les tables qui inscrivent la spéciale dans les menus, communes à toutes les spéciales de l'auteur. *Déduction, non vérifiée.* |
+
+La liste ne donne que des noms et des tailles : elle ne dit pas si le niveau est construit dans Unreal Engine ou assemblé autrement. Le sommaire des deux archives (les fichiers `.utoc`, 1,4 Mo au total) contient la liste des éléments qu'elles renferment et tranchera la question, sans toucher à leur contenu.
+
 ## 5. Chaîne d'outils retenue
 
 | Logiciel | Rôle | Gratuit | Où il tourne |
