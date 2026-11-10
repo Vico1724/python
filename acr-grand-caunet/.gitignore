@@ -2,3 +2,5 @@
 data/raw/
 __pycache__/
 *.pyc
+# Modèle 3D complet : régénérable avec scripts/08_modele_3d.py (seul modele/apercu/ est versionné)
+modele/terrain.glb

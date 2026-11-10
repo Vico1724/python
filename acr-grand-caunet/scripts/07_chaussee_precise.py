@@ -18,6 +18,10 @@ débouchés et là où aucune source ne tranche, puis lissé. L'axe est le milie
 deux bords ; deux itérations recentrent les profils avant la mesure finale.
 Les altitudes sont lues dans le MNT (interpolées entre culées sur les ponts) ; le
 dévers est la pente de la droite ajustée sur le profil en travers entre les bords.
+Étendue : de l'origine de l'axe BD TOPO (contrôle horaire) au point stop + 60 m ;
+colonne `zone` = approche / es / sortie, PK 0 = départ. Les statistiques de qualité
+portent sur la zone es. Les stations restent calées sur la grille métrique de l'axe
+BD TOPO : le résultat en un point ne dépend pas de l'étendue traitée.
 
 Entrées : data/raw (MNT, MNS, ortho RVB ; ortho IRC téléchargée si absente),
           data/processed/axe_bdtopo_l93.csv, ouvrages_es.csv, carrefours_es.csv, calage_es.json
@@ -453,7 +457,7 @@ def courbes(pk, width, offset, src, bridges, L):
         for i0, i1 in runs(src == name):
             a1.axvspan(pk[i0] - 0.5, pk[i1] + 0.5, ymin=0, ymax=0.04, color=col, lw=0)
     a1.plot(pk, width, color=INK, lw=0.9)
-    a1.axhline(np.median(width), color=MUTED, lw=0.8, ls="--")
+    a1.axhline(np.median(width[(pk >= 0) & (pk <= L)]), color=MUTED, lw=0.8, ls="--")  # médiane de l'ES
     for a, b in bridges:
         a1.axvspan(a, b, color=GRID, lw=0, zorder=0)
     a1.set_ylim(3.0, 10.5)

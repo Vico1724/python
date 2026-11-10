@@ -1,0 +1,173 @@
+{
+  "repere": {
+    "origine": {
+      "description": "axe de la chaussée au PK 0 (départ de l'ES)",
+      "lambert93_x_m": 916996.68,
+      "lambert93_y_m": 6241047.89,
+      "lon": 5.67018322,
+      "lat": 43.23560564,
+      "altitude_m": 397.82,
+      "systeme_altimetrique": "NGF-IGN69 (altitudes du MNT LiDAR HD)"
+    },
+    "unites": "mètres",
+    "axes": {
+      "X": "est",
+      "Y": "haut (altitude - altitude d'origine)",
+      "Z": "sud (-Z = nord)",
+      "repere": "direct (main droite), convention glTF 2.0 +Y vers le haut"
+    },
+    "passage_lambert93_vers_gltf": "X = x_L93 - x0 ; Y = z - z0 ; Z = -(y_L93 - y0)",
+    "passage_gltf_vers_lambert93": "x_L93 = X + x0 ; y_L93 = y0 - Z ; z = Y + z0",
+    "x0": 916996.68,
+    "y0": 6241047.89,
+    "z0": 397.82,
+    "nord": "nord Lambert-93 (convergence des méridiens d'environ -0,9° ici, non corrigée)"
+  },
+  "complet": {
+    "bandes_m": [
+      [
+        15,
+        1
+      ],
+      [
+        40,
+        2
+      ],
+      [
+        130.0,
+        4
+      ]
+    ],
+    "texture_px_par_dalle": 2048,
+    "terrain": {
+      "sommets": 372567,
+      "triangles": 727782,
+      "dalles": 26,
+      "sommets_de_bord": 14720,
+      "recalage_bords_mnt_m": {
+        "median_abs": 0.005,
+        "p95_abs": 0.03,
+        "max_abs": 2.37
+      }
+    },
+    "relecture": {
+      "route": {
+        "taille_mo": 1.09,
+        "maillages": 1,
+        "sommets": 22647,
+        "triangles": 30192,
+        "nan": false,
+        "bornes_min": [
+          -3142.89990234375,
+          -147.89999389648438,
+          -2611.800048828125
+        ],
+        "bornes_max": [
+          139.89999389648438,
+          1.0,
+          106.4000015258789
+        ],
+        "triangles_normale_vers_le_haut_pct": 100.0
+      },
+      "terrain": {
+        "taille_mo": 39.47,
+        "maillages": 26,
+        "sommets": 375548,
+        "triangles": 727782,
+        "nan": false,
+        "bornes_min": [
+          -3268.699951171875,
+          -182.5,
+          -2736.10009765625
+        ],
+        "bornes_max": [
+          267.29998779296875,
+          19.100000381469727,
+          231.89999389648438
+        ]
+      },
+      "ecart_bords_route_terrain_hors_ponts": {
+        "bords_testes": 14720,
+        "distance_plane_max_m": 0.8,
+        "ecart_vertical_max_m": 0.135,
+        "ecart_vertical_p99_m": 0.0
+      }
+    }
+  },
+  "apercu": {
+    "bandes_m": [
+      [
+        15,
+        2
+      ],
+      [
+        40,
+        4
+      ],
+      [
+        130.0,
+        8
+      ]
+    ],
+    "texture_px_par_dalle": 512,
+    "terrain": {
+      "sommets": 104169,
+      "triangles": 192367,
+      "dalles": 26,
+      "sommets_de_bord": 14720,
+      "recalage_bords_mnt_m": {
+        "median_abs": 0.005,
+        "p95_abs": 0.03,
+        "max_abs": 2.37
+      }
+    },
+    "relecture": {
+      "route": {
+        "taille_mo": 1.09,
+        "maillages": 1,
+        "sommets": 22647,
+        "triangles": 30192,
+        "nan": false,
+        "bornes_min": [
+          -3142.89990234375,
+          -147.89999389648438,
+          -2611.800048828125
+        ],
+        "bornes_max": [
+          139.89999389648438,
+          1.0,
+          106.4000015258789
+        ],
+        "triangles_normale_vers_le_haut_pct": 100.0
+      },
+      "terrain": {
+        "taille_mo": 7.5,
+        "maillages": 26,
+        "sommets": 105882,
+        "triangles": 192367,
+        "nan": false,
+        "bornes_min": [
+          -3268.699951171875,
+          -182.3000030517578,
+          -2736.10009765625
+        ],
+        "bornes_max": [
+          267.29998779296875,
+          19.100000381469727,
+          231.89999389648438
+        ]
+      },
+      "ecart_bords_route_terrain_hors_ponts": {
+        "bords_testes": 14720,
+        "distance_plane_max_m": 0.949,
+        "ecart_vertical_max_m": 0.06,
+        "ecart_vertical_p99_m": 0.0
+      }
+    }
+  },
+  "rendus_webgl": false,
+  "pont_vue_rapprochee_pk": [
+    5501,
+    5566
+  ]
+}
