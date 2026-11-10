@@ -12,7 +12,8 @@ Reproduction de l'épreuve spéciale « Le Grand Caunet » (6,702 km, asphalte, 
 | 1 | Choix de la spéciale | Fait : ES « Le Grand Caunet », 6,702 km |
 | 2 | Identification GPS, cartographie, relief, données géographiques | Fait : [`docs/02_phase2_donnees_geographiques.md`](docs/02_phase2_donnees_geographiques.md) |
 | 3 | Axe et bords de chaussée précis, dévers | Première version : [`docs/03_phase3_chaussee.md`](docs/03_phase3_chaussee.md). Lignes de départ et d'arrivée à verrouiller sur vidéo |
-| 4 à 8 | Terrain 3D, route, décor, export vers le jeu, notes du copilote, tests | À faire |
+| 4 | Terrain et route en 3D | Premier modèle neutre (glTF) dans `modele/` ; à enrichir |
+| 5 à 8 | Décor, export vers le jeu, notes du copilote, tests | À faire. Structure d'une spéciale non officielle analysée : [`docs/04_integration_jeu.md`](docs/04_integration_jeu.md) |
 
 **À savoir avant tout** : Assetto Corsa Rally (version 0.6) ne propose officiellement que des livrées personnalisées. Des spéciales non officielles existent pourtant depuis fin octobre 2026, dont une construite à partir de données cartographiques publiques. Le projet vise donc Assetto Corsa Rally par cette voie non officielle, encore expérimentale, en gardant des données et un modèle 3D indépendants du jeu. Le détail est dans l'étude de faisabilité.
 
@@ -26,6 +27,7 @@ data/reference/       points GPS et PK de la carte officielle de l'organisateur
 data/processed/       tracé (GeoJSON, GPX, KML), profil au mètre, virages, ponts,
                       carrefours, relief à 1 m, décor dans le couloir
 data/raw/             relief 0,5 m, photo aérienne 20 cm (non versionnés, 220 Mo)
+modele/               premier modèle 3D (glTF) : route et terrain du couloir
 scripts/              chaîne de traitement, rejouable de bout en bout
 ```
 

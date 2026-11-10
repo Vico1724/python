@@ -2,39 +2,23 @@
 
 *10 novembre 2026. Rien ici n'est urgent ; chaque point débloque une étape précise.*
 
-## 1. Reçu
+## 1. Reçu, merci
 
-- La liste des fichiers du jeu avec BioBio installé, et le numéro de version (25170642). L'analyse est dans `01_etude_faisabilite.md`, § 4.
-- Reste votre avis sur BioBio en jeu : rendu du sol, de la végétation, des bords de route, et copilote.
+- La liste des fichiers du jeu avec BioBio installé, et le numéro de version (25170642).
+- Les sommaires des archives du jeu et de BioBio : analyse dans `04_integration_jeu.md`.
+- Trois vidéos embarquées : analyse dans `references_videos.md`.
 
-## 2. Les sommaires des deux archives de BioBio
+## 2. La ligne de départ
 
-Deux petits fichiers suffisent à savoir comment la spéciale est construite. Ils ne contiennent que la liste des éléments de l'archive, pas les éléments eux-mêmes. Dans le dossier `Z:\Steamlibrary\steamapps\common\Assetto Corsa Rally\acr\Content\Paks`, déposez dans la conversation :
+Sur la vidéo n° 2, la cellule de départ est à hauteur de véhicules de secours garés à gauche. Sur l'image `figures/phase3/lignes_depart_ortho.jpg`, graduée tous les 10 m, à quelle graduation la placez-vous ? Mon estimation est entre −75 et −40, alors que le calcul à partir des distances officielles donnait 0.
 
-- `pakchunk99-ChileBioBio_P.utoc` (1,4 Mo) ;
-- `pakchunk99-SandoRegistry_2_P.utoc` (2 ko).
+## 3. Votre avis sur BioBio en jeu
 
-Si possible, ajoutez les sommaires du jeu lui-même, qui me donneront le catalogue des arbres, matériaux et surfaces que notre spéciale pourra référencer. Dans PowerShell :
-
-```powershell
-Compress-Archive -Path "Z:\Steamlibrary\steamapps\common\Assetto Corsa Rally\acr\Content\Paks\*.utoc" -DestinationPath "$HOME\Desktop\acr_utoc.zip"
-```
-
-Le fichier `acr_utoc.zip` (17 Mo avant compression) apparaît sur le Bureau.
-
-## 3. Les vidéos embarquées
-
-Les fichiers en 720p sont trop lourds pour la conversation. Par ordre de préférence :
-
-1. **Un lien de partage** : déposez les vidéos sur Google Drive, OneDrive ou Dropbox, réglez le partage sur « toute personne disposant du lien » et collez le lien ici. Je les téléchargerai depuis le serveur du projet.
-2. **Une qualité plus basse** : 360p suffit pour situer les lignes et relever le décor.
-3. **Des captures d'écran** : le départ, l'arrivée, le carrefour du Lion d'Or, puis une toutes les 15 à 20 secondes.
-
-Vidéos utiles, par ordre (liens dans `references_videos.md`) : la n° 1 (2025, Clio Rally5) pour les lignes de départ et d'arrivée, la n° 2 (2025, régularité) pour le décor, la n° 5 (2023, BMW M3) pour le ressenti de la route.
+Rendu du sol, de la végétation, des bords de route, et copilote : ce qui vous convient et ce que vous voulez mieux pour le Grand Caunet.
 
 ## 4. Écrire à l'auteur de BioBio (facultatif, mais utile)
 
-Sa méthode de fabrication n'est pas publiée. Son adresse figure en bas de <https://sandorally.com>. Deux questions suffisent : accepte-t-il de dire comment il assemble une spéciale (spéciale existante copiée, ou niveau neuf construit dans Unreal Engine) et comment il utilise les arbres et matériaux du jeu sans les redistribuer ? Une réponse ferait gagner plusieurs semaines d'essais.
+C'est maintenant le point qui débloquerait le plus le projet. Son adresse figure en bas de <https://sandorally.com>. La question est précise : avec quel outil produit-il le niveau (`.umap`) et les variantes de matériaux de sa spéciale, l'éditeur Unreal Engine 5.6 ou un outil qui écrit ces fichiers directement ? Et accepterait-il de partager cet outil ou sa méthode pour une spéciale française faite à partir de données de l'IGN ?
 
 ## 5. Plus tard : laisser le projet travailler sur le PC
 

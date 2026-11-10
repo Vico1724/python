@@ -4,7 +4,7 @@
 
 Les tracés 2025 et 2026 sont identiques (confirmé par le directeur). Les éditions antérieures empruntent les mêmes routes, avec des lignes de départ ou d'arrivée placées un peu différemment : elles servent pour la route et le décor, pas pour les lignes.
 
-**Aucune de ces vidéos n'a été visionnée.** YouTube refuse la lecture et le téléchargement depuis le serveur du projet. Titre, chaîne, date et durée ont été lus dans les métadonnées ; le fait qu'il s'agisse d'une embarquée complète est déduit du titre et de la durée, sauf mention contraire.
+**Trois vidéos ont été fournies par le directeur le 10/11/2026 et analysées image par image** : les n° 1, 2 et 5. Les autres n'ont pas été visionnées (YouTube refuse la lecture depuis le serveur du projet) ; pour elles, le caractère d'embarquée complète reste déduit du titre et de la durée.
 
 | N° | Année | Vidéo | Chaîne | Durée | Équipage, voiture, ES | Remarque |
 |---|---|---|---|---|---|---|
@@ -18,3 +18,30 @@ Les tracés 2025 et 2026 sont identiques (confirmé par le directeur). Les édit
 | 8 | 2020 | [ES7 Le Grand Caunet 2020](https://www.youtube.com/watch?v=LGz8pRZWl3o) | Show Racing | 4:55 | Pilote inconnu, ES 7 | Sans description ; embarquée non confirmée |
 
 En secours, plus anciennes : [2009, 205 Maxi, chaîne ASA Marseille](https://www.youtube.com/watch?v=ZXLXX9uZDKc) ; [2010, 206 XS](https://www.youtube.com/watch?v=Es1qtt7bgA0) ; [2014](https://www.youtube.com/watch?v=XC1GeN1vfxE).
+
+## Ce que montrent les trois vidéos reçues
+
+| Vidéo | Constat |
+|---|---|
+| N° 1 (2025, Clio Rally5) | **Tournée de nuit** (second passage, ES 4). Inutilisable pour le décor. |
+| N° 2 (2025, régularité, ES 1) | De jour, à allure modérée : **la référence du projet** pour les lignes et le décor. |
+| N° 5 (2023, BMW M3) | Version de 6,89 km, pas encore analysée en détail. |
+
+### Ligne d'arrivée : confirmée
+
+Sur la vidéo n° 2, on passe un petit pont à parapets de béton et un croisement de pistes (voiture et commissaires à gauche), puis un panneau bleu, un panneau jaune d'annonce, une courbe à gauche, une courbe à droite, et enfin **le panneau rouge d'arrivée et la cellule de chronométrage à la sortie de la courbe à droite, au début de la ligne droite**. Sur la photo aérienne (`figures/phase3/lignes_arrivee_ortho.jpg`), cet endroit se situe vers la graduation 6 700, à une quinzaine de mètres près. C'est la position calculée à partir des distances officielles (6 702) ; les coordonnées imprimées sur la carte de l'organisateur étaient 31 m trop loin.
+
+### Ligne de départ : 40 à 75 m avant la position calculée, à confirmer
+
+Sur la vidéo n° 2, la cellule de départ se trouve **à hauteur de véhicules de secours garés sur la gauche**, juste avant une courbe à gauche et une entrée de piste barrée sur la droite. Sur la photo aérienne (`figures/phase3/lignes_depart_ortho.jpg`), cela correspond à la sortie du parking, entre les graduations −75 et −40, et non à la graduation 0 calculée.
+
+Je ne peux pas trancher à mieux que 20 m près : deux entrées de piste se suivent sur la droite (vers −40 et vers −5), et je ne sais pas laquelle apparaît à l'image.
+
+Cet écart pose une question que je ne sais pas résoudre seul. Avec un départ 50 m plus tôt et l'arrivée confirmée, la spéciale mesurerait environ 6 750 m et non 6 702. Or les distances officielles des points intermédiaires, eux aussi placés à des croisements de pistes, tombent juste avec le départ calculé. Soit je lis mal la vidéo, soit la ligne physique de 2025 ne coïncide pas avec l'origine des distances de la carte 2026. **Le PK 0 du projet reste donc inchangé pour l'instant.**
+
+### Décor relevé sur la vidéo n° 2
+
+- Chaussée à deux voies, **ligne axiale discontinue et lignes de rive** blanches, usées par endroits.
+- **Parapets de pierre maçonnée** sur plusieurs ponts de la D3D ; **parapets de béton** bas sur les ponceaux de la D1.
+- Talus rocheux taillés côté amont, pins et chênes en bord immédiat de route sur la D3D ; paysage plus ouvert, garrigue et lignes électriques sur poteaux bois le long de la D1.
+- Balises de virage à chevrons, quelques panneaux routiers, peu de glissières.

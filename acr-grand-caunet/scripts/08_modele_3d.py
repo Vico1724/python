@@ -432,17 +432,28 @@ def main():
             print(version, json.dumps(rapport[version], ensure_ascii=False))
     # vues : ensemble oblique (aperçu) et rapprochée sur le plus long pont (complet)
     A = to_gltf(ch["A"], ref)
-    c = A.mean(0)
+    c = (A.min(0) + A.max(0)) / 2
     a, b = max(runs(deck), key=lambda ab: ab[1] - ab[0])
     m = (a + b) // 2
     t = A[min(m + 60, len(A) - 1)] - A[max(m - 60, 0)]
     t /= np.linalg.norm(t)
     side = np.array([-t[2], 0, t[0]])
-    vues_ap = [("ensemble", c + np.array([-900, 1500, 2600]), c, 40)]
-    vues_co = [("pont", A[m] + 55 * side + np.array([0, 22, 0]) - 25 * t, A[m] - np.array([0, 4, 0]), 50)]
+    # virage le plus serré de l'ES (courbure de l'axe lissé sur 15 m)
+    es = np.flatnonzero(ch["zone"] == "es")
+    h = np.unwrap(np.arctan2(np.gradient(A[:, 2]), np.gradient(A[:, 0])))
+    k = np.abs(np.convolve(np.gradient(h), np.ones(15) / 15, "same"))
+    v = es[np.argmax(k[es])]
+    cv = A[max(v - 25, 0):v + 26].mean(0)              # centre approximatif de l'épingle
+    out = A[v] - cv
+    out[1] = 0
+    out /= max(np.linalg.norm(out), 1e-6)
+    vues_ap = [("ensemble", c + np.array([-400, 2300, 2900]), c + np.array([0, -150, 150]), 45)]
+    vues_co = [("pont", A[m] + 55 * side + np.array([0, 22, 0]) - 25 * t, A[m] - np.array([0, 4, 0]), 50),
+               ("virage", A[v] + 70 * out + np.array([0, 35, 0]), A[v] - 10 * out, 50)]
     ok = rendus(MOD / "apercu", ch, ref, deck, vues_ap) and rendus(MOD, ch, ref, deck, vues_co)
     rapport["rendus_webgl"] = ok
-    rapport["pont_vue_rapprochee_pk"] = [round(float(ch["pk"][a])), round(float(ch["pk"][b]))]
+    rapport["vues_rapprochees_pk"] = {"pont": [round(float(ch["pk"][a])), round(float(ch["pk"][b]))],
+                                      "virage": round(float(ch["pk"][v]))}
     (MOD / "controle_modele.json").write_text(json.dumps(rapport, ensure_ascii=False, indent=2), encoding="utf-8")
     shutil.copy(MOD / "controle_modele.json", MOD / "apercu" / "controle_modele.json")
 

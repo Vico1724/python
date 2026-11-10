@@ -88,8 +88,8 @@
       },
       "ecart_bords_route_terrain_hors_ponts": {
         "bords_testes": 14720,
-        "distance_plane_max_m": 0.8,
-        "ecart_vertical_max_m": 0.135,
+        "sommets_partages_pct": 99.98,
+        "ecart_vertical_max_m": 0.016,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -159,15 +159,18 @@
       },
       "ecart_bords_route_terrain_hors_ponts": {
         "bords_testes": 14720,
-        "distance_plane_max_m": 0.949,
-        "ecart_vertical_max_m": 0.06,
+        "sommets_partages_pct": 99.98,
+        "ecart_vertical_max_m": 0.014,
         "ecart_vertical_p99_m": 0.0
       }
     }
   },
-  "rendus_webgl": false,
-  "pont_vue_rapprochee_pk": [
-    5501,
-    5566
-  ]
+  "rendus_webgl": true,
+  "vues_rapprochees_pk": {
+    "pont": [
+      5501,
+      5566
+    ],
+    "virage": 3630
+  }
 }

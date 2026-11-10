@@ -110,7 +110,7 @@ Ce que cela change pour nous :
 | L'archive de la spéciale pèse 3,76 Go alors que l'auteur dit ne redistribuer aucun fichier du jeu. | Elle contient son propre monde visible (terrain, textures, objets) : ce n'est pas un simple remplacement de la surface de roulage d'une spéciale existante. *Déduction, non vérifiée.* |
 | Une seconde archive, très petite, s'appelle « Registry ». | Elle porte probablement les tables qui inscrivent la spéciale dans les menus, communes à toutes les spéciales de l'auteur. *Déduction, non vérifiée.* |
 
-La liste ne donne que des noms et des tailles : elle ne dit pas si le niveau est construit dans Unreal Engine ou assemblé autrement. Le sommaire des deux archives (les fichiers `.utoc`, 1,4 Mo au total) contient la liste des éléments qu'elles renferment et tranchera la question, sans toucher à leur contenu.
+Les sommaires des deux archives, lus depuis, confirment ces deux déductions et détaillent la structure d'une spéciale : voir `04_integration_jeu.md`. Ils ne disent pas avec quel outil ces fichiers sont fabriqués.
 
 ## 5. Chaîne d'outils retenue
 

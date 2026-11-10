@@ -51,7 +51,6 @@ Quand la photo voit le bord, elle fait foi : le relevé laser englobe parfois un
 - **Quatre tronçons indécidables**, interpolés sur plus de 20 m : PK 414 à 434, 470 à 508, 4 707 à 4 753 et 4 928 à 4 965. Autour des PK 470 à 510 et 660 à 700, la largeur atteint le plafond de 9,5 m : probablement des refuges ou des surlargeurs revêtues. À confirmer sur vidéo embarquée.
 - **Dix autres tronçons interpolés** correspondent à des ponts et à des débouchés de pistes, dont le carrefour du Lion d'Or (PK 3 618 à 3 665), où la forme exacte du virage reste à dessiner.
 - **Un ponceau mal placé dans la base IGN** creusait la route de 1,5 m au PK 3 452. Il est comblé automatiquement ; le script signale ce type de creux.
-- **Seule la partie chronométrée est traitée.** L'approche avant le départ et la zone jusqu'au point stop restent à faire : le jeu en a besoin.
 - Les virages et les notes du copilote n'ont pas encore été recalculés sur ce nouvel axe.
 
 ## 5. Fichiers
@@ -64,9 +63,35 @@ Quand la photo voit le bord, elle fait foi : le relevé laser englobe parfois un
 | `figures/phase3/` | Planches de contrôle sur photo aérienne, courbes de largeur et de décalage |
 | `scripts/07_chaussee_precise.py` | Le calcul, rejouable en 15 secondes |
 
-## 6. Suite
+## 6. Compléments du 10/11/2026 : approche, sortie et premier modèle 3D
 
-1. Prolonger la chaussée avant le départ et jusqu'au point stop.
-2. Verrouiller les lignes et lever les tronçons douteux sur les vidéos embarquées.
+**Chaussée prolongée.** Le calcul couvre maintenant toute la zone utile au jeu, du contrôle horaire (PK −191) à 60 m après le point stop (PK 7 356). Une colonne `zone` distingue l'approche, la spéciale et la sortie.
+
+- La sortie est correcte ; 15 % y est interpolé.
+- **L'approche est mauvaise** : 57 % y est interpolé. Au carrefour D3/D3D et le long du parking, la chaussée calculée est trop large (jusqu'à 9,5 m) et son bord gauche entre dans le parking. Cette zone sera redessinée à la main.
+- En passant, un défaut de méthode a été trouvé et corrigé : le résultat dépendait légèrement du point où le calcul commençait (4 cm en médiane, jusqu'à 1,8 m sur un pont). Les profils sont désormais calés sur une grille fixe.
+
+**Premier modèle 3D** (`scripts/08_modele_3d.py`, 40 secondes) au format glTF, lisible par Blender, Unreal Engine et les visionneuses en ligne :
+
+| Fichier | Contenu | Taille |
+|---|---|---:|
+| `modele/route.glb` | La chaussée : un ruban de 30 000 triangles, trois points par mètre (bord, axe, bord) pour restituer le bombement | 1,1 Mo |
+| `modele/terrain.glb` | Le terrain à 130 m de part et d'autre, en 26 dalles portant chacune sa photo aérienne ; maille de 1 m près de la route, 4 m au loin | 39 Mo, non versionné |
+| `modele/apercu/` | Version allégée des deux fichiers | 8,6 Mo, versionnée |
+| `modele/repere.json` | Origine (le départ) et formule de passage entre les coordonnées de carte et celles du modèle | |
+
+Contrôles faits : aucun trou entre la route et le terrain (écart vertical de 1,6 cm au pire hors ponts), toutes les faces de la route tournées vers le haut, rendu vérifié sur trois vues.
+
+Défauts connus du modèle :
+- la route est en gris uni, sans texture ni marquage ;
+- les ponts n'ont ni tablier épais, ni parapets, ni piles ; sous le plus long, les parois du vallon portent une image étirée ;
+- pas encore de végétation ni d'objets.
+
+![Vue du modèle](../figures/phase3/modele_3d_virage.png)
+
+## 7. Suite
+
+1. Redessiner à la main l'approche (carrefour D3/D3D, parking) et le carrefour du Lion d'Or.
+2. Lever les tronçons douteux sur la vidéo n° 2 ; trancher la position de la ligne de départ (voir `references_videos.md`).
 3. Recalculer les virages et produire une première version des notes du copilote.
-4. Construire le premier modèle 3D : la route et le terrain du couloir, habillés par la photo aérienne.
+4. Enrichir le modèle 3D : texture et marquage de la route, parapets des ponts, placement des arbres par essence.
