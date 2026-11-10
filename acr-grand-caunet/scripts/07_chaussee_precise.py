@@ -371,13 +371,16 @@ def passe(R, xy, pk_ref):
 
 
 def recentre(xy, pk_ref, res):
-    """Nouvel axe = milieu des bords, lissé, rééchantillonné à 1 m."""
+    """Nouvel axe = milieu des bords, lissé. Les stations restent calées sur la grille
+    métrique des PK BD TOPO (pk_ref entiers + constante) : le résultat en un point ne dépend
+    pas de l'étendue traitée."""
     mid = res["edge"].mean(axis=1)
     m = xy + mid[:, None] * res["nr"]
     m = np.column_stack([savgol_filter(m[:, k], 11, 2) for k in (0, 1)])
     s = cumdist(m)
-    t = np.arange(0.0, s[-1], 1.0)
-    return np.column_stack([np.interp(t, s, m[:, k]) for k in (0, 1)]), np.interp(t, s, pk_ref)
+    g = pk_ref[0] + np.arange(0, np.floor(pk_ref[-1] - pk_ref[0]) + 1)
+    t = np.interp(g, pk_ref, s)
+    return np.column_stack([np.interp(t, s, m[:, k]) for k in (0, 1)]), g
 
 
 def source_profil(code):
@@ -404,9 +407,10 @@ def runs(mask):
 
 
 # --- figures ---------------------------------------------------------------------
-def planche(R, old_xy, pk, axe, gl, dr, src, picks, h, name, dpi):
+def planche(R, old_xy, pk, axe, gl, dr, src, picks, h, name, dpi, grille=(2, 4), titre=None):
     """Extraits d'ortho RVB (2h x 2h m) centrés sur le nouvel axe, avec les tracés superposés."""
-    fig, axs = plt.subplots(2, 4, figsize=(16, 9.6))
+    nl, nc = grille
+    fig, axs = plt.subplots(nl, nc, figsize=(4 * nc, 4.8 * nl))
     px = round(2 * h / 0.2)
     halo = [pe.withStroke(linewidth=2.6, foreground=INK)]
     for ax, (k, label) in zip(axs.flat, picks):
@@ -434,9 +438,9 @@ def planche(R, old_xy, pk, axe, gl, dr, src, picks, h, name, dpi):
     leg = fig.legend(h_, l_, loc="lower center", ncol=5, frameon=True, facecolor="#9a9990", edgecolor="none")
     for t in leg.get_texts():
         t.set_color("white")
-    fig.suptitle(f"ES Le Grand Caunet - bords de chaussée détectés (LiDAR HD + ortho IRC), fond BD ORTHO 20 cm, "
-                 f"extraits de {2 * h:.0f} m - PK sur le nouvel axe", x=0.01, ha="left", color=INK, fontsize=11)
-    fig.tight_layout(rect=(0, 0.045, 1, 0.97), h_pad=3.0)
+    fig.suptitle(titre or f"ES Le Grand Caunet - bords de chaussée détectés (LiDAR HD + ortho IRC), fond BD ORTHO "
+                 f"20 cm, extraits de {2 * h:.0f} m - PK sur le nouvel axe", x=0.01, ha="left", color=INK, fontsize=11)
+    fig.tight_layout(rect=(0, 0.09 / nl, 1, 1 - 0.06 / nl), h_pad=3.0)
     path = FIG3 / name
     fig.savefig(path, dpi=dpi)
     plt.close(fig)
@@ -466,7 +470,10 @@ def courbes(pk, width, offset, src, bridges, L):
     a2.set_ylabel("décalage latéral (m)\n+ nouvel axe à droite")
     a2.set_xlabel("PK sur le nouvel axe (m)")
     a2.grid(axis="y", color=GRID, lw=0.8)
-    a2.set_xlim(-50, L + 50)
+    for a in (a1, a2):
+        for k in (0, L):
+            a.axvline(k, color=INK2, lw=0.8, ls=":")
+    a2.set_xlim(pk[0] - 20, pk[-1] + 20)
     fig.savefig(FIG3 / "largeur_decalage.png", dpi=110, bbox_inches="tight")
     plt.close(fig)
 
@@ -498,8 +505,16 @@ def main():
     s0 = line.project(Point(cal["depart_cale"]["x_l93"], cal["depart_cale"]["y_l93"]))
     s1 = line.project(Point(cal["arrivee_calee"]["x_l93"], cal["arrivee_calee"]["y_l93"]))
     L = s1 - s0
-    pk = np.arange(0.0, L, 1.0)
-    pk = np.append(pk, L) if L - pk[-1] > 1e-6 else pk
+    # étendue : du début de l'axe (contrôle horaire) au point stop + SORTIE_APRES_STOP,
+    # ce dernier pris sur l'ancien axe puis projeté ; l'arrivée garde son point exact
+    p_end = [np.interp(PK_STOP_BDTOPO + SORTIE_APRES_STOP, pk_old, old_xy[:, k]) for k in (0, 1)]
+    s_end = line.project(Point(*p_end))
+    pk = np.arange(np.ceil(-s0), s_end - s0, 1.0)
+    pk = np.sort(np.append(pk, L)) if np.min(np.abs(pk - L)) > 1e-6 else pk
+    zone = np.where(pk < 0, "approche", np.where(pk <= L + 1e-6, "es", "sortie"))
+    es = zone == "es"
+    p_stop = [np.interp(PK_STOP_BDTOPO, pk_old, old_xy[:, k]) for k in (0, 1)]
+    pk_stop = line.project(Point(*p_stop)) - s0
     def at(v):
         return np.column_stack([np.interp(pk + s0, s_ax, v[:, k]) for k in range(v.shape[1])])
     A, G, D = at(axe), at(gl), at(dr)
@@ -552,45 +567,60 @@ def main():
     with open(OUT / "chaussee_precise.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["pk_m", "x_axe", "y_axe", "z_axe", "x_gauche", "y_gauche", "z_gauche", "x_droite", "y_droite",
-                    "z_droite", "largeur_m", "devers_pct", "source"])
+                    "z_droite", "largeur_m", "devers_pct", "source", "zone"])
         for i in range(len(pk)):
             w.writerow([round(pk[i], 1), *np.round(A[i], 2), round(float(za[i]), 2), *np.round(G[i], 2),
                         round(float(zg[i]), 2), *np.round(D[i], 2), round(float(zd[i]), 2), round(float(width[i]), 2),
-                        round(float(devers[i]), 1), src[i]])
+                        round(float(devers[i]), 1), src[i], zone[i]])
     feats = []
     for name, P_, Z_ in (("axe", A, za), ("bord_gauche", G, zg), ("bord_droit", D, zd)):
         coords = [[*map(lambda v: round(v, 7), wgs(x, y)), round(float(z), 2)] for (x, y), z in zip(P_, Z_)]
-        feats.append({"type": "Feature", "properties": {"nom": name, "longueur_m": round(L, 1)},
+        feats.append({"type": "Feature", "properties": {"nom": name, "longueur_es_m": round(L, 1),
+                                                        "pk_debut_m": round(float(pk[0]), 1),
+                                                        "pk_fin_m": round(float(pk[-1]), 1)},
                       "geometry": {"type": "LineString", "coordinates": coords}})
     write_geojson(OUT / "chaussee_precise.geojson", feats, "chaussee_precise")
 
     _, junc = zones_neutres(ref)
     interp_runs = []
-    for a, b in runs(src == "interpole"):
+    for a, b in runs((src == "interpole") & es):
         if pk[b] - pk[a] + 1 > 20:
             motif = " + ".join(m for m, hit in (("pont", bridge[a:b + 1].any()), ("débouché", junc[a:b + 1].any()))
                                if hit) or "surlargeur ou bord indécidable"
             interp_runs.append({"pk_debut": round(float(pk[a])), "pk_fin": round(float(pk[b])), "motif": motif})
     # concordance brute des deux estimateurs (profils de la passe finale où les deux mesurent)
-    lid_, ort_ = res["lid"][near], res["ort"][near]
+    lid_, ort_ = res["lid"][near[es]], res["ort"][near[es]]
     both = np.isfinite(lid_) & np.isfinite(ort_)
     dd = np.abs(lid_ - ort_)[both]
-    imax = int(np.argmax(np.abs(off)))
+    imax = int(np.argmax(np.abs(off) * es))
+    W, S, O, DV = width[es], src[es], np.abs(off[es]), devers[es]
+    hors = {}
+    for zn in ("approche", "sortie"):
+        mz = zone == zn
+        hors[zn] = {"pk_debut_m": round(float(pk[mz][0]), 1), "pk_fin_m": round(float(pk[mz][-1]), 1),
+                    "longueur_m": int(mz.sum()), "part_interpolee_pct": round(float((src[mz] == "interpole").mean() * 100), 1),
+                    "troncons_interpoles_sup_20m": [(round(float(pk[a])), round(float(pk[b])))
+                                                    for a, b in runs((src == "interpole") & mz)
+                                                    if pk[b] - pk[a] + 1 > 20]}
+    hors["note"] = ("statistiques ci-dessus calculées sur la seule zone es ; approche = début de l'axe BD TOPO "
+                    "(contrôle horaire) -> départ, sortie = arrivée -> point stop + 60 m "
+                    f"(point stop au PK {pk_stop:.0f} du nouvel axe)")
     q = {
         "longueur_depart_arrivee_m": round(float(L), 1),
         "longueur_officielle_m": 6702,
-        "largeur_m": {"mediane": round(float(np.median(width)), 2), "p5": round(float(np.percentile(width, 5)), 2),
-                      "p95": round(float(np.percentile(width, 95)), 2)},
-        "part_lineaire_par_source_pct": {k: round(float((src == k).mean() * 100), 1) for k in SRC_COLORS},
-        "decalage_lateral_bdtopo_m": {"mediane": round(float(np.median(np.abs(off))), 2),
-                                      "p95": round(float(np.percentile(np.abs(off), 95)), 2),
-                                      "max": round(float(np.abs(off).max()), 2), "pk_max": round(float(pk[imax]))},
+        "largeur_m": {"mediane": round(float(np.median(W)), 2), "p5": round(float(np.percentile(W, 5)), 2),
+                      "p95": round(float(np.percentile(W, 95)), 2)},
+        "part_lineaire_par_source_pct": {k: round(float((S == k).mean() * 100), 1) for k in SRC_COLORS},
+        "decalage_lateral_bdtopo_m": {"mediane": round(float(np.median(O)), 2),
+                                      "p95": round(float(np.percentile(O, 95)), 2),
+                                      "max": round(float(O.max()), 2), "pk_max": round(float(pk[imax]))},
         "troncons_interpoles_sup_20m": {"nombre": len(interp_runs), "troncons": interp_runs},
         "concordance_lidar_image": {"part_des_bords_mesures_par_les_deux_pct": round(float(both.mean() * 100), 1),
                                     "ecart_median_m": round(float(np.median(dd)), 2),
                                     "ecart_p90_m": round(float(np.percentile(dd, 90)), 2)},
-        "devers_pct": {"mediane_abs": round(float(np.median(np.abs(devers))), 1),
-                       "p95_abs": round(float(np.percentile(np.abs(devers), 95)), 1)},
+        "devers_pct": {"mediane_abs": round(float(np.median(np.abs(DV))), 1),
+                       "p95_abs": round(float(np.percentile(np.abs(DV), 95)), 1)},
+        "hors_es": hors,
         "sources": {"lidar+ortho": "les deux bords mesurés, LiDAR et image concordent (< 1 m)",
                     "lidar": "au moins un bord pris sur la seule rupture LiDAR (sous les arbres, à l'ombre)",
                     "ortho": "au moins un bord pris sur la seule image (pont, plate-forme sans rupture)",
@@ -626,6 +656,10 @@ def main():
     picks.sort()
     planche(R, old_xy, pk, A, G, D, src, picks, 40, "planche_extraits.png", 110)
     planche(R, old_xy, pk, A, G, D, src, picks, 15, "planche_zooms_30m.png", 110)
+    ext = [(pk[0] + 30, "approche : contrôle horaire, carrefour D3 / D3D"), (-90.0, "approche : parking"),
+           (0.0, "départ"), (L, "arrivée"), (pk_stop, "point stop"), (pk[-1] - 25, "fin de la sortie (stop + 60 m)")]
+    planche(R, old_xy, pk, A, G, D, src, ext, 30, "planche_extremites.png", 95, grille=(2, 3),
+            titre="Extrémités : approche (avant départ) et sortie (après arrivée), extraits de 60 m - PK sur le nouvel axe")
     courbes(pk, width, off, src, spans, L)
     print("figures écrites dans", FIG3)
 

@@ -1,34 +1,39 @@
 {
-  "longueur_depart_arrivee_m": 6715.2,
+  "longueur_depart_arrivee_m": 6714.9,
   "longueur_officielle_m": 6702,
   "largeur_m": {
     "mediane": 6.4,
-    "p5": 5.15,
-    "p95": 8.37
+    "p5": 5.06,
+    "p95": 8.44
   },
   "part_lineaire_par_source_pct": {
-    "lidar+ortho": 8.4,
-    "lidar": 66.1,
-    "ortho": 4.9,
-    "interpole": 20.7
+    "lidar+ortho": 8.2,
+    "lidar": 64.6,
+    "ortho": 4.2,
+    "interpole": 22.9
   },
   "decalage_lateral_bdtopo_m": {
     "mediane": 0.67,
-    "p95": 2.19,
-    "max": 4.39,
+    "p95": 2.25,
+    "max": 4.37,
     "pk_max": 830
   },
   "troncons_interpoles_sup_20m": {
-    "nombre": 14,
+    "nombre": 16,
     "troncons": [
       {
-        "pk_debut": 414,
-        "pk_fin": 434,
+        "pk_debut": 431,
+        "pk_fin": 452,
         "motif": "surlargeur ou bord indécidable"
       },
       {
-        "pk_debut": 470,
-        "pk_fin": 508,
+        "pk_debut": 471,
+        "pk_fin": 507,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 685,
+        "pk_fin": 710,
         "motif": "surlargeur ou bord indécidable"
       },
       {
@@ -37,14 +42,14 @@
         "motif": "pont + débouché"
       },
       {
-        "pk_debut": 1902,
-        "pk_fin": 1934,
+        "pk_debut": 1914,
+        "pk_fin": 1956,
         "motif": "pont + débouché"
       },
       {
-        "pk_debut": 2640,
-        "pk_fin": 2663,
-        "motif": "débouché"
+        "pk_debut": 2714,
+        "pk_fin": 2736,
+        "motif": "surlargeur ou bord indécidable"
       },
       {
         "pk_debut": 2739,
@@ -53,54 +58,90 @@
       },
       {
         "pk_debut": 3403,
-        "pk_fin": 3436,
+        "pk_fin": 3435,
         "motif": "pont + débouché"
       },
       {
-        "pk_debut": 3618,
-        "pk_fin": 3665,
+        "pk_debut": 3623,
+        "pk_fin": 3662,
         "motif": "pont + débouché"
       },
       {
-        "pk_debut": 4308,
-        "pk_fin": 4334,
-        "motif": "pont"
-      },
-      {
-        "pk_debut": 4407,
-        "pk_fin": 4427,
-        "motif": "pont"
-      },
-      {
-        "pk_debut": 4707,
-        "pk_fin": 4753,
+        "pk_debut": 4076,
+        "pk_fin": 4096,
         "motif": "surlargeur ou bord indécidable"
       },
       {
-        "pk_debut": 4928,
-        "pk_fin": 4965,
+        "pk_debut": 4308,
+        "pk_fin": 4331,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 4396,
+        "pk_fin": 4425,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 4705,
+        "pk_fin": 4759,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 4921,
+        "pk_fin": 4962,
         "motif": "surlargeur ou bord indécidable"
       },
       {
         "pk_debut": 5507,
-        "pk_fin": 5528,
+        "pk_fin": 5527,
         "motif": "pont"
       },
       {
-        "pk_debut": 5535,
-        "pk_fin": 5573,
-        "motif": "pont"
+        "pk_debut": 6429,
+        "pk_fin": 6449,
+        "motif": "surlargeur ou bord indécidable"
       }
     ]
   },
   "concordance_lidar_image": {
-    "part_des_bords_mesures_par_les_deux_pct": 33.7,
-    "ecart_median_m": 1.0,
+    "part_des_bords_mesures_par_les_deux_pct": 34.3,
+    "ecart_median_m": 1.25,
     "ecart_p90_m": 3.0
   },
   "devers_pct": {
     "mediane_abs": 4.4,
     "p95_abs": 8.1
+  },
+  "hors_es": {
+    "approche": {
+      "pk_debut_m": -191.0,
+      "pk_fin_m": -1.0,
+      "longueur_m": 191,
+      "part_interpolee_pct": 50.8,
+      "troncons_interpoles_sup_20m": [
+        [
+          -181,
+          -158
+        ],
+        [
+          -104,
+          -81
+        ]
+      ]
+    },
+    "sortie": {
+      "pk_debut_m": 6715.0,
+      "pk_fin_m": 7356.0,
+      "longueur_m": 642,
+      "part_interpolee_pct": 15.1,
+      "troncons_interpoles_sup_20m": [
+        [
+          6781,
+          6811
+        ]
+      ]
+    },
+    "note": "statistiques ci-dessus calculées sur la seule zone es ; approche = début de l'axe BD TOPO (contrôle horaire) -> départ, sortie = arrivée -> point stop + 60 m (point stop au PK 7297 du nouvel axe)"
   },
   "sources": {
     "lidar+ortho": "les deux bords mesurés, LiDAR et image concordent (< 1 m)",
