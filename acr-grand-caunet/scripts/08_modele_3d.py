@@ -35,6 +35,7 @@ import shapely
 from PIL import Image
 from rasterio.windows import from_bounds
 from scipy.ndimage import distance_transform_edt, map_coordinates
+from scipy.interpolate import LinearNDInterpolator
 from scipy.spatial import Delaunay, cKDTree
 from shapely.geometry import LineString, Point, Polygon
 
@@ -327,10 +328,16 @@ def controle(dossier, ch, ref, deck):
     # écart vertical aux bords : altitude du terrain (sommet le plus proche en plan) - bord de route
     E = to_gltf(np.vstack([ch["G"][~deck], ch["D"][~deck]]), ref)
     d, k = cKDTree(tpos[:, [0, 2]]).query(E[:, [0, 2]])
-    dz = np.abs(tpos[k, 1] - E[:, 1])
+    shared = d < 0.01
+    # bords non partagés : altitude du terrain interpolée linéairement autour du point
+    zt = tpos[k, 1].astype(float)
+    if (~shared).any():
+        zt[~shared] = LinearNDInterpolator(tpos[:, [0, 2]], tpos[:, 1])(E[~shared][:, [0, 2]])
+    dz = np.abs(zt - E[:, 1])
     r["ecart_bords_route_terrain_hors_ponts"] = {
-        "bords_testes": int(len(E)), "distance_plane_max_m": round(float(d.max()), 3),
-        "ecart_vertical_max_m": round(float(dz.max()), 3), "ecart_vertical_p99_m": round(float(np.percentile(dz, 99)), 3)}
+        "bords_testes": int(len(E)), "sommets_partages_pct": round(float(shared.mean() * 100), 3),
+        "ecart_vertical_max_m": round(float(np.nanmax(dz)), 3),
+        "ecart_vertical_p99_m": round(float(np.nanpercentile(dz, 99)), 3)}
     return r
 
 
