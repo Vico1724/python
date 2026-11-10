@@ -17,9 +17,9 @@ Votre réponse (graduation −20) est appliquée à toute la chaîne : le PK 0 d
 
 Rendu du sol, de la végétation, des bords de route, et copilote : ce qui vous convient et ce que vous voulez mieux pour le Grand Caunet.
 
-## 4. Écrire à l'auteur de BioBio (facultatif, mais utile)
+## 4. Auteur de BioBio : pas de contact
 
-C'est maintenant le point qui débloquerait le plus le projet. Son adresse figure en bas de <https://sandorally.com>. La question est précise : avec quel outil produit-il le niveau (`.umap`) et les variantes de matériaux de sa spéciale, l'éditeur Unreal Engine 5.6 ou un outil qui écrit ces fichiers directement ? Et accepterait-il de partager cet outil ou sa méthode pour une spéciale française faite à partir de données de l'IGN ?
+Décision du directeur (10/11/2026) : le projet avance sans contacter l'auteur de BioBio. La méthode de fabrication est donc recherchée par nos propres moyens, à partir du projet libre ACR Extra Stages (voir `04_integration_jeu.md`).
 
 ## 5. Plus tard : laisser le projet travailler sur le PC
 

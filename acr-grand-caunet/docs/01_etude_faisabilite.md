@@ -80,7 +80,7 @@ Légende de fiabilité :
 3. Ajouter un **exporteur vers le format d'échange « Stage IR »** d'ACR Extra Stages : un fichier `stage.json` (axe, portes avec bords gauche et droit, départ, intermédiaires, arrivée, notes du copilote) et des maillages glTF (collision par type de surface, objets, rendu). Ce format est conçu pour des spéciales de DiRT Rally 2.0 ; il faudra vérifier, côté construction, ce qui dépend de ce jeu.
 4. Construire et tester sur le PC Windows du directeur, d'abord en version minimale (la route seule, sans décor), puis en enrichissant.
 5. Garder **Assetto Corsa 1 avec CSP** comme solution de repli si la méthode casse.
-6. Écrire à Sando Rally : son approche est la plus proche de la nôtre, mais sa licence interdit de réutiliser son travail sans accord.
+6. Ne pas solliciter l'auteur de BioBio (décision du directeur, 10/11/2026) : sa spéciale sert de référence de structure, lue dans ses sommaires, sans réutiliser aucun de ses fichiers.
 
 | Cible | Maturité | Outillage | Effort | Ce que le directeur fait sur son PC |
 |---|---|---|---|---|
@@ -157,7 +157,7 @@ Source de relief retenue : le LiDAR HD de l'IGN (relevé laser aérien, maille d
 **Décisions attendues du directeur**
 1. Cible validée le 10/11/2026 : Assetto Corsa Rally, à la manière de BioBio ; PC Windows avec le jeu disponible.
 2. Tester « Chile BioBio » et transmettre la liste des fichiers installés (voir `guide_pc_directeur.md`) [S14].
-3. Écrire à l'auteur de BioBio pour connaître sa méthode d'assemblage (facultatif, mais utile).
+3. Décidé le 10/11/2026 : pas de contact avec l'auteur de BioBio ; la méthode d'assemblage est recherchée par nos propres moyens.
 4. Choisir le niveau de détail visé pour le décor, qui est le poste le plus long.
 5. Décider si la spéciale sera diffusée publiquement, ce qui impose une vérification juridique.
 

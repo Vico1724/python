@@ -80,7 +80,7 @@ La notice jointe à BioBio (`THIRD_PARTY_NOTICES.txt`, transmise par le directeu
 - l'outil cité est `retoc`, pas l'éditeur ;
 - l'éditeur ne peut pas ouvrir les éléments compilés du jeu : pour y poser un pin d'Alep du jeu, il faut d'abord fabriquer des éléments factices portant le même nom, une voie que ACR Extra Stages juge non prouvée.
 
-Rien de cela n'est une preuve : le gestionnaire peut n'utiliser `retoc` que pour fusionner les tables de menus à l'installation, et le niveau lui-même venir de l'éditeur. **Seul l'auteur peut le dire.**
+Rien de cela n'est une preuve : le gestionnaire peut n'utiliser `retoc` que pour fusionner les tables de menus à l'installation, et le niveau lui-même venir de l'éditeur. Seul l'auteur pourrait le dire, et le directeur a choisi de ne pas le solliciter : la question se réglera par nos propres essais.
 
 Un point à ne pas confondre : le réalisme du rendu ne dépend pas de l'outil de fabrication. L'image est calculée par le moteur du jeu dans les deux cas. Ce qui fait le réalisme, ce sont le relief, les images de sol, les matériaux et les arbres du jeu que la spéciale désigne.
 
@@ -89,8 +89,10 @@ Deux autres inconnues demeurent :
 1. **Le contenu exact du niveau** : quels acteurs y sont posés, et comment les arbres du jeu y sont appelés. Le sommaire donne les noms des fichiers, pas leur intérieur.
 2. **Le format de la table des notes du copilote** et celui de `BakedData` : documentés en partie par ACR Extra Stages, à vérifier sur la version actuelle du jeu.
 
-## 6. Suite proposée
+## 6. Suite
 
-1. **Écrire à l'auteur de BioBio** (voir `guide_pc_directeur.md`). La question est maintenant précise : avec quel outil produit-il le niveau et les matériaux ? Une réponse, même partielle, fixe la voie.
-2. **Sans attendre, côté données** : terminer le modèle neutre (route texturée, dalles de terrain, placement des arbres par essence, murets et parapets), qui sert dans les deux voies.
-3. **Sur le PC du directeur**, quand la voie sera choisie : produire d'abord une spéciale minimale (la route seule et sa physique), la charger en Free Practice, puis enrichir.
+**Décision du directeur (10/11/2026) : avancer sans contacter l'auteur de BioBio.** L'outil de fabrication doit donc être trouvé par nos propres moyens.
+
+1. **Étudier ACR Extra Stages**, seul projet libre qui documente la fabrication d'une spéciale, et exporter notre spéciale dans son format d'échange (en cours ; compte rendu à venir dans `05_export_stage_ir.md`). Ce projet est conçu pour des spéciales de DiRT Rally 2.0 et copie une spéciale galloise sur terre : il faudra établir ce qui s'applique tel quel à une route asphaltée faite de nos données.
+2. **Sans attendre, côté données** : terminer le modèle neutre (route texturée, dalles de terrain, placement des arbres par essence, murets et parapets), qui sert quelle que soit la voie.
+3. **Sur le PC du directeur**, dès qu'une chaîne de fabrication est identifiée : produire d'abord une spéciale minimale (la route seule et sa physique), la charger en Free Practice, puis enrichir.
