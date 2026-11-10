@@ -1,0 +1,4 @@
+# Téléchargements bruts volumineux : régénérables avec scripts/tout_lancer.sh
+data/raw/
+__pycache__/
+*.pyc

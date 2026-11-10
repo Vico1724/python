@@ -1,0 +1,68 @@
+{
+  "rayon_couloir_m": 300,
+  "couches": {
+    "batiment": 250,
+    "bdforet_formation_vegetale": 68,
+    "construction_lineaire": 33,
+    "construction_ponctuelle": 3,
+    "construction_surfacique": 0,
+    "detail_orographique": 1,
+    "equipement_de_transport": 2,
+    "haie": 47,
+    "lieu_dit_non_habite": 2,
+    "ligne_electrique": 0,
+    "ligne_orographique": 5,
+    "pylone": 0,
+    "reservoir": 2,
+    "surface_hydrographique": 5,
+    "terrain_de_sport": 0,
+    "troncon_de_route": 496,
+    "troncon_hydrographique": 50,
+    "zone_d_activite": 14,
+    "zone_de_vegetation": 105
+  },
+  "batiments": {
+    "a_moins_de_25_m": 8,
+    "a_moins_de_50_m": 18,
+    "a_moins_de_100_m": 36,
+    "a_moins_de_300_m": 250
+  },
+  "bdforet_formation_vegetale_part_dans_100m_pct": {
+    "Forêt fermée de pin dAlep pur": 38.6,
+    "Lande": 11.8,
+    "Forêt fermée à mélange de feuillus prépondérants et conifères": 11.7,
+    "Forêt fermée de chênes sempervirents purs": 10.5,
+    "Forêt ouverte de conifères purs": 7.2,
+    "Forêt fermée à mélange de conifères prépondérants et feuillus": 5.6,
+    "Forêt ouverte de feuillus purs": 2.7,
+    "Forêt ouverte à mélange de feuillus et conifères": 2.6,
+    "Forêt fermée dun autre pin pur": 0.4
+  },
+  "zone_de_vegetation_part_dans_100m_pct": {
+    "Forêt fermée de conifères": 38.9,
+    "Forêt fermée mixte": 17.3,
+    "Forêt ouverte": 12.4,
+    "Lande ligneuse": 11.8,
+    "Forêt fermée de feuillus": 10.5,
+    "Vigne": 1.2,
+    "Bois": 0.1,
+    "Haie": 0.1
+  },
+  "carrefours_dans_es": {
+    "Sentier": 16,
+    "Chemin": 10,
+    "Route empierrée": 13,
+    "Route à 1 chaussée": 1
+  },
+  "hauteur_vegetation_m": {
+    "bande_m": "5 à 30 m de l'axe",
+    "part_couvert_sup_2m_pct": 58,
+    "mediane_des_arbres_m": 9.1,
+    "p90_des_arbres_m": 16.6,
+    "max_m": 23.6
+  },
+  "communes_longueur_axe_complet_m": {
+    "Ceyreste (13023)": 36,
+    "Roquefort-la-Bédoule (13085)": 8071
+  }
+}

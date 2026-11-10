@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Rejoue toute la phase 2 (quelques minutes, ~220 Mo téléchargés dans data/raw).
+# Prérequis : Python 3.11+, `pip install -r requirements.txt`, accès à data.geopf.fr.
+set -euo pipefail
+cd "$(dirname "$0")"
+python3 01_collecte_vecteurs.py     # routes, bâtiments, végétation... (BD TOPO, BD Forêt)
+python3 02_trace_es.py              # tracé de l'ES + contrôle des PK officiels
+python3 03_collecte_rasters.py      # relief LiDAR HD 0,5 m + orthophoto 20 cm
+python3 04_profil_virages.py        # profil en long, pentes, virages, ponts
+python3 05_couloir_vecteurs.py      # décor dans le couloir + carrefours
+python3 06_figures.py               # cartes et graphiques de contrôle
