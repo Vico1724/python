@@ -11,7 +11,7 @@ Reproduction de l'épreuve spéciale « Le Grand Caunet » (6,702 km, asphalte, 
 | 0 | Étude de faisabilité | Fait : [`docs/01_etude_faisabilite.md`](docs/01_etude_faisabilite.md) |
 | 1 | Choix de la spéciale | Fait : ES « Le Grand Caunet », 6,702 km |
 | 2 | Identification GPS, cartographie, relief, données géographiques | Fait : [`docs/02_phase2_donnees_geographiques.md`](docs/02_phase2_donnees_geographiques.md) |
-| 3 | Axe et bords de chaussée précis, dévers, lignes de départ et d'arrivée | À faire |
+| 3 | Axe et bords de chaussée précis, dévers | Première version : [`docs/03_phase3_chaussee.md`](docs/03_phase3_chaussee.md). Lignes de départ et d'arrivée à verrouiller sur vidéo |
 | 4 à 8 | Terrain 3D, route, décor, export vers le jeu, notes du copilote, tests | À faire |
 
 **À savoir avant tout** : Assetto Corsa Rally (version 0.6) ne propose officiellement que des livrées personnalisées. Des spéciales non officielles existent pourtant depuis fin octobre 2026, dont une construite à partir de données cartographiques publiques. Le projet vise donc Assetto Corsa Rally par cette voie non officielle, encore expérimentale, en gardant des données et un modèle 3D indépendants du jeu. Le détail est dans l'étude de faisabilité.
@@ -31,7 +31,7 @@ scripts/              chaîne de traitement, rejouable de bout en bout
 
 Pour voir le tracé sans rien installer : ouvrir `data/processed/trace_es.kml` dans Google Earth.
 
-## Rejouer la phase 2
+## Rejouer les phases 2 et 3
 
 ```bash
 pip install -r requirements.txt

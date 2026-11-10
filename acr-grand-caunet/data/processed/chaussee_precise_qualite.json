@@ -1,0 +1,113 @@
+{
+  "longueur_depart_arrivee_m": 6715.2,
+  "longueur_officielle_m": 6702,
+  "largeur_m": {
+    "mediane": 6.4,
+    "p5": 5.15,
+    "p95": 8.37
+  },
+  "part_lineaire_par_source_pct": {
+    "lidar+ortho": 8.4,
+    "lidar": 66.1,
+    "ortho": 4.9,
+    "interpole": 20.7
+  },
+  "decalage_lateral_bdtopo_m": {
+    "mediane": 0.67,
+    "p95": 2.19,
+    "max": 4.39,
+    "pk_max": 830
+  },
+  "troncons_interpoles_sup_20m": {
+    "nombre": 14,
+    "troncons": [
+      {
+        "pk_debut": 414,
+        "pk_fin": 434,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 470,
+        "pk_fin": 508,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 1452,
+        "pk_fin": 1478,
+        "motif": "pont + débouché"
+      },
+      {
+        "pk_debut": 1902,
+        "pk_fin": 1934,
+        "motif": "pont + débouché"
+      },
+      {
+        "pk_debut": 2640,
+        "pk_fin": 2663,
+        "motif": "débouché"
+      },
+      {
+        "pk_debut": 2739,
+        "pk_fin": 2762,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 3403,
+        "pk_fin": 3436,
+        "motif": "pont + débouché"
+      },
+      {
+        "pk_debut": 3618,
+        "pk_fin": 3665,
+        "motif": "pont + débouché"
+      },
+      {
+        "pk_debut": 4308,
+        "pk_fin": 4334,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 4407,
+        "pk_fin": 4427,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 4707,
+        "pk_fin": 4753,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 4928,
+        "pk_fin": 4965,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 5507,
+        "pk_fin": 5528,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 5535,
+        "pk_fin": 5573,
+        "motif": "pont"
+      }
+    ]
+  },
+  "concordance_lidar_image": {
+    "part_des_bords_mesures_par_les_deux_pct": 33.7,
+    "ecart_median_m": 1.0,
+    "ecart_p90_m": 3.0
+  },
+  "devers_pct": {
+    "mediane_abs": 4.4,
+    "p95_abs": 8.1
+  },
+  "sources": {
+    "lidar+ortho": "les deux bords mesurés, LiDAR et image concordent (< 1 m)",
+    "lidar": "au moins un bord pris sur la seule rupture LiDAR (sous les arbres, à l'ombre)",
+    "ortho": "au moins un bord pris sur la seule image (pont, plate-forme sans rupture)",
+    "interpole": "au moins un bord interpolé sur plus de 3 m (pont sans image, débouché, surlargeur rejetée, aucune source fiable)"
+  },
+  "methode": "profils en travers tous les mètres (±15 m, pas 0,25 m) sur l'axe courant ; bord LiDAR = fin de la plate-forme lisse du MNT ; bord image = fin de l'asphalte visible (NDVI bas, luminosité de la route) hors arbres et ombre ; l'image fait foi quand elle mesure ; filtrage le long du parcours, interpolation, lissage (milieu σ 4 m, bords σ 2 m) ; 2 recentrages de l'axe",
+  "precision_indicative": "bords : ±0,5 m là où l'asphalte est visible ; 1 à 2 m possibles sous les arbres (plate-forme LiDAR incluant un accotement plat) ; axe : bien meilleur que la BD TOPO"
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Rejoue toute la phase 2 (quelques minutes, ~220 Mo téléchargés dans data/raw).
+# Rejoue les phases 2 et 3 (quelques minutes, ~250 Mo téléchargés dans data/raw).
 # Prérequis : Python 3.11+, `pip install -r requirements.txt`, accès à data.geopf.fr.
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -9,3 +9,4 @@ python3 03_collecte_rasters.py      # relief LiDAR HD 0,5 m + orthophoto 20 cm
 python3 04_profil_virages.py        # profil en long, pentes, virages, ponts
 python3 05_couloir_vecteurs.py      # décor dans le couloir + carrefours
 python3 06_figures.py               # cartes et graphiques de contrôle
+python3 07_chaussee_precise.py      # phase 3 : axe précis et bords de chaussée, tous les mètres
