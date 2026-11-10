@@ -98,6 +98,11 @@ def load_official() -> dict:
     return json.loads(OFFICIAL.read_text(encoding="utf-8"))
 
 
+def longueur_es() -> float:
+    """PK de la ligne d'arrivée (m) sur l'axe BD TOPO ; le PK 0 est la ligne de départ retenue."""
+    return json.loads((OUT / "calage_es.json").read_text(encoding="utf-8"))["arrivee_calee"]["pk_m"]
+
+
 def l93(lon: float, lat: float) -> tuple[float, float]:
     return TO_L93.transform(lon, lat)
 

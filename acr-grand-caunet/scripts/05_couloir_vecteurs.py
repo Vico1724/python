@@ -12,7 +12,7 @@ import numpy as np
 import shapely
 from shapely.geometry import LineString, Point, mapping, shape
 
-from acr_geo import OUT, RAW, TO_L93, TO_WGS, load_official, project_on_line
+from acr_geo import OUT, RAW, TO_L93, TO_WGS, longueur_es, project_on_line
 
 BUFFER = 300
 CLIP = {"zone_de_vegetation", "bdforet_formation_vegetale", "surface_hydrographique", "commune"}
@@ -48,7 +48,7 @@ def canopy(axis, near=30):
 
 
 def main():
-    L = load_official()["longueur_officielle_km"] * 1000
+    L = longueur_es()
     with open(OUT / "axe_bdtopo_l93.csv") as f:
         rows = list(csv.DictReader(f))
     pk0 = float(rows[0]["pk_m"])

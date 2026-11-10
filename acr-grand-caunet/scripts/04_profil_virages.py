@@ -19,7 +19,7 @@ import rasterio
 from scipy.ndimage import map_coordinates
 from scipy.signal import savgol_filter
 
-from acr_geo import OUT, RAW, cumdist, load_official, resample, wgs
+from acr_geo import OUT, RAW, cumdist, load_official, longueur_es, resample, wgs
 
 STEP = 1.0
 WIN_Z = 21        # lissage de l'altitude (m) : gomme le bruit, garde bosses et cassures
@@ -38,7 +38,7 @@ def grade(r: float) -> str:
 
 def main():
     off = load_official()
-    L = off["longueur_officielle_km"] * 1000
+    L = longueur_es()                      # PK de l'arrivée ; PK 0 = ligne de départ retenue
     with open(OUT / "axe_bdtopo_l93.csv") as f:
         rows = list(csv.DictReader(f))
     pk0 = float(rows[0]["pk_m"])
@@ -165,7 +165,8 @@ def main():
     tight = min(inside, key=lambda c: c["rayon_mini_m"])
     over = float((np.abs(slope[stage]) > 12).mean() * 100)
     summary = {
-        "longueur_officielle_m": L,
+        "longueur_officielle_m": off["longueur_officielle_km"] * 1000,
+        "longueur_entre_lignes_axe_bdtopo_m": L,
         "longueur_3d_mesuree_m": round(d3, 1),
         "altitude_depart_m": round(float(zs[0]), 1),
         "altitude_arrivee_m": round(float(zs[-1]), 1),

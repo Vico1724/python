@@ -49,9 +49,9 @@
     "Haie": 0.1
   },
   "carrefours_dans_es": {
-    "Sentier": 16,
+    "Route empierrée": 14,
+    "Sentier": 17,
     "Chemin": 10,
-    "Route empierrée": 13,
     "Route à 1 chaussée": 1
   },
   "hauteur_vegetation_m": {

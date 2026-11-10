@@ -7,10 +7,11 @@
 - La liste des fichiers du jeu avec BioBio installé, et le numéro de version (25170642).
 - Les sommaires des archives du jeu et de BioBio : analyse dans `04_integration_jeu.md`.
 - Trois vidéos embarquées : analyse dans `references_videos.md`.
+- La notice de BioBio (`THIRD_PARTY_NOTICES.txt`) : analyse dans `04_integration_jeu.md`, § 5.
 
-## 2. La ligne de départ
+## 2. La ligne de départ : réglé
 
-Sur la vidéo n° 2, la cellule de départ est à hauteur de véhicules de secours garés à gauche. Sur l'image `figures/phase3/lignes_depart_ortho.jpg`, graduée tous les 10 m, à quelle graduation la placez-vous ? Mon estimation est entre −75 et −40, alors que le calcul à partir des distances officielles donnait 0.
+Votre réponse (graduation −20) est appliquée à toute la chaîne : le PK 0 du projet est maintenant cette ligne.
 
 ## 3. Votre avis sur BioBio en jeu
 

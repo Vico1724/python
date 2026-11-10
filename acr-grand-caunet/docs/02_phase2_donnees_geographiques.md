@@ -2,6 +2,8 @@
 
 *ES « Le Grand Caunet », 6,702 km. Situation au 10 novembre 2026. Document destiné au directeur de projet.*
 
+> **Changement d'origine des PK (10/11/2026).** Sur décision du directeur, d'après la vidéo embarquée de 2025, la ligne de départ a été reculée de 20 m. Le PK 0 du projet est désormais cette ligne, et l'arrivée, inchangée sur le terrain, se trouve au PK 6 722. **Les PK cités ci-dessous datent d'avant ce changement : ajoutez-leur 20 m** pour les retrouver dans les fichiers actuels.
+
 ## 1. Résultat
 
 La spéciale est identifiée, tracée et mesurée, et toutes les données géographiques utiles à sa reconstruction sont collectées.
@@ -9,7 +11,7 @@ La spéciale est identifiée, tracée et mesurée, et toutes les données géogr
 - **Parcours confirmé** par la carte officielle de l'organisateur : départ au carrefour du Grand Caunet, descente par la **D3D** à travers la forêt de Font-Blanche jusqu'au carrefour du **Lion d'Or**, puis remontée par la **D1** en direction de Roquefort-la-Bédoule.
 - **Contrôle de distance** : le tracé reconstitué retombe sur les 9 points intermédiaires officiels avec un écart type de 6,9 m (13 m au pire) sur 6,7 km.
 - **Relief** : relevé laser aérien de l'IGN (LiDAR HD), un point tous les 50 cm, disponible sur toute la spéciale.
-- **Un point reste à verrouiller** : la position exacte des lignes de départ et d'arrivée, connue à environ 30 m près (voir § 4).
+- **Lignes de départ et d'arrivée** : fixées depuis sur vidéo embarquée, à une quinzaine de mètres près (voir `references_videos.md`).
 
 ![Carte générale](../figures/carte_generale.png)
 

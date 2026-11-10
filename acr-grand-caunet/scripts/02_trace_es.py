@@ -19,7 +19,7 @@ from xml.sax.saxutils import escape
 
 import numpy as np
 
-from acr_geo import OUT, RAW, cumdist, l93, load_official, project_on_line, wgs, write_geojson
+from acr_geo import OUT, RAW, REF, cumdist, l93, load_official, project_on_line, wgs, write_geojson
 
 # L'ES emprunte la D3D puis la D1 (carte officielle + avis de fermeture de routes) ;
 # la D3 ne sert qu'à l'approche du CH. On n'accroche les points officiels qu'à ces
@@ -129,9 +129,16 @@ def main():
     # l'écart médian sur les 9 points intermédiaires.
     proj = {p["id"]: project_on_line(axis[:, :2], l93(p["lon"], p["lat"])) for p in pts}
     inter = [p for p in pts if p["role"] == "intermediaire"]
-    s0 = float(np.median([proj[p["id"]][0] - p["pk_km"] * 1000 for p in inter]))
+    s0_cal = float(np.median([proj[p["id"]][0] - p["pk_km"] * 1000 for p in inter]))
+    # Lignes retenues (data/reference/lignes_es.json) : le PK 0 du projet est la ligne de
+    # départ réelle, décalée par rapport à l'origine des PK officiels ; l'arrivée garde
+    # sa position dans le calage officiel.
+    lignes = json.loads((REF / "lignes_es.json").read_text(encoding="utf-8"))
+    dec = lignes["depart"]["decalage_par_rapport_au_calage_pk_m"]
+    s0 = s0_cal + dec
     pk = s - s0
-    L = off["longueur_officielle_km"] * 1000
+    L_off = off["longueur_officielle_km"] * 1000
+    L = lignes["arrivee"]["pk_dans_le_calage_officiel_m"] - dec     # PK de l'arrivée, départ = 0
     rows = []
     for p in pts:
         si, d = proj[p["id"]]
@@ -142,7 +149,8 @@ def main():
                      "pk_mesure_m": round(si - s0, 1),
                      "ecart_pk_m": round(si - s0 - p["pk_km"] * 1000, 1),
                      "ecart_lateral_m": round(d, 1)})
-    res = np.array([r["ecart_pk_m"] for r in rows if r["role"] == "intermediaire"])
+    # résidus du calage officiel (hors décalage du départ retenu)
+    res = np.array([r["ecart_pk_m"] for r in rows if r["role"] == "intermediaire"]) + dec
 
     def at(k):
         x, y = (float(np.interp(k, pk, axis[:, c])) for c in (0, 1))
@@ -150,14 +158,18 @@ def main():
         return {"pk_m": k, "lat": round(lat, 6), "lon": round(lon, 6), "x_l93": round(x, 1), "y_l93": round(y, 1)}
 
     (OUT / "calage_es.json").write_text(json.dumps({
-        "methode": "origine des PK = médiane des écarts sur les 9 points intermédiaires officiels ; "
+        "methode": "calage officiel = médiane des écarts sur les 9 points intermédiaires de la carte ; "
+                   "PK 0 du projet = ligne de départ retenue (lignes_es.json), décalée de ce calage ; "
                    "PK mesurés en distance horizontale sur l'axe BD TOPO",
+        "decalage_depart_par_rapport_au_calage_officiel_m": dec,
+        "longueur_officielle_m": L_off,
+        "longueur_entre_lignes_axe_bdtopo_m": L,
         "depart_cale": at(0.0), "arrivee_calee": at(L),
         "ecart_type_residus_intermediaires_m": round(float(res.std()), 1),
         "residu_max_intermediaires_m": round(float(np.abs(res).max()), 1),
         "arrivee_imprimee_pk_mesure_m": next(r["pk_mesure_m"] for r in rows if r["id"] == "ARRIVEE"),
         "depart_imprime_ecart_lateral_m": next(r["ecart_lateral_m"] for r in rows if r["id"] == "DEPART"),
-        "incertitude_position_lignes_m": 30,
+        "incertitude_position_lignes_m": 15,
     }, ensure_ascii=False, indent=2), encoding="utf-8")
 
     with open(OUT / "points_officiels_recales.csv", "w", newline="", encoding="utf-8") as f:
@@ -189,7 +201,7 @@ def main():
     i0, i1 = np.searchsorted(pk, 0.0), np.searchsorted(pk, L)
     feats = [
         {"type": "Feature", "properties": {"name": "ES Le Grand Caunet - secteur chronométré",
-                                           "longueur_officielle_m": 6702},
+                                           "longueur_officielle_m": 6702, "longueur_axe_m": L},
          "geometry": {"type": "LineString", "coordinates": ll(axis[i0:i1])}},
         {"type": "Feature", "properties": {"name": "Tracé complet (CH -> fin de zone fermée)"},
          "geometry": {"type": "LineString", "coordinates": ll(axis)}},

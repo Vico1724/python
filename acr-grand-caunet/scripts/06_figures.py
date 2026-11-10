@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
-from acr_geo import FIG, LAYER_ORTHO, OUT, l93, load_official, wms_tile
+from acr_geo import FIG, LAYER_ORTHO, OUT, l93, load_official, longueur_es, wms_tile
 
 INK, INK2, MUTED, GRID, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#fcfcfb"
 BLUE, ORANGE = "#2a78d6", "#eb6834"
@@ -44,7 +44,7 @@ def at(prof, k):
 
 
 def carte(off, prof, cal):
-    L = off["longueur_officielle_km"] * 1000
+    L = longueur_es()
     x0, x1 = prof["x_l93"].min() - 350, prof["x_l93"].max() + 350
     y0, y1 = prof["y_l93"].min() - 250, prof["y_l93"].max() + 250
     x0, y0, x1, y1 = (round(v / 10) * 10 for v in (x0, y0, x1, y1))
@@ -90,15 +90,17 @@ def carte(off, prof, cal):
 
 
 def profil(off, prof, bridges):
-    L = off["longueur_officielle_km"] * 1000
+    L = longueur_es()
     st = (prof["pk_m"] >= 0) & (prof["pk_m"] <= L)
     pk, z, sl = prof["pk_m"][st], prof["z_chaussee_m"][st], prof["pente_pct"][st]
     fig, (a1, a2) = plt.subplots(2, 1, figsize=(13, 6.6), sharex=True, height_ratios=[2.4, 1],
                                  gridspec_kw={"hspace": 0.12})
     a1.fill_between(pk, z, z.min() - 12, color=BLUE, alpha=0.12, lw=0)
     a1.plot(pk, z, color=BLUE, lw=2)
+    with open(OUT / "points_officiels_recales.csv", encoding="utf-8") as f:
+        mesure = {r["id"]: float(r["pk_mesure_m"]) for r in csv.DictReader(f)}
     for p in off["points"]:
-        k = p["pk_km"] * 1000
+        k = mesure[p["id"]]                 # position du point sur l'axe, PK 0 = départ retenu
         if p["role"] == "intermediaire":
             zi = np.interp(k, pk, z)
             a1.plot([k, k], [z.min() - 12, zi], color=GRID, lw=1, zorder=0)
@@ -144,7 +146,7 @@ def zoom(off, prof, cal, name, ids, key, pk_line):
         ax.plot(x, y, "o", ms=3, color="white")
         ax.annotate(f"{k}", (x, y), xytext=(4, 4), textcoords="offset points", color="white", fontsize=7,
                     path_effects=[pe.withStroke(linewidth=2, foreground=INK)])
-    ax.plot(cx, cy, "s", ms=11, mfc=ORANGE, mec="white", mew=2, label=f"ligne calée sur les PK officiels (PK {pk_line:.0f})")
+    ax.plot(cx, cy, "s", ms=11, mfc=ORANGE, mec="white", mew=2, label=f"ligne retenue (PK {pk_line:.0f})")
     for i in ids:
         ax.plot(*pts[i], "X", ms=11, mfc="white", mec=INK, mew=1.2)
         ax.annotate(f"{i} (coordonnée imprimée)", pts[i], xytext=(8, 8), textcoords="offset points",
@@ -161,5 +163,5 @@ if __name__ == "__main__":
     carte(off, prof, cal)
     profil(off, prof, bridges)
     zoom(off, prof, cal, "depart", ["CH", "DEPART"], "depart_cale", 0)
-    zoom(off, prof, cal, "arrivee", ["ARRIVEE"], "arrivee_calee", off["longueur_officielle_km"] * 1000)
+    zoom(off, prof, cal, "arrivee", ["ARRIVEE"], "arrivee_calee", longueur_es())
     print("figures écrites dans", FIG)

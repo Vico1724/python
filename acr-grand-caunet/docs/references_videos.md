@@ -29,15 +29,15 @@ En secours, plus anciennes : [2009, 205 Maxi, chaîne ASA Marseille](https://www
 
 ### Ligne d'arrivée : confirmée
 
-Sur la vidéo n° 2, on passe un petit pont à parapets de béton et un croisement de pistes (voiture et commissaires à gauche), puis un panneau bleu, un panneau jaune d'annonce, une courbe à gauche, une courbe à droite, et enfin **le panneau rouge d'arrivée et la cellule de chronométrage à la sortie de la courbe à droite, au début de la ligne droite**. Sur la photo aérienne (`figures/phase3/lignes_arrivee_ortho.jpg`), cet endroit se situe vers la graduation 6 700, à une quinzaine de mètres près. C'est la position calculée à partir des distances officielles (6 702) ; les coordonnées imprimées sur la carte de l'organisateur étaient 31 m trop loin.
+Sur la vidéo n° 2, on passe un petit pont à parapets de béton et un croisement de pistes (voiture et commissaires à gauche), puis un panneau bleu, un panneau jaune d'annonce, une courbe à gauche, une courbe à droite, et enfin **le panneau rouge d'arrivée et la cellule de chronométrage à la sortie de la courbe à droite, au début de la ligne droite**. C'est, à une quinzaine de mètres près, la position que donnaient les distances officielles ; les coordonnées imprimées sur la carte de l'organisateur étaient 31 m trop loin.
 
-### Ligne de départ : 40 à 75 m avant la position calculée, à confirmer
+### Ligne de départ : fixée 20 m avant la position calculée
 
-Sur la vidéo n° 2, la cellule de départ se trouve **à hauteur de véhicules de secours garés sur la gauche**, juste avant une courbe à gauche et une entrée de piste barrée sur la droite. Sur la photo aérienne (`figures/phase3/lignes_depart_ortho.jpg`), cela correspond à la sortie du parking, entre les graduations −75 et −40, et non à la graduation 0 calculée.
+Sur la vidéo n° 2, la cellule de départ se trouve à hauteur de véhicules de secours garés sur la gauche, juste avant une courbe à gauche et une entrée de piste barrée sur la droite. **Le directeur la place à la graduation −20** de l'image `figures/phase3/lignes_depart_ortho.jpg` (graduations de l'ancien repère). Ma propre lecture hésitait entre −75 et −40, faute de savoir laquelle des deux entrées de piste apparaît à l'image.
 
-Je ne peux pas trancher à mieux que 20 m près : deux entrées de piste se suivent sur la droite (vers −40 et vers −5), et je ne sais pas laquelle apparaît à l'image.
+La décision est enregistrée dans `data/reference/lignes_es.json` et appliquée à toute la chaîne : **le PK 0 du projet est désormais cette ligne, et l'arrivée est au PK 6 722** sur l'axe IGN (6 736 m sur l'axe précis de la chaussée).
 
-Cet écart pose une question que je ne sais pas résoudre seul. Avec un départ 50 m plus tôt et l'arrivée confirmée, la spéciale mesurerait environ 6 750 m et non 6 702. Or les distances officielles des points intermédiaires, eux aussi placés à des croisements de pistes, tombent juste avec le départ calculé. Soit je lis mal la vidéo, soit la ligne physique de 2025 ne coïncide pas avec l'origine des distances de la carte 2026. **Le PK 0 du projet reste donc inchangé pour l'instant.**
+Ce que cela implique : entre les deux lignes, la route mesure 20 à 34 m de plus que les 6 702 m officiels, soit 0,3 à 0,5 %. C'est de l'ordre de l'écart entre une distance relevée au compteur et une distance mesurée sur carte. Les deux lignes restent des repères déplaçables dans le modèle.
 
 ### Décor relevé sur la vidéo n° 2
 

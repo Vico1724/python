@@ -1,56 +1,56 @@
 pk_m,cote,nature,numero,nom,largeur_m,dans_es
--163,gauche,Route à 1 chaussée,D3D,,4,False
--85,gauche,Route empierrée,,,,False
--51,droite,Route empierrée,,,,False
--36,droite,Chemin,,,,False
--18,droite,Route empierrée,GC 107,,,False
--2,gauche,Sentier,,,,False
-172,droite,Sentier,,,,True
-416,gauche,Sentier,,,,True
-1209,gauche,Sentier,,,,True
-1259,gauche,Sentier,,,,True
-1465,gauche,Chemin,,,,True
-1465,gauche,Sentier,,,,True
-1653,gauche,Chemin,,,,True
-1851,gauche,Route empierrée,GC 204,,,True
-1894,gauche,Sentier,,,,True
-1925,droite,Route empierrée,GC 209,,,True
-2197,gauche,Chemin,,,,True
-2640,gauche,Route empierrée,GC 105,,,True
-2647,droite,Chemin,,,,True
-2976,droite,Route empierrée,,,,True
-2976,gauche,Route empierrée,,,,True
-3184,droite,Route empierrée,,,,True
-3229,gauche,Chemin,,,,True
-3403,gauche,Sentier,,,,True
-3403,droite,Route empierrée,,,,True
-3420,gauche,Sentier,,,,True
-3604,droite,Sentier,,,,True
-3626,droite,Route à 1 chaussée,D1,,6.5,True
-3680,droite,Route empierrée,GC 103,,,True
-3759,gauche,Sentier,,,,True
-4035,gauche,Chemin,,,,True
-4319,gauche,Sentier,,,,True
-5017,droite,Route empierrée,,,,True
-5017,gauche,Chemin,,,,True
-5372,gauche,Chemin,,,,True
-5372,droite,Sentier,,,,True
-5424,droite,Route empierrée,,,,True
-5478,gauche,Chemin,GC 105,,,True
-5529,gauche,Sentier,,,,True
-5642,gauche,Chemin,,,,True
-5642,droite,Route empierrée,GC 201,,,True
-5709,gauche,Sentier,,,,True
-6344,gauche,Sentier,,,,True
-6479,gauche,Route empierrée,,,,True
-6479,droite,Route empierrée,GC 102,,,True
-6546,droite,Sentier,,,,True
-6770,gauche,Sentier,,,,False
-7068,droite,Chemin,,,,False
-7068,gauche,Chemin,,,,False
-7090,droite,Sentier,,,,False
-7285,gauche,Route à 1 chaussée,,CHE DES BASTIDES,3,False
-7352,gauche,Route empierrée,,CHE DU CHATEAU,,False
-7471,droite,Sentier,,,,False
-7661,gauche,Chemin,,,,False
-7912,gauche,Sentier,,,,False
+-143,gauche,Route à 1 chaussée,D3D,,4,False
+-65,gauche,Route empierrée,,,,False
+-31,droite,Route empierrée,,,,False
+-16,droite,Chemin,,,,False
+2,droite,Route empierrée,GC 107,,,True
+18,gauche,Sentier,,,,True
+192,droite,Sentier,,,,True
+436,gauche,Sentier,,,,True
+1229,gauche,Sentier,,,,True
+1279,gauche,Sentier,,,,True
+1485,gauche,Chemin,,,,True
+1485,gauche,Sentier,,,,True
+1673,gauche,Chemin,,,,True
+1871,gauche,Route empierrée,GC 204,,,True
+1914,gauche,Sentier,,,,True
+1945,droite,Route empierrée,GC 209,,,True
+2217,gauche,Chemin,,,,True
+2660,gauche,Route empierrée,GC 105,,,True
+2667,droite,Chemin,,,,True
+2996,droite,Route empierrée,,,,True
+2996,gauche,Route empierrée,,,,True
+3204,droite,Route empierrée,,,,True
+3249,gauche,Chemin,,,,True
+3423,gauche,Sentier,,,,True
+3423,droite,Route empierrée,,,,True
+3440,gauche,Sentier,,,,True
+3624,droite,Sentier,,,,True
+3646,droite,Route à 1 chaussée,D1,,6.5,True
+3700,droite,Route empierrée,GC 103,,,True
+3779,gauche,Sentier,,,,True
+4055,gauche,Chemin,,,,True
+4339,gauche,Sentier,,,,True
+5037,droite,Route empierrée,,,,True
+5037,gauche,Chemin,,,,True
+5392,gauche,Chemin,,,,True
+5392,droite,Sentier,,,,True
+5444,droite,Route empierrée,,,,True
+5498,gauche,Chemin,GC 105,,,True
+5549,gauche,Sentier,,,,True
+5662,gauche,Chemin,,,,True
+5662,droite,Route empierrée,GC 201,,,True
+5729,gauche,Sentier,,,,True
+6364,gauche,Sentier,,,,True
+6499,gauche,Route empierrée,,,,True
+6499,droite,Route empierrée,GC 102,,,True
+6566,droite,Sentier,,,,True
+6790,gauche,Sentier,,,,False
+7088,droite,Chemin,,,,False
+7088,gauche,Chemin,,,,False
+7110,droite,Sentier,,,,False
+7305,gauche,Route à 1 chaussée,,CHE DES BASTIDES,3,False
+7372,gauche,Route empierrée,,CHE DU CHATEAU,,False
+7491,droite,Sentier,,,,False
+7681,gauche,Chemin,,,,False
+7932,gauche,Sentier,,,,False

@@ -1,14 +1,17 @@
 {
-  "methode": "origine des PK = médiane des écarts sur les 9 points intermédiaires officiels ; PK mesurés en distance horizontale sur l'axe BD TOPO",
+  "methode": "calage officiel = médiane des écarts sur les 9 points intermédiaires de la carte ; PK 0 du projet = ligne de départ retenue (lignes_es.json), décalée de ce calage ; PK mesurés en distance horizontale sur l'axe BD TOPO",
+  "decalage_depart_par_rapport_au_calage_officiel_m": -20,
+  "longueur_officielle_m": 6702.0,
+  "longueur_entre_lignes_axe_bdtopo_m": 6722,
   "depart_cale": {
     "pk_m": 0.0,
-    "lat": 43.235588,
-    "lon": 5.670158,
-    "x_l93": 916994.7,
-    "y_l93": 6241045.9
+    "lat": 43.235436,
+    "lon": 5.670288,
+    "x_l93": 917005.9,
+    "y_l93": 6241029.4
   },
   "arrivee_calee": {
-    "pk_m": 6702.0,
+    "pk_m": 6722,
     "lat": 43.257355,
     "lon": 5.637769,
     "x_l93": 914282.7,
@@ -16,7 +19,7 @@
   },
   "ecart_type_residus_intermediaires_m": 6.9,
   "residu_max_intermediaires_m": 13.0,
-  "arrivee_imprimee_pk_mesure_m": 6733.0,
+  "arrivee_imprimee_pk_mesure_m": 6753.0,
   "depart_imprime_ecart_lateral_m": 81.6,
-  "incertitude_position_lignes_m": 30
+  "incertitude_position_lignes_m": 15
 }

@@ -12,7 +12,7 @@ Trois enseignements :
 2. **Notre spéciale peut suivre exactement ce schéma**, et nos données s'y prêtent mieux que celles de BioBio (§ 3).
 3. **Le jeu contient déjà le décor provençal dont nous avons besoin**, à commencer par le pin d'Alep (§ 4).
 
-Ce qui reste inconnu : **avec quel outil ces fichiers sont fabriqués** (§ 5). C'est maintenant le principal verrou du projet.
+Ce qui n'est pas tranché : **avec quel outil ces fichiers sont fabriqués** (§ 5). C'est maintenant le principal verrou du projet.
 
 ## 2. Anatomie de BioBio
 
@@ -63,13 +63,31 @@ Le catalogue du jeu (47 246 éléments, version 25170642) est enregistré dans `
 - **Abords** : murs de pierre, murs de soutènement, ponts et parois rocheuses de Monte-Carlo ; panneaux routiers français et panneaux de rallye ; glissières, clôtures, poteaux.
 - **Surfaces de roulage** : asphalte lisse (`PM_SurfaceTarmacSmooth`), béton, herbe, graviers, bordure, et une vingtaine de surfaces d'obstacles (muret, glissière, rocher, bois, botte de paille…).
 
-## 5. Ce qui reste inconnu
+## 5. L'outil de fabrication : ce que dit la notice de BioBio
 
-1. **L'outil de fabrication.** Les fichiers du jeu (`.umap`, `.uasset`) sont dans un format compilé. Deux façons de les produire :
-   - *l'éditeur Unreal Engine 5.6*, avec un projet qui imite les classes du jeu. ACR Extra Stages juge cette voie « non prouvée » ;
-   - *un outil qui écrit ces fichiers directement*, comme le fait ACR Extra Stages pour la physique et les tables. Le nom des matériaux de route de BioBio (« Wrcg », pour WRC Generations) laisse penser que son auteur a réutilisé son ancien outil de conversion, donc cette seconde façon. *C'est une supposition.*
-2. **Le contenu exact du niveau** : quels acteurs y sont posés, et comment les arbres du jeu y sont appelés. Le sommaire donne les noms des fichiers, pas leur intérieur.
-3. **Le format de la table des notes du copilote** et celui de `BakedData` : documentés en partie par ACR Extra Stages, à vérifier sur la version actuelle du jeu.
+La notice jointe à BioBio (`THIRD_PARTY_NOTICES.txt`, transmise par le directeur) apporte quatre informations :
+
+| Ce que dit la notice | Ce que j'en retiens |
+|---|---|
+| « Arbres, rochers, herbe, panneaux, portique d'arrivée et **programme d'affichage du terrain** viennent de votre copie du jeu : la spéciale les désigne par leur nom. » | Confirme la lecture des sommaires. Même le terrain utilise un matériau du jeu, avec les images de l'auteur. |
+| « Quelques petits fichiers de réglages **suivent la disposition de ceux du jeu** : des réglages de matériaux qui pointent vers les programmes d'affichage du jeu avec nos textures, et des **modèles d'acteurs**. » | Les objets du niveau sont calqués sur ceux des niveaux du jeu. |
+| La carte d'occupation du sol est « transformée en carte forêt / sol nu **pour placer les arbres** ». | Les arbres sont semés par programme, pas posés à la main. Notre carte forestière par essence et nos hauteurs d'arbres mesurées permettent de faire mieux. |
+| Le gestionnaire d'installation embarque la bibliothèque de compression Oodle, « **utilisée par retoc pour lire les archives du jeu** ». | L'auteur utilise `retoc`, l'outil en ligne de commande qui lit et réécrit les archives du jeu. |
+
+**Éditeur Unreal Engine 5.6, ou outil qui écrit directement les fichiers ?** Le directeur penche pour l'éditeur. La notice ne tranche pas, mais ses indices vont plutôt dans l'autre sens :
+
+- des fichiers qui « suivent la disposition de ceux du jeu » et des « modèles d'acteurs » décrivent des fichiers recopiés et adaptés à partir de ceux du jeu, ce que fait un outil d'écriture directe, pas un éditeur ;
+- l'outil cité est `retoc`, pas l'éditeur ;
+- l'éditeur ne peut pas ouvrir les éléments compilés du jeu : pour y poser un pin d'Alep du jeu, il faut d'abord fabriquer des éléments factices portant le même nom, une voie que ACR Extra Stages juge non prouvée.
+
+Rien de cela n'est une preuve : le gestionnaire peut n'utiliser `retoc` que pour fusionner les tables de menus à l'installation, et le niveau lui-même venir de l'éditeur. **Seul l'auteur peut le dire.**
+
+Un point à ne pas confondre : le réalisme du rendu ne dépend pas de l'outil de fabrication. L'image est calculée par le moteur du jeu dans les deux cas. Ce qui fait le réalisme, ce sont le relief, les images de sol, les matériaux et les arbres du jeu que la spéciale désigne.
+
+Deux autres inconnues demeurent :
+
+1. **Le contenu exact du niveau** : quels acteurs y sont posés, et comment les arbres du jeu y sont appelés. Le sommaire donne les noms des fichiers, pas leur intérieur.
+2. **Le format de la table des notes du copilote** et celui de `BakedData` : documentés en partie par ACR Extra Stages, à vérifier sur la version actuelle du jeu.
 
 ## 6. Suite proposée
 

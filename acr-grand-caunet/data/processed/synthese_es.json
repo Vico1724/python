@@ -1,41 +1,42 @@
 {
   "longueur_officielle_m": 6702.0,
-  "longueur_3d_mesuree_m": 6707.4,
-  "altitude_depart_m": 397.6,
+  "longueur_entre_lignes_axe_bdtopo_m": 6722,
+  "longueur_3d_mesuree_m": 6727.4,
+  "altitude_depart_m": 398.4,
   "altitude_arrivee_m": 344.7,
-  "altitude_max_m": 397.6,
+  "altitude_max_m": 398.4,
   "pk_altitude_max_m": 1,
   "altitude_min_m": 250.2,
-  "pk_altitude_min_m": 3591,
+  "pk_altitude_min_m": 3611,
   "denivele_positif_m": 102,
-  "denivele_negatif_m": 155,
-  "pente_moyenne_pct": -0.79,
+  "denivele_negatif_m": 156,
+  "pente_moyenne_pct": -0.8,
   "pente_max_montee_pct": 6.7,
   "pente_max_descente_pct": -10.3,
   "part_du_parcours_pente_sup_12pct": 0.0,
-  "nombre_virages": 67,
+  "nombre_virages": 68,
   "virages_par_categorie": {
     "1": 5,
     "2": 27,
     "3": 22,
-    "4": 7,
+    "4": 8,
     "5": 1,
     "épingle": 5
   },
   "virage_le_plus_serre": {
     "n": 38,
-    "pk_corde_m": 3624,
+    "pk_corde_m": 3644,
     "sens": "gauche",
     "rayon_mini_m": 5,
     "angle_deg": 94
   },
   "plus_longue_portion_sans_virage_m": {
     "longueur": 442,
-    "de_pk": 5039,
-    "a_pk": 5481
+    "de_pk": 5059,
+    "a_pk": 5501
   },
   "largeur_chaussee_bdtopo_m_par_longueur": {
-    "D3D - 7 m": 2975,
+    "D3D - 7 m": 2995,
     "D3D - 6.5 m": 650,
     "D1 - 7 m": 3077
   },

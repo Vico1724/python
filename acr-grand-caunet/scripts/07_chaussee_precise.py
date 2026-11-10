@@ -50,7 +50,13 @@ from acr_geo import FIG, OUT, RAW, cumdist, resample, wgs, wms_tile, write_geojs
 LAYER_IRC = "ORTHOIMAGERY.ORTHOPHOTOS.IRC"   # ortho infrarouge couleur 20 cm (PIR, R, V)
 TILE = 500
 PK_MIN, PK_MAX = -200.0, 7460.0   # PK BD TOPO traités : du début de l'axe (CH) au point stop + marge
-PK_STOP_BDTOPO = 7282.3           # point stop officiel projeté sur l'axe BD TOPO (points_officiels_recales)
+def _pk_stop() -> float:
+    """PK du point stop officiel sur l'axe BD TOPO (points_officiels_recales.csv)."""
+    with open(OUT / "points_officiels_recales.csv", encoding="utf-8") as f:
+        return next(float(r["pk_mesure_m"]) for r in csv.DictReader(f) if r["id"] == "STOP")
+
+
+PK_STOP_BDTOPO = _pk_stop()
 SORTIE_APRES_STOP = 60.0          # m conservés après le point stop
 
 DT, HALF = 0.25, 15.0             # profils en travers : pas et demi-largeur (m)
