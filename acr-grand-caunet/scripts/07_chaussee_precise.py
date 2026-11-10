@@ -45,7 +45,9 @@ from acr_geo import FIG, OUT, RAW, cumdist, resample, wgs, wms_tile, write_geojs
 
 LAYER_IRC = "ORTHOIMAGERY.ORTHOPHOTOS.IRC"   # ortho infrarouge couleur 20 cm (PIR, R, V)
 TILE = 500
-PK_MIN, PK_MAX = -120.0, 6830.0   # PK BD TOPO traités (marge autour de l'ES)
+PK_MIN, PK_MAX = -200.0, 7460.0   # PK BD TOPO traités : du début de l'axe (CH) au point stop + marge
+PK_STOP_BDTOPO = 7282.3           # point stop officiel projeté sur l'axe BD TOPO (points_officiels_recales)
+SORTIE_APRES_STOP = 60.0          # m conservés après le point stop
 
 DT, HALF = 0.25, 15.0             # profils en travers : pas et demi-largeur (m)
 T = np.arange(-HALF, HALF + DT / 2, DT)   # t > 0 : à droite dans le sens de marche
@@ -75,9 +77,8 @@ def axe_bdtopo():
 
 
 def collecte_irc(path=RAW / "ortho_irc_20cm.tif", buf=45.0):
-    """Ortho IRC 20 cm sur les dalles de 500 m qui touchent l'ES (même grille que l'ortho RVB)."""
-    if path.exists():
-        return path
+    """Ortho IRC 20 cm sur les dalles de 500 m qui touchent l'axe traité (même grille que
+    l'ortho RVB). Le fichier est refait si une dalle nécessaire y manque."""
     pk, xy = axe_bdtopo()
     keep = (pk >= PK_MIN - 50) & (pk <= PK_MAX + 50)
     zone = LineString(xy[keep]).buffer(buf)
@@ -87,6 +88,11 @@ def collecte_irc(path=RAW / "ortho_irc_20cm.tif", buf=45.0):
     gx0, gy0, gx1, gy1 = (int(v // TILE * TILE) for v in zone.bounds)
     todo = [(x, y) for x in range(gx0, gx1 + TILE, TILE) for y in range(gy0, gy1 + TILE, TILE)
             if zone.intersects(box(x, y, x + TILE, y + TILE))]
+    if path.exists():
+        with rasterio.open(path) as src:              # une dalle écrite n'est jamais toute noire
+            if all(src.read(1, window=from_bounds(x + 200, y + 200, x + 300, y + 300, src.transform)).any()
+                   for x, y in todo):
+                return path
     prof.update(compress="jpeg", photometric="ycbcr", jpeg_quality=88, tiled=True, blockxsize=512, blockysize=512)
     tmp = path.with_suffix(".part.tif")
     n = round(TILE / 0.2)
