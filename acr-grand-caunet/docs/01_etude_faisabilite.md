@@ -89,6 +89,18 @@ Légende de fiabilité :
 | **Richard Burns Rally / RallySimFans** | Élevée, communauté rallye historique | Exporteur Blender pour RBR [S9], plugin RSF [S10] | Moyen à élevé | Installer RSF, copier la spéciale, rouler |
 | **BeamNG.drive** | Moyenne : mode rallye récent, création de boucles peu documentée [S11] | World Editor, MapNG [S12] | Moyen | Installer BeamNG, copier le niveau, rouler |
 
+**Décision du directeur (10/11/2026) : procéder comme « Chile BioBio »**, pour un rendu à la fois réaliste et jouable. Le directeur possède le jeu sur PC.
+
+Ce que la page de BioBio dit de sa fabrication [S14] :
+- la route vient d'OpenStreetMap, le relief d'un modèle mondial à 30 m (Copernicus), la végétation d'une carte mondiale d'occupation du sol (ESA WorldCover) ;
+- les textures sont des photographies libres (Poly Haven, licence CC0) ;
+- les éléments du jeu (probablement arbres, objets, matériaux : la page ne les détaille pas) sont **référencés par leur nom et leur chemin, jamais redistribués**.
+
+Ce que cela change pour nous :
+- nos données sont nettement plus fines : relief laser à 0,5 m au lieu de 30 m, forêt cartographiée par essence, hauteur des arbres mesurée, photo aérienne à 20 cm ;
+- le décor réaliste passe par la réutilisation des arbres et matériaux du jeu, référencés par leur chemin ; il faudra donc en dresser la liste à partir du jeu installé sur le PC du directeur ;
+- **la façon dont BioBio est assemblé et chargé par le jeu n'est pas publiée.** Deux voies sont possibles : la spéciale hôte décrite par ACR Extra Stages, ou un niveau neuf construit dans Unreal Engine 5.6. Je ne sais pas laquelle BioBio utilise. La liste des fichiers qu'il installe, et une question à son auteur, le diront (voir `guide_pc_directeur.md`).
+
 ## 5. Chaîne d'outils retenue
 
 | Logiciel | Rôle | Gratuit | Où il tourne |
@@ -132,9 +144,9 @@ Source de relief retenue : le LiDAR HD de l'IGN (relevé laser aérien, maille d
 - Clauses du CLUF du jeu sur les mods inconnues ; aucune position de l'éditeur sur ces spéciales.
 
 **Décisions attendues du directeur**
-1. Valider la cible : Assetto Corsa Rally par la méthode de la spéciale hôte, avec Assetto Corsa 1 en repli (recommandé).
-2. Confirmer la disponibilité de son PC Windows avec le jeu (Steam) pour construire et tester.
-3. Tester « Chile BioBio » pour juger la qualité atteignable aujourd'hui [S14].
+1. Cible validée le 10/11/2026 : Assetto Corsa Rally, à la manière de BioBio ; PC Windows avec le jeu disponible.
+2. Tester « Chile BioBio » et transmettre la liste des fichiers installés (voir `guide_pc_directeur.md`) [S14].
+3. Écrire à l'auteur de BioBio pour connaître sa méthode d'assemblage (facultatif, mais utile).
 4. Choisir le niveau de détail visé pour le décor, qui est le poste le plus long.
 5. Décider si la spéciale sera diffusée publiquement, ce qui impose une vérification juridique.
 

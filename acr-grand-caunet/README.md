@@ -19,7 +19,8 @@ Reproduction de l'épreuve spéciale « Le Grand Caunet » (6,702 km, asphalte, 
 ## Contenu
 
 ```
-docs/                 étude de faisabilité, rapport de phase 2, liste des vidéos embarquées
+docs/                 étude de faisabilité, rapport de phase 2, vidéos embarquées,
+                      guide de ce que le directeur fait sur son PC
 figures/              carte générale, profil en long, zooms départ et arrivée
 data/reference/       points GPS et PK de la carte officielle de l'organisateur
 data/processed/       tracé (GeoJSON, GPX, KML), profil au mètre, virages, ponts,
