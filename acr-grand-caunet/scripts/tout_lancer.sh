@@ -11,3 +11,4 @@ python3 05_couloir_vecteurs.py      # décor dans le couloir + carrefours
 python3 06_figures.py               # cartes et graphiques de contrôle
 python3 07_chaussee_precise.py      # phase 3 : axe précis et bords de chaussée, tous les mètres
 python3 08_modele_3d.py             # modèle 3D glTF : route + terrain texturé (+ rendus si Chromium/Playwright)
+python3 09_export_stage_ir.py       # export « Stage IR » v2 (ACR Extra Stages) : stage.json + collision.glb

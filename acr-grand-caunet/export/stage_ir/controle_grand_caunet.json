@@ -1,0 +1,88 @@
+{
+  "repere": {
+    "determinant": 1.0,
+    "y_axe_min_max_m": [
+      250.04,
+      398.64
+    ]
+  },
+  "distances": {
+    "croissantes": true,
+    "pas_min_m": 2.01,
+    "pas_median_m": 10.01,
+    "pas_max_m": 10.05
+  },
+  "longueur_competitive": {
+    "length_m": 6742.18,
+    "distance_finish_moins_start": 6742.18,
+    "polyligne_portes_3d_m": 6732.82,
+    "pk_arrivee_plan_m": 6735.8
+  },
+  "gauche_droite": {
+    "portes": 760,
+    "droite_du_cote_cross_f_Y": 760,
+    "gauche_du_cote_oppose": 760,
+    "demi_largeur_droite_min_m": 2.14,
+    "demi_largeur_gauche_min_m": 2.12,
+    "width_coherente": true
+  },
+  "notes_sens_vs_geometrie": {
+    "virages": 56,
+    "coherents": 56
+  },
+  "sol_sous_portes": {
+    "portes": 760,
+    "sans_sol": 0,
+    "max_abs_dy_m": 0.0,
+    "moyenne_abs_dy_m": 0.0,
+    "hors_ponts": {
+      "portes": 745,
+      "max_abs_dy_m": 0.0
+    }
+  },
+  "sol_le_long_de_l_axe_tous_les_m": {
+    "echantillons": 7977,
+    "sans_sol": 0,
+    "max_abs_dy_a_la_corde_m": 0.123
+  },
+  "sol_aux_bords_95pct": {
+    "points": 1520,
+    "sans_sol": 0,
+    "max_abs_dy_m": 0.0,
+    "p99_abs_dy_m": 0.0
+  },
+  "sol_5m_au_dela_des_bords": {
+    "points": 1520,
+    "sans_sol": 0
+  },
+  "collision": {
+    "triangles": 757997,
+    "par_code": {
+      "TSD+": 30192,
+      "DBK+": 92428,
+      "GRS+": 635377
+    },
+    "ccw_vu_du_dessus": 1.0,
+    "triangles_annonces_dans_stage_json": 757997
+  },
+  "erreurs": [],
+  "notes_brouillon": {
+    "virages_annonces": 56,
+    "par_severite": {
+      "5": 17,
+      "4": 20,
+      "3": 10,
+      "hairpin": 2,
+      "2": 2,
+      "1": 2,
+      "6": 3
+    },
+    "appels": 35,
+    "jetons": 79,
+    "avance_lecture_m": 80.0
+  },
+  "fichiers_mo": {
+    "collision.glb": 14.06,
+    "stage.json": 0.27
+  }
+}

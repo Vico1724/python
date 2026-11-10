@@ -93,6 +93,6 @@ Deux autres inconnues demeurent :
 
 **Décision du directeur (10/11/2026) : avancer sans contacter l'auteur de BioBio.** L'outil de fabrication doit donc être trouvé par nos propres moyens.
 
-1. **Étudier ACR Extra Stages**, seul projet libre qui documente la fabrication d'une spéciale, et exporter notre spéciale dans son format d'échange (en cours ; compte rendu à venir dans `05_export_stage_ir.md`). Ce projet est conçu pour des spéciales de DiRT Rally 2.0 et copie une spéciale galloise sur terre : il faudra établir ce qui s'applique tel quel à une route asphaltée faite de nos données.
+1. **Étudier ACR Extra Stages**, seul projet libre qui documente la fabrication d'une spéciale, et exporter notre spéciale dans son format d'échange (fait : voir `05_export_stage_ir.md`). Ce projet est conçu pour des spéciales de DiRT Rally 2.0 et copie une spéciale galloise sur terre : il faudra établir ce qui s'applique tel quel à une route asphaltée faite de nos données.
 2. **Sans attendre, côté données** : terminer le modèle neutre (route texturée, dalles de terrain, placement des arbres par essence, murets et parapets), qui sert quelle que soit la voie.
 3. **Sur le PC du directeur**, dès qu'une chaîne de fabrication est identifiée : produire d'abord une spéciale minimale (la route seule et sa physique), la charger en Free Practice, puis enrichir.

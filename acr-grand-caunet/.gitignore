@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 # Modèle 3D complet : régénérable avec scripts/08_modele_3d.py (seul modele/apercu/ est versionné)
 modele/terrain.glb
+# Sol physique de l'export Stage IR (14 Mo) : régénérable avec scripts/09_export_stage_ir.py (stage.json reste versionné)
+export/stage_ir/grand_caunet/collision.glb
