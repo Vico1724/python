@@ -14,12 +14,12 @@ Reproduction de l'épreuve spéciale « Le Grand Caunet » (6,702 km, asphalte, 
 | 3 | Axe et bords de chaussée précis, dévers, lignes de départ et d'arrivée | À faire |
 | 4 à 8 | Terrain 3D, route, décor, export vers le jeu, notes du copilote, tests | À faire |
 
-**À savoir avant tout** : Assetto Corsa Rally (version 0.6) n'accepte pas encore de spéciales créées par la communauté ; seules les livrées sont modifiables. Le projet produit donc des données et un modèle 3D indépendants du jeu, testables dans Assetto Corsa (2014), puis portables vers Assetto Corsa Rally quand le modding de spéciales sera ouvert. Le détail est dans l'étude de faisabilité.
+**À savoir avant tout** : Assetto Corsa Rally (version 0.6) ne propose officiellement que des livrées personnalisées. Des spéciales non officielles existent pourtant depuis fin octobre 2026, dont une construite à partir de données cartographiques publiques. Le projet vise donc Assetto Corsa Rally par cette voie non officielle, encore expérimentale, en gardant des données et un modèle 3D indépendants du jeu. Le détail est dans l'étude de faisabilité.
 
 ## Contenu
 
 ```
-docs/                 les deux rapports
+docs/                 étude de faisabilité, rapport de phase 2, liste des vidéos embarquées
 figures/              carte générale, profil en long, zooms départ et arrivée
 data/reference/       points GPS et PK de la carte officielle de l'organisateur
 data/processed/       tracé (GeoJSON, GPX, KML), profil au mètre, virages, ponts,

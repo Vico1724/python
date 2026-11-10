@@ -1,6 +1,6 @@
 # Étude de faisabilité : ES « Le Grand Caunet » dans Assetto Corsa Rally
 
-*Situation au 10 novembre 2026. Document destiné au directeur de projet.*
+*Situation au 10 novembre 2026, révisée le même jour (voir l'encadré du § 1). Document destiné au directeur de projet.*
 
 Légende de fiabilité :
 - **[confirmé]** : vérifié sur la page source complète ;
@@ -12,13 +12,15 @@ Légende de fiabilité :
 
 ## 1. Verdict
 
-**Il n'est pas encore possible d'intégrer proprement une spéciale personnalisée dans Assetto Corsa Rally (ACR).** Aujourd'hui, le jeu ne permet officiellement de modifier que les livrées (la décoration des voitures). Personne n'a publié de spéciale ajoutée par la communauté qui fonctionne.
+**Oui, on peut mettre une spéciale personnalisée dans Assetto Corsa Rally (ACR), par une voie non officielle et encore expérimentale.**
 
-Ce qui est possible dès maintenant :
-- produire toutes les données de la spéciale (tracé, relief, modèle 3D) dans des formats indépendants du jeu ;
-- les tester dans **Assetto Corsa (2014)**, où la création de spéciales est maîtrisée depuis des années.
+- **Officiellement**, le jeu ne permet de modifier que les livrées (la décoration des voitures). Aucun éditeur de spéciales n'est annoncé.
+- **Non officiellement**, deux réalisations apparues entre fin octobre et début novembre 2026 prouvent que c'est faisable :
+  - une spéciale **originale** de 8,7 km, « Chile BioBio » (Sando Rally), construite à partir de données cartographiques publiques comme les nôtres [S14] ;
+  - un projet libre, **ACR Extra Stages**, qui documente la méthode pas à pas et dont le code est réutilisable [S15].
+- **Les limites connues** : jeu hors ligne seulement (Free Practice pour BioBio), reconstruction à prévoir après chaque mise à jour du jeu, rendu visuel encore en chantier dans le projet libre, et un PC Windows avec le jeu obligatoire pour construire et tester.
 
-Le portage vers ACR se fera quand l'éditeur ouvrira le modding des spéciales.
+> **Correction.** La première version de cette étude concluait « pas encore possible ». C'était faux : elle s'appuyait sur une recherche qui n'avait pas trouvé ces deux réalisations, toutes récentes. Le directeur avait raison.
 
 ## 2. État du modding d'ACR au 10/11/2026
 
@@ -33,20 +35,27 @@ Le portage vers ACR se fera quand l'éditeur ouvrira le modding des spéciales.
 | Des mods non officiels existent : livrées, copilotes, applications. Ils fonctionnent en remplaçant des fichiers du jeu (archives `.pak/.ucas/.utoc`), qu'on ouvre et reconstruit avec FModel, UnrealPak et FMOD Bank Tools. | 11/09/2026 | [confirmé] | [S2] |
 | La 0.6 a cassé tous les mods non officiels antérieurs. Le développeur précise qu'il n'a ajouté **ni protection anti-mod ni DRM** (verrou anti-copie). | 11/09/2026 | [confirmé] | [S2] |
 | Les archives du jeu ne sont pas chiffrées, ce qui permet de les ouvrir avec FModel. | Message de forum | [confirmé, extrait] (page refusée, erreur 403) | [S5] |
-| **Aucune spéciale personnalisée fonctionnelle** n'est publiée. Le site de référence AC Rally Central écrit que la plupart des moddeurs « attendent avec impatience le modding de tracés pour ACR ». | 2026 | [confirmé] | [S6] |
+| **Une spéciale originale non officielle existe** : « Chile BioBio » v0.3.0 de Sando Rally (Diego Sandoval), 8,7 km de terre plus le sens inverse. Faite pour la 0.6, « à partir de données publiques de carte, d'altitude et d'occupation du sol ». Copilote avec éditeur de notes, point stop. **Free Practice uniquement.** Installation par un petit programme Windows, archive de 3,8 Go. | Novembre 2026 | [confirmé] | [S14] |
+| La méthode de fabrication de BioBio n'est pas publiée. | — | [inconnu] | [S14] |
+| Sando Rally avait aussi publié un outil convertissant des spéciales de WRC Generations ; l'auteur l'a **retiré** parce que des spéciales converties étaient partagées en ligne. | Novembre 2026 | [confirmé] | [S16] |
+| **ACR Extra Stages** : projet libre (licences MIT et Apache) qui convertit 106 spéciales de DiRT Rally 2.0 à partir de la copie du joueur. Elles apparaissent dans les menus du jeu, avec notes du copilote, carte et profil. Version 0.1.0-beta.1, **non publiée**, tests en jeu « encore en cours » ; hors ligne uniquement ; Windows uniquement ; les spéciales de plus de 9 km ne tiennent pas. | Dernier dépôt le 31/10/2026 | [confirmé] : dépôt lu | [S15] |
+| ACR Extra Stages documente l'anatomie d'une spéciale du jeu et un **format d'échange** (« Stage IR ») entre les données d'origine et la construction du mod. | 31/10/2026 | [confirmé] : documentation lue | [S15] |
+| Le site AC Rally Central écrivait encore que la plupart des moddeurs « attendent avec impatience le modding de tracés pour ACR ». | 2026 | [confirmé] | [S6] |
 | Un serveur Discord communautaire, « RallyForge », travaille sur des méthodes Unreal 5.4 pour les spéciales et les voitures. Aucun résultat public n'est connu. | — | [confirmé, extrait] (Nexus refusé, erreur 403) | [S7] |
 | Les spéciales officielles sont **scannées au laser** par un partenaire externe. | 2025 | [confirmé, extrait] | [S8] |
-| Points inconnus : la manière dont le jeu décrit une spéciale en interne (relief, route, nature des surfaces), l'emplacement des notes du copilote et du chronométrage, et les clauses du contrat de licence (CLUF) sur les mods. | — | [inconnu] | — |
+| Points inconnus : la position de l'éditeur sur ces spéciales non officielles, et les clauses du contrat de licence (CLUF) sur les mods. | — | [inconnu] | — |
 
 ## 3. Contraintes identifiées
 
-**Techniques**
-- Pour forcer une spéciale dans ACR, il faudrait :
-  1. reconstruire un niveau dans Unreal Engine 5.6 ;
-  2. le « cuire », c'est-à-dire le convertir dans le format compilé du jeu ;
-  3. remplacer une spéciale existante.
-
-  Rien n'est documenté pour les surfaces (adhérence asphalte), les notes du copilote ou le chronomètre. Une voiture pourrait rouler sur notre route sans adhérence correcte, sans copilote et sans temps.
+**Techniques** (d'après la documentation d'ACR Extra Stages [S15])
+- La méthode qui fonctionne ne crée pas un niveau neuf. Elle **copie une spéciale existante du jeu** (une spéciale galloise, Hafren South) et y remplace :
+  1. la collision, c'est-à-dire la surface invisible sur laquelle roule la voiture et qui porte l'adhérence ;
+  2. les courbes qui décrivent la route, les lignes de départ et d'arrivée, les notes du copilote ;
+  3. les lignes des tables du jeu qui font apparaître la spéciale dans les menus.
+- Les fichiers produits se déposent dans un dossier `~mods` du jeu, sans toucher aux fichiers d'origine.
+- Les surfaces doivent être choisies parmi celles que le jeu connaît déjà. Un asphalte lisse existe (`PM_SurfaceTarmacSmooth`).
+- La spéciale hôte limite la longueur à 9 km. **Nos 6,702 km tiennent.**
+- **Le rendu visuel est le point faible** : dans ce projet, deux tiers des spéciales converties ont des textures de sol de remplacement, et la création de vrais décors texturés passe par une voie que ses auteurs jugent non prouvée.
 - Le jeu repose sur des scans laser de grande précision. Une route reconstruite à partir de données publiques sera moins fidèle que les spéciales officielles.
 
 **Casse à chaque mise à jour**
@@ -59,26 +68,24 @@ Le portage vers ACR se fera quand l'éditeur ouvrira le modding des spéciales.
 **Ce que notre serveur Linux ne peut pas faire**
 - Lancer le jeu et tester en conduite : il faut le PC Windows du directeur, avec le jeu et un volant.
 - Ouvrir les archives du jeu avec FModel, qui ne fonctionne que sous Windows. De plus, le jeu n'est pas installé sur le serveur.
-- Cuire un niveau compatible ACR : sans les fichiers du jeu, impossible de vérifier la compatibilité.
+- Construire le mod final : les outils d'ACR Extra Stages lisent les fichiers du jeu installé et ne sont prévus que pour Windows.
 - Le serveur peut en revanche traiter toutes les données géographiques et produire le modèle 3D.
 
 ## 4. Stratégie recommandée
 
 *Recommandation, non un fait.*
 
-1. Produire une spéciale **« neutre »** : axe de la route, profil en long, terrain, modèle 3D de la route et des abords, dans des formats ouverts (GeoTIFF, GeoJSON, .blend, FBX). Ces fichiers sont réutilisables par n'importe quel jeu.
-2. Cible de test immédiate : **Assetto Corsa 1 avec l'extension CSP**. Le mode « Rally Stage » de CSP gère :
-   - le départ arrêté (voiture immobilisée 2 à 3 m avant la ligne, frein à main tiré) ;
-   - un chronométrage propre au rallye, avec temps intermédiaires ;
-   - un copilote via l'application « Rally Copilot ».
-
-   Source : [S6], page complète vérifiée.
-3. **Porter vers ACR** dès l'ouverture officielle du modding des spéciales. Tenter une injection non officielle seulement à titre d'essai et sans promesse de résultat.
+1. **Viser directement Assetto Corsa Rally**, par la méthode de la spéciale hôte.
+2. Continuer à produire une spéciale **« neutre »** : axe, bords de chaussée, relief, modèle 3D, dans des formats ouverts (GeoTIFF, GeoJSON, glTF). C'est ce qui est fait depuis la phase 2, et c'est ce qui protège le travail si une mise à jour du jeu casse la méthode.
+3. Ajouter un **exporteur vers le format d'échange « Stage IR »** d'ACR Extra Stages : un fichier `stage.json` (axe, portes avec bords gauche et droit, départ, intermédiaires, arrivée, notes du copilote) et des maillages glTF (collision par type de surface, objets, rendu). Ce format est conçu pour des spéciales de DiRT Rally 2.0 ; il faudra vérifier, côté construction, ce qui dépend de ce jeu.
+4. Construire et tester sur le PC Windows du directeur, d'abord en version minimale (la route seule, sans décor), puis en enrichissant.
+5. Garder **Assetto Corsa 1 avec CSP** comme solution de repli si la méthode casse.
+6. Écrire à Sando Rally : son approche est la plus proche de la nôtre, mais sa licence interdit de réutiliser son travail sans accord.
 
 | Cible | Maturité | Outillage | Effort | Ce que le directeur fait sur son PC |
 |---|---|---|---|---|
-| **AC Rally** (injection expérimentale UE 5.6) | Très faible : aucun précédent publié [S6] | Unreal 5.6, FModel, UnrealPak/retoc (Windows) | Très élevé, résultat incertain, à refaire à chaque mise à jour | Installer les outils, extraire les fichiers du jeu, tester |
-| **Assetto Corsa 1 + CSP** | Élevée : de nombreuses spéciales communautaires de qualité [S6] | Blender, exporteur kn5 ou ksEditor, Content Manager, CSP | Moyen | Installer AC, CSP et Content Manager, copier la spéciale, rouler |
+| **AC Rally**, méthode de la spéciale hôte | Expérimentale mais prouvée : une spéciale originale publiée [S14], un outil libre en bêta [S15] | .NET, PowerShell 7, retoc, Dumper-7 (Windows) | Élevé ; rendu visuel incertain ; à reconstruire après chaque mise à jour | Installer le jeu et les outils, lancer la construction, **tester en conduite** |
+| **Assetto Corsa 1 + CSP** (repli) | Élevée : de nombreuses spéciales communautaires de qualité [S6] | Blender, exporteur kn5 ou ksEditor, Content Manager, CSP | Moyen | Installer AC, CSP et Content Manager, copier la spéciale, rouler |
 | **Richard Burns Rally / RallySimFans** | Élevée, communauté rallye historique | Exporteur Blender pour RBR [S9], plugin RSF [S10] | Moyen à élevé | Installer RSF, copier la spéciale, rouler |
 | **BeamNG.drive** | Moyenne : mode rallye récent, création de boucles peu documentée [S11] | World Editor, MapNG [S12] | Moyen | Installer BeamNG, copier le niveau, rouler |
 
@@ -89,13 +96,14 @@ Le portage vers ACR se fera quand l'éditeur ouvrira le modding des spéciales.
 | Python + rasterio, shapely, pyproj (bibliothèques GDAL/PROJ) | Téléchargement IGN, cartographie, traitement du relief | Oui | Serveur Linux (en ligne de commande) |
 | QGIS | Consultation des cartes et contrôle visuel par le directeur (facultatif) | Oui | PC |
 | Python (scripts du projet) | Automatisation : axe de la route, profil, contrôles | Oui | Serveur Linux |
-| Blender (+ exporteur kn5) | Modèle 3D de la route et du décor ; export vers AC | Oui | Serveur Linux (sans écran) et PC |
+| Blender | Modèle 3D de la route et du décor ; export glTF | Oui | Serveur Linux (sans écran) et PC |
 | LidarToolbox (AC Rally Central) | Conversion de données laser en terrain [S6] | — | PC Windows |
-| Content Manager + CSP | Lancer et tester la spéciale dans AC | Oui | PC Windows |
-| ksEditor (Kunos) | Finalisation kn5, si nécessaire | Oui | PC Windows |
-| FModel, UnrealPak | Lecture et reconstruction des archives ACR (expérimental) | Oui | PC Windows |
-| retoc | Conversion des archives ACR en ligne de commande [S13] | Oui | Linux possible (non testé ici) |
-| Unreal Engine 5.6 | Futur portage ACR | Oui (licence Epic) | PC Windows recommandé |
+| Content Manager + CSP, ksEditor | Repli Assetto Corsa 1 | Oui | PC Windows |
+| Outils d'ACR Extra Stages [S15] | Construction du mod ACR à partir du format d'échange | Oui (MIT/Apache) | PC Windows |
+| Dumper-7 | Produit le fichier de correspondance (.usmap) nécessaire pour lire les fichiers du jeu [S15] | Oui | PC Windows, jeu lancé |
+| retoc | Conversion et empaquetage des archives ACR [S13][S15] | Oui | PC Windows (Linux non testé ici) |
+| FModel | Consultation des archives ACR | Oui | PC Windows |
+| Unreal Engine 5.6 | Seulement si l'on veut de vrais décors texturés par la voie « éditeur », non prouvée | Oui (licence Epic) | PC Windows |
 
 Source de relief retenue : le LiDAR HD de l'IGN (relevé laser aérien, maille de 0,5 m), disponible sur toute la spéciale et déjà téléchargé en phase 2. Licence Ouverte Etalab 2.0.
 
@@ -108,23 +116,25 @@ Source de relief retenue : le LiDAR HD de l'IGN (relevé laser aérien, maille d
 | 2 | Données géographiques : **fait** (voir `02_phase2_donnees_geographiques.md`) | Tracé calé sur les points officiels, relief LiDAR 0,5 m, photos aériennes 20 cm, profil en long, inventaire du décor | Oui (entièrement scripté) |
 | 3 | Axe routier et profil fins | Axe et bords de chaussée redessinés sur le LiDAR et la photo 20 cm, dévers, largeurs réelles, lignes de départ/arrivée verrouillées | Largement ; contrôle visuel humain |
 | 4 | Terrain 3D | Maillage du terrain autour de la route | Oui |
-| 5 | Route, bas-côtés, objets | Chaussée, accotements, glissières, panneaux | Partiellement (Blender scripté) |
+| 5 | Route, bas-côtés, objets | Chaussée, accotements, glissières, panneaux ; **premier essai en jeu avec la route seule** | Partiellement (Blender scripté) |
 | 6 | Végétation et décor | Arbres, bâtiments, textures | Partiellement ; finition manuelle |
-| 7 | Export et intégration | Spéciale AC installable ; dossier prêt pour ACR | Export oui ; **test en jeu sur le PC du directeur** |
+| 7 | Export et intégration | Export au format d'échange « Stage IR », puis construction du mod ACR par la méthode de la spéciale hôte | Export oui ; **construction et test en jeu sur le PC du directeur** |
 | 8 | Notes du copilote, chrono, tests | Notes de copilote, départ/arrivée/intermédiaires, retours de conduite | Notes générées à partir du tracé ; validation humaine |
 
 ## 7. Risques et décisions à prendre
 
 **Risques**
-- ACR pourrait ne jamais ouvrir le modding des spéciales, ou le faire tard (après la 1.0) [S2][S4].
-- Une injection non officielle serait cassée à chaque mise à jour [S2].
+- La méthode est non officielle : une mise à jour du jeu (la 0.7 est attendue) peut la casser, et il faudra reconstruire [S2][S15].
+- Le rendu visuel par cette méthode n'est pas acquis : la route peut être pilotable bien avant d'être belle [S15].
+- ACR Extra Stages est une bêta non publiée, conçue pour DiRT Rally 2.0 ; l'adapter à nos données demandera du développement et des essais sur le PC du directeur.
+- Hors Free Practice et hors ligne, rien n'est prouvé.
 - La précision des données publiques est inférieure au scan laser du jeu.
-- Clauses du CLUF du jeu sur les mods inconnues.
+- Clauses du CLUF du jeu sur les mods inconnues ; aucune position de l'éditeur sur ces spéciales.
 
 **Décisions attendues du directeur**
-1. Valider Assetto Corsa 1 + CSP comme cible de test immédiate (recommandé).
-2. Décider si l'on tente ou non un essai d'injection non officielle dans ACR, en sachant que le résultat est incertain.
-3. Confirmer la disponibilité de son PC Windows (jeu, volant) pour les tests.
+1. Valider la cible : Assetto Corsa Rally par la méthode de la spéciale hôte, avec Assetto Corsa 1 en repli (recommandé).
+2. Confirmer la disponibilité de son PC Windows avec le jeu (Steam) pour construire et tester.
+3. Tester « Chile BioBio » pour juger la qualité atteignable aujourd'hui [S14].
 4. Choisir le niveau de détail visé pour le décor, qui est le poste le plus long.
 5. Décider si la spéciale sera diffusée publiquement, ce qui impose une vérification juridique.
 
@@ -143,5 +153,8 @@ Source de relief retenue : le LiDAR HD de l'IGN (relevé laser aérien, maille d
 - [S11] BeamNG, mode rallye et notes de copilote : https://www.beamng.com/resources/rally-mode-smart-co-driver-stages-with-pacenotes.21824/updates
 - [S12] MapNG : https://mapng.com — documentation terrain BeamNG : https://docs.beamng.com/modding/levels/level_creation/section2/
 - [S13] retoc : https://github.com/trumank/retoc
+- [S14] Sando Rally, « Original Stages for Assetto Corsa Rally » (page lue le 10/11/2026) : https://sandorally.com/original-stages
+- [S15] ACR Extra Stages (dépôt lu le 10/11/2026 : README, `docs/stage-ir.md`, `docs/acr-stage-anatomy.md`, `docs/decisions.md`) : https://github.com/nitnerolf420/acr-extrastages
+- [S16] Sando Rally, arrêt de l'outil d'export : https://sandorally.com/stage-export-tool-discontinued
 - Pack d'outils de modding ACR sur Nexus : https://www.nexusmods.com/assettocorsarally/mods/3
 - Exporteur Blender kn5 : https://awesome.ecosyste.ms/projects/github.com%2Fmoppius%2Fblender-assetto-corsa-tools

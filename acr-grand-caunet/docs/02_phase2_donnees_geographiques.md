@@ -71,7 +71,7 @@ J'ai donc retenu les **distances officielles** comme référence, et non les coo
 | Départ | 43,235588° N, 5,670158° E | 43,23643° N, 5,67042° E (hors route) |
 | Arrivée | 43,257355° N, 5,637769° E | 43,25739° N, 5,63739° E (31 m plus loin) |
 
-L'incertitude est d'environ 30 m sur chaque ligne. Elle n'a pas de conséquence sur la construction : la route sera modélisée du contrôle horaire jusqu'au point stop, et les lignes sont de simples repères déplaçables. Elle se lèvera en phase 3 avec une vidéo embarquée, qui montre l'emplacement réel des panneaux.
+L'incertitude est d'environ 30 m sur chaque ligne. Elle n'a pas de conséquence sur la construction : la route sera modélisée du contrôle horaire jusqu'au point stop, et les lignes sont de simples repères déplaçables. Elle se lèvera avec une vidéo embarquée, qui montre l'emplacement réel des panneaux (voir § 10).
 
 Les figures `figures/zoom_depart.png` et `figures/zoom_arrivee.png` montrent les deux zones sur la photo aérienne, graduées en PK.
 
@@ -152,10 +152,11 @@ Toutes les données IGN sont sous Licence Ouverte Etalab 2.0 : réutilisation li
 
 ## 10. Ce que j'attends du directeur
 
-1. **Édition visée : 2025 ou 2026 ?** Même longueur officielle. J'ai pris 2026, seule carte disponible. À confirmer.
-2. **Vidéos embarquées.** Le rallye se court du 12 au 14 novembre 2026 : des caméras embarquées de l'ES 7 ou de l'ES 10 seront publiées dans les jours qui suivent. Un ou deux liens YouTube d'une embarquée complète suffiront à verrouiller les lignes de départ et d'arrivée et à relever le décor.
-3. **Cible de test** : valider Assetto Corsa 1 avec CSP comme premier jeu de test (voir `01_etude_faisabilite.md`), en attendant l'ouverture du modding de spéciales dans Assetto Corsa Rally.
-4. **Facultatif** : si vous passez sur place, des photos des abords (glissières, panneaux, murets, entrées de pistes) feront gagner beaucoup de temps sur le décor.
+1. **Les lignes de départ et d'arrivée, à partir d'une embarquée.** Huit vidéos embarquées de 2020 à 2025 sont recensées dans [`references_videos.md`](references_videos.md). YouTube refuse de les lire depuis le serveur du projet (« confirmez que vous n'êtes pas un robot »), et je n'ai pas contourné ce blocage. Deux façons de m'aider, au choix :
+   - regarder la vidéo n° 1 (2025) et me dire, sur `figures/zoom_depart.png` et `figures/zoom_arrivee.png`, à quelle graduation se trouvent la ligne de départ et le panneau d'arrivée ;
+   - ou déposer dans la conversation le fichier vidéo, ou quelques captures d'écran du départ, de l'arrivée et des passages marquants.
+2. **Un PC Windows avec Assetto Corsa Rally** (Steam) : il sera indispensable pour construire le mod et le tester (voir `01_etude_faisabilite.md`).
+3. **Facultatif** : si vous passez sur place, des photos des abords (glissières, panneaux, murets, entrées de pistes) feront gagner beaucoup de temps sur le décor.
 
 ## 11. Suite : phase 3
 
@@ -163,3 +164,4 @@ Toutes les données IGN sont sous Licence Ouverte Etalab 2.0 : réutilisation li
 - Mesurer la largeur réelle et le dévers (l'inclinaison latérale) tous les mètres.
 - Verrouiller départ, arrivée et point stop sur vidéo embarquée.
 - Recalculer les virages sur cet axe précis et produire une première version des notes du copilote.
+- Préparer l'export au format d'échange « Stage IR » (axe, portes avec bords gauche et droit, lignes de chronométrage, maillage de collision), qui sert à construire le mod Assetto Corsa Rally.
