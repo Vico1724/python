@@ -26,7 +26,7 @@ La spéciale est identifiée, tracée et mesurée, et toutes les données géogr
 | Commune | Roquefort-la-Bédoule (Bouches-du-Rhône) pour toute la partie chronométrée |
 | Source | Carte officielle « E.S. 7, 10 Le Grand Caunet.pdf », [site de l'ASA Marseille](https://www.asamarseille.net/sainte-baume-rallycircuit-engagements), créée le 01/06/2026 |
 
-**Sur le choix de l'édition.** La longueur de 6,702 km correspond aux éditions 2025 (ES 1 et 4) et 2026 (ES 7 et 10). Seule la carte 2026 est encore en ligne chez l'organisateur : c'est elle qui sert de référence. Les éditions 2020 à 2023 utilisaient une version de 6,89 km, les plus anciennes une version de 7,0 km. Je n'ai pas pu lire la carte 2025 pour vérifier qu'elle est strictement identique à celle de 2026.
+**Sur le choix de l'édition.** La longueur de 6,702 km correspond aux éditions 2025 (ES 1 et 4) et 2026 (ES 7 et 10). Le directeur confirme que ces deux tracés sont identiques ; la carte 2026, seule encore en ligne chez l'organisateur, sert de référence. Les éditions 2020 à 2023 utilisaient une version de 6,89 km et les plus anciennes une version de 7,0 km : mêmes routes, lignes de départ ou d'arrivée placées un peu différemment. Leurs vidéos embarquées restent donc utilisables pour le décor et la route.
 
 Les 15 points de la carte officielle (contrôle horaire, départ, 9 points intermédiaires, arrivée, point stop) sont recopiés dans `data/reference/es_grand_caunet_2026_officiel.json`.
 
