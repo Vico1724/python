@@ -22,6 +22,9 @@ dévers est la pente de la droite ajustée sur le profil en travers entre les bo
 colonne `zone` = approche / es / sortie, PK 0 = départ. Les statistiques de qualité
 portent sur la zone es. Les stations restent calées sur la grille métrique de l'axe
 BD TOPO : le résultat en un point ne dépend pas de l'étendue traitée.
+Corrections manuelles : les zones de data/reference/chaussee_corrections.json (bords
+numérisés à la main sur l'ortho) remplacent le calcul automatique, avec un raccord
+de 10 m ; source « manuel ». Les stations hors zones ne bougent pas.
 
 Entrées : data/raw (MNT, MNS, ortho RVB ; ortho IRC téléchargée si absente),
           data/processed/axe_bdtopo_l93.csv, ouvrages_es.csv, carrefours_es.csv, calage_es.json
@@ -38,6 +41,7 @@ import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 import numpy as np
 import rasterio
+import shapely
 from PIL import Image
 from rasterio.windows import Window, from_bounds
 from scipy.ndimage import (gaussian_filter1d, grey_closing, map_coordinates, median_filter, percentile_filter,
@@ -45,7 +49,7 @@ from scipy.ndimage import (gaussian_filter1d, grey_closing, map_coordinates, med
 from scipy.signal import savgol_filter
 from shapely.geometry import LineString, Point, box
 
-from acr_geo import FIG, OUT, RAW, cumdist, resample, wgs, wms_tile, write_geojson
+from acr_geo import FIG, OUT, RAW, ROOT, cumdist, resample, wgs, wms_tile, write_geojson
 
 LAYER_IRC = "ORTHOIMAGERY.ORTHOPHOTOS.IRC"   # ortho infrarouge couleur 20 cm (PIR, R, V)
 TILE = 500
@@ -73,7 +77,9 @@ FIG3.mkdir(parents=True, exist_ok=True)
 
 INK, INK2, MUTED, GRID, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#fcfcfb"
 BLUE, ORANGE, GREEN, RED = "#2a78d6", "#eb6834", "#2f9e5b", "#d03b3b"
-SRC_COLORS = {"lidar+ortho": GREEN, "lidar": BLUE, "ortho": ORANGE, "interpole": RED}
+SRC_COLORS = {"lidar+ortho": GREEN, "lidar": BLUE, "ortho": ORANGE, "interpole": RED, "manuel": "#8a4fd0"}
+CORRECTIONS = ROOT / "data" / "reference" / "chaussee_corrections.json"
+RACCORD = 10.0                    # m : raccord progressif aux extrémités d'une zone corrigée
 plt.rcParams.update({"font.size": 9, "axes.edgecolor": "#c3c2b7", "axes.labelcolor": INK2,
                      "xtick.color": MUTED, "ytick.color": MUTED, "figure.facecolor": SURFACE,
                      "axes.facecolor": SURFACE, "axes.spines.top": False, "axes.spines.right": False})
@@ -393,6 +399,55 @@ def recentre(xy, pk_ref, res):
     return np.column_stack([np.interp(t, s, m[:, k]) for k in (0, 1)]), g
 
 
+def corrections_manuelles(pk, A, G, D, nA):
+    """Applique data/reference/chaussee_corrections.json (bords numérisés à la main).
+
+    Dans chaque zone, chaque bord est lu à l'intersection de la normale à l'axe
+    automatique avec la polyligne numérisée, raccordé linéairement au bord automatique
+    sur RACCORD m aux extrémités (sauf en bout de données) ; l'axe est le milieu des deux
+    bords et les stations de la zone y sont réparties régulièrement entre ses deux
+    extrémités, de sorte que les PK et les stations hors zones ne bougent pas.
+    Renvoie A, G, D corrigés, le masque des stations corrigées et un bilan par zone."""
+    if not CORRECTIONS.exists():
+        return A, G, D, np.zeros(len(pk), bool), []
+    zones = json.loads(CORRECTIONS.read_text(encoding="utf-8"))["zones"]
+    A, G, D = A.copy(), G.copy(), D.copy()
+    manuel = np.zeros(len(pk), bool)
+    bilan = []
+    for zn in zones:
+        idx = np.flatnonzero((pk >= zn["pk_debut"]) & (pk <= zn["pk_fin"]))
+        if len(idx) < 3:
+            continue
+        lignes = [LineString(zn["bord_gauche"]), LineString(zn["bord_droit"])]
+        new = []
+        for side, (E, ligne) in enumerate(zip((G, D), lignes)):
+            out = E[idx].copy()
+            for j, i in enumerate(idx):
+                cut = shapely.intersection(LineString([A[i] - 25 * nA[i], A[i] + 25 * nA[i]]), ligne)
+                pts = np.array([g.coords[0] for g in getattr(cut, "geoms", [cut]) if not g.is_empty])
+                if len(pts):
+                    out[j] = pts[np.argmin(np.hypot(*(pts - A[i]).T))]
+            new.append(out)
+        # raccord progressif (poids 0 au bord de zone, 1 à RACCORD m à l'intérieur)
+        w = np.ones(len(idx))
+        if idx[0] > 0:
+            w = np.minimum(w, (pk[idx] - pk[idx[0]]) / RACCORD)
+        if idx[-1] < len(pk) - 1:
+            w = np.minimum(w, (pk[idx[-1]] - pk[idx]) / RACCORD)
+        w = np.clip(w, 0, 1)[:, None]
+        g = (1 - w) * G[idx] + w * new[0]
+        d = (1 - w) * D[idx] + w * new[1]
+        m = (g + d) / 2
+        sm = cumdist(m)                         # stations régulières le long du nouvel axe
+        t = np.linspace(0, sm[-1], len(idx))
+        g, d, m = (np.column_stack([np.interp(t, sm, v[:, k]) for k in (0, 1)]) for v in (g, d, m))
+        A[idx], G[idx], D[idx] = m, g, d
+        manuel[idx] = True
+        bilan.append({"nom": zn["nom"], "pk_debut": zn["pk_debut"], "pk_fin": zn["pk_fin"], "idx": idx,
+                      "pas_stations_m": [round(float(np.diff(t).min()), 3), round(float(np.diff(t).max()), 3)]})
+    return A, G, D, manuel, bilan
+
+
 def source_profil(code):
     """Code par côté -> source du point (la plus faible des deux)."""
     out = []
@@ -453,6 +508,48 @@ def planche(R, old_xy, pk, axe, gl, dr, src, picks, h, name, dpi, grille=(2, 4),
     fig.tight_layout(rect=(0, 0.09 / nl, 1, 1 - 0.06 / nl), h_pad=3.0)
     path = FIG3 / name
     fig.savefig(path, dpi=dpi)
+    plt.close(fig)
+    Image.open(path).convert("RGB").quantize(256, method=Image.Quantize.MEDIANCUT).save(path, optimize=True)
+
+
+def planche_corrections(R, pk, avant, apres, corr, troncon=75.0):
+    """Zones corrigées à la main : bords avant (fins, pointillés) et après (pleins) sur l'ortho."""
+    vues = []
+    for c in corr:
+        a, b = pk[c["idx"][0]], pk[c["idx"][-1]]
+        n = max(1, int(np.ceil((b - a) / troncon)))
+        for k in range(n):
+            vues.append((c["nom"].split(":")[0].strip(), a + k * (b - a) / n, a + (k + 1) * (b - a) / n))
+    fig, axs = plt.subplots(1, len(vues), figsize=(6 * len(vues), 6.6), squeeze=False)
+    for ax, (nom, a, b) in zip(axs[0], vues):
+        sel = (pk >= a) & (pk <= b)
+        pts = np.vstack([apres[1][sel], apres[2][sel]])
+        cx, cy = (pts.min(0) + pts.max(0)) / 2
+        h = max(np.ptp(pts, axis=0).max() / 2 + 6, 20)
+        bb = (round(cx - h), round(cy - h), round(cx + h), round(cy + h))
+        px = min(round(2 * h / 0.2), 900)
+        im = R.rgb.read(window=from_bounds(*bb, R.rgb.transform), out_shape=(3, px, px))
+        ax.imshow(np.moveaxis(im, 0, 2), extent=(bb[0], bb[2], bb[1], bb[3]))
+        win = (pk >= a - 25) & (pk <= b + 25)
+        for (_, g, d), ls, lw, lab in ((avant, (0, (3, 2)), 0.9, "avant"), (apres, "-", 1.6, "après")):
+            ax.plot(g[win, 0], g[win, 1], color="#ffd23f", ls=ls, lw=lw, label=f"bord gauche {lab}")
+            ax.plot(d[win, 0], d[win, 1], color="#3fd6ff", ls=ls, lw=lw, label=f"bord droit {lab}")
+        for k in np.arange(np.ceil(a / 10) * 10, b + 1, 10):
+            i = int(np.argmin(np.abs(pk - k)))
+            ax.annotate(f"{k:.0f}", apres[0][i], color="white", fontsize=7, ha="center",
+                        path_effects=[pe.withStroke(linewidth=2, foreground=INK)])
+        ax.set_xlim(bb[0], bb[2]), ax.set_ylim(bb[1], bb[3])
+        ax.set_xticks([]), ax.set_yticks([])
+        ax.set_title(f"{nom}\nPK {a:.0f} à {b:.0f}", loc="left", fontsize=9, color=INK)
+    h_, l_ = axs[0][0].get_legend_handles_labels()
+    leg = fig.legend(h_, l_, loc="lower center", ncol=4, frameon=True, facecolor="#9a9990", edgecolor="none")
+    for t in leg.get_texts():
+        t.set_color("white")
+    fig.suptitle("Corrections manuelles des bords de chaussée (numérisation sur BD ORTHO 20 cm) - "
+                 "étiquettes = PK sur le nouvel axe", x=0.01, ha="left", color=INK, fontsize=11)
+    fig.tight_layout(rect=(0, 0.07, 1, 0.95))
+    path = FIG3 / "planche_corrections.png"
+    fig.savefig(path, dpi=100)
     plt.close(fig)
     Image.open(path).convert("RGB").quantize(256, method=Image.Quantize.MEDIANCUT).save(path, optimize=True)
 
@@ -532,12 +629,16 @@ def main():
     code, bridge = res["code"][near], res["bridge"][near]
     ref = at(pk_ref[:, None])[:, 0]
     src = source_profil(code)
+    nA = normales(A)                                    # normales de l'axe automatique
+    A0, G0, D0 = A.copy(), G.copy(), D.copy()
+    A, G, D, manuel, corr = corrections_manuelles(pk, A, G, D, nA)
+    src = np.where(manuel, "manuel", src)
+    nA[manuel] = normales(A)[manuel]                    # hors zones, normales inchangées
     width = np.hypot(*(D - G).T)
 
     # altitudes : MNT à l'axe et aux bords ; dévers = pente de la droite ajustée sur le
     # profil en travers entre les bords (0,5 m en retrait), lu dans le MNT
     za, zg, zd = R.z(A[:, 0], A[:, 1]), R.z(G[:, 0], G[:, 1]), R.z(D[:, 0], D[:, 1])
-    nA = normales(A)
     Zp = R.z(A[:, 0, None] + T[None] * nA[:, 0, None], A[:, 1, None] + T[None] * nA[:, 1, None])
     m = np.abs(T[None]) <= (width[:, None] / 2 - 0.5)
     n_, st, sz = m.sum(1), (m * T).sum(1), (m * Zp).sum(1)
@@ -635,7 +736,8 @@ def main():
                     "lidar": "au moins un bord pris sur la seule rupture LiDAR (sous les arbres, à l'ombre)",
                     "ortho": "au moins un bord pris sur la seule image (pont, plate-forme sans rupture)",
                     "interpole": "au moins un bord interpolé sur plus de 3 m (pont sans image, débouché, "
-                                 "surlargeur rejetée, aucune source fiable)"},
+                                 "surlargeur rejetée, aucune source fiable)",
+                    "manuel": "bords numérisés à la main sur l'ortho (data/reference/chaussee_corrections.json)"},
         "methode": "profils en travers tous les mètres (±15 m, pas 0,25 m) sur l'axe courant ; bord LiDAR = fin "
                    "de la plate-forme lisse du MNT ; bord image = fin de l'asphalte visible (NDVI bas, luminosité "
                    "de la route) hors arbres et ombre ; l'image fait foi quand elle mesure ; filtrage le long du "
@@ -643,6 +745,24 @@ def main():
         "precision_indicative": "bords : ±0,5 m là où l'asphalte est visible ; 1 à 2 m possibles sous les arbres "
                                 "(plate-forme LiDAR incluant un accotement plat) ; axe : bien meilleur que la BD TOPO",
     }
+    # zones corrigées à la main : largeurs et continuité aux raccords (sauts latéraux d'une
+    # station à la suivante, mesurés sur la normale de l'axe)
+    lat = np.stack([((E - A) * nA).sum(1) for E in (G, D)], axis=1)
+    q["corrections_manuelles"] = []
+    for c in corr:
+        i0, i1 = c["idx"][0], c["idx"][-1]
+        wz = width[c["idx"]]
+        saut = {}
+        for nom, i in (("debut", i0), ("fin", i1)):
+            a, b = max(i - 15, 0), min(i + 15, len(pk) - 1)
+            d_lat = np.abs(np.diff(lat[a:b + 1], axis=0)).max() if b > a else 0.0
+            d_ax = np.abs((np.diff(A[a:b + 1], axis=0) * nA[a:b]).sum(1)).max() if b > a else 0.0
+            saut[nom] = {"bord_max_m": round(float(d_lat), 3), "axe_max_m": round(float(d_ax), 3)}
+        q["corrections_manuelles"].append({
+            "nom": c["nom"], "pk_debut": c["pk_debut"], "pk_fin": c["pk_fin"],
+            "largeur_m": {"min": round(float(wz.min()), 2), "mediane": round(float(np.median(wz)), 2),
+                          "max": round(float(wz.max()), 2)},
+            "pas_des_stations_m": c["pas_stations_m"], "sauts_aux_raccords": saut})
     (OUT / "chaussee_precise_qualite.json").write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(q, ensure_ascii=False, indent=2))
 
@@ -671,6 +791,8 @@ def main():
     planche(R, old_xy, pk, A, G, D, src, ext, 30, "planche_extremites.png", 95, grille=(2, 3),
             titre="Extrémités : approche (avant départ) et sortie (après arrivée), extraits de 60 m - PK sur le nouvel axe")
     courbes(pk, width, off, src, spans, L)
+    if corr:
+        planche_corrections(R, pk, (A0, G0, D0), (A, G, D), corr)
     print("figures écrites dans", FIG3)
 
 

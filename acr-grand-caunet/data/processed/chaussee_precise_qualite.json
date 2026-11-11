@@ -4,13 +4,14 @@
   "largeur_m": {
     "mediane": 6.41,
     "p5": 5.07,
-    "p95": 8.43
+    "p95": 8.42
   },
   "part_lineaire_par_source_pct": {
     "lidar+ortho": 8.2,
     "lidar": 64.7,
     "ortho": 4.2,
-    "interpole": 22.8
+    "interpole": 22.3,
+    "manuel": 0.5
   },
   "decalage_lateral_bdtopo_m": {
     "mediane": 0.67,
@@ -19,7 +20,7 @@
     "pk_max": 851
   },
   "troncons_interpoles_sup_20m": {
-    "nombre": 16,
+    "nombre": 15,
     "troncons": [
       {
         "pk_debut": 451,
@@ -59,11 +60,6 @@
       {
         "pk_debut": 3424,
         "pk_fin": 3456,
-        "motif": "pont + débouché"
-      },
-      {
-        "pk_debut": 3644,
-        "pk_fin": 3683,
         "motif": "pont + débouché"
       },
       {
@@ -117,17 +113,8 @@
       "pk_debut_m": -170.0,
       "pk_fin_m": -1.0,
       "longueur_m": 170,
-      "part_interpolee_pct": 57.1,
-      "troncons_interpoles_sup_20m": [
-        [
-          -161,
-          -137
-        ],
-        [
-          -83,
-          -60
-        ]
-      ]
+      "part_interpolee_pct": 11.8,
+      "troncons_interpoles_sup_20m": []
     },
     "sortie": {
       "pk_debut_m": 6736.0,
@@ -147,8 +134,59 @@
     "lidar+ortho": "les deux bords mesurés, LiDAR et image concordent (< 1 m)",
     "lidar": "au moins un bord pris sur la seule rupture LiDAR (sous les arbres, à l'ombre)",
     "ortho": "au moins un bord pris sur la seule image (pont, plate-forme sans rupture)",
-    "interpole": "au moins un bord interpolé sur plus de 3 m (pont sans image, débouché, surlargeur rejetée, aucune source fiable)"
+    "interpole": "au moins un bord interpolé sur plus de 3 m (pont sans image, débouché, surlargeur rejetée, aucune source fiable)",
+    "manuel": "bords numérisés à la main sur l'ortho (data/reference/chaussee_corrections.json)"
   },
   "methode": "profils en travers tous les mètres (±15 m, pas 0,25 m) sur l'axe courant ; bord LiDAR = fin de la plate-forme lisse du MNT ; bord image = fin de l'asphalte visible (NDVI bas, luminosité de la route) hors arbres et ombre ; l'image fait foi quand elle mesure ; filtrage le long du parcours, interpolation, lissage (milieu σ 4 m, bords σ 2 m) ; 2 recentrages de l'axe",
-  "precision_indicative": "bords : ±0,5 m là où l'asphalte est visible ; 1 à 2 m possibles sous les arbres (plate-forme LiDAR incluant un accotement plat) ; axe : bien meilleur que la BD TOPO"
+  "precision_indicative": "bords : ±0,5 m là où l'asphalte est visible ; 1 à 2 m possibles sous les arbres (plate-forme LiDAR incluant un accotement plat) ; axe : bien meilleur que la BD TOPO",
+  "corrections_manuelles": [
+    {
+      "nom": "approche : carrefour D3 / D3D et ligne droite jusqu'au parking",
+      "pk_debut": -170,
+      "pk_fin": -58,
+      "largeur_m": {
+        "min": 5.26,
+        "mediane": 6.29,
+        "max": 8.56
+      },
+      "pas_des_stations_m": [
+        0.991,
+        0.991
+      ],
+      "sauts_aux_raccords": {
+        "debut": {
+          "bord_max_m": 0.041,
+          "axe_max_m": 0.023
+        },
+        "fin": {
+          "bord_max_m": 0.084,
+          "axe_max_m": 0.124
+        }
+      }
+    },
+    {
+      "nom": "carrefour du Lion d'Or : fermeture de l'embouchure de la branche est de la D1",
+      "pk_debut": 3638,
+      "pk_fin": 3674,
+      "largeur_m": {
+        "min": 7.11,
+        "mediane": 8.41,
+        "max": 8.75
+      },
+      "pas_des_stations_m": [
+        0.971,
+        0.971
+      ],
+      "sauts_aux_raccords": {
+        "debut": {
+          "bord_max_m": 0.18,
+          "axe_max_m": 0.056
+        },
+        "fin": {
+          "bord_max_m": 0.128,
+          "axe_max_m": 0.155
+        }
+      }
+    }
+  ]
 }
