@@ -1,0 +1,53 @@
+{
+  "note": "Carrefours dont les voies non empruntées par la spéciale sont modélisées comme surfaces revêtues annexes, lus par scripts/12_carrefours_annexes.py. Coordonnées Lambert-93 (EPSG:2154) en mètres, PK dans le repère courant (PK 0 = départ). Pour ajouter un carrefour, ajouter un objet à la liste (actif = true). La surface est la région plane (pente_max_deg) et lisse (rugosite_max_m : écart-type local du MNT, l'enrobé étant plus lisse que le sous-bois) du MNT LiDAR 0,5 m, complétée derrière chaque ligne de fermeture par une bande de profondeur_min_m (embouchure des branches fermées) là où la pente reste sous pente_embouchure_deg, connexe aux germes, bornée par la fenêtre et les lignes de coupe, moins la chaussée de la spéciale et l'îlot.",
+  "balisage_par_defaut": {
+    "rubalise": {"decalage_bord_m": 0.8, "pas_poteaux_m": 3.0, "hauteur_m": 1.0,
+                 "famille_jeu": "rubalise sur piquets (RallyProps/TapePlasticPoleA + acteur de ruban)",
+                 "maillage_jeu": "acr/Content/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
+                 "acteur_ruban_jeu": "acr/Content/Data/Environments/Common/BC_NarrowTapeActor"},
+    "barriere": {"decalage_bord_m": 2.5, "longueur_element_m": 2.0, "hauteur_m": 1.0, "epaisseur_m": 0.45,
+                 "famille_jeu": "barrière plastique de rallye (RallyProps/PlasticBarrierA)",
+                 "maillage_jeu": "acr/Content/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+                 "alternative_jeu": "acr/Content/Props/ServicePark/CrowdBarrier1/SM_CrowdBarrierWithReflStrip"},
+    "distance_min_ilot_parapet_m": 0.8,
+    "remarque": "Dimensions des maillages du jeu inconnues (catalogue de noms seulement) : longueurs et hauteurs supposées, à recaler dans l'éditeur. Sur la vidéo n° 2 (t ≈ 182-186 s), la fermeture réelle est une rubalise rouge et blanche tendue au premier rang, puis un grillage avertisseur orange sur piquets portant des panneaux à chevrons rouges et blancs, avec des spectateurs derrière ; le catalogue n'a ni grillage orange en maillage (seulement des matériaux M_SafetyNetting_Orange) ni panneau à chevrons rouges et blancs : la barrière plastique en tient lieu."
+  },
+  "carrefours": [
+    {
+      "nom": "Lion d'Or",
+      "actif": true,
+      "pk": [3600, 3712],
+      "fenetre": [916693, 6243528, 916775, 6243615],
+      "germes": [[916756.5, 6243552.0], [916738.0, 6243570.0], [916733.0, 6243595.0]],
+      "pente_max_deg": 12.0,
+      "rugosite_max_m": 0.04,
+      "profondeur_min_m": 4.0,
+      "pente_embouchure_deg": 20.0,
+      "lissage_m": 0.5,
+      "surface_min_m2": 4.0,
+      "lignes_de_coupe": [
+        {"nom": "pied de la branche de droite (au-delà, accotement de la D3D)", "pk": 3619, "cote": "droite", "longueur_m": 12},
+        {"nom": "fin de la plaque de la D1 ouest (au-delà, talus)", "pk": 3690, "cote": "droite", "longueur_m": 12},
+        {"nom": "lisière du bois entre la D1 ouest et la D1 nord (ferme la coupe précédente sur celle de l'amorce)", "points": [[916711.0, 6243579.0], [916722.5, 6243587.0]]}
+      ],
+      "amorces": [
+        {"nom": "D1 vers le nord", "troncon_bdtopo": "D1", "depart": [916735.2, 6243564.3], "longueur_m": 40, "largeur_coupe_m": 30,
+         "remarque": "amorce de 40 m le long de l'axe BD TOPO de la D1 nord, coupée perpendiculairement"}
+      ],
+      "ilot": {"boite": [916744.5, 6243555.5, 916750.0, 6243562.0], "seuil_bosse_m": 0.05,
+               "panneaux": {"hauteur_m": 3.0, "nombre": 2,
+                            "remarque": "panneaux directionnels (~3 m d'après les objets du relevé laser) ; un pin est aussi sur l'îlot (laissé au semis d'arbres)"}},
+      "fermetures": [
+        {"nom": "branche de droite (D1 vers le nord)", "pk_debut": 3620, "pk_fin": 3645},
+        {"nom": "embouchure de la D1 nord", "pk_debut": 3646, "pk_fin": 3688}
+      ],
+      "source": "relevé laser IGN (MNT 0,5 m), BD TOPO (axe de la D1 nord), corrections du carrefour (data/reference/chaussee_corrections.json, zone 2), vidéo n° 2 (t ≈ 180-190 s) pour le balisage"
+    },
+    {
+      "nom": "D3 / D3D (approche)",
+      "actif": false,
+      "pk": [-170, -100],
+      "remarque": "prochain candidat (vers PK -143) : fenêtre, germes, îlot et fermetures à définir"
+    }
+  ]
+}

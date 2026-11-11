@@ -37,7 +37,7 @@
      "droite": {"type": "pierre", "hauteur_m": 0.7, "epaisseur_m": 0.45, "statut": "vu sur la vidéo", "note": "chaperon gris, pas de dés blancs visibles"}},
     {"pk_centre_m": 3648, "route": "carrefour du Lion d'Or", "bdtopo_pk": "3624-3646", "temps_video_s": "183-185",
      "gauche": {"type": "beton", "hauteur_m": 0.5, "epaisseur_m": 0.3, "statut": "vu sur la vidéo", "note": "muret de béton bas tagué, à gauche à l'entrée du carrefour"},
-     "droite": {"type": "beton", "hauteur_m": 0.5, "epaisseur_m": 0.3, "statut": "supposé", "note": "côté droit masqué par la rubalise et les barrières du carrefour"}},
+     "droite": {"type": "aucun", "statut": "supposé", "note": "depuis la reprise du carrefour (11/11/2026), le bord droit est ici la ligne de fermeture qui barre les branches non empruntées (enrobé continu au-delà, modélisé par scripts/12_carrefours_annexes.py) : pas de parapet sur cette ligne ; le parapet réel du ponceau borde la branche de droite, plus à l'est, et n'est pas modélisé"}},
     {"pk_centre_m": 4074, "route": "D1", "bdtopo_pk": "4055-4071", "temps_video_s": "202-205",
      "gauche": {"type": "pierre", "hauteur_m": 0.6, "epaisseur_m": 0.4, "statut": "vu sur la vidéo", "note": "maçonnerie à chaperon de béton, plus basse que le côté droit"},
      "droite": {"type": "pierre", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"}},

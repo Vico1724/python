@@ -6,7 +6,7 @@
 
 Le modèle 3D neutre contient maintenant une route texturée et marquée, les douze ponts avec leurs parapets, et un semis de 41 600 arbres avec leur position, leur hauteur et leur essence. Rien de cela n'a encore été vu dans le jeu.
 
-Deux points demandent une décision du directeur : le substitut du chêne vert (§ 4) et la validation du carrefour du Lion d'Or (§ 5).
+Deux points demandent l'avis du directeur : le substitut du chêne vert (§ 4) et le carrefour du Lion d'Or tel que modélisé (§ 5).
 
 ## 2. Route
 
@@ -89,7 +89,30 @@ Le directeur a signalé que le tracé du carrefour était faux, vues aérienne e
 
 ![Carrefour corrigé](../figures/phase3/lion_d_or_corrige.png)
 
-Précision estimée : 1 à 2 m. La limite exacte de l'enrobé, sous les arbres, n'est visible sur aucune de mes sources. Le bord droit est une ligne de fermeture qui barre les deux autres branches : la plaque d'enrobé située au-delà reste hors de la chaussée.
+**Compléments demandés par le directeur (11/11/2026).**
+
+- **Le bord intérieur suit le pied du talus**, c'est-à-dire la limite de la plate-forme plane sur le relevé laser. La chaussée s'élargit donc à l'intérieur du virage, jusqu'à 14,8 m au plus large. Précision estimée : 1 m.
+- **Les voies que la spéciale n'emprunte pas sont modélisées** (`scripts/12_carrefours_annexes.py`) : 498 m² d'enrobé en trois morceaux, soit la plaque de la D1 au nord de la ligne de fermeture (234 m²), l'embouchure de la branche de droite (110 m²) et les 40 premiers mètres de la D1 vers le nord (154 m²).
+- **L'îlot est en relief** : 29 m², 0,28 m de haut, avec sa bordure, un poteau et deux panneaux.
+- **Le carrefour est fermé par du balisage du jeu**, posé le long de la ligne de fermeture : une rubalise sur piquets à 0,8 m du bord, puis une file de barrières plastiques rouges et blanches à 2,5 m. Soit 20 piquets, 18 tronçons de rubalise et 29 barrières (`data/processed/balisage.csv`).
+
+| Balisage | Élément du jeu |
+|---|---|
+| Piquets de rubalise | `Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA` |
+| Ruban | `Data/Environments/Common/BC_NarrowTapeActor` |
+| Barrières | `Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix` ; variante : barrière de foule `ServicePark/CrowdBarrier1` |
+| Aussi disponibles | Cônes, bottes de paille, chicanes en bottes, panneaux « interdit au public » |
+
+Sur la vidéo de 2025, la fermeture réelle était une rubalise rouge et blanche, puis un grillage orange sur piquets avec des panneaux à chevrons, les spectateurs derrière. Le jeu n'a ni ce grillage ni ces panneaux en objets : la barrière plastique en tient lieu.
+
+![Carrefour modélisé](../figures/phase4/carrefour_plongeante.png)
+
+Défauts connus :
+- **l'amorce de la D1 vers le nord est détachée du carrefour** : la courte descente qui les relie est trop irrégulière dans le relevé laser pour être reconnue comme de l'enrobé. À raccorder à la main ;
+- un trou de 3,5 m dans l'enrobé annexe le long du bord, vers le PK 3 630 ;
+- les dimensions réelles des barrières et des piquets du jeu sont inconnues : l'espacement sera à ajuster en jeu ;
+- dans l'export destiné au jeu, ces surfaces annexes comptent encore comme de l'accotement et le balisage n'y figure pas : à faire ;
+- le parapet droit du ponceau du Lion d'Or a été retiré, car il barrait la ligne de fermeture ; à revoir sur la vidéo.
 
 ## 6. Fichiers
 
@@ -98,6 +121,8 @@ Précision estimée : 1 à 2 m. La limite exacte de l'enrobé, sous les arbres, 
 | `modele/route_habillee.glb` | Chaussée texturée et marquage |
 | `modele/ouvrages.glb`, `ouvrages_collision.glb` | Tabliers, culées, parapets ; version simplifiée pour les chocs |
 | `modele/apercu/arbres.glb` | Aperçu des arbres à moins de 40 m, en formes simples |
+| `modele/annexes.glb`, `balisage.glb` et leurs versions `_collision` | Voies fermées du carrefour, îlot, balisage |
+| `data/processed/annexes_revetues.geojson`, `balisage.csv` | Contours des surfaces annexes ; position et type de chaque élément de balisage |
 | `data/processed/arbres.csv`, `arbustes.csv.gz`, `semis_resume.json` | Le semis et ses statistiques |
-| `data/reference/marquage_route.json`, `ouvrages_parapets.json`, `chaussee_corrections.json` | Paramètres modifiables à la main |
+| `data/reference/marquage_route.json`, `ouvrages_parapets.json`, `chaussee_corrections.json`, `carrefours_annexes.json` | Paramètres modifiables à la main |
 | `figures/phase4/` | Rendus de contrôle et planches |
