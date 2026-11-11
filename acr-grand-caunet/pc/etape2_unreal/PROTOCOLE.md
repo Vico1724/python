@@ -116,7 +116,7 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 ## 0 quater. Voie hybride : notre décor dans une cellule de Hafren South (11/11/2026)
 
-**Décision du directeur :** voie hybride d'abord, E2 plus tard si besoin. **État : construit, contrôlé hors jeu, installé ; pas encore vu en jeu.**
+**Décision du directeur :** voie hybride d'abord, E2 plus tard si besoin. **État : vu en jeu le 11/11/2026.** Le directeur a constaté que notre décor apparaît dans Hafren South vers 1,6 km du départ. Le jeu accepte donc un niveau ordinaire d'Unreal à la place d'une cellule de World Partition, bien que le monde qu'il contient ne porte pas le nom attendu. L'alignement avec la physique, l'aspect des matériaux et celui des arbres restent à décrire.
 
 **Pourquoi pas la retouche de leur outil.** L'étude de son code montre qu'il ne sait pas ajouter d'objet à un niveau : il ne peut que réutiliser les composants existants de Hafren, à capacité constante (les arbres seulement en même nombre qu'au même endroit, les maillages sur une poignée d'emplacements). C'est trop étroit pour notre décor.
 
