@@ -83,6 +83,37 @@ Pour ces essences, il faudra soit accepter des plantes réduites, soit choisir u
 
 **Ce qui reste hors de portée sans Unreal :** tout ce qui touche à l'éditeur lui-même. Les scripts de `scripts_editeur/` ont été corrigés d'après les relevés et compilent en Python, mais **aucun n'a tourné dans Unreal**.
 
+## 0 ter. Essais faits dans Unreal 5.6.1 sur le PC le 11/11/2026
+
+Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\Epic Games\UE_5.6`. Le projet est `Z:\acrxs\unreal\acr\`, avec les réglages de `projet/DefaultEngine_extrait.ini`. **Tout ce qui suit est vérifié hors jeu seulement** : en relisant nos conteneurs avec les archives du jeu, par `acr-ref`, comme le jeu le ferait. Rien n'a encore été vu en jeu.
+
+| Essai | Résultat | Ce qu'il faut retenir |
+|---|---|---|
+| E0, Python en ligne de commande | réussi | `UnrealEditor-Cmd.exe acr.uproject -run=pythonscript -script="…"` marche pour ce qui ne touche qu'aux éléments (factices, textures). Les appels dont le kit doutait existent tous, dont `set_material_instance_static_switch_parameter_value`. |
+| E0, factices | réussi | `creer_factices.py` crée ses 61 éléments en 11 s. Les 11 Blueprints sont ignorés, faute de classes souches. |
+| E1a, bannière | réussi hors jeu | Cuite « sans versions », notre texture a **exactement la taille de l'originale**, fichier par fichier (1 294, 2 793 472 et 3 058 octets), le même format (DXT1, 2048, 12 niveaux) et la même structure de paquet. |
+| E3, dalle | réussi | L'importeur glb d'Unreal 5.6.1 donne bien les axes `X,Z,Y` que suppose le paquet. La dalle est « REPÈRE CONFORME ». |
+| E4, 200 m | réussi | 28 maillages conformes, 28 variantes sur la variante modèle du jeu, 8 304 instances en 28 groupes, aucune alerte, en 2 minutes. La création des composants d'instances par `SubobjectDataSubsystem` marche. |
+| Cuisson et empaquetage | réussis | `cuire_et_empaqueter.ps1` puis `retoc to-zen` : `zz_gc_e4v_P` fait 75 Mo, sans aucun factice. |
+
+**Trois corrections à connaître :**
+
+1. **`construire_niveau.py` exige l'éditeur complet.** En ligne de commande, les sous-systèmes de l'éditeur n'existent pas et le script s'arrête. Il se lance ainsi, et se referme seul :
+
+   ```
+   UnrealEditor.exe Z:\acrxs\unreal\acr\acr.uproject -ExecutePythonScript="…\construire_niveau.py --etendue E4 --parent jeu --quitter" -unattended -nosplash
+   ```
+
+   L'éditeur rend parfois un code d'erreur à la fermeture alors que tout est fait : c'est le rapport `Saved\GrandCaunet\construire_niveau_<étendue>.json` qui fait foi. En cas d'erreur Python, la trace est dans `construire_niveau_<étendue>_erreur.txt`, à côté.
+
+2. **Il faut cuire « avec versions » dès qu'il y a un niveau** (`cuire_et_empaqueter.ps1 -Versionne`). Cuit sans versions, comme le prévoyait ce protocole, un composant d'instances n'est pas relu correctement avec la description des classes du jeu : ni son maillage ni ses instances n'apparaissent. Cuites sans versions, les propriétés sont écrites par leur rang dans la classe, et le moteur du studio n'a pas les mêmes propriétés que l'Unreal du commerce dans cette classe. Avec versions, elles sont écrites par leur nom, et nos groupes d'arbres se relisent exactement comme ceux de Hafren South (mêmes propriétés, 8 304 instances, arbre de tri). **Reste à prouver en jeu que le jeu accepte un paquet cuit avec versions** : c'est le but de l'essai de la bannière ainsi cuite, `zz_gc_e1av_P`.
+
+3. **Les cubes factices portent les dimensions des vrais maillages.** Un composant d'instances calcule ses bornes et son arbre de tri avec les bornes du maillage au moment où les instances sont ajoutées. Avec un cube d'un mètre, des pins de 15 m auraient été éliminés de l'affichage trop tôt. `creer_factices.py` étend donc les bornes du cube d'après `releves/maillages_vegetation.json`.
+
+**Conteneurs prêts dans `Z:\acrxs\unreal\dist\`**, aucun installé par cette section : `zz_gc_e1a_P` et `zz_gc_e1av_P` (bannière, sans et avec versions), `zz_gc_e4v_P` (décor et niveau des 200 m), `zz_gc_registre_P` (inscription du niveau d'essai aux menus).
+
+**Ce qui manque pour voir le décor en jeu.** Le niveau E4 ne contient que du décor : ni physique, ni tracé, ni acteurs de jeu. Le charger demande l'essai E2 (classes souches) ou la voie hybride H. La bannière, elle, se voit sans rien de plus, au départ d'une spéciale galloise.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :

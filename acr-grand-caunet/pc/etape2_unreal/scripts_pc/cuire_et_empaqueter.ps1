@@ -21,6 +21,7 @@ param(
     [Parameter(Mandatory)][string]$Essai,
     [Parameter(Mandatory)][string[]]$Inclure,
     [string[]]$Cartes = @(),
+    [switch]$Versionne,
     [string]$UE = 'C:\Program Files\Epic Games\UE_5.6',
     [string]$Projet = 'Z:\acrxs\unreal\acr\acr.uproject',
     [string]$Retoc = 'Z:\acrxs\bin\retoc\bin\retoc.exe',
@@ -34,7 +35,12 @@ Start-Transcript $journal | Out-Null
 
 # 1. cuisson
 $cmd = Join-Path $UE 'Engine\Binaries\Win64\UnrealEditor-Cmd.exe'
-$a = @($Projet, '-run=cook', '-targetplatform=Windows', '-unversioned', '-unattended', '-nop4', '-utf8output')
+$a = @($Projet, '-run=cook', '-targetplatform=Windows', '-unattended', '-nop4', '-utf8output')
+# -Versionne : cuit AVEC les numéros de version et les propriétés écrites par leur nom, au lieu de leur rang.
+# Constaté le 11/11/2026 : cuit « sans versions », un composant d'instances (HISM) de l'Unreal du commerce n'est pas
+# relu correctement avec la description des classes du jeu (le moteur du studio n'a pas les mêmes propriétés dans
+# cette classe) ; voir PROTOCOLE.md § 0 ter.
+if (-not $Versionne) { $a += '-unversioned' }
 if ($Cartes) { $a += "-map=$($Cartes -join '+')" }
 foreach ($i in $Inclure) { $a += "-cookdir=$(Join-Path (Split-Path $Projet) "Content\$i")" }
 Write-Host "> $cmd $($a -join ' ')"

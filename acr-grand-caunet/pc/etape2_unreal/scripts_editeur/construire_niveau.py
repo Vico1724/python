@@ -263,6 +263,7 @@ def arguments():
     ap.add_argument("--sans-eclairage", action="store_true")
     ap.add_argument("--seulement-assets", action="store_true")
     ap.add_argument("--max-instances", type=int, default=10 ** 9)
+    ap.add_argument("--quitter", action="store_true", help="ferme l'éditeur à la fin (lancement par -ExecutePythonScript)")
     return ap.parse_args(sys.argv[1:])
 
 
@@ -581,7 +582,26 @@ class Construction:
 
 
 def main():
-    return Construction(arguments()).executer()
+    a = arguments()
+    if unreal.get_editor_subsystem(unreal.StaticMeshEditorSubsystem) is None:
+        # Constaté le 11/11/2026 : en ligne de commande (UnrealEditor-Cmd -run=pythonscript), les sous-systèmes de
+        # l'éditeur n'existent pas. Il faut l'éditeur complet :
+        #   UnrealEditor.exe acr.uproject -ExecutePythonScript="...\construire_niveau.py --etendue E3 --mire --quitter"
+        raise RuntimeError("sous-systèmes de l'éditeur absents : lancer ce script dans l'éditeur complet "
+                           "(UnrealEditor.exe ... -ExecutePythonScript=\"...\"), pas avec -run=pythonscript")
+    try:
+        return Construction(a).executer()
+    except Exception:
+        # avec --quitter personne ne lit la console : l'erreur va dans un fichier à côté du rapport
+        import traceback
+        d = v_dossier_saved()
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, f"construire_niveau_{a.etendue}_erreur.txt"), "w", encoding="utf-8") as fh:
+            fh.write(traceback.format_exc())
+        raise
+    finally:
+        if a.quitter:
+            unreal.SystemLibrary.quit_editor()
 
 
 # Dans l'éditeur, « py fichier.py » exécute le fichier comme __main__ [à vérifier] ; on lance aussi main() si le nom

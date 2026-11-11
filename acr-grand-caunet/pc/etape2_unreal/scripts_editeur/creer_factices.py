@@ -37,9 +37,34 @@ def dossier_et_nom(objet):
     return d, n
 
 
+def dimensions_reelles():
+    """{chemin du maillage du jeu: (haut_cm, largeur_cm)} d'après releves/maillages_vegetation.json, s'il existe."""
+    f = os.path.join(KIT, "releves", "maillages_vegetation.json")
+    if not os.path.exists(f):
+        return {}
+    with open(f, encoding="utf-8") as h:
+        d = json.load(h)["dossiers"]
+    return {f"{dossier}/{nom}": v for dossier, m in d.items() for nom, v in m.items()}
+
+
+DIMENSIONS = dimensions_reelles()
+
+
 def maillage(objet):
+    """Cube du moteur (1 m), dont les bornes sont étendues à celles du vrai maillage du jeu quand on les connaît.
+    Constaté le 11/11/2026 : un composant d'instances calcule son arbre de tri et ses bornes avec les bornes du
+    maillage au moment où les instances sont ajoutées ; avec un cube d'un mètre à la place d'un pin de 15 m, les
+    arbres seraient éliminés de l'affichage trop tôt."""
     if not EAL.does_asset_exist(objet):
         EAL.duplicate_asset("/Engine/BasicShapes/Cube", objet)
+    dim = DIMENSIONS.get(objet)
+    if dim:
+        haut, largeur = dim
+        sm = EAL.load_asset(objet)
+        cote = max(0.0, largeur / 2.0 - 50.0)
+        sm.set_editor_property("positive_bounds_extension", unreal.Vector(cote, cote, max(0.0, haut - 50.0)))
+        sm.set_editor_property("negative_bounds_extension", unreal.Vector(cote, cote, 0.0))
+        EAL.save_asset(objet)
 
 
 def materiau(x):
