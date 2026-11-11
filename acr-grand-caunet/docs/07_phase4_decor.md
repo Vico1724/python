@@ -73,7 +73,9 @@ Limites : la longueur réelle des parapets est supposée ; sous les ponts, le te
 | Autres (pin, cyprès, olivier) | 1 % | `BlackpineMonteCarlo`, `Cypress`, `Olivetree` |
 | Arbustes | | `Boxthorn`, `BroomCreeper` |
 
-**Le point à arbitrer : le jeu n'a aucun chêne.** Or le chêne vert est notre deuxième essence. Proposition : `Smoketree` pour les sujets de moins de 6 m et `BlackmapleMonteCarlo` au-dessus, pour leur houppier dense et arrondi. Ce sont deux arbres à feuilles caduques : si le jeu les montre sans feuilles, l'olivier (`Olivetree`) conviendra mieux. Je n'ai vu que les noms de ces éléments, pas leur aspect : le choix se fera sur image, dans le jeu.
+**Décision du directeur (11/11/2026) : essayer la proposition ci-dessous**, à juger ensuite en jeu.
+
+**Le jeu n'a aucun chêne.** Or le chêne vert est notre deuxième essence. Proposition : `Smoketree` pour les sujets de moins de 6 m et `BlackmapleMonteCarlo` au-dessus, pour leur houppier dense et arrondi. Ce sont deux arbres à feuilles caduques : si le jeu les montre sans feuilles, l'olivier (`Olivetree`) conviendra mieux. Je n'ai vu que les noms de ces éléments, pas leur aspect : le choix se fera sur image, dans le jeu.
 
 Limites : en pinède dense, les houppiers jointifs sont parfois fusionnés ou coupés, d'où 20 à 30 % d'incertitude sur le nombre d'arbres ; le sous-bois est invisible au laser ; la taille d'origine des arbres du jeu est inconnue.
 
@@ -106,6 +108,8 @@ Le directeur a signalé que le tracé du carrefour était faux, vues aérienne e
 Sur la vidéo de 2025, la fermeture réelle était une rubalise rouge et blanche, puis un grillage orange sur piquets avec des panneaux à chevrons, les spectateurs derrière. Le jeu n'a ni ce grillage ni ces panneaux en objets : la barrière plastique en tient lieu.
 
 ![Carrefour modélisé](../figures/phase4/carrefour_plongeante.png)
+
+**Corrections demandées par le directeur (11/11/2026), en cours :** il n'y a pas d'îlot à proprement parler. Les panneaux sont plantés dans le fossé, derrière un parapet, et c'est ce parapet qu'il faut modéliser ; pour la fermeture, les piquets et la rubalise suffisent, sans barrières. Le plan du carrefour est repris à partir des photos du directeur, de la vidéo et du relevé laser. Ce qui précède dans ce paragraphe décrit donc une version provisoire.
 
 Défauts connus :
 - **l'amorce de la D1 vers le nord est détachée du carrefour** : la courte descente qui les relie est trop irrégulière dans le relevé laser pour être reconnue comme de l'enrobé. À raccorder à la main ;
