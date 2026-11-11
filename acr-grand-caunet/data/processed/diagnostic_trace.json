@@ -1,0 +1,458 @@
+{
+ "fichier": "chaussee_precise.csv",
+ "points": 7549,
+ "longueur_lissage_m": 31,
+ "ondulation_axe": {
+  "ecart_type_m": 0.077,
+  "p95_m": 0.157,
+  "max_m": 0.394
+ },
+ "alternances_de_courbure_par_km": 58.6,
+ "largeur": {
+  "saut_p95_m": 0.19,
+  "saut_max_m": 0.61
+ },
+ "par_source": {
+  "interpole": {
+   "points": 992,
+   "ondulation_ecart_type_m": 0.1,
+   "ondulation_p95_m": 0.19
+  },
+  "lidar": {
+   "points": 4292,
+   "ondulation_ecart_type_m": 0.063,
+   "ondulation_p95_m": 0.128
+  },
+  "lidar+ortho": {
+   "points": 566,
+   "ondulation_ecart_type_m": 0.075,
+   "ondulation_p95_m": 0.145
+  },
+  "manuel": {
+   "points": 220,
+   "ondulation_ecart_type_m": 0.077,
+   "ondulation_p95_m": 0.172
+  },
+  "ortho": {
+   "points": 254,
+   "ondulation_ecart_type_m": 0.095,
+   "ondulation_p95_m": 0.185
+  },
+  "video": {
+   "points": 1225,
+   "ondulation_ecart_type_m": 0.094,
+   "ondulation_p95_m": 0.202
+  }
+ },
+ "zones_les_plus_irregulieres": [
+  {
+   "pk_debut": 2430.0,
+   "pk_fin": 2479.0,
+   "ondulation_ecart_type_m": 0.122,
+   "ondulation_max_m": 0.24,
+   "alternances_de_courbure": 8,
+   "rayon_min_m": 25.5,
+   "changement_de_cap_deg": -2.8,
+   "largeur_ecart_type_m": 0.55,
+   "largeur_saut_max_m": 0.26,
+   "sources": {
+    "interpole": 11,
+    "lidar": 6,
+    "lidar+ortho": 3,
+    "video": 30
+   }
+  },
+  {
+   "pk_debut": 4080.0,
+   "pk_fin": 4129.0,
+   "ondulation_ecart_type_m": 0.183,
+   "ondulation_max_m": 0.394,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 9.1,
+   "changement_de_cap_deg": -62.5,
+   "largeur_ecart_type_m": 0.57,
+   "largeur_saut_max_m": 0.21,
+   "sources": {
+    "interpole": 36,
+    "lidar": 10,
+    "lidar+ortho": 2,
+    "ortho": 2
+   }
+  },
+  {
+   "pk_debut": 6080.0,
+   "pk_fin": 6129.0,
+   "ondulation_ecart_type_m": 0.168,
+   "ondulation_max_m": 0.311,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 16.4,
+   "changement_de_cap_deg": -53.2,
+   "largeur_ecart_type_m": 0.38,
+   "largeur_saut_max_m": 0.26,
+   "sources": {
+    "interpole": 3,
+    "lidar": 8,
+    "video": 39
+   }
+  },
+  {
+   "pk_debut": 3080.0,
+   "pk_fin": 3129.0,
+   "ondulation_ecart_type_m": 0.089,
+   "ondulation_max_m": 0.221,
+   "alternances_de_courbure": 9,
+   "rayon_min_m": 25.9,
+   "changement_de_cap_deg": -3.3,
+   "largeur_ecart_type_m": 0.88,
+   "largeur_saut_max_m": 0.41,
+   "sources": {
+    "lidar": 25,
+    "lidar+ortho": 1,
+    "video": 24
+   }
+  },
+  {
+   "pk_debut": 4105.0,
+   "pk_fin": 4154.0,
+   "ondulation_ecart_type_m": 0.122,
+   "ondulation_max_m": 0.333,
+   "alternances_de_courbure": 6,
+   "rayon_min_m": 15.3,
+   "changement_de_cap_deg": -15.0,
+   "largeur_ecart_type_m": 0.93,
+   "largeur_saut_max_m": 0.21,
+   "sources": {
+    "interpole": 13,
+    "lidar": 35,
+    "lidar+ortho": 1,
+    "ortho": 1
+   }
+  },
+  {
+   "pk_debut": 1080.0,
+   "pk_fin": 1129.0,
+   "ondulation_ecart_type_m": 0.119,
+   "ondulation_max_m": 0.268,
+   "alternances_de_courbure": 6,
+   "rayon_min_m": 22.3,
+   "changement_de_cap_deg": 12.4,
+   "largeur_ecart_type_m": 0.66,
+   "largeur_saut_max_m": 0.27,
+   "sources": {
+    "interpole": 5,
+    "lidar": 40,
+    "lidar+ortho": 5
+   }
+  },
+  {
+   "pk_debut": 4430.0,
+   "pk_fin": 4479.0,
+   "ondulation_ecart_type_m": 0.208,
+   "ondulation_max_m": 0.383,
+   "alternances_de_courbure": 3,
+   "rayon_min_m": 11.1,
+   "changement_de_cap_deg": -40.3,
+   "largeur_ecart_type_m": 0.71,
+   "largeur_saut_max_m": 0.31,
+   "sources": {
+    "interpole": 36,
+    "lidar": 1,
+    "ortho": 13
+   }
+  },
+  {
+   "pk_debut": -70.0,
+   "pk_fin": -21.0,
+   "ondulation_ecart_type_m": 0.137,
+   "ondulation_max_m": 0.361,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 16.6,
+   "changement_de_cap_deg": -12.7,
+   "largeur_ecart_type_m": 0.61,
+   "largeur_saut_max_m": 0.29,
+   "sources": {
+    "manuel": 13,
+    "video": 37
+   }
+  },
+  {
+   "pk_debut": 5605.0,
+   "pk_fin": 5654.0,
+   "ondulation_ecart_type_m": 0.089,
+   "ondulation_max_m": 0.236,
+   "alternances_de_courbure": 8,
+   "rayon_min_m": 22.1,
+   "changement_de_cap_deg": 23.5,
+   "largeur_ecart_type_m": 0.75,
+   "largeur_saut_max_m": 0.2,
+   "sources": {
+    "interpole": 8,
+    "lidar": 17,
+    "video": 25
+   }
+  },
+  {
+   "pk_debut": 1605.0,
+   "pk_fin": 1654.0,
+   "ondulation_ecart_type_m": 0.159,
+   "ondulation_max_m": 0.322,
+   "alternances_de_courbure": 4,
+   "rayon_min_m": 15.9,
+   "changement_de_cap_deg": -19.4,
+   "largeur_ecart_type_m": 0.76,
+   "largeur_saut_max_m": 0.28,
+   "sources": {
+    "lidar": 28,
+    "lidar+ortho": 3,
+    "video": 19
+   }
+  },
+  {
+   "pk_debut": 6105.0,
+   "pk_fin": 6154.0,
+   "ondulation_ecart_type_m": 0.158,
+   "ondulation_max_m": 0.311,
+   "alternances_de_courbure": 4,
+   "rayon_min_m": 16.4,
+   "changement_de_cap_deg": -48.6,
+   "largeur_ecart_type_m": 0.39,
+   "largeur_saut_max_m": 0.15,
+   "sources": {
+    "interpole": 9,
+    "lidar": 9,
+    "lidar+ortho": 2,
+    "video": 30
+   }
+  },
+  {
+   "pk_debut": 2730.0,
+   "pk_fin": 2779.0,
+   "ondulation_ecart_type_m": 0.131,
+   "ondulation_max_m": 0.327,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 10.4,
+   "changement_de_cap_deg": -25.6,
+   "largeur_ecart_type_m": 0.57,
+   "largeur_saut_max_m": 0.29,
+   "sources": {
+    "interpole": 16,
+    "lidar": 5,
+    "video": 29
+   }
+  },
+  {
+   "pk_debut": 2455.0,
+   "pk_fin": 2504.0,
+   "ondulation_ecart_type_m": 0.065,
+   "ondulation_max_m": 0.183,
+   "alternances_de_courbure": 10,
+   "rayon_min_m": 35.9,
+   "changement_de_cap_deg": 2.8,
+   "largeur_ecart_type_m": 0.5,
+   "largeur_saut_max_m": 0.25,
+   "sources": {
+    "lidar": 31,
+    "video": 19
+   }
+  },
+  {
+   "pk_debut": 7104.0,
+   "pk_fin": 7153.0,
+   "ondulation_ecart_type_m": 0.119,
+   "ondulation_max_m": 0.243,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 22.3,
+   "changement_de_cap_deg": -15.1,
+   "largeur_ecart_type_m": 0.65,
+   "largeur_saut_max_m": 0.24,
+   "sources": {
+    "interpole": 32,
+    "lidar": 7,
+    "lidar+ortho": 9,
+    "ortho": 2
+   }
+  },
+  {
+   "pk_debut": 455.0,
+   "pk_fin": 504.0,
+   "ondulation_ecart_type_m": 0.136,
+   "ondulation_max_m": 0.309,
+   "alternances_de_courbure": 4,
+   "rayon_min_m": 17.9,
+   "changement_de_cap_deg": 14.8,
+   "largeur_ecart_type_m": 0.17,
+   "largeur_saut_max_m": 0.14,
+   "sources": {
+    "interpole": 19,
+    "lidar": 3,
+    "lidar+ortho": 1,
+    "video": 27
+   }
+  },
+  {
+   "pk_debut": 1755.0,
+   "pk_fin": 1804.0,
+   "ondulation_ecart_type_m": 0.113,
+   "ondulation_max_m": 0.279,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 14.4,
+   "changement_de_cap_deg": 39.9,
+   "largeur_ecart_type_m": 0.46,
+   "largeur_saut_max_m": 0.2,
+   "sources": {
+    "interpole": 13,
+    "lidar": 29,
+    "lidar+ortho": 1,
+    "ortho": 7
+   }
+  },
+  {
+   "pk_debut": 1880.0,
+   "pk_fin": 1929.0,
+   "ondulation_ecart_type_m": 0.135,
+   "ondulation_max_m": 0.249,
+   "alternances_de_courbure": 4,
+   "rayon_min_m": 26.4,
+   "changement_de_cap_deg": -25.9,
+   "largeur_ecart_type_m": 0.65,
+   "largeur_saut_max_m": 0.35,
+   "sources": {
+    "interpole": 11,
+    "lidar": 25,
+    "lidar+ortho": 1,
+    "video": 13
+   }
+  },
+  {
+   "pk_debut": 3180.0,
+   "pk_fin": 3229.0,
+   "ondulation_ecart_type_m": 0.112,
+   "ondulation_max_m": 0.181,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 32.2,
+   "changement_de_cap_deg": 8.4,
+   "largeur_ecart_type_m": 0.39,
+   "largeur_saut_max_m": 0.17,
+   "sources": {
+    "interpole": 19,
+    "lidar": 21,
+    "lidar+ortho": 9,
+    "ortho": 1
+   }
+  },
+  {
+   "pk_debut": 5630.0,
+   "pk_fin": 5679.0,
+   "ondulation_ecart_type_m": 0.096,
+   "ondulation_max_m": 0.236,
+   "alternances_de_courbure": 6,
+   "rayon_min_m": 22.1,
+   "changement_de_cap_deg": 29.2,
+   "largeur_ecart_type_m": 0.5,
+   "largeur_saut_max_m": 0.24,
+   "sources": {
+    "interpole": 17,
+    "lidar": 16,
+    "video": 17
+   }
+  },
+  {
+   "pk_debut": 1780.0,
+   "pk_fin": 1829.0,
+   "ondulation_ecart_type_m": 0.133,
+   "ondulation_max_m": 0.279,
+   "alternances_de_courbure": 4,
+   "rayon_min_m": 14.4,
+   "changement_de_cap_deg": 49.3,
+   "largeur_ecart_type_m": 0.59,
+   "largeur_saut_max_m": 0.2,
+   "sources": {
+    "interpole": 20,
+    "lidar": 23,
+    "ortho": 7
+   }
+  },
+  {
+   "pk_debut": 2605.0,
+   "pk_fin": 2654.0,
+   "ondulation_ecart_type_m": 0.104,
+   "ondulation_max_m": 0.227,
+   "alternances_de_courbure": 5,
+   "rayon_min_m": 25.4,
+   "changement_de_cap_deg": -11.1,
+   "largeur_ecart_type_m": 0.5,
+   "largeur_saut_max_m": 0.25,
+   "sources": {
+    "interpole": 8,
+    "lidar": 23,
+    "lidar+ortho": 7,
+    "ortho": 12
+   }
+  },
+  {
+   "pk_debut": 1105.0,
+   "pk_fin": 1154.0,
+   "ondulation_ecart_type_m": 0.124,
+   "ondulation_max_m": 0.268,
+   "alternances_de_courbure": 4,
+   "rayon_min_m": 22.3,
+   "changement_de_cap_deg": 5.4,
+   "largeur_ecart_type_m": 0.44,
+   "largeur_saut_max_m": 0.27,
+   "sources": {
+    "interpole": 7,
+    "lidar": 33,
+    "lidar+ortho": 10
+   }
+  },
+  {
+   "pk_debut": 230.0,
+   "pk_fin": 279.0,
+   "ondulation_ecart_type_m": 0.088,
+   "ondulation_max_m": 0.161,
+   "alternances_de_courbure": 6,
+   "rayon_min_m": 33.5,
+   "changement_de_cap_deg": -21.6,
+   "largeur_ecart_type_m": 0.81,
+   "largeur_saut_max_m": 0.22,
+   "sources": {
+    "interpole": 33,
+    "lidar": 11,
+    "lidar+ortho": 5,
+    "ortho": 1
+   }
+  },
+  {
+   "pk_debut": -95.0,
+   "pk_fin": -46.0,
+   "ondulation_ecart_type_m": 0.152,
+   "ondulation_max_m": 0.361,
+   "alternances_de_courbure": 3,
+   "rayon_min_m": 16.6,
+   "changement_de_cap_deg": -49.2,
+   "largeur_ecart_type_m": 0.65,
+   "largeur_saut_max_m": 0.29,
+   "sources": {
+    "manuel": 38,
+    "video": 12
+   }
+  },
+  {
+   "pk_debut": 2405.0,
+   "pk_fin": 2454.0,
+   "ondulation_ecart_type_m": 0.121,
+   "ondulation_max_m": 0.24,
+   "alternances_de_courbure": 4,
+   "rayon_min_m": 25.5,
+   "changement_de_cap_deg": 1.2,
+   "largeur_ecart_type_m": 0.46,
+   "largeur_saut_max_m": 0.21,
+   "sources": {
+    "interpole": 15,
+    "lidar": 16,
+    "lidar+ortho": 8,
+    "video": 11
+   }
+  }
+ ]
+}
