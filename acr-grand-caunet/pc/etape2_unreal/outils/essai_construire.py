@@ -96,14 +96,21 @@ def verifier_releves(manifeste):
     racine = json.load(open(manifeste, encoding="utf-8"))["chemins"]["racine"]
     nos_mi = {c: o for c, o in u.ASSETS.items() if o.get_class().get_name() == "MaterialInstanceConstant" and c.startswith(racine)}
     erreurs = []
-    mauvais_parent = [c for c, o in nos_mi.items() if getattr(o, "parent", None) is not u.ASSETS[modele]]
+    # variantes qui héritent d'un matériau du jeu (asphalte de Bollène...) : ce parent-là, et aucune texture à elles
+    speciaux = {nom: x["objet"] for x in factices if x.get("role") == "parent_du_jeu" for nom in x.get("pour", [])}
+
+    def attendu(c):
+        return u.ASSETS[speciaux.get(c.rsplit("/", 1)[1], modele)]
+
+    mauvais_parent = [c for c, o in nos_mi.items() if getattr(o, "parent", None) is not attendu(c)]
     if mauvais_parent:
-        erreurs.append(f"variantes sans la variante modèle pour parent : {mauvais_parent[:3]}")
-    sans_relief = [c for c, o in nos_mi.items() if "Simple_Normal_Texture" not in o.props.get("textures", {})]
+        erreurs.append(f"variantes sans le parent du jeu attendu : {mauvais_parent[:3]}")
+    sans_relief = [c for c, o in nos_mi.items() if c.rsplit("/", 1)[1] not in speciaux
+                   and "Simple_Normal_Texture" not in o.props.get("textures", {})]
     if sans_relief:
         erreurs.append(f"variantes sans relief : {sans_relief[:3]}")
-    if r["variantes_sur_le_modele_du_jeu"] != r["variantes"]:
-        erreurs.append(f"{r['variantes_sur_le_modele_du_jeu']} variantes sur le modèle pour {r['variantes']}")
+    if r["variantes_sur_le_modele_du_jeu"] + r["variantes_sur_un_materiau_du_jeu"] != r["variantes"]:
+        erreurs.append(f"{r['variantes_sur_le_modele_du_jeu']} + {r['variantes_sur_un_materiau_du_jeu']} variantes sur un parent du jeu pour {r['variantes']}")
     veg = json.load(open(releve, encoding="utf-8"))["dossiers"]
     hauts = {d + "/" + n: v[0] for d, m in veg.items() for n, v in m.items()}
     plaques = {d for d, m in veg.items() if max(v[0] for v in m.values()) < 30}

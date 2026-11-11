@@ -30,6 +30,15 @@ M_SIMPLE_SANS_RELEVE = {"parametres_texture": ["Simple_BaseColor_Texture", "Simp
 # normale, occlusion, rugosité, métal), comme 311 autres variantes du jeu : nos variantes en héritent sans rien
 # recompiler. C'est aussi le modèle retenu par ACR Extra Stages (config/visuals.toml, mic_template).
 MODELE_M_SIMPLE = "/Game/Environments/MonteCarloS2Sisteron/TileableMaterials/MI_SisteronConcrete01"
+# Variantes du jeu prises comme parent de certaines de nos variantes, à la place de la variante modèle de M_Simple
+# (essais « matériaux du jeu », PROTOCOLE.md § 0 quinquies). "pour" : noms de nos variantes dans le manifeste.
+# Notre variante n'y règle RIEN : elle hérite des textures et des static switch de la variante du jeu.
+PARENTS_DU_JEU = [
+    {"objet": "/Game/Environments/MonteCarloS1Bollene/AsphaltMaterial/MI_BolleneAsphalt1",
+     "parent": "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv", "pour": ["MI_GC_Enrobe"],
+     "pourquoi": "asphalte de Bollène : plaqué d'après la position dans le monde (static switch UseWSPlanarUV), donc "
+                 "indépendant du dépliage de nos maillages ; fissures, traces de pneus, taches d'huile"},
+]
 AUTRES_MATERIAUX = ["/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
                     "/Game/Environments/RallyShared/Materials/M_RoadSurface_Layered",
                     "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv"]
@@ -105,6 +114,8 @@ def main():
                       "pourquoi": "parent de nos variantes : ses static switch de texture sont déjà actifs dans le jeu"})
     liste += [{"objet": c, "type": "StaticMesh", "essai": "E2, E4"} for c in maillages]
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
+    liste += [{"objet": p["objet"], "type": "MaterialInstanceConstant", "parent": p["parent"], "role": "parent_du_jeu",
+               "pour": p["pour"], "static_switch": {}, "essai": "E3b", "pourquoi": p["pourquoi"]} for p in PARENTS_DU_JEU]
     for o in BLUEPRINTS:
         a = (acteurs or {}).get(o)
         x = {"objet": o, "type": "Blueprint", "parent": a["classe_native"] if a else None, "essai": "E2"}

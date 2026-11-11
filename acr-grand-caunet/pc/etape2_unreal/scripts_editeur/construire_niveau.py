@@ -285,6 +285,16 @@ class Construction:
         if os.path.exists(ffile):
             with open(ffile, encoding="utf-8") as f:
                 self.modele = next((x["objet"] for x in json.load(f)["factices"] if x.get("role") == "modele_m_simple"), None)
+        # variantes du jeu prises comme parent de certaines de nos variantes (factices.json, "role": "parent_du_jeu") :
+        # la nôtre n'y règle rien, elle hérite de tout (asphalte de Bollène pour l'enrobé, par exemple)
+        self.parents_du_jeu = {}
+        if os.path.exists(ffile):
+            with open(ffile, encoding="utf-8") as f:
+                for x in json.load(f)["factices"]:
+                    if x.get("role") == "parent_du_jeu":
+                        for nom in x.get("pour", []):
+                            self.parents_du_jeu[nom] = x["objet"]
+        self.rapport["variantes_sur_un_materiau_du_jeu"] = 0
         self._relief_plat = None
         self.placement = self.origine_ir = None
         if a.placement:
@@ -403,6 +413,12 @@ class Construction:
     def parent(self, e):
         """(parent, paramètres de texture, vrai si le parent est la variante modèle du jeu)"""
         if self.a.parent == "jeu":
+            special = self.parents_du_jeu.get(e["nom"])
+            if special:
+                if v_existe(special):
+                    self.rapport["variantes_sur_un_materiau_du_jeu"] += 1
+                    return v_charger(special), {}, False              # aucune texture réglée : tout est hérité
+                self.alerte(f"{e['nom']} : parent du jeu {special} absent (creer_factices.py) ; variante modèle à la place")
             p = e["parent_jeu_pressenti"]
             if p == M_SIMPLE:
                 if self.modele and v_existe(self.modele):

@@ -2358,6 +2358,18 @@
    "releve": "releves/materiaux_maitres.json (valeurs par défaut, textures par défaut)"
   },
   {
+   "objet": "/Game/Environments/MonteCarloS1Bollene/AsphaltMaterial/MI_BolleneAsphalt1",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv",
+   "role": "parent_du_jeu",
+   "pour": [
+    "MI_GC_Enrobe"
+   ],
+   "static_switch": {},
+   "essai": "E3b",
+   "pourquoi": "asphalte de Bollène : plaqué d'après la position dans le monde (static switch UseWSPlanarUV), donc indépendant du dépliage de nos maillages ; fissures, traces de pneus, taches d'huile"
+  },
+  {
    "objet": "/Game/Data/Environments/Common/BC_TrackAvatar",
    "type": "Blueprint",
    "parent": "/Script/dmphysics.TrackAvatar",
