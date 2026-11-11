@@ -27,6 +27,7 @@
 param(
     [string]$Jeu, [string]$Travail, [string]$Ir,
     [string[]]$CellulesDecor = @(),
+    [string]$ExclureVisuels,
     [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles
 )
 . "$PSScriptRoot\commun.ps1"
@@ -110,6 +111,9 @@ $a = @('stage-build', '--ir', $irTravail, '--legacy', $legacy, '--out', $mod, '-
        '--visuals', (Join-Path $cfg 'visuals.toml'), '--visuals-host', 'start', '--visuals-retarget', '1',
        '--visuals-vegetation', 'none', '--visuals-canopies', 'apex')               # build.ps1 l.173-181
 if (-not $Longueur) { $a += @('--keep-variants', '1') }
+# Voie hybride : zones où notre décor cuit par Unreal remplace les visuels d'essai (retouche 0004 ;
+# fichier écrit par pc\etape2_unreal\outils\zones_decor.py)
+if ($ExclureVisuels) { $a += @('--visuals-exclude', $ExclureVisuels) }
 if ($obstacles) { $a += @('--objects', (Join-Path $cfg 'object-collision.toml')) }
 if (-not $GarderDecor) {
     $scenery = Join-Path $cfg 'scenery.toml'

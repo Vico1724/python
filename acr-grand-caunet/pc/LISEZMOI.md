@@ -43,6 +43,7 @@ Nos trois retouches (`pc/patches/`) sont des modifications de ce logiciel, distr
 | `0001-keep-variants.patch` | 3 fichiers, +13 / −4 lignes | Nouvelle option `--keep-variants 1` : le mod ne livre plus la table de menus `DT_TracksVariants`. Cette table est remplacée en entier par quiconque la livre. Sans cette option, notre mod et BioBio se masqueraient l'un l'autre. Le contrôle `stage-verify` connaît la même option. |
 | `0002-objets-facultatifs.patch` | 2 fichiers, +11 / −7 lignes | Leur code supposait des objets venant de DiRT Rally, avec leurs maillages d'affichage (`render/objects.glb`). Nous n'avons que des volumes de collision : sans ce fichier, chaque obstacle est dessiné comme son propre volume. Un `objects` vide est aussi accepté. |
 | `0003-identifiant-hors-dr2.patch` | 1 fichier, +6 / −1 ligne | Accepte un identifiant de spéciale qui n'a pas la forme DiRT Rally. Cette retouche n'est **pas utilisée par l'essai** (notre identifiant a déjà la bonne forme) ; elle prépare l'autre voie de construction, celle de l'ajout aux menus. |
+| `0004-visuals-exclude.patch` | 1 fichier, +43 lignes | Nouvelle option `--visuals-exclude` : les visuels d'essai ne sont plus dessinés dans les zones où notre décor cuit par Unreal existe (voie hybride, `pc/etape2_unreal/PROTOCOLE.md` § 0 quater). **Pas utilisée par l'essai de l'étape 1.** |
 
 ## 3. Prérequis
 
@@ -99,7 +100,7 @@ Ce script demande une confirmation avant chaque installation.
 pwsh -ExecutionPolicy Bypass -File pc\scripts\2_recuperer_acrxs.ps1
 ```
 
-Ce script récupère ACR Extra Stages à la version exacte étudiée, applique nos trois retouches, puis construit les outils : `acr-ref` (le constructeur), `acr-additive`, `acr-mappings` et `retoc` (l'outil qui lit et réécrit les archives du jeu). Compter 10 à 20 minutes la première fois **[supposé]**.
+Ce script récupère ACR Extra Stages à la version exacte étudiée, applique nos retouches, puis construit les outils : `acr-ref` (le constructeur), `acr-additive`, `acr-mappings` et `retoc` (l'outil qui lit et réécrit les archives du jeu). Compter 10 à 20 minutes la première fois **[supposé]**.
 
 **Ce qu'on doit voir :** « 0001… appliquée » (et 0002, 0003), puis « outils prêts ».
 
