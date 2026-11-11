@@ -1,0 +1,63 @@
+{
+ "source": "rubrique placement de Z:\\acrxs\\construction\\stage-grandcaunet.report.json (acr-ref stage-build, étape 1, 11/11/2026)",
+ "lecture": "à passer à poser_arbres.py --placement : place le décor dans le repère physique du mod de l'étape 1 (voie hybride H, E4)",
+ "placement": {
+  "formula": "physics = R_y(theta) * (dr2 - (cx, 0, cz)) + (tx, dy, tz); UE cm = (px, pz, py) * 100; R_y: x' = cos*x + sin*z, z' = -sin*x + cos*z",
+  "ground_offset_m": 0,
+  "theta_deg": 35,
+  "cx": -1513.6499999999999,
+  "cz": -1271.05,
+  "tx": -813.8791115158899,
+  "dy": 117.631,
+  "tz": 1234.5113666758325,
+  "slack_m": 400,
+  "world": {
+   "min_x": -2951.512021608143,
+   "max_x": 1705.5120216081432,
+   "min_z": -964,
+   "max_z": 2048,
+   "min_y": 305,
+   "max_y": 684.566
+  }
+ },
+ "origine_ir": {
+  "lambert93_x_m": 917008.49,
+  "lambert93_y_m": 6241030.6,
+  "lon": 5.67032124,
+  "lat": 43.23544661,
+  "description": "axe de la chaussée au PK 0 (ligne de départ)"
+ },
+ "options": {
+  "objects": "Z:\\acrxs\\acr-extrastages\\config\\object-collision.toml",
+  "pacenote_map": "Z:\\acrxs\\acr-extrastages\\config\\pacenote-map.toml",
+  "respawn": "relay",
+  "keep_pacenotes": false,
+  "visuals": "Z:\\acrxs\\acr-extrastages\\config\\visuals.toml",
+  "ground_offset_m": 0,
+  "additive": false,
+  "keep_variants": true,
+  "package_root": null,
+  "bounds": true,
+  "bounds_margin_m": 400,
+  "visuals_host": "start",
+  "visuals_retarget": true,
+  "visuals_owner": null,
+  "visuals_vegetation": "none",
+  "visuals_canopies": "apex",
+  "visuals_textured": true,
+  "scenery": "Z:\\acrxs\\acr-extrastages\\config\\scenery.toml"
+ },
+ "points_de_controle_ue_cm": {
+  "depart_pk0_l93_917008.49_6241030.60_398.55": [
+   115507.5,
+   140750.1,
+   51618.1
+  ],
+  "arbre_1_l93_916565.25_6243787.75_231.24": [
+   -78944.3,
+   -59679.2,
+   34887.1
+  ]
+ },
+ "reperes_du_mod": "ligne de départ construite en UE (115499, 140768, 51641) cm, point de départ de la voiture (127103, 142401, 51378) cm (journal de stage-build)"
+}

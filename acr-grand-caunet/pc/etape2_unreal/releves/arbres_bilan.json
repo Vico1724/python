@@ -1,0 +1,72 @@
+{
+ "arbres": 41584,
+ "regle": {
+  "hauteur_minimale_du_maillage_m": 1.5,
+  "echelle_visee": [
+   0.6,
+   1.5
+  ]
+ },
+ "echelle_avant": {
+  "mediane": 0.76,
+  "min": 0.1,
+  "max": 97.62,
+  "hors_de_0,5_a_2": 19890,
+  "hors_de_0,6_a_1,5": 27509
+ },
+ "echelle_apres": {
+  "mediane": 0.82,
+  "min": 0.16,
+  "max": 2.65,
+  "hors_de_0,5_a_2": 2308,
+  "hors_de_0,6_a_1,5": 9442
+ },
+ "arbres_sans_maillage_dans_la_plage": 9442,
+ "maillages_ecartes": [
+  "SM_AleppoPine12",
+  "SM_AleppoPine13",
+  "SM_Blackmaple04"
+ ],
+ "arbres_par_maillage": {
+  "SM_AleppoPine01": 1793,
+  "SM_AleppoPine02": 1887,
+  "SM_AleppoPine03": 1987,
+  "SM_AleppoPine04": 1898,
+  "SM_AleppoPine05": 1815,
+  "SM_AleppoPine06": 1942,
+  "SM_AleppoPine07": 1276,
+  "SM_AleppoPine08": 1018,
+  "SM_AleppoPine09": 2071,
+  "SM_AleppoPine10": 1734,
+  "SM_AleppoPine11": 1870,
+  "SM_AleppoPine14": 1872,
+  "SM_AleppoPine15": 1798,
+  "SM_Blackmaple01": 37,
+  "SM_Blackmaple02": 1849,
+  "SM_Blackmaple03": 179,
+  "SM_Blackmaple06": 21,
+  "SM_BlackmapleMonteCarlo01": 275,
+  "SM_BlackmapleMonteCarlo02": 3881,
+  "SM_BlackmapleMonteCarlo03": 1182,
+  "SM_BlackpineMonteCarlo01": 2,
+  "SM_BlackpineMonteCarlo02": 5,
+  "SM_BlackpineMonteCarlo03": 15,
+  "SM_BlackpineMonteCarlo04": 53,
+  "SM_BlackpineMonteCarlo05": 77,
+  "SM_BlackpineMonteCarlo06": 4,
+  "SM_BlackpineMonteCarlo07": 16,
+  "SM_BlackpineMonteCarlo08": 69,
+  "SM_BlackpineMonteCarlo09": 4,
+  "SM_BlackpineMonteCarlo11": 110,
+  "SM_BlackpineMonteCarlo12": 5,
+  "SM_Cypress01": 10,
+  "SM_Cypress02": 37,
+  "SM_Cypress03": 3,
+  "SM_Cypress04": 8,
+  "SM_Olivetree02": 2,
+  "SM_Olivetree03": 29,
+  "SM_Smoketree01": 4860,
+  "SM_Smoketree02": 3573,
+  "SM_Smoketree04": 2317
+ }
+}

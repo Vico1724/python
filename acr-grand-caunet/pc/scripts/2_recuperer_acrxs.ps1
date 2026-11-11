@@ -65,7 +65,9 @@ $retoc = Join-Path $bin 'retoc\bin\retoc.exe'
 if (Test-Path $retoc) { Ok "retoc déjà présent" }
 else {
     # Documenté (CONTRIBUTING.md) ; la version de retoc n'est pas figée par leur projet.
-    Lancer 'cargo' @('install', '--git', 'https://github.com/trumank/retoc', 'retoc_cli', '--root', (Join-Path $bin 'retoc')) "construction de retoc"
+    # --locked : respecter le Cargo.lock de retoc. Sans lui, cargo prend la dernière version de la dépendance « jmap »
+    # (0.2.0 au 11/11/2026), que retoc 0.1.5 refuse (« jmap = ^0.1.0 ») : constaté sur le PC du directeur.
+    Lancer 'cargo' @('install', '--locked', '--git', 'https://github.com/trumank/retoc', 'retoc_cli', '--root', (Join-Path $bin 'retoc')) "construction de retoc"
 }
 
 Etape "Construction de acr-mappings (Rust)"

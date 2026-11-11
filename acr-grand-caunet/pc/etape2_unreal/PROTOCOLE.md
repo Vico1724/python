@@ -36,6 +36,46 @@
 - **[supposé]** : hypothèse.
 - **[à vérifier : où]** : je ne suis pas sûr ; l'endroit à consulter sur le PC est indiqué (documentation Epic, en ligne ou dans l'éditeur).
 
+## 0 bis. Relevés faits sur le PC le 11/11/2026, avant d'installer Unreal
+
+L'étape 1 a réussi : le mod d'essai se charge en jeu, la voiture roule sur notre route, BioBio restant installé. Avec ses outils (`acr-ref`, `retoc`, `acr-additive`), tout ce que ce protocole demandait de « lire sur le PC » a été lu dans les fichiers du jeu, sans Unreal. **Quand un passage plus bas contredit cette section, c'est cette section qui a raison** : elle est marquée **[relevé]**.
+
+Les relevés se refont avec `python pc/etape2_unreal/outils/relever_jeu.py` (une minute). Ils sont dans `releves/` ; les exports bruts restent dans `Z:\acrxs\unreal\lu\`.
+
+**Ce qui change dans les essais :**
+
+| Sujet | Ce que supposait le protocole | Ce qui a été relevé |
+|---|---|---|
+| Parent de nos variantes (E1b, E3) | `M_Simple` directement | **`MI_SisteronConcrete01`**, une variante du jeu. `M_Simple` n'échantillonne ses textures que si ses static switch `Simple_Use_*_Texture` sont actifs, et ils sont inactifs par défaut. Une variante de `M_Simple` avec notre photo resterait donc unie. La variante modèle les a déjà actifs (comme 311 autres) : nos variantes en héritent et ne règlent que des textures. `factices.json` la désigne par `"role": "modele_m_simple"`. |
+| Textures à régler dans nos variantes | la couleur seule | **les trois** : couleur, normale, occlusion-rugosité-métal. Sinon la variante hérite du béton de Sisteron. `importer_dalles.py` le fait. |
+| Maillage du portique (E1b) | `SM_RallyGantry8m` | **`SM_RallyGantry6m`**. Les 8 portiques de Hafren South ne règlent pas leur largeur, et la valeur par défaut de `BC_GantryBase` est 6. |
+| Nanite | « le jeu s'en sert » | **Désactivé** dans les réglages du jeu (`r.Nanite=False`). Ne pas cuire de maillage Nanite. |
+| Textures virtuelles | à vérifier | **Activées**. 348 des 471 textures de sol et d'asphalte relevées sont en « Virtual Texture Streaming ». |
+| Réglages du projet (E0) | à deviner | Extrait prêt à recopier : `projet/DefaultEngine_extrait.ini`. Le jeu embarque son `acr.uproject` et ses `Config\*.ini`, extraits dans `Z:\acrxs\unreal\lu\config\`. |
+| Version du jeu (E0) | lire les propriétés de `acr-Win64-Shipping.exe` | L'exécutable est `acr\Binaries\Win64\acr.exe`, et sa version de produit ne dit rien (« UE5-CL-0 »). La seule preuve de la 5.6.1 reste le fichier de correspondance. |
+| Racine des chemins (E0) | à vérifier | Point de montage `../../../`, paquets sous `acr/Content/…` : un projet nommé `acr` convient. |
+| Forme du champ `Level` (E2a) | `/Game/…/GC_Essai/GC_Essai` | **`/Game/GrandCaunet/Levels/GC_Essai`** : le chemin du paquet, comme dans leur prototype. |
+| Registre des menus (E2a) | à construire | **Construit** : `scripts_pc/construire_registre.ps1` produit `Z:\acrxs\unreal\dist\zz_gc_registre_P.*` à partir de `registre/gc_essai.json`. Jamais installé. |
+| Classes natives des acteurs (E2b) | à trouver | Relevées pour 10 Blueprints sur 11 : `releves/acteurs.json`, avec l'ordre de leurs propriétés. Le ciel descend d'un Blueprint de l'extension `dmenvironment`, non exporté. |
+| Ce qu'un niveau contient (E2) | liste de l'anatomie | `releves/niveau_hote.json` : les 3 764 acteurs de Hafren South par classe, et pour chaque acteur unique les propriétés que le studio a réglées. |
+| Hauteurs des arbres (E2, E4) | à relever | Relevées : `hauteurs_maillages.json`. Voir ci-dessous. |
+| Journal du jeu | `%LOCALAPPDATA%\acr\Saved\Logs\` | Le dossier existe mais il est **vide** : le jeu n'écrit pas de journal par défaut. |
+| Placement du décor (E4) | formule à vérifier | **Vérifiée** : notre formule place le PK 0 en UE (115 507 ; 140 750 ; 51 618) cm, et leur constructeur a posé la ligne de départ en (115 499 ; 140 768 ; 51 641). Écart de 20 cm. Valeurs dans `releves/placement_etape1.json`. |
+
+**Les arbres étaient mal attribués.** Le script `10_semis_arbres.py` tirait le maillage au hasard dans la famille de l'essence, sans connaître sa hauteur. Or trois « arbres » du jeu sont des souches ou des plants : `SM_AleppoPine12` mesure 0,25 m, `SM_AleppoPine13` 0,55 m, `SM_Blackmaple04` 0,87 m. 3 468 de nos arbres les désignaient, avec une échelle allant jusqu'à 97, et 48 % des arbres avaient une échelle hors de 0,5 à 2.
+
+`outils/reattribuer_arbres.py` choisit maintenant, dans la même famille, un maillage de taille voisine, et écrit `arbres_jeu.csv.gz` (lu par `poser_arbres.py`). Il reste 2 308 arbres (5,5 %) hors de 0,5 à 2, parce que la famille n'a pas de maillage à leur taille :
+
+- **arbre à perruque** (`Smoketree`, 10 750 arbres mesurés entre 2 et 6 m) : le jeu n'a que des maillages de 1,9 m, 7,3 m et 10,3 m ;
+- **substituts de chêne** (`Blackmaple`, `BlackmapleMonteCarlo`) : maillages de 13 à 22 m pour des arbres dont la médiane est à 5 et 8 m ;
+- **olivier** : maillages de 10 à 12 m pour des arbres de 3 à 5 m.
+
+Pour ces essences, il faudra soit accepter des arbres réduits, soit choisir une autre famille du jeu. C'est une décision de rendu, à prendre en voyant le résultat (E4).
+
+**Matériaux de terrain et d'asphalte (E3b).** `releves/materiaux_maitres.json` donne tous les paramètres de `M_TerrainMaster_light` (40 textures, 124 static switch), `M_RoadSurface_Layered` et `M_AsphaltMaster_Adv`, avec leurs valeurs par défaut. `releves/variantes.json` détaille 255 variantes du jeu (asphaltes de Bollène et Sisteron, terrains de Monte-Carlo, glissières, portiques) : parent, textures, scalaires, static switch réglés. La règle est la même que pour `M_Simple` : **prendre comme parent une variante du jeu qui a déjà les bons static switch**, jamais le maître. `releves/textures.json` donne le format et les réglages de chaque texture qu'elles utilisent.
+
+**Ce qui reste hors de portée sans Unreal :** tout ce qui touche à l'éditeur lui-même. Les scripts de `scripts_editeur/` ont été corrigés d'après les relevés et compilent en Python, mais **aucun n'a tourné dans Unreal**.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :
@@ -136,15 +176,15 @@ Points d'attention :
 **But :** établir qu'un maillage cuit est affiché, et qu'une variante dont le parent est un **factice** se lie au **vrai** matériau du jeu.
 
 1. Créer le factice `M_Simple` avec `creer_factices.py`. Les noms de ses paramètres, `Simple_BaseColor_Texture`, `Simple_OcclRoughMet_Texture` et `Simple_Normal_Texture`, viennent de la configuration d'ACR Extra Stages : ils y créent des variantes de `M_Simple` avec leurs textures (v1.8) **[ACR-XS : construites et contrôlées hors jeu ; les captures de leur README montrent des textures DiRT en jeu, sans consignation détaillée]**.
-2. Créer `MI_GC_Essai` (parent `M_Simple`, une texture à nous) et un maillage simple, par exemple un panneau de 8 m.
-3. Le placer **au chemin** `/Game/Props/RallyProps/Gantries/SM_RallyGantry8m`, en remplacement. Le portique gallois l'utilise probablement **[supposé : à confirmer par `acr-ref export` du Blueprint `BC_GantryWales`]**.
+2. Créer `MI_GC_Essai` avec pour parent la **variante modèle** `MI_SisteronConcrete01` (factice créé lui aussi par `creer_factices.py`), et y régler les trois textures : couleur, normale, occlusion-rugosité-métal **[relevé, § 0 bis]**. Créer un maillage simple, par exemple un panneau de 6 m.
+3. Le placer **au chemin** `/Game/Props/RallyProps/Gantries/SM_RallyGantry6m`, en remplacement. C'est le maillage des portiques de Hafren South **[relevé, § 0 bis]**.
 4. Cuire avec :
 
    ```
-   -Inclure 'Props/RallyProps/Gantries/SM_RallyGantry8m','GrandCaunet/Materiaux','GrandCaunet/Textures'
+   -Inclure 'Props/RallyProps/Gantries/SM_RallyGantry6m','GrandCaunet/Materiaux','GrandCaunet/Textures'
    ```
 
-   `M_Simple` est écarté automatiquement, comme tout factice.
+   `M_Simple` et `MI_SisteronConcrete01` sont écartés automatiquement, comme tout factice.
 
 **Ce qu'on doit voir :** notre panneau à la place du portique, éclairé et texturé.
 
@@ -220,7 +260,7 @@ Ces classes sont celles du jeu : `/Script/acr`, `/Script/dmphysics`, et des Blue
 - **À écrire :** une petite retouche de leur outil, qui change l'élément désigné par un composant et sa position. Leur code fait déjà l'équivalent pour les forêts : `HismRewrite.cs` réécrit les instances, et `TreeInstancer.cs` change le maillage désigné pour le couvre-sol **[ACR-XS : déduit du code]**.
 - **Travail :** 2 à 4 jours. **Risque moyen** : les cellules de Hafren se chargent selon la position, il faudra les maintenir chargées ; et le nombre d'instances est limité à la capacité des forêts de Hafren.
 
-**Hauteurs des maillages d'arbres :** à relever une fois, pour l'échelle des arbres. Lancer `acr-ref export acr/Content/Foliage/Trees/AleppoPine/SM_AleppoPine14.uasset …` pour chacun des 45 maillages et lire les bornes, ou mesurer dans FModel **[UE courant]**. Écrire le résultat dans `pc/etape2_unreal/hauteurs_maillages.json` (`{"SM_AleppoPine14": 1450.0}`, en cm), que lit `poser_arbres.py`.
+**Hauteurs des maillages d'arbres :** relevées le 11/11/2026 pour les 45 maillages, dans `pc/etape2_unreal/hauteurs_maillages.json` (en cm ; `SM_AleppoPine14` mesure 1 041 cm). Les arbres ont été réattribués en conséquence : voir § 0 bis **[relevé]**.
 
 ## 5. E3 : une dalle de terrain avec sa photo (½ à 2 jours)
 
@@ -320,7 +360,7 @@ Le paquet complet compte 26 dalles et 126 sous-dalles de terrain, 38 tronçons d
 - **Classes du jeu absentes du projet** (`/Script/acr`, `/Script/dmphysics`, Blueprints `BC_*`) : souches ou voie H (E2b). Les éléments de classes du moteur (StaticMesh, Texture2D, MaterialInstanceConstant) n'en ont pas besoin.
 - **Programmes d'affichage :** seulement des variantes, sans changer de « static switch ». Aucun matériau maître n'est livré.
 - **World Partition :** BioBio s'en passe **[BioBio]**. Hafren l'utilise **[ACR-XS]**. Commencer sans.
-- **Nanite :** le jeu s'en sert **[ACR-XS, anatomy]**. Commencer sans, l'essayer ensuite.
+- **Nanite :** désactivé dans les réglages du jeu **[relevé, § 0 bis]**. Ne pas s'en servir.
 - **Lumen et éclairage :** les réglages de rendu sont ceux du jeu ; le ciel et la lumière viennent des acteurs du niveau. Ne rien précalculer.
 - **Collisions :** désactivées sur tout notre décor. La physique ne vient que du BakedData **[ACR-XS, vérifié en jeu]**. Le jeu sait aussi rassembler des collisions à l'exécution **[ACR-XS, anatomy § 3 : existe dans le binaire, interaction non étudiée]** : raison de plus pour tout mettre en « NoCollision ».
 - **Registre des éléments du jeu :** nos éléments neufs n'y figurent pas. ACR Extra Stages s'en passe pour ses niveaux clonés **[ACR-XS : captures du README ; marqué non vérifié dans additive-plan § 6]**.
@@ -352,12 +392,19 @@ Si l'éditeur ne produit rien d'acceptable (E1), on écrit nous-mêmes le conten
 |---|---|---|
 | `PROTOCOLE.md` | ce document | |
 | `elements_jeu_utiles.json` | 27 rubriques : arbres par essence (pin d'Alep, arbre à perruque, érables pour les chênes, pins noirs, cyprès, oliviers…), herbes sèches, asphaltes et terrains de Monte-Carlo, matériaux maîtres, murs, ponts, rochers, glissières, panneaux français, rubalise, portiques, ciels et météo, surfaces physiques, acteurs de niveau, tables, niveaux | régénérable : `outils/extraire_elements.py` |
-| `factices.json` | 60 factices, tous présents au catalogue | régénérable : `outils/liste_factices.py` |
+| `factices.json` | 56 factices, tous présents dans le jeu : 4 matériaux avec leurs paramètres réels, la variante modèle, 40 maillages d'arbres, 11 Blueprints avec leur classe native | régénérable : `outils/liste_factices.py` |
 | `LISEZMOI_PAQUET.md` | contenu du paquet d'import, conventions de noms et de repère, production sur le PC | |
 | `echantillon/` | paquet des essais E3 et E4 (PK 1 600 à 1 800), avec `manifeste.json` | produit par `scripts/16_paquet_unreal.py --echantillon`, contrôlé |
 | `scripts_editeur/construire_niveau.py` | import complet piloté par le manifeste : textures, maillages, variantes, niveau, instances | jamais exécuté dans Unreal ; logique vérifiée avec `outils/essai_construire.py` (faux module `unreal`) |
 | `A_VERIFIER.md` | les appels Unreal du script à vérifier, et où regarder | |
-| `scripts_editeur/repere_unreal.py` | conversions Lambert-93, glTF, Unreal, point de contrôle | testé en Python ordinaire, jamais dans Unreal |
-| `scripts_editeur/creer_factices.py` | crée les factices | jamais exécuté |
-| `scripts_editeur/importer_dalles.py`, `poser_arbres.py` | premiers squelettes | remplacés par `construire_niveau.py` |
+| `outils/relever_jeu.py` | relève dans le jeu maillages, matériaux, variantes, textures, acteurs, niveau hôte | **exécuté le 11/11/2026** |
+| `outils/reattribuer_arbres.py` | choisit pour chaque arbre un maillage de taille voisine | **exécuté le 11/11/2026** |
+| `releves/` | 8 fichiers de relevés (§ 0 bis) | régénérables : `outils/relever_jeu.py` |
+| `hauteurs_maillages.json`, `arbres_jeu.csv.gz` | hauteurs des 45 maillages ; 41 584 arbres avec maillage et échelle | régénérables |
+| `registre/gc_essai.json` | fiche d'inscription du niveau d'essai aux menus (E2a) | utilisée par `construire_registre.ps1` |
+| `projet/DefaultEngine_extrait.ini` | réglages du jeu à recopier dans le projet (E0) | tirés des fichiers du jeu |
+| `scripts_editeur/repere_unreal.py` | conversions Lambert-93, glTF, Unreal, point de contrôle | testé en Python ordinaire, et recoupé avec le mod de l'étape 1 à 20 cm près ; jamais dans Unreal |
+| `scripts_editeur/creer_factices.py` | crée les factices | corrigé d'après les relevés ; jamais exécuté |
+| `scripts_editeur/importer_dalles.py`, `poser_arbres.py` | premiers squelettes | remplacés par `construire_niveau.py` ; corrigés d'après les relevés, pour mémoire |
 | `scripts_pc/cuire_et_empaqueter.ps1` | cuisson, tri des factices, retoc | jamais exécuté ; options de cuisson à vérifier |
+| `scripts_pc/construire_registre.ps1` | construit le conteneur des tables de menus (E2a) | **exécuté le 11/11/2026** ; conteneur jamais installé |

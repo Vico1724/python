@@ -1,44 +1,71 @@
 """REMPLACÉ PAR construire_niveau.py (piloté par le manifeste de scripts/16_paquet_unreal.py), qui fait la même chose
-au complet ; ce squelette est gardé pour mémoire et ne doit plus être lancé.
+au complet ; ce squelette est gardé pour mémoire et ne doit plus être lancé. Il a été corrigé le 11/11/2026 d'après
+les relevés du jeu (parent des variantes, les trois textures, réglages de texture) : ces corrections restent à
+reporter dans construire_niveau.py (PROTOCOLE.md, § 0 bis).
 
-JAMAIS EXÉCUTÉ. Python de l'éditeur Unreal 5.6. Importe nos dalles de terrain (et, pour l'essai E4, la route)
-dans /Game/GrandCaunet/, crée pour chaque dalle une variante (MaterialInstanceConstant) du matériau « simple » du jeu
-(/Game/Materials/General/Masters/M_Simple, factice créé par creer_factices.py) avec l'image de la dalle, et contrôle
-le repère après import.
+JAMAIS EXÉCUTÉ. Python de l'éditeur Unreal 5.6. Importe nos dalles de terrain dans /Game/GrandCaunet/Terrain,
+crée pour chaque dalle une variante (MaterialInstanceConstant) avec son image, et contrôle le repère après import.
+
+Parent des variantes (relevé sur le PC le 11/11/2026) : la variante du jeu désignée dans factices.json par
+"role": "modele_m_simple" (MI_SisteronConcrete01), et non M_Simple directement. M_Simple n'échantillonne ses textures
+que si ses static switch « Simple_Use_*_Texture » sont actifs ; ils ne le sont pas par défaut, et les activer dans
+notre variante demanderait des programmes d'affichage que le jeu n'a pas. La variante modèle les a déjà : la nôtre
+ne règle que des textures. Elle règle les TROIS textures du modèle, sinon elle hériterait du béton de Sisteron :
+  Simple_BaseColor_Texture     notre photo de dalle (sRVB)
+  Simple_Normal_Texture        notre relief, ou une normale plate
+  Simple_OcclRoughMet_Texture  une texture plate (occlusion 1, rugosité 0,85, métal 0 : valeurs d'ACR Extra Stages)
 
 Sources, dans cet ordre :
- 1. data/processed/textures_sol.json, s'il existe (produit par un autre agent ; format à confirmer). Format attendu
-    par ce script :
-      {"repere": "modele/repere.json",
-       "dalles": [{"nom": "terrain_914000_6242500",            # nom du maillage dans le glb
-                   "glb": "modele/terrain_sol.glb",              # fichier qui contient ce maillage
-                   "texture": "modele/textures_sol/terrain_914000_6242500.jpg",
-                   "bornes_l93": [914000, 6242500, 914500, 6243000]}]}
-    Si le fichier a une autre forme, le script s'arrête en le disant : adapter la fonction lire_manifeste().
- 2. sinon modele/terrain.glb (écrit par scripts/08_modele_3d.py) : un maillage par dalle de 500 m, nommé
-    terrain_<x>_<y> (coin sud-ouest en Lambert-93), chacun avec son image JPEG intégrée et ses UV.
+ 1. data/processed/textures_sol.json (scripts/14_textures_sol.py) : 26 dalles « dalle_<x>_<y> » et 126 sous-dalles
+    « sous_<x>_<y> » le long de la route, images dans modele/textures_sol/, maillages dans modele/terrain_sol.glb.
+    Ces fichiers lourds ne sont pas dans le dépôt (scripts/tout_lancer.sh les régénère).
+ 2. à défaut, modele/apercu/terrain_sol.glb (versionné) : les 26 dalles, images de 512 px intégrées. Suffisant pour
+    l'essai E3a.
+ 3. à défaut, modele/terrain.glb ou modele/apercu/terrain.glb (dalles « terrain_<x>_<y> », photo aérienne brute).
+
+Les images de dalle font 2660 px : elles sont étirées à la puissance de deux à l'import (réglage « Power Of Two
+Mode »), faute de quoi Unreal ne leur calcule pas de niveaux de détail.
 
 Repère : nos glb sont en glTF (+Y haut, main droite, mètres, X est, Z sud). Le projet veut UE = 100 * (gX, gZ, gY)
 (scripts_editeur/repere_unreal.py). L'importeur glTF d'Unreal fait SA propre conversion d'axes, que nous ne
 connaissons pas avec certitude : ce script mesure les bornes importées et les compare aux bornes attendues,
 puis écrit le verdict dans le journal. Si les axes ne correspondent pas, régler la transformation d'import
 (ou faire pivoter les acteurs posés) selon ce verdict avant d'aller plus loin.
+
+Usage : py "…/importer_dalles.py" [--seulement dalle_913500_6242500,sous_913800_6242900]
 """
+import argparse
 import json
 import os
 import struct
 import sys
+import tempfile
+import zlib
 
 import unreal
 
-RACINE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ICI = os.path.dirname(os.path.abspath(__file__))
+RACINE = os.path.abspath(os.path.join(ICI, "..", "..", ".."))
+sys.path.insert(0, ICI)
 import repere_unreal as R  # noqa: E402,F401  (gardé pour les conversions dans E4)
 
 DEST = "/Game/GrandCaunet/Terrain"
-PARENT = "/Game/Materials/General/Masters/M_Simple"
-PARAM_COULEUR = "Simple_BaseColor_Texture"
+TEXTURES = "/Game/GrandCaunet/Textures"
+M_SIMPLE = "/Game/Materials/General/Masters/M_Simple"
+P_COULEUR, P_NORMALE, P_ORM = "Simple_BaseColor_Texture", "Simple_Normal_Texture", "Simple_OcclRoughMet_Texture"
 EAL = unreal.EditorAssetLibrary
+MEL = unreal.MaterialEditingLibrary
+
+
+def parent_des_variantes():
+    f = json.load(open(os.path.join(ICI, "..", "factices.json"), encoding="utf-8"))["factices"]
+    modele = next((x["objet"] for x in f if x.get("role") == "modele_m_simple"), None)
+    p = unreal.load_asset(modele) if modele else None
+    if p is None:
+        unreal.log_warning("variante modèle absente (creer_factices.py) : parent M_Simple, les textures ne s'afficheront "
+                           "probablement pas en jeu (static switch inactifs)")
+        p = unreal.load_asset(M_SIMPLE)
+    return p
 
 
 def bornes_glb(chemin):
@@ -53,14 +80,22 @@ def bornes_glb(chemin):
     return out
 
 
-def lire_manifeste():
-    f = os.path.join(RACINE, "data", "processed", "textures_sol.json")
-    if not os.path.exists(f):
-        return None
-    m = json.load(open(f, encoding="utf-8"))
-    if "dalles" not in m or not all({"nom", "glb", "texture"} <= set(d) for d in m["dalles"]):
-        raise SystemExit("textures_sol.json : forme inattendue ; adapter lire_manifeste() (voir l'en-tête du script)")
-    return m
+def sources():
+    """(glb à importer, {nom de maillage: {"couleur": fichier ou None, "relief": fichier ou None}})"""
+    man = os.path.join(RACINE, "data", "processed", "textures_sol.json")
+    complet = os.path.join(RACINE, "modele", "terrain_sol.glb")
+    if os.path.exists(man) and os.path.exists(complet):
+        images = {}
+        for d in json.load(open(man, encoding="utf-8"))["dalles"]:
+            for e in [d] + d.get("sous_dalles", []):
+                images[e["nom"]] = {k: os.path.join(RACINE, "modele", e[k]) if e.get(k) else None for k in ("couleur", "relief")}
+        return complet, images
+    for g in ("modele/apercu/terrain_sol.glb", "modele/terrain.glb", "modele/apercu/terrain.glb"):
+        chemin = os.path.join(RACINE, g)
+        if os.path.exists(chemin):
+            unreal.log_warning(f"données complètes absentes : import de {g} (images intégrées au glb)")
+            return chemin, {}
+    raise SystemExit("aucun terrain à importer : voir l'en-tête du script")
 
 
 def importer(fichier, dest):
@@ -74,16 +109,68 @@ def importer(fichier, dest):
     return list(t.get_editor_property("imported_object_paths"))
 
 
-def variante(nom, texture):
-    """MaterialInstanceConstant de M_Simple avec la texture de la dalle. Aucun paramètre « static switch » modifié :
-    la variante réutilise alors les programmes d'affichage déjà cuits du parent dans le jeu."""
+def png_uni(chemin, rvb, cote=8):
+    """Écrit un PNG uni (sans bibliothèque d'images)."""
+    ligne = b"\x00" + bytes(rvb) * cote
+
+    def bloc(nom, donnees):
+        return struct.pack(">I", len(donnees)) + nom + donnees + struct.pack(">I", zlib.crc32(nom + donnees) & 0xFFFFFFFF)
+
+    with open(chemin, "wb") as f:
+        f.write(b"\x89PNG\r\n\x1a\n" + bloc(b"IHDR", struct.pack(">IIBBBBB", cote, cote, 8, 2, 0, 0, 0))
+                + bloc(b"IDAT", zlib.compress(ligne * cote)) + bloc(b"IEND", b""))
+
+
+def regler_texture(tex, genre):
+    """Réglages relevés sur les textures du jeu (releves/textures.json) : couleur = sRVB, compression par défaut ;
+    normale = TC_Normalmap, groupe WorldNormalMap, sans sRVB ; masques (occlusion, rugosité, métal) = TC_Masks, sans sRVB."""
+    try:
+        tex.set_editor_property("power_of_two_mode", unreal.TexturePowerOfTwoSetting.STRETCH_TO_POWER_OF_TWO)
+    except Exception as e:  # noqa: BLE001
+        unreal.log_warning(f"{tex.get_name()} : « Power Of Two Mode » non réglé ({e}) ; le régler à la main si l'image n'est pas en puissance de 2")
+    tex.set_editor_property("virtual_texture_streaming", False)
+    if genre == "normale":
+        tex.set_editor_property("compression_settings", unreal.TextureCompressionSettings.TC_NORMALMAP)
+        tex.set_editor_property("lod_group", unreal.TextureGroup.TEXTUREGROUP_WORLD_NORMAL_MAP)
+        tex.set_editor_property("srgb", False)
+        tex.set_editor_property("flip_green_channel", True)      # nos reliefs sont en convention OpenGL (textures_sol.json)
+    elif genre == "masques":
+        tex.set_editor_property("compression_settings", unreal.TextureCompressionSettings.TC_MASKS)
+        tex.set_editor_property("srgb", False)
+    EAL.save_loaded_asset(tex)
+
+
+def texture(fichier, genre):
+    chemins = importer(fichier, TEXTURES)
+    tex = unreal.load_asset(chemins[0]) if chemins else None
+    if tex is not None:
+        regler_texture(tex, genre)
+    return tex
+
+
+def textures_plates():
+    tmp = tempfile.mkdtemp(prefix="gc_plat_")
+    out = {}
+    for nom, rvb, genre in (("T_GC_Plat_L", (255, 217, 0), "masques"), ("T_GC_Plat_N", (128, 128, 255), "normale")):
+        if not EAL.does_asset_exist(f"{TEXTURES}/{nom}"):
+            png_uni(os.path.join(tmp, nom + ".png"), rvb)
+            texture(os.path.join(tmp, nom + ".png"), genre)
+        out[genre] = unreal.load_asset(f"{TEXTURES}/{nom}")
+    return out
+
+
+def variante(nom, parent, couleur, normale, orm):
+    """Aucun « static switch » modifié : la variante réutilise les programmes d'affichage de son parent dans le jeu."""
     chemin = f"{DEST}/MI_{nom}"
     if not EAL.does_asset_exist(chemin):
         f = unreal.MaterialInstanceConstantFactoryNew()
         unreal.AssetToolsHelpers.get_asset_tools().create_asset(f"MI_{nom}", DEST, unreal.MaterialInstanceConstant, f)
     mi = unreal.load_asset(chemin)
-    unreal.MaterialEditingLibrary.set_material_instance_parent(mi, unreal.load_asset(PARENT))
-    unreal.MaterialEditingLibrary.set_material_instance_texture_parameter_value(mi, PARAM_COULEUR, texture)
+    MEL.set_material_instance_parent(mi, parent)
+    for p, t in ((P_COULEUR, couleur), (P_NORMALE, normale), (P_ORM, orm)):
+        if t is not None:
+            MEL.set_material_instance_texture_parameter_value(mi, p, t)
+    MEL.update_material_instance(mi)
     EAL.save_asset(chemin)
     return mi
 
@@ -101,41 +188,50 @@ def controle_axes(sm, attendu_min, attendu_max):
 
 
 def main():
-    man = lire_manifeste()
-    if man:
-        sources = {d["glb"] for d in man["dalles"]}
-    else:
-        sources = {"modele/terrain.glb"}
-    for s in sorted(sources):
-        chemin = os.path.join(RACINE, s)
-        attendu = bornes_glb(chemin)
-        importes = importer(chemin, DEST)
-        verdicts = []
-        for p in importes:
-            a = unreal.load_asset(p)
-            if isinstance(a, unreal.StaticMesh) and a.get_name() in attendu:
-                verdicts.append(controle_axes(a, *attendu[a.get_name()]))
-                # Pas de collision Unreal à régler ici : la physique du jeu vient du BakedData (docs/decisions.md D4
-                # d'ACR Extra Stages) ; les acteurs posés seront mis en « NoCollision » (poser_dalles dans E3/E4).
-        unreal.log(f"{s} : {len(importes)} éléments importés, repère conforme sur {sum(verdicts)} / {len(verdicts)} dalles")
-    # variantes de matériau : une par dalle, texture importée avec la dalle (même nom) ou depuis le manifeste
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seulement", default="", help="noms de maillages séparés par des virgules (défaut : tous)")
+    a = ap.parse_args(sys.argv[1:])
+    seulement = {s for s in a.seulement.split(",") if s}
+    glb, images = sources()
+    attendu = bornes_glb(glb)
+    importes = importer(glb, DEST)
+    verdicts = []
+    for p in importes:
+        x = unreal.load_asset(p)
+        if isinstance(x, unreal.StaticMesh) and x.get_name() in attendu:
+            verdicts.append(controle_axes(x, *attendu[x.get_name()]))
+            # Pas de collision Unreal à régler ici : la physique du jeu vient du BakedData (docs/decisions.md D4
+            # d'ACR Extra Stages) ; les acteurs posés seront mis en « NoCollision » (E3/E4).
+    unreal.log(f"{glb} : {len(importes)} éléments importés, repère conforme sur {sum(verdicts)} / {len(verdicts)} maillages")
+
+    parent = parent_des_variantes()
+    plates = textures_plates()
+    importees = [q for q in EAL.list_assets(DEST, recursive=True) if isinstance(unreal.load_asset(q), unreal.Texture2D)]
+    faits = 0
     for p in EAL.list_assets(DEST, recursive=False):
-        a = unreal.load_asset(p)
-        if isinstance(a, unreal.StaticMesh) and a.get_name().startswith("terrain_"):
-            nom = a.get_name()
-            tex = None
-            if man:
-                d = next(d for d in man["dalles"] if d["nom"] == nom)
-                tex = unreal.load_asset(importer(os.path.join(RACINE, d["texture"]), DEST + "/Textures")[0])
-            else:
-                cand = [q for q in EAL.list_assets(DEST, recursive=True) if isinstance(unreal.load_asset(q), unreal.Texture2D) and nom in q]
-                tex = unreal.load_asset(cand[0]) if cand else None
-            if tex is None:
-                unreal.log_warning(f"{nom} : pas de texture trouvée")
-                continue
-            a.set_material(0, variante(nom, tex))
-            EAL.save_asset(p)
-    unreal.log("dalles importées ; vérifier les verdicts de repère ci-dessus avant de continuer")
+        sm = unreal.load_asset(p)
+        if not isinstance(sm, unreal.StaticMesh) or sm.get_name() not in attendu:
+            continue
+        nom = sm.get_name()
+        if seulement and nom not in seulement:
+            continue
+        im = images.get(nom, {})
+        if im.get("couleur"):
+            couleur = texture(im["couleur"], "couleur")
+            normale = texture(im["relief"], "normale") if im.get("relief") else plates["normale"]
+        else:                                   # image intégrée au glb : importée avec lui, retrouvée par son nom
+            cand = [q for q in importees if nom in q]
+            couleur = unreal.load_asset(cand[0]) if cand else None
+            normale = plates["normale"]
+            if couleur is not None:
+                regler_texture(couleur, "couleur")
+        if couleur is None:
+            unreal.log_warning(f"{nom} : pas d'image trouvée ; variante non créée")
+            continue
+        sm.set_material(0, variante(nom, parent, couleur, normale, plates["masques"]))
+        EAL.save_asset(p)
+        faits += 1
+    unreal.log(f"{faits} dalles avec leur variante ; vérifier les verdicts de repère ci-dessus avant de continuer")
 
 
 main()

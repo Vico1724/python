@@ -1,0 +1,1191 @@
+{
+ "source": {
+  "jeu": "Assetto Corsa Rally",
+  "version_de_construction": "25170642",
+  "outil": "acr-ref export-many (ACR Extra Stages) sur la vue d'origine, sans mods ni BioBio"
+ },
+ "lecture": "ordre = indice de sérialisation sans versions (acr-ref schema) ; une classe souche doit déclarer ses propriétés dans cet ordre",
+ "blueprints": {
+  "/Game/Data/Environments/Common/BC_TrackAvatar": {
+   "classe_native": "/Script/dmphysics.TrackAvatar",
+   "lignee": [
+    "/Game/Data/Environments/Common/BC_TrackAvatar.BC_TrackAvatar_C",
+    "/Script/dmphysics.TrackAvatar"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/SceneManagement/BC_PhysicsAvatar": {
+   "classe_native": "/Script/dmphysics.PhysicsAvatar",
+   "lignee": [
+    "/Game/Data/Gameplay/SceneManagement/BC_PhysicsAvatar.BC_PhysicsAvatar_C",
+    "/Script/dmphysics.PhysicsAvatar"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/SceneManagement/BC_PlayerStartsManager": {
+   "classe_native": "/Script/acr.PlayerStartsManager",
+   "lignee": [
+    "/Game/Data/Gameplay/SceneManagement/BC_PlayerStartsManager.BC_PlayerStartsManager_C",
+    "/Script/acr.PlayerStartsManager"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/General/BC_GameMode": {
+   "classe_native": "/Script/acr.AcrGameMode",
+   "lignee": [
+    "/Game/Data/Gameplay/General/BC_GameMode.BC_GameMode_C",
+    "/Script/acr.AcrGameMode"
+   ],
+   "composants": [
+    {
+     "nom": "Flow",
+     "classe": "GameFlowComponent"
+    },
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/Triggers/BC_StartSequenceTrigger": {
+   "classe_native": "/Script/acr.StartEndSequenceTrigger",
+   "lignee": [
+    "/Game/Data/Gameplay/Triggers/BC_StartSequenceTrigger.BC_StartSequenceTrigger_C",
+    "/Game/Data/Gameplay/Triggers/BC_StartEndSequenceTrigger.BC_StartEndSequenceTrigger_C",
+    "/Script/acr.StartEndSequenceTrigger"
+   ],
+   "composants": [
+    {
+     "nom": "BodySetup_0",
+     "classe": "BodySetup"
+    },
+    {
+     "nom": "BoxComponent",
+     "classe": "BoxComponent"
+    },
+    {
+     "nom": "MeshComponent",
+     "classe": "ProceduralMeshComponent"
+    },
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "SplineLocations",
+     "classe": "SplineLocationsComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/Triggers/BC_EndSequenceTrigger": {
+   "classe_native": "/Script/acr.StartEndSequenceTrigger",
+   "lignee": [
+    "/Game/Data/Gameplay/Triggers/BC_EndSequenceTrigger.BC_EndSequenceTrigger_C",
+    "/Game/Data/Gameplay/Triggers/BC_StartEndSequenceTrigger.BC_StartEndSequenceTrigger_C",
+    "/Script/acr.StartEndSequenceTrigger"
+   ],
+   "composants": [
+    {
+     "nom": "BodySetup_0",
+     "classe": "BodySetup"
+    },
+    {
+     "nom": "BoxComponent",
+     "classe": "BoxComponent"
+    },
+    {
+     "nom": "MeshComponent",
+     "classe": "ProceduralMeshComponent"
+    },
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "SplineLocations",
+     "classe": "SplineLocationsComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/Triggers/BC_CompleStartTargetPoint": {
+   "classe_native": "/Script/acr.AcrTargetPoint",
+   "lignee": [
+    "/Game/Data/Gameplay/Triggers/BC_CompleStartTargetPoint.BC_CompleStartTargetPoint_C",
+    "/Game/Data/Gameplay/Triggers/BC_RaceTargetPoint.BC_RaceTargetPoint_C",
+    "/Script/acr.AcrTargetPoint"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "SceneComp",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Cameras/Common/BC_PostRaceCamera": {
+   "classe_native": "/Script/acr.AcrCineCameraActor",
+   "lignee": [
+    "/Game/Data/Cameras/Common/BC_PostRaceCamera.BC_PostRaceCamera_C",
+    "/Script/acr.AcrCineCameraActor"
+   ],
+   "composants": [
+    {
+     "nom": "CameraComponent",
+     "classe": "AcrCineCameraComponent"
+    },
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "SceneComponent",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/SceneManagement/BC_WeatherActor": {
+   "classe_native": "/Script/dmenvironment.WeatherActor",
+   "lignee": [
+    "/Game/Data/Gameplay/SceneManagement/BC_WeatherActor.BC_WeatherActor_C",
+    "/Script/dmenvironment.WeatherActor"
+   ],
+   "composants": [
+    {
+     "nom": "BC_WeatherActorReplayComponent_GEN_VARIABLE",
+     "classe": "BC_WeatherActorReplayComponent_C"
+    },
+    {
+     "nom": "p_niagara_component_lightning",
+     "classe": "NiagaraComponent"
+    },
+    {
+     "nom": "p_niagara_component_rain",
+     "classe": "NiagaraComponent"
+    },
+    {
+     "nom": "p_niagara_component_snow",
+     "classe": "NiagaraComponent"
+    },
+    {
+     "nom": "p_niagara_component_wind",
+     "classe": "NiagaraComponent"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayFloat_0",
+     "classe": "NiagaraDataInterfaceArrayFloat"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayFloat_1",
+     "classe": "NiagaraDataInterfaceArrayFloat"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayFloat_2",
+     "classe": "NiagaraDataInterfaceArrayFloat"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayFloat3_0",
+     "classe": "NiagaraDataInterfaceArrayFloat3"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayFloat3_1",
+     "classe": "NiagaraDataInterfaceArrayFloat3"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayFloat3_2",
+     "classe": "NiagaraDataInterfaceArrayFloat3"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayInt32_0",
+     "classe": "NiagaraDataInterfaceArrayInt32"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayInt32_1",
+     "classe": "NiagaraDataInterfaceArrayInt32"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayInt32_2",
+     "classe": "NiagaraDataInterfaceArrayInt32"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayPosition_0",
+     "classe": "NiagaraDataInterfaceArrayPosition"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayPosition_1",
+     "classe": "NiagaraDataInterfaceArrayPosition"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayPosition_2",
+     "classe": "NiagaraDataInterfaceArrayPosition"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayPosition_3",
+     "classe": "NiagaraDataInterfaceArrayPosition"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayPosition_4",
+     "classe": "NiagaraDataInterfaceArrayPosition"
+    },
+    {
+     "nom": "NiagaraDataInterfaceArrayPosition_5",
+     "classe": "NiagaraDataInterfaceArrayPosition"
+    },
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Gameplay/SceneManagement/BC_DynamicSurfaceManager": {
+   "classe_native": "/Script/acr.DynamicSurfaceManager",
+   "lignee": [
+    "/Game/Data/Gameplay/SceneManagement/BC_DynamicSurfaceManager.BC_DynamicSurfaceManager_C",
+    "/Script/acr.DynamicSurfaceManager"
+   ],
+   "composants": [
+    {
+     "nom": "SurfaceEvolution",
+     "classe": "DynamicSurfaceEvolution"
+    },
+    {
+     "nom": "DynamicSurfaceReplay_GEN_VARIABLE",
+     "classe": "DynamicSurfaceReplayComponent"
+    },
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    }
+   ]
+  },
+  "/Game/Data/Environments/Common/BC_DMSky_Montecarlo_Bollene": {
+   "classe_native": null,
+   "lignee": [
+    "/Game/Data/Environments/Common/BC_DMSky_Montecarlo_Bollene.BC_DMSky_Montecarlo_Bollene_C",
+    "/Game/Data/Environments/Common/BC_DMSky_Candidate.BC_DMSky_Candidate_C",
+    "/dmenvironment/dmsky/Blueprints/BC_DMSky (non exporté)"
+   ],
+   "composants": [
+    {
+     "nom": "Moon_GEN_VARIABLE",
+     "classe": "DirectionalLightComponent"
+    },
+    {
+     "nom": "Sun_GEN_VARIABLE",
+     "classe": "DirectionalLightComponent"
+    },
+    {
+     "nom": "HeightFog_GEN_VARIABLE",
+     "classe": "ExponentialHeightFogComponent"
+    },
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "SkyAtmosphere_GEN_VARIABLE",
+     "classe": "SkyAtmosphereComponent"
+    },
+    {
+     "nom": "Captured Scene Sky Light_GEN_VARIABLE",
+     "classe": "SkyLightComponent"
+    }
+   ]
+  },
+  "/Game/Props/RallyProps/Gantries/BC_GantryAlsace": {
+   "classe_native": "/Script/Engine.StaticMeshActor",
+   "lignee": [
+    "/Game/Props/RallyProps/Gantries/BC_GantryAlsace.BC_GantryAlsace_C",
+    "/Game/Props/RallyProps/Gantries/BC_GantryBase.BC_GantryBase_C",
+    "/Script/Engine.StaticMeshActor"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "StaticMeshComponent0",
+     "classe": "StaticMeshComponent"
+    }
+   ]
+  },
+  "/Game/Props/RallyProps/Gantries/BC_GantryBase": {
+   "classe_native": "/Script/Engine.StaticMeshActor",
+   "lignee": [
+    "/Game/Props/RallyProps/Gantries/BC_GantryBase.BC_GantryBase_C",
+    "/Script/Engine.StaticMeshActor"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "StaticMeshComponent0",
+     "classe": "StaticMeshComponent"
+    }
+   ]
+  },
+  "/Game/Props/RallyProps/Gantries/BC_GantryGreece": {
+   "classe_native": "/Script/Engine.StaticMeshActor",
+   "lignee": [
+    "/Game/Props/RallyProps/Gantries/BC_GantryGreece.BC_GantryGreece_C",
+    "/Game/Props/RallyProps/Gantries/BC_GantryBase.BC_GantryBase_C",
+    "/Script/Engine.StaticMeshActor"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "StaticMeshComponent0",
+     "classe": "StaticMeshComponent"
+    }
+   ]
+  },
+  "/Game/Props/RallyProps/Gantries/BC_GantryMonteCarlo": {
+   "classe_native": "/Script/Engine.StaticMeshActor",
+   "lignee": [
+    "/Game/Props/RallyProps/Gantries/BC_GantryMonteCarlo.BC_GantryMonteCarlo_C",
+    "/Game/Props/RallyProps/Gantries/BC_GantryBase.BC_GantryBase_C",
+    "/Script/Engine.StaticMeshActor"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "StaticMeshComponent0",
+     "classe": "StaticMeshComponent"
+    }
+   ]
+  },
+  "/Game/Props/RallyProps/Gantries/BC_GantryWales": {
+   "classe_native": "/Script/Engine.StaticMeshActor",
+   "lignee": [
+    "/Game/Props/RallyProps/Gantries/BC_GantryWales.BC_GantryWales_C",
+    "/Game/Props/RallyProps/Gantries/BC_GantryBase.BC_GantryBase_C",
+    "/Script/Engine.StaticMeshActor"
+   ],
+   "composants": [
+    {
+     "nom": "DefaultSceneRoot_GEN_VARIABLE",
+     "classe": "SceneComponent"
+    },
+    {
+     "nom": "StaticMeshComponent0",
+     "classe": "StaticMeshComponent"
+    }
+   ]
+  }
+ },
+ "ordre_des_proprietes": {
+  "AcrCineCameraActor": {
+   "nombre_de_proprietes": 88,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "CineCameraActor",
+     "nombre": 1,
+     "premier_indice": 0
+    },
+    {
+     "classe": "CameraActor",
+     "nombre": 8,
+     "premier_indice": 1
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 9
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "CineCameraActor": [
+     [
+      0,
+      "LookatTrackingSettings",
+      "Struct<CameraLookatTrackingSettings>"
+     ]
+    ]
+   }
+  },
+  "AcrGameMode": {
+   "nombre_de_proprietes": 104,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "AcrGameMode",
+     "nombre": 7,
+     "premier_indice": 0
+    },
+    {
+     "classe": "GameModeBase",
+     "nombre": 18,
+     "premier_indice": 7
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 25
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "AcrGameMode": [
+     [
+      0,
+      "OnGamePausedEvent",
+      "MulticastDelegateProperty"
+     ],
+     [
+      1,
+      "OnGameResumedEvent",
+      "MulticastDelegateProperty"
+     ],
+     [
+      2,
+      "Flow",
+      "ObjectProperty"
+     ],
+     [
+      3,
+      "SeamlessTravelBridge",
+      "ObjectProperty"
+     ],
+     [
+      4,
+      "GameManagerComponent",
+      "ObjectProperty"
+     ],
+     [
+      5,
+      "bKeepDefaultPawnInCooking",
+      "BoolProperty"
+     ],
+     [
+      6,
+      "TrackVariantQuery",
+      "ObjectProperty"
+     ]
+    ]
+   }
+  },
+  "AcrTargetPoint": {
+   "nombre_de_proprietes": 79,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 0
+    }
+   ],
+   "proprietes_hors_moteur": {}
+  },
+  "DynamicSurfaceManager": {
+   "nombre_de_proprietes": 100,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "DynamicSurfaceManager",
+     "nombre": 21,
+     "premier_indice": 0
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 21
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "DynamicSurfaceManager": [
+     [
+      0,
+      "SurfaceEvolution",
+      "ObjectProperty"
+     ],
+     [
+      1,
+      "MainSurfaceEvolution",
+      "ObjectProperty"
+     ],
+     [
+      2,
+      "SurfaceEvolutions",
+      "Array<ObjectProperty>"
+     ],
+     [
+      3,
+      "bCreateMainSurfaceEvolution",
+      "BoolProperty"
+     ],
+     [
+      4,
+      "bEvolutionActive",
+      "BoolProperty"
+     ],
+     [
+      5,
+      "MPC_DynamicSurfaces",
+      "ObjectProperty"
+     ],
+     [
+      6,
+      "MPC_GripParamName",
+      "NameProperty"
+     ],
+     [
+      7,
+      "MPC_GripDustMinParamName",
+      "NameProperty"
+     ],
+     [
+      8,
+      "MPC_GripDustMaxParamName",
+      "NameProperty"
+     ],
+     [
+      9,
+      "MPC_GripTyreMarksMinParamName",
+      "NameProperty"
+     ],
+     [
+      10,
+      "MPC_GripTyreMarksMaxParamName",
+      "NameProperty"
+     ],
+     [
+      11,
+      "MPC_WetnessParamName",
+      "NameProperty"
+     ],
+     [
+      12,
+      "MPC_WetnessIdealTrajectoryParamName",
+      "NameProperty"
+     ],
+     [
+      13,
+      "MPC_DebrisParamName",
+      "NameProperty"
+     ],
+     [
+      14,
+      "MPC_FreezeParamName",
+      "NameProperty"
+     ],
+     [
+      15,
+      "MPC_FreezeIdealTrajectoryParamName",
+      "NameProperty"
+     ],
+     [
+      16,
+      "MPC_FreezeGrowthParamName",
+      "NameProperty"
+     ],
+     [
+      17,
+      "MPC_TemperatureParamName",
+      "NameProperty"
+     ],
+     [
+      18,
+      "MPC_WetnessIceParamName",
+      "NameProperty"
+     ],
+     [
+      19,
+      "MPC_FreezeIceParamName",
+      "NameProperty"
+     ],
+     [
+      20,
+      "DynamicSurfaceNames",
+      "Map<Enum<ESurfaceType, ByteProperty>, StrProperty>"
+     ]
+    ]
+   }
+  },
+  "PhysicsAvatar": {
+   "nombre_de_proprietes": 83,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "PhysicsAvatar",
+     "nombre": 4,
+     "premier_indice": 0
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 4
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "PhysicsAvatar": [
+     [
+      0,
+      "PhysicsSettings",
+      "ObjectProperty"
+     ],
+     [
+      1,
+      "PhysicsWorldBoundsActor",
+      "ObjectProperty"
+     ],
+     [
+      2,
+      "SharedMemoryWriterClass",
+      "ObjectProperty"
+     ],
+     [
+      3,
+      "SharedMemoryWriter",
+      "InterfaceProperty"
+     ]
+    ]
+   }
+  },
+  "PlayerStartsManager": {
+   "nombre_de_proprietes": 81,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "PlayerStartsManager",
+     "nombre": 2,
+     "premier_indice": 0
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 2
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "PlayerStartsManager": [
+     [
+      0,
+      "OnReadyChanged",
+      "MulticastDelegateProperty"
+     ],
+     [
+      1,
+      "TargetPointsTags",
+      "Map<Enum<EPlayerStartType, ByteProperty>, NameProperty>"
+     ]
+    ]
+   }
+  },
+  "StartEndSequenceTrigger": {
+   "nombre_de_proprietes": 87,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "StartEndSequenceTrigger",
+     "nombre": 8,
+     "premier_indice": 0
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 8
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "StartEndSequenceTrigger": [
+     [
+      0,
+      "SplineLocationsComponent",
+      "ObjectProperty"
+     ],
+     [
+      1,
+      "BoxComponent",
+      "ObjectProperty"
+     ],
+     [
+      2,
+      "MeshComponent",
+      "ObjectProperty"
+     ],
+     [
+      3,
+      "DefaultMaterial",
+      "ObjectProperty"
+     ],
+     [
+      4,
+      "TriggeredMaterial",
+      "ObjectProperty"
+     ],
+     [
+      5,
+      "MaxTriggerAngle",
+      "FloatProperty"
+     ],
+     [
+      6,
+      "SpawnTargetPointTag",
+      "NameProperty"
+     ],
+     [
+      7,
+      "SpawnTargetPoint",
+      "ObjectProperty"
+     ]
+    ]
+   }
+  },
+  "StaticMeshActor": {
+   "nombre_de_proprietes": 83,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "StaticMeshActor",
+     "nombre": 4,
+     "premier_indice": 0
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 4
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "StaticMeshActor": [
+     [
+      0,
+      "StaticMeshComponent",
+      "ObjectProperty"
+     ],
+     [
+      1,
+      "bStaticMeshReplicateMovement",
+      "BoolProperty"
+     ],
+     [
+      2,
+      "StaticMeshPhysicsReplicationMode",
+      "Enum<EPhysicsReplicationMode, ByteProperty>"
+     ],
+     [
+      3,
+      "NavigationGeometryGatheringMode",
+      "Enum<ENavDataGatheringMode, ByteProperty>"
+     ]
+    ]
+   }
+  },
+  "TrackAvatar": {
+   "nombre_de_proprietes": 93,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "TrackAvatar",
+     "nombre": 14,
+     "premier_indice": 0
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 14
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "TrackAvatar": [
+     [
+      0,
+      "PhysicalMaterialsSettings",
+      "ObjectProperty"
+     ],
+     [
+      1,
+      "BiomeSettings",
+      "ObjectProperty"
+     ],
+     [
+      2,
+      "MainSplinePrecisionCM",
+      "FloatProperty"
+     ],
+     [
+      3,
+      "MainSplineBordersPrecisionCM",
+      "FloatProperty"
+     ],
+     [
+      4,
+      "CollisionProviderOwnerClasses",
+      "Array<ObjectProperty>"
+     ],
+     [
+      5,
+      "IgnoredComponentClasses",
+      "Array<ObjectProperty>"
+     ],
+     [
+      6,
+      "bAddCollidersWithCollisionDisable",
+      "BoolProperty"
+     ],
+     [
+      7,
+      "bForceUseBakedData",
+      "BoolProperty"
+     ],
+     [
+      8,
+      "bPerformInstanceSplineCulling",
+      "BoolProperty"
+     ],
+     [
+      9,
+      "SplineCullDistance",
+      "FloatProperty"
+     ],
+     [
+      10,
+      "BakedData",
+      "SoftObjectProperty"
+     ],
+     [
+      11,
+      "MaterialsForWorldAlignedPhysicalMatMaskUVs",
+      "Set<ObjectProperty>"
+     ],
+     [
+      12,
+      "TileSizeParameterName",
+      "NameProperty"
+     ],
+     [
+      13,
+      "CachedPhysicsAvatar",
+      "ObjectProperty"
+     ]
+    ]
+   }
+  },
+  "WeatherActor": {
+   "nombre_de_proprietes": 137,
+   "classes_dans_l_ordre": [
+    {
+     "classe": "WeatherActor",
+     "nombre": 58,
+     "premier_indice": 0
+    },
+    {
+     "classe": "Actor",
+     "nombre": 79,
+     "premier_indice": 58
+    }
+   ],
+   "proprietes_hors_moteur": {
+    "WeatherActor": [
+     [
+      0,
+      "weather_data",
+      "Struct<WeatherData>"
+     ],
+     [
+      1,
+      "p_niagara_component_lightning",
+      "ObjectProperty"
+     ],
+     [
+      2,
+      "p_niagara_component_rain",
+      "ObjectProperty"
+     ],
+     [
+      3,
+      "p_niagara_component_snow",
+      "ObjectProperty"
+     ],
+     [
+      4,
+      "p_niagara_component_wind",
+      "ObjectProperty"
+     ],
+     [
+      5,
+      "p_material_parameter_collection_environment",
+      "ObjectProperty"
+     ],
+     [
+      6,
+      "should_tick_in_editor",
+      "BoolProperty"
+     ],
+     [
+      7,
+      "update_time_in_editor",
+      "BoolProperty"
+     ],
+     [
+      8,
+      "particle_system_lightning_emission_rate",
+      "FloatProperty"
+     ],
+     [
+      9,
+      "particle_system_rain_emission_rate",
+      "FloatProperty"
+     ],
+     [
+      10,
+      "particle_system_snow_emission_rate",
+      "FloatProperty"
+     ],
+     [
+      11,
+      "particle_system_wind_emission_rate",
+      "FloatProperty"
+     ],
+     [
+      12,
+      "particle_system_lightning_start_alpha",
+      "FloatProperty"
+     ],
+     [
+      13,
+      "particle_system_rain_start_alpha",
+      "FloatProperty"
+     ],
+     [
+      14,
+      "particle_system_snow_start_alpha",
+      "FloatProperty"
+     ],
+     [
+      15,
+      "particle_system_wind_start_alpha",
+      "FloatProperty"
+     ],
+     [
+      16,
+      "particle_system_lightning_start_intensity",
+      "FloatProperty"
+     ],
+     [
+      17,
+      "particle_system_rain_start_intensity",
+      "FloatProperty"
+     ],
+     [
+      18,
+      "particle_system_snow_start_intensity",
+      "FloatProperty"
+     ],
+     [
+      19,
+      "particle_system_wind_start_intensity",
+      "FloatProperty"
+     ],
+     [
+      20,
+      "particle_system_lightning_day_time",
+      "FloatProperty"
+     ],
+     [
+      21,
+      "particle_system_rain_day_time",
+      "FloatProperty"
+     ],
+     [
+      22,
+      "particle_system_snow_day_time",
+      "FloatProperty"
+     ],
+     [
+      23,
+      "particle_system_wind_day_time",
+      "FloatProperty"
+     ],
+     [
+      24,
+      "particle_system_lightning_start_velocity",
+      "Struct<Vector>"
+     ],
+     [
+      25,
+      "particle_system_rain_start_velocity",
+      "Struct<Vector>"
+     ],
+     [
+      26,
+      "particle_system_snow_start_velocity",
+      "Struct<Vector>"
+     ],
+     [
+      27,
+      "particle_system_wind_start_velocity",
+      "Struct<Vector>"
+     ],
+     [
+      28,
+      "particle_system_lightning_emission_rate_name",
+      "NameProperty"
+     ],
+     [
+      29,
+      "particle_system_rain_emission_rate_name",
+      "NameProperty"
+     ],
+     [
+      30,
+      "particle_system_snow_emission_rate_name",
+      "NameProperty"
+     ],
+     [
+      31,
+      "particle_system_wind_emission_rate_name",
+      "NameProperty"
+     ],
+     [
+      32,
+      "particle_system_lightning_start_alpha_name",
+      "NameProperty"
+     ],
+     [
+      33,
+      "particle_system_rain_start_alpha_name",
+      "NameProperty"
+     ],
+     [
+      34,
+      "particle_system_snow_start_alpha_name",
+      "NameProperty"
+     ],
+     [
+      35,
+      "particle_system_wind_start_alpha_name",
+      "NameProperty"
+     ],
+     [
+      36,
+      "particle_system_lightning_start_intensity_name",
+      "NameProperty"
+     ],
+     [
+      37,
+      "particle_system_rain_start_intensity_name",
+      "NameProperty"
+     ],
+     [
+      38,
+      "particle_system_snow_start_intensity_name",
+      "NameProperty"
+     ],
+     [
+      39,
+      "particle_system_wind_start_intensity_name",
+      "NameProperty"
+     ],
+     [
+      40,
+      "particle_system_lightning_day_time_name",
+      "NameProperty"
+     ],
+     [
+      41,
+      "particle_system_rain_day_time_name",
+      "NameProperty"
+     ],
+     [
+      42,
+      "particle_system_snow_day_time_name",
+      "NameProperty"
+     ],
+     [
+      43,
+      "particle_system_wind_day_time_name",
+      "NameProperty"
+     ],
+     [
+      44,
+      "particle_system_lightning_start_velocity_name",
+      "NameProperty"
+     ],
+     [
+      45,
+      "particle_system_rain_start_velocity_name",
+      "NameProperty"
+     ],
+     [
+      46,
+      "particle_system_snow_start_velocity_name",
+      "NameProperty"
+     ],
+     [
+      47,
+      "particle_system_wind_start_velocity_name",
+      "NameProperty"
+     ],
+     [
+      48,
+      "global_freeze_range",
+      "Struct<Vector2D>"
+     ],
+     [
+      49,
+      "Timeline",
+      "Struct<WeatherTimeline>"
+     ],
+     [
+      50,
+      "WeatherSequenceEvolution",
+      "ObjectProperty"
+     ],
+     [
+      51,
+      "MainWeatherEvolution",
+      "ObjectProperty"
+     ],
+     [
+      52,
+      "WeatherEvolutions",
+      "Array<ObjectProperty>"
+     ],
+     [
+      53,
+      "WeatherEvolutionConfig",
+      "ObjectProperty"
+     ],
+     [
+      54,
+      "DefaultInitParams",
+      "Struct<WeatherInitParams>"
+     ],
+     [
+      55,
+      "bWeatherEvolutionEnabled",
+      "BoolProperty"
+     ],
+     [
+      56,
+      "CurrentCloserWeatherState",
+      "OptionalProperty"
+     ],
+     [
+      57,
+      "CurrentForecast",
+      "Array<Struct<WeatherEvolutionForecastData>>"
+     ]
+    ]
+   }
+  }
+ }
+}
