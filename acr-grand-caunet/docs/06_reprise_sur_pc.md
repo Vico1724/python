@@ -57,23 +57,24 @@ Points non vérifiés par leurs auteurs eux-mêmes : l'agrandissement de la zone
 
 ## 4. Étape 2 : la spéciale finale, à la manière de BioBio
 
-Cible, d'après les sommaires de BioBio : un niveau simple, un terrain en dalles avec une image par dalle, des variantes des matériaux du jeu, les arbres et objets du jeu désignés par leur chemin, un fichier de physique, une table de notes, un registre de tables de menus.
+**Décision du directeur du 11/11/2026 : Unreal Engine 5.6 sera installé sur son PC**, avec une session Claude Desktop. Le rendu visé est beau et réaliste, à la manière de BioBio.
 
-Deux voies à départager par un essai court de chacune :
+**Le protocole à suivre est `pc/etape2_unreal/PROTOCOLE.md`.** C'est une suite d'essais courts, du plus simple au plus ambitieux, avec ce qu'il faut conclure de chaque résultat :
 
-**Voie A : Unreal Engine 5.6.** Créer un projet dont les dossiers et les noms imitent ceux du jeu, avec des éléments factices à la place des arbres et matériaux du jeu ; y importer notre terrain et notre route ; cuire le niveau ; n'empaqueter que nos éléments. À l'exécution, le jeu substitue ses vrais éléments aux factices. C'est la voie la plus naturelle pour le décor. ACR Extra Stages la décrit sans l'avoir prouvée. Compter environ 60 Go pour l'éditeur.
+- **E0** : installer UE 5.6.1, la version du jeu, créer le projet factice « acr » et sa chaîne de cuisson (retoc vers `Paks\~mods`) ;
+- **E1** : le jeu accepte-t-il une texture, puis un maillage avec une variante d'un matériau du jeu, cuits par notre éditeur ?
+- **E2** : un niveau simple à nous, inscrit aux menus, avec un pin d'Alep du jeu désigné par son chemin. Les acteurs de jeu viennent soit de « classes souches », soit de la voie hybride (notre décor posé dans le clone de Hafren d'ACR Extra Stages) ;
+- **E3** : une dalle de terrain avec sa photo ;
+- **E4** : 200 m complets, puis toute la spéciale.
 
-Premier essai à faire : un niveau vide avec un seul cube et un seul pin d'Alep factice, inscrit dans les menus, chargé en jeu. S'il se charge et que le vrai pin apparaît, la voie est ouverte.
+Le protocole décrit aussi la voie B de repli, sans éditeur : une partie existe déjà chez ACR Extra Stages.
 
-**Voie B : écriture directe.** Fabriquer les fichiers en recopiant et en adaptant ceux du jeu, comme le fait ACR Extra Stages pour la physique. Pas d'éditeur à installer, mais il faut écrire nous-mêmes les maillages et les textures au format du jeu.
+Le kit fournit :
+- les éléments du jeu utiles, avec leurs chemins (`elements_jeu_utiles.json`) ;
+- la liste des éléments factices ;
+- des squelettes de scripts, jamais exécutés : création des factices, import des dalles, pose des 41 584 arbres, cuisson.
 
-Dans les deux cas, réutiliser d'ACR Extra Stages ce qui écrit la physique, le chronométrage, les notes et les tables de menus.
-
-Données à produire côté projet pour l'une ou l'autre voie :
-- la photo aérienne découpée en dalles, au format d'image du jeu ;
-- le semis des arbres : position, essence (carte forestière), hauteur (relevé laser), associé aux arbres du catalogue du jeu (`Foliage/Trees/AleppoPine`, etc.) ;
-- les parapets de pierre et de béton des ponts, les murets, les panneaux ;
-- la texture et le marquage de la route.
+Données encore à produire côté projet : la photo aérienne en dalles au format du jeu (en cours : `terrain_sol.glb`, `textures_sol/`), l'anneau lointain (`lointain.glb`), les hauteurs réelles des maillages d'arbres du jeu (à relever sur le PC).
 
 ## 5. Règles de prudence sur le PC
 
