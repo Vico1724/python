@@ -441,6 +441,27 @@ def corrections_manuelles(pk, A, G, D, nA):
         sm = cumdist(m)                         # stations régulières le long du nouvel axe
         t = np.linspace(0, sm[-1], len(idx))
         g, d, m = (np.column_stack([np.interp(t, sm, v[:, k]) for k in (0, 1)]) for v in (g, d, m))
+        if zn.get("lissage_axe_m"):
+            # Carrefour large : à l'intérieur du virage, les stations successives d'un bord peuvent
+            # se chevaucher (triangles retournés), et le milieu de deux bords anguleux fait un
+            # crochet. Chaque bord est donc débarrassé de ses retours en arrière puis réparti
+            # régulièrement sur sa propre longueur ; l'axe est le milieu, lissé le long du parcours
+            # (stations espacées de 1 m : lissage_axe_m est un écart-type en stations).
+            sens = np.gradient(m, axis=0)
+
+            def regulier(e):
+                garde = [0]
+                for i in range(1, len(e)):
+                    if (e[i] - e[garde[-1]]) @ sens[i] > 1e-3:
+                        garde.append(i)
+                garde[-1] = len(e) - 1
+                q = e[garde]
+                sq = cumdist(q)
+                return np.column_stack([np.interp(np.linspace(0, sq[-1], len(e)), sq, q[:, k]) for k in (0, 1)])
+
+            g, d = regulier(g), regulier(d)
+            m = (g + d) / 2
+            m = (1 - w) * m + w * gaussian_filter1d(m, zn["lissage_axe_m"], axis=0, mode="nearest")
         A[idx], G[idx], D[idx] = m, g, d
         manuel[idx] = True
         bilan.append({"nom": zn["nom"], "pk_debut": zn["pk_debut"], "pk_fin": zn["pk_fin"], "idx": idx,

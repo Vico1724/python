@@ -4,7 +4,7 @@
   "largeur_m": {
     "mediane": 6.41,
     "p5": 5.08,
-    "p95": 8.48
+    "p95": 8.5
   },
   "part_lineaire_par_source_pct": {
     "lidar+ortho": 8.1,
@@ -16,8 +16,8 @@
   "decalage_lateral_bdtopo_m": {
     "mediane": 0.68,
     "p95": 2.29,
-    "max": 5.93,
-    "pk_max": 3654
+    "max": 4.37,
+    "pk_max": 851
   },
   "troncons_interpoles_sup_20m": {
     "nombre": 15,
@@ -165,26 +165,26 @@
       }
     },
     {
-      "nom": "carrefour du Lion d'Or : branche de gauche de la patte d'oie, à gauche de l'îlot",
+      "nom": "carrefour du Lion d'Or : patte d'oie, branche de gauche ; bord droit fermant la branche de droite",
       "pk_debut": 3596,
       "pk_fin": 3702,
       "largeur_m": {
         "min": 4.86,
-        "mediane": 8.64,
-        "max": 14.81
+        "mediane": 10.04,
+        "max": 16.72
       },
       "pas_des_stations_m": [
-        0.961,
-        0.961
+        0.969,
+        0.969
       ],
       "sauts_aux_raccords": {
         "debut": {
-          "bord_max_m": 0.03,
-          "axe_max_m": 0.009
+          "bord_max_m": 0.044,
+          "axe_max_m": 0.011
         },
         "fin": {
-          "bord_max_m": 0.077,
-          "axe_max_m": 0.117
+          "bord_max_m": 0.186,
+          "axe_max_m": 0.051
         }
       }
     }

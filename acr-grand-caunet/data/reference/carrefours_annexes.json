@@ -1,53 +1,489 @@
 {
-  "note": "Carrefours dont les voies non empruntées par la spéciale sont modélisées comme surfaces revêtues annexes, lus par scripts/12_carrefours_annexes.py. Coordonnées Lambert-93 (EPSG:2154) en mètres, PK dans le repère courant (PK 0 = départ). Pour ajouter un carrefour, ajouter un objet à la liste (actif = true). La surface est la région plane (pente_max_deg) et lisse (rugosite_max_m : écart-type local du MNT, l'enrobé étant plus lisse que le sous-bois) du MNT LiDAR 0,5 m, complétée derrière chaque ligne de fermeture par une bande de profondeur_min_m (embouchure des branches fermées) là où la pente reste sous pente_embouchure_deg, connexe aux germes, bornée par la fenêtre et les lignes de coupe, moins la chaussée de la spéciale et l'îlot.",
-  "balisage_par_defaut": {
-    "rubalise": {"decalage_bord_m": 0.8, "pas_poteaux_m": 3.0, "hauteur_m": 1.0,
-                 "famille_jeu": "rubalise sur piquets (RallyProps/TapePlasticPoleA + acteur de ruban)",
-                 "maillage_jeu": "acr/Content/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
-                 "acteur_ruban_jeu": "acr/Content/Data/Environments/Common/BC_NarrowTapeActor"},
-    "barriere": {"decalage_bord_m": 2.5, "longueur_element_m": 2.0, "hauteur_m": 1.0, "epaisseur_m": 0.45,
-                 "famille_jeu": "barrière plastique de rallye (RallyProps/PlasticBarrierA)",
-                 "maillage_jeu": "acr/Content/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
-                 "alternative_jeu": "acr/Content/Props/ServicePark/CrowdBarrier1/SM_CrowdBarrierWithReflStrip"},
-    "distance_min_ilot_parapet_m": 0.8,
-    "remarque": "Dimensions des maillages du jeu inconnues (catalogue de noms seulement) : longueurs et hauteurs supposées, à recaler dans l'éditeur. Sur la vidéo n° 2 (t ≈ 182-186 s), la fermeture réelle est une rubalise rouge et blanche tendue au premier rang, puis un grillage avertisseur orange sur piquets portant des panneaux à chevrons rouges et blancs, avec des spectateurs derrière ; le catalogue n'a ni grillage orange en maillage (seulement des matériaux M_SafetyNetting_Orange) ni panneau à chevrons rouges et blancs : la barrière plastique en tient lieu."
+ "note": "Carrefours dont les voies non empruntées par la spéciale sont modélisées à part, lus par scripts/12_carrefours_annexes.py. Coordonnées Lambert-93 (EPSG:2154) en mètres, PK dans le repère courant (PK 0 = départ). Chaque élément porte sa source (« vu sur » : nuage LiDAR HD classé IGN, MNT, Street View d'octobre 2025, vue aérienne et plan Google fournis par le directeur, vidéo embarquée n° 2) ou « supposé ». Pour ajouter un carrefour : un objet de plus dans « carrefours » (actif = true). Les polygones de surface peuvent déborder sur la chaussée de la spéciale : le script la retranche, ce qui recolle exactement leur bord sur la ligne de fermeture.",
+ "balisage_par_defaut": {
+  "rubalise": {
+   "decalage_bord_m": 0.6,
+   "pas_poteaux_m": 3.0,
+   "hauteur_m": 1.0,
+   "famille_jeu": "rubalise sur piquets (RallyProps/TapePlasticPoleA + acteur de ruban)",
+   "maillage_jeu": "acr/Content/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
+   "acteur_ruban_jeu": "acr/Content/Data/Environments/Common/BC_NarrowTapeActor"
   },
-  "carrefours": [
+  "distance_min_obstacle_m": 0.8,
+  "remarque": "Décision du directeur (12/11/2026) : piquets et rubalise seulement. Dimensions des maillages du jeu inconnues (catalogue de noms seulement). Sur la vidéo n° 2 (t ≈ 182-186 s), la fermeture réelle est un grillage avertisseur orange à panneaux à chevrons, tendu du pied du grand pin jusqu'au bloc blanc (panneau bleu) au bout du parapet de pierre ; des rubalises bordent les accotements de la D3D."
+ },
+ "carrefours": [
+  {
+   "nom": "Lion d'Or",
+   "actif": true,
+   "pk": [
+    3600,
+    3712
+   ],
+   "plan": "Sommet de l'épingle de la D1 ; la D3D arrive du sud-est à l'extérieur de l'épingle. Une zone hachurée peinte sépare la branche de gauche (D1 vers l'ouest, empruntée par la spéciale) de la branche de droite (D1 vers le nord). La branche de droite passe sur un ponceau au-dessus du ruisseau qui traverse le terre-plein (intérieur de l'épingle) ; elle est bordée à l'est par un parapet de pierre. Le parapet ouest du ponceau est le « parapet sombre » de Street View ; les panneaux directionnels sont dans le fossé du ruisseau, derrière lui. Pas d'îlot : la bosse du MNT vers x = 916745-916749,5 ; y = 6243556-6243561,5 est le départ du parapet de pierre et le poteau de panneaux qui le précède, au bord de la rupture de pente vers le fossé est.",
+   "fermetures": [
     {
-      "nom": "Lion d'Or",
-      "actif": true,
-      "pk": [3600, 3712],
-      "fenetre": [916693, 6243528, 916775, 6243615],
-      "germes": [[916756.5, 6243552.0], [916738.0, 6243570.0], [916733.0, 6243595.0]],
-      "pente_max_deg": 12.0,
-      "rugosite_max_m": 0.04,
-      "profondeur_min_m": 4.0,
-      "pente_embouchure_deg": 20.0,
-      "lissage_m": 0.5,
-      "surface_min_m2": 4.0,
-      "lignes_de_coupe": [
-        {"nom": "pied de la branche de droite (au-delà, accotement de la D3D)", "pk": 3619, "cote": "droite", "longueur_m": 12},
-        {"nom": "fin de la plaque de la D1 ouest (au-delà, talus)", "pk": 3690, "cote": "droite", "longueur_m": 12},
-        {"nom": "lisière du bois entre la D1 ouest et la D1 nord (ferme la coupe précédente sur celle de l'amorce)", "points": [[916711.0, 6243579.0], [916722.5, 6243587.0]]}
-      ],
-      "amorces": [
-        {"nom": "D1 vers le nord", "troncon_bdtopo": "D1", "depart": [916735.2, 6243564.3], "longueur_m": 40, "largeur_coupe_m": 30,
-         "remarque": "amorce de 40 m le long de l'axe BD TOPO de la D1 nord, coupée perpendiculairement"}
-      ],
-      "ilot": {"boite": [916744.5, 6243555.5, 916750.0, 6243562.0], "seuil_bosse_m": 0.05,
-               "panneaux": {"hauteur_m": 3.0, "nombre": 2,
-                            "remarque": "panneaux directionnels (~3 m d'après les objets du relevé laser) ; un pin est aussi sur l'îlot (laissé au semis d'arbres)"}},
-      "fermetures": [
-        {"nom": "branche de droite (D1 vers le nord)", "pk_debut": 3620, "pk_fin": 3645},
-        {"nom": "embouchure de la D1 nord", "pk_debut": 3646, "pk_fin": 3688}
-      ],
-      "source": "relevé laser IGN (MNT 0,5 m), BD TOPO (axe de la D1 nord), corrections du carrefour (data/reference/chaussee_corrections.json, zone 2), vidéo n° 2 (t ≈ 180-190 s) pour le balisage"
+     "nom": "branche de droite (grillage du pin au bout du parapet de pierre)",
+     "de": [
+      916749.0,
+      6243558.3
+     ],
+     "a": [
+      916735.3,
+      6243569.6
+     ],
+     "source": "vidéo n° 2 t ≈ 183-185 s (grillage orange) ; bout du parapet : LiDAR (points non classés) ; pin : LiDAR (cime de 24 m) et Street View"
     },
     {
-      "nom": "D3 / D3D (approche)",
-      "actif": false,
-      "pk": [-170, -100],
-      "remarque": "prochain candidat (vers PK -143) : fenêtre, germes, îlot et fermetures à définir"
+     "nom": "bord du terre-plein",
+     "de": [
+      916735.3,
+      6243569.6
+     ],
+     "a": [
+      916705.0,
+      6243569.4
+     ],
+     "source": "LiDAR : rupture de pente entre l'enrobé et le terre-plein (coupes nord-sud tous les 5 m)"
     }
-  ]
+   ],
+   "surfaces_revetues": [
+    {
+     "nom": "branche de droite et amorce de 40 m de la D1 vers le nord",
+     "polygone": [
+      [
+       916748.4,
+       6243557.4
+      ],
+      [
+       916749.0,
+       6243558.3
+      ],
+      [
+       916747.3,
+       6243562.0
+      ],
+      [
+       916746.4,
+       6243566.0
+      ],
+      [
+       916745.6,
+       6243570.0
+      ],
+      [
+       916744.9,
+       6243573.0
+      ],
+      [
+       916744.7,
+       6243579.5
+      ],
+      [
+       916747.3,
+       6243582.0
+      ],
+      [
+       916744.5,
+       6243585.0
+      ],
+      [
+       916744.2,
+       6243588.0
+      ],
+      [
+       916742.5,
+       6243592.0
+      ],
+      [
+       916740.2,
+       6243596.0
+      ],
+      [
+       916737.3,
+       6243600.0
+      ],
+      [
+       916736.2,
+       6243602.0
+      ],
+      [
+       916728.7,
+       6243601.5
+      ],
+      [
+       916732.7,
+       6243596.0
+      ],
+      [
+       916730.5,
+       6243592.0
+      ],
+      [
+       916733.5,
+       6243588.0
+      ],
+      [
+       916735.2,
+       6243585.0
+      ],
+      [
+       916736.0,
+       6243582.0
+      ],
+      [
+       916736.6,
+       6243579.5
+      ],
+      [
+       916736.6,
+       6243572.5
+      ],
+      [
+       916735.3,
+       6243569.6
+      ],
+      [
+       916734.6,
+       6243568.7
+      ]
+     ],
+     "source": "LiDAR HD : bord est = parapet de pierre puis pied du talus (coupes est-ouest tous les 4 m), bord ouest = parapet ouest du ponceau puis fossé du ruisseau ; tablier du ponceau (classe « pont ») de x = 916736,5 à 916745, y = 6243573 à 6243579 ; au-delà de y = 6243596, bord ouest supposé à 7,5 m du bord est (largeur BD TOPO 7 m)"
+    }
+   ],
+   "terre_plein": {
+    "nom": "terre-plein (intérieur de l'épingle, partie proche du carrefour)",
+    "polygone": [
+     [
+      916735.0,
+      6243568.0
+     ],
+     [
+      916730.0,
+      6243566.0
+     ],
+     [
+      916725.0,
+      6243563.7
+     ],
+     [
+      916720.0,
+      6243562.4
+     ],
+     [
+      916715.0,
+      6243563.1
+     ],
+     [
+      916710.0,
+      6243565.7
+     ],
+     [
+      916705.0,
+      6243567.9
+     ],
+     [
+      916703.5,
+      6243568.6
+     ],
+     [
+      916703.5,
+      6243578.0
+     ],
+     [
+      916712.0,
+      6243586.0
+     ],
+     [
+      916722.0,
+      6243592.0
+     ],
+     [
+      916730.5,
+      6243592.0
+     ],
+     [
+      916733.5,
+      6243588.0
+     ],
+     [
+      916735.2,
+      6243585.0
+     ],
+     [
+      916736.0,
+      6243582.0
+     ],
+     [
+      916736.2,
+      6243579.5
+     ],
+     [
+      916736.2,
+      6243572.5
+     ],
+     [
+      916735.3,
+      6243569.6
+     ]
+    ],
+    "source": "LiDAR (rupture de pente au bord de l'enrobé, fossé du ruisseau) ; plan Google (intérieur de l'épingle) ; limites nord et ouest arbitraires (périmètre du carrefour)",
+    "pin": {
+     "xy": [
+      916735.5,
+      6243569.5
+     ],
+     "hauteur_m": 24,
+     "source": "LiDAR : cime de 24 m ; Street View : grand pin à la pointe du terre-plein ; tronc supposé sous la cime, laissé au semis d'arbres (script 10)"
+    }
+   },
+   "parapets": [
+    {
+     "nom": "parapet de pierre bas le long de la D3D, avant la patte d'oie",
+     "le_long_du_bord": {
+      "cote": "droite",
+      "de": [
+       916756.3,
+       6243546.8
+      ],
+      "a": [
+       916749.0,
+       6243558.3
+      ]
+     },
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.4,
+     "type": "pierre",
+     "source": "Street View 3 (parapet bas à droite, au premier plan) et vidéo n° 2 t ≈ 184 s (bloc blanc et panneau bleu à son extrémité nord) ; début exact supposé (tête est du ponceau sous la D3D)"
+    },
+    {
+     "nom": "parapet ouest du ponceau (parapet sombre)",
+     "polyligne": [
+      [
+       916736.6,
+       6243572.5
+      ],
+      [
+       916736.6,
+       6243579.5
+      ]
+     ],
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.35,
+     "type": "pierre_sombre",
+     "source": "LiDAR : points non classés et « pont » alignés à x ≈ 916736,3 (y 6243572,5 à 6243579,5), sommet ≈ 249,8 m pour un tablier à ≈ 249,1 m ; Street View : parapet bas et sombre à droite des panneaux"
+    },
+    {
+     "nom": "parapet est du ponceau",
+     "polyligne": [
+      [
+       916744.9,
+       6243573.0
+      ],
+      [
+       916744.7,
+       6243579.5
+      ]
+     ],
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.35,
+     "type": "pierre",
+     "source": "LiDAR : points non classés à x ≈ 916744,5-916745 (y 6243573 à 6243579) ; hauteur supposée égale au parapet ouest"
+    },
+    {
+     "nom": "parapet de pierre de la branche de droite",
+     "polyligne": [
+      [
+       916749.0,
+       6243558.3
+      ],
+      [
+       916747.3,
+       6243562.0
+      ],
+      [
+       916746.4,
+       6243566.0
+      ],
+      [
+       916745.6,
+       6243570.0
+      ],
+      [
+       916744.9,
+       6243573.0
+      ]
+     ],
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.4,
+     "type": "pierre",
+     "source": "Street View 3 et 4 (long parapet de pierre bas à droite de la branche de droite) ; tracé : rupture de pente du LiDAR (marche de 0,7 m vers le fossé est) et points non classés à son extrémité sud ; hauteur estimée sur Street View"
+    }
+   ],
+   "panneaux": [
+    {
+     "nom": "panneaux directionnels et panneau blanc, dans le fossé derrière le parapet ouest",
+     "xy": [
+      916735.4,
+      6243574.6
+     ],
+     "haut_m_ngf": 249.97,
+     "nombre": 2,
+     "source": "LiDAR : grappe de points non classés (x 916735-916736, y 6243573-6243576) ; Street View et vidéo : panneaux à droite du pin"
+    },
+    {
+     "nom": "poteau de panneaux (dont un panneau rond rouge) au bout du parapet de pierre",
+     "xy": [
+      916748.2,
+      6243559.2
+     ],
+     "haut_m_ngf": 251.47,
+     "nombre": 2,
+     "source": "LiDAR : points non classés jusqu'à 251,5 m ; Street View 3 : panneaux à droite, au départ du parapet de pierre"
+    }
+   ],
+   "fosse": {
+    "polyligne": [
+     [
+      916717,
+      6243595
+     ],
+     [
+      916724,
+      6243589
+     ],
+     [
+      916729,
+      6243584
+     ],
+     [
+      916733,
+      6243578
+     ],
+     [
+      916736,
+      6243576
+     ],
+     [
+      916745.5,
+      6243575.5
+     ],
+     [
+      916751,
+      6243572
+     ],
+     [
+      916754,
+      6243568
+     ],
+     [
+      916756,
+      6243564
+     ],
+     [
+      916759.5,
+      6243560
+     ],
+     [
+      916758,
+      6243553
+     ],
+     [
+      916757,
+      6243547
+     ]
+    ],
+    "source": "LiDAR : fond du ruisseau (coupes) ; il passe sous le ponceau puis sous la D3D (ponceau du PK ≈ 3630-3645, tête ouest = muret de béton tagué)"
+   },
+   "source": "relevé laser IGN (nuage de points LiDAR HD classé, dalle LHD_FXX_0916_6244, et MNT 0,5 m), Street View oct. 2025 et vues Google (directeur), vidéo n° 2",
+   "ponceau": {
+    "nom": "ponceau de la D1 nord sur le ruisseau",
+    "polygone": [
+     [
+      916736.6,
+      6243572.5
+     ],
+     [
+      916744.9,
+      6243573.0
+     ],
+     [
+      916744.7,
+      6243579.5
+     ],
+     [
+      916736.6,
+      6243579.5
+     ]
+    ],
+    "axe": [
+     [
+      916740.7,
+      6243572.0
+     ],
+     [
+      916740.6,
+      6243580.0
+     ]
+    ],
+    "epaisseur_m": 0.5,
+    "source": "LiDAR HD : points de classe « pont » (tablier à 249,0-249,45 m, 2,5 à 3 m au-dessus du fond du ruisseau)"
+   },
+   "zone_hachuree": {
+    "polygone": [
+     [
+      916737.84,
+      6243560.28
+     ],
+     [
+      916737.6,
+      6243561.05
+     ],
+     [
+      916737.99,
+      6243561.88
+     ],
+     [
+      916738.85,
+      6243562.2
+     ],
+     [
+      916739.68,
+      6243561.81
+     ],
+     [
+      916748.52,
+      6243550.13
+     ],
+     [
+      916748.69,
+      6243549.34
+     ],
+     [
+      916748.31,
+      6243548.62
+     ],
+     [
+      916747.45,
+      6243548.3
+     ],
+     [
+      916746.62,
+      6243548.69
+     ]
+    ],
+    "source": "LiDAR HD : points sol de forte intensité (peinture), axe de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0, largeur jusqu'à 2,7 m ; Street View 3 et vidéo n° 2",
+    "remarque": "marquage peint dans la chaussée de la spéciale, non modélisé (figure seulement)"
+   }
+  },
+  {
+   "nom": "D3 / D3D (approche)",
+   "actif": false,
+   "pk": [
+    -170,
+    -100
+   ],
+   "remarque": "prochain candidat (vers PK -143) : plan, fermetures, surfaces et parapets à établir"
+  }
+ ]
 }

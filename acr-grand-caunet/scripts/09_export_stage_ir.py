@@ -5,29 +5,42 @@ constructeur côté ACR (`acr-ref stage-build`) consomme. Il est normalement pro
 partir de DiRT Rally 2.0 ; ici il est produit à partir de nos propres mesures.
 
 Entrées : data/processed/chaussee_precise.csv (axe et bords au mètre), points_officiels_recales.csv,
-          ouvrages_es.csv, modele/terrain.glb (étape 8), data/raw/mnt_lidarhd_50cm.tif (repérage des ponts)
+          ouvrages_es.csv, annexes_revetues.geojson, modele/terrain.glb (étape 8), data/raw/mnt_lidarhd_50cm.tif
+          (repérage des ponts) ; facultatifs : modele/annexes_collision.glb (étape 12, surfaces des carrefours),
+          modele/ouvrages_collision.glb (étape 11, parapets et murs), modele/annexes_collision.glb (parapets du carrefour) et modele/balisage_collision.glb (étape 12)
 Sorties (export/stage_ir/grand_caunet/) :
-  stage.json      tout sauf la géométrie : identité, longueurs, repère, axe, portes (tous les ~10 m),
-                  chronométrage, zone d'arrêt, reprise en piste, sol physique, surfaces, notes du
-                  copilote (BROUILLON généré par la courbure de l'axe), auto-contrôles
-  collision.glb   sol physique : un nœud et un maillage « collision », un primitif par code de surface
-                  (TSD+ chaussée, DBK+ accotement 0-3 m, GRS+ terrain du couloir), positions seules
+  stage.json             tout sauf la géométrie : identité, longueurs, repère, axe, portes (tous les ~10 m),
+                         chronométrage, zone d'arrêt, reprise en piste, sol physique, surfaces, obstacles
+                         (`objects`), notes du copilote (BROUILLON généré par la courbure de l'axe), auto-contrôles
+  collision.glb          sol physique : un nœud et un maillage « collision », un primitif par code de surface
+                         (TSD+ chaussée et enrobé annexe, DBK+ accotement 0-3 m et îlot, GRS+ terrain du couloir),
+                         positions seules
+  objects_collision.glb  obstacles en volumes simples (pavés, piquets en prismes), un primitif par matériau
+                         de paroi du jeu
 export/stage_ir/controle_grand_caunet.json : relecture des fichiers écrits (contrôle indépendant de l'écriture)
+
+Obstacles (section `objects`, sous la forme que lit ObjectColliders.cs d'ACR Extra Stages) : chaque volume
+balayé des glb de collision (11, 12) est découpé en pavés orientés, un par tronçon d'échantillonnage (~1 m) ;
+un gabarit par type (pavé ou cylindre unitaire, origine à la base), une instance par pavé avec rotation et
+échelle. La rubalise n'est pas un obstacle : un ruban ne retient pas une voiture, et les obstacles simples
+du jeu ne se cassent pas (un ruban solide serait un mur invisible) ; elle n'est donc pas exportée.
 
 Repère de l'IR (le format exige mètres, +Y haut, repère direct, même repère pour tous les fichiers) :
   X = x_L93 - x0 (est), Y = altitude NGF (absolue, pour que les altitudes des menus soient justes),
   Z = -(y_L93 - y0) (sud) ; (x0, y0) = axe au PK 0, comme modele/repere.json (qui, lui, prend Y relatif).
   Pour un sens de marche f, la droite du pilote est cross(f, +Y), comme dans l'IR de DR2.
 
-Ce que l'exporteur ne produit pas (laissé vide ou null comme le prévoit le format) : objets
-(`objects` = null), maillages de rendu DR2 (`render` = []), cuisson du sol (`ground_bake` absent),
-données brutes DR2 des notes (`pacenotes.raw` = null), recalage sur carte de menu
-(`validation.route_map_fit` = null), fichier de reprise DR2 (`respawn.resetlines` = null).
+Ce que l'exporteur ne produit pas (laissé vide ou null comme le prévoit le format) : maillages de rendu
+DR2 (`render` = [], ni render/*.glb ni textures DDS : la voie retenue, `pc/`, n'en a pas besoin), cuisson
+du sol (`ground_bake` absent), données brutes DR2 des notes (`pacenotes.raw` = null), recalage sur carte
+de menu (`validation.route_map_fit` = null), fichier de reprise DR2 (`respawn.resetlines` = null).
 """
 import csv
+import gzip
 import importlib
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -35,7 +48,9 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import OUT, ROOT, wgs  # noqa: E402
+from acr_geo import OUT, ROOT, TO_L93, wgs  # noqa: E402
+import shapely  # noqa: E402
+from shapely.geometry import shape as geo_shape  # noqa: E402
 
 M08 = importlib.import_module("08_modele_3d")      # mêmes lecteurs et même ruban de route que le modèle 3D
 
@@ -44,13 +59,30 @@ DOSSIER = EXPORT / "grand_caunet"
 STAGE_ID = "grand_caunet_rally_01_route_0"         # forme <lieu>_rally_<nn>_route_<n> exigée par leurs scripts
 NOM = "Le Grand Caunet"
 PAS_PORTES = 10.0                                  # m
+TOL_PORTES = 0.25                                  # m : écart toléré entre la corde de deux portes et l'axe ou un bord
 ACCOTEMENT = 3.0                                   # m au-delà du bord de chaussée : code DBK+
 CODES = {                                          # code -> (matériau physique ACR, description)
-    "TSD+": ("PM_SurfaceTarmacSmooth", "chaussée en enrobé (ruban de route mesuré)"),
-    "DBK+": ("PM_SurfaceGravelHard", f"accotement en terre, {ACCOTEMENT:g} m au-delà des bords"),
+    "TSD+": ("PM_SurfaceTarmacSmooth", "chaussée en enrobé (ruban de route mesuré) et enrobé annexe des carrefours"),
+    "DBK+": ("PM_SurfaceGravelHard", f"accotement en terre, {ACCOTEMENT:g} m au-delà des bords, et îlots des carrefours"),
     "GRS+": ("PM_SurfaceGrass", "terrain naturel du couloir (garrigue, sous-bois)"),
 }
 PM = "/Game/Data/Gameplay/PhysicalMaterials/"
+MOD = ROOT / "modele"
+# surfaces des carrefours (modele/annexes_collision.glb) : mot du nom de matériau -> code de sol
+SOL_ANNEXES = [("enrobe", "TSD+"), ("terre", "DBK+")]
+# obstacles : matériau des glb de collision -> (paroi ACR, forme, gabarit). Les noms PM_Wall* sont dans le
+# catalogue du jeu ; PM_WallRock, PM_WallConcrete et PM_WallPlasticBarrier sont aussi utilisés par leur
+# config/surface-map.toml ; PM_WallPlasticPole ne l'est pas : s'il n'est pas inscrit au registre des surfaces,
+# leur constructeur le remplace par PM_WallBasic (StageBuild.cs, objets « unregistered_remapped »).
+OBSTACLES = {
+    "pierre": ("PM_WallRock", "box", "gc_parapet_pierre"),
+    "beton": ("PM_WallConcrete", "box", "gc_parapet_beton"),
+    "plastique_barriere": ("PM_WallPlasticBarrier", "box", "gc_barriere"),
+    "plastique_piquet": ("PM_WallPlasticPole", "cylinder", "gc_piquet_rubalise"),
+}
+SOURCES_OBSTACLES = ("ouvrages_collision.glb", "annexes_collision.glb", "balisage_collision.glb")
+CATALOGUE = gzip.open(ROOT / "data" / "reference" / "catalogue_jeu_25170642.txt.gz", "rt", encoding="utf-8").read()
+CATALOGUE = "\n".join(f'"{m}"' for m in re.findall(r"PhysicalMaterials/(PM_\w+)\.uasset", CATALOGUE))
 SPLITS = ("INTER2", "INTER6")                      # points officiels retenus comme temps intermédiaires
 
 # notes du copilote (vocabulaire de config/pacenote-map.toml : direction left/right, sévérité "6".."1",
@@ -94,13 +126,57 @@ def point_sur_axe(ch, x, y, pk_attendu, fen=400.0):
     return int(sel[k]), float(d[k])
 
 
+# --- lecture des glb du modèle ----------------------------------------------------------
+def lire_modele(path):
+    """glb de modele/ (étapes 11, 12) : liste de (maillage, matériau, positions (N,3) repère glTF du modèle,
+    triangles). Indices 8, 16 ou 32 bits ; les nœuds ne doivent pas porter de transformation."""
+    b = Path(path).read_bytes()
+    n = int(np.frombuffer(b, "<u4", 1, 12)[0])
+    gl = json.loads(b[20:20 + n])
+    off = 20 + n + 8
+    for nd in gl.get("nodes", []):
+        if any(k in nd for k in ("matrix", "translation", "rotation", "scale")):
+            raise SystemExit(f"{path} : nœud {nd.get('name')} transformé, non prévu")
+
+    def arr(i):
+        a = gl["accessors"][i]
+        v = gl["bufferViews"][a["bufferView"]]
+        dt = {5126: "<f4", 5125: "<u4", 5123: "<u2", 5121: "u1"}[a["componentType"]]
+        k = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4}[a["type"]]
+        if v.get("byteStride", 0) not in (0, np.dtype(dt).itemsize * k):
+            raise SystemExit(f"{path} : données entrelacées non prévues")
+        return np.frombuffer(b, dt, a["count"] * k, off + v.get("byteOffset", 0) + a.get("byteOffset", 0)).reshape(-1, k)
+
+    out = []
+    for m in gl["meshes"]:
+        for pr in m["primitives"]:
+            if pr.get("mode", 4) != 4:
+                raise SystemExit(f"{path} : primitif non triangulaire")
+            mat = gl["materials"][pr["material"]]["name"] if "material" in pr else ""
+            out.append((m.get("name", ""), mat, arr(pr["attributes"]["POSITION"]).astype(np.float64),
+                        arr(pr["indices"]).reshape(-1, 3).astype(np.int64)))
+    return out
+
+
+def modele_vers_ir(p, ref):
+    """repère glTF du modèle (Y relatif) -> repère de l'IR (Y = altitude)."""
+    q = np.array(p, dtype=np.float64)
+    q[:, 1] += ref["z0"]
+    return q
+
+
+def ir_vers_l93(p, ref):
+    return np.column_stack([p[:, 0] + ref["x0"], ref["y0"] - p[:, 2]])
+
+
 # --- sol physique ------------------------------------------------------------------------
-def sol_physique(ch, ref):
-    """Ruban de route (celui de l'étape 8) + terrain du modèle 3D, sommets fusionnés, Y absolu."""
+def sol_physique(ch, ref, rapport):
+    """Ruban de route (celui de l'étape 8) + terrain du modèle 3D (sommets fusionnés) + surfaces annexes des
+    carrefours (étape 12) ; le terrain entièrement recouvert par une annexe est retiré. Y absolu."""
     route = M08.route(ch, ref)
     rp = route["pos"].astype(np.float64)
     rt = route["idx"].astype(np.int64)
-    src = ROOT / "modele" / "terrain.glb"
+    src = MOD / "terrain.glb"
     if not src.exists():
         raise SystemExit("modele/terrain.glb absent : lancer d'abord 08_modele_3d.py")
     tp, tt, base = [], [], 0
@@ -116,12 +192,193 @@ def sol_physique(ch, ref):
     tt = tt[(tt[:, 0] != tt[:, 1]) & (tt[:, 1] != tt[:, 2]) & (tt[:, 0] != tt[:, 2])]
     for p in (rp, tp):
         p[:, 1] += ref["z0"]                      # Y relatif du modèle -> altitude NGF
+
+    # surfaces annexes des carrefours (facultatives)
+    ann = {"TSD+": [], "DBK+": []}
+    info = {"fichier": None, "triangles": {}, "terrain_retire_sous_annexes": 0}
+    fa = MOD / "annexes_collision.glb"
+    if fa.exists():
+        info["fichier"] = "modele/annexes_collision.glb"
+        for nom, mat, p, t in lire_modele(fa):
+            code = next((c for mot, c in SOL_ANNEXES if mot in mat), None)
+            if code is None and mat in OBSTACLES:
+                continue                                  # parapets du carrefour : exportés comme obstacles
+            if code is None:
+                print(f"attention : matériau d'annexe inconnu « {mat} » ({nom}) ignoré")
+                continue
+            ann[code].append((modele_vers_ir(p, ref), t))
+            info["triangles"][f"{nom} ({mat})"] = f"{len(t)} -> {code}"
+        # terrain sous les surfaces revêtues et l'îlot : retiré quand ses trois sommets sont à la fois dans un
+        # polygone de annexes_revetues.geojson et sous le maillage des annexes (les annexes passent 3 cm au-dessus
+        # du terrain ; un triangle à cheval est gardé, pour ne laisser aucun trou si les deux fichiers divergent)
+        gj = json.loads((OUT / "annexes_revetues.geojson").read_text(encoding="utf-8"))
+        polys = []
+        for f in gj["features"]:
+            if f["geometry"]["type"] in ("Polygon", "MultiPolygon"):
+                g = geo_shape(f["geometry"])
+                polys.append(shapely.transform(g, lambda c: np.column_stack(TO_L93.transform(c[:, 0], c[:, 1]))))
+        if polys:
+            zone = shapely.union_all(polys)
+            shapely.prepare(zone)
+            xy = ir_vers_l93(tp, ref)
+            dedans = shapely.contains_xy(zone, xy[:, 0], xy[:, 1])
+            couvre = Sol({c: concat(v) for c, v in ann.items() if v})
+            for i in np.flatnonzero(dedans):
+                dedans[i] = couvre.h(tp[i, 0], tp[i, 2]) is not None
+            sous = dedans[tt].all(axis=1)
+            tt = tt[~sous]
+            info["terrain_retire_sous_annexes"] = int(sous.sum())
+    else:
+        print("modele/annexes_collision.glb absent : pas de surfaces annexes (facultatif)")
+    rapport["annexes"] = info
+
     # accotement : centre du triangle à moins de ACCOTEMENT m (en plan) d'un bord de chaussée
     bords = np.vstack([vers_ir(ch["G"], ref), vers_ir(ch["D"], ref)])[:, [0, 2]]
     c = tp[tt].mean(axis=1)[:, [0, 2]]
     d, _ = cKDTree(bords).query(c)
     acc = d <= ACCOTEMENT
-    return {"TSD+": (rp, rt), "DBK+": compact(tp, tt[acc]), "GRS+": compact(tp, tt[~acc])}
+    out = {"TSD+": [(rp, rt)] + ann["TSD+"], "DBK+": [compact(tp, tt[acc])] + ann["DBK+"],
+           "GRS+": [compact(tp, tt[~acc])]}
+    return {c: concat(v) for c, v in out.items()}
+
+
+def concat(parts):
+    P, T, k = [], [], 0
+    for p, t in parts:
+        P.append(p)
+        T.append(t + k)
+        k += len(p)
+    return np.vstack(P), np.vstack(T)
+
+
+# --- obstacles ---------------------------------------------------------------------------
+def sections_balayees(V):
+    """Volumes balayés de 11_route_ouvrages.boite() mis bout à bout : chaque bloc a 8n + 8 sommets (4 faces
+    de 2n sommets C0C1, C1C2, C2C3, C3C0, puis 2 bouchons de 4). Renvoie une liste de (n, 4, 3) : les 4 coins
+    de chaque section (C0, C1 en bas, C2, C3 en haut). ValueError si la disposition n'est pas reconnue."""
+    out, o = [], 0
+    while o < len(V):
+        for n in range(2, (len(V) - o - 8) // 8 + 1):
+            blk = V[o:o + 8 * n]
+            if (np.allclose(blk[2 * n:3 * n], blk[n:2 * n], atol=1e-5) and np.allclose(blk[4 * n:5 * n], blk[3 * n:4 * n], atol=1e-5)
+                    and np.allclose(blk[6 * n:7 * n], blk[5 * n:6 * n], atol=1e-5) and np.allclose(blk[7 * n:8 * n], blk[0:n], atol=1e-5)):
+                out.append(np.stack([blk[0:n], blk[n:2 * n], blk[3 * n:4 * n], blk[5 * n:6 * n]], axis=1))
+                o += 8 * n + 8
+                break
+        else:
+            raise ValueError(f"disposition de volume balayé non reconnue au sommet {o}")
+    return out
+
+
+def paves(sec):
+    """Un pavé orienté par tronçon entre deux sections : (centre, axes (3,3) en colonnes x=épaisseur,
+    y=hauteur, z=longueur, dimensions (l_x, l_y, l_z))."""
+    out = []
+    for i in range(len(sec) - 1):
+        Q = np.vstack([sec[i], sec[i + 1]])                     # 8 coins
+        z = sec[i + 1].mean(0) - sec[i].mean(0)
+        if np.linalg.norm(z) < 1e-6:
+            continue
+        z /= np.linalg.norm(z)
+        y = np.array([0.0, 1.0, 0.0]) - z * z[1]
+        if np.linalg.norm(y) < 1e-3:                             # tronçon vertical (non prévu)
+            continue
+        y /= np.linalg.norm(y)
+        x = np.cross(y, z)
+        R = np.column_stack([x, y, z])
+        loc = Q @ R
+        lo, hi = loc.min(0), loc.max(0)
+        out.append((R @ ((lo + hi) / 2), R, hi - lo))
+    return out
+
+
+def quaternion(R):
+    """Matrice de rotation (colonnes = axes locaux) -> quaternion unitaire [x, y, z, w]."""
+    t = np.trace(R)
+    if t > 0:
+        s = math.sqrt(t + 1) * 2
+        q = [(R[2, 1] - R[1, 2]) / s, (R[0, 2] - R[2, 0]) / s, (R[1, 0] - R[0, 1]) / s, s / 4]
+    else:
+        i = int(np.argmax(np.diag(R)))
+        j, k = (i + 1) % 3, (i + 2) % 3
+        s = math.sqrt(1 + R[i, i] - R[j, j] - R[k, k]) * 2
+        q = [0.0] * 4
+        q[i] = s / 4
+        q[j] = (R[j, i] + R[i, j]) / s
+        q[k] = (R[k, i] + R[i, k]) / s
+        q[3] = (R[k, j] - R[j, k]) / s
+    q = np.array(q)
+    return q / np.linalg.norm(q)
+
+
+def obstacles(ref):
+    """Section `objects` du Stage IR (forme lue par ObjectColliders.cs) + volumes pour objects_collision.glb."""
+    gabarits, instances, volumes, info = {}, [], {}, {"sources": [], "par_materiau": {}, "non_exportes": {}}
+    for nom_f in SOURCES_OBSTACLES:
+        f = MOD / nom_f
+        if not f.exists():
+            print(f"modele/{nom_f} absent : obstacles correspondants non exportés (facultatif)")
+            continue
+        info["sources"].append(f"modele/{nom_f}")
+        for nom, mat, p, t in lire_modele(f):
+            if mat not in OBSTACLES:
+                if any(mot in mat for mot, _ in SOL_ANNEXES):
+                    continue                                  # surface de roulage des carrefours (sol physique)
+                raison = ("rubalise : pas un obstacle physique" if "rubalise" in mat
+                          else "matériau sans paroi du jeu associée")
+                info["non_exportes"][f"{nom} ({mat})"] = raison
+                print(f"obstacles : {nom} ({mat}) non exporté — {raison}")
+                continue
+            paroi, forme, gab = OBSTACLES[mat]
+            secs = sections_balayees(modele_vers_ir(p, ref))
+            if gab not in gabarits:
+                dims = ({"width": 1.0, "height": 1.0, "length": 1.0, "shell": 0.0} if forme == "box"
+                        else {"height": 1.0, "radius": 0.5, "shell": 0.0})
+                gabarits[gab] = {
+                    "source": f"modele/{nom_f} ({mat})", "renderables": [], "inactive_subentities": 0, "constraints": 0,
+                    "bodies": [{"sub_entity": gab, "static": True, "renderable": None, "shapes": [{
+                        "id": f"{gab}_col_shape", "kind": forme, "dimensions": dims,
+                        "transform": {"position": [0.0, 0.5, 0.0], "rotation": [0.0, 0.0, 0.0, 1.0], "scale": None,
+                                      "matrix": None},
+                        "shape_class": gab, "dr2_material": None, "acr_wall": paroi, "breaks_on_impulse": None,
+                        "mesh_file": None}]}]}
+            n0 = len(instances)
+            for s in secs:
+                for c, R, L in paves(s):
+                    if forme == "cylinder":                     # piquet : diamètre = plus grande dimension en plan
+                        d = float(max(L[0], L[2]))
+                        L = np.array([d, L[1], d])
+                    base = c - R[:, 1] * L[1] / 2                # origine à la base, comme les objets DR2
+                    instances.append({"id": f"{gab}_{len(instances):04d}", "template": gab, "kind": "basic", "tag": None,
+                                      "transform": {"position": r3(base), "rotation": r3(quaternion(R), 6),
+                                                    "scale": r3(L, 4), "matrix": None},
+                                      "_paroi": paroi, "_forme": forme, "_centre": c, "_R": R, "_L": L})
+            info["par_materiau"][f"{nom} ({mat})"] = f"{len(instances) - n0} {forme} -> {paroi}"
+    for it in instances:
+        volumes.setdefault(it["_paroi"], []).append(volume(it["_forme"], it["_centre"], it["_R"], it["_L"]))
+    publiques = [{k: v for k, v in it.items() if not k.startswith("_")} for it in instances]
+    return gabarits, publiques, {k: concat(v) for k, v in volumes.items()}, info
+
+
+def volume(forme, c, R, L):
+    """Pavé (8 sommets) ou prisme à 8 pans du piquet, orienté vers l'extérieur."""
+    if forme == "box":
+        u = np.array([[i, j, k] for i in (-.5, .5) for j in (-.5, .5) for k in (-.5, .5)])
+        P = c + (u * L) @ R.T
+        f = [(0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)]
+        T = [t for a, b, cc, d in f for t in ((a, b, cc), (a, cc, d))]
+    else:
+        a = np.linspace(0, 2 * np.pi, 9)[:-1]
+        ring = np.column_stack([np.cos(a) * L[0] / 2, np.zeros(8), np.sin(a) * L[2] / 2])
+        u = np.vstack([ring + [0, -L[1] / 2, 0], ring + [0, L[1] / 2, 0]])
+        P = c + u @ R.T
+        T = [t for i in range(8) for t in ((i, (i + 1) % 8 + 8, (i + 1) % 8), (i, i + 8, (i + 1) % 8 + 8))]
+        T += [(0, k + 1, k) for k in range(1, 7)] + [(8, 8 + k, 9 + k) for k in range(1, 7)]
+    T = np.array(T)
+    nrm = np.cross(P[T[:, 1]] - P[T[:, 0]], P[T[:, 2]] - P[T[:, 0]])
+    out = ((P[T].mean(1) - c) * nrm).sum(1) < 0
+    T[out] = T[out][:, [0, 2, 1]]
+    return P, T
 
 
 def compact(p, t):
@@ -129,11 +386,11 @@ def compact(p, t):
     return p[used], inv.reshape(-1, 3)
 
 
-def ecrire_glb(path, prims):
-    """Un nœud, un maillage « collision », un primitif par code de surface ; POSITION + indices seulement."""
+def ecrire_glb(path, prims, nom="collision"):
+    """Un nœud et un maillage `nom`, un primitif par code (ou matériau) ; POSITION + indices seulement."""
     gl = {"asset": {"version": "2.0", "generator": "acr-grand-caunet 09_export_stage_ir.py"},
-          "scene": 0, "scenes": [{"nodes": [0]}], "nodes": [{"name": "collision", "mesh": 0}],
-          "meshes": [{"name": "collision", "primitives": []}], "materials": [], "accessors": [],
+          "scene": 0, "scenes": [{"nodes": [0]}], "nodes": [{"name": nom, "mesh": 0}],
+          "meshes": [{"name": nom, "primitives": []}], "materials": [], "accessors": [],
           "bufferViews": [], "buffers": []}
     blob = bytearray()
 
@@ -248,8 +505,116 @@ def notes(ch, vir, gd_at_pk, pos_at_pk, pk_fin, start_gate_distance):
     return tokens
 
 
+def objets_ir(obst):
+    gabarits, instances, volumes, info = obst
+    if not instances:
+        return None
+    parois = sorted({sh["acr_wall"] for g in gabarits.values() for b in g["bodies"] for sh in b["shapes"]})
+    return {
+        "sources": {"instances": info["sources"], "templates": info["sources"], "shape_classes": None},
+        "corridor_m": float(M08.CORRIDOR), "instances_total": len(instances), "instances_in_corridor": len(instances),
+        "cloth_instances_skipped": 0, "unknown_shape_kinds": [],
+        "collision": {"file": "objects_collision.glb", "triangles": int(sum(len(t) for _, t in volumes.values())),
+                      "meshes": [{"gltf_material": w, "acr_physical_material": w, "acr_asset_path": PM + w,
+                                  "primitives": sum(1 for i in instances if gabarits[i["template"]]["bodies"][0]
+                                                    ["shapes"][0]["acr_wall"] == w)} for w in parois],
+                      "mesh_shapes": []},
+        "render": None,
+        "wall_classes": [{"shape_class": k, "dr2_material": None, "dr2_core_material": None,
+                          "acr_wall": [g["bodies"][0]["shapes"][0]["acr_wall"]], "templates": 1} for k, g in gabarits.items()],
+        "templates": gabarits,
+        "instances": instances,
+    }
+
+
+def portes_adaptees(garde, courbes, dist):
+    """Ajoute des portes là où l'axe ou un bord (tous les mètres) s'écarte de plus de TOL_PORTES de la corde entre
+    deux portes : leur constructeur trace la chaussée (corridor, splines de bord) en reliant les portes par des
+    segments ; sans cela, un rétrécissement de pont ou un carrefour serait mal décrit et les parapets jugés « sur la
+    route »."""
+    garde = list(garde)
+    ajout = True
+    while ajout:
+        ajout = False
+        nouv = [garde[0]]
+        for a, b in zip(garde, garde[1:]):
+            if b - a > 1:
+                u = ((dist[a:b + 1] - dist[a]) / (dist[b] - dist[a]))[:, None]
+                ecart = np.max([np.linalg.norm(c[a:b + 1] - (c[a] + u * (c[b] - c[a])), axis=1) for c in courbes], axis=0)
+                k = int(np.argmax(ecart))
+                if ecart[k] > TOL_PORTES:
+                    nouv.append(a + k)
+                    ajout = True
+            nouv.append(b)
+        garde = nouv
+    return np.array(garde)
+
+
+def retirer_sur_chaussee(stage, prims):
+    """Retire les obstacles que leur constructeur supprimerait (ObjectColliders.Build : plus de 0,3 m dans le
+    corridor, à hauteur de voiture, au-dessus de l'enrobé) et les liste ; c'est le signe que le balisage ou un
+    parapet ne coïncide plus avec les bords de chaussee_precise.csv (relancer 11 / 12)."""
+    ob = stage["objects"]
+    couloir, sol = Couloir(stage), Sol(prims)
+    pk = np.array([g["pk_m"] for g in stage["gates"]])
+    tree = cKDTree(np.array(stage["centreline"])[:, [0, 2]])
+    garde, retires = [], []
+    for inst in ob["instances"]:
+        sh = ob["templates"][inst["template"]]["bodies"][0]["shapes"][0]
+        o, A, L = forme_monde(sh, inst)
+        grille = np.array([[i, j, k] for i in (-1, 0, 1) for j in (-1, 0, 1) for k in (-1, 0, 1)], float)
+        pen = 0.0
+        for q in o + (grille * L / 2) @ A.T:
+            c, zc = couloir.clearance(q[0], q[2])
+            if c < 0 and zc - 1.0 < q[1] < zc + 2.5 and sol.code(q[0], q[2]) == "TSD+":
+                pen = max(pen, -c)
+        if pen > 0.3:
+            retires.append({"id": inst["id"], "pk_m": float(pk[tree.query(o[[0, 2]])[1]]), "penetration_m": round(pen, 2),
+                            "centre": r3(o), "demi_diagonale_m": round(float(np.linalg.norm(L) / 2), 3)})
+        else:
+            garde.append(inst)
+    ob["instances"] = garde
+    ob["instances_total"] = ob["instances_in_corridor"] = len(garde)
+    stage["export"]["obstacles"]["retires_sur_la_chaussee"] = retires
+    if retires:
+        print(f"attention : {len(retires)} obstacles retirés car sur la chaussée (PK "
+              f"{min(r['pk_m'] for r in retires):.0f} à {max(r['pk_m'] for r in retires):.0f}) : "
+              "balisage / parapets à remettre en cohérence avec chaussee_precise.csv (étapes 11, 12)")
+
+
+def forme_monde(sh, inst):
+    """Centre, axes unitaires (colonnes) et dimensions d'une forme placée (même calcul qu'ObjectColliders)."""
+    M = trs_numerics(sh["transform"]) @ trs_numerics(inst["transform"])
+    o = M[3, :3]
+    e = [M[k, :3] for k in range(3)]
+    n = [np.linalg.norm(v) for v in e]
+    d = sh["dimensions"]
+    if sh["kind"] == "box":
+        L = np.array([d["width"] * n[0], d["height"] * n[1], d["length"] * n[2]])
+    else:
+        r = d["radius"] * (n[0] + n[2]) / 2
+        L = np.array([2 * r, d["height"] * n[1], 2 * r])
+    return o, np.column_stack([v / k for v, k in zip(e, n)]), L
+
+
+def volumes_retenus(stage, obst):
+    ids = {i["id"] for i in stage["objects"]["instances"]}
+    paroi = {g: t["bodies"][0]["shapes"][0]["acr_wall"] for g, t in stage["objects"]["templates"].items()}
+    vol = {}
+    for i in stage["objects"]["instances"]:
+        sh = stage["objects"]["templates"][i["template"]]["bodies"][0]["shapes"][0]
+        o, A, L = forme_monde(sh, i)
+        vol.setdefault(paroi[i["template"]], []).append(volume(sh["kind"], o, A, L))
+    for w in stage["objects"]["collision"]["meshes"]:
+        w["primitives"] = sum(1 for i in stage["objects"]["instances"] if paroi[i["template"]] == w["gltf_material"])
+    out = {k: concat(v) for k, v in vol.items()}
+    stage["objects"]["collision"]["triangles"] = int(sum(len(t) for _, t in out.values()))
+    assert len(ids) == len(stage["objects"]["instances"])
+    return out
+
+
 # --- stage.json --------------------------------------------------------------------------
-def construire(ch, ref, prims, deck):
+def construire(ch, ref, prims, deck, obst, rap_sol):
     pk = ch["pk"]
     A, G, D = vers_ir(ch["A"], ref), vers_ir(ch["G"], ref), vers_ir(ch["D"], ref)
     dist = np.concatenate([[0.0], np.cumsum(np.linalg.norm(np.diff(A, axis=0), axis=1))])   # 3D, au mètre
@@ -268,7 +633,7 @@ def construire(ch, ref, prims, deck):
     i_a, i_b = int(np.searchsorted(pk, pk[0] + 5)), int(np.searchsorted(pk, pk[-1] - 5))
     garde = {i for i in range(i_a, i_b + 1) if abs(pk[i] / PAS_PORTES - round(pk[i] / PAS_PORTES)) < 1e-6}
     garde |= {i_a, i_b, i_dep, i_arr, i_stop} | {v[0] for v in spl.values()}
-    idx = np.array(sorted(garde))
+    idx = portes_adaptees(sorted(garde), [A, G, D], dist)
     g_of_row = {int(i): k for k, i in enumerate(idx)}
     cen, gl, gr, gdist = A[idx], G[idx], D[idx], dist[idx]
 
@@ -353,7 +718,8 @@ def construire(ch, ref, prims, deck):
         },
         "collision": {
             "file": "collision.glb",
-            "source": "data/processed/chaussee_precise.csv (ruban) + modele/terrain.glb (MNT LiDAR HD 0,5 m)",
+            "source": "data/processed/chaussee_precise.csv (ruban) + modele/terrain.glb (MNT LiDAR HD 0,5 m)"
+                      + (" + modele/annexes_collision.glb (carrefours)" if rap_sol["annexes"]["fichier"] else ""),
             "corridor_m": float(M08.CORRIDOR), "triangles": int(sum(ntri.values())),
             "bounds": {"min": r3(allp.min(0)), "max": r3(allp.max(0))},
             "meshes": [{"mesh": "collision", "gltf_material": c, "dr2_surface": c,
@@ -363,7 +729,7 @@ def construire(ch, ref, prims, deck):
         },
         "surfaces": [{"code": c, "acr_physical_material": CODES[c][0], "triangles": ntri[c], "dr2": None,
                       "description": CODES[c][1]} for c in prims],
-        "objects": None,
+        "objects": objets_ir(obst),
         "render": [],
         "validation": {},                     # rempli par la relecture (controle)
         "sources": {
@@ -371,6 +737,8 @@ def construire(ch, ref, prims, deck):
             "terrain": "modele/terrain.glb (MNT LiDAR HD IGN 0,5 m)",
             "points_officiels": "data/processed/points_officiels_recales.csv",
             "ouvrages": "data/processed/ouvrages_es.csv",
+            "annexes": "data/processed/annexes_revetues.geojson + modele/annexes_collision.glb (étape 12)",
+            "obstacles": "modele/ouvrages_collision.glb (étape 11), modele/balisage_collision.glb (étape 12)",
         },
         "export": {
             "generateur": "scripts/09_export_stage_ir.py",
@@ -379,8 +747,10 @@ def construire(ch, ref, prims, deck):
                                            "ecart_au_point_officiel_m": round(spl[nom][1], 1),
                                            "sur_un_pont": spl[nom][0] in deck_rows} for nom in SPLITS},
             "point_stop_pk_m": round(float(pk[i_stop]), 1),
-            "manquant": ["objects (aucun objet ni obstacle : arbres, murets, parapets)",
-                         "render (pas de maillage de rendu au format DR2 ; modele/terrain.glb n'en suit pas les attributs)",
+            "sol": rap_sol["annexes"],
+            "obstacles": obst[3],
+            "manquant": ["objects : ni arbres, ni rochers, ni panneaux (seuls parapets, murs et balisage)",
+                         "objects.render, render/objects.glb (pas de maillage de rendu au format DR2 ; modele/terrain.glb n'en suit pas les attributs)",
                          "ground_bake (pas de dalles DDS BC1)", "textures (pas de DDS)",
                          "pacenotes.raw (pas de données brutes DR2)", "validation.route_map_fit (pas de carte de menu DR2)",
                          "respawn.resetlines", "collision.flags"],
@@ -415,6 +785,7 @@ class Sol:
 
     def __init__(self, prims):
         self.V = np.vstack([p[t] for p, t in prims.values()])          # (T, 3, 3)
+        self.codes = np.concatenate([[c] * len(t) for c, (_, t) in prims.items()])
         lo = np.floor(self.V[:, :, [0, 2]].min(1) / self.C).astype(np.int64)
         hi = np.floor(self.V[:, :, [0, 2]].max(1) / self.C).astype(np.int64)
         keys, ids = [], []
@@ -428,11 +799,17 @@ class Sol:
         self.keys, self.ids = keys[o], ids[o]
 
     def h(self, x, z):
+        return self.top(x, z)[0]
+
+    def code(self, x, z):
+        return self.top(x, z)[1]
+
+    def top(self, x, z):
         k = int(math.floor(x / self.C)) * 1_000_003 + int(math.floor(z / self.C))
         a, b = np.searchsorted(self.keys, [k, k + 1])
         T = self.V[self.ids[a:b]]
         if not len(T):
-            return None
+            return None, None
         p0, p1, p2 = T[:, 0], T[:, 1], T[:, 2]
         d = (p1[:, 2] - p2[:, 2]) * (p0[:, 0] - p2[:, 0]) + (p2[:, 0] - p1[:, 0]) * (p0[:, 2] - p2[:, 2])
         ok = np.abs(d) > 1e-12
@@ -443,8 +820,10 @@ class Sol:
         e = -1e-9
         hit = ok & (w0 >= e) & (w1 >= e) & (w2 >= e)
         if not hit.any():
-            return None
-        return float((w0 * p0[:, 1] + w1 * p1[:, 1] + w2 * p2[:, 1])[hit].max())
+            return None, None
+        y = np.where(hit, w0 * p0[:, 1] + w1 * p1[:, 1] + w2 * p2[:, 1], -np.inf)
+        i = int(np.argmax(y))
+        return float(y[i]), str(self.codes[self.ids[a:b]][i])
 
 
 def controle(dossier, deck_pk):
@@ -463,7 +842,7 @@ def controle(dossier, deck_pk):
              "surfaces": list, "render": list, "validation": dict, "sources": dict}
     for k, t in types.items():
         need(k in st and isinstance(st[k], t), f"clé {k} absente ou de type inattendu")
-    need("objects" in st and st["objects"] is None, "objects doit être null")
+    need("objects" in st and (st["objects"] is None or isinstance(st["objects"], dict)), "objects : objet ou null")
     need(len(st["gates"]) == len(st["centreline"]), "une porte par point d'axe")
     for g in st["gates"]:
         need(set(g) >= {"id", "distance", "crossing", "left", "right", "width"}, "porte incomplète")
@@ -570,6 +949,15 @@ def controle(dossier, deck_pk):
         return B + 5 * u
     miss_o, _ = ecarts(np.vstack([dehors(L), dehors(R)]))
     r["sol_5m_au_dela_des_bords"] = {"points": 2 * len(cen), "sans_sol": miss_o}
+
+    def juste_dehors(B, k=0.3):
+        u = (B - cen)
+        u[:, 1] = 0
+        u /= np.maximum(np.linalg.norm(u, axis=1, keepdims=True), 1e-9)
+        return B + k * u
+    miss_j, _ = ecarts(np.vstack([juste_dehors(L), juste_dehors(R)]))
+    r["sol_30cm_au_dela_des_bords"] = {"points": 2 * len(cen), "sans_sol": miss_j}
+    need(miss_o == 0 and miss_j == 0, "trou dans le sol au bord de la chaussée")
     # orientation des triangles
     up = tot = 0
     for p, t in prims.values():
@@ -580,21 +968,201 @@ def controle(dossier, deck_pk):
                       "ccw_vu_du_dessus": round(up / tot, 4),
                       "triangles_annonces_dans_stage_json": st["collision"]["triangles"]}
     need(tot == st["collision"]["triangles"], "nombre de triangles")
+    r["obstacles"] = controle_obstacles(dossier, st, sol, need) if st["objects"] else None
+    r["annexes"] = controle_annexes(st, sol, prims, need)
     r["erreurs"] = err
     return r, {"ground_height_at_gates": {"checked": len(cen), "missing": miss, "max_abs_dy_m": round(float(dy.max()), 3),
                                           "mean_abs_dy_m": round(float(dy.mean()), 3)},
                "collision_ccw_from_above": round(up / tot, 4), "route_map_fit": None, "object_shapes_vs_render": None}
 
 
+class Couloir:
+    """Le corridor de leur constructeur (Respawn.cs, RoadCorridor.Query) : distance au segment d'axe entre deux
+    portes moins la demi-largeur interpolée du côté du point ; négatif = sur la chaussée."""
+
+    def __init__(self, st):
+        self.c = np.array(st["centreline"])[:, [0, 2]]
+        self.z = np.array(st["centreline"])[:, 1]
+        L = np.array([g["left"] for g in st["gates"]])[:, [0, 2]]
+        R = np.array([g["right"] for g in st["gates"]])[:, [0, 2]]
+        self.lw, self.rw = np.linalg.norm(L - self.c, axis=1), np.linalg.norm(R - self.c, axis=1)
+        e = self.c[1:] - self.c[:-1]
+        cl = e[:, 0] * (L[:-1, 1] - self.c[:-1, 1]) - e[:, 1] * (L[:-1, 0] - self.c[:-1, 0])
+        self.sg = np.sign(cl)
+        self.tree = cKDTree((self.c[1:] + self.c[:-1]) / 2)
+
+    def clearance(self, x, z):
+        ids = np.array(self.tree.query_ball_point([x, z], 40.0), dtype=int)
+        if not len(ids):
+            return np.inf, 0.0
+        a, b = self.c[ids], self.c[ids + 1]
+        e = b - a
+        l2 = (e ** 2).sum(1)
+        u = np.clip(((x - a[:, 0]) * e[:, 0] + (z - a[:, 1]) * e[:, 1]) / np.maximum(l2, 1e-9), 0, 1)
+        p = a + u[:, None] * e
+        gauche = np.sign(e[:, 0] * (z - p[:, 1]) - e[:, 1] * (x - p[:, 0])) == self.sg[ids]
+        hw = np.where(gauche, self.lw[ids] + u * (self.lw[ids + 1] - self.lw[ids]),
+                      self.rw[ids] + u * (self.rw[ids + 1] - self.rw[ids]))
+        d = np.hypot(x - p[:, 0], z - p[:, 1]) - hw
+        k = int(np.argmin(d))
+        return float(d[k]), float(self.z[ids[k]] + u[k] * (self.z[ids[k] + 1] - self.z[ids[k]]))
+
+
+def trs_numerics(t):
+    """Matrice 4x4 (convention System.Numerics, vecteurs lignes) comme ObjectColliders.Trs : S * R(q) * T."""
+    if t is None:
+        return np.eye(4)
+    if t.get("matrix"):
+        return np.array(t["matrix"], float).reshape(4, 4)
+    x, y, z, w = (np.array(t["rotation"], float) / np.linalg.norm(t["rotation"])) if t.get("rotation") else (0, 0, 0, 1)
+    Rm = np.array([[1 - 2 * (y * y + z * z), 2 * (x * y + z * w), 2 * (x * z - y * w)],
+                   [2 * (x * y - z * w), 1 - 2 * (z * z + x * x), 2 * (y * z + x * w)],
+                   [2 * (x * z + y * w), 2 * (y * z - x * w), 1 - 2 * (y * y + x * x)]])
+    M = np.eye(4)
+    M[:3, :3] = np.diag(t["scale"] if t.get("scale") else [1, 1, 1]) @ Rm
+    M[3, :3] = t["position"] if t.get("position") else [0, 0, 0]
+    return M
+
+
+def controle_obstacles(dossier, st, sol, need):
+    """Relit `objects` comme ObjectColliders.Build : gabarits, formes, paroi, statique ; reconstruit chaque forme
+    dans le monde, la compare aux volumes source, et vérifie qu'aucune n'entre de plus de 0,3 m dans la
+    chaussée à hauteur de voiture (leur constructeur la supprimerait)."""
+    ob = st["objects"]
+    for k in ("templates", "instances", "collision"):
+        need(k in ob, f"objects.{k} absent")
+    murs = set(re.findall(r'"(PM_Wall\w+)"', CATALOGUE))
+    formes, parois, hors_cat = {}, {}, set()
+    couloir = Couloir(st)
+    intrus, max_pen, coins = 0, 0.0, []
+    for inst in ob["instances"]:
+        need(isinstance(inst["id"], str) and inst["template"] in ob["templates"], "instance sans gabarit")
+        for body in ob["templates"][inst["template"]]["bodies"]:
+            need(body.get("static") is True, "corps non statique (ignoré par leur constructeur)")
+            for sh in body["shapes"]:
+                need(sh["kind"] in ("box", "cylinder") and sh.get("acr_wall", "none") != "none", "forme ou paroi")
+                need(all(isinstance(v, float) for v in sh["dimensions"].values()), "dimensions non réelles")
+                hors_cat |= {sh["acr_wall"]} - murs
+                o, A, L = forme_monde(sh, inst)
+                formes[sh["kind"]] = formes.get(sh["kind"], 0) + 1
+                parois[sh["acr_wall"]] = parois.get(sh["acr_wall"], 0) + 1
+                grille = np.array([[i, j, k] for i in (-1, 0, 1) for j in (-1, 0, 1) for k in (-1, 0, 1)], float)
+                pts = o + (grille * L / 2) @ A.T
+                coins.append((o, A, L, pts))
+                pen = 0.0
+                for q in pts:                                    # règle de ObjectColliders / RoadProbe.Depth
+                    c, zc = couloir.clearance(q[0], q[2])
+                    if c >= 0 or not (zc - 1.0 < q[1] < zc + 2.5) or sol.code(q[0], q[2]) != "TSD+":
+                        continue
+                    pen = max(pen, -c)
+                max_pen = max(max_pen, pen)
+                intrus += pen > 0.3
+    need(intrus == 0, f"{intrus} obstacles entrent de plus de 0,3 m dans la chaussée")
+    need(not hors_cat, f"parois absentes du catalogue du jeu : {sorted(hors_cat)}")
+    # forme reconstruite contre volume écrit (objects_collision.glb) : même enveloppe à 1 cm près
+    gl, vol = lire_glb(dossier / "objects_collision.glb")
+    P = np.vstack([p for p, _ in vol.values()])
+    C = np.vstack([c[3] for c in coins])
+    lo_c, hi_c, lo_v, hi_v = C.min(0), C.max(0), P.min(0), P.max(0)
+    need(np.allclose(lo_c, lo_v, atol=0.01) and np.allclose(hi_c, hi_v, atol=0.01), "formes et objects_collision.glb diffèrent")
+    # contre les volumes source du modèle : chaque sommet source dans au moins une forme reconstruite (+2 cm)
+    ecart_src = None
+    try:
+        ref = json.loads((MOD / "repere.json").read_text(encoding="utf-8"))
+        src = []
+        for nom_f in SOURCES_OBSTACLES:
+            if (MOD / nom_f).exists():
+                src += [modele_vers_ir(p, ref) for _, mat, p, _ in lire_modele(MOD / nom_f) if mat in OBSTACLES
+                        and OBSTACLES[mat][1] == "box"]
+        if src:
+            S = np.vstack(src)
+            tree = cKDTree(np.array([c[0] for c in coins]))
+            ret = st["export"]["obstacles"].get("retires_sur_la_chaussee", [])
+            pire, hors = 0.0, 0
+            for q in S:
+                best = np.inf
+                for i in tree.query(q, k=min(8, len(coins)))[1]:
+                    o, A, L, _ = coins[i]
+                    best = min(best, float((np.abs(A.T @ (q - o)) - L / 2).max()))
+                if best > 0.02 and any(np.linalg.norm(q - np.array(x["centre"])) <= x["demi_diagonale_m"] + 0.02 for x in ret):
+                    continue                                     # sommet d'un pavé retiré (listé dans stage.json)
+                hors += best > 0.02
+                pire = max(pire, best)
+            ecart_src = round(float(pire), 3)
+            need(hors == 0, f"{hors} sommets source hors des pavés exportés (jusqu'à {pire:.3f} m)")
+    except FileNotFoundError:
+        pass
+    return {"instances": len(ob["instances"]), "gabarits": len(ob["templates"]), "formes": formes, "parois": parois,
+            "parois_absentes_du_catalogue": sorted(hors_cat),
+            "penetration_max_dans_la_chaussee_m": round(max_pen, 3), "intrusions_plus_de_30_cm": intrus,
+            "sommets_source_hors_paves_max_m": ecart_src,
+            "retires_sur_la_chaussee": len(st["export"]["obstacles"].get("retires_sur_la_chaussee", [])),
+            "objects_collision_triangles": int(sum(len(t) for _, t in vol.values()))}
+
+
+def controle_annexes(st, sol, prims, need):
+    """Sol des carrefours : sous chaque surface annexe, le sol le plus haut est l'annexe (TSD+ ou DBK+)."""
+    if "annexes" not in st["collision"]["source"]:
+        return None
+    ref = json.loads((MOD / "repere.json").read_text(encoding="utf-8"))
+    gj = json.loads((OUT / "annexes_revetues.geojson").read_text(encoding="utf-8"))
+    n = trous = dessus = 0
+    bosse = 0.0
+    codes = {}
+    sans_terrain = Sol({c: v for c, v in prims.items() if c != "GRS+"})
+    terrain = Sol({"GRS+": prims["GRS+"]})
+    rng = np.random.default_rng(3)
+    for f in gj["features"]:
+        if f["geometry"]["type"] != "Polygon":
+            continue
+        g = shapely.transform(geo_shape(f["geometry"]), lambda c: np.column_stack(TO_L93.transform(c[:, 0], c[:, 1])))
+        g = g.buffer(-0.3)
+        if g.is_empty:
+            continue
+        x0, y0, x1, y1 = g.bounds
+        for _ in range(200):
+            x, y = rng.uniform(x0, x1), rng.uniform(y0, y1)
+            if not g.contains(shapely.Point(x, y)):
+                continue
+            X, Z = x - ref["x0"], ref["y0"] - y
+            c = sol.code(X, Z)
+            n += 1
+            if c is None:
+                trous += 1
+            else:
+                codes[c] = codes.get(c, 0) + 1
+                ha, ht = sans_terrain.h(X, Z), terrain.h(X, Z)
+                if c == "GRS+" and ha is not None:
+                    bosse = max(bosse, ht - ha)
+                dessus += c == "GRS+" and (ha is None or ht - ha > 0.02)
+    need(trous == 0, f"{trous} trous dans le sol des carrefours")
+    # une bosse de quelques cm n'est pas dangereuse (un trou l'est) : avertissement seulement en dessous de 10 cm
+    need(bosse <= 0.10, f"terrain naturel {bosse:.2f} m au-dessus d'une surface annexe")
+    return {"points_testes": n, "sans_sol": trous, "code_du_sol_le_plus_haut": codes,
+            "terrain_plus_de_2_cm_au_dessus": dessus, "terrain_au_dessus_max_m": round(bosse, 3)}
+
+
 # --- main ----------------------------------------------------------------------------------
 def main():
     ch = charger()
     ref = M08.repere(ch)
+    rj = json.loads((MOD / "repere.json").read_text(encoding="utf-8"))
+    if any(abs(rj[k] - ref[k]) > 1e-3 for k in ("x0", "y0", "z0")):
+        raise SystemExit("modele/repere.json ne correspond plus à chaussee_precise.csv : relancer 08 (puis 11, 12)")
     deck = M08.tablier(ch, M08.MNT())
     DOSSIER.mkdir(parents=True, exist_ok=True)
-    prims = sol_physique(ch, ref)
+    rap_sol = {}
+    prims = sol_physique(ch, ref, rap_sol)
     ecrire_glb(DOSSIER / "collision.glb", prims)
-    stage, vir = construire(ch, ref, prims, deck)
+    obst = obstacles(ref)
+    if obst[2]:
+        ecrire_glb(DOSSIER / "objects_collision.glb", obst[2], nom="objects_collision")
+    else:
+        (DOSSIER / "objects_collision.glb").unlink(missing_ok=True)
+    stage, vir = construire(ch, ref, prims, deck, obst, rap_sol)
+    if stage["objects"]:
+        retirer_sur_chaussee(stage, prims)
+        ecrire_glb(DOSSIER / "objects_collision.glb", volumes_retenus(stage, obst), nom="objects_collision")
     path = DOSSIER / "stage.json"
     path.write_text(json.dumps(stage, ensure_ascii=False, indent=1), encoding="utf-8")
     rapport, validation = controle(DOSSIER, np.round(ch["pk"][deck]))

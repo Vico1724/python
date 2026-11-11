@@ -201,7 +201,7 @@
    "remarque": "bord droit (nord) : limite visible de l'asphalte. Bord gauche : bordure de l'îlot du carrefour puis limite visible de l'asphalte jusqu'à x = 917057 ; au-delà (PK -80 à -58, début du parking), bord gauche reconstruit par symétrie par rapport à la ligne médiane visible (demi-largeur 3,4 m), la limite route / parking n'étant pas lisible. PK -58 à +40 : route sous les arbres sur l'ortho, laissée au calcul automatique (non tranché)."
   },
   {
-   "nom": "carrefour du Lion d'Or : branche de gauche de la patte d'oie, à gauche de l'îlot",
+   "nom": "carrefour du Lion d'Or : patte d'oie, branche de gauche ; bord droit fermant la branche de droite",
    "pk_debut": 3596,
    "pk_fin": 3702,
    "bord_gauche": [
@@ -384,40 +384,72 @@
      6243546.5
     ],
     [
-     916752.8,
-     6243551.0
+     916754.2,
+     6243549.5
     ],
     [
-     916748.6,
-     6243554.9
+     916752.3,
+     6243552.0
     ],
     [
-     916744.8,
-     6243557.6
+     916750.2,
+     6243555.0
     ],
     [
-     916740.5,
-     6243560.0
+     916749.0,
+     6243558.3
     ],
     [
-     916735.5,
-     6243562.0
+     916735.3,
+     6243569.6
     ],
     [
-     916729.5,
-     6243563.6
+     916732.5,
+     6243568.8
     ],
     [
-     916723.0,
+     916730.0,
+     6243567.4
+    ],
+    [
+     916727.5,
+     6243566.2
+    ],
+    [
+     916725.0,
+     6243565.2
+    ],
+    [
+     916722.5,
      6243564.3
     ],
     [
-     916707.71,
-     6243567.13
+     916720.0,
+     6243563.9
     ],
     [
-     916703.58,
-     6243570.0
+     916717.5,
+     6243564.0
+    ],
+    [
+     916715.0,
+     6243564.6
+    ],
+    [
+     916712.5,
+     6243565.8
+    ],
+    [
+     916710.0,
+     6243567.2
+    ],
+    [
+     916707.5,
+     6243568.4
+    ],
+    [
+     916705.0,
+     6243569.4
     ],
     [
      916702.92,
@@ -432,8 +464,9 @@
      6243576.14
     ]
    ],
-   "source": "numérisation manuelle sur le relevé laser IGN (carte des pentes à 0,5 m, bosses du sol nu, hauteurs au-dessus du sol) ; forme du carrefour établie d'après les vues aérienne et Street View (octobre 2025) fournies par le directeur le 11/11/2026",
-   "remarque": "La D3D débouche sur une patte d'oie : un îlot triangulaire (terre surélevée, panneaux directionnels, repéré sur le relevé laser vers x = 916745 à 916749,5, y = 6243556 à 6243561,5) sépare la branche de gauche, vers la D1 direction Roquefort, de la branche de droite, vers la D1 direction nord. La spéciale prend la branche de gauche. Bord gauche (intérieur) : sur demande du directeur (11/11/2026), il suit la limite de la plate-forme plane du relevé laser, c'est-à-dire le pied du talus, relevée automatiquement tous les mètres (première pente de plus de 11° rencontrée à gauche de l'axe) puis lissée ; la chaussée s'élargit donc à l'intérieur du virage. Bord droit (extérieur) : bord droit de la D3D, puis une ligne de fermeture régulière qui barre la branche de droite, frôle l'angle sud-ouest de l'îlot et barre l'embouchure de la D1 nord jusqu'au bord nord de la D1 ouest ; les branches fermées sont modélisées à part, comme surfaces revêtues annexes. Précision estimée : 1 m à gauche, 1 à 2 m à droite."
+   "source": "bord gauche : limite de la plate-forme plane du relevé laser (pied du talus), inchangé. Bord droit (12/11/2026) : nuage de points LiDAR HD classé IGN (dalle 0916_6244, ~50 pts/m²), coupes du sol, intensité (marquage) et points non classés / pont ; vues aérienne, plan et Street View d'octobre 2025 fournies par le directeur ; vidéo embarquée n° 2 (t ≈ 182-186 s)",
+   "remarque": "La D3D débouche sur une patte d'oie au sommet de l'épingle de la D1 ; une zone hachurée peinte (≈ 14 x 2,7 m, de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0) sépare la branche de gauche (D1 vers l'ouest, empruntée) de la branche de droite (D1 vers le nord), qui longe à l'est un parapet de pierre (bout sud vers x = 916749 ; y = 6243558) puis passe sur un ponceau (x = 916736,5 à 916745 ; y = 6243573 à 6243579). Pas d'îlot : la bosse prise pour un îlot est ce parapet. Bord droit : bord est de l'enrobé de la D3D jusqu'au bout du parapet de pierre (bloc blanc et panneau bleu sur la vidéo), puis ligne de fermeture droite jusqu'au pied du grand pin à la pointe du terre-plein (tracé du grillage orange de la vidéo, à ±2 m), puis bord du terre-plein (rupture de pente du relevé laser) jusqu'au bord nord de la D1 ouest. La zone hachurée et l'entrée de la branche de droite devant la fermeture font partie de la chaussée. Précision : 0,5 m le long du parapet et du terre-plein, 2 m pour la ligne de fermeture (position du grillage estimée sur la vidéo).",
+   "lissage_axe_m": 8
   }
  ]
 }

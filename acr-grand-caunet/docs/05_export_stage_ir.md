@@ -1,56 +1,84 @@
 # Export vers le format d'échange d'ACR Extra Stages
 
-*10 novembre 2026. Document destiné au directeur de projet.*
+*10 novembre 2026, mis à jour le 11 novembre. Document destiné au directeur de projet.*
 
 ## 1. Ce que fait l'exporteur
 
-ACR Extra Stages travaille en deux temps : un programme lit une spéciale de DiRT Rally 2.0 et l'écrit dans un dossier d'échange (« Stage IR ») ; un second, le constructeur, lit ce dossier et fabrique les fichiers que le jeu charge. Le script `scripts/09_export_stage_ir.py` remplace le premier temps : il écrit ce dossier à partir de nos mesures, en 3 secondes, après l'étape 8.
+ACR Extra Stages travaille en deux temps. Un premier programme lit une spéciale de DiRT Rally 2.0 et l'écrit dans un dossier d'échange, le « Stage IR ». Un second programme, le constructeur, lit ce dossier et fabrique les fichiers que le jeu charge.
+
+Le script `scripts/09_export_stage_ir.py` remplace le premier temps : il écrit ce dossier à partir de nos mesures, en 7 secondes, après les étapes 8, 11 et 12. Les fichiers des étapes 11 et 12 sont facultatifs.
 
 ## 2. Ce qu'il produit
 
-Le dossier `export/stage_ir/grand_caunet/` contient deux fichiers.
+Le dossier `export/stage_ir/grand_caunet/` contient trois fichiers.
 
-- **`stage.json`** décrit la spéciale : nom, longueur, tracé de l'axe, une « porte » tous les 10 m (le point d'axe et les deux bords de la chaussée, 760 portes), le départ, deux temps intermédiaires, l'arrivée, la zone d'arrêt au point stop, et les notes du copilote.
-- **`collision.glb`** est le **sol physique**, c'est-à-dire la surface invisible sur laquelle la voiture roule. Il comprend trois matières : la chaussée en enrobé, l'accotement en terre sur 3 m, et le terrain du couloir (130 m de part et d'autre de la route), soit 758 000 triangles. Ces matières sont des codes que leur table des surfaces associe déjà à l'asphalte lisse, au gravier dur et à l'herbe du jeu.
+- **`stage.json`** décrit la spéciale :
+  - le nom, la longueur et le tracé de l'axe ;
+  - 1 096 « portes », c'est-à-dire le point d'axe et les deux bords de la chaussée, tous les 10 m au plus. Il y en a davantage là où un bord tourne ou se resserre (ponts, carrefour), parce que le constructeur relie les portes par des segments droits ;
+  - le départ, deux temps intermédiaires et l'arrivée ;
+  - la zone d'arrêt au point stop ;
+  - les obstacles et les notes du copilote.
+- **`collision.glb`** est le **sol physique**, la surface invisible sur laquelle la voiture roule (758 000 triangles). Il comprend :
+  - la chaussée et l'enrobé annexe du carrefour du Lion d'Or, classés en asphalte lisse ;
+  - l'accotement en terre sur 3 m et le terre-plein du carrefour, classés en gravier dur ;
+  - le terrain du couloir, sur 130 m de part et d'autre de la route, classé en herbe.
 
-Repères chiffrés : longueur chronométrée 6 742 m (mesurée en pente le long de l'axe ; 6 736 m à plat, 6 702 m sur le road-book officiel) ; temps intermédiaires aux points officiels INTER2 (PK 2 677) et INTER6 (PK 5 043), qui découpent la spéciale en trois secteurs comme le jeu en affiche trois ; aucun des deux n'est sur un pont.
+  Sous les surfaces du carrefour, le terrain naturel est retiré.
+- **`objects_collision.glb`** contient les **obstacles**, en volumes simples : 522 morceaux, issus des parapets des ponts et des murets (pierre ou béton), des parapets et des piquets du Lion d'Or. La rubalise n'est pas exportée : un ruban ne retient pas une voiture, et les obstacles du jeu ne se cassent pas, si bien qu'un ruban solide ferait un mur invisible.
 
-**Les notes du copilote sont un brouillon.** Elles sont calculées d'après la courbure de la route : 56 virages annoncés, avec le sens, la sévérité de 1 (lent) à 6 (rapide), deux épingles et les distances entre virages. Il faudra les relire sur une vidéo embarquée.
+Repères chiffrés :
+- La longueur chronométrée est de 6 736 m, mesurée en pente le long de l'axe, presque autant à plat, et de 6 702 m sur le road-book officiel.
+- Les temps intermédiaires sont placés aux points officiels INTER2 (PK 2 677) et INTER6 (PK 5 043).
 
-**Ce qui manque**, laissé vide comme le format le permet : les objets (arbres, murets, parapets), les maillages d'affichage et leurs textures, les images des menus.
+**Les notes du copilote sont un brouillon** calculé d'après la courbure de la route : 55 virages. Il faudra les relire sur une vidéo embarquée.
+
+**Ce qui manque**, laissé vide comme le format le permet : les arbres et autres objets du décor, les maillages d'affichage et leurs textures, les images des menus.
 
 ## 3. Contrôles
 
-Un contrôle relit les fichiers écrits, indépendamment du programme qui les écrit : sol physique présent et à la bonne hauteur sous les 760 portes, aucun trou le long de l'axe (7 977 points) ni à 5 m au-delà des bords, bord droit toujours à droite dans le sens de marche, 56 virages qui tournent du côté annoncé.
+Deux contrôles indépendants relisent les fichiers écrits, par des calculs différents, et donnent les mêmes résultats :
 
-Le constructeur lui-même n'a pas été lancé : il exige Windows et le jeu installé.
+- le sol est présent et à la bonne hauteur sous les 1 096 portes ;
+- il n'y a aucun trou le long de l'axe (8 274 points testés), ni juste au-delà des bords, ni sous les surfaces du carrefour ;
+- le bord droit est toujours à droite dans le sens de marche ;
+- les virages tournent du côté annoncé ;
+- aucun obstacle n'empiète sur la chaussée ;
+- les volumes exportés recouvrent les parapets d'origine au millimètre près.
+
+**Un point est à reprendre :** au Lion d'Or, en cours de reprise par ailleurs, 5 morceaux du parapet de pierre du carrefour (PK 3 637 à 3 640) se trouvent sur la nouvelle chaussée. Le constructeur les aurait supprimés. L'exporteur les retire et les liste dans `stage.json`. Il faudra relancer l'export quand ce carrefour sera fini.
 
 ## 4. Peut-on construire notre spéciale avec ACR Extra Stages tel quel ?
 
-**Non, pas tel quel. Mais le cœur fonctionne.** Leur constructeur sait déjà poser notre route et sa physique dans le jeu. Il le fait en recopiant une spéciale galloise du jeu (Hafren South) et en y remplaçant le sol, le tracé, le chronométrage et les notes. Trois obstacles demandent cependant des retouches :
+**Non, mais avec trois petites retouches, oui pour un essai.** Le constructeur recopie une spéciale galloise du jeu (Hafren South, variante 1/2) et en remplace le sol, le tracé, le chronométrage, les notes et les obstacles.
 
-1. Notre spéciale est un peu trop large pour la zone galloise d'origine (il manque environ 45 m de marge). Leur option d'agrandissement existe, mais leur script simple ne l'active pas, et son effet en jeu n'est pas encore vérifié.
-2. Leur chaîne complète (la spéciale ajoutée aux menus sans rien remplacer) exige des fichiers propres à DiRT Rally : décor lointain, objets, textures au format DirectX. Nous ne les avons pas encore.
-3. L'affichage reste rudimentaire. Le sol est dessiné avec des matériaux empruntés à la spéciale galloise (gravier gallois sur notre asphalte), ou avec un matériau « simple » du jeu portant une seule image. Notre photo aérienne pourrait y être plaquée par dalles, mais il faut d'abord la convertir au format d'image du jeu, ce qui n'est pas fait.
+La voie retenue pour l'essai est ce **remplacement de la variante galloise**. Leur « ajout aux menus » exigerait des fichiers propres à DiRT Rally (décor lointain, textures dans un format d'image que nous ne savons pas encore produire).
 
-## 5. Ce qu'il faudra faire sur le PC Windows
+Le remplacement demande trois choses :
 
-**Documenté par le projet** (`CONTRIBUTING.md`) :
+- **Agrandir la zone physique de l'hôte.** Notre route la dépasse d'environ 45 m. L'option existe dans leur constructeur, mais leur script simple ne l'active pas : notre kit l'appelle directement.
+- **Ne pas livrer de table de menus.** C'est une retouche de leur code : sans elle, notre mod et BioBio se masqueraient. Le menu affichera donc encore 4,8 km.
+- **Accepter des obstacles sans maillage d'affichage.** C'est une deuxième retouche de leur code.
 
-1. Installer le kit .NET 10, Git, Rust (pour installer retoc), PowerShell 7.
-2. Installer retoc, l'outil qui lit et réécrit les archives du jeu. Au premier lancement, il télécharge lui-même la bibliothèque de compression Oodle.
-3. Produire le fichier de correspondance du jeu (`.usmap`) avec Dumper-7, Steam hors ligne.
-4. Lancer `mods\stage\build.ps1 -Verify`. Le résultat attendu est « ALL PASS », puis trois fichiers `zz_acrxs_…_P` à copier dans `Paks\~mods`.
-5. Dans le jeu : Pays de Galles, Hafren South, variante 1/2, en Free Practice hors ligne.
+La troisième retouche, qui accepte un identifiant de spéciale hors DiRT Rally, ne sert qu'à la voie d'ajout aux menus.
 
-**Ce que je suppose**, et qui reste à essayer :
+L'affichage reste rudimentaire : couleurs de contrôle, piquets de bord, obstacles en pavés unis.
 
-6. Copier notre dossier dans `work\ir\grand_caunet_rally_01_route_0`, puis lancer leur constructeur directement, avec l'option d'agrandissement (`--bounds 1`) et sans les objets. Leur script simple ne prévoit pas cette combinaison.
-7. Ce qu'on doit voir : la longueur de 6,74 km dans le menu, une route lisible avec des piquets de bord, le chronomètre qui démarre et s'arrête, la voiture arrêtée au point stop, des notes jouées. Le décor gallois restera visible autour.
+## 5. Sur le PC Windows
+
+Tout est dans **`pc/LISEZMOI.md`**, avec sept scripts numérotés. Dans l'ordre :
+
+1. contrôle de départ ;
+2. installation des logiciels, après confirmation ;
+3. récupération d'ACR Extra Stages à la version étudiée, avec nos retouches ;
+4. fichier de correspondance du jeu ;
+5. construction et contrôle hors jeu ;
+6. installation dans `Paks\~mods` ;
+7. désinstallation.
+
 
 ## 6. Risques
 
-- **Le projet est en version bêta.** Plusieurs étapes ne sont vérifiées qu'hors du jeu, notamment le monde agrandi et l'ajout aux menus sans remplacement.
-- **Leur méthode remplace la variante galloise.** Tant que le mod est installé, le sens inverse de Hafren South est inutilisable. Il ne peut pas cohabiter avec un autre mod qui remplace les mêmes tables, BioBio compris.
-- **Une mise à jour du jeu peut tout casser.** Il faut alors reconstruire avec un fichier de correspondance à jour.
-- **L'affichage réaliste** (photo aérienne, pins d'Alep du jeu, murets) n'existe dans aucun outil libre aujourd'hui. C'est le plus gros chantier restant, quelle que soit la voie choisie.
+- **Rien n'a été exécuté.** La compilation de leur code retouché n'a pas pu être vérifiée (refusée sur le serveur de travail), ni nos scripts relus par PowerShell. Une faute peut arrêter une étape : le journal dira laquelle.
+- **Le projet ACR Extra Stages est en version bêta.** L'agrandissement de la zone physique n'est vérifié qu'hors du jeu.
+- **Une mise à jour du jeu** oblige à refaire le fichier de correspondance et à reconstruire.
+- **L'affichage réaliste** (photo aérienne, pins d'Alep du jeu, murets) n'existe dans aucun outil libre aujourd'hui. C'est le plus gros chantier restant.

@@ -2,27 +2,27 @@
   "repere": {
     "determinant": 1.0,
     "y_axe_min_max_m": [
-      250.07,
+      250.05,
       398.64
     ]
   },
   "distances": {
     "croissantes": true,
-    "pas_min_m": 2.01,
-    "pas_median_m": 10.01,
+    "pas_min_m": 0.9,
+    "pas_median_m": 6.0,
     "pas_max_m": 10.05
   },
   "longueur_competitive": {
-    "length_m": 6737.64,
-    "distance_finish_moins_start": 6737.65,
-    "polyligne_portes_3d_m": 6728.12,
+    "length_m": 6736.01,
+    "distance_finish_moins_start": 6736.01,
+    "polyligne_portes_3d_m": 6733.69,
     "pk_arrivee_plan_m": 6735.8
   },
   "gauche_droite": {
-    "portes": 760,
-    "droite_du_cote_cross_f_Y": 760,
-    "gauche_du_cote_oppose": 760,
-    "demi_largeur_droite_min_m": 2.14,
+    "portes": 1096,
+    "droite_du_cote_cross_f_Y": 1096,
+    "gauche_du_cote_oppose": 1096,
+    "demi_largeur_droite_min_m": 2.13,
     "demi_largeur_gauche_min_m": 2.12,
     "width_coherente": true
   },
@@ -31,39 +31,73 @@
     "coherents": 55
   },
   "sol_sous_portes": {
-    "portes": 760,
+    "portes": 1096,
     "sans_sol": 0,
     "max_abs_dy_m": 0.0,
     "moyenne_abs_dy_m": 0.0,
     "hors_ponts": {
-      "portes": 747,
+      "portes": 1065,
       "max_abs_dy_m": 0.0
     }
   },
   "sol_le_long_de_l_axe_tous_les_m": {
-    "echantillons": 7968,
+    "echantillons": 8274,
     "sans_sol": 0,
     "max_abs_dy_a_la_corde_m": 0.101
   },
   "sol_aux_bords_95pct": {
-    "points": 1520,
+    "points": 2192,
     "sans_sol": 0,
-    "max_abs_dy_m": 0.127,
+    "max_abs_dy_m": 0.007,
     "p99_abs_dy_m": 0.0
   },
   "sol_5m_au_dela_des_bords": {
-    "points": 1520,
+    "points": 2192,
+    "sans_sol": 0
+  },
+  "sol_30cm_au_dela_des_bords": {
+    "points": 2192,
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 757488,
+    "triangles": 757814,
     "par_code": {
-      "TSD+": 30192,
-      "DBK+": 92124,
-      "GRS+": 635172
+      "TSD+": 30766,
+      "DBK+": 92902,
+      "GRS+": 634146
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 757488
+    "triangles_annonces_dans_stage_json": 757814
+  },
+  "obstacles": {
+    "instances": 522,
+    "gabarits": 3,
+    "formes": {
+      "box": 506,
+      "cylinder": 16
+    },
+    "parois": {
+      "PM_WallRock": 327,
+      "PM_WallConcrete": 179,
+      "PM_WallPlasticPole": 16
+    },
+    "parois_absentes_du_catalogue": [],
+    "penetration_max_dans_la_chaussee_m": 0.292,
+    "intrusions_plus_de_30_cm": 0,
+    "sommets_source_hors_paves_max_m": 0.001,
+    "retires_sur_la_chaussee": 5,
+    "objects_collision_triangles": 6520
+  },
+  "annexes": {
+    "points_testes": 234,
+    "sans_sol": 0,
+    "code_du_sol_le_plus_haut": {
+      "TSD+": 83,
+      "DBK+": 150,
+      "GRS+": 1
+    },
+    "terrain_plus_de_2_cm_au_dessus": 1,
+    "terrain_au_dessus_max_m": 0.089
   },
   "erreurs": [],
   "notes_brouillon": {
@@ -71,10 +105,10 @@
     "par_severite": {
       "5": 16,
       "4": 20,
-      "3": 10,
+      "3": 11,
       "hairpin": 2,
       "2": 2,
-      "1": 2,
+      "1": 1,
       "6": 3
     },
     "appels": 35,
@@ -82,7 +116,8 @@
     "avance_lecture_m": 80.0
   },
   "fichiers_mo": {
-    "collision.glb": 14.05,
-    "stage.json": 0.27
+    "collision.glb": 14.06,
+    "objects_collision.glb": 0.13,
+    "stage.json": 0.58
   }
 }

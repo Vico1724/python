@@ -40,13 +40,13 @@
     ],
     "texture_px_par_dalle": 2048,
     "terrain": {
-      "sommets": 372334,
-      "triangles": 727296,
+      "sommets": 372242,
+      "triangles": 727141,
       "dalles": 26,
-      "sommets_de_bord": 14754,
+      "sommets_de_bord": 14756,
       "recalage_bords_mnt_m": {
         "median_abs": 0.005,
-        "p95_abs": 0.032,
+        "p95_abs": 0.033,
         "max_abs": 2.51
       }
     },
@@ -59,7 +59,7 @@
         "nan": false,
         "bornes_min": [
           -3154.199951171875,
-          -148.6999969482422,
+          -149.0,
           -2629.39990234375
         ],
         "bornes_max": [
@@ -67,13 +67,13 @@
           0.30000001192092896,
           86.80000305175781
         ],
-        "triangles_normale_vers_le_haut_pct": 99.98
+        "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
         "taille_mo": 39.45,
         "maillages": 26,
-        "sommets": 375322,
-        "triangles": 727296,
+        "sommets": 375250,
+        "triangles": 727141,
         "nan": false,
         "bornes_min": [
           -3280.0,
@@ -87,9 +87,9 @@
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
-        "bords_testes": 14754,
-        "sommets_partages_pct": 99.925,
-        "ecart_vertical_max_m": 0.157,
+        "bords_testes": 14756,
+        "sommets_partages_pct": 99.986,
+        "ecart_vertical_max_m": 0.011,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -111,13 +111,13 @@
     ],
     "texture_px_par_dalle": 512,
     "terrain": {
-      "sommets": 104157,
-      "triangles": 192301,
+      "sommets": 104142,
+      "triangles": 192273,
       "dalles": 26,
-      "sommets_de_bord": 14754,
+      "sommets_de_bord": 14756,
       "recalage_bords_mnt_m": {
         "median_abs": 0.005,
-        "p95_abs": 0.032,
+        "p95_abs": 0.033,
         "max_abs": 2.51
       }
     },
@@ -130,7 +130,7 @@
         "nan": false,
         "bornes_min": [
           -3154.199951171875,
-          -148.6999969482422,
+          -149.0,
           -2629.39990234375
         ],
         "bornes_max": [
@@ -138,13 +138,13 @@
           0.30000001192092896,
           86.80000305175781
         ],
-        "triangles_normale_vers_le_haut_pct": 99.98
+        "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
         "taille_mo": 7.5,
         "maillages": 26,
-        "sommets": 105829,
-        "triangles": 192301,
+        "sommets": 105822,
+        "triangles": 192273,
         "nan": false,
         "bornes_min": [
           -3280.0,
@@ -158,9 +158,9 @@
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
-        "bords_testes": 14754,
-        "sommets_partages_pct": 99.912,
-        "ecart_vertical_max_m": 0.156,
+        "bords_testes": 14756,
+        "sommets_partages_pct": 99.98,
+        "ecart_vertical_max_m": 0.014,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -169,8 +169,8 @@
   "vues_rapprochees_pk": {
     "pont": [
       5522,
-      5586
+      5584
     ],
-    "virage": 3645
+    "virage": 4079
   }
 }
