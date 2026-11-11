@@ -1,0 +1,62 @@
+{
+  "note": "Parapets des ouvrages de l'ES, lus par scripts/11_route_ouvrages.py. Chaque entrée est rattachée au tablier détecté sur l'axe précis (logique de 08_modele_3d.py) dont le centre est le plus proche de pk_centre_m (à 40 m près). Relevé sur la vidéo embarquée n° 2 (2025, ES 1, régularité) image par image ; temps vidéo t en secondes, PK estimé par PK ≈ (t - 11) / 323 x 6736 à ±150 m près, l'appariement vidéo / ouvrage se fait par l'ordre de passage et la forme du virage. Hauteurs et épaisseurs estimées à l'œil (référence : hauteur du capot ≈ 0,8 m, largeur d'une voie ≈ 3 m), incertitude ±0,15 m sur la hauteur, ±0,1 m sur l'épaisseur. Hauteur comptée depuis le bord de chaussée.",
+  "types": {
+    "pierre_des_blancs": "maçonnerie de moellons calcaires gris, dés (potelets) de béton peints en blanc tous les 3 à 4 m et chaperon blanc",
+    "pierre": "maçonnerie de moellons, chaperon de pierre ou de béton gris, sans dés blancs nets",
+    "beton": "béton lisse banché, couleur gris clair",
+    "aucun": "pas de parapet vu de ce côté (talus rocheux ou terrain au niveau de la chaussée)"
+  },
+  "valeurs_par_defaut": {
+    "D3D": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "supposé"},
+    "D1": {"type": "beton", "hauteur_m": 0.7, "epaisseur_m": 0.3, "statut": "supposé"},
+    "pk_limite_D3D_D1_m": 3650,
+    "prolongement_par_defaut_m": 2.0
+  },
+  "ouvrages": [
+    {"pk_centre_m": 1484, "route": "D3D", "bdtopo_pk": "1475-1486", "temps_video_s": "83-86",
+     "gauche": {"type": "aucun", "statut": "vu sur la vidéo", "note": "talus rocheux taillé à gauche"},
+     "droite": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo",
+                "prolongement_avant_m": 20, "prolongement_apres_m": 20,
+                "note": "long parapet en courbe, bien plus long que le ponceau ; longueur réelle non mesurée (prolongements supposés)"}},
+    {"pk_centre_m": 1661, "route": "D3D", "bdtopo_pk": "1644-1673", "temps_video_s": "88-89",
+     "gauche": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"},
+     "droite": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo", "note": "parapet courbe qui suit la sortie de virage"}},
+    {"pk_centre_m": 1963, "route": "D3D", "bdtopo_pk": "1955-1966", "temps_video_s": "110-114",
+     "gauche": {"type": "aucun", "statut": "vu sur la vidéo", "note": "talus rocheux à gauche"},
+     "droite": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo",
+                "prolongement_avant_m": 15, "prolongement_apres_m": 10,
+                "note": "parapet long en courbe ; appariement avec ce ponceau probable mais pas certain (décalage vidéo de +5 s)"}},
+    {"pk_centre_m": 2602, "route": "D3D", "bdtopo_pk": "2599-2606", "temps_video_s": "134-136",
+     "gauche": {"type": "pierre", "hauteur_m": 0.6, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"},
+     "droite": {"type": "pierre", "hauteur_m": 0.6, "epaisseur_m": 0.45, "statut": "vu sur la vidéo", "note": "parapets courts et bas, chaperon clair"}},
+    {"pk_centre_m": 2777, "route": "D3D", "bdtopo_pk": "2767-2783", "temps_video_s": "141-143",
+     "gauche": {"type": "pierre_des_blancs", "hauteur_m": 0.7, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"},
+     "droite": {"type": "pierre_des_blancs", "hauteur_m": 0.7, "epaisseur_m": 0.45, "statut": "vu sur la vidéo", "note": "précédé à gauche de blocs de béton bas (non modélisés)"}},
+    {"pk_centre_m": 3229, "route": "D3D", "bdtopo_pk": "3212-3226", "temps_video_s": "164-166",
+     "gauche": {"type": "pierre", "hauteur_m": 0.7, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"},
+     "droite": {"type": "pierre", "hauteur_m": 0.7, "epaisseur_m": 0.45, "statut": "vu sur la vidéo", "note": "chaperon gris, pas de dés blancs visibles"}},
+    {"pk_centre_m": 3648, "route": "carrefour du Lion d'Or", "bdtopo_pk": "3624-3646", "temps_video_s": "183-185",
+     "gauche": {"type": "beton", "hauteur_m": 0.5, "epaisseur_m": 0.3, "statut": "vu sur la vidéo", "note": "muret de béton bas tagué, à gauche à l'entrée du carrefour"},
+     "droite": {"type": "beton", "hauteur_m": 0.5, "epaisseur_m": 0.3, "statut": "supposé", "note": "côté droit masqué par la rubalise et les barrières du carrefour"}},
+    {"pk_centre_m": 4074, "route": "D1", "bdtopo_pk": "4055-4071", "temps_video_s": "202-205",
+     "gauche": {"type": "pierre", "hauteur_m": 0.6, "epaisseur_m": 0.4, "statut": "vu sur la vidéo", "note": "maçonnerie à chaperon de béton, plus basse que le côté droit"},
+     "droite": {"type": "pierre", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"}},
+    {"pk_centre_m": 4360, "route": "D1", "bdtopo_pk": "4339-4357", "temps_video_s": "219-221",
+     "gauche": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"},
+     "droite": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"}},
+    {"pk_centre_m": 4463, "route": "D1", "bdtopo_pk": "4432-4460", "temps_video_s": "224-226",
+     "gauche": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"},
+     "droite": {"type": "pierre_des_blancs", "hauteur_m": 0.75, "epaisseur_m": 0.45, "statut": "vu sur la vidéo"}},
+    {"pk_centre_m": 5554, "route": "D1", "bdtopo_pk": "5512-5571", "temps_video_s": "277-281",
+     "gauche": {"type": "beton", "hauteur_m": 0.8, "epaisseur_m": 0.3, "statut": "vu sur la vidéo", "prolongement_avant_m": 2, "prolongement_apres_m": 8, "note": "béton lisse ; se prolonge un peu au-delà du tablier"},
+     "droite": {"type": "beton", "hauteur_m": 0.8, "epaisseur_m": 0.3, "statut": "vu sur la vidéo"}},
+    {"pk_centre_m": 6492, "route": "D1", "bdtopo_pk": "6479-6491", "temps_video_s": "322-324",
+     "gauche": {"type": "beton", "hauteur_m": 0.7, "epaisseur_m": 0.3, "statut": "vu sur la vidéo"},
+     "droite": {"type": "beton", "hauteur_m": 0.7, "epaisseur_m": 0.3, "statut": "vu sur la vidéo"}}
+  ],
+  "vus_mais_non_modelises": [
+    "PK ≈ 3440 (t ≈ 176 s) : petits parapets de pierre des deux côtés ; ouvrage BD TOPO 3443-3450 non retenu comme tablier (route à moins de 0,3 m du MNT).",
+    "PK ≈ 4700-4950 (t ≈ 230-236 s), ≈ 6230 (t ≈ 305 s) et ≈ 6700 (t ≈ 332 s, juste avant l'arrivée) : ponceaux à parapets de béton bas, sans tablier détecté.",
+    "Glissières métalliques (simple glissière) : PK ≈ 1700-2050 (t ≈ 91-109 s), ≈ 2280 (t ≈ 120-124 s), ≈ 3270-3300 (t ≈ 166-171 s), ≈ 3700-4000 et ≈ 4100-4150 (t ≈ 189-213 s) ; non modélisées."
+  ]
+}
