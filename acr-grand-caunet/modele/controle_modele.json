@@ -40,13 +40,13 @@
     ],
     "texture_px_par_dalle": 2048,
     "terrain": {
-      "sommets": 372678,
-      "triangles": 728036,
+      "sommets": 372540,
+      "triangles": 727721,
       "dalles": 26,
-      "sommets_de_bord": 14722,
+      "sommets_de_bord": 14740,
       "recalage_bords_mnt_m": {
         "median_abs": 0.005,
-        "p95_abs": 0.031,
+        "p95_abs": 0.032,
         "max_abs": 2.51
       }
     },
@@ -72,8 +72,8 @@
       "terrain": {
         "taille_mo": 39.47,
         "maillages": 26,
-        "sommets": 375680,
-        "triangles": 728036,
+        "sommets": 375527,
+        "triangles": 727721,
         "nan": false,
         "bornes_min": [
           -3280.0,
@@ -87,9 +87,9 @@
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
-        "bords_testes": 14722,
-        "sommets_partages_pct": 99.986,
-        "ecart_vertical_max_m": 0.011,
+        "bords_testes": 14740,
+        "sommets_partages_pct": 99.946,
+        "ecart_vertical_max_m": 0.076,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -111,13 +111,13 @@
     ],
     "texture_px_par_dalle": 512,
     "terrain": {
-      "sommets": 104220,
-      "triangles": 192467,
+      "sommets": 104202,
+      "triangles": 192408,
       "dalles": 26,
-      "sommets_de_bord": 14722,
+      "sommets_de_bord": 14740,
       "recalage_bords_mnt_m": {
         "median_abs": 0.005,
-        "p95_abs": 0.031,
+        "p95_abs": 0.032,
         "max_abs": 2.51
       }
     },
@@ -143,8 +143,8 @@
       "terrain": {
         "taille_mo": 7.5,
         "maillages": 26,
-        "sommets": 105896,
-        "triangles": 192467,
+        "sommets": 105872,
+        "triangles": 192408,
         "nan": false,
         "bornes_min": [
           -3280.0,
@@ -158,9 +158,9 @@
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
-        "bords_testes": 14722,
-        "sommets_partages_pct": 99.98,
-        "ecart_vertical_max_m": 0.014,
+        "bords_testes": 14740,
+        "sommets_partages_pct": 99.946,
+        "ecart_vertical_max_m": 0.082,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -169,8 +169,8 @@
   "vues_rapprochees_pk": {
     "pont": [
       5522,
-      5586
+      5585
     ],
-    "virage": 3651
+    "virage": 4079
   }
 }

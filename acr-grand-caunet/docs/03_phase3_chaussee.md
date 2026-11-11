@@ -89,6 +89,8 @@ Défauts connus du modèle :
 
 ![Vue du modèle](../figures/phase3/modele_3d_virage.png)
 
+**Corrections manuelles (11/11/2026).** La zone d'approche (PK −170 à −58) et le carrefour du Lion d'Or (PK 3 612 à 3 692) ont été redessinés à la main ; le détail du carrefour est dans `07_phase4_decor.md`, § 5. De la fin du parking à 40 m après le départ, la route est sous les arbres et reste au calcul automatique.
+
 ## 7. Suite
 
 1. Redessiner à la main l'approche (carrefour D3/D3D, parking) et le carrefour du Lion d'Or.

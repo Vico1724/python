@@ -201,135 +201,111 @@
    "remarque": "bord droit (nord) : limite visible de l'asphalte. Bord gauche : bordure de l'îlot du carrefour puis limite visible de l'asphalte jusqu'à x = 917057 ; au-delà (PK -80 à -58, début du parking), bord gauche reconstruit par symétrie par rapport à la ligne médiane visible (demi-largeur 3,4 m), la limite route / parking n'étant pas lisible. PK -58 à +40 : route sous les arbres sur l'ortho, laissée au calcul automatique (non tranché)."
   },
   {
-   "nom": "carrefour du Lion d'Or : fermeture de l'embouchure de la branche est de la D1",
-   "pk_debut": 3638,
-   "pk_fin": 3674,
+   "nom": "carrefour du Lion d'Or : branche de gauche de la patte d'oie, à gauche de l'îlot",
+   "pk_debut": 3612,
+   "pk_fin": 3692,
    "bord_gauche": [
     [
-     916752.0,
-     6243538.0
+     916758.63,
+     6243529.29
     ],
     [
-     916749.7,
-     6243542.45
+     916755.19,
+     6243534.36
     ],
     [
-     916747.38,
-     6243545.56
+     916751.8,
+     6243541.8
     ],
     [
-     916744.72,
-     6243548.56
+     916748.6,
+     6243545.7
     ],
     [
-     916742.24,
-     6243551.69
+     916745.0,
+     6243549.4
     ],
     [
-     916739.89,
-     6243554.91
+     916741.0,
+     6243552.4
     ],
     [
-     916737.59,
-     6243557.59
+     916736.5,
+     6243554.6
     ],
     [
-     916735.9,
-     6243559.47
+     916731.5,
+     6243556.0
     ],
     [
-     916734.9,
-     6243559.67
+     916726.0,
+     6243556.7
     ],
     [
-     916732.83,
-     6243557.84
+     916721.0,
+     6243556.9
     ],
     [
-     916728.66,
-     6243556.06
+     916703.8,
+     6243560.01
     ],
     [
-     916723.46,
-     6243555.8
-    ],
-    [
-     916718.93,
-     6243556.09
-    ],
-    [
-     916714.58,
-     6243556.47
+     916698.34,
+     6243564.32
     ]
    ],
    "bord_droit": [
     [
-     916757.9,
-     6243542.9
+     916762.96,
+     6243532.02
     ],
     [
-     916755.9,
-     6243546.57
+     916759.54,
+     6243539.14
     ],
     [
-     916753.64,
-     6243550.01
+     916756.5,
+     6243546.5
     ],
     [
-     916751.46,
-     6243553.39
+     916752.8,
+     6243551.0
     ],
     [
-     916749.2,
-     6243556.7
+     916748.6,
+     6243554.9
     ],
     [
-     916746.73,
-     6243559.86
+     916744.8,
+     6243557.6
     ],
     [
-     916743.9,
-     6243563.3
+     916740.5,
+     6243560.0
     ],
     [
-     916741.5,
-     6243565.3
+     916735.5,
+     6243562.0
     ],
     [
-     916738.5,
-     6243566.4
+     916729.5,
+     6243563.6
     ],
     [
-     916735.0,
-     6243566.8
+     916723.0,
+     6243564.3
     ],
     [
-     916731.5,
-     6243566.2
+     916707.71,
+     6243567.13
     ],
     [
-     916728.8,
-     6243565.3
-    ],
-    [
-     916725.7,
-     6243564.4
-    ],
-    [
-     916722.9,
-     6243564.1
-    ],
-    [
-     916719.47,
-     6243564.1
-    ],
-    [
-     916715.86,
-     6243564.53
+     916703.58,
+     6243570.0
     ]
    ],
-   "source": "numérisation manuelle sur BD ORTHO 20 cm et ortho IRC 20 cm (IGN) ; vidéo embarquée 2025 n° 2 (t ≈ 3 min 01 à 3 min 06) consultée pour la géométrie du virage",
-   "remarque": "bord droit (extérieur) : arc tracé à travers l'embouchure de la branche est de la D1, à la limite nord de la plaque d'asphalte visible sur l'IRC (où l'organisateur pose la barrière). Bord gauche (intérieur) : le tracé automatique suit déjà la limite visible de l'asphalte (parapet du ponceau puis bord sud-ouest de la plaque du carrefour) ; il est repris tel quel. Au-delà de x = 916727, la D1 passe sous les arbres : largeur (≈ 8 m) non vérifiable, laissée au calcul automatique."
+   "source": "numérisation manuelle sur le relevé laser IGN (carte des pentes à 0,5 m, bosses du sol nu, hauteurs au-dessus du sol) ; forme du carrefour établie d'après les vues aérienne et Street View (octobre 2025) fournies par le directeur le 11/11/2026",
+   "remarque": "La D3D débouche sur une patte d'oie : un îlot triangulaire (terre surélevée, panneaux directionnels, repéré sur le relevé laser vers x = 916745 à 916749,5, y = 6243556 à 6243561,5) sépare la branche de gauche, vers la D1 direction Roquefort, de la branche de droite, vers la D1 direction nord. La spéciale prend la branche de gauche. Bord gauche (intérieur) : courbe régulière à environ 1,5 m de la rupture de pente du talus ; la limite exacte de l'enrobé, sous les arbres, n'est pas visible. Bord droit (extérieur) : bord droit de la D3D, puis une ligne de fermeture régulière qui barre la branche de droite, frôle l'angle sud-ouest de l'îlot et barre l'embouchure de la D1 nord jusqu'au bord nord de la D1 ouest ; la plaque d'enrobé située au nord de cette ligne (voie de la D1) reste hors chaussée. Précision estimée : 1 à 2 m. Le tracé automatique passait sur l'îlot et formait un angle vif au centre du carrefour."
   }
  ]
 }

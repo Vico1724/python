@@ -13,3 +13,4 @@ python3 07_chaussee_precise.py      # phase 3 : axe précis et bords de chaussé
 python3 08_modele_3d.py             # modèle 3D glTF : route + terrain texturé (+ rendus si Chromium/Playwright)
 python3 11_route_ouvrages.py        # route texturée, marquage, tabliers et parapets des ponts
 python3 09_export_stage_ir.py       # export « Stage IR » v2 (ACR Extra Stages) : stage.json + collision.glb
+python3 10_semis_arbres.py          # semis des arbres et arbustes : position, hauteur, essence, élément du jeu

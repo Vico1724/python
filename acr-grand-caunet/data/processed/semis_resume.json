@@ -1,12 +1,12 @@
 {
- "methode": "1. Modèle de hauteur du couvert MNH = MNS - MNT (0,5 m), lissé (gaussien, sigma 0,5 m).\n  2. Apex = maxima locaux du MNH lissé dans un disque dont le rayon croît avec la hauteur\n     (r = 0,5 + 0,15 h, borné à 1-3 m), au-dessus de 2 m ; plateaux ramenés à un point.\n     Exclusions : chaussée (ruban bord gauche - bord droit + 0,5 m), bâtiments BD TOPO + 2 m.\n     Pas de ligne électrique dans le couloir (la seule ligne BD TOPO est à 15 km).\n  3. Houppiers : segmentation par ligne de partage des eaux (scikit-image) du MNH lissé,\n     marqueurs = apex, limitée aux pixels > 2 m, à ceux qui dépassent 40 % de la hauteur de\n     l'apex et à un rayon maximal 1 + 0,45 h ; diamètre = diamètre du disque de même surface.\n     Rejet des « arbres » sans chlorophylle (NDVI moyen du houppier < 0,08 : rochers, murs,\n     toits non cadastrés) et des pointes isolées (houppier < 1 m²).\n  4. Essence : tirage pondéré selon le type de formation BD Forêt qui contient l'apex\n     (table FORMATIONS), modulé par la hauteur ; règles par défaut hors polygone.\n     C'est une attribution STATISTIQUE : la donnée ne permet pas d'identifier un arbre.\n  5. Arbustes : chaque pixel de végétation basse (MNH 0,4-2 m et NDVI > 0,12) porte un\n     arbuste avec une probabilité 0,25 m² / surface moyenne d'un arbuste, modulée par le\n     NDVI ; densité juste à l'échelle de quelques mètres, position individuelle fictive.",
+ "methode": "1. Modèle de hauteur du couvert MNH = MNS - MNT (0,5 m), lissé (gaussien, sigma 0,5 m).\n  2. Apex = maxima locaux du MNH lissé dans un disque dont le rayon croît avec la hauteur\n     (r = 0,5 + 0,15 h, borné à 1-3 m), au-dessus de 2 m ; plateaux ramenés à un point.\n     Exclusions : chaussée (ruban bord gauche - bord droit + 0,5 m), bâtiments BD TOPO + 2 m.\n     Pas de ligne électrique dans le couloir (la seule ligne BD TOPO est à plus de 15 km).\n  3. Houppiers : segmentation par ligne de partage des eaux (scikit-image) du MNH lissé,\n     marqueurs = apex, limitée aux pixels > 2 m, à ceux qui dépassent 40 % de la hauteur de\n     l'apex et à un rayon maximal 1 + 0,45 h ; diamètre = diamètre du disque de même surface.\n     Deux passes complémentaires cherchent des apex dans le couvert > 2 m resté hors de tout\n     houppier (taillis jointifs de chêne vert surtout ; houppier minimal 3 m²).\n     Apex au-dessus de la chaussée (surplomb) : gardé s'il est vert et à moins de 2,5 m du\n     bord, tronc reporté au bord + 0,8 m.\n     Rejet des « arbres » minéraux (NDVI moyen du houppier < -0,05 et moins de 15 % de pixels à\n     NDVI >= 0,12 : toits non cadastrés, rochers, véhicules) et des pointes (houppier < 1 m²).\n     Le seuil est volontairement bas : des pins secs ou à l'ombre ont un NDVI de 0,04-0,06.\n  4. Essence : tirage pondéré selon le type de formation BD Forêt qui contient l'apex\n     (table FORMATIONS), modulé par la hauteur ; règles par défaut hors polygone.\n     C'est une attribution STATISTIQUE : la donnée ne permet pas d'identifier un arbre.\n  5. Arbustes : chaque pixel de végétation basse (MNH 0,4-2 m et NDVI > 0,12) porte un\n     arbuste avec une probabilité 0,25 m² / surface moyenne d'un arbuste, modulée par le\n     NDVI ; densité juste à l'échelle de quelques mètres, position individuelle fictive.",
  "graine_aleatoire": 20261111,
  "bande_m": "0 à 135 m de l'axe (PK -170 à 7377)",
  "surface_analysee_ha": 197.8,
  "mesure": {
   "couvert_sup_2m_pct_de_la_bande": 59.3,
-  "part_du_couvert_sup_2m_dans_un_houppier_segmente_pct": 81.6,
-  "surface_cumulee_disques_de_houppier_sur_surface_couverte": 0.845,
+  "part_du_couvert_sup_2m_dans_un_houppier_segmente_pct": 86.9,
+  "surface_cumulee_disques_de_houppier_sur_surface_couverte": 0.89,
   "ndvi_rvb_recale_sur_irc_(pente, ordonnee, correlation)": [
    1.907,
    0.033,
@@ -16,104 +16,104 @@
   "vegetation_basse_0.4_2m_ha": 21.6
  },
  "arbres": {
-  "nombre": 46274,
+  "nombre": 41579,
   "rejets": {
-   "apex_passe_1": 29952,
-   "apex_passe_2_couvert_restant": 98664,
-   "houppier_inferieur_1m2": 81300,
-   "sans_chlorophylle_ndvi": 1042,
-   "apex_au_dessus_de_la_chaussee_tronc_reporte_au_bord": 187
+   "apex_passe_1": 29948,
+   "apex_passes_2_3_couvert_restant": 17676,
+   "houppier_trop_petit_1m2_ou_3m2_en_passes_2_3": 5933,
+   "mineral_ndvi_moyen_inf_-0.05_et_moins_de_15pct_pixels_verts": 112,
+   "apex_au_dessus_de_la_chaussee_tronc_reporte_au_bord": 127
   },
   "par_passe": {
-   "apex (passe 1)": 29096,
-   "couvert restant (passe 2)": 17178
+   "apex (passe 1)": 29582,
+   "couvert restant (passes 2-3)": 11997
   },
-  "a_moins_de_40m": 11006,
-  "a_moins_de_15m": 3105,
-  "densite_moyenne_par_ha": 234,
+  "a_moins_de_40m": 10163,
+  "a_moins_de_15m": 2881,
+  "densite_moyenne_par_ha": 210,
   "hauteur_m": {
-   "mediane": 5.9,
-   "p10": 3.2,
-   "p90": 14.1,
+   "mediane": 6.5,
+   "p10": 3.4,
+   "p90": 14.6,
    "max": 28.4,
    "histogramme": {
-    "2-4": 10882,
-    "4-6": 12519,
-    "6-8": 7351,
-    "8-10": 4811,
-    "10-12": 3445,
-    "12-14": 2511,
-    "14-16": 2014,
-    "16-18": 1533,
-    "18-20": 730,
-    "20-25": 466,
+    "2-4": 7839,
+    "4-6": 10690,
+    "6-8": 7455,
+    "8-10": 4873,
+    "10-12": 3403,
+    "12-14": 2515,
+    "14-16": 2024,
+    "16-18": 1546,
+    "18-20": 742,
+    "20-25": 480,
     "25-40": 12
    }
   },
-  "ecart_hauteur_brute_max_moins_lissee_m_mediane": 0.35,
+  "ecart_hauteur_brute_max_moins_lissee_m_mediane": 0.37,
   "diametre_houppier_m": {
-   "mediane": 4.0,
-   "p10": 1.3,
-   "p90": 8.3
+   "mediane": 4.6,
+   "p10": 2.3,
+   "p90": 8.6
   },
   "par_essence": {
    "pin d'Alep": {
-    "nombre": 24658,
-    "pct": 53.3,
-    "hauteur_mediane_m": 8.1
+    "nombre": 22835,
+    "pct": 54.9,
+    "hauteur_mediane_m": 8.6
    },
    "chêne vert": {
-    "nombre": 18651,
-    "pct": 40.3,
-    "hauteur_mediane_m": 4.6
+    "nombre": 16245,
+    "pct": 39.1,
+    "hauteur_mediane_m": 4.9
    },
    "chêne pubescent": {
-    "nombre": 2429,
-    "pct": 5.2,
-    "hauteur_mediane_m": 4.7
+    "nombre": 2049,
+    "pct": 4.9,
+    "hauteur_mediane_m": 5.2
    },
    "autre pin (pignon ou maritime)": {
-    "nombre": 453,
-    "pct": 1.0,
-    "hauteur_mediane_m": 4.3
+    "nombre": 348,
+    "pct": 0.8,
+    "hauteur_mediane_m": 4.5
    },
    "cyprès": {
-    "nombre": 51,
-    "pct": 0.1,
-    "hauteur_mediane_m": 8.0
+    "nombre": 67,
+    "pct": 0.2,
+    "hauteur_mediane_m": 9.4
    },
    "olivier": {
-    "nombre": 32,
+    "nombre": 35,
     "pct": 0.1,
-    "hauteur_mediane_m": 4.2
+    "hauteur_mediane_m": 4.7
    }
   },
   "par_famille_jeu": {
-   "Foliage/Trees/AleppoPine": 24658,
-   "Foliage/Trees/Smoketree": 13429,
-   "Foliage/Trees/BlackmapleMonteCarlo": 5222,
-   "Foliage/Trees/Blackmaple": 2429,
-   "Foliage/Trees/BlackpineMonteCarlo": 453,
-   "Foliage/Trees/Cypress": 51,
-   "Foliage/Trees/Olivetree": 32
+   "Foliage/Trees/AleppoPine": 22835,
+   "Foliage/Trees/Smoketree": 10829,
+   "Foliage/Trees/BlackmapleMonteCarlo": 5416,
+   "Foliage/Trees/Blackmaple": 2049,
+   "Foliage/Trees/BlackpineMonteCarlo": 348,
+   "Foliage/Trees/Cypress": 67,
+   "Foliage/Trees/Olivetree": 35
   }
  },
  "arbustes": {
-  "nombre": 122913,
+  "nombre": 122662,
   "par_famille_jeu": {
-   "Foliage/Trees/Boxthorn": 72123,
-   "Foliage/GroundCover/BroomCreeper": 50790
+   "Foliage/Trees/Boxthorn": 71625,
+   "Foliage/GroundCover/BroomCreeper": 51037
   },
-  "densite_par_ha_de_vegetation_basse": 5677
+  "densite_par_ha_de_vegetation_basse": 5672
  },
  "par_type_de_formation": {
   "Forêt fermée de pin d'Alep pur": {
    "surface_ha": 73.5,
-   "arbres": 18824,
-   "arbres_par_ha": 256,
+   "arbres": 17757,
+   "arbres_par_ha": 242,
    "couvert_sup_2m_pct": 78.9,
-   "part_couvert_dans_houppiers_pct": 84.9,
-   "hauteur_mediane_m": 8.3,
+   "part_couvert_dans_houppiers_pct": 89.8,
+   "hauteur_mediane_m": 8.7,
    "essences_tirees_pct": {
     "pin d'Alep": 84,
     "chêne vert": 14,
@@ -122,113 +122,113 @@
   },
   "Forêt fermée de chênes sempervirents purs": {
    "surface_ha": 24.6,
-   "arbres": 6893,
-   "arbres_par_ha": 280,
+   "arbres": 6002,
+   "arbres_par_ha": 244,
    "couvert_sup_2m_pct": 56.0,
-   "part_couvert_dans_houppiers_pct": 77.1,
-   "hauteur_mediane_m": 4.5,
+   "part_couvert_dans_houppiers_pct": 83.9,
+   "hauteur_mediane_m": 4.7,
    "essences_tirees_pct": {
-    "chêne vert": 89,
-    "pin d'Alep": 8,
+    "chêne vert": 88,
+    "pin d'Alep": 9,
     "chêne pubescent": 3
    }
   },
   "Forêt fermée d'un autre pin pur": {
    "surface_ha": 1.3,
-   "arbres": 445,
-   "arbres_par_ha": 346,
+   "arbres": 355,
+   "arbres_par_ha": 276,
    "couvert_sup_2m_pct": 49.0,
-   "part_couvert_dans_houppiers_pct": 80.8,
-   "hauteur_mediane_m": 4.0,
+   "part_couvert_dans_houppiers_pct": 81.7,
+   "hauteur_mediane_m": 4.1,
    "essences_tirees_pct": {
-    "autre pin (pignon ou maritime)": 77,
+    "autre pin (pignon ou maritime)": 76,
     "pin d'Alep": 13,
     "chêne vert": 11
    }
   },
   "Forêt fermée à mélange de feuillus prépondérants et conifères": {
    "surface_ha": 26.7,
-   "arbres": 7414,
-   "arbres_par_ha": 277,
-   "couvert_sup_2m_pct": 64.4,
-   "part_couvert_dans_houppiers_pct": 78.6,
-   "hauteur_mediane_m": 5.1,
+   "arbres": 6555,
+   "arbres_par_ha": 245,
+   "couvert_sup_2m_pct": 64.5,
+   "part_couvert_dans_houppiers_pct": 85.5,
+   "hauteur_mediane_m": 5.6,
    "essences_tirees_pct": {
-    "chêne vert": 57,
-    "pin d'Alep": 30,
-    "chêne pubescent": 14
+    "chêne vert": 56,
+    "pin d'Alep": 31,
+    "chêne pubescent": 13
    }
   },
   "Forêt fermée à mélange de conifères prépondérants et feuillus": {
    "surface_ha": 12.0,
-   "arbres": 3598,
-   "arbres_par_ha": 301,
+   "arbres": 3118,
+   "arbres_par_ha": 261,
    "couvert_sup_2m_pct": 69.1,
-   "part_couvert_dans_houppiers_pct": 81.1,
-   "hauteur_mediane_m": 5.5,
+   "part_couvert_dans_houppiers_pct": 85.8,
+   "hauteur_mediane_m": 6.1,
    "essences_tirees_pct": {
-    "pin d'Alep": 53,
-    "chêne vert": 37,
-    "chêne pubescent": 11
+    "pin d'Alep": 56,
+    "chêne vert": 35,
+    "chêne pubescent": 9
    }
   },
   "Forêt fermée à mélange de feuillus": {
    "surface_ha": 0.2,
-   "arbres": 61,
-   "arbres_par_ha": 311,
+   "arbres": 55,
+   "arbres_par_ha": 281,
    "couvert_sup_2m_pct": 90.3,
-   "part_couvert_dans_houppiers_pct": 79.4,
-   "hauteur_mediane_m": 7.1,
+   "part_couvert_dans_houppiers_pct": 88.7,
+   "hauteur_mediane_m": 7.4,
    "essences_tirees_pct": {
-    "chêne vert": 69,
-    "chêne pubescent": 31
+    "chêne vert": 58,
+    "chêne pubescent": 42
    }
   },
   "Forêt ouverte de feuillus purs": {
    "surface_ha": 5.8,
-   "arbres": 760,
-   "arbres_par_ha": 132,
+   "arbres": 640,
+   "arbres_par_ha": 111,
    "couvert_sup_2m_pct": 24.8,
-   "part_couvert_dans_houppiers_pct": 81.2,
-   "hauteur_mediane_m": 4.4,
+   "part_couvert_dans_houppiers_pct": 82.0,
+   "hauteur_mediane_m": 4.5,
    "essences_tirees_pct": {
-    "chêne vert": 73,
-    "chêne pubescent": 27
+    "chêne vert": 74,
+    "chêne pubescent": 26
    }
   },
   "Forêt ouverte de conifères purs": {
    "surface_ha": 15.4,
-   "arbres": 2670,
-   "arbres_par_ha": 173,
+   "arbres": 2238,
+   "arbres_par_ha": 145,
    "couvert_sup_2m_pct": 43.3,
-   "part_couvert_dans_houppiers_pct": 80.9,
-   "hauteur_mediane_m": 5.6,
+   "part_couvert_dans_houppiers_pct": 83.7,
+   "hauteur_mediane_m": 6.4,
    "essences_tirees_pct": {
-    "pin d'Alep": 82,
+    "pin d'Alep": 84,
     "chêne vert": 13,
     "autre pin (pignon ou maritime)": 4
    }
   },
   "Forêt ouverte à mélange de feuillus et conifères": {
    "surface_ha": 5.6,
-   "arbres": 1401,
-   "arbres_par_ha": 250,
+   "arbres": 1156,
+   "arbres_par_ha": 206,
    "couvert_sup_2m_pct": 48.2,
-   "part_couvert_dans_houppiers_pct": 79.2,
-   "hauteur_mediane_m": 4.5,
+   "part_couvert_dans_houppiers_pct": 82.6,
+   "hauteur_mediane_m": 4.8,
    "essences_tirees_pct": {
-    "chêne vert": 55,
-    "pin d'Alep": 32,
-    "chêne pubescent": 13
+    "chêne vert": 58,
+    "pin d'Alep": 31,
+    "chêne pubescent": 11
    }
   },
   "Lande": {
    "surface_ha": 25.5,
-   "arbres": 3699,
-   "arbres_par_ha": 145,
+   "arbres": 3219,
+   "arbres_par_ha": 126,
    "couvert_sup_2m_pct": 27.2,
-   "part_couvert_dans_houppiers_pct": 77.1,
-   "hauteur_mediane_m": 4.4,
+   "part_couvert_dans_houppiers_pct": 81.9,
+   "hauteur_mediane_m": 4.6,
    "essences_tirees_pct": {
     "chêne vert": 67,
     "pin d'Alep": 33
@@ -236,43 +236,43 @@
   },
   "hors forêt : haie (BD TOPO, 4 m)": {
    "surface_ha": 0.4,
-   "arbres": 54,
-   "arbres_par_ha": 129,
+   "arbres": 69,
+   "arbres_par_ha": 165,
    "couvert_sup_2m_pct": 58.0,
-   "part_couvert_dans_houppiers_pct": 51.2,
-   "hauteur_mediane_m": 8.9,
+   "part_couvert_dans_houppiers_pct": 84.8,
+   "hauteur_mediane_m": 9.2,
    "essences_tirees_pct": {
-    "cyprès": 46,
-    "pin d'Alep": 24,
-    "chêne vert": 20,
-    "chêne pubescent": 9
+    "cyprès": 54,
+    "chêne vert": 23,
+    "pin d'Alep": 13,
+    "chêne pubescent": 10
    }
   },
   "hors forêt : abords bâtis (< 40 m)": {
    "surface_ha": 2.1,
-   "arbres": 127,
-   "arbres_par_ha": 60,
+   "arbres": 124,
+   "arbres_par_ha": 58,
    "couvert_sup_2m_pct": 18.8,
-   "part_couvert_dans_houppiers_pct": 53.4,
-   "hauteur_mediane_m": 4.9,
+   "part_couvert_dans_houppiers_pct": 71.7,
+   "hauteur_mediane_m": 6.3,
    "essences_tirees_pct": {
-    "pin d'Alep": 33,
-    "olivier": 25,
-    "chêne vert": 21,
-    "cyprès": 20
+    "olivier": 28,
+    "pin d'Alep": 24,
+    "cyprès": 24,
+    "chêne vert": 23
    }
   },
   "hors forêt : autre": {
    "surface_ha": 4.6,
-   "arbres": 328,
-   "arbres_par_ha": 71,
-   "couvert_sup_2m_pct": 18.1,
-   "part_couvert_dans_houppiers_pct": 71.8,
-   "hauteur_mediane_m": 9.6,
+   "arbres": 291,
+   "arbres_par_ha": 63,
+   "couvert_sup_2m_pct": 18.3,
+   "part_couvert_dans_houppiers_pct": 81.8,
+   "hauteur_mediane_m": 10.6,
    "essences_tirees_pct": {
-    "pin d'Alep": 60,
-    "chêne vert": 35,
-    "chêne pubescent": 5
+    "pin d'Alep": 62,
+    "chêne vert": 34,
+    "chêne pubescent": 4
    }
   }
  },
@@ -524,13 +524,13 @@
  "extraits_planche": [
   {
    "titre": "Pinède dense (pin d'Alep pur)",
-   "x_l93": 916142.8,
-   "y_l93": 6241849.8
+   "x_l93": 913866.2,
+   "y_l93": 6243058.8
   },
   {
    "titre": "Chênaie verte (chênes sempervirents)",
-   "x_l93": 914018.8,
-   "y_l93": 6243265.8
+   "x_l93": 914012.8,
+   "y_l93": 6243259.8
   },
   {
    "titre": "Lande / garrigue",
@@ -543,9 +543,9 @@
    "y_l93": 6242474.2
   },
   {
-   "titre": "Zone ouverte de la D1 (PK 6040)",
-   "x_l93": 914842.1,
-   "y_l93": 6243582.1
+   "titre": "Zone ouverte de la D1 (PK 5940)",
+   "x_l93": 914938.0,
+   "y_l93": 6243583.5
   },
   {
    "titre": "Abords d'un pont (PK 5512-5571, 59 m)",
@@ -555,8 +555,8 @@
  ],
  "apercu_3d": {
   "fichier": "modele/apercu/arbres.glb",
-  "arbres": 11006,
+  "arbres": 10163,
   "rayon_m": 40.0,
-  "taille_mo": 6.08
+  "taille_mo": 5.62
  }
 }

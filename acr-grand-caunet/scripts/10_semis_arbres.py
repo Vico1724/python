@@ -8,7 +8,7 @@ Entrées : data/raw/mns_lidarhd_50cm.tif, mnt_lidarhd_50cm.tif (LiDAR HD, 0,5 m)
 Sorties : data/processed/arbres.csv(.gz)     un arbre par ligne (houppier > 2 m)
           data/processed/arbustes.csv(.gz)   couche « arbustes / garrigue » (0,4 à 2 m), semée
           data/processed/semis_resume.json   comptages, contrôles, table de correspondance jeu
-          figures/phase4/semis_planche_ortho.png, semis_synthese.png
+          figures/phase4/semis_planche_ortho.jpg, semis_synthese.png
           modele/apercu/arbres.glb           aperçu 3D des arbres à moins de 40 m de l'axe
 
 Méthode
@@ -16,12 +16,17 @@ Méthode
   2. Apex = maxima locaux du MNH lissé dans un disque dont le rayon croît avec la hauteur
      (r = 0,5 + 0,15 h, borné à 1-3 m), au-dessus de 2 m ; plateaux ramenés à un point.
      Exclusions : chaussée (ruban bord gauche - bord droit + 0,5 m), bâtiments BD TOPO + 2 m.
-     Pas de ligne électrique dans le couloir (la seule ligne BD TOPO est à 15 km).
+     Pas de ligne électrique dans le couloir (la seule ligne BD TOPO est à plus de 15 km).
   3. Houppiers : segmentation par ligne de partage des eaux (scikit-image) du MNH lissé,
      marqueurs = apex, limitée aux pixels > 2 m, à ceux qui dépassent 40 % de la hauteur de
      l'apex et à un rayon maximal 1 + 0,45 h ; diamètre = diamètre du disque de même surface.
-     Rejet des « arbres » sans chlorophylle (NDVI moyen du houppier < 0,08 : rochers, murs,
-     toits non cadastrés) et des pointes isolées (houppier < 1 m²).
+     Deux passes complémentaires cherchent des apex dans le couvert > 2 m resté hors de tout
+     houppier (taillis jointifs de chêne vert surtout ; houppier minimal 3 m²).
+     Apex au-dessus de la chaussée (surplomb) : gardé s'il est vert et à moins de 2,5 m du
+     bord, tronc reporté au bord + 0,8 m.
+     Rejet des « arbres » minéraux (NDVI moyen du houppier < -0,05 et moins de 15 % de pixels à
+     NDVI >= 0,12 : toits non cadastrés, rochers, véhicules) et des pointes (houppier < 1 m²).
+     Le seuil est volontairement bas : des pins secs ou à l'ombre ont un NDVI de 0,04-0,06.
   4. Essence : tirage pondéré selon le type de formation BD Forêt qui contient l'apex
      (table FORMATIONS), modulé par la hauteur ; règles par défaut hors polygone.
      C'est une attribution STATISTIQUE : la donnée ne permet pas d'identifier un arbre.
@@ -50,7 +55,7 @@ from rasterio.features import rasterize
 from rasterio.windows import from_bounds
 from scipy import ndimage as ndi
 from scipy.spatial import cKDTree
-from shapely.geometry import LineString, Polygon, shape
+from shapely.geometry import LineString, shape
 from skimage.segmentation import watershed
 
 from acr_geo import FIG, OUT, RAW, REF, ROOT, TO_L93, l93
@@ -61,7 +66,8 @@ H_ARBRE = 2.0               # m : seuil arbre / arbuste
 H_ARBUSTE = 0.4             # m : seuil bas des arbustes
 MARGE_CHAUSSEE = 0.5        # m autour du ruban de chaussée
 MARGE_BATI = 2.0            # m autour des emprises BD TOPO
-NDVI_ARBRE = 0.08           # NDVI moyen minimal d'un houppier
+NDVI_ARBRE = 0.08           # NDVI d'un pixel « chlorophyllien » (houppier, surplomb de chaussée)
+PART_VERTE = 0.15           # part minimale de pixels chlorophylliens dans un houppier
 NDVI_ARBUSTE = 0.12         # NDVI minimal d'un pixel d'arbuste
 GLB_DIST = 40.0             # m : aperçu 3D
 RES = 0.5
@@ -282,7 +288,7 @@ def houppiers(G, rc, mask):
 
 
 def detecte(G, ch, axis):
-    """Apex, houppiers et filtres. Deux passes : la seconde cherche des apex dans le couvert
+    """Apex, houppiers et filtres. Trois passes : les deux dernières cherchent des apex dans le couvert
     > 2 m resté hors de tout houppier (taillis jointifs, flancs de gros houppiers).
     Un apex au-dessus de la chaussée (houppier en surplomb) n'est gardé que s'il est
     chlorophyllien et à moins de 2,5 m du bord ; son tronc est reporté au bord + 0,8 m."""
@@ -296,21 +302,29 @@ def detecte(G, ch, axis):
     cand = bande & G.valid & ~bati & ~coeur & ~(route & (G.ndvi < 0.15))
     rc1 = apex(G.hs, cand)
     lab = houppiers(G, rc1, pousse)
-    reste = ndi.binary_opening(cand & pousse & (lab == 0), structure=disque(2))   # sans les liserés < 2 m
-    rc2 = apex(np.where(reste, G.hs, 0).astype(np.float32), reste)
-    rc = np.vstack([rc1, rc2])
-    origine = np.r_[np.zeros(len(rc1), int), np.ones(len(rc2), int)]
-    lab = houppiers(G, rc, pousse)
+    rcs, origine = [rc1], [np.zeros(len(rc1), int)]
+    for _ in (2, 3):                        # passes 2 et 3 : couvert resté hors des houppiers
+        reste = ndi.binary_opening(cand & pousse & (lab == 0), structure=disque(2))   # sans liserés < 2 m
+        rc2 = apex(np.where(reste, G.hs, 0).astype(np.float32), reste)
+        lab2 = houppiers(G, rc2, reste)
+        n0 = sum(len(r) for r in rcs)
+        lab = np.where(lab > 0, lab, np.where(lab2 > 0, lab2 + n0, 0)).astype(np.int32)
+        rcs.append(rc2)
+        origine.append(np.ones(len(rc2), int))
+    rc, origine = np.vstack(rcs), np.concatenate(origine)
     n = len(rc)
     idx = np.arange(1, n + 1)
     area = ndi.sum_labels(np.ones(G.shape, np.float32), lab, idx) * RES * RES
-    ndv = ndi.mean(G.ndvi, lab, idx)
+    ndv = ndi.mean((G.ndvi >= 0.12).astype(np.float32), lab, idx)          # part de pixels verts
+    ndm = ndi.mean(G.ndvi, lab, idx)                                         # NDVI moyen
+    mineral = (ndv < PART_VERTE) & (ndm < -0.05)
     amin = np.where(origine == 0, 1.0, 3.0)                       # m² : pointe isolée / fragment
-    keep = (area >= amin) & (ndv >= NDVI_ARBRE)
-    rejets = {"apex_passe_1": int(len(rc1)), "apex_passe_2_couvert_restant": int(len(rc2)),
-              "houppier_trop_petit_1m2_ou_3m2_en_passe_2": int((area < amin).sum()),
-              "sans_chlorophylle_ndvi": int(((area >= amin) & (ndv < NDVI_ARBRE)).sum())}
-    rej_xy = np.column_stack(G.xy(rc[~keep, 0], rc[~keep, 1]))
+    keep = (area >= amin) & ~mineral
+    rejets = {"apex_passe_1": int(len(rc1)), "apex_passes_2_3_couvert_restant": int((origine == 1).sum()),
+              "houppier_trop_petit_1m2_ou_3m2_en_passes_2_3": int((area < amin).sum()),
+              "mineral_ndvi_moyen_inf_-0.05_et_moins_de_15pct_pixels_verts": int(((area >= amin) & mineral).sum())}
+    sans = (area >= amin) & mineral
+    rej_xy = np.column_stack(G.xy(rc[sans, 0], rc[sans, 1]))      # pour contrôle visuel
     remap = np.zeros(n + 1, np.int32)                              # renumérote les houppiers gardés
     remap[idx[keep]] = np.arange(1, keep.sum() + 1)
     lab = remap[lab]
@@ -507,8 +521,12 @@ def planche(T, S, ch, extraits, path, half=30.0, ncol=3, dpi=100):
     fig.suptitle("Semis des arbres - BD ORTHO 20 cm (IGN) ; cercle = houppier segmenté dans le LiDAR HD, "
                  "couleur = essence attribuée (statistique, d'après BD Forêt)", x=0.01, ha="left", color=INK, fontsize=11)
     fig.subplots_adjust(left=0.01, right=0.99, top=0.91, bottom=0.05)
-    fig.savefig(path, dpi=dpi)
+    import io
+    from PIL import Image
+    buf = io.BytesIO()
+    fig.savefig(buf, dpi=dpi, format="png")
     plt.close(fig)
+    Image.open(buf).convert("RGB").save(path, quality=88, optimize=True)    # JPEG : < 1,5 Mo
 
 
 def synthese(T, path):
@@ -715,7 +733,7 @@ def main():
         },
         "arbres": {
             "nombre": int(len(x)), "rejets": rejets,
-            "par_passe": {"apex (passe 1)": int((origine == 0).sum()), "couvert restant (passe 2)": int((origine == 1).sum())},
+            "par_passe": {"apex (passe 1)": int((origine == 0).sum()), "couvert restant (passes 2-3)": int((origine == 1).sum())},
             "a_moins_de_40m": int((dist <= 40).sum()), "a_moins_de_15m": int((dist <= 15).sum()),
             "densite_moyenne_par_ha": round(len(x) / ha_zone),
             "hauteur_m": {"mediane": round(float(np.median(h)), 1), "p10": round(float(np.percentile(h, 10)), 1),
@@ -764,7 +782,7 @@ def main():
     print("figures...")
     ext = choisir_extraits(T, (sx, sy), ch)
     resume["extraits_planche"] = [{"titre": t, "x_l93": round(float(a), 1), "y_l93": round(float(b), 1)} for t, a, b in ext]
-    planche(T, (sx, sy, sh), ch, ext, FIG4 / "semis_planche_ortho.png")
+    planche(T, (sx, sy, sh), ch, ext, FIG4 / "semis_planche_ortho.jpg", dpi=110)
     synthese(T, FIG4 / "semis_synthese.png")
     n3d = glb_arbres(T, ROOT / "modele" / "apercu" / "arbres.glb")
     resume["apercu_3d"] = {"fichier": "modele/apercu/arbres.glb", "arbres": n3d, "rayon_m": GLB_DIST,

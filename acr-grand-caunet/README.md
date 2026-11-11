@@ -13,7 +13,7 @@ Reproduction de l'épreuve spéciale « Le Grand Caunet » (6,702 km, asphalte, 
 | 2 | Identification GPS, cartographie, relief, données géographiques | Fait : [`docs/02_phase2_donnees_geographiques.md`](docs/02_phase2_donnees_geographiques.md) |
 | 3 | Axe et bords de chaussée précis, dévers | Première version : [`docs/03_phase3_chaussee.md`](docs/03_phase3_chaussee.md). Lignes de départ et d'arrivée à verrouiller sur vidéo |
 | 4 | Terrain et route en 3D | Premier modèle neutre (glTF) dans `modele/` ; à enrichir |
-| 5 et 6 | Décor (arbres, murets, parapets, textures) | À faire |
+| 5 et 6 | Décor : route texturée et marquée, ponts et parapets, semis des arbres | Fait dans le modèle neutre : [`docs/07_phase4_decor.md`](docs/07_phase4_decor.md). Pas encore dans le jeu |
 | 7 | Export et intégration dans le jeu | Structure d'une spéciale non officielle analysée : [`docs/04_integration_jeu.md`](docs/04_integration_jeu.md). Export au format d'échange d'ACR Extra Stages fait : [`docs/05_export_stage_ir.md`](docs/05_export_stage_ir.md). Construction du mod non testée (Windows et jeu requis) |
 | 8 | Notes du copilote, chrono, tests en jeu | Notes : premier brouillon dans l'export. Tests : à faire sur le PC du directeur |
 
