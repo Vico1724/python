@@ -116,7 +116,16 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 ## 0 quater. Voie hybride : notre décor dans une cellule de Hafren South (11/11/2026)
 
-**Décision du directeur :** voie hybride d'abord, E2 plus tard si besoin. **État : vu en jeu le 11/11/2026.** Le directeur a constaté que notre décor apparaît dans Hafren South vers 1,6 km du départ. Le jeu accepte donc un niveau ordinaire d'Unreal à la place d'une cellule de World Partition, bien que le monde qu'il contient ne porte pas le nom attendu. L'alignement avec la physique, l'aspect des matériaux et celui des arbres restent à décrire.
+**Décision du directeur :** voie hybride d'abord, E2 plus tard si besoin. **État : vu en jeu le 11/11/2026.** Le directeur a constaté que notre décor apparaît dans Hafren South vers 1,6 km du départ. Le jeu accepte donc un niveau ordinaire d'Unreal à la place d'une cellule de World Partition, bien que le monde qu'il contient ne porte pas le nom attendu. 
+
+**Ce que montrent ses quatre captures (1,1 à 1,8 km) :**
+
+- **L'alignement est bon.** Sur le pont, nos parapets de pierre et les pavés de couleur que l'étape 1 dessine pour ses obstacles occupent exactement la même place, au point de s'entremêler. Notre route prolonge celle de l'étape 1 sans décalage ni rotation.
+- **Nos matériaux s'affichent** : enrobé, marquage blanc, pierre des parapets, photo du terrain. L'héritage de la variante du jeu fonctionne donc en jeu.
+- **Les arbres du jeu sont là**, à une taille plausible : pins et feuillus, avec leur feuillage.
+- **L'anneau lointain se voit dès 1,1 km**, bien avant la zone.
+- **Défaut attendu : tout est dessiné deux fois.** Les visuels de l'étape 1 (route en gravier, pavés turquoise et violets des obstacles, piquets magenta, terrain gallois) restent affichés par-dessus ou à travers notre décor. La chaussée alterne ainsi gravier et enrobé par plaques. Il faudra construire l'étape 1 sans ses visuels là où notre décor existe.
+- **À éclaircir : des talus très sombres**, presque noirs, à gauche de la route à 1,6 et 1,8 km. Soit le terrain de l'étape 1, soit une de nos dalles fines mal éclairée.
 
 **Pourquoi pas la retouche de leur outil.** L'étude de son code montre qu'il ne sait pas ajouter d'objet à un niveau : il ne peut que réutiliser les composants existants de Hafren, à capacité constante (les arbres seulement en même nombre qu'au même endroit, les maillages sur une poignée d'emplacements). C'est trop étroit pour notre décor.
 
