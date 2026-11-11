@@ -40,8 +40,8 @@
     ],
     "texture_px_par_dalle": 2048,
     "terrain": {
-      "sommets": 372569,
-      "triangles": 727805,
+      "sommets": 372678,
+      "triangles": 728036,
       "dalles": 26,
       "sommets_de_bord": 14722,
       "recalage_bords_mnt_m": {
@@ -63,17 +63,17 @@
           -2629.39990234375
         ],
         "bornes_max": [
-          128.60000610351562,
+          128.39999389648438,
           0.30000001192092896,
-          88.9000015258789
+          86.80000305175781
         ],
         "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
         "taille_mo": 39.47,
         "maillages": 26,
-        "sommets": 375567,
-        "triangles": 727805,
+        "sommets": 375680,
+        "triangles": 728036,
         "nan": false,
         "bornes_min": [
           -3280.0,
@@ -83,7 +83,7 @@
         "bornes_max": [
           256.0,
           18.399999618530273,
-          214.39999389648438
+          210.39999389648438
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
@@ -111,8 +111,8 @@
     ],
     "texture_px_par_dalle": 512,
     "terrain": {
-      "sommets": 104179,
-      "triangles": 192386,
+      "sommets": 104220,
+      "triangles": 192467,
       "dalles": 26,
       "sommets_de_bord": 14722,
       "recalage_bords_mnt_m": {
@@ -134,17 +134,17 @@
           -2629.39990234375
         ],
         "bornes_max": [
-          128.60000610351562,
+          128.39999389648438,
           0.30000001192092896,
-          88.9000015258789
+          86.80000305175781
         ],
         "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
         "taille_mo": 7.5,
         "maillages": 26,
-        "sommets": 105884,
-        "triangles": 192386,
+        "sommets": 105896,
+        "triangles": 192467,
         "nan": false,
         "bornes_min": [
           -3280.0,
@@ -154,12 +154,12 @@
         "bornes_max": [
           256.0,
           18.399999618530273,
-          214.39999389648438
+          206.39999389648438
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
         "bords_testes": 14722,
-        "sommets_partages_pct": 99.986,
+        "sommets_partages_pct": 99.98,
         "ecart_vertical_max_m": 0.014,
         "ecart_vertical_p99_m": 0.0
       }

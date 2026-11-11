@@ -13,9 +13,9 @@
     "pas_max_m": 10.05
   },
   "longueur_competitive": {
-    "length_m": 6742.18,
-    "distance_finish_moins_start": 6742.18,
-    "polyligne_portes_3d_m": 6732.82,
+    "length_m": 6741.12,
+    "distance_finish_moins_start": 6741.12,
+    "polyligne_portes_3d_m": 6732.52,
     "pk_arrivee_plan_m": 6735.8
   },
   "gauche_droite": {
@@ -27,8 +27,8 @@
     "width_coherente": true
   },
   "notes_sens_vs_geometrie": {
-    "virages": 56,
-    "coherents": 56
+    "virages": 55,
+    "coherents": 55
   },
   "sol_sous_portes": {
     "portes": 760,
@@ -41,9 +41,9 @@
     }
   },
   "sol_le_long_de_l_axe_tous_les_m": {
-    "echantillons": 7977,
+    "echantillons": 7972,
     "sans_sol": 0,
-    "max_abs_dy_a_la_corde_m": 0.123
+    "max_abs_dy_a_la_corde_m": 0.119
   },
   "sol_aux_bords_95pct": {
     "points": 1520,
@@ -56,20 +56,20 @@
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 757997,
+    "triangles": 758228,
     "par_code": {
       "TSD+": 30192,
-      "DBK+": 92428,
-      "GRS+": 635377
+      "DBK+": 92332,
+      "GRS+": 635704
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 757997
+    "triangles_annonces_dans_stage_json": 758228
   },
   "erreurs": [],
   "notes_brouillon": {
-    "virages_annonces": 56,
+    "virages_annonces": 55,
     "par_severite": {
-      "5": 17,
+      "5": 16,
       "4": 20,
       "3": 10,
       "hairpin": 2,
@@ -78,7 +78,7 @@
       "6": 3
     },
     "appels": 35,
-    "jetons": 79,
+    "jetons": 78,
     "avance_lecture_m": 80.0
   },
   "fichiers_mo": {

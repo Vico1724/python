@@ -248,32 +248,28 @@ def rayon_fenetre(h):
     return np.clip(0.5 + 0.15 * h, 1.0, 3.0)            # m
 
 
-def apex(G, interdit, bande):
-    """Maxima locaux à fenêtre variable : un pixel est apex s'il est le plus haut du disque
-    de rayon rayon_fenetre(h) qui l'entoure."""
-    hs = G.hs
+def apex(hs, cand):
+    """Maxima locaux à fenêtre variable : un pixel candidat est apex s'il est le plus haut du
+    disque de rayon rayon_fenetre(h) qui l'entoure."""
     rpx = np.rint(rayon_fenetre(hs) / RES).astype(np.int8)
-    cand = (hs >= H_ARBRE) & bande & ~interdit
+    cand = cand & (hs >= H_ARBRE)
     seed = np.zeros(hs.shape, bool)
     for r in range(int(rpx[cand].min()), int(rpx[cand].max()) + 1):
         sel = cand & (rpx == r)
         if sel.any():
             seed |= sel & (hs >= ndi.maximum_filter(hs, footprint=disque(r)))
     lab, n = ndi.label(seed, structure=np.ones((3, 3)))            # plateaux -> un point
-    idx = ndi.center_of_mass(seed, lab, range(1, n + 1))
-    rc = np.rint(np.array(idx)).astype(int)
-    keep = seed[rc[:, 0], rc[:, 1]]
-    return rc[keep]
+    rc = np.rint(np.array(ndi.center_of_mass(seed, lab, range(1, n + 1)))).astype(int).reshape(-1, 2)
+    return rc[seed[rc[:, 0], rc[:, 1]]]
 
 
-def houppiers(G, rc, bati):
-    """Ligne de partage des eaux du MNH lissé à partir des apex."""
+def houppiers(G, rc, mask):
+    """Ligne de partage des eaux du MNH lissé à partir des apex, puis contraintes :
+    pixel > 40 % de la hauteur de l'apex et à moins de 1 + 0,45 h de l'apex."""
     markers = np.zeros(G.shape, np.int32)
     markers[rc[:, 0], rc[:, 1]] = np.arange(1, len(rc) + 1)
-    mask = (G.hs >= H_ARBRE) & G.valid & ~bati
     lab = watershed(-G.hs, markers, mask=mask)
     happ = np.concatenate([[0], G.hs[rc[:, 0], rc[:, 1]]])
-    # contraintes : > 40 % de la hauteur de l'apex et rayon maximal 1 + 0,45 h
     ok = lab > 0
     ok[ok] = G.hs[ok] >= 0.4 * happ[lab[ok]]
     rr, cc = np.nonzero(ok)
@@ -286,27 +282,48 @@ def houppiers(G, rc, bati):
 
 
 def detecte(G, ch, axis):
+    """Apex, houppiers et filtres. Deux passes : la seconde cherche des apex dans le couvert
+    > 2 m resté hors de tout houppier (taillis jointifs, flancs de gros houppiers).
+    Un apex au-dessus de la chaussée (houppier en surplomb) n'est gardé que s'il est
+    chlorophyllien et à moins de 2,5 m du bord ; son tronc est reporté au bord + 0,8 m."""
     bande = G.burn([axis.buffer(BANDE)]).astype(bool)
-    route = G.burn([ruban(ch).buffer(MARGE_CHAUSSEE)]).astype(bool)
+    rb = ruban(ch)
+    route = G.burn([rb.buffer(MARGE_CHAUSSEE)]).astype(bool)
+    coeur = G.burn([rb.buffer(-2.5)]).astype(bool)
     bats = [g for g, _ in couche("batiment")]
     bati = G.burn([g.buffer(MARGE_BATI) for g in bats]).astype(bool)
-    rc = apex(G, route | bati | ~G.valid, bande)
-    n_apex = len(rc)
-    lab = houppiers(G, rc, bati)
+    pousse = (G.hs >= H_ARBRE) & G.valid & ~bati & ~(route & (G.ndvi < NDVI_ARBRE))   # croissance des houppiers
+    cand = bande & G.valid & ~bati & ~coeur & ~(route & (G.ndvi < 0.15))
+    rc1 = apex(G.hs, cand)
+    lab = houppiers(G, rc1, pousse)
+    reste = ndi.binary_opening(cand & pousse & (lab == 0), structure=disque(2))   # sans les liserés < 2 m
+    rc2 = apex(np.where(reste, G.hs, 0).astype(np.float32), reste)
+    rc = np.vstack([rc1, rc2])
+    origine = np.r_[np.zeros(len(rc1), int), np.ones(len(rc2), int)]
+    lab = houppiers(G, rc, pousse)
     n = len(rc)
     idx = np.arange(1, n + 1)
     area = ndi.sum_labels(np.ones(G.shape, np.float32), lab, idx) * RES * RES
     ndv = ndi.mean(G.ndvi, lab, idx)
-    keep = (area >= 1.0) & (ndv >= NDVI_ARBRE)
-    rejets = {"apex_detectes": int(n_apex), "houppier_inferieur_1m2": int((area < 1.0).sum()),
-              "sans_chlorophylle_ndvi": int(((area >= 1.0) & (ndv < NDVI_ARBRE)).sum())}
-    # relabel des houppiers conservés
-    remap = np.zeros(n + 1, np.int32)
+    amin = np.where(origine == 0, 1.0, 3.0)                       # m² : pointe isolée / fragment
+    keep = (area >= amin) & (ndv >= NDVI_ARBRE)
+    rejets = {"apex_passe_1": int(len(rc1)), "apex_passe_2_couvert_restant": int(len(rc2)),
+              "houppier_trop_petit_1m2_ou_3m2_en_passe_2": int((area < amin).sum()),
+              "sans_chlorophylle_ndvi": int(((area >= amin) & (ndv < NDVI_ARBRE)).sum())}
+    rej_xy = np.column_stack(G.xy(rc[~keep, 0], rc[~keep, 1]))
+    remap = np.zeros(n + 1, np.int32)                              # renumérote les houppiers gardés
     remap[idx[keep]] = np.arange(1, keep.sum() + 1)
     lab = remap[lab]
-    rc, area, ndv = rc[keep], area[keep], ndv[keep]
-    masks = {"bande": bande, "route": route, "bati": bati, "batiments": bats}
-    return rc, area, ndv, lab, masks, rejets
+    rc, area, origine = rc[keep], area[keep], origine[keep]
+    x, y = G.xy(rc[:, 0], rc[:, 1])
+    sur = route[rc[:, 0], rc[:, 1]]
+    bord = rb.buffer(MARGE_CHAUSSEE + 0.3).exterior if rb.geom_type == "Polygon" else rb.buffer(0.8).boundary
+    for i in np.flatnonzero(sur):                                  # tronc reporté au bord
+        q = bord.interpolate(bord.project(shapely.Point(x[i], y[i])))
+        x[i], y[i] = q.x, q.y
+    rejets["apex_au_dessus_de_la_chaussee_tronc_reporte_au_bord"] = int(sur.sum())
+    masks = {"bande": bande, "route": route, "bati": bati, "batiments": bats, "rejets_xy": rej_xy}
+    return x, y, rc, area, origine, lab, masks, rejets
 
 
 # --- essences --------------------------------------------------------------------------------
@@ -455,7 +472,7 @@ def choisir_extraits(T, S, ch):
 
 def planche(T, S, ch, extraits, path, half=30.0, ncol=3, dpi=100):
     nrow = math.ceil(len(extraits) / ncol)
-    fig, axs = plt.subplots(nrow, ncol, figsize=(4.6 * ncol, 4.9 * nrow + 0.5))
+    fig, axs = plt.subplots(nrow, ncol, figsize=(4.6 * ncol, 5.1 * nrow + 0.6), gridspec_kw={"hspace": 0.22, "wspace": 0.04})
     tree = cKDTree(np.column_stack([T["x"], T["y"]]))
     st = cKDTree(np.column_stack(S[:2]))
     for ax, (titre, cx, cy) in zip(np.ravel(axs), extraits):
@@ -489,7 +506,7 @@ def planche(T, S, ch, extraits, path, half=30.0, ncol=3, dpi=100):
     fig.legend(handles=hand, loc="lower center", ncol=len(hand), frameon=False, fontsize=9)
     fig.suptitle("Semis des arbres - BD ORTHO 20 cm (IGN) ; cercle = houppier segmenté dans le LiDAR HD, "
                  "couleur = essence attribuée (statistique, d'après BD Forêt)", x=0.01, ha="left", color=INK, fontsize=11)
-    fig.tight_layout(rect=(0, 0.04, 1, 0.97))
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.91, bottom=0.05)
     fig.savefig(path, dpi=dpi)
     plt.close(fig)
 
@@ -619,11 +636,11 @@ def main():
     print("rasters...")
     G = Grille()
     print("détection...")
-    rc, area, ndv, lab, masks, rejets = detecte(G, ch, axis)
-    x, y = G.xy(rc[:, 0], rc[:, 1])
+    x, y, rc, area, origine, lab, masks, rejets = detecte(G, ch, axis)
     h = G.hs[rc[:, 0], rc[:, 1]].astype(float)
     hmax = ndi.maximum(G.h, lab, np.arange(1, len(rc) + 1))       # hauteur brute du houppier
-    z = G.mnt[rc[:, 0], rc[:, 1]].astype(float)
+    rt, ct = G.rc(x, y)
+    z = G.mnt[rt, ct].astype(float)
     d = 2 * np.sqrt(area / math.pi)
     pk, dist, side = reperes_axe(ch, axis, x, y)
     print(f"{len(x)} arbres")
@@ -639,10 +656,11 @@ def main():
     T = {"x": x, "y": y, "z": z, "h": h, "d": d, "ess": ess, "regle": regle, "dist": dist}
 
     rows = [(f"{x[i]:.2f}", f"{y[i]:.2f}", f"{z[i]:.2f}", f"{h[i]:.1f}", f"{d[i]:.1f}", ESSENCES[ess[i]][0],
-             fam[i], elem[i], regle[i], f"{dist[i]:.1f}", f"{pk[i]:.0f}", side[i]) for i in range(len(x))]
+             fam[i], elem[i], regle[i], f"{dist[i]:.1f}", f"{pk[i]:.0f}", side[i],
+             ("apex", "couvert_restant")[origine[i]]) for i in range(len(x))]
     p_arbres = ecrire_csv(OUT / "arbres.csv", ["x_l93", "y_l93", "z_sol_m", "hauteur_m", "diametre_houppier_m", "essence",
                                                "famille_jeu", "element_jeu_propose", "regle_essence", "dist_axe_m",
-                                               "pk_m", "cote"], rows)
+                                               "pk_m", "cote", "detection"], rows)
 
     print("arbustes...")
     sx, sy, sz, sh, sd, n_low = arbustes(G, rng, masks, lab)
@@ -697,6 +715,7 @@ def main():
         },
         "arbres": {
             "nombre": int(len(x)), "rejets": rejets,
+            "par_passe": {"apex (passe 1)": int((origine == 0).sum()), "couvert restant (passe 2)": int((origine == 1).sum())},
             "a_moins_de_40m": int((dist <= 40).sum()), "a_moins_de_15m": int((dist <= 15).sum()),
             "densite_moyenne_par_ha": round(len(x) / ha_zone),
             "hauteur_m": {"mediane": round(float(np.median(h)), 1), "p10": round(float(np.percentile(h, 10)), 1),
