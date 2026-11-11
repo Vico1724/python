@@ -6,3 +6,5 @@ __pycache__/
 modele/terrain.glb
 # export/stage_ir/grand_caunet/collision.glb (14 Mo) est désormais VERSIONNÉ : le kit pc/ doit le trouver sur le PC
 # du directeur, où le régénérer demanderait toute la chaîne (données brutes, modèle 3D). export/ fait < 15 Mo.
+# Images de sol par dalle (script 14) : volumineuses et régénérables ; un jeu allégé est versionné dans modele/apercu/
+modele/textures_sol/
