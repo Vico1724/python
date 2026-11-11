@@ -12,10 +12,9 @@ x0 917008.49, y0 6241030.6, z0 398.55) : le premier arbre du fichier, pin d'Alep
 231.24 m), doit être posé en UE (-44324.0, -275715.0, -16731.0) cm en mode "propre". Recalculer avec
 python3 repere_unreal.py si le repère a changé.
 
-Échelle : hauteur mesurée / hauteur du maillage du jeu. Les hauteurs ont été relevées sur le PC le 11/11/2026
-(outils/relever_jeu.py -> hauteurs_maillages.json, en cm) ; outils/reattribuer_arbres.py en a tiré
-arbres_jeu.csv.gz, où chaque arbre a un maillage de taille voisine et son échelle. Ce script lit ce fichier s'il
-existe ; sinon arbres.csv et hauteurs_maillages.json ; sans aucun des deux : échelle 1.
+Échelle : hauteur mesurée / hauteur du maillage du jeu. Ces hauteurs ne sont pas dans le catalogue (noms
+seulement) : les relever sur le PC (PROTOCOLE.md, E2, « hauteurs des maillages ») dans
+pc/etape2_unreal/hauteurs_maillages.json ({"SM_AleppoPine14": 1450.0, ...} en cm). Sans ce fichier : échelle 1.
 Lacet : aléatoire (graine fixe) : nos arbres n'ont pas d'orientation mesurée.
 
 Incertitude : la création d'un composant d'instances sur un acteur depuis Python passe ici par
@@ -25,7 +24,6 @@ Usage : py "…/poser_arbres.py" [--placement rapport.json] [--pk-min 0 --pk-max
 """
 import argparse
 import csv
-import gzip
 import json
 import os
 import random
@@ -68,20 +66,12 @@ def main():
     hauteurs = json.load(open(hfile, encoding="utf-8")) if os.path.exists(hfile) else {}
     if not hauteurs:
         unreal.log_warning("hauteurs_maillages.json absent : échelle 1 pour tous les arbres")
-    # arbres_jeu.csv.gz (outils/reattribuer_arbres.py) : maillage choisi selon la hauteur réelle des maillages du jeu,
-    # colonnes element_jeu et echelle. À défaut, arbres.csv, dont le maillage a été tiré sans connaître les hauteurs.
-    reattribue = os.path.join(ICI, "..", "arbres_jeu.csv.gz")
-    if os.path.exists(reattribue):
-        lignes, col = csv.DictReader(gzip.open(reattribue, "rt", encoding="utf-8")), "element_jeu"
-    else:
-        unreal.log_warning("arbres_jeu.csv.gz absent : maillages de arbres.csv, dont certains sont des souches (reattribuer_arbres.py)")
-        lignes, col = csv.DictReader(open(os.path.join(RACINE, "data", "processed", "arbres.csv"), encoding="utf-8")), "element_jeu_propose"
     rng = random.Random(1)
     groupes = {}
-    for r in lignes:
+    for r in csv.DictReader(open(os.path.join(RACINE, "data", "processed", "arbres.csv"), encoding="utf-8")):
         if not (a.pk_min <= float(r["pk_m"]) <= a.pk_max):
             continue
-        groupes.setdefault((r["famille_jeu"], r[col]), []).append(r)
+        groupes.setdefault((r["famille_jeu"], r["element_jeu_propose"]), []).append(r)
     total = 0
     for (famille, nom), arbres in sorted(groupes.items()):
         mesh = unreal.load_asset(f"/Game/{famille}/{nom}")
@@ -97,7 +87,7 @@ def main():
         for r in arbres[: max(0, a.max - total)]:
             x, y, z = float(r["x_l93"]), float(r["y_l93"]), float(r["z_sol_m"])
             p = R.l93_vers_unreal_acrxs(x, y, z, org, pl) if pl else R.l93_vers_unreal(x, y, z, rep)
-            s = float(r["echelle"]) if r.get("echelle") else (float(r["hauteur_m"]) * 100.0 / h_mesh if h_mesh else 1.0)
+            s = float(r["hauteur_m"]) * 100.0 / h_mesh if h_mesh else 1.0
             t = unreal.Transform(location=unreal.Vector(*p), rotation=unreal.Rotator(roll=0.0, pitch=0.0, yaw=rng.uniform(-180, 180)),
                                  scale=unreal.Vector(s, s, s))
             comp.add_instance(t)

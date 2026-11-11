@@ -10,8 +10,9 @@ Usage (depuis la racine du dépôt) :
     python pc/etape2_unreal/outils/relever_jeu.py --exporter   # refait les exports (après une mise à jour du jeu)
 
 Écrit :
-    pc/etape2_unreal/hauteurs_maillages.json      {"SM_AleppoPine14": 1041.4, ...} en cm, lu par poser_arbres.py
+    pc/etape2_unreal/hauteurs_maillages.json      {"SM_AleppoPine14": 1041.4, ...} en cm (sans les plaques de couvre-sol)
     pc/etape2_unreal/releves/maillages_arbres.json
+    pc/etape2_unreal/releves/maillages_vegetation.json   lu par scripts_editeur/attribution.py
     pc/etape2_unreal/releves/materiaux_maitres.json
     pc/etape2_unreal/releves/variantes.json
     pc/etape2_unreal/releves/textures.json
@@ -34,7 +35,7 @@ RELEVES = KIT / "releves"
 FILTRES = [
     r"^acr/Content/.*/(M|MI)_[^/]+\.uasset$",                                        # matériaux et variantes
     r"/BC_[^/]+\.uasset$",                                                           # Blueprints d'acteurs
-    r"^acr/Content/Foliage/Trees/[^/]+/SM_[^/]+\.uasset$",                           # maillages d'arbres
+    r"^acr/Content/Foliage/.*/SM_[^/]+\.uasset$",                                    # arbres, arbustes, couvre-sols
     r"^acr/Content/(Environments/(MonteCarlo[^/]*|RallyShared)/.*|Props/RallyProps/Gantries/|Materials/PhotoMode/"
     r"Textures/|Effects/Vehicles/Skid/)T_[^/]+\.uasset$",                            # textures utiles
     r"^acr/Content/Props/RallyProps/Gantries/SM_[^/]+\.uasset$",                     # portiques (essai E1b)
@@ -120,6 +121,20 @@ def maillages(exports):
             "materiaux": [chemin(m.get("MaterialInterface")) for m in p.get("StaticMaterials") or []],
         }
     return arbres
+
+
+def vegetation(exports):
+    """Tous les maillages de Foliage, par dossier : {"/Game/Foliage/Trees/AleppoPine": {"SM_AleppoPine01": [haut, largeur]}}
+    en cm. haut = sommet au-dessus du pivot ; largeur = plus grande dimension horizontale. Lu par
+    scripts_editeur/attribution.py pour choisir un maillage à la taille de chaque plante."""
+    out = collections.defaultdict(dict)
+    for f in sorted((exports / "acr/Content/Foliage").rglob("SM_*.uasset.json")):
+        sm = next((o for o in json.loads(f.read_text(encoding="utf-8-sig")) if o.get("Type") == "StaticMesh"), None)
+        b = ((sm or {}).get("Properties") or {}).get("ExtendedBounds")
+        if b:
+            out[objet_de(f, exports).rsplit("/", 1)[0]][sm["Name"]] = [
+                round(b["Origin"]["Z"] + b["BoxExtent"]["Z"], 1), round(2 * max(b["BoxExtent"]["X"], b["BoxExtent"]["Y"]), 1)]
+    return dict(out)
 
 
 # --- matériaux -------------------------------------------------------------------------------------------------------
@@ -332,11 +347,13 @@ def main():
     # 1. maillages d'arbres
     arbres = maillages(a.exports)
     ecrire("maillages_arbres.json", {"source": source, "unite": "cm, repère du maillage (pivot au pied)", "maillages": arbres})
-    utiles = {x["objet"].rsplit("/", 1)[1] for x in factices if x["type"] == "StaticMesh"}
-    manquants = sorted(utiles - set(arbres))
-    if manquants:
-        raise SystemExit(f"maillages de factices.json sans relevé : {manquants}")
-    ecrire("hauteurs_maillages.json", {n: arbres[n]["haut_cm"] for n in sorted(utiles)}, KIT)
+    veg = vegetation(a.exports)
+    ecrire("maillages_vegetation.json", {"source": source, "unite": "cm : [haut au-dessus du pivot, plus grande largeur]",
+            "lecture": "lu par scripts_editeur/attribution.py ; un dossier dont tous les maillages font moins de 30 cm de "
+                       "haut est un couvre-sol en plaques", "dossiers": veg})
+    # hauteurs seules, pour les scripts qui calculent une échelle hauteur voulue / hauteur du maillage : les plaques de
+    # couvre-sol (moins de 30 cm) en sont exclues, cette échelle n'ayant pas de sens pour elles
+    ecrire("hauteurs_maillages.json", {n: v[0] for d in sorted(veg) for n, v in sorted(veg[d].items()) if v[0] >= 30}, KIT)
 
     # 2. matériaux maîtres
     mats = charger_materiaux(a.exports)

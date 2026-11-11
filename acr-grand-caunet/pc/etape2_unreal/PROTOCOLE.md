@@ -64,13 +64,20 @@ Les relevés se refont avec `python pc/etape2_unreal/outils/relever_jeu.py` (une
 
 **Les arbres étaient mal attribués.** Le script `10_semis_arbres.py` tirait le maillage au hasard dans la famille de l'essence, sans connaître sa hauteur. Or trois « arbres » du jeu sont des souches ou des plants : `SM_AleppoPine12` mesure 0,25 m, `SM_AleppoPine13` 0,55 m, `SM_Blackmaple04` 0,87 m. 3 468 de nos arbres les désignaient, avec une échelle allant jusqu'à 97, et 48 % des arbres avaient une échelle hors de 0,5 à 2.
 
-`outils/reattribuer_arbres.py` choisit maintenant, dans la même famille, un maillage de taille voisine, et écrit `arbres_jeu.csv.gz` (lu par `poser_arbres.py`). Il reste 2 308 arbres (5,5 %) hors de 0,5 à 2, parce que la famille n'a pas de maillage à leur taille :
+`scripts_editeur/attribution.py` choisit maintenant, à l'import, dans le dossier de l'essence, un maillage de taille voisine. `construire_niveau.py` s'en sert pour toutes les instances du manifeste, qui continue de nommer le maillage tiré au hasard. Le bilan est dans `releves/arbres_bilan.json`. Il reste 3 674 arbres (8,8 %) hors de 0,5 à 2, parce que le dossier n'a pas de maillage à leur taille :
 
 - **arbre à perruque** (`Smoketree`, 10 750 arbres mesurés entre 2 et 6 m) : le jeu n'a que des maillages de 1,9 m, 7,3 m et 10,3 m ;
 - **substituts de chêne** (`Blackmaple`, `BlackmapleMonteCarlo`) : maillages de 13 à 22 m pour des arbres dont la médiane est à 5 et 8 m ;
 - **olivier** : maillages de 10 à 12 m pour des arbres de 3 à 5 m.
 
-Pour ces essences, il faudra soit accepter des arbres réduits, soit choisir une autre famille du jeu. C'est une décision de rendu, à prendre en voyant le résultat (E4).
+**Les arbustes aussi.** Les 122 590 arbustes de `arbustes.csv.gz` sont de deux sortes :
+
+- **couvre-sol** (`GroundCover/BroomCreeper`, 51 012) : dans le jeu, ce sont des plaques d'un mètre de large et de 0,2 à 12 cm d'épaisseur. Une échelle calculée sur leur hauteur les aurait grossies 27 fois. Elle est maintenant calculée sur leur diamètre, et reste entre 0,4 et 1,9.
+- **buissons** (`Trees/Boxthorn`, 71 578, voulus entre 1 et 2 m) : le jeu range là des arbres de 3,5 à 11,8 m et un plant de 0,27 m. Les deux plus petits arbres sont pris, réduits à une échelle de 0,24 à 0,57. Aucun maillage du dossier n'est à la bonne taille.
+
+Pour ces essences, il faudra soit accepter des plantes réduites, soit choisir un autre dossier du jeu. C'est une décision de rendu, à prendre en voyant le résultat (E4).
+
+**`construire_niveau.py` applique ces relevés** : parent pris sur la variante modèle quand le manifeste nomme `M_Simple`, relief plat ajouté aux variantes qui n'en règlent pas (29 sur 36 dans l'échantillon), maillage et échelle rechoisis pour chaque plante. `outils/essai_construire.py` le vérifie avec `--parent jeu`. `factices.json` contient maintenant tous les maillages des dossiers de végétation utilisés et le piquet de rubalise, qui manquaient : sans eux, les arbustes et les piquets auraient été ignorés à l'import.
 
 **Matériaux de terrain et d'asphalte (E3b).** `releves/materiaux_maitres.json` donne tous les paramètres de `M_TerrainMaster_light` (40 textures, 124 static switch), `M_RoadSurface_Layered` et `M_AsphaltMaster_Adv`, avec leurs valeurs par défaut. `releves/variantes.json` détaille 255 variantes du jeu (asphaltes de Bollène et Sisteron, terrains de Monte-Carlo, glissières, portiques) : parent, textures, scalaires, static switch réglés. La règle est la même que pour `M_Simple` : **prendre comme parent une variante du jeu qui a déjà les bons static switch**, jamais le maître. `releves/textures.json` donne le format et les réglages de chaque texture qu'elles utilisent.
 
@@ -392,15 +399,15 @@ Si l'éditeur ne produit rien d'acceptable (E1), on écrit nous-mêmes le conten
 |---|---|---|
 | `PROTOCOLE.md` | ce document | |
 | `elements_jeu_utiles.json` | 27 rubriques : arbres par essence (pin d'Alep, arbre à perruque, érables pour les chênes, pins noirs, cyprès, oliviers…), herbes sèches, asphaltes et terrains de Monte-Carlo, matériaux maîtres, murs, ponts, rochers, glissières, panneaux français, rubalise, portiques, ciels et météo, surfaces physiques, acteurs de niveau, tables, niveaux | régénérable : `outils/extraire_elements.py` |
-| `factices.json` | 56 factices, tous présents dans le jeu : 4 matériaux avec leurs paramètres réels, la variante modèle, 40 maillages d'arbres, 11 Blueprints avec leur classe native | régénérable : `outils/liste_factices.py` |
+| `factices.json` | 72 factices, tous présents dans le jeu : 4 matériaux avec leurs paramètres réels, la variante modèle, 56 maillages (arbres, arbustes, couvre-sols, piquet de rubalise), 11 Blueprints avec leur classe native | régénérable : `outils/liste_factices.py` |
 | `LISEZMOI_PAQUET.md` | contenu du paquet d'import, conventions de noms et de repère, production sur le PC | |
 | `echantillon/` | paquet des essais E3 et E4 (PK 1 600 à 1 800), avec `manifeste.json` | produit par `scripts/16_paquet_unreal.py --echantillon`, contrôlé |
 | `scripts_editeur/construire_niveau.py` | import complet piloté par le manifeste : textures, maillages, variantes, niveau, instances | jamais exécuté dans Unreal ; logique vérifiée avec `outils/essai_construire.py` (faux module `unreal`) |
 | `A_VERIFIER.md` | les appels Unreal du script à vérifier, et où regarder | |
 | `outils/relever_jeu.py` | relève dans le jeu maillages, matériaux, variantes, textures, acteurs, niveau hôte | **exécuté le 11/11/2026** |
-| `outils/reattribuer_arbres.py` | choisit pour chaque arbre un maillage de taille voisine | **exécuté le 11/11/2026** |
-| `releves/` | 8 fichiers de relevés (§ 0 bis) | régénérables : `outils/relever_jeu.py` |
-| `hauteurs_maillages.json`, `arbres_jeu.csv.gz` | hauteurs des 45 maillages ; 41 584 arbres avec maillage et échelle | régénérables |
+| `scripts_editeur/attribution.py` | choisit pour chaque plante un maillage de taille voisine et son échelle ; utilisé par `construire_niveau.py` | **exécuté le 11/11/2026** en Python ordinaire ; vérifié par `outils/essai_construire.py` |
+| `releves/` | 9 fichiers de relevés (§ 0 bis) | régénérables : `outils/relever_jeu.py` |
+| `hauteurs_maillages.json` | hauteurs des maillages de végétation du jeu, sans les plaques de couvre-sol | régénérable |
 | `registre/gc_essai.json` | fiche d'inscription du niveau d'essai aux menus (E2a) | utilisée par `construire_registre.ps1` |
 | `projet/DefaultEngine_extrait.ini` | réglages du jeu à recopier dans le projet (E0) | tirés des fichiers du jeu |
 | `scripts_editeur/repere_unreal.py` | conversions Lambert-93, glTF, Unreal, point de contrôle | testé en Python ordinaire, et recoupé avec le mod de l'étape 1 à 20 cm près ; jamais dans Unreal |

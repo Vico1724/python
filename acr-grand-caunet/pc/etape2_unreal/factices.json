@@ -1,7 +1,7 @@
 {
  "description": "Écrit pc/etape2_unreal/factices.json : la liste des éléments FACTICES à créer dans le projet Unreal « acr », au",
  "releves_du_pc": true,
- "arbres_reattribues": true,
+ "tous_les_maillages_des_dossiers": true,
  "factices": [
   {
    "objet": "/Game/Materials/General/Masters/M_Simple",
@@ -302,6 +302,31 @@
    "pourquoi": "parent de nos variantes : ses static switch de texture sont déjà actifs dans le jeu"
   },
   {
+   "objet": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper01",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper02",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper03",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper04",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper05",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
    "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine01",
    "type": "StaticMesh",
    "essai": "E2, E4"
@@ -357,6 +382,16 @@
    "essai": "E2, E4"
   },
   {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine12",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine13",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
    "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine14",
    "type": "StaticMesh",
    "essai": "E2, E4"
@@ -378,6 +413,11 @@
   },
   {
    "objet": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple03",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple04",
    "type": "StaticMesh",
    "essai": "E2, E4"
   },
@@ -457,6 +497,31 @@
    "essai": "E2, E4"
   },
   {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn01",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn02",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn03",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn04",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn05",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
    "objet": "/Game/Foliage/Trees/Cypress/SM_Cypress01",
    "type": "StaticMesh",
    "essai": "E2, E4"
@@ -473,6 +538,11 @@
   },
   {
    "objet": "/Game/Foliage/Trees/Cypress/SM_Cypress04",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Olivetree/SM_Olivetree01",
    "type": "StaticMesh",
    "essai": "E2, E4"
   },
@@ -498,6 +568,16 @@
   },
   {
    "objet": "/Game/Foliage/Trees/Smoketree/SM_Smoketree04",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Smoketree/SM_Smoketree06",
+   "type": "StaticMesh",
+   "essai": "E2, E4"
+  },
+  {
+   "objet": "/Game/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
    "type": "StaticMesh",
    "essai": "E2, E4"
   },

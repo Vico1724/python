@@ -21,10 +21,18 @@ def lancer(manifeste, args, axes="X,Z,Y"):
     os.environ["GC_FAUX_AXES"] = axes
     import unreal
     importlib.reload(unreal)
-    # simule creer_factices.py : les maillages du jeu existent dans le projet (cubes)
+    # simule creer_factices.py : les maillages du jeu existent dans le projet (cubes), ainsi que M_Simple et la
+    # variante modèle du jeu qui sert de parent à nos variantes (factices.json)
     for e in json.load(open(manifeste, encoding="utf-8"))["elements"]:
         if e["type"] == "InstanceGroup":
             unreal.ASSETS[e["maillage_jeu"]] = unreal.StaticMesh(e["maillage_jeu"], [-50] * 3, [50] * 3, "cube")
+    for x in json.load(open(os.path.join(KIT, "factices.json"), encoding="utf-8"))["factices"]:
+        if x["type"] == "StaticMesh":
+            unreal.ASSETS.setdefault(x["objet"], unreal.StaticMesh(x["objet"], [-50] * 3, [50] * 3, "cube"))
+        elif x["type"] == "Material":
+            unreal.ASSETS.setdefault(x["objet"], unreal.Material(x["objet"]))
+        elif x["type"] == "MaterialInstanceConstant":
+            unreal.ASSETS.setdefault(x["objet"], unreal.MaterialInstanceConstant(x["objet"]))
     sys.argv = ["construire_niveau.py", "--manifeste", manifeste] + args
     cn = importlib.import_module("construire_niveau")
     cn = importlib.reload(cn)
@@ -60,7 +68,7 @@ def verifier(manifeste, etendue):
     if parasites:
         erreurs.append(f"matériaux parasites restés : {parasites[:3]}")
     sans_tex = [c for c, o in u.ASSETS.items() if o.get_class().get_name() == "MaterialInstanceConstant"
-                and not o.props.get("textures")]
+                and c.startswith(man["chemins"]["racine"]) and not o.props.get("textures")]     # nos variantes, pas les factices
     if sans_tex:
         erreurs.append(f"variantes sans texture : {sans_tex[:3]}")
     sans_mat = [c for c, o in u.ASSETS.items() if o.get_class().get_name() == "StaticMesh" and "/Mire/" not in c and c.startswith(man["chemins"]["racine"])
@@ -70,6 +78,54 @@ def verifier(manifeste, etendue):
     print(f"--- {etendue} : {r['maillages']} maillages, {r['textures']} textures, {r['variantes']} variantes, "
           f"{r['acteurs']} acteurs, {r['instances']} instances, alertes {len(r['alertes'])} -> "
           f"{'OK' if not erreurs else erreurs}")
+    return not erreurs
+
+
+def verifier_releves(manifeste):
+    """Corrections tirées des relevés du jeu (PROTOCOLE.md § 0 bis), avec --parent jeu :
+    - chaque variante a pour parent la variante modèle du jeu, jamais M_Simple, et règle un relief ;
+    - aucune instance ne désigne un maillage que le relevé donne pour une souche, et aucune plaque de couvre-sol
+      n'est mise à l'échelle sur sa hauteur."""
+    factices = json.load(open(os.path.join(KIT, "factices.json"), encoding="utf-8"))["factices"]
+    modele = next((x["objet"] for x in factices if x.get("role") == "modele_m_simple"), None)
+    releve = os.path.join(KIT, "releves", "maillages_vegetation.json")
+    if not modele or not os.path.exists(releve):
+        print("--- relevés du jeu absents (outils/relever_jeu.py, liste_factices.py) : corrections non vérifiées")
+        return True
+    r, u = lancer(manifeste, ["--etendue", "E4", "--parent", "jeu"])
+    racine = json.load(open(manifeste, encoding="utf-8"))["chemins"]["racine"]
+    nos_mi = {c: o for c, o in u.ASSETS.items() if o.get_class().get_name() == "MaterialInstanceConstant" and c.startswith(racine)}
+    erreurs = []
+    mauvais_parent = [c for c, o in nos_mi.items() if getattr(o, "parent", None) is not u.ASSETS[modele]]
+    if mauvais_parent:
+        erreurs.append(f"variantes sans la variante modèle pour parent : {mauvais_parent[:3]}")
+    sans_relief = [c for c, o in nos_mi.items() if "Simple_Normal_Texture" not in o.props.get("textures", {})]
+    if sans_relief:
+        erreurs.append(f"variantes sans relief : {sans_relief[:3]}")
+    if r["variantes_sur_le_modele_du_jeu"] != r["variantes"]:
+        erreurs.append(f"{r['variantes_sur_le_modele_du_jeu']} variantes sur le modèle pour {r['variantes']}")
+    veg = json.load(open(releve, encoding="utf-8"))["dossiers"]
+    hauts = {d + "/" + n: v[0] for d, m in veg.items() for n, v in m.items()}
+    plaques = {d for d, m in veg.items() if max(v[0] for v in m.values()) < 30}
+    chemin_de = {id(o): c for c, o in u.ASSETS.items()}
+    vus = 0
+    for a in u.ACTEURS:
+        for comp in a.props.get("composants", []):
+            chemin = chemin_de.get(id(comp.props.get("mesh")))
+            if chemin not in hauts:
+                continue
+            vus += 1
+            dossier = chemin.rsplit("/", 1)[0]
+            if dossier not in plaques and hauts[chemin] < 150:
+                erreurs.append(f"{a.get_actor_label()} désigne une souche ({hauts[chemin]} cm)")
+            ech = [t.scale.x for t in comp.props.get("instances", [])]
+            if ech and max(ech) > 6:
+                erreurs.append(f"{a.get_actor_label()} : échelle jusqu'à {max(ech):.1f}")
+    if not vus:
+        erreurs.append("aucun groupe d'instances de végétation trouvé dans le niveau")
+    print(f"--- relevés du jeu, --parent jeu : {r['variantes_sur_le_modele_du_jeu']} variantes sur la variante modèle, "
+          f"{r['reliefs_plats_ajoutes']} reliefs plats ajoutés, {r['instances_reattribuees']} instances réattribuées sur "
+          f"{r['instances']} -> {'OK' if not erreurs else erreurs}")
     return not erreurs
 
 
@@ -95,6 +151,7 @@ def main():
     print(f"--- paquet réaxé (Z,-X,Y) : {r['acteurs']} acteurs, {r['verdicts_bornes']['conformes']} bornes conformes -> "
           f"{'OK' if bon else 'ÉCHEC'}")
     ok &= bon
+    ok &= verifier_releves(manifeste)
     print("ESSAI RÉUSSI" if ok else "ESSAI EN ÉCHEC")
     sys.exit(0 if ok else 1)
 

@@ -68,9 +68,14 @@ EDITEUR = "/Game/GC_EditeurSeulement"          # jamais livré : matériau de se
 SECOURS = f"{EDITEUR}/M_GC_Secours"
 PARAM_SIMPLE = {"couleur": "Simple_BaseColor_Texture", "orm": "Simple_OcclRoughMet_Texture", "relief": "Simple_Normal_Texture"}
 PARAM_SECOURS = {"couleur": "Couleur", "orm": "ORM", "relief": "Relief"}
-A_CONFIRMER = ("noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres "
-               "à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script "
-               "d'import utilise le parent de secours M_GC_Secours")
+# Relevé dans le jeu le 11/11/2026 (pc/etape2_unreal/PROTOCOLE.md § 0 bis) : les trois noms de paramètres sont exacts,
+# mais M_Simple n'échantillonne ses textures que si ses static switch « Simple_Use_*_Texture » sont actifs, et ils ne
+# le sont pas par défaut. construire_niveau.py prend donc pour parent, à la place de M_Simple, la variante du jeu
+# MI_SisteronConcrete01 (factices.json, "role": "modele_m_simple"), et donne un relief plat aux variantes sans relief.
+# Le manifeste continue de nommer M_Simple : c'est l'import qui substitue.
+A_CONFIRMER = ("noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante "
+               "modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; "
+               "sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours")
 IMPORT_MAILLAGE = {"collision": "aucune", "nanite": False, "generer_lightmap_uv": False, "importer_materiaux": False,
                    "importer_textures": False, "recalculer_normales": False, "recalculer_tangentes": True,
                    "combiner_maillages": True, "echelle_import": 1.0}
@@ -650,8 +655,9 @@ def instances(P, ref, sol, ruban, pkf, args):
                           "present_au_catalogue": chemin in cat, "fichier": fichier.as_posix(), "nombre": int(len(ids)),
                           "composant": "HierarchicalInstancedStaticMeshComponent", "collision": "NoCollision",
                           "hauteur_native_cm": None,
-                          "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever "
-                                     "sur le PC) ; 1 tant qu'elle est inconnue",
+                          "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier "
+                                     "d'après la taille de chaque plante (releves/maillages_vegetation.json) et en "
+                                     "déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
                           "retirees_sur_chaussee": int(sur_chaussee[np.array(groupes[chemin])].sum()),
                           "essais": essais})
             bilan[e["nom"]] = e["nombre"]

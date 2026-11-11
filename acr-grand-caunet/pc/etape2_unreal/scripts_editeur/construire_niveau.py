@@ -8,11 +8,17 @@ Construit le décor de la spéciale GrandCaunet à partir d'un manifeste produit
   2. textures (sRGB, compression, adressage, groupe de LOD réglés d'après le manifeste) ;
   3. maillages glb (un fichier = un maillage ; collision supprimée, Nanite désactivé, section vérifiée) et contrôle
      de leurs bornes contre le manifeste (verdict « REPÈRE CONFORME ») ;
-  4. variantes de matériaux : parent du jeu (factice M_Simple) s'il existe dans le projet et si --parent jeu,
-     sinon matériau de secours M_GC_Secours créé ici (à ne pas livrer) ;
+  4. variantes de matériaux : parent du jeu s'il existe dans le projet et si --parent jeu, sinon matériau de
+     secours M_GC_Secours créé ici (à ne pas livrer). Relevé dans le jeu le 11/11/2026 (PROTOCOLE.md § 0 bis) :
+     quand le manifeste désigne M_Simple, le parent pris est la variante modèle du jeu (factices.json,
+     "role": "modele_m_simple"), parce que M_Simple n'échantillonne ses textures que si des static switch sont
+     actifs et qu'ils ne le sont pas par défaut ; et une variante qui ne règle pas de relief en reçoit un plat,
+     faute de quoi elle hériterait du relief de béton de la variante modèle ;
   5. niveau (/Game/Levels/GrandCaunet[_E3|_E4]) : un acteur par maillage, posé à acteur.position_cm, sans
      collision ; éclairage de contrôle facultatif ;
-  6. arbres, arbustes, piquets : un acteur par maillage du jeu, avec un composant d'instances ;
+  6. arbres, arbustes, piquets : un acteur par maillage du jeu, avec un composant d'instances. Si le relevé
+     releves/maillages_vegetation.json existe, le maillage de chaque plante est rechoisi dans le dossier de son
+     essence d'après sa taille (attribution.py) : le manifeste les tire au hasard, souches comprises ;
   7. enregistrement, et rapport JSON dans <projet>/Saved/GrandCaunet/.
 
 Utilisation, dans l'éditeur (Outils > Exécuter un script Python, ou console « py ») :
@@ -30,17 +36,23 @@ import json
 import math
 import os
 import re
+import struct
 import sys
 import time
+import zlib
 
 import unreal
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 KIT = os.path.dirname(ICI)
 sys.path.insert(0, ICI)
+import attribution as A  # noqa: E402
 import repere_unreal as R  # noqa: E402
 
 TOL_BORNES_CM = 2.0
+M_SIMPLE = "/Game/Materials/General/Masters/M_Simple"
+PARAM_RELIEF = "Simple_Normal_Texture"
+RELIEF_PLAT = "T_GC_Relief_Plat"
 
 
 # =====================================================================================================
@@ -264,6 +276,14 @@ class Construction:
         self.rapport = {"manifeste": a.manifeste, "etendue": a.etendue, "debut": time.strftime("%Y-%m-%d %H:%M:%S"),
                         "textures": 0, "maillages": 0, "variantes": 0, "acteurs": 0, "instances": 0,
                         "verdicts_bornes": {"conformes": 0, "differents": []}, "alertes": []}
+        self.rapport.update({"variantes_sur_le_modele_du_jeu": 0, "reliefs_plats_ajoutes": 0, "instances_reattribuees": 0})
+        # variante du jeu qui remplace M_Simple comme parent (voir l'en-tête, point 4)
+        self.modele = None
+        ffile = os.path.join(KIT, "factices.json")
+        if os.path.exists(ffile):
+            with open(ffile, encoding="utf-8") as f:
+                self.modele = next((x["objet"] for x in json.load(f)["factices"] if x.get("role") == "modele_m_simple"), None)
+        self._relief_plat = None
         self.placement = self.origine_ir = None
         if a.placement:
             self.placement = json.load(open(a.placement, encoding="utf-8"))["placement"]
@@ -379,20 +399,66 @@ class Construction:
 
     # --- matériaux ---
     def parent(self, e):
-        if self.a.parent == "jeu" and v_existe(e["parent_jeu_pressenti"]):
-            return v_charger(e["parent_jeu_pressenti"]), e["parametres_texture"]
+        """(parent, paramètres de texture, vrai si le parent est la variante modèle du jeu)"""
         if self.a.parent == "jeu":
-            self.alerte(f"{e['nom']} : parent du jeu {e['parent_jeu_pressenti']} absent (creer_factices.py) ; secours")
+            p = e["parent_jeu_pressenti"]
+            if p == M_SIMPLE:
+                if self.modele and v_existe(self.modele):
+                    return v_charger(self.modele), e["parametres_texture"], True
+                self.alerte(f"{e['nom']} : variante modèle du jeu absente (creer_factices.py) ; avec M_Simple pour parent, "
+                            f"les textures ne s'afficheront pas en jeu (static switch inactifs, PROTOCOLE.md § 0 bis)")
+            if v_existe(p):
+                return v_charger(p), e["parametres_texture"], False
+            self.alerte(f"{e['nom']} : parent du jeu {p} absent (creer_factices.py) ; secours")
         sec = self.man["materiau_secours"]
-        return v_creer_materiau_secours(sec["chemin"], sec["parametres"]), e["parametres_secours"]
+        return v_creer_materiau_secours(sec["chemin"], sec["parametres"]), e["parametres_secours"], False
+
+    def relief_plat(self):
+        """Texture de relief unie (128, 128, 255), créée une fois, dans le dossier des textures de matière du paquet :
+        elle est livrée avec le décor, puisque nos variantes la désignent."""
+        if self._relief_plat is None:
+            modele = self.par_nom.get("T_GC_ORM_Sol") or next(
+                (x for x in self.man["elements"] if x["type"] == "Texture2D" and x["nom"].startswith("T_GC_ORM")), None)
+            dest = modele["destination"] if modele else self.man["chemins"]["racine"] + "/Materials/Textures"
+            chemin = f"{dest}/{RELIEF_PLAT}"
+            if not v_existe(chemin):
+                d = v_dossier_saved()
+                os.makedirs(d, exist_ok=True)
+                fichier = os.path.join(d, RELIEF_PLAT + ".png")
+                ligne = b"\x00" + bytes((128, 128, 255)) * 8
+
+                def bloc(nom, donnees):
+                    return struct.pack(">I", len(donnees)) + nom + donnees + struct.pack(">I", zlib.crc32(nom + donnees) & 0xFFFFFFFF)
+
+                with open(fichier, "wb") as f:
+                    f.write(b"\x89PNG\r\n\x1a\n" + bloc(b"IHDR", struct.pack(">IIBBBBB", 8, 8, 8, 2, 0, 0, 0))
+                            + bloc(b"IDAT", zlib.compress(ligne * 8)) + bloc(b"IEND", b""))
+                v_dossier(dest)
+                v_importer_fichier(fichier, dest, RELIEF_PLAT)
+            tex = v_charger(chemin)
+            if tex is None:
+                self.alerte(f"relief plat non importé : {chemin}")
+                return None
+            v_regler_texture(tex, {"srgb": False, "compression": "TC_Normalmap", "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+                                   "adressage": "Wrap", "mipmaps": "FromTextureGroup", "virtual_texture_streaming": False})
+            v_enregistrer(chemin)
+            self._relief_plat = tex
+        return self._relief_plat
 
     def variante(self, e, textures):
         v_dossier(e["destination"])
-        parent, params = self.parent(e)
+        parent, params, sur_modele = self.parent(e)
         mi = v_creer_variante(e["nom"], e["destination"], parent)
         for p, t in params.items():
             if t in textures and textures[t] is not None:
                 v_parametre_texture(mi, p, textures[t])
+        if sur_modele:
+            self.rapport["variantes_sur_le_modele_du_jeu"] += 1
+            if PARAM_RELIEF not in params:
+                plat = self.relief_plat()
+                if plat is not None:
+                    v_parametre_texture(mi, PARAM_RELIEF, plat)
+                    self.rapport["reliefs_plats_ajoutes"] += 1
         v_enregistrer(e["chemin_ue"])
         self.rapport["variantes"] += 1
         return mi
@@ -422,35 +488,48 @@ class Construction:
         hauteurs = json.load(open(hfile, encoding="utf-8")) if os.path.exists(hfile) else {}
         if not hauteurs:
             self.alerte("hauteurs_maillages.json absent : échelle 1 pour toutes les instances (PROTOCOLE.md E2)")
+        # dimensions réelles des maillages du jeu, par dossier : permet de rechoisir le maillage de chaque plante
+        vegetation = A.charger(KIT)
+        if vegetation is None:
+            self.alerte("releves/maillages_vegetation.json absent (outils/relever_jeu.py) : maillages du manifeste gardés, "
+                        "dont des souches et des plaques de couvre-sol mises à l'échelle sur leur hauteur")
         reste = self.a.max_instances
         pk = self.man["essais"].get(self.a.etendue, {}).get("pk_m")
+        groupes = {}                                   # (étiquette de l'acteur, chemin du maillage) -> transformations
         for e in self.el:
             if e["type"] != "InstanceGroup" or reste <= 0:
                 continue
-            nom_mesh = e["maillage_jeu"].rsplit("/", 1)[1]
-            if not v_existe(e["maillage_jeu"]):
-                self.alerte(f"{e['maillage_jeu']} : factice absent (lancer creer_factices.py) ; groupe {e['nom']} ignoré")
-                continue
-            mesh = v_charger(e["maillage_jeu"])
+            dossier, nom_mesh = e["maillage_jeu"].rsplit("/", 1)
+            prefixe = e["nom"][:-len(nom_mesh) - 1] if e["nom"].endswith("_" + nom_mesh) else e["nom"]
+            candidats = (vegetation or {}).get(dossier)
             h_nat = hauteurs.get(nom_mesh) or e.get("hauteur_native_cm")
-            transfos = []
             with open(self.fichier(e), encoding="utf-8") as f:
                 for r in csv.DictReader(f):
                     if pk and not (pk[0] <= float(r["pk_m"]) <= pk[1]):
                         continue
-                    if len(transfos) >= reste:
+                    if reste <= 0:
                         break
                     p, lacet = self.position((float(r["x_cm"]), float(r["y_cm"]), float(r["z_cm"])), float(r["lacet_deg"]))
-                    s = float(r["hauteur_voulue_m"]) * 100.0 / h_nat if h_nat else 1.0
-                    transfos.append(v_transfo(p, lacet, s))
-            if not transfos:
+                    if candidats:
+                        diam = r.get("diametre_m") or r.get("diametre_houppier_m")
+                        choisi, s = A.choisir(candidats, float(r["hauteur_voulue_m"]), float(diam) if diam else None,
+                                              f"{e['nom']}:{r['id']}")
+                        if choisi != nom_mesh:
+                            self.rapport["instances_reattribuees"] += 1
+                    else:
+                        choisi = nom_mesh
+                        s = float(r["hauteur_voulue_m"]) * 100.0 / h_nat if h_nat and h_nat >= A.PLAT_CM else 1.0
+                    groupes.setdefault((f"{prefixe}_{choisi}", f"{dossier}/{choisi}"), []).append(v_transfo(p, lacet, s))
+                    reste -= 1
+        for (label, chemin), transfos in sorted(groupes.items()):
+            if not v_existe(chemin):
+                self.alerte(f"{chemin} : factice absent (lancer creer_factices.py) ; {len(transfos)} instances de {label} ignorées")
                 continue
-            acteur = v_poser_classe(unreal.Actor, (0.0, 0.0, 0.0), e["nom"], "GrandCaunet/Vegetation")
-            comp = v_composant_instances(acteur, f"HISM_{nom_mesh}", mesh)
+            acteur = v_poser_classe(unreal.Actor, (0.0, 0.0, 0.0), label, "GrandCaunet/Vegetation")
+            comp = v_composant_instances(acteur, f"HISM_{chemin.rsplit('/', 1)[1]}", v_charger(chemin))
             v_ajouter_instances(comp, transfos)
-            reste -= len(transfos)
             self.rapport["instances"] += len(transfos)
-            v_journal(f"{e['nom']} : {len(transfos)} instances")
+            v_journal(f"{label} : {len(transfos)} instances")
 
     def executer(self):
         a = self.a

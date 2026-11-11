@@ -1,72 +1,213 @@
 {
- "arbres": 41584,
  "regle": {
-  "hauteur_minimale_du_maillage_m": 1.5,
+  "plaque_si_moins_de_cm": 30.0,
+  "hauteur_minimale_cm": 150.0,
   "echelle_visee": [
    0.6,
    1.5
-  ]
+  ],
+  "tolerance": 1.25
  },
- "echelle_avant": {
-  "mediane": 0.76,
-  "min": 0.1,
-  "max": 97.62,
-  "hors_de_0,5_a_2": 19890,
-  "hors_de_0,6_a_1,5": 27509
+ "arbres": {
+  "/Game/Foliage/Trees/AleppoPine": {
+   "nombre": 22961,
+   "echelle_avant": {
+    "mediane": 1.16,
+    "min": 0.13,
+    "max": 97.62,
+    "hors_de_0,5_a_2": 10210
+   },
+   "echelle_apres": {
+    "mediane": 0.97,
+    "min": 0.6,
+    "max": 2.16,
+    "hors_de_0,5_a_2": 2
+   },
+   "par_maillage": {
+    "SM_AleppoPine01": 1917,
+    "SM_AleppoPine02": 1853,
+    "SM_AleppoPine03": 2047,
+    "SM_AleppoPine04": 1848,
+    "SM_AleppoPine05": 1860,
+    "SM_AleppoPine06": 1790,
+    "SM_AleppoPine07": 1298,
+    "SM_AleppoPine08": 947,
+    "SM_AleppoPine09": 2065,
+    "SM_AleppoPine10": 1737,
+    "SM_AleppoPine11": 1907,
+    "SM_AleppoPine14": 1842,
+    "SM_AleppoPine15": 1850
+   }
+  },
+  "/Game/Foliage/Trees/Blackmaple": {
+   "nombre": 2086,
+   "echelle_avant": {
+    "mediane": 0.38,
+    "min": 0.1,
+    "max": 24.54,
+    "hors_de_0,5_a_2": 1726
+   },
+   "echelle_apres": {
+    "mediane": 0.4,
+    "min": 0.16,
+    "max": 1.45,
+    "hors_de_0,5_a_2": 1409
+   },
+   "par_maillage": {
+    "SM_Blackmaple01": 28,
+    "SM_Blackmaple02": 1002,
+    "SM_Blackmaple03": 1031,
+    "SM_Blackmaple06": 25
+   }
+  },
+  "/Game/Foliage/Trees/BlackmapleMonteCarlo": {
+   "nombre": 5338,
+   "echelle_avant": {
+    "mediane": 0.55,
+    "min": 0.31,
+    "max": 2.05,
+    "hors_de_0,5_a_2": 2011
+   },
+   "echelle_apres": {
+    "mediane": 0.61,
+    "min": 0.46,
+    "max": 1.5,
+    "hors_de_0,5_a_2": 976
+   },
+   "par_maillage": {
+    "SM_BlackmapleMonteCarlo01": 285,
+    "SM_BlackmapleMonteCarlo02": 2589,
+    "SM_BlackmapleMonteCarlo03": 2464
+   }
+  },
+  "/Game/Foliage/Trees/BlackpineMonteCarlo": {
+   "nombre": 360,
+   "echelle_avant": {
+    "mediane": 0.43,
+    "min": 0.11,
+    "max": 6.54,
+    "hors_de_0,5_a_2": 228
+   },
+   "echelle_apres": {
+    "mediane": 0.93,
+    "min": 0.6,
+    "max": 1.49,
+    "hors_de_0,5_a_2": 0
+   },
+   "par_maillage": {
+    "SM_BlackpineMonteCarlo01": 5,
+    "SM_BlackpineMonteCarlo02": 3,
+    "SM_BlackpineMonteCarlo03": 9,
+    "SM_BlackpineMonteCarlo04": 47,
+    "SM_BlackpineMonteCarlo05": 87,
+    "SM_BlackpineMonteCarlo06": 5,
+    "SM_BlackpineMonteCarlo07": 15,
+    "SM_BlackpineMonteCarlo08": 75,
+    "SM_BlackpineMonteCarlo09": 4,
+    "SM_BlackpineMonteCarlo11": 103,
+    "SM_BlackpineMonteCarlo12": 7
+   }
+  },
+  "/Game/Foliage/Trees/Cypress": {
+   "nombre": 58,
+   "echelle_avant": {
+    "mediane": 1.5,
+    "min": 0.31,
+    "max": 3.9,
+    "hors_de_0,5_a_2": 19
+   },
+   "echelle_apres": {
+    "mediane": 1.27,
+    "min": 0.46,
+    "max": 2.65,
+    "hors_de_0,5_a_2": 7
+   },
+   "par_maillage": {
+    "SM_Cypress01": 5,
+    "SM_Cypress02": 39,
+    "SM_Cypress03": 9,
+    "SM_Cypress04": 5
+   }
+  },
+  "/Game/Foliage/Trees/Olivetree": {
+   "nombre": 31,
+   "echelle_avant": {
+    "mediane": 0.35,
+    "min": 0.19,
+    "max": 0.72,
+    "hors_de_0,5_a_2": 25
+   },
+   "echelle_apres": {
+    "mediane": 0.39,
+    "min": 0.25,
+    "max": 0.74,
+    "hors_de_0,5_a_2": 24
+   },
+   "par_maillage": {
+    "SM_Olivetree01": 1,
+    "SM_Olivetree02": 2,
+    "SM_Olivetree03": 28
+   }
+  },
+  "/Game/Foliage/Trees/Smoketree": {
+   "nombre": 10750,
+   "echelle_avant": {
+    "mediane": 0.58,
+    "min": 0.19,
+    "max": 3.24,
+    "hors_de_0,5_a_2": 5671
+   },
+   "echelle_apres": {
+    "mediane": 0.7,
+    "min": 0.45,
+    "max": 2.16,
+    "hors_de_0,5_a_2": 1256
+   },
+   "par_maillage": {
+    "SM_Smoketree01": 3772,
+    "SM_Smoketree02": 3220,
+    "SM_Smoketree04": 3758
+   }
+  }
  },
- "echelle_apres": {
-  "mediane": 0.82,
-  "min": 0.16,
-  "max": 2.65,
-  "hors_de_0,5_a_2": 2308,
-  "hors_de_0,6_a_1,5": 9442
- },
- "arbres_sans_maillage_dans_la_plage": 9442,
- "maillages_ecartes": [
-  "SM_AleppoPine12",
-  "SM_AleppoPine13",
-  "SM_Blackmaple04"
- ],
- "arbres_par_maillage": {
-  "SM_AleppoPine01": 1793,
-  "SM_AleppoPine02": 1887,
-  "SM_AleppoPine03": 1987,
-  "SM_AleppoPine04": 1898,
-  "SM_AleppoPine05": 1815,
-  "SM_AleppoPine06": 1942,
-  "SM_AleppoPine07": 1276,
-  "SM_AleppoPine08": 1018,
-  "SM_AleppoPine09": 2071,
-  "SM_AleppoPine10": 1734,
-  "SM_AleppoPine11": 1870,
-  "SM_AleppoPine14": 1872,
-  "SM_AleppoPine15": 1798,
-  "SM_Blackmaple01": 37,
-  "SM_Blackmaple02": 1849,
-  "SM_Blackmaple03": 179,
-  "SM_Blackmaple06": 21,
-  "SM_BlackmapleMonteCarlo01": 275,
-  "SM_BlackmapleMonteCarlo02": 3881,
-  "SM_BlackmapleMonteCarlo03": 1182,
-  "SM_BlackpineMonteCarlo01": 2,
-  "SM_BlackpineMonteCarlo02": 5,
-  "SM_BlackpineMonteCarlo03": 15,
-  "SM_BlackpineMonteCarlo04": 53,
-  "SM_BlackpineMonteCarlo05": 77,
-  "SM_BlackpineMonteCarlo06": 4,
-  "SM_BlackpineMonteCarlo07": 16,
-  "SM_BlackpineMonteCarlo08": 69,
-  "SM_BlackpineMonteCarlo09": 4,
-  "SM_BlackpineMonteCarlo11": 110,
-  "SM_BlackpineMonteCarlo12": 5,
-  "SM_Cypress01": 10,
-  "SM_Cypress02": 37,
-  "SM_Cypress03": 3,
-  "SM_Cypress04": 8,
-  "SM_Olivetree02": 2,
-  "SM_Olivetree03": 29,
-  "SM_Smoketree01": 4860,
-  "SM_Smoketree02": 3573,
-  "SM_Smoketree04": 2317
+ "arbustes": {
+  "/Game/Foliage/GroundCover/BroomCreeper": {
+   "nombre": 51012,
+   "echelle_avant": {
+    "sans_objet": "maillage d'origine en plaque : pas d'échelle en hauteur"
+   },
+   "echelle_apres": {
+    "mediane": 0.99,
+    "min": 0.36,
+    "max": 1.91,
+    "hors_de_0,5_a_2": 659
+   },
+   "par_maillage": {
+    "SM_BroomCreeper01": 10338,
+    "SM_BroomCreeper02": 10166,
+    "SM_BroomCreeper03": 10242,
+    "SM_BroomCreeper04": 10173,
+    "SM_BroomCreeper05": 10093
+   }
+  },
+  "/Game/Foliage/Trees/Boxthorn": {
+   "nombre": 71578,
+   "echelle_avant": {
+    "mediane": 0.33,
+    "min": 0.08,
+    "max": 7.49,
+    "hors_de_0,5_a_2": 68513
+   },
+   "echelle_apres": {
+    "mediane": 0.38,
+    "min": 0.24,
+    "max": 0.57,
+    "hors_de_0,5_a_2": 63856
+   },
+   "par_maillage": {
+    "SM_Boxthorn01": 35989,
+    "SM_Boxthorn03": 35589
+   }
+  }
  }
 }

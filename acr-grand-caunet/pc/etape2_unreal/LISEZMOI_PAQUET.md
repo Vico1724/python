@@ -2,6 +2,11 @@
 
 *11 novembre 2026. Pour la session Claude du PC du directeur, et pour le directeur.*
 
+> **Mise à jour du 11/11/2026, après relevé dans le jeu sur le PC.** Deux points de ce guide sont dépassés, et `construire_niveau.py` a été corrigé en conséquence (`PROTOCOLE.md`, § 0 bis) :
+>
+> - **Parent des matériaux (§ sur les variantes, et « reste à faire » n° 3).** Les trois noms de paramètres sont confirmés. Mais avec `M_Simple` pour parent, les textures ne s'afficheraient pas : ses static switch de texture sont inactifs par défaut. Avec `--parent jeu`, le script prend à sa place la variante du jeu `MI_SisteronConcrete01`, et donne un relief plat aux variantes qui n'en règlent pas. Le manifeste continue de nommer `M_Simple`.
+> - **Échelle des instances (et « reste à faire » n° 4).** Les dimensions des maillages sont relevées. Le script ne garde plus le maillage nommé par le manifeste : il en rechoisit un à la taille de chaque plante dans le même dossier (`scripts_editeur/attribution.py`), parce que ces dossiers contiennent aussi des souches et que les couvre-sols sont des plaques de quelques centimètres d'épaisseur.
+
 ## 1. Ce que c'est
 
 Le décor de la spéciale a été préparé hors d'Unreal : découpé, nommé, converti et vérifié. Dans l'éditeur, il ne reste qu'à lancer un script, `scripts_editeur/construire_niveau.py`, qui lit un manifeste et fait tout le reste. Ce script n'a jamais tourné dans Unreal : ses appels incertains sont listés dans `A_VERIFIER.md`.

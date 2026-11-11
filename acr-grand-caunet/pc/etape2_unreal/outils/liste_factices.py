@@ -5,7 +5,8 @@ n'est JAMAIS livré (cuire_et_empaqueter.ps1 l'écarte avant l'empaquetage), et 
 
 Depuis le 11/11/2026, la liste est complétée par les relevés faits sur le PC (outils/relever_jeu.py, dossier
 releves/) quand ils existent : paramètres réels des matériaux maîtres, variante modèle de M_Simple, classe native de
-chaque Blueprint, et maillages d'arbres réattribués selon leur hauteur (outils/reattribuer_arbres.py).
+chaque Blueprint, et tous les maillages des dossiers de végétation utilisés (scripts_editeur/attribution.py choisit
+parmi eux, à l'import, un maillage à la taille de chaque plante).
 
 Usage : python pc/etape2_unreal/outils/liste_factices.py   (quelques secondes)
 """
@@ -51,14 +52,25 @@ def releve(nom):
     return json.loads(f.read_text(encoding="utf-8")) if f.exists() else None
 
 
-def arbres_utilises():
-    """(famille, maillage) : d'après arbres_jeu.csv.gz (réattribué selon les hauteurs) s'il existe, sinon arbres.csv."""
-    f = KIT / "arbres_jeu.csv.gz"
-    if f.exists():
-        lignes, col = csv.DictReader(gzip.open(f, "rt", encoding="utf-8")), "element_jeu"
-    else:
-        lignes, col = csv.DictReader(open(RACINE / "data" / "processed" / "arbres.csv", encoding="utf-8")), "element_jeu_propose"
-    return sorted({(r["famille_jeu"], r[col]) for r in lignes}), f.exists()
+def maillages_utilises():
+    """Chemins /Game/... des maillages du jeu que nos instances peuvent désigner : arbres, arbustes, piquets.
+
+    Avec le relevé releves/maillages_vegetation.json : TOUS les maillages des dossiers utilisés, parce que
+    scripts_editeur/attribution.py choisit à l'import, dans le dossier, un maillage à la taille de chaque plante.
+    Sans relevé : seulement les maillages nommés dans arbres.csv et arbustes.csv.gz."""
+    donnees = RACINE / "data" / "processed"
+    paires = {(r["famille_jeu"], r["element_jeu_propose"]) for r in csv.DictReader(open(donnees / "arbres.csv", encoding="utf-8"))}
+    if (donnees / "arbustes.csv.gz").exists():
+        paires |= {(r["famille_jeu"], r["element_jeu_propose"]) for r in csv.DictReader(gzip.open(donnees / "arbustes.csv.gz", "rt", encoding="utf-8"))}
+    veg = (releve("maillages_vegetation.json") or {}).get("dossiers")
+    chemins = {f"/Game/{f}/{e}" for f, e in paires}
+    if veg:
+        for f in {f for f, _ in paires}:
+            chemins |= {f"/Game/{f}/{n}" for n in veg.get(f"/Game/{f}", {})}
+    if (donnees / "balisage.csv").exists():                       # piquets de rubalise (scripts/16_paquet_unreal.py)
+        chemins |= {"/Game/" + r["maillage_jeu_propose"][len("acr/Content/"):] for r in csv.DictReader(open(donnees / "balisage.csv", encoding="utf-8"))
+                    if r.get("type") == "piquet de rubalise" and r.get("maillage_jeu_propose", "").startswith("acr/Content/")}
+    return sorted(c[:-len(".uasset")] if c.endswith(".uasset") else c for c in chemins), bool(veg)
 
 
 def materiau(objet, maitres, essai):
@@ -82,7 +94,7 @@ def main():
     maitres = (releve("materiaux_maitres.json") or {}).get("maitres")
     variantes = (releve("variantes.json") or {}).get("variantes")
     acteurs = (releve("acteurs.json") or {}).get("blueprints")
-    arbres, reattribues = arbres_utilises()
+    maillages, par_dossier = maillages_utilises()
 
     liste = [materiau(M_SIMPLE, maitres, "E1b, E3")]
     if variantes and MODELE_M_SIMPLE in variantes:
@@ -91,7 +103,7 @@ def main():
                       "role": "modele_m_simple", "static_switch": v["static_switch"],
                       "parametres_texture": sorted(v["textures"]), "essai": "E1b, E3",
                       "pourquoi": "parent de nos variantes : ses static switch de texture sont déjà actifs dans le jeu"})
-    liste += [{"objet": f"/Game/{f}/{e}", "type": "StaticMesh", "essai": "E2, E4"} for f, e in arbres]
+    liste += [{"objet": c, "type": "StaticMesh", "essai": "E2, E4"} for c in maillages]
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
     for o in BLUEPRINTS:
         a = (acteurs or {}).get(o)
@@ -106,9 +118,10 @@ def main():
     if absents:
         raise SystemExit(f"absents du catalogue : {absents}")
     SORTIE.write_text(json.dumps({"description": __doc__.strip().splitlines()[0],
-                                  "releves_du_pc": bool(maitres), "arbres_reattribues": reattribues,
+                                  "releves_du_pc": bool(maitres), "tous_les_maillages_des_dossiers": par_dossier,
                                   "factices": liste}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"{len(liste)} factices ({len(arbres)} maillages d'arbres ; relevés du PC : {'oui' if maitres else 'non'}) -> {SORTIE}")
+    print(f"{len(liste)} factices ({len(maillages)} maillages de végétation et de balisage ; relevés du PC : "
+          f"{'oui' if maitres else 'non'}) -> {SORTIE}")
 
 
 if __name__ == "__main__":
