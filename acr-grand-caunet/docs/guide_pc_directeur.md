@@ -21,6 +21,11 @@ Rendu du sol, de la végétation, des bords de route, et copilote : ce qui vous 
 
 Décision du directeur (10/11/2026) : le projet avance sans contacter l'auteur de BioBio. La méthode de fabrication est donc recherchée par nos propres moyens, à partir du projet libre ACR Extra Stages (voir `04_integration_jeu.md`).
 
-## 5. Plus tard : laisser le projet travailler sur le PC
+## 5. Bientôt : ouvrir une session sur le PC
 
-La construction du mod et les essais se feront sur ce PC. L'application Claude pour ordinateur peut partager un dossier du PC avec une session comme celle-ci (réglages : Claude Code, puis Remote Control). Aujourd'hui aucun dossier n'est partagé, et cette fonction n'est pas encore ouverte à tous les comptes : si elle ne vous est pas proposée, je vous fournirai des scripts à lancer vous-même.
+Le directeur prévoit d'activer prochainement l'accès à son PC par l'application Claude pour ordinateur. Deux possibilités, la première étant la plus simple :
+
+- **ouvrir une session directement sur le PC**, dans un dossier où le dépôt du projet est copié ; la feuille de route `06_reprise_sur_pc.md` lui dit par où reprendre ;
+- ou partager un dossier du PC avec la session en cours (réglages : Claude Code, puis Remote Control), si cette fonction est proposée sur le compte.
+
+Rien n'est à faire d'ici là.
