@@ -289,7 +289,7 @@ def figurants(eye, vers, ref):
     """Instances d'arbres et d'arbustes autour de l'œil : (x, y, z, h, largeur, angle, type)."""
     rng = np.random.default_rng(SEED)
     out = []
-    with open(OUT / "arbres.csv") as f:
+    with open(OUT / "arbres.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     A = np.array([[float(r["x_l93"]), float(r["y_l93"]), float(r["z_sol_m"]), float(r["hauteur_m"]),
                    float(r["diametre_houppier_m"])] for r in rows])
@@ -309,7 +309,7 @@ def figurants(eye, vers, ref):
             larg = max(min(dia * 1.1, h * 1.4), h * 0.7)
         out.append([*G[i], h, larg, rng.uniform(0, math.pi), typ])
     n_arbres = len(out)
-    with gzip.open(OUT / "arbustes.csv.gz", "rt") as f:
+    with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     B = np.array([[float(r["x_l93"]), float(r["y_l93"]), float(r["z_sol_m"]), float(r["hauteur_m"]), float(r["diametre_m"])]
                   for r in rows])
@@ -460,7 +460,7 @@ def temps_video(pk):
 def choix_vues(ch):
     """PK des six vues. Pinède : fenêtre de la D3D la plus dense en pins à moins de 20 m ;
     montée de la D1 : fenêtre la plus dégagée (le moins d'arbres à moins de 25 m) en montée."""
-    with open(OUT / "arbres.csv") as f:
+    with open(OUT / "arbres.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     pk = np.array([float(r["pk_m"]) for r in rows])
     da = np.array([float(r["dist_axe_m"]) for r in rows])
@@ -487,8 +487,12 @@ def rendus(vues_cfg, dossier_tmp, fichiers_communs):
         time.sleep(0.5)
         views = [{"url": f"http://127.0.0.1:8767/{v}/rendu.html?w={W}&h={H}&vue=vue.json", "out": str(dossier_tmp / v / "rendu.png")}
                  for v in vues_cfg]
-        node_path = subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip()
-        res = subprocess.run(["node", "rendu.js", json.dumps(views)], cwd=dossier_tmp, capture_output=True, text=True,
+        npm, node = shutil.which("npm"), shutil.which("node")      # npm.cmd sous Windows : chemin complet
+        if not (npm and node):
+            print("rendu WebGL impossible : Node.js (npm, node) introuvable ; rendus sautés")
+            return False
+        node_path = subprocess.run([npm, "root", "-g"], capture_output=True, text=True).stdout.strip()
+        res = subprocess.run([node, "rendu.js", json.dumps(views)], cwd=dossier_tmp, capture_output=True, text=True,
                              timeout=3600, env={**os.environ, "NODE_PATH": node_path})
     finally:
         srv.terminate()
@@ -526,7 +530,10 @@ def main():
             (d / "rendu.html").write_text(RENDER_HTML, encoding="utf-8")
             (d / "atlas.png").write_bytes(png)
             for f in communs:
-                os.symlink(MOD / f, d / f)
+                try:
+                    os.symlink(MOD / f, d / f)
+                except OSError:                      # Windows sans droit de créer des liens : copie
+                    shutil.copy(MOD / f, d / f)
             e_l93 = rg.point(np.array([float(pk)]), OEIL_LAT, OEIL_H)
             if isinstance(visee, tuple) and visee[0] == "azimut":        # regard horizontal vers un azimut
                 az_v = math.radians(visee[1])
@@ -571,7 +578,7 @@ def main():
                 if dst.stat().st_size > 1.45e6:
                     im.resize((1280, 720), Image.LANCZOS).quantize(256, method=Image.Quantize.MEDIANCUT,
                                                                    dither=Image.Dither.FLOYDSTEINBERG).save(dst, optimize=True)
-                info[nom]["fichier"] = str(dst.relative_to(ROOT))
+                info[nom]["fichier"] = dst.relative_to(ROOT).as_posix()
                 info[nom]["taille_mo"] = round(dst.stat().st_size / 1e6, 2)
                 im_chk = np.asarray(Image.open(dst).convert("RGB"))
                 info[nom]["controle_image"] = {"pixels_noirs_pct": round(float((im_chk.sum(2) < 15).mean() * 100), 2),

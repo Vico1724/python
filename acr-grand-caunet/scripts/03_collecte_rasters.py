@@ -28,7 +28,7 @@ BUFFER_REPO = 150   # m pour le produit versionné
 
 
 def axis_line() -> LineString:
-    with open(OUT / "axe_bdtopo_l93.csv") as f:
+    with open(OUT / "axe_bdtopo_l93.csv", encoding="utf-8") as f:
         return LineString([(float(r["x_l93"]), float(r["y_l93"])) for r in csv.DictReader(f)])
 
 

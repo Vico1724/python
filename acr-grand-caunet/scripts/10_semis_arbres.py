@@ -169,7 +169,7 @@ def couche(name):
 
 
 def chaussee():
-    with open(OUT / "chaussee_precise.csv") as f:
+    with open(OUT / "chaussee_precise.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     g = lambda *k: np.array([[float(r[c]) for c in k] for r in rows])   # noqa: E731
     return {"pk": g("pk_m")[:, 0], "A": g("x_axe", "y_axe"), "G": g("x_gauche", "y_gauche"),
@@ -463,7 +463,7 @@ def choisir_extraits(T, S, ch):
     dl = np.array([len(v) for v in st.query_ball_point(np.column_stack([T["x"][li], T["y"][li]]), 25)])
     i = li[np.argmax(dl)] if len(li) else 0
     out.append(("Lande / garrigue", T["x"][i], T["y"][i]))
-    with open(OUT / "virages_es.csv") as f:
+    with open(OUT / "virages_es.csv", encoding="utf-8") as f:
         v = [r for r in csv.DictReader(f) if r["categorie"] == "épingle" and r["dans_es"] == "True"]
     k = float(v[0]["pk_corde_m"]) if v else 2215
     j = int(np.argmin(np.abs(ch["pk"] - k)))
@@ -477,7 +477,7 @@ def choisir_extraits(T, S, ch):
     k2 = kk[int(np.argmin(cnt))]
     j = int(np.argmin(np.abs(ch["pk"] - k2)))
     out.append((f"Zone ouverte de la D1 (PK {k2:.0f})", *ch["A"][j]))
-    with open(OUT / "ouvrages_es.csv") as f:
+    with open(OUT / "ouvrages_es.csv", encoding="utf-8") as f:
         b = max((r for r in csv.DictReader(f) if r["dans_es"] == "True"), key=lambda r: float(r["longueur_bdtopo_m"]))
     bx, by = l93(float(b["lon"]), float(b["lat"]))
     out.append((f"Abords d'un pont (PK {b['pk_debut_m']}-{b['pk_fin_m']}, {float(b['longueur_bdtopo_m']):.0f} m)", bx, by))
@@ -776,7 +776,7 @@ def main():
             "vers l'extérieur de l'image), d'où des cercles parfois légèrement décalés sur les planches.",
             "Les maillages du jeu ne sont connus que par leur nom : hauteurs natives et aspect non vérifiés.",
         ],
-        "fichiers": [str(p.relative_to(ROOT)) for p in (p_arbres, p_arbustes)],
+        "fichiers": [p.relative_to(ROOT).as_posix() for p in (p_arbres, p_arbustes)],
     }
 
     print("figures...")

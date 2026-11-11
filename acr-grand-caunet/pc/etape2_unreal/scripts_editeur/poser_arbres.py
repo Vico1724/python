@@ -1,4 +1,7 @@
-"""JAMAIS EXÉCUTÉ. Python de l'éditeur Unreal 5.6. Pose les arbres de data/processed/arbres.csv dans le niveau
+"""REMPLACÉ PAR construire_niveau.py (piloté par le manifeste de scripts/16_paquet_unreal.py), qui fait la même chose
+au complet ; ce squelette est gardé pour mémoire et ne doit plus être lancé.
+
+JAMAIS EXÉCUTÉ. Python de l'éditeur Unreal 5.6. Pose les arbres de data/processed/arbres.csv dans le niveau
 ouvert, en instances : un acteur par maillage du jeu (colonne famille_jeu / element_jeu_propose), portant un
 composant HierarchicalInstancedStaticMeshComponent qui désigne le FACTICE de ce maillage (creer_factices.py) ; le
 jeu y substituera son vrai maillage.

@@ -94,7 +94,7 @@ plt.rcParams.update({"font.size": 9, "axes.edgecolor": "#c3c2b7", "axes.labelcol
 
 # --- données -------------------------------------------------------------------
 def axe_bdtopo():
-    with open(OUT / "axe_bdtopo_l93.csv") as f:
+    with open(OUT / "axe_bdtopo_l93.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     return np.array([float(r["pk_m"]) for r in rows]), np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in rows])
 
@@ -285,7 +285,7 @@ def zones_neutres(pk_ref):
     """Masques (N,2) : côtés à ignorer aux ponts (deux côtés) et aux débouchés (un côté)."""
     N = len(pk_ref)
     bridge = np.zeros(N, bool)
-    with open(OUT / "ouvrages_es.csv") as f:
+    with open(OUT / "ouvrages_es.csv", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             bridge |= (pk_ref >= float(r["pk_debut_m"]) - BRIDGE_MARGIN) & (pk_ref <= float(r["pk_fin_m"]) + BRIDGE_MARGIN)
     junc = np.zeros((N, 2), bool)
@@ -801,7 +801,7 @@ def main():
         off[i] *= 1 if (p - np.array(q.coords[0])) @ nA[i] >= 0 else -1
 
     # --- écritures ------------------------------------------------------------------
-    with open(OUT / "chaussee_precise.csv", "w", newline="") as f:
+    with open(OUT / "chaussee_precise.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["pk_m", "x_axe", "y_axe", "z_axe", "x_gauche", "y_gauche", "z_gauche", "x_droite", "y_droite",
                     "z_droite", "largeur_m", "devers_pct", "source", "zone"])

@@ -104,7 +104,7 @@ DISTANCES = [40, 50, 60, 70, 80, 90, 100, 120, 150, 200, 250, 300]
 # --- données ---------------------------------------------------------------------------
 def charger():
     ch = M08.chaussee()
-    with open(OUT / "chaussee_precise.csv") as f:
+    with open(OUT / "chaussee_precise.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     ch["largeur"] = np.array([float(r["largeur_m"]) for r in rows])
     ch["devers"] = np.array([float(r["devers_pct"]) for r in rows])
@@ -650,7 +650,7 @@ def appliquer_retouches(vir, cfg, pk_fin):
     out = {"bilan": {"fichier": None, "appliquees": [], "non_appliquees": []}, "dangers_non_exprimables": []}
     if cfg is None:
         return vir, out
-    out["bilan"]["fichier"] = str(RETOUCHES.relative_to(ROOT))
+    out["bilan"]["fichier"] = RETOUCHES.relative_to(ROOT).as_posix()
     tol = float(cfg.get("tolerance_pk_m", 30))
     src = cfg.get("source_par_defaut", "")
 

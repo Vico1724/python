@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Rejoue toute la chaîne (équivalent portable, Windows compris : python scripts/tout_lancer.py).
 # Rejoue les phases 2 et 3 (quelques minutes, ~250 Mo téléchargés dans data/raw).
 # Prérequis : Python 3.11+, `pip install -r requirements.txt`, accès à data.geopf.fr.
 set -euo pipefail
@@ -18,3 +19,4 @@ python3 10_semis_arbres.py          # semis des arbres et arbustes : position, h
 python3 13_paysage_lointain.py      # paysage lointain jusqu'à l'horizon (anneau autour du couloir)
 python3 14_textures_sol.py          # images de sol par dalle, sans les arbres, et relief fin près de la route
 python3 15_vues_decor.py            # vues conducteur de contrôle avec le décor complet
+python3 16_paquet_unreal.py         # paquet prêt à importer dans Unreal (paquet_unreal/, non versionné)

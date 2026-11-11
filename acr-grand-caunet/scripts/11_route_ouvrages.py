@@ -658,8 +658,12 @@ def rendus(vues, fichiers):
                      f"&eye={','.join(f'{v:.2f}' for v in eye)}&at={','.join(f'{v:.2f}' for v in at)}")
                 outs.append((tmp / f"{name}.png", FIG4 / f"route_{name}.png"))
                 views.append({"url": f"http://127.0.0.1:8766/rendu.html?{q}", "out": str(outs[-1][0])})
-            node_path = subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip()
-            res = subprocess.run(["node", "rendu.js", json.dumps(views)], cwd=tmp, capture_output=True, text=True,
+            npm, node = shutil.which("npm"), shutil.which("node")      # npm.cmd sous Windows : chemin complet
+            if not (npm and node):
+                print("rendu WebGL impossible : Node.js (npm, node) introuvable ; rendus sautés")
+                return False
+            node_path = subprocess.run([npm, "root", "-g"], capture_output=True, text=True).stdout.strip()
+            res = subprocess.run([node, "rendu.js", json.dumps(views)], cwd=tmp, capture_output=True, text=True,
                                  timeout=900, env={**os.environ, "NODE_PATH": node_path})
         finally:
             srv.terminate()

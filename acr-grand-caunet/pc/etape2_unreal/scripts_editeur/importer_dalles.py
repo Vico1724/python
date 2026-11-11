@@ -1,4 +1,7 @@
-"""JAMAIS EXÉCUTÉ. Python de l'éditeur Unreal 5.6. Importe nos dalles de terrain (et, pour l'essai E4, la route)
+"""REMPLACÉ PAR construire_niveau.py (piloté par le manifeste de scripts/16_paquet_unreal.py), qui fait la même chose
+au complet ; ce squelette est gardé pour mémoire et ne doit plus être lancé.
+
+JAMAIS EXÉCUTÉ. Python de l'éditeur Unreal 5.6. Importe nos dalles de terrain (et, pour l'essai E4, la route)
 dans /Game/GrandCaunet/, crée pour chaque dalle une variante (MaterialInstanceConstant) du matériau « simple » du jeu
 (/Game/Materials/General/Masters/M_Simple, factice créé par creer_factices.py) avec l'image de la dalle, et contrôle
 le repère après import.

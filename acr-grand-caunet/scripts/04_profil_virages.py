@@ -39,7 +39,7 @@ def grade(r: float) -> str:
 def main():
     off = load_official()
     L = longueur_es()                      # PK de l'arrivée ; PK 0 = ligne de départ retenue
-    with open(OUT / "axe_bdtopo_l93.csv") as f:
+    with open(OUT / "axe_bdtopo_l93.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     pk0 = float(rows[0]["pk_m"])
     xy = np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in rows])
@@ -96,7 +96,7 @@ def main():
     heading = (np.degrees(np.arctan2(dx, dy)) + 360) % 360                          # 0 = nord
     radius = np.where(np.abs(kappa) > 1e-5, 1 / np.maximum(np.abs(kappa), 1e-5), np.inf)
 
-    with open(OUT / "profil_es.csv", "w", newline="") as f:
+    with open(OUT / "profil_es.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["pk_m", "x_l93", "y_l93", "lon", "lat", "z_sol_lidar_m", "z_chaussee_m", "pente_pct",
                     "cap_deg", "rayon_m", "sens"])

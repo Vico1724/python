@@ -177,7 +177,7 @@ def main():
         w.writeheader()
         w.writerows(rows)
 
-    with open(OUT / "axe_bdtopo_l93.csv", "w", newline="") as f:
+    with open(OUT / "axe_bdtopo_l93.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["pk_m", "x_l93", "y_l93", "z_bdtopo", "lon", "lat"])
         for (x, y, z), k in zip(axis, pk):

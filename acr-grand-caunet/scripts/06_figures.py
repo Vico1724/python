@@ -26,10 +26,10 @@ plt.rcParams.update({"font.size": 9, "axes.edgecolor": "#c3c2b7", "axes.labelcol
 
 def load():
     off = load_official()
-    with open(OUT / "profil_es.csv") as f:
+    with open(OUT / "profil_es.csv", encoding="utf-8") as f:
         prof = {k: np.array([float(r[k]) for r in rows]) for rows in [list(csv.DictReader(f))]
                 for k in ("pk_m", "x_l93", "y_l93", "z_chaussee_m", "pente_pct")}
-    with open(OUT / "ouvrages_es.csv") as f:
+    with open(OUT / "ouvrages_es.csv", encoding="utf-8") as f:
         bridges = list(csv.DictReader(f))
     cal = json.loads((OUT / "calage_es.json").read_text(encoding="utf-8"))
     return off, prof, bridges, cal

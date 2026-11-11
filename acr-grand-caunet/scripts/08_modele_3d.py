@@ -54,7 +54,7 @@ VERSIONS = {                 # (bandes (distance max, pas), texture px, qualité
 
 # --- données -------------------------------------------------------------------
 def chaussee():
-    with open(OUT / "chaussee_precise.csv") as f:
+    with open(OUT / "chaussee_precise.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     g = lambda *k: np.array([[float(r[c]) for c in k] for r in rows])   # noqa: E731
     return {"pk": g("pk_m")[:, 0], "A": g("x_axe", "y_axe", "z_axe"), "G": g("x_gauche", "y_gauche", "z_gauche"),
@@ -77,14 +77,14 @@ class MNT:
 def tablier(ch, mnt):
     """Lignes de la chaussée qui sont un tablier : zone d'ouvrage BD TOPO (± 8 m, PK
     projetés sur le nouvel axe) où la route passe à plus de DECK_GAP au-dessus du MNT."""
-    with open(OUT / "axe_bdtopo_l93.csv") as f:
+    with open(OUT / "axe_bdtopo_l93.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     pk_old = np.array([float(r["pk_m"]) for r in rows])
     old = np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in rows])
     line = LineString(ch["A"][:, :2])
     s0 = line.project(Point(ch["A"][np.argmin(np.abs(ch["pk"])), :2]))
     zone = np.zeros(len(ch["pk"]), bool)
-    with open(OUT / "ouvrages_es.csv") as f:
+    with open(OUT / "ouvrages_es.csv", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             ab = [line.project(Point(np.interp(float(r[k]), pk_old, old[:, 0]), np.interp(float(r[k]), pk_old, old[:, 1])))
                   - s0 for k in ("pk_debut_m", "pk_fin_m")]
@@ -396,8 +396,12 @@ def rendus(dossier, ch, ref, deck, vues):
                      f"&at={','.join(f'{v:.1f}' for v in at)}")
                 outs.append((tmp / f"{name}.png", FIG / "phase3" / f"modele_3d_{name}.png"))
                 views.append({"url": f"http://127.0.0.1:8765/rendu.html?{q}", "out": str(outs[-1][0])})
-            node_path = subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip()
-            res = subprocess.run(["node", "rendu.js", json.dumps(views)], cwd=tmp, capture_output=True, text=True,
+            npm, node = shutil.which("npm"), shutil.which("node")      # npm.cmd sous Windows : chemin complet
+            if not (npm and node):
+                print("rendu WebGL impossible : Node.js (npm, node) introuvable ; rendus sautés")
+                return False
+            node_path = subprocess.run([npm, "root", "-g"], capture_output=True, text=True).stdout.strip()
+            res = subprocess.run([node, "rendu.js", json.dumps(views)], cwd=tmp, capture_output=True, text=True,
                                  timeout=900, env={**os.environ, "NODE_PATH": node_path})
         finally:
             srv.terminate()

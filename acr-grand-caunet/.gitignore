@@ -13,3 +13,6 @@ modele/textures_sol/
 modele/lointain.glb
 modele/terrain_sol.glb
 modele/textures_sol/
+# Paquet d'import Unreal complet (~420 Mo) : régénérable avec scripts/16_paquet_unreal.py ; l'échantillon
+# versionné est pc/etape2_unreal/echantillon/
+paquet_unreal/

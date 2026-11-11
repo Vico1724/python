@@ -49,7 +49,7 @@ def canopy(axis, near=30):
 
 def main():
     L = longueur_es()
-    with open(OUT / "axe_bdtopo_l93.csv") as f:
+    with open(OUT / "axe_bdtopo_l93.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     pk0 = float(rows[0]["pk_m"])
     xy = np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in rows])

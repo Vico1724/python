@@ -325,7 +325,7 @@ def charge_communs():
     G, D = ch["G"][:, :2], ch["D"][:, :2]
     quads = shapely.polygons([np.array([G[i], G[i + 1], D[i + 1], D[i], G[i]]) for i in range(len(G) - 1)])
     ruban = shapely.union_all(shapely.make_valid(quads))
-    with open(OUT / "arbres.csv") as f:
+    with open(OUT / "arbres.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     arbres = np.array([[float(r["x_l93"]), float(r["y_l93"]), float(r["diametre_houppier_m"]),
                         1.0 if r["essence"] in ("pin d'Alep", "autre pin (pignon ou maritime)", "cyprès") else 0.0]

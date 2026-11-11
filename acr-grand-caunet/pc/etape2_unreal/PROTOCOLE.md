@@ -17,7 +17,8 @@
 - **L'étape 1** (`pc/LISEZMOI.md`) : outils `retoc`, `acr-ref` et `acr-additive` construits dans `Z:\acrxs\bin`, fichier de correspondance `Z:\acrxs\mappings\acr_25170642.usmap`, mod d'essai de la physique.
 - **Nos données :**
   - `modele/` : `terrain.glb` (26 dalles de 500 m, chacune avec son image JPEG), `route_habillee.glb`, `ouvrages.glb`, `annexes.glb`, `balisage.glb`, `repere.json` ;
-  - bientôt `terrain_sol.glb`, `lointain.glb`, `textures_sol/` et `data/processed/textures_sol.json` ;
+  - `terrain_sol.glb`, `lointain.glb`, `textures_sol/`, `data/processed/textures_sol.json` (non versionnés : à régénérer, sauf le manifeste) ;
+  - **le paquet d'import Unreal** : l'échantillon `pc/etape2_unreal/echantillon/` (E3, E4) et le paquet complet `paquet_unreal/` à produire sur le PC (`LISEZMOI_PAQUET.md`) ;
   - `data/processed/arbres.csv` : 41 584 arbres, avec position, hauteur, essence et maillage du jeu proposé ;
   - `export/stage_ir/` : sol physique, obstacles, notes du copilote.
 - **Ce kit :**
@@ -75,7 +76,7 @@ E4 200 m complets (route, bords, 2 dalles, arbres, physique), puis toute la spé
 
 1. Créer un projet **vide**, sans contenu de démarrage, **nommé exactement `acr`**, dans `Z:\acrxs\unreal\acr\`. Le nom du projet fixe la racine des chemins : notre `/Game/…` correspond alors à `acr/Content/…`, comme dans les archives du jeu **[UE courant]**. Avant de choisir, vérifier la racine de montage des archives du jeu : `retoc` affiche le point de montage d'un conteneur **[à vérifier : commande d'information de retoc, `retoc --help`]**. Le catalogue donne `acr/Content/…`.
 2. Activer les extensions **Python Editor Script Plugin** et **Editor Scripting Utilities**. Vérifier que l'import glTF (Interchange) est actif **[à vérifier dans Édition > Extensions]**.
-3. Créer nos dossiers : `/Game/GrandCaunet/` (Levels, Terrain, Route, Materiaux, Textures). Les factices vont à leurs chemins du jeu, par `scripts_editeur/creer_factices.py`.
+3. Nos dossiers sont créés par `construire_niveau.py` : `/Game/Environments/GrandCaunet/` (décor), `/Game/Levels/GrandCaunet*` (niveaux), `/Game/GC_EditeurSeulement/` (jamais livré). Les essais E1 et E2 gardent leurs chemins `/Game/GrandCaunet/…`. Les factices vont à leurs chemins du jeu, par `scripts_editeur/creer_factices.py`.
 4. Préparer la liste des factices (déjà faite) avec `python3 pc/etape2_unreal/outils/liste_factices.py`. Elle donne 60 éléments, tous vérifiés présents dans le catalogue : `M_Simple`, les 45 maillages d'arbres utilisés par `arbres.csv`, 3 matériaux à compléter et 11 classes Blueprint.
 
 ### La chaîne de cuisson
@@ -225,12 +226,27 @@ Ces classes sont celles du jeu : `/Script/acr`, `/Script/dmphysics`, et des Blue
 
 **But :** afficher une dalle de 500 m de notre terrain avec son image aérienne, d'abord simplement, puis avec un matériau de terrain du jeu pour retrouver le relief fin et les reflets.
 
-1. **E3a (sûr) :**
-   - importer une dalle avec `scripts_editeur/importer_dalles.py`, qui lit `data/processed/textures_sol.json` s'il existe, sinon `modele/terrain.glb` ;
-   - la poser dans `GC_Essai` (E2a), ou dans le clone de la voie H ;
-   - elle reçoit une variante de `M_Simple` portant sa photo.
+1. **E3a (sûr) :** l'échantillon `echantillon/` (versionné, 12 Mo) contient tout ce qu'il faut ; le paquet et ses conventions sont décrits dans `LISEZMOI_PAQUET.md`.
+   - Créer d'abord les factices (`creer_factices.py`), puis, dans la console Python de l'éditeur :
 
-   **Le script contrôle le repère :** il compare les bornes importées aux bornes attendues (UE = 100 × (gX, gZ, gY)) et écrit « REPÈRE CONFORME » ou « REPÈRE DIFFÉRENT ». La conversion d'axes de l'importeur glTF d'Unreal **n'est pas connue avec certitude** **[à vérifier : documentation Interchange / glTF d'Epic]**. En cas d'écart, régler la transformation d'import, ou pivoter les acteurs, selon le verdict.
+     ```
+     py "Z:\<dépôt>\pc\etape2_unreal\scripts_editeur\construire_niveau.py" --etendue E3 --mire
+     ```
+
+   - Le script commence par importer la **mire d'axes** (trois barres de 4, 2 et 1 m) et en déduit la conversion d'axes réelle de l'importeur glb.
+     - Si elle diffère de celle que suppose le paquet (`X,Z,Y`), il s'arrête et donne la commande de correction : `python pc\etape2_unreal\outils\reaxer_paquet.py pc\etape2_unreal\echantillon\manifeste.json --axes <valeur>`. Elle réécrit les glb en Python seul, sans les données sources.
+     - Il importe aussi `T_GC_MireRelief`, pour contrôler à l'œil la convention des reliefs (DirectX).
+   - Il importe ensuite la dalle `SM_GrandCaunetTerrain_5_3`, qui contient le pont du PK 1 653, avec sa photo (`T_Terrain_5y3`), son relief (`T_TerrainN_5y3`) et sa variante `MI_Terrain_5y3`. Le parent est le matériau de secours, ou `M_Simple` avec `--parent jeu`.
+   - Il la pose dans le niveau `/Game/Levels/GrandCaunet_E3` et compare ses bornes au manifeste (« REPÈRE CONFORME »).
+   - Rapport : `<projet>\Saved\GrandCaunet\construire_niveau_E3.json`.
+   - Les appels Unreal à vérifier sont listés dans `A_VERIFIER.md`. Si l'un est refusé, corriger la fonction `v_…` correspondante en tête du script.
+   - Pour cuire vers le jeu : relancer avec `--parent jeu`, puis
+
+     ```
+     pwsh -File scripts_pc\cuire_et_empaqueter.ps1 -Essai e3 -Inclure 'Environments/GrandCaunet','Levels/GrandCaunet_E3' -Cartes '/Game/Levels/GrandCaunet_E3'
+     ```
+
+     Ne jamais inclure `GC_EditeurSeulement` (matériau de secours, mires).
 2. **E3b (beau) :** une variante d'un matériau de terrain du jeu. Candidats, avec leurs chemins dans `elements_jeu_utiles.json` :
    - `M_TerrainMaster_light`, le parent probable des 68 variantes de dalles de Bollène `MI_TerrainMatBlend1001…`. Chez Hafren, ce sont des mélanges de 9 matériaux pilotés par des masques par dalle `T_…_M1/_M2`, en **textures virtuelles** **[ACR-XS, visuals-plan]** ;
    - `M_RoadSurface_Layered` et `M_AsphaltMaster_Adv` pour la route ;
@@ -252,7 +268,16 @@ Ces classes sont celles du jeu : `/Script/acr`, `/Script/dmphysics`, et des Blue
 
 ## 6. E4 : 200 m complets, puis toute la spéciale (2 à 5 jours, puis la généralisation)
 
-**But :** les 200 premiers mètres jouables et beaux : route, bords et marquage, 2 dalles, arbres en instances, parapets, physique.
+**But :** 200 m jouables et beaux : route, bords et marquage, 2 dalles, arbres en instances, parapets, physique. L'échantillon couvre les PK 1 600 à 1 800, autour du pont à parapets de pierre du PK 1 653 (et non les 200 premiers mètres, moins variés). Il contient la route, le marquage, le pont, ses parapets et sa glissière, 2 dalles et 5 sous-dalles fines à 5 cm, 14 morceaux d'anneau lointain allégé et 8 304 arbres et arbustes.
+
+**Décor en une commande :**
+
+```
+py "Z:\<dépôt>\pc\etape2_unreal\scripts_editeur\construire_niveau.py" --etendue E4 [--parent jeu] [--placement <rapport stage-build>]
+```
+
+Le niveau produit est `/Game/Levels/GrandCaunet_E4`. Les arbres sont des composants d'instances, un par maillage du jeu ; leur échelle vient de `hauteurs_maillages.json` (§ E2), et vaut 1 sans ce fichier. Les étapes 3 à 5 ci-dessous sont faites par ce script ; elles restent décrites pour comprendre et pour diagnostiquer.
+
 
 1. **Physique et partie jeu :** celles de l'étape 1, construites par leur outil `stage-build` (sol, obstacles, tracé, notes, chronométrage) **[ACR-XS]**.
    - Voie H : c'est le clone de Hafren lui-même.
@@ -280,12 +305,15 @@ Ces classes sont celles du jeu : `/Script/acr`, `/Script/dmphysics`, et des Blue
 - un miroir : erreur d'axe (glTF vers Unreal) ;
 - des arbres au milieu de la route : cap ou échelle.
 
-**Généralisation :**
-- 26 dalles, ou celles de `terrain_sol.glb` ;
-- toute la route, et l'anneau lointain `lointain.glb` ;
-- les 41 584 arbres, en instances regroupées par maillage, ce qui fait 45 composants ;
+**Généralisation :** produire le paquet complet sur le PC (`python scripts\tout_lancer.py`, `LISEZMOI_PAQUET.md` § 4), puis :
+
+```
+py "Z:\<dépôt>\pc\etape2_unreal\scripts_editeur\construire_niveau.py" --manifeste "Z:\<dépôt>\paquet_unreal\manifeste.json" --etendue complet --parent jeu
+```
+
+Le paquet complet compte 26 dalles et 126 sous-dalles de terrain, 38 tronçons de route, l'anneau lointain (290 morceaux) et 164 186 arbres et arbustes en 56 groupes d'instances. Il faut y ajouter :
 - le ciel de Monte-Carlo (`BC_DMSky_Montecarlo_Bollene`) et sa météo (`DA_MonteCarloWeatherConfig`) ;
-- Nanite pour le terrain si E1 l'a validé.
+- Nanite pour le terrain, si E1 l'a validé.
 
 **Écueils de E1 à E4 [UE courant, sauf mention] :**
 - **Version d'objet :** un paquet cuit par une autre version mineure est refusé ou plante. D'où la version 5.6.1 exacte.
@@ -325,8 +353,11 @@ Si l'éditeur ne produit rien d'acceptable (E1), on écrit nous-mêmes le conten
 | `PROTOCOLE.md` | ce document | |
 | `elements_jeu_utiles.json` | 27 rubriques : arbres par essence (pin d'Alep, arbre à perruque, érables pour les chênes, pins noirs, cyprès, oliviers…), herbes sèches, asphaltes et terrains de Monte-Carlo, matériaux maîtres, murs, ponts, rochers, glissières, panneaux français, rubalise, portiques, ciels et météo, surfaces physiques, acteurs de niveau, tables, niveaux | régénérable : `outils/extraire_elements.py` |
 | `factices.json` | 60 factices, tous présents au catalogue | régénérable : `outils/liste_factices.py` |
+| `LISEZMOI_PAQUET.md` | contenu du paquet d'import, conventions de noms et de repère, production sur le PC | |
+| `echantillon/` | paquet des essais E3 et E4 (PK 1 600 à 1 800), avec `manifeste.json` | produit par `scripts/16_paquet_unreal.py --echantillon`, contrôlé |
+| `scripts_editeur/construire_niveau.py` | import complet piloté par le manifeste : textures, maillages, variantes, niveau, instances | jamais exécuté dans Unreal ; logique vérifiée avec `outils/essai_construire.py` (faux module `unreal`) |
+| `A_VERIFIER.md` | les appels Unreal du script à vérifier, et où regarder | |
 | `scripts_editeur/repere_unreal.py` | conversions Lambert-93, glTF, Unreal, point de contrôle | testé en Python ordinaire, jamais dans Unreal |
 | `scripts_editeur/creer_factices.py` | crée les factices | jamais exécuté |
-| `scripts_editeur/importer_dalles.py` | importe les dalles, crée leurs variantes, contrôle le repère | jamais exécuté |
-| `scripts_editeur/poser_arbres.py` | pose les arbres en instances | jamais exécuté ; création de composant à vérifier |
+| `scripts_editeur/importer_dalles.py`, `poser_arbres.py` | premiers squelettes | remplacés par `construire_niveau.py` |
 | `scripts_pc/cuire_et_empaqueter.ps1` | cuisson, tri des factices, retoc | jamais exécuté ; options de cuisson à vérifier |
