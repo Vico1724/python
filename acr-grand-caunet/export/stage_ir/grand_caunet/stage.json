@@ -28658,6 +28658,55 @@
   "tokens": [
    {
     "call": 1,
+    "distance_m": 0.0,
+    "delay_ms": 0,
+    "gate_distance": 169.09,
+    "position": [
+     0.0,
+     398.51,
+     -0.0
+    ],
+    "subcall": 1,
+    "kind": "corner",
+    "direction": "left",
+    "severity": "6",
+    "angle": 15,
+    "modifiers": [],
+    "link_code": null,
+    "brouillon": {
+     "pk_virage": [
+      0,
+      25
+     ],
+     "virage_deg": null,
+     "rayon_min_m": null,
+     "severite_calculee": null,
+     "libelle": "départ, légère gauche",
+     "retouches": [
+      "ajouter_virage : virage ajouté (left 6) (moyenne)"
+     ]
+    }
+   },
+   {
+    "call": 1,
+    "distance_m": 0.0,
+    "delay_ms": 0,
+    "gate_distance": 169.09,
+    "position": [
+     0.0,
+     398.51,
+     -0.0
+    ],
+    "subcall": 2,
+    "kind": "distance",
+    "distance_call_m": 200,
+    "modifiers": [],
+    "brouillon": {
+     "ecart_mesure_m": 198
+    }
+   },
+   {
+    "call": 2,
     "distance_m": 143.2,
     "delay_ms": 0,
     "gate_distance": 312.26,
@@ -28679,11 +28728,14 @@
       284
      ],
      "virage_deg": 24.7,
-     "rayon_min_m": 75.3
+     "rayon_min_m": 75.3,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 1,
+    "call": 2,
     "distance_m": 143.2,
     "delay_ms": 0,
     "gate_distance": 312.26,
@@ -28705,11 +28757,14 @@
       374
      ],
      "virage_deg": 58.8,
-     "rayon_min_m": 41.4
+     "rayon_min_m": 41.4,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 2,
+    "call": 3,
     "distance_m": 327.3,
     "delay_ms": 0,
     "gate_distance": 496.4,
@@ -28731,11 +28786,14 @@
       463
      ],
      "virage_deg": 29.6,
-     "rayon_min_m": 68.6
+     "rayon_min_m": 68.6,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 2,
+    "call": 3,
     "distance_m": 327.3,
     "delay_ms": 0,
     "gate_distance": 496.4,
@@ -28757,11 +28815,14 @@
       546
      ],
      "virage_deg": 56.9,
-     "rayon_min_m": 44.5
+     "rayon_min_m": 44.5,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 2,
+    "call": 3,
     "distance_m": 327.3,
     "delay_ms": 0,
     "gate_distance": 496.4,
@@ -28779,7 +28840,7 @@
     }
    },
    {
-    "call": 3,
+    "call": 4,
     "distance_m": 539.4,
     "delay_ms": 0,
     "gate_distance": 708.48,
@@ -28801,11 +28862,14 @@
       664
      ],
      "virage_deg": 44.7,
-     "rayon_min_m": 32.8
+     "rayon_min_m": 32.8,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 3,
+    "call": 4,
     "distance_m": 539.4,
     "delay_ms": 0,
     "gate_distance": 708.48,
@@ -28827,11 +28891,14 @@
       764
      ],
      "virage_deg": 81.3,
-     "rayon_min_m": 32.7
+     "rayon_min_m": 32.7,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 4,
+    "call": 5,
     "distance_m": 704.5,
     "delay_ms": 0,
     "gate_distance": 873.58,
@@ -28853,11 +28920,14 @@
       866
      ],
      "virage_deg": 70.7,
-     "rayon_min_m": 37.2
+     "rayon_min_m": 37.2,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 4,
+    "call": 5,
     "distance_m": 704.5,
     "delay_ms": 0,
     "gate_distance": 873.58,
@@ -28879,11 +28949,14 @@
       950
      ],
      "virage_deg": 68.7,
-     "rayon_min_m": 44.7
+     "rayon_min_m": 44.7,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 5,
+    "call": 6,
     "distance_m": 900.6,
     "delay_ms": 0,
     "gate_distance": 1069.72,
@@ -28905,11 +28978,14 @@
       1030
      ],
      "virage_deg": 37.2,
-     "rayon_min_m": 55.9
+     "rayon_min_m": 55.9,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 5,
+    "call": 6,
     "distance_m": 900.6,
     "delay_ms": 0,
     "gate_distance": 1069.72,
@@ -28920,54 +28996,10 @@
     ],
     "subcall": 2,
     "kind": "distance",
-    "distance_call_m": 80,
+    "distance_call_m": 250,
     "modifiers": [],
     "brouillon": {
-     "ecart_mesure_m": 82
-    }
-   },
-   {
-    "call": 6,
-    "distance_m": 1032.7,
-    "delay_ms": 0,
-    "gate_distance": 1201.78,
-    "position": [
-     -767.687,
-     362.02,
-     -403.043
-    ],
-    "subcall": 1,
-    "kind": "corner",
-    "direction": "left",
-    "severity": "5",
-    "angle": 25,
-    "modifiers": [],
-    "link_code": null,
-    "brouillon": {
-     "pk_virage": [
-      1112,
-      1133
-     ],
-     "virage_deg": 11.5,
-     "rayon_min_m": 73.3
-    }
-   },
-   {
-    "call": 6,
-    "distance_m": 1032.7,
-    "delay_ms": 0,
-    "gate_distance": 1201.78,
-    "position": [
-     -767.687,
-     362.02,
-     -403.043
-    ],
-    "subcall": 2,
-    "kind": "distance",
-    "distance_call_m": 150,
-    "modifiers": [],
-    "brouillon": {
-     "ecart_mesure_m": 171
+     "ecart_mesure_m": 274
     }
    },
    {
@@ -28993,7 +29025,10 @@
       1391
      ],
      "virage_deg": 40.3,
-     "rayon_min_m": 55.9
+     "rayon_min_m": 55.9,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29029,7 +29064,9 @@
     "direction": "left",
     "severity": "3",
     "angle": 50,
-    "modifiers": [],
+    "modifiers": [
+     "dont_cut"
+    ],
     "link_code": null,
     "brouillon": {
      "pk_virage": [
@@ -29037,7 +29074,12 @@
       1596
      ],
      "virage_deg": 69.2,
-     "rayon_min_m": 24.1
+     "rayon_min_m": 24.1,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": [
+      "danger : dont_cut (rocher à l'intérieur du gauche 3) (bonne)"
+     ]
     }
    },
    {
@@ -29063,7 +29105,10 @@
       1696
      ],
      "virage_deg": 68.1,
-     "rayon_min_m": 32.1
+     "rayon_min_m": 32.1,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29107,7 +29152,10 @@
       1820
      ],
      "virage_deg": 51.3,
-     "rayon_min_m": 29.2
+     "rayon_min_m": 29.2,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29133,7 +29181,10 @@
       1929
      ],
      "virage_deg": 39.7,
-     "rayon_min_m": 58.5
+     "rayon_min_m": 58.5,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29159,7 +29210,10 @@
       1983
      ],
      "virage_deg": 31.2,
-     "rayon_min_m": 44.7
+     "rayon_min_m": 44.7,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29203,7 +29257,10 @@
       2070
      ],
      "virage_deg": 39.6,
-     "rayon_min_m": 43.8
+     "rayon_min_m": 43.8,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29247,7 +29304,12 @@
       2177
      ],
      "virage_deg": 39.4,
-     "rayon_min_m": 52.3
+     "rayon_min_m": 52.3,
+     "severite_calculee": "4",
+     "libelle": "étroit, parapet extérieur, dans l'épingle",
+     "retouches": [
+      "annoter : libellé « étroit, parapet extérieur, dans l'épingle » (non dit par le jeu) (bonne)"
+     ]
     }
    },
    {
@@ -29273,7 +29335,10 @@
       2261
      ],
      "virage_deg": 147.5,
-     "rayon_min_m": 20.2
+     "rayon_min_m": 20.2,
+     "severite_calculee": "hairpin",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29289,8 +29354,8 @@
     "subcall": 1,
     "kind": "corner",
     "direction": "left",
-    "severity": "2",
-    "angle": 65,
+    "severity": "1",
+    "angle": 80,
     "modifiers": [],
     "link_code": null,
     "brouillon": {
@@ -29299,7 +29364,12 @@
       2352
      ],
      "virage_deg": 122.0,
-     "rayon_min_m": 21.2
+     "rayon_min_m": 21.2,
+     "severite_calculee": "2",
+     "libelle": "gauche 2 long, presque une épingle",
+     "retouches": [
+      "forcer : sévérité 2 -> 1 (moyenne)"
+     ]
     }
    },
    {
@@ -29343,7 +29413,10 @@
       2623
      ],
      "virage_deg": 34.5,
-     "rayon_min_m": 52.4
+     "rayon_min_m": 52.4,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29358,53 +29431,27 @@
     ],
     "subcall": 2,
     "kind": "distance",
-    "distance_call_m": 70,
+    "distance_call_m": 150,
     "modifiers": [],
     "brouillon": {
-     "ecart_mesure_m": 65
+     "ecart_mesure_m": 139
     }
    },
    {
     "call": 15,
-    "distance_m": 2610.2,
+    "distance_m": 2684.4,
     "delay_ms": 0,
-    "gate_distance": 2779.26,
+    "gate_distance": 2853.45,
     "position": [
-     -434.052,
-     308.627,
-     -1719.922
+     -384.735,
+     303.418,
+     -1774.795
     ],
     "subcall": 1,
     "kind": "corner",
-    "direction": "left",
-    "severity": "5",
-    "angle": 25,
-    "modifiers": [],
-    "link_code": null,
-    "brouillon": {
-     "pk_virage": [
-      2688,
-      2754
-     ],
-     "virage_deg": 31.2,
-     "rayon_min_m": 57.8
-    }
-   },
-   {
-    "call": 15,
-    "distance_m": 2610.2,
-    "delay_ms": 0,
-    "gate_distance": 2779.26,
-    "position": [
-     -434.052,
-     308.627,
-     -1719.922
-    ],
-    "subcall": 2,
-    "kind": "corner",
     "direction": "right",
-    "severity": "1",
-    "angle": 80,
+    "severity": "2",
+    "angle": 65,
     "modifiers": [],
     "link_code": null,
     "brouillon": {
@@ -29413,20 +29460,25 @@
       2804
      ],
      "virage_deg": 77.8,
-     "rayon_min_m": 16.7
+     "rayon_min_m": 16.7,
+     "severite_calculee": "1",
+     "libelle": "droite 2 sur pont, parapets",
+     "retouches": [
+      "forcer : sévérité 1 -> 2 (moyenne)"
+     ]
     }
    },
    {
     "call": 15,
-    "distance_m": 2610.2,
+    "distance_m": 2684.4,
     "delay_ms": 0,
-    "gate_distance": 2779.26,
+    "gate_distance": 2853.45,
     "position": [
-     -434.052,
-     308.627,
-     -1719.922
+     -384.735,
+     303.418,
+     -1774.795
     ],
-    "subcall": 3,
+    "subcall": 2,
     "kind": "distance",
     "distance_call_m": 70,
     "modifiers": [],
@@ -29457,7 +29509,10 @@
       2900
      ],
      "virage_deg": 23.0,
-     "rayon_min_m": 53.1
+     "rayon_min_m": 53.1,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29483,7 +29538,10 @@
       3011
      ],
      "virage_deg": 54.5,
-     "rayon_min_m": 52.3
+     "rayon_min_m": 52.3,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
@@ -29498,84 +29556,14 @@
     ],
     "subcall": 3,
     "kind": "distance",
-    "distance_call_m": 150,
+    "distance_call_m": 300,
     "modifiers": [],
     "brouillon": {
-     "ecart_mesure_m": 145
+     "ecart_mesure_m": 280
     }
    },
    {
     "call": 17,
-    "distance_m": 3079.4,
-    "delay_ms": 0,
-    "gate_distance": 3248.46,
-    "position": [
-     -133.09,
-     275.577,
-     -2004.884
-    ],
-    "subcall": 1,
-    "kind": "corner",
-    "direction": "left",
-    "severity": "6",
-    "angle": 15,
-    "modifiers": [],
-    "link_code": null,
-    "brouillon": {
-     "pk_virage": [
-      3156,
-      3191
-     ],
-     "virage_deg": 10.2,
-     "rayon_min_m": 129.8
-    }
-   },
-   {
-    "call": 17,
-    "distance_m": 3079.4,
-    "delay_ms": 0,
-    "gate_distance": 3248.46,
-    "position": [
-     -133.09,
-     275.577,
-     -2004.884
-    ],
-    "subcall": 2,
-    "kind": "corner",
-    "direction": "left",
-    "severity": "6",
-    "angle": 15,
-    "modifiers": [],
-    "link_code": null,
-    "brouillon": {
-     "pk_virage": [
-      3211,
-      3244
-     ],
-     "virage_deg": 15.3,
-     "rayon_min_m": 90.8
-    }
-   },
-   {
-    "call": 17,
-    "distance_m": 3079.4,
-    "delay_ms": 0,
-    "gate_distance": 3248.46,
-    "position": [
-     -133.09,
-     275.577,
-     -2004.884
-    ],
-    "subcall": 3,
-    "kind": "distance",
-    "distance_call_m": 50,
-    "modifiers": [],
-    "brouillon": {
-     "ecart_mesure_m": 47
-    }
-   },
-   {
-    "call": 18,
     "distance_m": 3214.9,
     "delay_ms": 0,
     "gate_distance": 3383.95,
@@ -29597,11 +29585,14 @@
       3336
      ],
      "virage_deg": 29.6,
-     "rayon_min_m": 55.0
+     "rayon_min_m": 55.0,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 18,
+    "call": 17,
     "distance_m": 3214.9,
     "delay_ms": 0,
     "gate_distance": 3383.95,
@@ -29619,7 +29610,7 @@
     }
    },
    {
-    "call": 19,
+    "call": 18,
     "distance_m": 3332.9,
     "delay_ms": 0,
     "gate_distance": 3502.0,
@@ -29641,11 +29632,14 @@
       3445
      ],
      "virage_deg": 21.9,
-     "rayon_min_m": 62.7
+     "rayon_min_m": 62.7,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 19,
+    "call": 18,
     "distance_m": 3332.9,
     "delay_ms": 0,
     "gate_distance": 3502.0,
@@ -29656,58 +29650,14 @@
     ],
     "subcall": 2,
     "kind": "distance",
-    "distance_call_m": 50,
+    "distance_call_m": 150,
     "modifiers": [],
     "brouillon": {
-     "ecart_mesure_m": 50
+     "ecart_mesure_m": 174
     }
    },
    {
-    "call": 20,
-    "distance_m": 3419.0,
-    "delay_ms": 0,
-    "gate_distance": 3588.13,
-    "position": [
-     -172.557,
-     256.097,
-     -2321.041
-    ],
-    "subcall": 1,
-    "kind": "corner",
-    "direction": "left",
-    "severity": "6",
-    "angle": 15,
-    "modifiers": [],
-    "link_code": null,
-    "brouillon": {
-     "pk_virage": [
-      3495,
-      3554
-     ],
-     "virage_deg": 23.3,
-     "rayon_min_m": 104.6
-    }
-   },
-   {
-    "call": 20,
-    "distance_m": 3419.0,
-    "delay_ms": 0,
-    "gate_distance": 3588.13,
-    "position": [
-     -172.557,
-     256.097,
-     -2321.041
-    ],
-    "subcall": 2,
-    "kind": "distance",
-    "distance_call_m": 60,
-    "modifiers": [],
-    "brouillon": {
-     "ecart_mesure_m": 65
-    }
-   },
-   {
-    "call": 21,
+    "call": 19,
     "distance_m": 3542.8,
     "delay_ms": 0,
     "gate_distance": 3711.93,
@@ -29721,7 +29671,9 @@
     "direction": "left",
     "severity": "3",
     "angle": 50,
-    "modifiers": [],
+    "modifiers": [
+     "dont_cut"
+    ],
     "link_code": null,
     "brouillon": {
      "pk_virage": [
@@ -29729,11 +29681,17 @@
       3667
      ],
      "virage_deg": 48.9,
-     "rayon_min_m": 31.1
+     "rayon_min_m": 31.1,
+     "severite_calculee": "3",
+     "libelle": "au carrefour, prendre la branche de gauche, îlot peint à droite",
+     "retouches": [
+      "annoter : libellé « au carrefour, prendre la branche de gauche, îlot peint à droite » (non dit par le jeu) (bonne)",
+      "danger : dont_cut (Lion d'Or : muret à l'intérieur) (bonne)"
+     ]
     }
    },
    {
-    "call": 21,
+    "call": 19,
     "distance_m": 3542.8,
     "delay_ms": 0,
     "gate_distance": 3711.93,
@@ -29755,11 +29713,14 @@
       3717
      ],
      "virage_deg": 49.3,
-     "rayon_min_m": 31.3
+     "rayon_min_m": 31.3,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 22,
+    "call": 20,
     "distance_m": 3674.8,
     "delay_ms": 0,
     "gate_distance": 3843.85,
@@ -29781,11 +29742,16 @@
       3957
      ],
      "virage_deg": 138.2,
-     "rayon_min_m": 49.0
+     "rayon_min_m": 49.0,
+     "severite_calculee": "4",
+     "libelle": "très long, glissière extérieure",
+     "retouches": [
+      "annoter : libellé « très long, glissière extérieure » (non dit par le jeu) (bonne)"
+     ]
     }
    },
    {
-    "call": 22,
+    "call": 20,
     "distance_m": 3674.8,
     "delay_ms": 0,
     "gate_distance": 3843.85,
@@ -29807,11 +29773,14 @@
       4033
      ],
      "virage_deg": 30.3,
-     "rayon_min_m": 77.0
+     "rayon_min_m": 77.0,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 23,
+    "call": 21,
     "distance_m": 3955.4,
     "delay_ms": 0,
     "gate_distance": 4124.49,
@@ -29825,7 +29794,9 @@
     "direction": "right",
     "severity": "hairpin",
     "angle": 140,
-    "modifiers": [],
+    "modifiers": [
+     "dont_cut"
+    ],
     "link_code": null,
     "brouillon": {
      "pk_virage": [
@@ -29833,11 +29804,16 @@
       4124
      ],
      "virage_deg": 164.0,
-     "rayon_min_m": 14.2
+     "rayon_min_m": 14.2,
+     "severite_calculee": "hairpin",
+     "libelle": null,
+     "retouches": [
+      "danger : dont_cut (épingle droite de la D1, parapet à l'intérieur) (bonne)"
+     ]
     }
    },
    {
-    "call": 23,
+    "call": 21,
     "distance_m": 3955.4,
     "delay_ms": 0,
     "gate_distance": 4124.49,
@@ -29859,11 +29835,14 @@
       4229
      ],
      "virage_deg": 66.9,
-     "rayon_min_m": 43.9
+     "rayon_min_m": 43.9,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 24,
+    "call": 22,
     "distance_m": 4163.6,
     "delay_ms": 0,
     "gate_distance": 4332.67,
@@ -29885,11 +29864,14 @@
       4323
      ],
      "virage_deg": 68.3,
-     "rayon_min_m": 38.2
+     "rayon_min_m": 38.2,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 24,
+    "call": 22,
     "distance_m": 4163.6,
     "delay_ms": 0,
     "gate_distance": 4332.67,
@@ -29911,11 +29893,14 @@
       4389
      ],
      "virage_deg": 73.8,
-     "rayon_min_m": 31.0
+     "rayon_min_m": 31.0,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 25,
+    "call": 23,
     "distance_m": 4314.7,
     "delay_ms": 0,
     "gate_distance": 4483.83,
@@ -29937,11 +29922,14 @@
       4447
      ],
      "virage_deg": 46.5,
-     "rayon_min_m": 34.6
+     "rayon_min_m": 34.6,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 25,
+    "call": 23,
     "distance_m": 4314.7,
     "delay_ms": 0,
     "gate_distance": 4483.83,
@@ -29963,11 +29951,14 @@
       4502
      ],
      "virage_deg": 72.5,
-     "rayon_min_m": 20.3
+     "rayon_min_m": 20.3,
+     "severite_calculee": "2",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 25,
+    "call": 23,
     "distance_m": 4314.7,
     "delay_ms": 0,
     "gate_distance": 4483.83,
@@ -29985,7 +29976,7 @@
     }
    },
    {
-    "call": 26,
+    "call": 24,
     "distance_m": 4480.9,
     "delay_ms": 0,
     "gate_distance": 4649.98,
@@ -30007,11 +29998,14 @@
       4655
      ],
      "virage_deg": 44.8,
-     "rayon_min_m": 77.4
+     "rayon_min_m": 77.4,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 26,
+    "call": 24,
     "distance_m": 4480.9,
     "delay_ms": 0,
     "gate_distance": 4649.98,
@@ -30033,11 +30027,14 @@
       4733
      ],
      "virage_deg": 39.2,
-     "rayon_min_m": 60.0
+     "rayon_min_m": 60.0,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 26,
+    "call": 24,
     "distance_m": 4480.9,
     "delay_ms": 0,
     "gate_distance": 4649.98,
@@ -30055,7 +30052,7 @@
     }
    },
    {
-    "call": 27,
+    "call": 25,
     "distance_m": 4741.1,
     "delay_ms": 0,
     "gate_distance": 4910.23,
@@ -30077,11 +30074,14 @@
       4878
      ],
      "virage_deg": 42.9,
-     "rayon_min_m": 50.9
+     "rayon_min_m": 50.9,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 27,
+    "call": 25,
     "distance_m": 4741.1,
     "delay_ms": 0,
     "gate_distance": 4910.23,
@@ -30103,11 +30103,14 @@
       4957
      ],
      "virage_deg": 41.5,
-     "rayon_min_m": 33.8
+     "rayon_min_m": 33.8,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 27,
+    "call": 25,
     "distance_m": 4741.1,
     "delay_ms": 0,
     "gate_distance": 4910.23,
@@ -30125,7 +30128,7 @@
     }
    },
    {
-    "call": 28,
+    "call": 26,
     "distance_m": 4943.3,
     "delay_ms": 0,
     "gate_distance": 5112.4,
@@ -30147,11 +30150,14 @@
       5083
      ],
      "virage_deg": 33.0,
-     "rayon_min_m": 69.9
+     "rayon_min_m": 69.9,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 29,
+    "call": 27,
     "distance_m": 5431.4,
     "delay_ms": 0,
     "gate_distance": 5600.53,
@@ -30173,11 +30179,16 @@
       5597
      ],
      "virage_deg": 99.5,
-     "rayon_min_m": 30.5
+     "rayon_min_m": 30.5,
+     "severite_calculee": "3",
+     "libelle": "long, sur pont, parapets béton",
+     "retouches": [
+      "annoter : libellé « long, sur pont, parapets béton » (non dit par le jeu) (bonne)"
+     ]
     }
    },
    {
-    "call": 29,
+    "call": 27,
     "distance_m": 5431.4,
     "delay_ms": 0,
     "gate_distance": 5600.53,
@@ -30199,11 +30210,14 @@
       5673
      ],
      "virage_deg": 31.0,
-     "rayon_min_m": 62.4
+     "rayon_min_m": 62.4,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 29,
+    "call": 27,
     "distance_m": 5431.4,
     "delay_ms": 0,
     "gate_distance": 5600.53,
@@ -30221,7 +30235,7 @@
     }
    },
    {
-    "call": 30,
+    "call": 28,
     "distance_m": 5760.7,
     "delay_ms": 0,
     "gate_distance": 5929.83,
@@ -30243,11 +30257,14 @@
       5876
      ],
      "virage_deg": 18.3,
-     "rayon_min_m": 80.4
+     "rayon_min_m": 80.4,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 30,
+    "call": 28,
     "distance_m": 5760.7,
     "delay_ms": 0,
     "gate_distance": 5929.83,
@@ -30265,7 +30282,7 @@
     }
    },
    {
-    "call": 31,
+    "call": 29,
     "distance_m": 5856.8,
     "delay_ms": 0,
     "gate_distance": 6025.93,
@@ -30287,11 +30304,16 @@
       6075
      ],
      "virage_deg": 82.6,
-     "rayon_min_m": 42.2
+     "rayon_min_m": 42.2,
+     "severite_calculee": "4",
+     "libelle": "long",
+     "retouches": [
+      "annoter : libellé « long » (non dit par le jeu) (bonne)"
+     ]
     }
    },
    {
-    "call": 31,
+    "call": 29,
     "distance_m": 5856.8,
     "delay_ms": 0,
     "gate_distance": 6025.93,
@@ -30313,11 +30335,14 @@
       6158
      ],
      "virage_deg": 83.1,
-     "rayon_min_m": 29.8
+     "rayon_min_m": 29.8,
+     "severite_calculee": "3",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 32,
+    "call": 30,
     "distance_m": 6117.2,
     "delay_ms": 0,
     "gate_distance": 6286.24,
@@ -30339,11 +30364,14 @@
       6266
      ],
      "virage_deg": 46.3,
-     "rayon_min_m": 51.1
+     "rayon_min_m": 51.1,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 32,
+    "call": 30,
     "distance_m": 6117.2,
     "delay_ms": 0,
     "gate_distance": 6286.24,
@@ -30365,11 +30393,14 @@
       6364
      ],
      "virage_deg": 51.6,
-     "rayon_min_m": 61.5
+     "rayon_min_m": 61.5,
+     "severite_calculee": "5",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 32,
+    "call": 30,
     "distance_m": 6117.2,
     "delay_ms": 0,
     "gate_distance": 6286.24,
@@ -30387,7 +30418,7 @@
     }
    },
    {
-    "call": 33,
+    "call": 31,
     "distance_m": 6336.4,
     "delay_ms": 0,
     "gate_distance": 6505.47,
@@ -30409,11 +30440,14 @@
       6515
      ],
      "virage_deg": 83.4,
-     "rayon_min_m": 44.9
+     "rayon_min_m": 44.9,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 33,
+    "call": 31,
     "distance_m": 6336.4,
     "delay_ms": 0,
     "gate_distance": 6505.47,
@@ -30435,11 +30469,14 @@
       6634
      ],
      "virage_deg": 61.0,
-     "rayon_min_m": 46.6
+     "rayon_min_m": 46.6,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 34,
+    "call": 32,
     "distance_m": 6567.4,
     "delay_ms": 0,
     "gate_distance": 6736.53,
@@ -30461,11 +30498,14 @@
       6723
      ],
      "virage_deg": 49.9,
-     "rayon_min_m": 49.9
+     "rayon_min_m": 49.9,
+     "severite_calculee": "4",
+     "libelle": null,
+     "retouches": []
     }
    },
    {
-    "call": 35,
+    "call": 33,
     "subcall": 1,
     "distance_m": 6577.4,
     "delay_ms": 0,
@@ -30479,7 +30519,452 @@
     ]
    }
   ],
-  "raw": null
+  "raw": null,
+  "virages_calcules": 55,
+  "retouches": {
+   "fichier": "data/reference/notes_copilote_retouches.json",
+   "appliquees": [
+    {
+     "action": "supprimer",
+     "pk_m": 1122,
+     "quoi": "note supprimée (left 5)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "moyenne",
+     "virage_pk": [
+      1112,
+      1133
+     ]
+    },
+    {
+     "action": "supprimer",
+     "pk_m": 2721,
+     "quoi": "note supprimée (left 5)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "moyenne",
+     "virage_pk": [
+      2688,
+      2754
+     ]
+    },
+    {
+     "action": "supprimer",
+     "pk_m": 3173,
+     "quoi": "note supprimée (left 6)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      3156,
+      3191
+     ]
+    },
+    {
+     "action": "supprimer",
+     "pk_m": 3227,
+     "quoi": "note supprimée (left 6)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      3211,
+      3244
+     ]
+    },
+    {
+     "action": "supprimer",
+     "pk_m": 3524,
+     "quoi": "note supprimée (left 6)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      3495,
+      3554
+     ]
+    },
+    {
+     "action": "forcer",
+     "pk_m": 2308,
+     "quoi": "sévérité 2 -> 1",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "moyenne",
+     "virage_pk": [
+      2264,
+      2352
+     ]
+    },
+    {
+     "action": "forcer",
+     "pk_m": 2783,
+     "quoi": "sévérité 1 -> 2",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "moyenne",
+     "virage_pk": [
+      2762,
+      2804
+     ]
+    },
+    {
+     "action": "annoter",
+     "pk_m": 2148,
+     "quoi": "libellé « étroit, parapet extérieur, dans l'épingle » (non dit par le jeu)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      2119,
+      2177
+     ]
+    },
+    {
+     "action": "annoter",
+     "pk_m": 3640,
+     "quoi": "libellé « au carrefour, prendre la branche de gauche, îlot peint à droite » (non dit par le jeu)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      3619,
+      3667
+     ]
+    },
+    {
+     "action": "annoter",
+     "pk_m": 3856,
+     "quoi": "libellé « très long, glissière extérieure » (non dit par le jeu)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      3755,
+      3957
+     ]
+    },
+    {
+     "action": "annoter",
+     "pk_m": 5555,
+     "quoi": "libellé « long, sur pont, parapets béton » (non dit par le jeu)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      5512,
+      5597
+     ]
+    },
+    {
+     "action": "annoter",
+     "pk_m": 6006,
+     "quoi": "libellé « long » (non dit par le jeu)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      5937,
+      6075
+     ]
+    },
+    {
+     "action": "danger",
+     "pk_m": 1550,
+     "quoi": "dont_cut (rocher à l'intérieur du gauche 3)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      1527,
+      1596
+     ]
+    },
+    {
+     "action": "danger",
+     "pk_m": 3640,
+     "quoi": "dont_cut (Lion d'Or : muret à l'intérieur)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      3619,
+      3667
+     ]
+    },
+    {
+     "action": "danger",
+     "pk_m": 4080,
+     "quoi": "dont_cut (épingle droite de la D1, parapet à l'intérieur)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "bonne",
+     "virage_pk": [
+      4037,
+      4124
+     ]
+    },
+    {
+     "action": "ajouter_virage",
+     "pk_m": 0,
+     "quoi": "virage ajouté (left 6)",
+     "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+     "confiance": "moyenne",
+     "virage_pk": [
+      0,
+      25
+     ]
+    }
+   ],
+   "non_appliquees": [],
+   "notes_supprimees": [
+    {
+     "pk_virage": [
+      1112,
+      1133
+     ],
+     "sens": "left",
+     "severite_calculee": "5"
+    },
+    {
+     "pk_virage": [
+      2688,
+      2754
+     ],
+     "sens": "left",
+     "severite_calculee": "5"
+    },
+    {
+     "pk_virage": [
+      3156,
+      3191
+     ],
+     "sens": "left",
+     "severite_calculee": "6"
+    },
+    {
+     "pk_virage": [
+      3211,
+      3244
+     ],
+     "sens": "left",
+     "severite_calculee": "6"
+    },
+    {
+     "pk_virage": [
+      3495,
+      3554
+     ],
+     "sens": "left",
+     "severite_calculee": "6"
+    }
+   ]
+  },
+  "dangers_non_exprimables": [
+   {
+    "pk_m": 1490,
+    "categorie": "gravillons",
+    "libelle": "débouché de piste en terre à gauche",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": [
+     1538,
+     1590
+    ],
+    "categorie": "parapet",
+    "libelle": "parapet de pierre extérieur sur tout le gauche 3",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 1661,
+    "categorie": "pont",
+    "libelle": "pont, parapets des deux côtés",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": [
+     2092,
+     2178
+    ],
+    "categorie": "etroit",
+    "libelle": "rétrécissement (≈ 5 m), glissière puis parapet à droite, rocher à gauche",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 2602,
+    "categorie": "pont",
+    "libelle": "petit pont, parapets courts",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": [
+     2640,
+     2670
+    ],
+    "categorie": "gravillons",
+    "libelle": "croisement de pistes, gravillons, voiture garée",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 2777,
+    "categorie": "pont",
+    "libelle": "pont étroit dans un droite serré",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": [
+     2975,
+     3000
+    ],
+    "categorie": "gravillons",
+    "libelle": "croisement de pistes, public",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 3229,
+    "categorie": "pont",
+    "libelle": "pont, public à droite",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": [
+     3340,
+     3390
+    ],
+    "categorie": "public",
+    "libelle": "aire de stationnement à droite, public, barrières en bois",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": [
+     3615,
+     3665
+    ],
+    "categorie": "carrefour",
+    "libelle": "Lion d'Or : branche de gauche, îlot peint, barrières, public massé, feuilles mortes après",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 4360,
+    "categorie": "pont",
+    "libelle": "pont sans axiale, revêtement fissuré",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 4463,
+    "categorie": "pont",
+    "libelle": "pont",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": [
+     4500,
+     5300
+    ],
+    "categorie": "revetement",
+    "libelle": "enrobé rapiécé et fissuré, axiale effacée par endroits",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 4572,
+    "categorie": "ponceau",
+    "libelle": "ponceau à parapets de béton bas",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 4672,
+    "categorie": "ponceau",
+    "libelle": "ponceau à parapets de béton bas",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 5037,
+    "categorie": "gravillons",
+    "libelle": "croisement de pistes en terre",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 5554,
+    "categorie": "pont",
+    "libelle": "pont dans le droite 3",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 5662,
+    "categorie": "gravillons",
+    "libelle": "croisement de pistes en terre",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 6110,
+    "categorie": "ponceau",
+    "libelle": "ponceau à parapets de béton dans le droite 3",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 6330,
+    "categorie": "crete",
+    "libelle": "légère crête, seule crête notable, peu marquée",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "moyenne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 6343,
+    "categorie": "gravillons",
+    "libelle": "débouché de piste à gauche",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 6495,
+    "categorie": "gravillons",
+    "libelle": "croisement de pistes (commissaires)",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   },
+   {
+    "pk_m": 6685,
+    "categorie": "ponceau",
+    "libelle": "ponceau à parapets de béton bas, puis arrivée",
+    "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+    "confiance": "bonne",
+    "raison": "pas de jeton correspondant que leur constructeur sache produire"
+   }
+  ],
+  "vocabulaire": {
+   "exprimable": "virage (gauche/droite, 6 à 1, square, hairpin), dont_cut (« ne pas couper » -> jeton DontCut), distances 40-400 m, « dans » / « et » entre virages enchaînés, arrivée",
+   "non_exprimable": "pont, ponceau, étroit, gravillons, revêtement, public, parapet, glissière, carrefour, long, très long, sur pont, crête",
+   "remarque": "le jeu possède d'autres annonces (icônes Caution, Crest, OverCrest, Bumps, Kinks, Tightens, Opens, Jump... dans le catalogue 25170642), mais leur constructeur ne sait pas les produire ; leurs noms exacts dans DT_PacenoteTokens_EA ne sont pas vérifiés"
+  }
  },
  "triggers": [
   {
@@ -30512,7 +30997,7 @@
   "file": "collision.glb",
   "source": "data/processed/chaussee_precise.csv (ruban) + modele/terrain.glb (MNT LiDAR HD 0,5 m) + modele/annexes_collision.glb (carrefours)",
   "corridor_m": 130.0,
-  "triangles": 757814,
+  "triangles": 757847,
   "bounds": {
    "min": [
     -3279.95,
@@ -30532,7 +31017,7 @@
     "dr2_surface": "TSD+",
     "acr_physical_material": "PM_SurfaceTarmacSmooth",
     "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_SurfaceTarmacSmooth",
-    "triangles": 30766
+    "triangles": 30773
    },
    {
     "mesh": "collision",
@@ -30540,7 +31025,7 @@
     "dr2_surface": "DBK+",
     "acr_physical_material": "PM_SurfaceGravelHard",
     "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_SurfaceGravelHard",
-    "triangles": 92902
+    "triangles": 92928
    },
    {
     "mesh": "collision",
@@ -30557,14 +31042,14 @@
   {
    "code": "TSD+",
    "acr_physical_material": "PM_SurfaceTarmacSmooth",
-   "triangles": 30766,
+   "triangles": 30773,
    "dr2": null,
    "description": "chaussée en enrobé (ruban de route mesuré) et enrobé annexe des carrefours"
   },
   {
    "code": "DBK+",
    "acr_physical_material": "PM_SurfaceGravelHard",
-   "triangles": 92902,
+   "triangles": 92928,
    "dr2": null,
    "description": "accotement en terre, 3 m au-delà des bords, et îlots des carrefours"
   },
@@ -30591,31 +31076,31 @@
    "shape_classes": null
   },
   "corridor_m": 130.0,
-  "instances_total": 522,
-  "instances_in_corridor": 522,
+  "instances_total": 510,
+  "instances_in_corridor": 510,
   "cloth_instances_skipped": 0,
   "unknown_shape_kinds": [],
   "collision": {
    "file": "objects_collision.glb",
-   "triangles": 6520,
+   "triangles": 6312,
    "meshes": [
     {
      "gltf_material": "PM_WallConcrete",
      "acr_physical_material": "PM_WallConcrete",
      "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_WallConcrete",
-     "primitives": 179
+     "primitives": 172
     },
     {
      "gltf_material": "PM_WallPlasticPole",
      "acr_physical_material": "PM_WallPlasticPole",
      "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_WallPlasticPole",
-     "primitives": 16
+     "primitives": 12
     },
     {
      "gltf_material": "PM_WallRock",
      "acr_physical_material": "PM_WallRock",
      "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_WallRock",
-     "primitives": 327
+     "primitives": 326
     }
    ],
    "mesh_shapes": []
@@ -37919,20 +38404,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -268.839,
-      250.249,
-      -2517.683
+      -268.901,
+      250.29,
+      -2517.718
      ],
      "rotation": [
-      0.004463,
-      0.893042,
-      0.00886,
-      -0.449863
+      0.004773,
+      0.892471,
+      0.009446,
+      -0.45098
      ],
      "scale": [
-      0.2876,
-      0.5516,
-      1.1048
+      0.2997,
+      0.5502,
+      0.9733
      ],
      "matrix": null
     }
@@ -37944,20 +38429,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -269.642,
-      250.265,
-      -2518.281
+      -269.648,
+      250.305,
+      -2518.276
      ],
      "rotation": [
-      0.002236,
-      0.89439,
-      0.004471,
-      -0.44726
+      0.002403,
+      0.895358,
+      0.004831,
+      -0.445314
      ],
      "scale": [
-      0.2881,
-      0.5508,
-      1.089
+      0.2999,
+      0.5501,
+      0.9468
      ],
      "matrix": null
     }
@@ -37969,20 +38454,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -270.439,
-      250.279,
-      -2518.893
+      -270.388,
+      250.315,
+      -2518.846
      ],
      "rotation": [
-      0.004354,
-      0.899255,
-      0.008954,
-      -0.437311
+      0.002326,
+      0.899132,
+      0.004778,
+      -0.437645
      ],
      "scale": [
-      0.2899,
-      0.5514,
-      1.0929
+      0.2999,
+      0.5501,
+      0.954
      ],
      "matrix": null
     }
@@ -37994,20 +38479,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -271.207,
-      250.295,
-      -2519.522
+      -271.115,
+      250.33,
+      -2519.438
      ],
      "rotation": [
-      0.002122,
-      0.908046,
-      0.004601,
-      -0.418839
+      0.004531,
+      0.907015,
+      0.009762,
+      -0.420961
      ],
      "scale": [
-      0.2928,
-      0.5506,
-      1.0575
+      0.3,
+      0.55,
+      0.9449
      ],
      "matrix": null
     }
@@ -38019,20 +38504,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -271.975,
-      250.309,
-      -2520.144
+      -271.838,
+      250.345,
+      -2520.026
      ],
      "rotation": [
-      0.004487,
-      0.897123,
-      0.009114,
-      -0.441665
+      0.002326,
+      0.899106,
+      0.004778,
+      -0.437699
      ],
      "scale": [
-      0.2888,
-      0.5515,
-      1.0768
+      0.2999,
+      0.5501,
+      0.9537
      ],
      "matrix": null
     }
@@ -38044,20 +38529,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -272.778,
-      250.325,
-      -2520.712
+      -272.6,
+      250.36,
+      -2520.577
      ],
      "rotation": [
-      0.002408,
-      0.878991,
-      0.00444,
-      -0.476811
+      0.005035,
+      0.881614,
+      0.009407,
+      -0.471851
      ],
      "scale": [
-      0.2815,
-      0.551,
-      1.0996
+      0.2984,
+      0.5505,
+      0.9798
      ],
      "matrix": null
     }
@@ -38069,20 +38554,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -273.597,
-      250.334,
-      -2521.231
+      -273.383,
+      250.375,
+      -2521.086
      ],
      "rotation": [
-      0.002562,
-      0.873204,
-      0.004591,
-      -0.487326
+      0.002577,
+      0.876007,
+      0.004681,
+      -0.482269
      ],
      "scale": [
-      0.2796,
-      0.5511,
-      1.0668
+      0.2976,
+      0.5504,
+      0.9787
      ],
      "matrix": null
     }
@@ -38094,101 +38579,26 @@
     "tag": null,
     "transform": {
      "position": [
-      -274.366,
-      250.344,
-      -2521.705
+      -274.181,
+      250.39,
+      -2521.583
      ],
      "rotation": [
-      0.002852,
-      0.872852,
-      0.005101,
-      -0.487949
+      0.005208,
+      0.872395,
+      0.009298,
+      -0.488686
      ],
      "scale": [
-      0.2813,
-      0.5512,
-      0.9686
+      0.297,
+      0.5508,
+      0.9927
      ],
      "matrix": null
     }
    },
    {
     "id": "gc_parapet_beton_0293",
-    "template": "gc_parapet_beton",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -275.027,
-      250.354,
-      -2522.096
-     ],
-     "rotation": [
-      -0.00369,
-      -0.863199,
-      -0.006309,
-      0.50481
-     ],
-     "scale": [
-      0.2814,
-      0.5516,
-      0.8022
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_beton_0294",
-    "template": "gc_parapet_beton",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -275.522,
-      250.364,
-      -2522.375
-     ],
-     "rotation": [
-      -0.005579,
-      -0.863753,
-      -0.009566,
-      0.503794
-     ],
-     "scale": [
-      0.2882,
-      0.5521,
-      0.5576
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_beton_0295",
-    "template": "gc_parapet_beton",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -275.8,
-      250.38,
-      -2522.535
-     ],
-     "rotation": [
-      0.042923,
-      0.866764,
-      0.075763,
-      -0.491057
-     ],
-     "scale": [
-      0.2969,
-      0.555,
-      0.2697
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_beton_0296",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38213,7 +38623,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0297",
+    "id": "gc_parapet_beton_0294",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38238,7 +38648,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0298",
+    "id": "gc_parapet_beton_0295",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38263,7 +38673,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0299",
+    "id": "gc_parapet_beton_0296",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38288,7 +38698,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0300",
+    "id": "gc_parapet_beton_0297",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38313,7 +38723,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0301",
+    "id": "gc_parapet_beton_0298",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38338,7 +38748,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0302",
+    "id": "gc_parapet_beton_0299",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38363,7 +38773,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0303",
+    "id": "gc_parapet_beton_0300",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38388,7 +38798,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0304",
+    "id": "gc_parapet_beton_0301",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38413,7 +38823,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0305",
+    "id": "gc_parapet_beton_0302",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38438,7 +38848,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0306",
+    "id": "gc_parapet_beton_0303",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38463,7 +38873,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0307",
+    "id": "gc_parapet_beton_0304",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38488,7 +38898,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0308",
+    "id": "gc_parapet_beton_0305",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38513,7 +38923,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0309",
+    "id": "gc_parapet_beton_0306",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38538,7 +38948,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0310",
+    "id": "gc_parapet_beton_0307",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38563,7 +38973,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0311",
+    "id": "gc_parapet_beton_0308",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38588,7 +38998,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0312",
+    "id": "gc_parapet_beton_0309",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38613,7 +39023,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0313",
+    "id": "gc_parapet_beton_0310",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38638,7 +39048,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0314",
+    "id": "gc_parapet_beton_0311",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38663,7 +39073,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0315",
+    "id": "gc_parapet_beton_0312",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38688,7 +39098,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0316",
+    "id": "gc_parapet_beton_0313",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38713,7 +39123,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0317",
+    "id": "gc_parapet_beton_0314",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38738,7 +39148,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0318",
+    "id": "gc_parapet_beton_0315",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38763,7 +39173,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0319",
+    "id": "gc_parapet_beton_0316",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38788,7 +39198,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0320",
+    "id": "gc_parapet_beton_0317",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38813,7 +39223,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0321",
+    "id": "gc_parapet_beton_0318",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38838,7 +39248,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0322",
+    "id": "gc_parapet_beton_0319",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38863,7 +39273,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0323",
+    "id": "gc_parapet_beton_0320",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38888,7 +39298,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0324",
+    "id": "gc_parapet_beton_0321",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38913,7 +39323,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0325",
+    "id": "gc_parapet_beton_0322",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38938,7 +39348,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0326",
+    "id": "gc_parapet_beton_0323",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38963,7 +39373,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0327",
+    "id": "gc_parapet_beton_0324",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -38988,7 +39398,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0328",
+    "id": "gc_parapet_beton_0325",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39013,7 +39423,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0329",
+    "id": "gc_parapet_beton_0326",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39038,7 +39448,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0330",
+    "id": "gc_parapet_beton_0327",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39063,7 +39473,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0331",
+    "id": "gc_parapet_beton_0328",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39088,7 +39498,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0332",
+    "id": "gc_parapet_beton_0329",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39113,7 +39523,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0333",
+    "id": "gc_parapet_beton_0330",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39138,7 +39548,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0334",
+    "id": "gc_parapet_beton_0331",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39163,7 +39573,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0335",
+    "id": "gc_parapet_beton_0332",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39188,7 +39598,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0336",
+    "id": "gc_parapet_beton_0333",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39213,7 +39623,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0337",
+    "id": "gc_parapet_beton_0334",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39238,7 +39648,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0338",
+    "id": "gc_parapet_beton_0335",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39263,7 +39673,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0339",
+    "id": "gc_parapet_beton_0336",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39288,7 +39698,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0340",
+    "id": "gc_parapet_beton_0337",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39313,7 +39723,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0341",
+    "id": "gc_parapet_beton_0338",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39338,7 +39748,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0342",
+    "id": "gc_parapet_beton_0339",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39363,7 +39773,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0343",
+    "id": "gc_parapet_beton_0340",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39388,7 +39798,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0344",
+    "id": "gc_parapet_beton_0341",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39413,7 +39823,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0345",
+    "id": "gc_parapet_beton_0342",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39438,7 +39848,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0346",
+    "id": "gc_parapet_beton_0343",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39463,7 +39873,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0347",
+    "id": "gc_parapet_beton_0344",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39488,7 +39898,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0348",
+    "id": "gc_parapet_beton_0345",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39513,7 +39923,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0349",
+    "id": "gc_parapet_beton_0346",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39538,7 +39948,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0350",
+    "id": "gc_parapet_beton_0347",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39563,7 +39973,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0351",
+    "id": "gc_parapet_beton_0348",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39588,7 +39998,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0352",
+    "id": "gc_parapet_beton_0349",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39613,7 +40023,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0353",
+    "id": "gc_parapet_beton_0350",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39638,7 +40048,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0354",
+    "id": "gc_parapet_beton_0351",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39663,7 +40073,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0355",
+    "id": "gc_parapet_beton_0352",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39688,7 +40098,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0356",
+    "id": "gc_parapet_beton_0353",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39713,7 +40123,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0357",
+    "id": "gc_parapet_beton_0354",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39738,7 +40148,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0358",
+    "id": "gc_parapet_beton_0355",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39763,7 +40173,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0359",
+    "id": "gc_parapet_beton_0356",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39788,7 +40198,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0360",
+    "id": "gc_parapet_beton_0357",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39813,7 +40223,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0361",
+    "id": "gc_parapet_beton_0358",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39838,7 +40248,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0362",
+    "id": "gc_parapet_beton_0359",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39863,7 +40273,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0363",
+    "id": "gc_parapet_beton_0360",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39888,7 +40298,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0364",
+    "id": "gc_parapet_beton_0361",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39913,7 +40323,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0365",
+    "id": "gc_parapet_beton_0362",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39938,7 +40348,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0366",
+    "id": "gc_parapet_beton_0363",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39963,7 +40373,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0367",
+    "id": "gc_parapet_beton_0364",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -39988,57 +40398,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0368",
-    "template": "gc_parapet_beton",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -1861.539,
-      301.58,
-      -2292.538
-     ],
-     "rotation": [
-      0.0,
-      0.99612,
-      0.0,
-      -0.088
-     ],
-     "scale": [
-      0.2996,
-      0.85,
-      1.044
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_beton_0369",
-    "template": "gc_parapet_beton",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -1861.695,
-      301.585,
-      -2293.547
-     ],
-     "rotation": [
-      0.00032,
-      0.997899,
-      0.004947,
-      -0.064601
-     ],
-     "scale": [
-      0.3,
-      0.85,
-      1.0217
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_beton_0370",
+    "id": "gc_parapet_beton_0365",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40063,7 +40423,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0371",
+    "id": "gc_parapet_beton_0366",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40088,7 +40448,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0372",
+    "id": "gc_parapet_beton_0367",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40113,7 +40473,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0373",
+    "id": "gc_parapet_beton_0368",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40138,7 +40498,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0374",
+    "id": "gc_parapet_beton_0369",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40163,7 +40523,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0375",
+    "id": "gc_parapet_beton_0370",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40188,7 +40548,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0376",
+    "id": "gc_parapet_beton_0371",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40213,7 +40573,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0377",
+    "id": "gc_parapet_beton_0372",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40238,7 +40598,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0378",
+    "id": "gc_parapet_beton_0373",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40263,7 +40623,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0379",
+    "id": "gc_parapet_beton_0374",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40288,7 +40648,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0380",
+    "id": "gc_parapet_beton_0375",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40313,7 +40673,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0381",
+    "id": "gc_parapet_beton_0376",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40338,7 +40698,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0382",
+    "id": "gc_parapet_beton_0377",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40363,7 +40723,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0383",
+    "id": "gc_parapet_beton_0378",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40388,7 +40748,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0384",
+    "id": "gc_parapet_beton_0379",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40413,7 +40773,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0385",
+    "id": "gc_parapet_beton_0380",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40438,7 +40798,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0386",
+    "id": "gc_parapet_beton_0381",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40463,7 +40823,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0387",
+    "id": "gc_parapet_beton_0382",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40488,7 +40848,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0388",
+    "id": "gc_parapet_beton_0383",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40513,7 +40873,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0389",
+    "id": "gc_parapet_beton_0384",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40538,7 +40898,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0390",
+    "id": "gc_parapet_beton_0385",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40563,7 +40923,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0391",
+    "id": "gc_parapet_beton_0386",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40588,7 +40948,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0392",
+    "id": "gc_parapet_beton_0387",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40613,7 +40973,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0393",
+    "id": "gc_parapet_beton_0388",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40638,7 +40998,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0394",
+    "id": "gc_parapet_beton_0389",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40663,7 +41023,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0395",
+    "id": "gc_parapet_beton_0390",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40688,7 +41048,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0396",
+    "id": "gc_parapet_beton_0391",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40713,7 +41073,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0397",
+    "id": "gc_parapet_beton_0392",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40738,7 +41098,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0398",
+    "id": "gc_parapet_beton_0393",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40763,7 +41123,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0399",
+    "id": "gc_parapet_beton_0394",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40788,7 +41148,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0400",
+    "id": "gc_parapet_beton_0395",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40813,7 +41173,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0401",
+    "id": "gc_parapet_beton_0396",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40838,7 +41198,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0402",
+    "id": "gc_parapet_beton_0397",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40863,7 +41223,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0403",
+    "id": "gc_parapet_beton_0398",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40888,7 +41248,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0404",
+    "id": "gc_parapet_beton_0399",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40913,7 +41273,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0405",
+    "id": "gc_parapet_beton_0400",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40938,7 +41298,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0406",
+    "id": "gc_parapet_beton_0401",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40963,7 +41323,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0407",
+    "id": "gc_parapet_beton_0402",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -40988,7 +41348,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0408",
+    "id": "gc_parapet_beton_0403",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41013,7 +41373,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0409",
+    "id": "gc_parapet_beton_0404",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41038,7 +41398,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0410",
+    "id": "gc_parapet_beton_0405",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41063,7 +41423,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0411",
+    "id": "gc_parapet_beton_0406",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41088,7 +41448,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0412",
+    "id": "gc_parapet_beton_0407",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41113,7 +41473,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0413",
+    "id": "gc_parapet_beton_0408",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41138,7 +41498,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0414",
+    "id": "gc_parapet_beton_0409",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41163,7 +41523,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0415",
+    "id": "gc_parapet_beton_0410",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41188,7 +41548,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0416",
+    "id": "gc_parapet_beton_0411",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41213,7 +41573,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0417",
+    "id": "gc_parapet_beton_0412",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41238,7 +41598,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0418",
+    "id": "gc_parapet_beton_0413",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41263,7 +41623,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0419",
+    "id": "gc_parapet_beton_0414",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41288,7 +41648,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0420",
+    "id": "gc_parapet_beton_0415",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41313,7 +41673,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0421",
+    "id": "gc_parapet_beton_0416",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41338,7 +41698,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0422",
+    "id": "gc_parapet_beton_0417",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41363,7 +41723,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0423",
+    "id": "gc_parapet_beton_0418",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41388,7 +41748,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0424",
+    "id": "gc_parapet_beton_0419",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41413,7 +41773,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0425",
+    "id": "gc_parapet_beton_0420",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41438,7 +41798,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0426",
+    "id": "gc_parapet_beton_0421",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41463,7 +41823,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0427",
+    "id": "gc_parapet_beton_0422",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41488,7 +41848,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0428",
+    "id": "gc_parapet_beton_0423",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41513,7 +41873,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0429",
+    "id": "gc_parapet_beton_0424",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41538,7 +41898,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0430",
+    "id": "gc_parapet_beton_0425",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41563,7 +41923,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0431",
+    "id": "gc_parapet_beton_0426",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41588,7 +41948,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0432",
+    "id": "gc_parapet_beton_0427",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41613,7 +41973,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0433",
+    "id": "gc_parapet_beton_0428",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41638,7 +41998,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0434",
+    "id": "gc_parapet_beton_0429",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41663,7 +42023,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0435",
+    "id": "gc_parapet_beton_0430",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41688,57 +42048,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0436",
-    "template": "gc_parapet_beton",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -1854.079,
-      301.295,
-      -2287.806
-     ],
-     "rotation": [
-      -0.000463,
-      0.99652,
-      -0.005552,
-      -0.08317
-     ],
-     "scale": [
-      0.2993,
-      0.8503,
-      0.9332
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_beton_0437",
-    "template": "gc_parapet_beton",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -1854.203,
-      301.285,
-      -2288.696
-     ],
-     "rotation": [
-      -0.000305,
-      0.998472,
-      -0.005542,
-      -0.054978
-     ],
-     "scale": [
-      0.2987,
-      0.8504,
-      0.9431
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_beton_0438",
+    "id": "gc_parapet_beton_0431",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41763,7 +42073,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0439",
+    "id": "gc_parapet_beton_0432",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41788,7 +42098,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0440",
+    "id": "gc_parapet_beton_0433",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41813,7 +42123,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0441",
+    "id": "gc_parapet_beton_0434",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41838,7 +42148,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0442",
+    "id": "gc_parapet_beton_0435",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41863,7 +42173,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0443",
+    "id": "gc_parapet_beton_0436",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41888,7 +42198,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0444",
+    "id": "gc_parapet_beton_0437",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41913,7 +42223,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0445",
+    "id": "gc_parapet_beton_0438",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41938,7 +42248,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0446",
+    "id": "gc_parapet_beton_0439",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41963,7 +42273,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0447",
+    "id": "gc_parapet_beton_0440",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -41988,7 +42298,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0448",
+    "id": "gc_parapet_beton_0441",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42013,7 +42323,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0449",
+    "id": "gc_parapet_beton_0442",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42038,7 +42348,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0450",
+    "id": "gc_parapet_beton_0443",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42063,7 +42373,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0451",
+    "id": "gc_parapet_beton_0444",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42088,7 +42398,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0452",
+    "id": "gc_parapet_beton_0445",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42113,7 +42423,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0453",
+    "id": "gc_parapet_beton_0446",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42138,7 +42448,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0454",
+    "id": "gc_parapet_beton_0447",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42163,7 +42473,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0455",
+    "id": "gc_parapet_beton_0448",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42188,7 +42498,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0456",
+    "id": "gc_parapet_beton_0449",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42213,7 +42523,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0457",
+    "id": "gc_parapet_beton_0450",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42238,7 +42548,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0458",
+    "id": "gc_parapet_beton_0451",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42263,7 +42573,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0459",
+    "id": "gc_parapet_beton_0452",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42288,7 +42598,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0460",
+    "id": "gc_parapet_beton_0453",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42313,7 +42623,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0461",
+    "id": "gc_parapet_beton_0454",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42338,7 +42648,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0462",
+    "id": "gc_parapet_beton_0455",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42363,7 +42673,7 @@
     }
    },
    {
-    "id": "gc_parapet_beton_0463",
+    "id": "gc_parapet_beton_0456",
     "template": "gc_parapet_beton",
     "kind": "basic",
     "tag": null,
@@ -42388,151 +42698,176 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0464",
+    "id": "gc_parapet_pierre_0457",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -251.898,
-      248.55,
-      -2517.053
+      -251.966,
+      248.554,
+      -2517.145
      ],
      "rotation": [
-      0.023421,
-      0.945525,
-      0.069835,
-      -0.317107
+      0.027124,
+      0.943973,
+      0.080275,
+      -0.31896
      ],
      "scale": [
-      0.3995,
-      2.086,
-      1.3509
+      0.3955,
+      2.125,
+      1.4132
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0465",
+    "id": "gc_parapet_pierre_0458",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -252.484,
-      248.827,
-      -2517.816
+      -252.525,
+      248.854,
+      -2517.87
      ],
      "rotation": [
-      0.015618,
-      0.945075,
-      0.045658,
-      -0.323273
+      0.013117,
+      0.945317,
+      0.038316,
+      -0.323629
      ],
      "scale": [
-      0.3994,
-      1.7728,
-      1.204
+      0.3954,
+      1.7595,
+      1.2153
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0466",
+    "id": "gc_parapet_pierre_0459",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -253.072,
-      248.992,
-      -2518.582
+      -253.121,
+      249.007,
+      -2518.641
      ],
      "rotation": [
-      0.00741,
-      0.947183,
-      0.021944,
-      -0.319857
+      0.00739,
+      0.946158,
+      0.021654,
+      -0.322895
      ],
      "scale": [
-      0.3998,
-      1.5813,
-      1.096
+      0.3945,
+      1.577,
+      1.138
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0467",
+    "id": "gc_parapet_pierre_0460",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -253.66,
-      249.074,
-      -2519.355
+      -253.711,
+      249.075,
+      -2519.408
      ],
      "rotation": [
-      0.000989,
-      0.947707,
-      0.002937,
-      -0.319127
+      -0.000188,
+      0.947354,
+      -0.000556,
+      -0.320187
      ],
      "scale": [
-      0.3999,
-      1.4687,
-      1.0134
+      0.3936,
+      1.4841,
+      1.0824
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0468",
+    "id": "gc_parapet_pierre_0461",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -254.243,
-      249.062,
-      -2520.124
+      -254.314,
+      249.064,
+      -2520.199
      ],
      "rotation": [
-      -0.003465,
-      0.947987,
-      -0.010326,
-      -0.318121
+      -0.003086,
+      0.947324,
+      -0.009133,
+      -0.320132
      ],
      "scale": [
-      0.4,
-      1.4788,
-      1.0185
+      0.393,
+      1.4865,
+      1.1128
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0469",
+    "id": "gc_parapet_pierre_0462",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -254.844,
-      249.052,
-      -2520.914
+      -254.929,
+      249.055,
+      -2521.017
      ],
      "rotation": [
-      0.000252,
-      0.947041,
-      0.000744,
-      -0.321112
+      0.00018,
+      0.949578,
+      0.000545,
+      -0.313531
      ],
      "scale": [
-      0.4,
-      1.479,
-      0.9811
+      0.3912,
+      1.4854,
+      1.0965
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_parapet_pierre_0463",
+    "template": "gc_parapet_pierre",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -255.513,
+      249.037,
+      -2521.811
+     ],
+     "rotation": [
+      -0.004069,
+      0.950743,
+      -0.012491,
+      -0.309701
+     ],
+     "scale": [
+      0.3898,
+      1.4976,
+      1.1335
      ],
      "matrix": null
     }
@@ -42544,76 +42879,26 @@
     "tag": null,
     "transform": {
      "position": [
-      -255.416,
-      249.045,
-      -2521.677
+      -258.956,
+      248.915,
+      -2527.959
      ],
      "rotation": [
-      -0.003095,
-      0.950583,
-      -0.009479,
-      -0.310311
+      0.008184,
+      0.954689,
+      0.026367,
+      -0.296321
      ],
      "scale": [
-      0.4,
-      1.4743,
-      0.9981
+      0.3876,
+      1.5451,
+      1.1887
      ],
      "matrix": null
     }
    },
    {
     "id": "gc_parapet_pierre_0471",
-    "template": "gc_parapet_pierre",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -255.978,
-      249.006,
-      -2522.458
-     ],
-     "rotation": [
-      -0.004157,
-      0.952757,
-      -0.013052,
-      -0.303425
-     ],
-     "scale": [
-      0.3999,
-      1.5073,
-      1.0188
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_pierre_0477",
-    "template": "gc_parapet_pierre",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -258.762,
-      248.843,
-      -2527.718
-     ],
-     "rotation": [
-      0.007254,
-      0.966115,
-      0.027315,
-      -0.256559
-     ],
-     "scale": [
-      0.397,
-      1.626,
-      1.1071
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_parapet_pierre_0478",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42638,7 +42923,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0479",
+    "id": "gc_parapet_pierre_0472",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42663,7 +42948,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0480",
+    "id": "gc_parapet_pierre_0473",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42688,7 +42973,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0481",
+    "id": "gc_parapet_pierre_0474",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42713,7 +42998,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0482",
+    "id": "gc_parapet_pierre_0475",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42738,7 +43023,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0483",
+    "id": "gc_parapet_pierre_0476",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42763,7 +43048,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0484",
+    "id": "gc_parapet_pierre_0477",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42788,157 +43073,157 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0485",
+    "id": "gc_parapet_pierre_0478",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -258.899,
-      248.784,
-      -2528.308
+      -258.909,
+      248.79,
+      -2528.329
      ],
      "rotation": [
-      -0.013383,
-      0.974983,
-      -0.061181,
-      -0.213275
+      -0.010703,
+      0.975674,
+      -0.04893,
+      -0.213426
      ],
      "scale": [
       0.4,
-      1.4635,
-      1.0012
+      1.4096,
+      0.9591
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0486",
+    "id": "gc_parapet_pierre_0479",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -259.226,
+      -259.227,
       248.703,
-      -2529.019
+      -2529.021
      ],
      "rotation": [
-      -0.019012,
-      0.973028,
-      -0.086918,
-      -0.212839
+      -0.018808,
+      0.973111,
+      -0.085982,
+      -0.212857
      ],
      "scale": [
       0.4,
-      1.3878,
-      1.0705
+      1.3717,
+      1.0649
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0487",
+    "id": "gc_parapet_pierre_0480",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -259.561,
+      -259.562,
       248.589,
-      -2529.749
+      -2529.751
      ],
      "rotation": [
-      -0.022116,
-      0.971656,
-      -0.101107,
-      -0.212539
+      -0.022027,
+      0.971698,
+      -0.100701,
+      -0.212548
      ],
      "scale": [
       0.4,
-      1.3033,
-      1.1019
+      1.2902,
+      1.098
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0488",
+    "id": "gc_parapet_pierre_0481",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -259.934,
-      248.466,
-      -2530.56
+      -259.935,
+      248.467,
+      -2530.562
      ],
      "rotation": [
-      -0.009511,
-      0.975934,
-      -0.04348,
-      -0.213474
+      -0.009185,
+      0.975999,
+      -0.041992,
+      -0.213489
      ],
      "scale": [
       0.4,
-      1.2828,
-      0.9285
+      1.271,
+      0.9237
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0489",
+    "id": "gc_parapet_pierre_0482",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -260.31,
-      248.485,
-      -2531.378
+      -260.311,
+      248.487,
+      -2531.379
      ],
      "rotation": [
-      0.005006,
-      0.976493,
-      0.022812,
-      -0.21428
+      0.005288,
+      0.976462,
+      0.0241,
+      -0.214273
      ],
      "scale": [
       0.4,
-      1.2049,
-      0.8709
+      1.1975,
+      0.8739
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0490",
+    "id": "gc_parapet_pierre_0483",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
       -260.558,
-      248.568,
-      -2532.138
+      248.569,
+      -2532.139
      ],
      "rotation": [
-      0.005414,
-      0.992749,
-      0.049031,
-      -0.10962
+      0.005516,
+      0.992703,
+      0.04995,
+      -0.109615
      ],
      "scale": [
       0.4,
-      1.1566,
-      0.9353
+      1.1535,
+      0.9374
      ],
      "matrix": null
     }
    },
    {
-    "id": "gc_parapet_pierre_0491",
+    "id": "gc_parapet_pierre_0484",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42963,7 +43248,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0492",
+    "id": "gc_parapet_pierre_0485",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -42988,7 +43273,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0493",
+    "id": "gc_parapet_pierre_0486",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43013,7 +43298,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0494",
+    "id": "gc_parapet_pierre_0487",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43038,7 +43323,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0495",
+    "id": "gc_parapet_pierre_0488",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43063,7 +43348,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0496",
+    "id": "gc_parapet_pierre_0489",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43088,7 +43373,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0497",
+    "id": "gc_parapet_pierre_0490",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43113,7 +43398,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0498",
+    "id": "gc_parapet_pierre_0491",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43138,7 +43423,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0499",
+    "id": "gc_parapet_pierre_0492",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43163,7 +43448,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0500",
+    "id": "gc_parapet_pierre_0493",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43188,7 +43473,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0501",
+    "id": "gc_parapet_pierre_0494",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43213,7 +43498,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0502",
+    "id": "gc_parapet_pierre_0495",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43238,7 +43523,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0503",
+    "id": "gc_parapet_pierre_0496",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43263,7 +43548,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0504",
+    "id": "gc_parapet_pierre_0497",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43288,7 +43573,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0505",
+    "id": "gc_parapet_pierre_0498",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43313,7 +43598,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0506",
+    "id": "gc_parapet_pierre_0499",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43338,7 +43623,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0507",
+    "id": "gc_parapet_pierre_0500",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43363,7 +43648,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0508",
+    "id": "gc_parapet_pierre_0501",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43388,7 +43673,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0509",
+    "id": "gc_parapet_pierre_0502",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43413,7 +43698,7 @@
     }
    },
    {
-    "id": "gc_parapet_pierre_0510",
+    "id": "gc_parapet_pierre_0503",
     "template": "gc_parapet_pierre",
     "kind": "basic",
     "tag": null,
@@ -43438,26 +43723,201 @@
     }
    },
    {
+    "id": "gc_piquet_rubalise_0504",
+    "template": "gc_piquet_rubalise",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -262.071,
+      249.702,
+      -2531.288
+     ],
+     "rotation": [
+      0.0,
+      0.904781,
+      0.0,
+      -0.425878
+     ],
+     "scale": [
+      0.0401,
+      1.05,
+      0.0401
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_piquet_rubalise_0505",
+    "template": "gc_piquet_rubalise",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -264.383,
+      249.666,
+      -2533.201
+     ],
+     "rotation": [
+      0.0,
+      0.904781,
+      0.0,
+      -0.425878
+     ],
+     "scale": [
+      0.0401,
+      1.05,
+      0.0401
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_piquet_rubalise_0506",
+    "template": "gc_piquet_rubalise",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -266.698,
+      249.644,
+      -2535.108
+     ],
+     "rotation": [
+      0.0,
+      0.903968,
+      0.0,
+      -0.4276
+     ],
+     "scale": [
+      0.0401,
+      1.05,
+      0.0401
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_piquet_rubalise_0507",
+    "template": "gc_piquet_rubalise",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -269.028,
+      249.609,
+      -2536.998
+     ],
+     "rotation": [
+      0.0,
+      0.899956,
+      0.0,
+      -0.43598
+     ],
+     "scale": [
+      0.0401,
+      1.05,
+      0.0401
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_piquet_rubalise_0508",
+    "template": "gc_piquet_rubalise",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -271.389,
+      249.515,
+      -2538.849
+     ],
+     "rotation": [
+      0.0,
+      -0.853821,
+      0.0,
+      0.520567
+     ],
+     "scale": [
+      0.0401,
+      1.05,
+      0.0401
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_piquet_rubalise_0509",
+    "template": "gc_piquet_rubalise",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -273.503,
+      249.513,
+      -2539.127
+     ],
+     "rotation": [
+      0.0,
+      -0.723102,
+      0.0,
+      0.690741
+     ],
+     "scale": [
+      0.0401,
+      1.05,
+      0.0401
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_piquet_rubalise_0510",
+    "template": "gc_piquet_rubalise",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      -276.31,
+      249.423,
+      -2538.267
+     ],
+     "rotation": [
+      0.0,
+      -0.515111,
+      -0.0,
+      0.857124
+     ],
+     "scale": [
+      0.0402,
+      1.05,
+      0.0402
+     ],
+     "matrix": null
+    }
+   },
+   {
     "id": "gc_piquet_rubalise_0511",
     "template": "gc_piquet_rubalise",
     "kind": "basic",
     "tag": null,
     "transform": {
      "position": [
-      -261.672,
-      249.726,
-      -2530.944
+      -290.366,
+      250.533,
+      -2534.007
      ],
      "rotation": [
       0.0,
-      0.905797,
+      -0.771062,
       0.0,
-      -0.423713
+      0.63676
      ],
      "scale": [
-      0.04,
+      0.0402,
       1.05,
-      0.04
+      0.0402
      ],
      "matrix": null
     }
@@ -43469,15 +43929,15 @@
     "tag": null,
     "transform": {
      "position": [
-      -263.981,
-      249.709,
-      -2532.858
+      -293.224,
+      250.658,
+      -2534.886
      ],
      "rotation": [
       0.0,
-      0.905589,
+      -0.842895,
       0.0,
-      -0.424155
+      0.538078
      ],
      "scale": [
       0.0401,
@@ -43494,15 +43954,15 @@
     "tag": null,
     "transform": {
      "position": [
-      -266.29,
-      249.699,
-      -2534.774
+      -295.883,
+      250.975,
+      -2536.273
      ],
      "rotation": [
       0.0,
-      0.904072,
+      -0.86434,
       0.0,
-      -0.427381
+      0.502908
      ],
      "scale": [
       0.0401,
@@ -43519,20 +43979,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -268.629,
-      249.682,
-      -2536.652
+      -298.531,
+      250.83,
+      -2537.681
      ],
      "rotation": [
       0.0,
-      0.896397,
+      -0.849169,
       0.0,
-      -0.443253
+      0.528122
      ],
      "scale": [
-      0.0401,
+      0.0402,
       1.05,
-      0.0401
+      0.0402
      ],
      "matrix": null
     }
@@ -43544,295 +44004,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -271.023,
-      249.637,
-      -2538.46
+      -301.269,
+      251.272,
+      -2538.904
      ],
      "rotation": [
       0.0,
-      0.894546,
+      -0.831977,
       0.0,
-      -0.446975
-     ],
-     "scale": [
-      0.0402,
-      1.05,
-      0.0402
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0516",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -274.798,
-      249.538,
-      -2539.239
-     ],
-     "rotation": [
-      0.0,
-      -0.618506,
-      -0.0,
-      0.78578
-     ],
-     "scale": [
-      0.0402,
-      1.05,
-      0.0402
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0517",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -277.517,
-      249.416,
-      -2537.976
-     ],
-     "rotation": [
-      0.0,
-      -0.514804,
-      -0.0,
-      0.857308
-     ],
-     "scale": [
-      0.0401,
-      1.05,
-      0.0401
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0518",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -280.195,
-      249.593,
-      -2536.624
-     ],
-     "rotation": [
-      0.0,
-      -0.53527,
-      -0.0,
-      0.844681
-     ],
-     "scale": [
-      0.0402,
-      1.05,
-      0.0402
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0519",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -282.967,
-      249.888,
-      -2535.477
-     ],
-     "rotation": [
-      0.0,
-      -0.558868,
-      -0.0,
-      0.829257
+      0.55481
      ],
      "scale": [
       0.04,
       1.05,
       0.04
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0520",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -285.795,
-      250.506,
-      -2534.487
-     ],
-     "rotation": [
-      0.0,
-      -0.630685,
-      -0.0,
-      0.776039
-     ],
-     "scale": [
-      0.0401,
-      1.05,
-      0.0401
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0521",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -288.772,
-      250.604,
-      -2534.18
-     ],
-     "rotation": [
-      0.0,
-      -0.714622,
-      0.0,
-      0.699511
-     ],
-     "scale": [
-      0.04,
-      1.05,
-      0.04
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0522",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -291.737,
-      250.614,
-      -2534.56
-     ],
-     "rotation": [
-      0.0,
-      -0.785808,
-      0.0,
-      0.61847
-     ],
-     "scale": [
-      0.0402,
-      1.05,
-      0.0402
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0523",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -294.521,
-      250.818,
-      -2535.648
-     ],
-     "rotation": [
-      0.0,
-      -0.848267,
-      0.0,
-      0.529568
-     ],
-     "scale": [
-      0.0401,
-      1.05,
-      0.0401
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0524",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -297.16,
-      250.932,
-      -2537.072
-     ],
-     "rotation": [
-      0.0,
-      -0.860798,
-      0.0,
-      0.508946
-     ],
-     "scale": [
-      0.0401,
-      1.05,
-      0.0401
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0525",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -299.847,
-      251.093,
-      -2538.406
-     ],
-     "rotation": [
-      0.0,
-      -0.840389,
-      0.0,
-      0.541984
-     ],
-     "scale": [
-      0.0402,
-      1.05,
-      0.0402
-     ],
-     "matrix": null
-    }
-   },
-   {
-    "id": "gc_piquet_rubalise_0526",
-    "template": "gc_piquet_rubalise",
-    "kind": "basic",
-    "tag": null,
-    "transform": {
-     "position": [
-      -302.618,
-      251.352,
-      -2539.553
-     ],
-     "rotation": [
-      0.0,
-      -0.834841,
-      0.0,
-      0.550491
-     ],
-     "scale": [
-      0.0401,
-      1.05,
-      0.0401
      ],
      "matrix": null
     }
@@ -43878,10 +44063,10 @@
   "sol": {
    "fichier": "modele/annexes_collision.glb",
    "triangles": {
-    "enrobe_lion_d_or_collision (enrobe)": "574 -> TSD+",
-    "terre_plein_lion_d_or_collision (terre)": "974 -> DBK+"
+    "enrobe_lion_d_or_collision (enrobe)": "581 -> TSD+",
+    "terre_plein_lion_d_or_collision (terre)": "999 -> DBK+"
    },
-   "terrain_retire_sous_annexes": 1067
+   "terrain_retire_sous_annexes": 1066
   },
   "obstacles": {
    "sources": [
@@ -43891,66 +44076,77 @@
    ],
    "par_materiau": {
     "collision_pierre (pierre)": "285 box -> PM_WallRock",
-    "collision_beton (beton)": "179 box -> PM_WallConcrete",
+    "collision_beton (beton)": "172 box -> PM_WallConcrete",
     "parapets_lion_d_or_collision (pierre)": "47 box -> PM_WallRock",
-    "piquets_lion_d_or (plastique_piquet)": "16 cylinder -> PM_WallPlasticPole"
+    "piquets_lion_d_or (plastique_piquet)": "12 cylinder -> PM_WallPlasticPole"
    },
    "non_exportes": {},
    "retires_sur_la_chaussee": [
     {
-     "id": "gc_parapet_pierre_0472",
+     "id": "gc_parapet_pierre_0464",
      "pk_m": 3637.0,
-     "penetration_m": 0.53,
+     "penetration_m": 0.34,
      "centre": [
-      -256.544,
-      249.754,
-      -2523.265
+      -256.111,
+      249.763,
+      -2522.642
      ],
-     "demi_diagonale_m": 0.926
+     "demi_diagonale_m": 0.967
     },
     {
-     "id": "gc_parapet_pierre_0473",
+     "id": "gc_parapet_pierre_0465",
      "pk_m": 3637.0,
-     "penetration_m": 0.68,
+     "penetration_m": 0.6,
      "centre": [
-      -257.094,
-      249.775,
-      -2524.054
+      -256.691,
+      249.762,
+      -2523.468
      ],
-     "demi_diagonale_m": 0.92
+     "demi_diagonale_m": 0.97
     },
     {
-     "id": "gc_parapet_pierre_0474",
-     "pk_m": 3640.0,
-     "penetration_m": 0.68,
+     "id": "gc_parapet_pierre_0466",
+     "pk_m": 3637.0,
+     "penetration_m": 0.65,
      "centre": [
-      -257.584,
-      249.778,
-      -2524.895
+      -257.246,
+      249.783,
+      -2524.303
      ],
-     "demi_diagonale_m": 0.915
+     "demi_diagonale_m": 0.94
     },
     {
-     "id": "gc_parapet_pierre_0475",
+     "id": "gc_parapet_pierre_0467",
      "pk_m": 3640.0,
      "penetration_m": 0.65,
      "centre": [
-      -257.977,
-      249.718,
-      -2525.823
+      -257.722,
+      249.765,
+      -2525.184
      ],
-     "demi_diagonale_m": 1.033
+     "demi_diagonale_m": 0.982
     },
     {
-     "id": "gc_parapet_pierre_0476",
+     "id": "gc_parapet_pierre_0468",
      "pk_m": 3640.0,
-     "penetration_m": 0.52,
+     "penetration_m": 0.63,
      "centre": [
-      -258.325,
-      249.65,
-      -2526.781
+      -258.1,
+      249.693,
+      -2526.113
      ],
-     "demi_diagonale_m": 1.033
+     "demi_diagonale_m": 1.054
+    },
+    {
+     "id": "gc_parapet_pierre_0469",
+     "pk_m": 3640.0,
+     "penetration_m": 0.45,
+     "centre": [
+      -258.458,
+      249.656,
+      -2527.045
+     ],
+     "demi_diagonale_m": 1.011
     }
    ]
   },

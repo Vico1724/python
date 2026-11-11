@@ -30,7 +30,7 @@ Repères chiffrés :
 - La longueur chronométrée est de 6 736 m, mesurée en pente le long de l'axe, presque autant à plat, et de 6 702 m sur le road-book officiel.
 - Les temps intermédiaires sont placés aux points officiels INTER2 (PK 2 677) et INTER6 (PK 5 043).
 
-**Les notes du copilote sont un brouillon** calculé d'après la courbure de la route : 55 virages. Il faudra les relire sur une vidéo embarquée.
+Les notes du copilote sont décrites au § 3 bis.
 
 **Ce qui manque**, laissé vide comme le format le permet : les arbres et autres objets du décor, les maillages d'affichage et leurs textures, les images des menus.
 
@@ -46,6 +46,25 @@ Deux contrôles indépendants relisent les fichiers écrits, par des calculs dif
 - les volumes exportés recouvrent les parapets d'origine au millimètre près.
 
 **Un point est à reprendre :** au Lion d'Or, en cours de reprise par ailleurs, 5 morceaux du parapet de pierre du carrefour (PK 3 637 à 3 640) se trouvent sur la nouvelle chaussée. Le constructeur les aurait supprimés. L'exporteur les retire et les liste dans `stage.json`. Il faudra relancer l'export quand ce carrefour sera fini.
+
+## 3 bis. Les notes du copilote
+
+**Ce qui est calculé.** Le script repère les virages d'après la courbure de l'axe. Pour chacun, il donne le sens et une sévérité de 6 (rapide) à 1, ou épingle, d'après le rayon le plus serré. Il donne aussi la distance jusqu'au virage suivant. Il en trouvait 55.
+
+**Ce qui vient de la vidéo.** Le relevé des trois vidéos embarquées a confirmé le sens de 53 virages, les deux autres étant non concluants. Ses corrections sont rangées dans un fichier modifiable à la main, `data/reference/notes_copilote_retouches.json`, que le script applique à chaque exécution. Chaque retouche repère son virage par son point kilométrique, à 30 m près, et non par son numéro, car la route bouge encore de quelques mètres. Elle indique aussi sa source et un degré de confiance. Il y en a seize :
+
+- cinq inflexions supprimées ;
+- la légère gauche du départ ajoutée ;
+- le grand gauche d'après la première épingle durci en « 1 » (le relevé dit « 2 long », mais le jeu ne sait pas dire « long ») ;
+- le droit du pont du PK 2 777 adouci en « 2 » ;
+- trois « ne pas couper » (rocher vers le PK 1 550, muret du Lion d'Or, parapet de l'épingle de la D1) ;
+- cinq libellés.
+
+Il reste 51 virages annoncés. Un essai où l'on fait glisser les virages de 3 à 10 m donne exactement les mêmes notes.
+
+**Ce que le jeu ne sait pas dire.** Leur constructeur ne produit que les virages, « ne pas couper », les distances, « dans » et « et » entre deux virages enchaînés, et l'arrivée. Le jeu possède d'autres annonces (attention, crête, bosses...), mais leur constructeur ne sait pas les produire. Les ponts et ponceaux, le rétrécissement, les gravillons, l'enrobé rapiécé, le public, les mots « long » et « sur pont » ne sont donc pas annoncés en jeu. Ces 24 dangers sont conservés dans `stage.json` (`pacenotes.dangers_non_exprimables`), pour une version ultérieure.
+
+**Ce qui reste à valider au volant :** le moment où chaque note est lue (80 m avant le virage, recalé ensuite par leur constructeur), les sévérités à vitesse de course, et la note du départ, que la voiture atteint à l'arrêt.
 
 ## 4. Peut-on construire notre spéciale avec ACR Extra Stages tel quel ?
 

@@ -487,9 +487,12 @@ def notes(ch, vir, gd_at_pk, pos_at_pk, pk_fin, start_gate_distance):
         for v in grp:
             sub += 1
             tokens.append({**base, "subcall": sub, "kind": "corner", "direction": v["sens"], "severity": v["severite"],
-                           "angle": ANGLE_DR2[v["severite"]], "modifiers": [], "link_code": None,
+                           "angle": ANGLE_DR2[v["severite"]], "modifiers": list(v.get("modificateurs", [])),
+                           "link_code": None,
                            "brouillon": {"pk_virage": [round(v["pk_debut"]), round(v["pk_fin"])],
-                                         "virage_deg": v["virage_deg"], "rayon_min_m": v["rayon_min_m"]}})
+                                         "virage_deg": v["virage_deg"], "rayon_min_m": v["rayon_min_m"],
+                                         "severite_calculee": v.get("severite_calculee", v["severite"]),
+                                         "libelle": v.get("libelle"), "retouches": v.get("retouches", [])}})
         suivant = appels[n][0]["pk_debut"] if n < len(appels) else None
         if suivant is not None:
             ecart = suivant - grp[-1]["pk_fin"]
@@ -613,6 +616,137 @@ def volumes_retenus(stage, obst):
     return out
 
 
+# --- retouches des notes (relevé vidéo) -------------------------------------------------
+RETOUCHES = ROOT / "data" / "reference" / "notes_copilote_retouches.json"
+# Ce que leur constructeur sait dire (config/pacenote-map.toml + Pacenotes.Generate) : un virage (sens, sévérité
+# "6".."1", square, hairpin), le modificateur dont_cut -> DontCut, les distances, Into/And entre virages liés et
+# l'arrivée. Tout autre jeton (kind "unknown", modificateur non listé) est abandonné par Pacenotes.Generate.
+DANGERS_EXPRIMABLES = {"ne_pas_couper": "dont_cut"}
+VOCABULAIRE = {
+    "exprimable": "virage (gauche/droite, 6 à 1, square, hairpin), dont_cut (« ne pas couper » -> jeton DontCut), "
+                  "distances 40-400 m, « dans » / « et » entre virages enchaînés, arrivée",
+    "non_exprimable": "pont, ponceau, étroit, gravillons, revêtement, public, parapet, glissière, carrefour, long, "
+                      "très long, sur pont, crête",
+    "remarque": "le jeu possède d'autres annonces (icônes Caution, Crest, OverCrest, Bumps, Kinks, Tightens, Opens, "
+                "Jump... dans le catalogue 25170642), mais leur constructeur ne sait pas les produire ; leurs noms exacts "
+                "dans DT_PacenoteTokens_EA ne sont pas vérifiés",
+}
+
+
+def charger_retouches():
+    if not RETOUCHES.exists():
+        print("notes_copilote_retouches.json absent : notes calculées seules")
+        return None
+    return json.loads(RETOUCHES.read_text(encoding="utf-8"))
+
+
+def appliquer_retouches(vir, cfg, pk_fin):
+    """Notes calculées + retouches manuelles. Un virage est trouvé par son PK et son sens (tolérance en mètres),
+    jamais par son numéro. Renvoie (virages retouchés, compte rendu)."""
+    vir = [{**v, "modificateurs": [], "retouches": [], "libelle": None, "severite_calculee": v["severite"]} for v in vir]
+    out = {"bilan": {"fichier": None, "appliquees": [], "non_appliquees": []}, "dangers_non_exprimables": []}
+    if cfg is None:
+        return vir, out
+    out["bilan"]["fichier"] = str(RETOUCHES.relative_to(ROOT))
+    tol = float(cfg.get("tolerance_pk_m", 30))
+    src = cfg.get("source_par_defaut", "")
+
+    def trouver(pk, sens):
+        cand = [(max(v["pk_debut"] - pk, pk - v["pk_fin"], 0.0), i) for i, v in enumerate(vir)
+                if (sens is None or v["sens"] == sens) and v["pk_debut"] - tol <= pk <= v["pk_fin"] + tol]
+        return min(cand)[1] if cand else None
+
+    def trace(r, quoi, v=None):
+        e = {"action": r["action"], "pk_m": r.get("pk_m", r.get("pk_debut")), "quoi": quoi,
+             "source": r.get("source", src), "confiance": r.get("confiance")}
+        if v is not None:
+            e["virage_pk"] = [round(v["pk_debut"]), round(v["pk_fin"])]
+            v["retouches"].append(f"{r['action']} : {quoi} ({e['confiance']})")
+        out["bilan"]["appliquees"].append(e)
+
+    def rate(r, pourquoi):
+        out["bilan"]["non_appliquees"].append({"action": r["action"], "pk_m": r.get("pk_m", r.get("pk_debut")),
+                                               "pourquoi": pourquoi})
+        print(f"attention : retouche {r['action']} au PK {r.get('pk_m', r.get('pk_debut'))} non appliquée : {pourquoi}")
+
+    supprimer = set()
+    for r in cfg["retouches"]:
+        a = r["action"]
+        if a == "ajouter_virage":
+            continue
+        if a == "danger":
+            cat = r["categorie"]
+            if cat in DANGERS_EXPRIMABLES and isinstance(r["pk_m"], (int, float)):
+                i = trouver(float(r["pk_m"]), None)
+                if i is None:
+                    rate(r, "aucun virage pour porter le modificateur")
+                    continue
+                m = DANGERS_EXPRIMABLES[cat]
+                if m not in vir[i]["modificateurs"]:
+                    vir[i]["modificateurs"].append(m)
+                trace(r, f"{m} ({r['libelle']})", vir[i])
+            else:
+                out["dangers_non_exprimables"].append({
+                    "pk_m": r["pk_m"], "categorie": cat, "libelle": r["libelle"], "source": r.get("source", src),
+                    "confiance": r.get("confiance"),
+                    "raison": "pas de jeton correspondant que leur constructeur sache produire"})
+            continue
+        i = trouver(float(r["pk_m"]), r.get("sens"))
+        if i is None:
+            rate(r, f"aucun virage {r.get('sens', '')} à ± {tol:g} m")
+            continue
+        v = vir[i]
+        if a == "supprimer":
+            supprimer.add(i)
+            trace(r, f"note supprimée ({v['sens']} {v['severite']})", v)
+        elif a == "forcer":
+            if "severite" in r:
+                if r["severite"] not in ANGLE_DR2:
+                    rate(r, f"sévérité inconnue {r['severite']}")
+                    continue
+                trace(r, f"sévérité {v['severite']} -> {r['severite']}", v)
+                v["severite"] = r["severite"]
+            if r.get("libelle"):
+                v["libelle"] = r["libelle"]
+        elif a == "modificateur":
+            if r["modificateur"] not in DANGERS_EXPRIMABLES.values():
+                rate(r, f"modificateur {r['modificateur']} non exprimable")
+                continue
+            if r["modificateur"] not in v["modificateurs"]:
+                v["modificateurs"].append(r["modificateur"])
+            trace(r, r["modificateur"], v)
+        elif a == "annoter":
+            v["libelle"] = "; ".join(x for x in (v["libelle"], r["libelle"]) if x)
+            trace(r, f"libellé « {r['libelle']} » (non dit par le jeu)", v)
+        else:
+            rate(r, f"action inconnue {a}")
+    supprimes = [vir[i] for i in sorted(supprimer)]
+    vir = [v for i, v in enumerate(vir) if i not in supprimer]
+    for r in cfg["retouches"]:
+        if r["action"] != "ajouter_virage":
+            continue
+        a, b = float(r["pk_debut"]), float(r["pk_fin"])
+        deja = [v for v in vir if v["sens"] == r["sens"] and v["pk_debut"] <= b + tol and v["pk_fin"] >= a - tol]
+        if deja:
+            # l'axe a bougé et le calcul trouve désormais ce virage : on le garde, avec la sévérité et le libellé voulus
+            v = deja[0]
+            trace(r, f"virage déjà calculé : sévérité {v['severite']} -> {r['severite']}", v)
+            v["severite"], v["libelle"] = r["severite"], r.get("libelle") or v["libelle"]
+            continue
+        if r["severite"] not in ANGLE_DR2 or not (0 <= a < b <= pk_fin):
+            rate(r, "sévérité ou PK invalides")
+            continue
+        v = {"pk_debut": a, "pk_fin": b, "sens": r["sens"], "virage_deg": None, "rayon_min_m": None,
+             "severite": r["severite"], "severite_calculee": None, "modificateurs": [], "retouches": [],
+             "libelle": r.get("libelle")}
+        vir.append(v)
+        trace(r, f"virage ajouté ({r['sens']} {r['severite']})", v)
+    vir.sort(key=lambda v: v["pk_debut"])
+    out["bilan"]["notes_supprimees"] = [{"pk_virage": [round(v["pk_debut"]), round(v["pk_fin"])], "sens": v["sens"],
+                                         "severite_calculee": v["severite_calculee"]} for v in supprimes]
+    return vir, out
+
+
 # --- stage.json --------------------------------------------------------------------------
 def construire(ch, ref, prims, deck, obst, rap_sol):
     pk = ch["pk"]
@@ -661,7 +795,8 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
     stop = {"type": "VehicleBox", "name": "EndSequenceTriggerBox_point_stop", "position": r3(cen[gst]),
             "forward": r3(f, 5), "size_whl": [round(float(ch["largeur"][i_stop]) + 4, 2), 4.0, 20.0]}
 
-    vir = virages(ch, 0.0, pk[i_arr])
+    vir_calc = virages(ch, 0.0, pk[i_arr])
+    vir, retouches = appliquer_retouches(vir_calc, charger_retouches(), pk[i_arr])
     toks = notes(ch, vir, gd_at_pk, pos_at_pk, pk[i_arr], float(dist[i_dep]))
 
     allp = np.vstack([p for p, _ in prims.values()])
@@ -707,6 +842,11 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
             "severity_radii_m": {s: r for s, r in SEUILS},
             "tokens": toks,
             "raw": None,
+            # extensions du projet (ignorées par leur constructeur, qui ne lit que `tokens`)
+            "virages_calcules": len(vir_calc),
+            "retouches": retouches["bilan"],
+            "dangers_non_exprimables": retouches["dangers_non_exprimables"],
+            "vocabulaire": VOCABULAIRE,
         },
         "triggers": [stop],
         "respawn": {
@@ -855,6 +995,7 @@ def controle(dossier, deck_pk):
         if t["kind"] == "corner":
             need(t["direction"] in ("left", "right") and t["severity"] in ANGLE_DR2 and isinstance(t["angle"], int),
                  "jeton virage")
+            need(all(m in DANGERS_EXPRIMABLES.values() for m in t["modifiers"]), "modificateur hors vocabulaire")
     gls = {m["name"] for m in gl["materials"]}
     need(gls == {m["gltf_material"] for m in st["collision"]["meshes"]}, "matériaux glb = collision.meshes")
     need(len(gl["nodes"]) == 1 and gl["nodes"][0]["name"] == "collision" and len(gl["meshes"]) == 1, "un nœud collision")
@@ -1172,7 +1313,13 @@ def main():
     for v in vir:
         sev[v["severite"]] = sev.get(v["severite"], 0) + 1
     toks = stage["pacenotes"]["tokens"]
-    rapport["notes_brouillon"] = {"virages_annonces": len(vir), "par_severite": sev,
+    pn = stage["pacenotes"]
+    rapport["notes_brouillon"] = {"virages_calcules": pn["virages_calcules"], "virages_annonces": len(vir),
+                                  "retouches_appliquees": len(pn["retouches"]["appliquees"]),
+                                  "retouches_non_appliquees": pn["retouches"]["non_appliquees"],
+                                  "dangers_non_exprimables": len(pn["dangers_non_exprimables"]),
+                                  "ne_pas_couper": sum("dont_cut" in t["modifiers"] for t in toks if t["kind"] == "corner"),
+                                  "par_severite": sev,
                                   "appels": max(t["call"] for t in toks), "jetons": len(toks),
                                   "avance_lecture_m": AVANCE}
     rapport["fichiers_mo"] = {p.name: round(p.stat().st_size / 1e6, 2) for p in sorted(DOSSIER.iterdir())}

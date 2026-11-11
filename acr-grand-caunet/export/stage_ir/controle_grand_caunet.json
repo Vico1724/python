@@ -27,8 +27,8 @@
     "width_coherente": true
   },
   "notes_sens_vs_geometrie": {
-    "virages": 55,
-    "coherents": 55
+    "virages": 51,
+    "coherents": 51
   },
   "sol_sous_portes": {
     "portes": 1096,
@@ -60,64 +60,68 @@
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 757814,
+    "triangles": 757847,
     "par_code": {
-      "TSD+": 30766,
-      "DBK+": 92902,
+      "TSD+": 30773,
+      "DBK+": 92928,
       "GRS+": 634146
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 757814
+    "triangles_annonces_dans_stage_json": 757847
   },
   "obstacles": {
-    "instances": 522,
+    "instances": 510,
     "gabarits": 3,
     "formes": {
-      "box": 506,
-      "cylinder": 16
+      "box": 498,
+      "cylinder": 12
     },
     "parois": {
-      "PM_WallRock": 327,
-      "PM_WallConcrete": 179,
-      "PM_WallPlasticPole": 16
+      "PM_WallRock": 326,
+      "PM_WallConcrete": 172,
+      "PM_WallPlasticPole": 12
     },
     "parois_absentes_du_catalogue": [],
-    "penetration_max_dans_la_chaussee_m": 0.292,
+    "penetration_max_dans_la_chaussee_m": 0.266,
     "intrusions_plus_de_30_cm": 0,
     "sommets_source_hors_paves_max_m": 0.001,
-    "retires_sur_la_chaussee": 5,
-    "objects_collision_triangles": 6520
+    "retires_sur_la_chaussee": 6,
+    "objects_collision_triangles": 6312
   },
   "annexes": {
     "points_testes": 234,
     "sans_sol": 0,
     "code_du_sol_le_plus_haut": {
       "TSD+": 83,
-      "DBK+": 150,
-      "GRS+": 1
+      "DBK+": 151
     },
-    "terrain_plus_de_2_cm_au_dessus": 1,
-    "terrain_au_dessus_max_m": 0.089
+    "terrain_plus_de_2_cm_au_dessus": 0,
+    "terrain_au_dessus_max_m": 0.0
   },
   "erreurs": [],
   "notes_brouillon": {
-    "virages_annonces": 55,
+    "virages_calcules": 55,
+    "virages_annonces": 51,
+    "retouches_appliquees": 16,
+    "retouches_non_appliquees": [],
+    "dangers_non_exprimables": 24,
+    "ne_pas_couper": 3,
     "par_severite": {
-      "5": 16,
+      "6": 1,
+      "5": 14,
       "4": 20,
       "3": 11,
       "hairpin": 2,
-      "2": 2,
       "1": 1,
-      "6": 3
+      "2": 2
     },
-    "appels": 35,
-    "jetons": 77,
+    "appels": 33,
+    "jetons": 71,
     "avance_lecture_m": 80.0
   },
   "fichiers_mo": {
     "collision.glb": 14.06,
     "objects_collision.glb": 0.13,
-    "stage.json": 0.58
+    "stage.json": 0.59
   }
 }

@@ -77,7 +77,8 @@ FIG3.mkdir(parents=True, exist_ok=True)
 
 INK, INK2, MUTED, GRID, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#fcfcfb"
 BLUE, ORANGE, GREEN, RED = "#2a78d6", "#eb6834", "#2f9e5b", "#d03b3b"
-SRC_COLORS = {"lidar+ortho": GREEN, "lidar": BLUE, "ortho": ORANGE, "interpole": RED, "manuel": "#8a4fd0"}
+SRC_COLORS = {"lidar+ortho": GREEN, "lidar": BLUE, "ortho": ORANGE, "interpole": RED, "manuel": "#8a4fd0",
+              "video": "#c2477f"}
 CORRECTIONS = ROOT / "data" / "reference" / "chaussee_corrections.json"
 RACCORD = 10.0                    # m : raccord progressif aux extrémités d'une zone corrigée
 plt.rcParams.update({"font.size": 9, "axes.edgecolor": "#c3c2b7", "axes.labelcolor": INK2,
@@ -469,6 +470,74 @@ def corrections_manuelles(pk, A, G, D, nA):
     return A, G, D, manuel, bilan
 
 
+def corrections_largeur(pk, A, G, D, nA, protege):
+    """Applique la liste « largeurs » de chaussee_corrections.json (relevé vidéo).
+
+    Chaque entrée déplace le bord gauche, le bord droit ou les deux (« symetrique ») le long
+    de la normale à l'axe pour atteindre la largeur voulue ; en mode « minimum » ou
+    « maximum », seules les stations hors de la borne sont corrigées. Les cibles de toutes
+    les entrées sont réunies côté par côté, adoucies (σ 2 m) là où deux entrées se touchent,
+    puis appliquées avec un poids qui vaut 1 dans les entrées et décroît linéairement sur
+    RACCORD m au-delà de leurs extrémités. Les stations protégées (zones numérisées à la
+    main) ne bougent pas. L'axe des stations corrigées devient le milieu des deux bords ;
+    les PK ne changent pas. Renvoie A, G, D, le masque des stations touchées et un bilan."""
+    if not CORRECTIONS.exists():
+        return A, G, D, np.zeros(len(pk), bool), []
+    entrees = json.loads(CORRECTIONS.read_text(encoding="utf-8")).get("largeurs", [])
+    og, od = ((G - A) * nA).sum(1), ((D - A) * nA).sum(1)        # décalages signés (gauche < 0)
+    cible = [og.copy(), od.copy()]
+    dans = np.zeros((len(pk), 2), bool)                           # station dans une entrée, par côté
+    bilan = []
+    for e in entrees:
+        sel = (pk >= e["pk_debut"]) & (pk <= e["pk_fin"]) & ~protege
+        if not sel.any():
+            continue
+        W, mode, cote = float(e["largeur_m"]), e.get("mode", "fixe"), e["cote"]
+        w0 = od - og
+        if mode == "minimum":
+            sel &= w0 < W
+        elif mode == "maximum":
+            sel &= w0 > W
+        if cote == "gauche":
+            cible[0][sel] = od[sel] - W
+            dans[sel, 0] = True
+        elif cote == "droite":
+            cible[1][sel] = og[sel] + W
+            dans[sel, 1] = True
+        else:
+            c = (og + od) / 2
+            cible[0][sel], cible[1][sel] = c[sel] - W / 2, c[sel] + W / 2
+            dans[sel] = True
+        bilan.append({**{k: e[k] for k in ("id_releve", "pk_debut", "pk_fin", "cote", "largeur_m", "confiance")},
+                      "mode": mode, "stations": int(sel.sum())})
+    touche = np.zeros(len(pk), bool)
+    out = []
+    for k, (o, c) in enumerate(zip((og, od), cible)):
+        if not dans[:, k].any():
+            out.append(o)
+            continue
+        # adoucit les marches entre deux entrées contiguës, sans déborder des entrées
+        lisse = gaussian_filter1d(c - o, 2.0, mode="nearest")
+        dc = np.where(dans[:, k], np.where(np.convolve(dans[:, k], np.ones(5), "same") >= 5, lisse, c - o), 0.0)
+        # poids : 1 dans les entrées, décroissance linéaire sur RACCORD m au-delà
+        idx = np.flatnonzero(dans[:, k])
+        dist = np.abs(pk[:, None] - pk[idx][None]).min(1)
+        poids = np.clip(1 - dist / RACCORD, 0, 1)
+        if protege.any():                       # raccord côté entrée quand elle touche une zone protégée
+            dprot = np.abs(pk[:, None] - pk[protege][None]).min(1)
+            poids = np.minimum(poids, np.clip(dprot / RACCORD, 0, 1))
+        # au-delà d'une entrée, on prolonge la correction de sa station extrême la plus proche
+        plus_proche = idx[np.abs(pk[:, None] - pk[idx][None]).argmin(1)]
+        delta = np.where(dans[:, k], dc, dc[plus_proche])
+        out.append(o + poids * delta)
+        touche |= poids > 0
+    dg, dd = out[0] - og, out[1] - od
+    G = G + dg[:, None] * nA
+    D = D + dd[:, None] * nA
+    A = np.where(touche[:, None], (G + D) / 2, A)
+    return A, G, D, touche, bilan
+
+
 def source_profil(code):
     """Code par côté -> source du point (la plus faible des deux)."""
     out = []
@@ -533,7 +602,7 @@ def planche(R, old_xy, pk, axe, gl, dr, src, picks, h, name, dpi, grille=(2, 4),
     Image.open(path).convert("RGB").quantize(256, method=Image.Quantize.MEDIANCUT).save(path, optimize=True)
 
 
-def planche_corrections(R, pk, avant, apres, corr, troncon=75.0):
+def planche_corrections(R, pk, avant, apres, corr, troncon=75.0, nom_fichier="planche_corrections.png", titre=None):
     """Zones corrigées à la main : bords avant (fins, pointillés) et après (pleins) sur l'ortho."""
     vues = []
     for c in corr:
@@ -541,8 +610,12 @@ def planche_corrections(R, pk, avant, apres, corr, troncon=75.0):
         n = max(1, int(np.ceil((b - a) / troncon)))
         for k in range(n):
             vues.append((c["nom"].split(":")[0].strip(), a + k * (b - a) / n, a + (k + 1) * (b - a) / n))
-    fig, axs = plt.subplots(1, len(vues), figsize=(6 * len(vues), 6.6), squeeze=False)
-    for ax, (nom, a, b) in zip(axs[0], vues):
+    nc = min(len(vues), 3)
+    nl = int(np.ceil(len(vues) / nc))
+    fig, axs = plt.subplots(nl, nc, figsize=(6 * nc, 6.6 * nl), squeeze=False)
+    for ax in axs.flat[len(vues):]:
+        ax.set_axis_off()
+    for ax, (nom, a, b) in zip(axs.flat, vues):
         sel = (pk >= a) & (pk <= b)
         pts = np.vstack([apres[1][sel], apres[2][sel]])
         cx, cy = (pts.min(0) + pts.max(0)) / 2
@@ -566,13 +639,35 @@ def planche_corrections(R, pk, avant, apres, corr, troncon=75.0):
     leg = fig.legend(h_, l_, loc="lower center", ncol=4, frameon=True, facecolor="#9a9990", edgecolor="none")
     for t in leg.get_texts():
         t.set_color("white")
-    fig.suptitle("Corrections manuelles des bords de chaussée (numérisation sur BD ORTHO 20 cm) - "
+    fig.suptitle(titre or "Corrections manuelles des bords de chaussée (numérisation sur BD ORTHO 20 cm) - "
                  "étiquettes = PK sur le nouvel axe", x=0.01, ha="left", color=INK, fontsize=11)
     fig.tight_layout(rect=(0, 0.07, 1, 0.95))
-    path = FIG3 / "planche_corrections.png"
+    path = FIG3 / nom_fichier
     fig.savefig(path, dpi=100)
     plt.close(fig)
     Image.open(path).convert("RGB").quantize(256, method=Image.Quantize.MEDIANCUT).save(path, optimize=True)
+
+
+def largeur_avant_apres(pk, avant, apres, video, corr_l, L):
+    """Largeur le long du parcours, avant et après les corrections du relevé vidéo."""
+    fig, ax = plt.subplots(figsize=(13, 4.6))
+    for b in corr_l:
+        ax.axvspan(b["pk_debut"], b["pk_fin"], color=SRC_COLORS["video"], alpha=0.15, lw=0)
+    ax.plot(pk, avant, color=MUTED, lw=0.8, label="avant (calcul automatique et zones numérisées)")
+    ax.plot(pk, apres, color=INK, lw=0.9, label="après corrections du relevé vidéo")
+    ax.plot([], [], color=SRC_COLORS["video"], alpha=0.3, lw=6, label="zones corrigées d'après la vidéo")
+    for k in (0, L):
+        ax.axvline(k, color=INK2, lw=0.8, ls=":")
+    ax.set_xlim(pk[0] - 20, pk[-1] + 20)
+    ax.set_ylim(3.5, 10.0)
+    ax.set_xlabel("PK sur le nouvel axe (m)")
+    ax.set_ylabel("largeur de chaussée (m)")
+    ax.grid(axis="y", color=GRID, lw=0.8)
+    ax.legend(loc="upper right", ncol=3, frameon=False, fontsize=8)
+    ax.set_title("ES Le Grand Caunet - largeur avant et après les corrections du relevé vidéo",
+                 loc="left", color=INK, fontsize=11)
+    fig.savefig(FIG3 / "largeur_avant_apres.png", dpi=110, bbox_inches="tight")
+    plt.close(fig)
 
 
 def courbes(pk, width, offset, src, bridges, L):
@@ -655,6 +750,10 @@ def main():
     A, G, D, manuel, corr = corrections_manuelles(pk, A, G, D, nA)
     src = np.where(manuel, "manuel", src)
     nA[manuel] = normales(A)[manuel]                    # hors zones, normales inchangées
+    A1, G1, D1 = A.copy(), G.copy(), D.copy()
+    A, G, D, video, corr_l = corrections_largeur(pk, A, G, D, nA, manuel)
+    src = np.where(video, "video", src)
+    nA[video] = normales(A)[video]
     width = np.hypot(*(D - G).T)
 
     # altitudes : MNT à l'axe et aux bords ; dévers = pente de la droite ajustée sur le
@@ -758,7 +857,9 @@ def main():
                     "ortho": "au moins un bord pris sur la seule image (pont, plate-forme sans rupture)",
                     "interpole": "au moins un bord interpolé sur plus de 3 m (pont sans image, débouché, "
                                  "surlargeur rejetée, aucune source fiable)",
-                    "manuel": "bords numérisés à la main sur l'ortho (data/reference/chaussee_corrections.json)"},
+                    "manuel": "bords numérisés à la main sur l'ortho (data/reference/chaussee_corrections.json)",
+                    "video": "largeur imposée d'après le relevé des vidéos embarquées (liste « largeurs » de "
+                             "chaussee_corrections.json), raccords de 10 m compris"},
         "methode": "profils en travers tous les mètres (±15 m, pas 0,25 m) sur l'axe courant ; bord LiDAR = fin "
                    "de la plate-forme lisse du MNT ; bord image = fin de l'asphalte visible (NDVI bas, luminosité "
                    "de la route) hors arbres et ombre ; l'image fait foi quand elle mesure ; filtrage le long du "
@@ -784,6 +885,37 @@ def main():
             "largeur_m": {"min": round(float(wz.min()), 2), "mediane": round(float(np.median(wz)), 2),
                           "max": round(float(wz.max()), 2)},
             "pas_des_stations_m": c["pas_stations_m"], "sauts_aux_raccords": saut})
+    # corrections de largeur (relevé vidéo) : largeur obtenue, sauts aux raccords
+    lin = {}
+    for b in corr_l:
+        sel = (pk >= b["pk_debut"]) & (pk <= b["pk_fin"]) & video
+        b["largeur_obtenue_m"] = ([round(float(width[sel].min()), 2), round(float(width[sel].max()), 2)]
+                                  if sel.any() else None)
+        lin[b["confiance"]] = lin.get(b["confiance"], 0) + b["stations"]
+    sauts = []
+    for i0, i1 in runs(video):
+        for i in (i0, i1):
+            a, b = max(i - 15, 0), min(i + 15, len(pk) - 1)
+            sauts.append(float(np.abs(np.diff(lat[a:b + 1], axis=0)).max()))
+            sauts.append(float(np.abs((np.diff(A[a:b + 1], axis=0) * nA[a:b]).sum(1)).max()))
+    # quadrilatères successifs gauche-axe et axe-droite : orientation (produit vectoriel)
+    def croix(P, Q):
+        u, v = Q[:-1] - P[:-1], P[1:] - P[:-1]
+        return u[:, 0] * v[:, 1] - u[:, 1] * v[:, 0]
+    ret = (croix(G, A) <= 0) | (croix(A, D) <= 0)
+    q["corrections_largeur_video"] = {
+        "entrees_appliquees": len(corr_l),
+        "stations_dans_les_entrees_par_confiance": lin,
+        "stations_touchees_raccords_compris": int(video.sum()),
+        "entrees": corr_l,
+        "saut_max_aux_raccords_m": round(max(sauts), 3) if sauts else 0.0,
+    }
+    q["controles"] = {
+        "largeur_min_max_m": [round(float(width.min()), 2), round(float(width.max()), 2)],
+        "quadrilateres_retournes": {"nombre": int(ret.sum()),
+                                    "pk": [round(float(pk[i])) for i in np.flatnonzero(ret)][:40]},
+        "longueur_depart_arrivee_sur_axe_final_m": round(float(cumdist(A[es])[-1]), 1),
+    }
     (OUT / "chaussee_precise_qualite.json").write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(q, ensure_ascii=False, indent=2))
 
@@ -813,7 +945,16 @@ def main():
             titre="Extrémités : approche (avant départ) et sortie (après arrivée), extraits de 60 m - PK sur le nouvel axe")
     courbes(pk, width, off, src, spans, L)
     if corr:
-        planche_corrections(R, pk, (A0, G0, D0), (A, G, D), corr)
+        planche_corrections(R, pk, (A0, G0, D0), (A1, G1, D1), corr)
+    if corr_l:
+        largeur_avant_apres(pk, np.hypot(*(D1 - G1).T), width, video, corr_l, L)
+        gros = sorted(corr_l, key=lambda b: -abs(np.hypot(*(D1 - G1).T)[(pk >= b["pk_debut"]) & (pk <= b["pk_fin"])]
+                                                  .mean() - b["largeur_m"]))[:6]
+        vues = [{"nom": f"vidéo {b['id_releve']} ({b['largeur_m']} m, {b['cote']})",
+                 "idx": np.flatnonzero((pk >= b["pk_debut"]) & (pk <= b["pk_fin"]))} for b in sorted(gros, key=lambda b: b["pk_debut"])]
+        planche_corrections(R, pk, (A1, G1, D1), (A, G, D), vues, nom_fichier="planche_corrections_video.png",
+                            titre="Corrections de largeur issues du relevé vidéo (les 6 plus fortes) - bords avant "
+                                  "(pointillés) et après (pleins), fond BD ORTHO 20 cm")
     print("figures écrites dans", FIG3)
 
 
