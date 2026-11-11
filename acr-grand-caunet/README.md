@@ -14,8 +14,8 @@ Reproduction de l'épreuve spéciale « Le Grand Caunet » (6,702 km, asphalte, 
 | 3 | Axe et bords de chaussée précis, dévers | Première version : [`docs/03_phase3_chaussee.md`](docs/03_phase3_chaussee.md). Lignes de départ et d'arrivée à verrouiller sur vidéo |
 | 4 | Terrain et route en 3D | Premier modèle neutre (glTF) dans `modele/` ; à enrichir |
 | 5 et 6 | Décor : route texturée et marquée, ponts et parapets, semis des arbres | Fait dans le modèle neutre : [`docs/07_phase4_decor.md`](docs/07_phase4_decor.md). Pas encore dans le jeu |
-| 7 | Export et intégration dans le jeu | Structure d'une spéciale non officielle analysée : [`docs/04_integration_jeu.md`](docs/04_integration_jeu.md). Export au format d'échange d'ACR Extra Stages fait : [`docs/05_export_stage_ir.md`](docs/05_export_stage_ir.md). Construction du mod non testée (Windows et jeu requis) |
-| 8 | Notes du copilote, chrono, tests en jeu | Notes : premier brouillon dans l'export. Tests : à faire sur le PC du directeur |
+| 7 | Export et intégration dans le jeu | Export complet au format d'échange d'ACR Extra Stages (sol, obstacles, notes) : [`docs/05_export_stage_ir.md`](docs/05_export_stage_ir.md). **Kit d'essai pour le PC prêt mais jamais exécuté : [`pc/LISEZMOI.md`](pc/LISEZMOI.md)** |
+| 8 | Notes du copilote, chrono, tests en jeu | Notes calculées puis retouchées d'après la vidéo ([`docs/08_releve_video.md`](docs/08_releve_video.md)). Tests en jeu : à faire sur le PC du directeur |
 
 **À savoir avant tout** : Assetto Corsa Rally (version 0.6) ne propose officiellement que des livrées personnalisées. Des spéciales non officielles existent pourtant depuis fin octobre 2026, dont une construite à partir de données cartographiques publiques. Le projet vise donc Assetto Corsa Rally par cette voie non officielle, encore expérimentale, en gardant des données et un modèle 3D indépendants du jeu. Le détail est dans l'étude de faisabilité.
 
@@ -31,6 +31,7 @@ data/processed/       tracé (GeoJSON, GPX, KML), profil au mètre, virages, pon
 data/raw/             relief 0,5 m, photo aérienne 20 cm (non versionnés, 220 Mo)
 modele/               premier modèle 3D (glTF) : route et terrain du couloir
 export/               spéciale au format d'échange d'ACR Extra Stages (Stage IR)
+pc/                   kit d'essai pour le PC Windows : pas-à-pas, scripts, retouches du constructeur
 scripts/              chaîne de traitement, rejouable de bout en bout
 ```
 

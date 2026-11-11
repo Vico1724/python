@@ -79,6 +79,9 @@ OBSTACLES = {
     "beton": ("PM_WallConcrete", "box", "gc_parapet_beton"),
     "plastique_barriere": ("PM_WallPlasticBarrier", "box", "gc_barriere"),
     "plastique_piquet": ("PM_WallPlasticPole", "cylinder", "gc_piquet_rubalise"),
+    # glissières métalliques (script 11, data/reference/glissieres.json) ; PM_WallMetalGuardrail est au
+    # catalogue du jeu et dans leur config/surface-map.toml (« sArmco »)
+    "metal_glissiere": ("PM_WallMetalGuardrail", "box", "gc_glissiere"),
 }
 SOURCES_OBSTACLES = ("ouvrages_collision.glb", "annexes_collision.glb", "balisage_collision.glb")
 CATALOGUE = gzip.open(ROOT / "data" / "reference" / "catalogue_jeu_25170642.txt.gz", "rt", encoding="utf-8").read()

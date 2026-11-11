@@ -381,23 +381,33 @@ def config_ouvrages(ch, deck):
     return out, dflt["prolongement_par_defaut_m"]
 
 
-def parapet(rg, ref, cote, s0, s1, p):
-    """Parapet posé sur le bord de chaussée : (pièces par matériau, boîte de collision)."""
+def parapet(rg, ref, cote, s0, s1, p, mnt=None):
+    """Parapet posé sur le bord de chaussée : (pièces par matériau, boîte de collision).
+    Avec mnt (parapet hors tablier), le pied descend jusqu'à 0,3 m sous le terrain extérieur."""
     s = echant(s0, s1)
     E, n = rg.bord(s, cote)
     h, t = p["hauteur_m"], p["epaisseur_m"]
 
+    def base(ss):
+        if mnt is None:
+            return np.full(len(ss), -DALLE_RETRAIT - 0.02)
+        EE, nn = rg.bord(ss, cote)
+        q = EE[:, :2] + nn * t
+        return np.minimum(mnt.z(q[:, 0], q[:, 1]) - EE[:, 2], 0) - 0.3
+
     def bloc(ss, o0, o1, z0, z1):
         EE, nn = rg.bord(ss, cote)
         o3 = lambda o: np.column_stack([nn * o, np.zeros(len(ss))])          # noqa: E731
-        return [EE + o3(o0) + [0, 0, z0], EE + o3(o1) + [0, 0, z0], EE + o3(o1) + [0, 0, z1], EE + o3(o0) + [0, 0, z1]]
+        zz = lambda v: np.column_stack([np.zeros(len(ss)), np.zeros(len(ss)), np.broadcast_to(v, len(ss))])  # noqa: E731
+        z0 = base(ss) if isinstance(z0, str) else z0
+        return [EE + o3(o0) + zz(z0), EE + o3(o1) + zz(z0), EE + o3(o1) + zz(z1), EE + o3(o0) + zz(z1)]
 
     pieces = {}
-    base = -DALLE_RETRAIT - 0.02
+    base_ = "pied"
     if p["type"] == "beton":
-        pieces["beton"] = [boite(bloc(s, 0, t, base, h), ref)]
+        pieces["beton"] = [boite(bloc(s, 0, t, base_, h), ref)]
     else:
-        pieces["pierre"] = [boite(bloc(s, 0, t, base, h - CHAPERON), ref)]
+        pieces["pierre"] = [boite(bloc(s, 0, t, base_, h - CHAPERON), ref)]
         blanc = p["type"] == "pierre_des_blancs"
         pieces["blanc" if blanc else "chaperon"] = [boite(bloc(s, -0.02, t + 0.02, h - CHAPERON, h), ref)]
         if blanc:
@@ -405,9 +415,49 @@ def parapet(rg, ref, cote, s0, s1, p):
             for c in s0 + (L - np.floor(L / DES_PAS) * DES_PAS) / 2 + np.arange(np.floor(L / DES_PAS) + 1) * DES_PAS:
                 ss = np.array([max(c - DES_LONG / 2, s0), min(c + DES_LONG / 2, s1)])
                 if ss[1] - ss[0] > 0.1:
-                    pieces["blanc"].append(boite(bloc(ss, -0.015, t + 0.015, base, h - CHAPERON), ref, fond=False))
-    coll = boite(bloc(s, 0, t, base, h), ref)
+                    pieces["blanc"].append(boite(bloc(ss, -0.015, t + 0.015, base_, h - CHAPERON), ref, fond=False))
+    coll = boite(bloc(s, 0, t, base_, h), ref)
     return pieces, coll, E
+
+
+def glissieres(rg, ref, mnt, ch):
+    """Glissières simples (data/reference/glissieres.json) : lisse à deux ondes (deux bandes en
+    saillie et un creux), poteaux tous les pas_poteaux_m, posés à decalage_depuis_bord_m du bord.
+    Renvoie (pièces de rendu par matériau, boîtes de collision, bilan)."""
+    cfg = json.loads((REF / "glissieres.json").read_text(encoding="utf-8"))
+    g = {k: v["valeur"] for k, v in cfg["geometrie"].items()}
+    H, hl, sa, pas, sp, dec, anc = (g[k] for k in ("hauteur_haut_lisse_m", "hauteur_lisse_m", "saillie_ondes_m", "pas_poteaux_m",
+                                                   "section_poteau_m", "decalage_depuis_bord_m", "ancrage_poteaux_m"))
+    lisses, poteaux, coll, bilan = [], [], [], []
+    for t in cfg["troncons"]:
+        s0, s1 = max(t["pk_debut_m"], ch["pk"][0]), min(t["pk_fin_m"], ch["pk"][-1])
+        if s1 - s0 < 2:
+            continue
+        cote = t["cote"]
+
+        def bande(ss, o0, o1, z0, z1):
+            EE, nn = rg.bord(ss, cote)
+            o3 = lambda o: np.column_stack([nn * o, np.zeros(len(ss))])      # noqa: E731
+            zz = lambda v: np.column_stack([np.zeros(len(ss)), np.zeros(len(ss)), np.broadcast_to(v, len(ss))])  # noqa: E731
+            return [EE + o3(o0) + zz(z0), EE + o3(o1) + zz(z0), EE + o3(o1) + zz(z1), EE + o3(o0) + zz(z1)]
+
+        s = echant(s0, s1)
+        b = H - hl                                                           # bas de la lisse
+        lisses += [boite(bande(s, dec, dec + 0.03, b, b + hl * 0.42), ref),     # onde basse (en saillie)
+                   boite(bande(s, dec + 0.03, dec + sa, b + hl * 0.35, b + hl * 0.65), ref),  # creux (en retrait)
+                   boite(bande(s, dec, dec + 0.03, b + hl * 0.58, H), ref)]     # onde haute
+        for c in s0 + (s1 - s0 - np.floor((s1 - s0) / pas) * pas) / 2 + np.arange(np.floor((s1 - s0) / pas) + 1) * pas:
+            ss = np.array([c - sp / 2, c + sp / 2])
+            EE, nn = rg.bord(ss, cote)
+            q = EE[:, :2] + nn * (dec + sa + sp / 2)
+            zb = float(min(mnt.z(q[:, 0], q[:, 1]).min() - EE[:, 2].max(), 0)) - anc
+            poteaux.append(boite(bande(ss, dec + sa, dec + sa + sp, zb, H - 0.02), ref))
+        EE, nn = rg.bord(s, cote)
+        q = EE[:, :2] + nn * (dec + 0.1)
+        zpied = np.minimum(mnt.z(q[:, 0], q[:, 1]) - EE[:, 2], 0) - 0.2
+        coll.append(boite(bande(s, dec, dec + 0.2, zpied, H), ref))
+        bilan.append({"pk": [s0, s1], "cote": cote, "longueur_m": round(s1 - s0)})
+    return {"glissiere_lisse": lisses, "glissiere_poteau": poteaux}, coll, bilan
 
 
 def tablier_epais(rg, ref, mnt, d, ep):
@@ -492,6 +542,28 @@ def hauteur_sur_ruban(p, t, q, s, pk):
     return dy
 
 
+def obstacles_sur_chaussee(XY, ch, seuil=0.02):
+    """Points (L93) à l'intérieur de la chaussée de la spéciale de plus de seuil m : liste (PK, profondeur)."""
+    tree = cKDTree(ch["A"][:, :2])
+    _, i = tree.query(XY, k=3)
+    out = []
+    for k in range(XY.shape[0]):
+        for j in i[k]:
+            A, G, D = ch["A"][j, :2], ch["G"][j, :2], ch["D"][j, :2]
+            for E in (G, D):
+                u = E - A
+                h = np.linalg.norm(u)
+                o = (XY[k] - A) @ (u / h)
+                t = abs((XY[k] - A) @ np.array([-u[1], u[0]]) / h)
+                if 0 <= o < h - seuil and t < 0.75:
+                    out.append((float(ch["pk"][j]), round(float(h - o), 3)))
+                    break
+            else:
+                continue
+            break
+    return out
+
+
 def controle(dossier, ch, ref):
     r = {}
     for f in ("route_habillee.glb", "ouvrages.glb", "ouvrages_collision.glb"):
@@ -554,6 +626,12 @@ def controle(dossier, ch, ref):
                                "pied_sous_bord_m": round(float(-dv.min()), 3),
                                "tete_au_dessus_du_bord_m": round(float(dv.max()), 2)})
             r[f]["parapets"] = ecarts
+        if f == "ouvrages_collision.glb" or (f == "ouvrages.glb" and not (dossier / "ouvrages_collision.glb").exists()):
+            pp = np.vstack([m[1] for m in ms]).astype(np.float64)
+            XY = np.column_stack([pp[:, 0] + ref["x0"], ref["y0"] - pp[:, 2]])
+            sur = obstacles_sur_chaussee(XY, ch)
+            r[f]["sommets_sur_la_chaussee"] = {"nombre": len(sur), "profondeur_max_m": max([d for _, d in sur], default=0.0),
+                                               "pk": sorted({p for p, _ in sur})[:20]}
     return r
 
 
@@ -665,23 +743,49 @@ def main():
             if "chaperon" in pcs:
                 meshes_ouv.append(fusion(pcs["chaperon"], f"parapet_{nom}_{cote}_chaperon", "chaperon"))
         tableau.append(ligne)
+    # parapets hors tablier (relevé vidéo) : pied descendu jusqu'au terrain
+    cfg_par = json.loads((REF / "ouvrages_parapets.json").read_text(encoding="utf-8"))
+    hors = []
+    for e in cfg_par.get("parapets_hors_tablier", []):
+        for cote in ("gauche", "droite"):
+            p = e[cote]
+            if p.get("type", "aucun") == "aucun":
+                continue
+            s0, s1 = float(e["pk_debut_m"]), float(e["pk_fin_m"])
+            pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p, mnt=mnt)
+            corps = "beton" if p["type"] == "beton" else "pierre"
+            coll[corps].append(cb)
+            nom = f"PK{s0:.0f}"
+            meshes_ouv.append(fusion(pcs[corps], f"parapet_hors_tablier_{nom}_{cote}", corps))
+            if "blanc" in pcs:
+                meshes_ouv.append(fusion(pcs["blanc"], f"parapet_hors_tablier_{nom}_{cote}_des", "blanc"))
+            if "chaperon" in pcs:
+                meshes_ouv.append(fusion(pcs["chaperon"], f"parapet_hors_tablier_{nom}_{cote}_chaperon", "chaperon"))
+            hors.append(f"{s0:.0f}-{s1:.0f} {cote} {p['type']} {p['hauteur_m']} m ({p.get('statut', '')})")
+    gl, gl_coll, gl_bilan = glissieres(rg, ref, mnt, ch)
+    for k, v in gl.items():
+        if v:
+            meshes_ouv.append(fusion(v, k, k))
+    coll["metal_glissiere"] = gl_coll
     vm, info_murs = murs(ch, ref, mnt, rg)
     if vm:
         meshes_ouv.append(fusion(vm, "murs_soutenement", "pierre"))
         coll["pierre"] += vm
     print(f"murs de soutènement BD TOPO à moins de {MUR_DIST_MAX:.0f} m de l'axe : {len(info_murs)} {info_murs}")
 
-    rapport = {"tabliers": tableau, "marquage": stats_m}
+    rapport = {"tabliers": tableau, "parapets_hors_tablier": hors, "glissieres": gl_bilan, "marquage": stats_m}
     for version, px in VERSIONS.items():
         dossier = MOD if version == "complet" else MOD / "apercu"
         mats = {"enrobe": {"jpeg": tex_enrobe(px), "rough": 0.92}, "marquage": {"color": blanc, "rough": 0.6},
                 "pierre": {"jpeg": tex_pierre(px // 2), "rough": 0.95}, "beton": {"jpeg": tex_beton(px // 2), "rough": 0.9},
                 "dalle": {"jpeg": tex_beton(px // 2, seed=3), "rough": 0.9},
-                "blanc": {"color": [0.88, 0.87, 0.84], "rough": 0.8}, "chaperon": {"color": [0.62, 0.61, 0.58], "rough": 0.9}}
+                "blanc": {"color": [0.88, 0.87, 0.84], "rough": 0.8}, "chaperon": {"color": [0.62, 0.61, 0.58], "rough": 0.9},
+                "glissiere_lisse": {"color": [0.72, 0.74, 0.76], "rough": 0.45}, "glissiere_poteau": {"color": [0.55, 0.56, 0.58], "rough": 0.5}}
         ecrire_glb(dossier / "route_habillee.glb", [route, marq], mats)
         ecrire_glb(dossier / "ouvrages.glb", meshes_ouv, mats)
         if version == "complet":
-            mc = {"pierre": {"color": [0.6, 0.58, 0.54]}, "beton": {"color": [0.7, 0.7, 0.68]}}
+            mc = {"pierre": {"color": [0.6, 0.58, 0.54]}, "beton": {"color": [0.7, 0.7, 0.68]},
+                  "metal_glissiere": {"color": [0.72, 0.74, 0.76]}}
             ecrire_glb(dossier / "ouvrages_collision.glb",
                        [fusion(v, f"collision_{k}", k) for k, v in coll.items() if v], mc)
         rapport[version] = controle(dossier, ch, ref)

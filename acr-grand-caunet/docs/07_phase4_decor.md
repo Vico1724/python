@@ -4,9 +4,7 @@
 
 ## 1. Résultat
 
-Le modèle 3D neutre contient maintenant une route texturée et marquée, les douze ponts avec leurs parapets, et un semis de 41 600 arbres avec leur position, leur hauteur et leur essence. Rien de cela n'a encore été vu dans le jeu.
-
-Deux points demandent l'avis du directeur : le substitut du chêne vert (§ 4) et le carrefour du Lion d'Or tel que modélisé (§ 5).
+Le modèle 3D neutre contient maintenant une route texturée et marquée, les douze ponts avec leurs parapets, des glissières, les carrefours avec leurs voies fermées, et un semis de 41 600 arbres avec leur position, leur hauteur et leur essence. Rien de cela n'a encore été vu dans le jeu.
 
 ## 2. Route
 
@@ -81,42 +79,42 @@ Limites : en pinède dense, les houppiers jointifs sont parfois fusionnés ou co
 
 ![Semis des arbres](../figures/phase4/semis_planche_ortho.jpg)
 
-## 5. Carrefour du Lion d'Or : tracé corrigé
+## 5. Carrefour du Lion d'Or
 
-Le directeur a signalé que le tracé du carrefour était faux, vues aérienne et Street View à l'appui. Il avait raison.
+Ce carrefour a été repris trois fois sur les remarques du directeur, photos aériennes et Street View à l'appui. La version ci-dessous est établie sur le nuage de points laser brut de l'IGN (une cinquantaine de points par mètre carré), où parapets, panneaux et fossé se lisent directement.
 
-- **La réalité** : la D3D débouche sur une patte d'oie. Un îlot triangulaire, avec un arbre et des panneaux, sépare une branche de gauche vers la D1 direction Roquefort et une branche de droite vers la D1 direction nord. La spéciale prend la branche de gauche.
-- **L'erreur** : le calcul automatique suivait l'axe de la carte IGN jusqu'au centre du carrefour, passait en partie sur l'îlot, puis tournait à angle vif.
-- **La correction** : les deux bords ont été redessinés à la main sur le relevé laser, où la plate-forme de la route et la bosse de l'îlot se lisent sous les arbres. Le tracé passe à gauche de l'îlot en courbe régulière.
+![Plan du carrefour](../figures/phase4/carrefour_plan.png)
 
-![Carrefour corrigé](../figures/phase3/lion_d_or_corrige.png)
+**Ce qu'est réellement le carrefour**
 
-**Compléments demandés par le directeur (11/11/2026).**
+- La D3D arrive du sud-est sur une fourche. La spéciale prend la branche de gauche, vers la D1 direction Roquefort.
+- La branche de droite, vers la D1 direction nord, franchit le ruisseau sur un **ponceau**. Le parapet ouest de ce ponceau est le « parapet sombre » des photos ; les **panneaux directionnels sont plantés dans le fossé, juste derrière lui**.
+- Un **parapet de pierre** longe le côté est de la D3D à partir du PK 3 629, puis la branche de droite jusqu'au ponceau.
+- Entre les deux branches de la D1, il n'y a pas d'îlot mais un **terre-plein boisé**, traversé par le ruisseau, avec un grand pin de 24 m à sa pointe.
+- Une **zone hachurée peinte** de 14 m de long occupe le centre de la fourche.
 
-- **Le bord intérieur suit le pied du talus**, c'est-à-dire la limite de la plate-forme plane sur le relevé laser. La chaussée s'élargit donc à l'intérieur du virage, jusqu'à 14,8 m au plus large. Précision estimée : 1 m.
-- **Les voies que la spéciale n'emprunte pas sont modélisées** (`scripts/12_carrefours_annexes.py`) : 498 m² d'enrobé en trois morceaux, soit la plaque de la D1 au nord de la ligne de fermeture (234 m²), l'embouchure de la branche de droite (110 m²) et les 40 premiers mètres de la D1 vers le nord (154 m²).
-- **L'îlot est en relief** : 29 m², 0,28 m de haut, avec sa bordure, un poteau et deux panneaux.
-- **Le carrefour est fermé par du balisage du jeu**, posé le long de la ligne de fermeture : une rubalise sur piquets à 0,8 m du bord, puis une file de barrières plastiques rouges et blanches à 2,5 m. Soit 20 piquets, 18 tronçons de rubalise et 29 barrières (`data/processed/balisage.csv`).
+Mes deux premières versions étaient fausses : d'abord un tracé qui montait au centre du carrefour et tournait à angle vif, puis un « îlot » qui était en réalité le bloc de départ du parapet de pierre et un poteau de panneaux.
 
-| Balisage | Élément du jeu |
-|---|---|
-| Piquets de rubalise | `Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA` |
-| Ruban | `Data/Environments/Common/BC_NarrowTapeActor` |
-| Barrières | `Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix` ; variante : barrière de foule `ServicePark/CrowdBarrier1` |
-| Aussi disponibles | Cônes, bottes de paille, chicanes en bottes, panneaux « interdit au public » |
+**Ce qui est modélisé**
 
-Sur la vidéo de 2025, la fermeture réelle était une rubalise rouge et blanche, puis un grillage orange sur piquets avec des panneaux à chevrons, les spectateurs derrière. Le jeu n'a ni ce grillage ni ces panneaux en objets : la barrière plastique en tient lieu.
+- **Chaussée de la spéciale** : le bord intérieur suit le pied du talus, à la demande du directeur ; la route s'élargit jusqu'à 16,7 m dans la fourche. Le bord extérieur est la ligne de fermeture, du bloc du parapet de pierre jusqu'au pin, puis le long du terre-plein. La trajectoire médiane est une courbe à gauche régulière, de 24 m de rayon au plus serré.
+- **Voies fermées** (`scripts/12_carrefours_annexes.py`) : la branche de droite et l'amorce de la D1 vers le nord, reliées par le ponceau, en enrobé ; le terre-plein en terre ; les deux parapets du ponceau, le parapet de pierre, les panneaux.
+- **Fermeture** : piquets et rubalise uniquement, comme demandé (12 piquets, 9 tronçons). Sur la vidéo de 2025, un grillage orange allait du pin au bloc du parapet ; le jeu n'en propose pas en objet.
 
-![Carrefour modélisé](../figures/phase4/carrefour_plongeante.png)
+![Vue conducteur](../figures/phase4/carrefour_conducteur_d3d.png)
 
-**Corrections demandées par le directeur (11/11/2026), en cours :** il n'y a pas d'îlot à proprement parler. Les panneaux sont plantés dans le fossé, derrière un parapet, et c'est ce parapet qu'il faut modéliser ; pour la fermeture, les piquets et la rubalise suffisent, sans barrières. Le plan du carrefour est repris à partir des photos du directeur, de la vidéo et du relevé laser. Ce qui précède dans ce paragraphe décrit donc une version provisoire.
+**Ce qui reste incertain**
 
-Défauts connus :
-- **l'amorce de la D1 vers le nord est détachée du carrefour** : la courte descente qui les relie est trop irrégulière dans le relevé laser pour être reconnue comme de l'enrobé. À raccorder à la main ;
-- un trou de 3,5 m dans l'enrobé annexe le long du bord, vers le PK 3 630 ;
-- les dimensions réelles des barrières et des piquets du jeu sont inconnues : l'espacement sera à ajuster en jeu ;
-- dans l'export destiné au jeu, ces surfaces annexes comptent encore comme de l'accotement et le balisage n'y figure pas : à faire ;
-- le parapet droit du ponceau du Lion d'Or a été retiré, car il barrait la ligne de fermeture ; à revoir sur la vidéo.
+- La position exacte de la ligne de fermeture (2 m près) et le tracé précis du parapet de pierre.
+- Les limites nord et ouest du terre-plein, arbitraires.
+- Six mètres de parapet de pierre, au point où la ligne de fermeture quitte le parapet (PK 3 637 à 3 640), sont retirés de l'export destiné au jeu : ils mordent de 0,3 à 0,65 m sur le couloir de la spéciale tel que le constructeur le calcule. Le parapet a donc un trou à cet endroit en jeu.
+
+## 5 bis. Autres ajouts de la nuit du 10 au 11 novembre
+
+- **Parapets hors pont** : sept tronçons relevés sur la vidéo sont posés sans tablier, dont deux qui avaient été attribués par erreur à des ponts voisins (ils sont en réalité aux PK 1 535 à 1 590 et 2 128 à 2 178, à droite).
+- **Glissières métalliques** : six tronçons à droite, 844 m en tout (PK 1 720 à 1 793, 1 924 à 2 120, 2 247 à 2 336, 3 236 à 3 321, 3 716 à 4 006, 4 108 à 4 219), repris de l'inventaire du relevé vidéo. Leurs bornes sont connues à 10 m près ; hauteur (0,75 m) et recul (0,5 m) sont supposés. Paramètres dans `data/reference/glissieres.json`.
+- **Carrefour de l'approche D3 / D3D** : 1 090 m² d'enrobé autour du carrefour, îlot en herbe compris. C'est une liaison, routes ouvertes : aucune fermeture.
+- **Dégagement du départ** : 251 m² à gauche, du PK −66 au PK 0, là où stationnent les véhicules de secours ; il s'ouvre vers la sortie du parking. Son revêtement, sous les arbres, est supposé.
 
 ## 6. Fichiers
 
@@ -125,8 +123,8 @@ Défauts connus :
 | `modele/route_habillee.glb` | Chaussée texturée et marquage |
 | `modele/ouvrages.glb`, `ouvrages_collision.glb` | Tabliers, culées, parapets ; version simplifiée pour les chocs |
 | `modele/apercu/arbres.glb` | Aperçu des arbres à moins de 40 m, en formes simples |
-| `modele/annexes.glb`, `balisage.glb` et leurs versions `_collision` | Voies fermées du carrefour, îlot, balisage |
+| `modele/annexes.glb`, `balisage.glb` et leurs versions `_collision` | Voies fermées des carrefours, terre-plein, parapets du ponceau, dégagement du départ, balisage |
 | `data/processed/annexes_revetues.geojson`, `balisage.csv` | Contours des surfaces annexes ; position et type de chaque élément de balisage |
 | `data/processed/arbres.csv`, `arbustes.csv.gz`, `semis_resume.json` | Le semis et ses statistiques |
-| `data/reference/marquage_route.json`, `ouvrages_parapets.json`, `chaussee_corrections.json`, `carrefours_annexes.json` | Paramètres modifiables à la main |
+| `data/reference/marquage_route.json`, `ouvrages_parapets.json`, `glissieres.json`, `chaussee_corrections.json`, `carrefours_annexes.json` | Paramètres modifiables à la main |
 | `figures/phase4/` | Rendus de contrôle et planches |

@@ -1,11 +1,11 @@
 {
   "origine": {
     "description": "axe de la chaussée au PK 0 (départ de l'ES)",
-    "lambert93_x_m": 917007.95,
-    "lambert93_y_m": 6241030.36,
-    "lon": 5.6703145,
-    "lat": 43.23544461,
-    "altitude_m": 398.51,
+    "lambert93_x_m": 917008.49,
+    "lambert93_y_m": 6241030.6,
+    "lon": 5.67032124,
+    "lat": 43.23544661,
+    "altitude_m": 398.55,
     "systeme_altimetrique": "NGF-IGN69 (altitudes du MNT LiDAR HD)"
   },
   "unites": "mètres",
@@ -17,8 +17,8 @@
   },
   "passage_lambert93_vers_gltf": "X = x_L93 - x0 ; Y = z - z0 ; Z = -(y_L93 - y0)",
   "passage_gltf_vers_lambert93": "x_L93 = X + x0 ; y_L93 = y0 - Z ; z = Y + z0",
-  "x0": 917007.95,
-  "y0": 6241030.36,
-  "z0": 398.51,
+  "x0": 917008.49,
+  "y0": 6241030.6,
+  "z0": 398.55,
   "nord": "nord Lambert-93 (convergence des méridiens d'environ -0,9° ici, non corrigée)"
 }

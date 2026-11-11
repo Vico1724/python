@@ -309,7 +309,9 @@ def balisage(cfg_b, rg, ferm_pk, obstacles, ruban, z_de, ref):
 
 
 # --- contrôles ---------------------------------------------------------------------------------------
-def controle(ref, ruban, fermetures, revetu, terre, parapets_int, lignes_b, dossier):
+def controle(ref, ruban, fermetures, revetu, terre, parapets_int, lignes_b, dossier, n_ferm=None):
+    """fermetures : toutes les lignes de raccord (écart vertical) ; les n_ferm premières sont des
+    fermetures (couverture vérifiée du côté droit)."""
     r = {}
     for f in ("annexes.glb", "annexes_collision.glb", "balisage.glb", "balisage_collision.glb"):
         p = dossier / f
@@ -343,17 +345,17 @@ def controle(ref, ruban, fermetures, revetu, terre, parapets_int, lignes_b, doss
                     on = shapely.distance(L, pts) < 0.01
                     ecarts.append(Zv[on] - np.interp(shapely.line_locate_point(L, pts[on]), cum, F[:, 2]))
                 sous += float(shapely.area(shapely.intersection(shapely.polygons(XY[t]), ruban.buffer(-0.01))).sum())
-            for F in fermetures:                               # couverture à 0,2 m au-delà du bord
+            for F in fermetures[:n_ferm]:                      # couverture à 0,2 m au-delà du bord
                 L = LineString(F[:, :2])
                 s = np.arange(0.25, L.length - 0.25, 0.5)
                 q = np.array([L.interpolate(x).coords[0] for x in s])
                 tg = np.gradient(q, axis=0)
                 q2 = q + 0.2 * np.column_stack([tg[:, 1], -tg[:, 0]]) / np.linalg.norm(tg, axis=1, keepdims=True)
                 couvert.append(shapely.contains_xy(shapely.union_all([revetu, terre]).buffer(1e-3), q2[:, 0], q2[:, 1]))
-            e = np.concatenate(ecarts)
+            e = np.concatenate(ecarts) if ecarts else np.zeros(0)
             r[f]["raccord_fermeture"] = {"sommets_sur_la_ligne": int(len(e)),
                                          "ecart_vertical_max_m": round(float(np.abs(e).max()), 4) if len(e) else None,
-                                         "bord_couvert_a_0_2_m_pct": round(float(np.concatenate(couvert).mean() * 100), 1)}
+                                         "bord_couvert_a_0_2_m_pct": round(float(np.concatenate(couvert).mean() * 100), 1) if couvert else None}
             r[f]["aire_sous_la_chaussee_m2"] = round(sous, 3)
             # parapets : face intérieure contre le bord de l'enrobé
             d = [float(shapely.distance(revetu.boundary, Point(p))) for P in parapets_int for p in P]
@@ -374,7 +376,9 @@ def plan_figure(c, ch, ruban, revetu, terre, parapets, panneaux, fermetures, lig
         ax.fill(*g.exterior.xy, color="#5d6066", alpha=0.85, lw=0)
     for g in getattr(revetu, "geoms", [revetu]):
         ax.fill(*g.exterior.xy, color="#9aa0a8", lw=0)
-    for g in getattr(terre, "geoms", [terre]):
+        for h_ in g.interiors:
+            ax.fill(*h_.xy, color="#e8efe2", lw=0)
+    for g in ([] if terre.is_empty else getattr(terre, "geoms", [terre])):
         ax.fill(*g.exterior.xy, color="#c9b48a", lw=0)
     if c.get("ponceau"):
         ax.fill(*Polygon(c["ponceau"]["polygone"]).exterior.xy, facecolor="none", edgecolor="#555", hatch="///", lw=0.8)
@@ -383,8 +387,13 @@ def plan_figure(c, ch, ruban, revetu, terre, parapets, panneaux, fermetures, lig
         zh = np.array(Polygon(c["zone_hachuree"]["polygone"]).centroid.coords[0])
         ax.annotate("zone hachurée peinte", zh, xytext=(zh[0] - 22, zh[1] - 10), fontsize=8, arrowprops=dict(arrowstyle="->"),
                     bbox=dict(boxstyle="round", fc="white", alpha=0.85))
-    fo = np.array(c["fosse"]["polyligne"])
-    ax.plot(fo[:, 0], fo[:, 1], color="#2b7bba", lw=2.5, ls=(0, (4, 2)))
+    if c.get("fosse"):
+        fo = np.array(c["fosse"]["polyligne"])
+        ax.plot(fo[:, 0], fo[:, 1], color="#2b7bba", lw=2.5, ls=(0, (4, 2)))
+    for il in c.get("ilots", []):
+        ax.fill(*Polygon(il["polygone"]).exterior.xy, color="#8fbf6a", lw=0)
+        ax.annotate(il["nom"], np.array(Polygon(il["polygone"]).centroid.coords[0]), fontsize=8, ha="center",
+                    bbox=dict(boxstyle="round", fc="white", alpha=0.8))
     for (nom, P, typ) in parapets:
         ax.plot(P[:, 0], P[:, 1], color="#3b3b3b" if typ == "pierre_sombre" else "#8a6d3b", lw=4, solid_capstyle="butt")
     for F in fermetures:
@@ -396,14 +405,16 @@ def plan_figure(c, ch, ruban, revetu, terre, parapets, panneaux, fermetures, lig
         ax.scatter(pb[:, 0], pb[:, 1], s=12, color="#d62728", edgecolor="white", lw=0.5, zorder=5)
     for nom, xy in panneaux:
         ax.scatter(*xy, marker="s", s=60, color="#1f77b4", edgecolor="white", zorder=6)
-    pin = c["terre_plein"].get("pin")
+    pin = (c.get("terre_plein") or {}).get("pin")
     if pin:
         ax.scatter(*pin["xy"], marker="^", s=160, color="#2ca02c", edgecolor="k", zorder=6)
     # légendes en clair
-    s_a, s_b = fermetures_pk[0][1], fermetures_pk[-1][2]
-    txt = [("D3D (arrivée)", ch["A"][np.argmin(np.abs(ch["pk"] - s_a + 14))]),
-           ("D1 vers l'ouest\n(spéciale)", ch["A"][np.argmin(np.abs(ch["pk"] - s_b + 6))]),
-           ("D1 vers le nord\n(fermée)", np.array(revetu.representative_point().coords[0]) if not revetu.is_empty else None)]
+    txt = [(t_, np.asarray(xy_)) for t_, xy_ in c.get("etiquettes", [])]
+    if fermetures_pk:
+        s_a, s_b = fermetures_pk[0][1], fermetures_pk[-1][2]
+        txt += [("D3D (arrivée)", ch["A"][np.argmin(np.abs(ch["pk"] - s_a + 14))]),
+                ("D1 vers l'ouest\n(spéciale)", ch["A"][np.argmin(np.abs(ch["pk"] - s_b + 6))]),
+                ("D1 vers le nord\n(fermée)", np.array(revetu.representative_point().coords[0]) if not revetu.is_empty else None)]
     for t, xy in txt:
         if xy is not None:
             ax.annotate(t, xy[:2], fontsize=10, ha="center", color="k", bbox=dict(boxstyle="round", fc="white", alpha=0.8))
@@ -414,11 +425,12 @@ def plan_figure(c, ch, ruban, revetu, terre, parapets, panneaux, fermetures, lig
         cp = np.array(Polygon(c["ponceau"]["polygone"]).centroid.coords[0])
         ax.annotate("ponceau", cp, xytext=(cp[0] + 9, cp[1] - 4), fontsize=8, arrowprops=dict(arrowstyle="->"),
                     bbox=dict(boxstyle="round", fc="white", alpha=0.85))
-    tp = np.array(terre.representative_point().coords[0])
-    ax.annotate("terre-plein", tp, fontsize=10, ha="center", bbox=dict(boxstyle="round", fc="white", alpha=0.8))
+    if not terre.is_empty:
+        tp = np.array(terre.representative_point().coords[0])
+        ax.annotate("terre-plein", tp, fontsize=10, ha="center", bbox=dict(boxstyle="round", fc="white", alpha=0.8))
     from matplotlib.lines import Line2D
     from matplotlib.patches import Patch
-    leg = [Patch(color="#5d6066", label="chaussée de la spéciale"), Patch(color="#9aa0a8", label="enrobé fermé (modélisé à part)"),
+    leg = [Patch(color="#5d6066", label="chaussée de la spéciale"), Patch(color="#9aa0a8", label="surface revêtue annexe (modélisée à part)"),
            Patch(color="#c9b48a", label="terre-plein (terre)"), Patch(facecolor="none", edgecolor="#555", hatch="///", label="tablier du ponceau"),
            Line2D([], [], color="#8a6d3b", lw=4, label="parapet de pierre"), Line2D([], [], color="#3b3b3b", lw=4, label="parapet sombre (ponceau)"),
            Line2D([], [], color="#2b7bba", lw=2.5, ls="--", label="ruisseau / fossé"), Line2D([], [], color="#d62728", lw=2, label="ligne de fermeture"),
@@ -426,8 +438,16 @@ def plan_figure(c, ch, ruban, revetu, terre, parapets, panneaux, fermetures, lig
            Line2D([], [], marker="s", color="w", markerfacecolor="#1f77b4", markersize=9, label="panneaux"),
            Line2D([], [], marker="^", color="w", markerfacecolor="#2ca02c", markersize=11, label="grand pin"),
            Line2D([], [], color="k", lw=1.2, ls="--", label="axe de la spéciale")]
+    present = {"terre-plein (terre)": not terre.is_empty, "tablier du ponceau": bool(c.get("ponceau")),
+               "parapet de pierre": any(t_ != "pierre_sombre" for _, _, t_ in parapets),
+               "parapet sombre (ponceau)": any(t_ == "pierre_sombre" for _, _, t_ in parapets), "ruisseau / fossé": bool(c.get("fosse")),
+               "ligne de fermeture": bool(fermetures), "piquets de rubalise": bool(lignes_b), "panneaux": bool(panneaux),
+               "grand pin": bool((c.get("terre_plein") or {}).get("pin"))}
+    leg = [h_ for h_ in leg if present.get(h_.get_label(), True)]
+    if c.get("ilots"):
+        leg.append(Patch(color="#8fbf6a", label="îlot (herbe)"))
     ax.legend(handles=leg, loc="lower left", fontsize=8, framealpha=0.9)
-    b = shapely.union_all([revetu, terre]).bounds
+    b = shapely.union_all([revetu, terre]).buffer(8).bounds
     ax.set_xlim(b[0] - 12, b[2] + 15)
     ax.set_ylim(b[1] - 22, b[3] + 6)
     ax.set_aspect("equal")
@@ -439,7 +459,7 @@ def plan_figure(c, ch, ruban, revetu, terre, parapets, panneaux, fermetures, lig
     ax.set_xticklabels([f"{v:.0f}" for v in xt], rotation=90, fontsize=7)
     ax.set_yticklabels([f"{v:.0f}" for v in yt], fontsize=7)
     ax.grid(alpha=0.3)
-    ax.set_title(f"Carrefour du {c['nom']} - plan (Lambert-93, quadrillage de 10 m, nord en haut)", fontsize=11)
+    ax.set_title(f"{c['nom']} - plan (Lambert-93, quadrillage de 10 m, nord en haut)", fontsize=11)
     fig.savefig(chemin, dpi=110, bbox_inches="tight")
     plt.close(fig)
 
@@ -498,30 +518,46 @@ def main():
     actifs = [c for c in cfg["carrefours"] if c.get("actif")]
     for c in actifs:
         nom = c["nom"]
-        cle = "".join(ch_ if ch_.isalnum() else "_" for ch_ in nom.lower())
+        cle = c.get("cle") or "".join(ch_ if ch_.isalnum() else "_" for ch_ in nom.lower())
         pk0, pk1 = c["pk"]
         ruban = ruban_poly(ch, pk0 - 60, pk1 + 60)
         # fermetures : du point « de » au point « a » le long du bord droit
         ferm_pk = [(f["nom"], pk_du_bord(ch, f["de"], "droite", pk0, pk1), pk_du_bord(ch, f["a"], "droite", pk0, pk1))
                    for f in c["fermetures"]]
         fermetures = [bord_3d(rg, s0, s1)[1] for _, s0, s1 in ferm_pk]
+        # raccords : bords de la chaussée (ou son début) contre lesquels une surface vient se coller sans fermeture
+        raccords = []
+        for r_ in c.get("raccords", []):
+            if r_["cote"] == "debut":
+                raccords.append(np.array([ch["G"][0], ch["A"][0], ch["D"][0]]))
+            else:
+                a_, b_ = max(r_["pk"][0], ch["pk"][0]), min(r_["pk"][1], ch["pk"][-1])
+                raccords.append(bord_3d(rg, a_, b_, r_["cote"])[1])
+        lignes3 = fermetures + raccords
         ponceau = c.get("ponceau")
-        z_de = fabrique_altitude(mnt, fermetures, ponceau)
+        z_de = fabrique_altitude(mnt, lignes3, ponceau)
         # surfaces : enrobé fermé et terre-plein, moins la chaussée de la spéciale
-        revetu = shapely.union_all([Polygon(s["polygone"]) for s in c.get("surfaces_revetues", [])]).difference(ruban)
-        terre = Polygon(c["terre_plein"]["polygone"]).difference(ruban).difference(revetu.buffer(0.05))
+        revetu = shapely.union_all([Polygon(s["polygone"], s.get("trous", [])) for s in c.get("surfaces_revetues", [])]).difference(ruban)
+        terre = (Polygon(c["terre_plein"]["polygone"]).difference(ruban).difference(revetu.buffer(0.05)) if c.get("terre_plein")
+                 else Polygon())
         bx = shapely.union_all([revetu, terre]).buffer(5).bounds
         sol = SolTerrain(ref, bx) if (MOD / "terrain.glb").exists() else None
-        lignes = [LineString(F[:, :2]) for F in fermetures]
+        lignes = [LineString(F[:, :2]) for F in lignes3]
         tab = Polygon(ponceau["polygone"]) if ponceau else None
-        if sol is not None:
-            s_enr, aire_enr = maillage_sur_terrain(revetu, sol, z_de, ref, "enrobe", f"enrobe_{cle}", m11.S_ENROBE, lignes, tab)
-            s_ter, aire_ter = maillage_sur_terrain(terre, sol, z_de, ref, "terre", f"terre_plein_{cle}", 2.0, lignes, tab)
-        else:
-            s_enr, aire_enr = maillage_surface(revetu, z_de, ref, "enrobe", f"enrobe_{cle}")
-            s_ter, aire_ter = maillage_surface(terre, z_de, ref, "terre", f"terre_plein_{cle}", uv_s=2.0)
-        m_ann += [s_enr, s_ter]
-        m_coll += [{**s_enr, "name": f"enrobe_{cle}_collision"}, {**s_ter, "name": f"terre_plein_{cle}_collision"}]
+        aire_enr = aire_ter = 0.0
+        for P_, mat_, nm_, uv_ in ((revetu, "enrobe", f"enrobe_{cle}", m11.S_ENROBE), (terre, "terre", f"terre_plein_{cle}", 2.0)):
+            if P_.is_empty:
+                continue
+            if sol is not None:
+                sm, a2 = maillage_sur_terrain(P_, sol, z_de, ref, mat_, nm_, uv_, lignes, tab)
+            else:
+                sm, a2 = maillage_surface(P_, z_de, ref, mat_, nm_, uv_)
+            m_ann.append(sm)
+            m_coll.append({**sm, "name": f"{nm_}_collision"})
+            if mat_ == "enrobe":
+                aire_enr = a2
+            else:
+                aire_ter = a2
         # ponceau : dalle sous le tablier (le terrain de 08 y garde le lit du ruisseau)
         if ponceau:
             Pp = Polygon(ponceau["polygone"])
@@ -549,7 +585,11 @@ def main():
                 _, E, n = bord_3d(rg, s0, s1, lb["cote"], 1.0)
                 P, sortant, zp = E[:, :2], n, E[:, 2]
             else:
-                P = np.asarray(shapely.LineString(p["polyligne"]).segmentize(1.0).coords)
+                L_ = shapely.LineString(p["polyligne"]).difference(ruban.buffer(0.05))   # jamais sur la chaussée de la spéciale
+                if L_.is_empty:
+                    continue
+                L_ = max(shapely.get_parts(L_), key=lambda g: g.length)
+                P = np.asarray(L_.segmentize(1.0).coords)
                 sortant = normales_sortantes(P, revetu)
                 zp = z_de(P)
             zb = np.minimum(mnt.z(*(P + sortant * p["epaisseur_m"]).T), zp) - 0.3
@@ -583,11 +623,12 @@ def main():
             obstacles = np.vstack([obstacles, xy[None]])
         if pan_meshes:
             m_ann.append(m11.fusion(pan_meshes, f"panneaux_{cle}", "panneau"))
-        pin = c["terre_plein"].get("pin")
+        pin = (c.get("terre_plein") or {}).get("pin")
         if pin:
             obstacles = np.vstack([obstacles, np.asarray(pin["xy"])[None]])
         # balisage : piquets et rubalise
-        lignes_b, mb = balisage(cfg["balisage_par_defaut"], rg, ferm_pk, obstacles, ruban, z_de, ref)
+        lignes_b, mb = (balisage(cfg["balisage_par_defaut"], rg, ferm_pk, obstacles, ruban, z_de, ref) if ferm_pk
+                        else ([], {"piquet": [], "piquet_tete": [], "rubalise": []}))
         for k, v in mb.items():
             if v:
                 m_bal.append(m11.fusion(v, f"balisage_{cle}_{k}", k))
@@ -597,9 +638,10 @@ def main():
             lignes_csv.append({**b, "carrefour": nom})
         # geojson WGS84
         to_wgs = lambda g: shapely.ops.transform(lambda x, y, z=None: TO_WGS.transform(x, y), g)   # noqa: E731
-        for g, typ, rq in ((revetu, "enrobé fermé (branche de droite, amorce de la D1 nord)", "TSD+ (asphalte), à appliquer dans 09"),
+        for g, typ, rq in ((revetu, "surface revêtue annexe : " + "; ".join(s_["nom"] for s_ in c.get("surfaces_revetues", [])),
+                            "TSD+ (asphalte), à appliquer dans 09"),
                            (terre, "terre-plein", "DBK+ (terre), à appliquer dans 09")):
-            for gg in getattr(g, "geoms", [g]):
+            for gg in ([] if g.is_empty else getattr(g, "geoms", [g])):
                 feats.append({"type": "Feature", "geometry": mapping(to_wgs(gg)),
                               "properties": {"carrefour": nom, "type": typ, "surface_m2": round(gg.area, 1), "code_surface_jeu_propose": rq}})
         for nom_p, P, typ in parapets_plan:
@@ -609,7 +651,7 @@ def main():
                         "enrobe_ferme_m2": round(revetu.area, 1), "terre_plein_m2": round(terre.area, 1),
                         "aire_triangulee_m2": {"enrobe": round(aire_enr, 1), "terre": round(aire_ter, 1)},
                         "balisage": {k: sum(1 for b in lignes_b if b["type"] == k) for k in ("piquet de rubalise", "rubalise")},
-                        "_ctx": (ruban, fermetures, revetu, terre, parapets_int, lignes_b, c, parapets_plan, panneaux)}
+                        "_ctx": (ruban, lignes3, revetu, terre, parapets_int, lignes_b, c, parapets_plan, panneaux, cle)}
 
     # --- écriture
     write_geojson(OUT / "annexes_revetues.geojson", feats, "annexes_revetues")
@@ -639,32 +681,49 @@ def main():
     for f in ("balisage_collision.glb",):                   # le balisage n'a plus de barrières
         if not m_bcoll and (MOD / f).exists():
             (MOD / f).unlink()
-    for nom, d in rapport.items():
-        ruban, fermetures, revetu, terre, parapets_int, lignes_b, c, parapets_plan, panneaux = d.pop("_ctx")
-        d["controle"] = {v: controle(ref, ruban, fermetures, revetu, terre, parapets_int, lignes_b, MOD if v == "complet" else MOD / "apercu")
-                         for v in m11.VERSIONS}
+    ctx = {}
+    for k_, (nom, d) in enumerate(rapport.items()):
+        ruban, lignes3, revetu, terre, parapets_int, lignes_b, c, parapets_plan, panneaux, cle = d.pop("_ctx")
+        ctx[nom] = (ruban, revetu, terre)
+        d["controle"] = {v: controle(ref, ruban, lignes3, revetu, terre, parapets_int, lignes_b, MOD if v == "complet" else MOD / "apercu",
+                                     len(d["fermetures_pk"])) for v in m11.VERSIONS}
         FIG4.mkdir(parents=True, exist_ok=True)
-        plan_figure(c, ch, ruban, revetu, terre, parapets_plan, panneaux, fermetures, lignes_b, FIG4 / "carrefour_plan.png",
-                    d["fermetures_pk"])
+        plan_figure(c, ch, ruban, revetu, terre, parapets_plan, panneaux, lignes3[:len(d["fermetures_pk"])], lignes_b,
+                    FIG4 / ("carrefour_plan.png" if k_ == 0 else f"carrefour_plan_{cle}.png"), d["fermetures_pk"])
+    # obstacles (parapets, panneaux, piquets) sur la chaussée de la spéciale, sur tout le parcours
+    XYo = []
+    for f in ("annexes_collision.glb", "balisage_collision.glb"):
+        if (MOD / f).exists():
+            for nm, pp, _, _, _ in m11.lire_glb(MOD / f):
+                if not nm.startswith(("enrobe", "terre")):
+                    pp = pp.astype(np.float64)
+                    XYo.append(np.column_stack([pp[:, 0] + ref["x0"], ref["y0"] - pp[:, 2]]))
+    sur = m11.obstacles_sur_chaussee(np.vstack(XYo), ch) if XYo else []
+    rapport["obstacles_sur_la_chaussee"] = {"sommets": len(sur), "profondeur_max_m": max([q for _, q in sur], default=0.0),
+                                            "pk": sorted({p_ for p_, _ in sur})[:20]}
     print(json.dumps(rapport, ensure_ascii=False, indent=1))
 
-    # --- rendus (premier carrefour actif)
-    if actifs:
-        c = actifs[0]
-        P = shapely.union_all([Polygon(s["polygone"]) for s in c["surfaces_revetues"]] + [Polygon(c["terre_plein"]["polygone"])])
-        ctr = np.array(P.centroid.coords[0])
-        zc = float(mnt.z(ctr[:1], ctr[1:])[0])
-        s_f = rapport[c["nom"]]["fermetures_pk"][0][1]
-        A = rg(np.array([s_f - 45.0, s_f - 30.0]))[0]
-        dirv = (A[1, :2] - A[0, :2]) / np.linalg.norm(A[1, :2] - A[0, :2])
-        lat = np.array([dirv[1], -dirv[0]])
-        eye_h = np.array([[ctr[0] - 30 * dirv[0] + 6 * lat[0], ctr[1] - 30 * dirv[1] + 6 * lat[1], zc + 40]])
-        conducteur = rg.point(np.array([s_f - 14.0]), 1.8, 1.4)          # à peu près la prise de vue de Street View 4
-        cible = rg.point(np.array([s_f + 9.0]), 3.0, 1.2)
-        vues = [("plongeante", m08.to_gltf(eye_h, ref)[0], m08.to_gltf(np.array([[ctr[0], ctr[1], zc]]), ref)[0], 50),
-                ("conducteur_d3d", m08.to_gltf(conducteur, ref)[0], m08.to_gltf(cible, ref)[0], 80)]
+    # --- rendus déclarés dans le JSON (plongeante au-dessus des surfaces, ou vue conducteur par PK)
+    vues = []
+    for c in actifs:
+        ruban, revetu, terre = ctx[c["nom"]]
+        for v in c.get("rendus", []):
+            if v["type"] == "plongeante":
+                ctr = np.array(shapely.union_all([revetu, terre]).centroid.coords[0])
+                zc = float(mnt.z(ctr[:1], ctr[1:])[0])
+                i0 = int(np.argmin(np.hypot(*(ch["A"][:, :2] - ctr).T)))
+                A2 = ch["A"][[max(i0 - 15, 0), min(i0 + 15, len(ch["pk"]) - 1)], :2]
+                dirv = (A2[1] - A2[0]) / np.linalg.norm(A2[1] - A2[0])
+                lat = np.array([dirv[1], -dirv[0]])
+                eye = np.array([[*(ctr - v.get("recul_m", 30) * dirv + v.get("lateral_m", 0) * lat), zc + v.get("hauteur_m", 40)]])
+                vues.append((v["nom"], m08.to_gltf(eye, ref)[0], m08.to_gltf(np.array([[*ctr, zc]]), ref)[0], v.get("fov", 50)))
+            else:
+                eye = rg.point(np.array([float(v["pk"])]), v.get("decalage_m", 1.6), 1.3)
+                cible = rg.point(np.array([float(v["regard_pk"])]), v.get("regard_decalage_m", 0.0), 0.8)
+                vues.append((v["nom"], m08.to_gltf(eye, ref)[0], m08.to_gltf(cible, ref)[0], v.get("fov", 70)))
+    if vues:
         fichiers = [MOD / "terrain.glb", MOD / "route_habillee.glb", MOD / "ouvrages.glb", MOD / "annexes.glb", MOD / "balisage.glb"]
-        print("rendus :", rendus(vues, [f for f in fichiers if f.exists()]))
+        print("rendus :", rendus(vues, [f for f in fichiers if f.exists()], prefixe="carrefour"))
     print(f"durée : {time.time() - t0:.0f} s")
 
 

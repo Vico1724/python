@@ -36,6 +36,8 @@ Les fichiers lourds ne sont pas dans le dépôt. `scripts/tout_lancer.sh` les r�
 
 ## 3. Étape 1 : rouler sur notre route dans le jeu
 
+> **Mise à jour du 11/11/2026.** Cette étape est maintenant décrite pas à pas, avec ses scripts et les retouches du constructeur, dans [`pc/LISEZMOI.md`](../pc/LISEZMOI.md). C'est ce document qui fait foi ; le résumé ci-dessous est conservé pour mémoire. Différences à connaître : le fichier de correspondance se produit avec l'outil `acr-mappings` du projet, sans injection (Dumper-7 n'est qu'un secours) ; avec les options par défaut, BioBio peut rester installé.
+
 But : vérifier la physique, le chronométrage et les notes du copilote. Le décor n'est pas jugé.
 
 1. **Sauvegarder** le dossier `acr\Content\Paks` tel qu'il est, ou au minimum noter son contenu. Désinstaller BioBio avec son gestionnaire le temps de l'essai : les deux mods remplacent les mêmes tables de menus et ne cohabitent pas.
