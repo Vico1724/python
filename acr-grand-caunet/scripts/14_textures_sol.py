@@ -83,6 +83,9 @@ BANDE = 18.0                 # m au-delà du bord de chaussée : sous-dalles fin
 NOR_RES = 0.5                # m/pixel : relief des dalles
 H_COUVERT = 0.6              # m : seuil de couvert (MNS - MNT lissé)
 SEED = 14
+BALANCE_PHOTO = (1.06, 1.0, 0.89)        # la BD ORTHO est bleutée sur les sols (comparaison à la vidéo :
+                                         # sols ocre à rougeâtres, « terra rossa » sur calcaire)
+ORIGINE_LOCALE = (900000.0, 6240000.0)   # soustraite aux coordonnées monde avant passage en float32
 
 # Textures CC0 (Poly Haven) : rôle -> identifiant. Taille physique lue dans l'API (mm).
 CC0_TEXTURES = {
@@ -97,16 +100,21 @@ MATIERES = list(CC0_TEXTURES)
 # Couleur de fond des sols reconstruits (sRVB, dans la radiométrie de l'ortho BD ORTHO : mesurée
 # sur les sols visibles du couloir, puis assombrie pour les litières). Voir le manifeste.
 PALETTE = {
-    "aiguilles": (122, 104, 82),
-    "litiere": (104, 94, 80),
-    "cailloux": (150, 142, 124),
-    "herbes": (146, 136, 106),
-    "roche": (176, 170, 156),
-    "gravier": (150, 146, 136),
+    "aiguilles": (118, 98, 76),
+    "litiere": (104, 90, 76),
+    "cailloux": (146, 132, 112),
+    "herbes": (144, 130, 96),
+    "roche": (178, 170, 154),
+    "gravier": (152, 146, 134),
 }
+# Les PALETTE ci-dessus sont dans la radiométrie de l'ortho rééquilibrée (BALANCE_PHOTO).
 # amplitude du détail fin (5 cm) par matière, et part de la chrominance de la texture CC0
-DETAIL = {"aiguilles": (0.9, 0.5), "litiere": (0.9, 0.4), "cailloux": (1.0, 0.3), "herbes": (0.8, 0.5),
-          "roche": (0.7, 0.2), "gravier": (0.9, 0.2)}
+# (écart type visé de la luminance relative, part de chrominance de la texture)
+DETAIL = {"aiguilles": (0.16, 0.5), "litiere": (0.18, 0.4), "cailloux": (0.24, 0.3), "herbes": (0.17, 0.5),
+          "roche": (0.14, 0.2), "gravier": (0.22, 0.2)}
+
+
+LUMA = np.array([0.299, 0.587, 0.114], np.float32)
 
 
 # --- textures CC0 ------------------------------------------------------------------------------
@@ -145,21 +153,27 @@ class Matiere:
         nor = cv2.cvtColor(cv2.imread(str(CC0 / f"{ident}_nor_gl.jpg")), cv2.COLOR_BGR2RGB).astype(np.float32)
         self.taille = taille_m * echelle
         n = max(8, int(round(self.taille / res)))
-        self.diff = cv2.resize(diff, (n, n), interpolation=cv2.INTER_AREA)
+        d = cv2.resize(diff, (n, n), interpolation=cv2.INTER_AREA)
+        # passe-haut : on ne garde que le grain fin (< 1/8 de la texture) ; les variations lentes
+        # de la photo CC0 deviendraient des rayures en se répétant
+        lent = cv2.GaussianBlur(cv2.copyMakeBorder(d, n, n, n, n, cv2.BORDER_WRAP), (0, 0), n / 10)[n:2 * n, n:2 * n]
+        self.diff = d / np.maximum(lent, 1) * d.reshape(-1, 3).mean(0)
         nn = cv2.resize(nor, (n, n), interpolation=cv2.INTER_AREA) / 127.5 - 1.0
         self.nor = nn / np.linalg.norm(nn, axis=2, keepdims=True)
         lum = self.diff @ np.array([0.299, 0.587, 0.114], np.float32)
         self.moy = self.diff.reshape(-1, 3).mean(0)
         self.lum = lum / lum.mean()
+        self.lum_moy = float(lum.mean())
+        self.lum_std = float(self.lum.std())
         self.n = n
 
     def echantillon(self, X, Y, angle, decal, quoi):
-        """Échantillonne (bilinéaire, périodique) aux coordonnées monde X, Y (m)."""
+        """Échantillonne (bilinéaire, périodique) aux coordonnées monde X, Y (m, relatives à
+        ORIGINE_LOCALE pour garder la précision en float32)."""
         c, s = math.cos(angle), math.sin(angle)
-        u = ((c * X + s * Y) / self.taille + decal[0]) * self.n
-        v = ((-s * X + c * Y) / self.taille + decal[1]) * self.n
-        u = np.mod(u, self.n).astype(np.float32)
-        v = np.mod(v, self.n).astype(np.float32)
+        k = np.float32(self.n / self.taille)
+        u = np.mod((np.float32(c) * X + np.float32(s) * Y) * k + np.float32(decal[0] * self.n), self.n)
+        v = np.mod((np.float32(-s) * X + np.float32(c) * Y) * k + np.float32(decal[1] * self.n), self.n)
         src = {"diff": self.diff, "nor": self.nor.astype(np.float32), "lum": self.lum.astype(np.float32)}[quoi]
         out = cv2.remap(src, u, v, cv2.INTER_LINEAR, borderMode=cv2.BORDER_WRAP)
         if quoi == "nor":
@@ -238,6 +252,13 @@ def push_pull(img, w):
     return val
 
 
+def grille_locale(x0, y1, res, n):
+    """Coordonnées monde des centres de pixels (n x n), relatives à ORIGINE_LOCALE, en float32."""
+    xs = (x0 - ORIGINE_LOCALE[0] + (np.arange(n) + 0.5) * res).astype(np.float32)
+    ys = (y1 - ORIGINE_LOCALE[1] - (np.arange(n) + 0.5) * res).astype(np.float32)
+    return np.meshgrid(xs, ys)
+
+
 def smoothstep(a, b, x):
     t = np.clip((x - a) / (b - a), 0, 1)
     return t * t * (3 - 2 * t)
@@ -257,7 +278,7 @@ def normales_mnt(z, res, sigma_bas):
     T = est - (est * lo).sum(2, keepdims=True) * lo
     T /= np.linalg.norm(T, axis=2, keepdims=True)
     B = np.cross(lo, T)
-    t = np.dstack([(hi * T).sum(2), (hi * B).sum(2), (hi * lo).sum(2)])
+    t = np.dstack([(hi * T).sum(2), (hi * B).sum(2), np.maximum((hi * lo).sum(2), 0.2)])   # pas de normale rentrante
     return t / np.linalg.norm(t, axis=2, keepdims=True)
 
 
@@ -361,7 +382,6 @@ def compose(C, bx, by):
     b = (bx - MARGE, by - MARGE, bx + TILE + MARGE, by + TILE + MARGE)
     bc = (b[0] - CONTEXTE, b[1] - CONTEXTE, b[2] + CONTEXTE, b[3] + CONTEXTE)
     # --- contexte à 1 m : couvert, sol visible, propagation des couleurs, classes
-    cx = int(round(CONTEXTE))
     mnt1 = lire(RAW / "mnt_lidarhd_50cm.tif", bc, 1.0, 1, cv2.INTER_AREA, fill=-9999)
     valide1 = mnt1 > -1000
     mnt1f = np.where(valide1, mnt1, np.nanmedian(np.where(valide1, mnt1, np.nan)) if valide1.any() else 0)
@@ -370,6 +390,8 @@ def compose(C, bx, by):
     # --- grille 20 cm (dalle + contexte réduit de 20 m pour les ombres et la propagation fine)
     b2 = (b[0] - 20, b[1] - 20, b[2] + 20, b[3] + 20)
     rgb = lire(RAW / "ortho_20cm.tif", b2, RES, [1, 2, 3])
+    lum_brute = rgb @ LUMA
+    rgb = rgb * np.array(BALANCE_PHOTO, np.float32)
     irc = lire(RAW / "ortho_irc_20cm.tif", b2, RES, [1, 2, 3])
     mnt = lire(RAW / "mnt_lidarhd_50cm.tif", b2, RES, 1, fill=-9999)
     mns = lire(RAW / "mns_lidarhd_50cm.tif", b2, RES, 1, fill=-9999)
@@ -379,7 +401,7 @@ def compose(C, bx, by):
     nd = (irc[..., 0] - irc[..., 1]) / (irc[..., 0] + irc[..., 1] + 1e-6)
     gr = (rgb[..., 1] - rgb[..., 0]) / (rgb[..., 1] + rgb[..., 0] + 1e-6)
     ndvi = np.where(has_irc, nd, 1.6 * gr + 0.22)          # recalage moyen (cf. 10_semis_arbres)
-    lum = rgb @ np.array([0.299, 0.587, 0.114], np.float32)
+    lum = lum_brute
     r_dil = lambda m: int(round(m / RES))                    # noqa: E731
     couvert = cv2.dilate((chm > H_COUVERT).astype(np.uint8), cv2.getStructuringElement(
         cv2.MORPH_ELLIPSE, (2 * r_dil(0.6) + 1,) * 2)).astype(bool)
@@ -388,10 +410,13 @@ def compose(C, bx, by):
     ruban = burn([(C["ruban"], 1.0)], b2, RES) > 0
     route_dist = ndi.distance_transform_edt(~ruban) * RES
     sol0 = valide & ~couvert & ~ruban
-    ref = push_pull(lum, sol0.astype(np.float32) * (lum > 25))[..., 0]       # luminance locale du sol
-    ref = cv2.GaussianBlur(ref, (0, 0), 6.0 / RES)
+    # luminance du sol nu éclairé : globale (sol nu, hors couvert), puis locale (pente, exposition)
+    nu = sol0 & (chm < 0.3) & (ndvi < 0.15) & (lum > 40)
+    lref = float(np.percentile(lum[nu], 60)) if nu.sum() > 5000 else 150.0
+    ref = push_pull(lum, (sol0 & (lum > 0.7 * lref)).astype(np.float32))[..., 0]
+    ref = np.clip(cv2.GaussianBlur(ref, (0, 0), 8.0 / RES), 0.75 * lref, 1.3 * lref)
     veg_photo = (ndvi > 0.22) & (lum < 0.85 * ref) & pres_couvert
-    ombre = (lum < 0.62 * ref) & ~couvert
+    ombre = ((lum < 0.66 * ref) | (lum < 0.5 * lref)) & ~couvert
     ombre = cv2.dilate(ombre.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
     connu = sol0 & ~veg_photo & ~ombre
     connu = cv2.morphologyEx(connu.astype(np.uint8), cv2.MORPH_OPEN, np.ones((3, 3), np.uint8)).astype(bool)
@@ -409,7 +434,7 @@ def compose(C, bx, by):
     W1[o:o + hh, o:o + ww] = c_f
     S1[o:o + hh, o:o + ww] = rgb_c
     # hors de la grille 20 cm (contexte lointain) : sol visible estimé à 1 m depuis l'ortho et le MNS
-    big_rgb = lire(RAW / "ortho_20cm.tif", bc, 1.0, [1, 2, 3], cv2.INTER_AREA)
+    big_rgb = lire(RAW / "ortho_20cm.tif", bc, 1.0, [1, 2, 3], cv2.INTER_AREA) * np.array(BALANCE_PHOTO, np.float32)
     big_chm = np.clip(lire(RAW / "mns_lidarhd_50cm.tif", bc, 1.0, 1, cv2.INTER_AREA, fill=-9999) - mnt1, 0, 40)
     big_lum = big_rgb @ np.array([0.299, 0.587, 0.114], np.float32)
     big_ok = valide1 & (big_chm < 0.3) & (big_lum > 60) & (big_rgb.sum(2) > 0)
@@ -429,7 +454,7 @@ def compose(C, bx, by):
     fond_pal = Wm @ pal
     teinte = fbm(bc[0], bc[3], 1.0, (h1, w1), 40.0, 3, SEED + 1)
     fond_pal *= (1 + 0.07 * teinte)[..., None]
-    wp = 0.85 * smoothstep(2.0, 14.0, d_connu)
+    wp = 0.7 * smoothstep(1.5, 12.0, d_connu)
     fond = (1 - wp[..., None]) * fond_visible + wp[..., None] * fond_pal
 
     # --- retour à la grille 20 cm de la dalle (sans le contexte)
@@ -443,18 +468,29 @@ def compose(C, bx, by):
     pente20 = up(pente1)
     c2 = int(round(20 / RES))
     sl2 = (slice(c2, c2 + npx), slice(c2, c2 + npx))
-    # motif à grande échelle des sols reconstruits (20 cm) : bruit + textures CC0 étirées
-    mot = 1 + 0.10 * fbm(b[0], b[3], RES, (npx, npx), 6.0, 4, SEED + 2)
-    mat20 = C["mat20"]
-    X, Y = np.meshgrid(b[0] + (np.arange(npx) + 0.5) * RES, b[3] - (np.arange(npx) + 0.5) * RES)
-    X, Y = X.astype(np.float32), Y.astype(np.float32)
-    det = np.zeros((npx, npx), np.float32)
-    for i, m in enumerate(MATIERES):
-        det += W20[..., i] * mat20[m].echantillon(X, Y, 0.7 * i, (0.13 * i, 0.29 * i), "lum")
-    recon = fond20 * (mot * (1 + 0.5 * (det - 1)))[..., None]
+    # motif des sols reconstruits (20 cm) : bruit fractal (taches de litière, cailloux) défini en
+    # coordonnées monde, plus marqué en garrigue et sur la roche que sous la litière
+    m1 = fbm(b[0], b[3], RES, (npx, npx), 5.0, 4, SEED + 2)
+    m2 = fbm(b[0], b[3], RES, (npx, npx), 0.9, 2, SEED + 3)
+    taches = np.clip((m2 - 0.25) * 3.0, 0, 1)                     # petites taches claires (cailloux)
+    i_l = [MATIERES.index(m) for m in ("aiguilles", "litiere")]
+    lit = W20[..., i_l].sum(2)
+    mot = 1 + (0.09 + 0.05 * (1 - lit)) * m1 + (0.06 + 0.16 * (1 - lit)) * taches - 0.04 * (1 - lit)
+    recon = fond20 * mot[..., None]
+    # sol visible dans la pénombre (ombre légère, sous-bois clair) : réhaussé vers la luminance du
+    # sol éclairé voisin et ramené vers sa teinte (les ombres sont bleutées)
+    photo = rgb[sl2].copy()
+    lr = lum[sl2]
+    pen = connu[sl2] & (lr < 0.9 * ref[sl2])
+    g = np.clip(0.9 * ref[sl2] / np.maximum(lr, 1), 1, 1.7) ** 0.7
+    t = smoothstep(1.0, 1.5, g)[..., None]
+    lum_cible = (lr * g)[..., None]
+    teinte_sol = fond20 / np.maximum((fond20 @ LUMA)[..., None], 1)
+    corr = (1 - 0.6 * t) * photo * g[..., None] + 0.6 * t * lum_cible * teinte_sol
+    photo = np.where(pen[..., None], corr, photo)
     a = cv2.GaussianBlur(connu[sl2].astype(np.float32), (0, 0), 1.2)
     a = np.where(connu[sl2], np.maximum(a, 0.5), a * 0.8)
-    img = a[..., None] * rgb[sl2] + (1 - a[..., None]) * recon
+    img = a[..., None] * photo + (1 - a[..., None]) * recon
     img = np.where(valide[sl2][..., None] | (fond20.sum(2) > 0)[..., None], img, recon)
     # nature du sol visible, pour le choix des textures fines
     vis = {"connu": connu[sl2], "ndvi": ndvi[sl2], "lum_rel": lum[sl2] / np.maximum(ref[sl2], 1),
@@ -497,8 +533,7 @@ def sous_dalle(C, b, img20, Wf20, connu20, z05, cell, mats, nor_mats):
     base = cv2.resize(crop(img20), (SOUS_PX, SOUS_PX), interpolation=cv2.INTER_CUBIC)
     Wf = cv2.resize(crop(Wf20), (SOUS_PX, SOUS_PX), interpolation=cv2.INTER_LINEAR)
     kn = cv2.resize(crop(connu20.astype(np.float32)), (SOUS_PX, SOUS_PX), interpolation=cv2.INTER_LINEAR)
-    X, Y = np.meshgrid(sb[0] + (np.arange(SOUS_PX) + 0.5) * res, sb[3] - (np.arange(SOUS_PX) + 0.5) * res)
-    X, Y = X.astype(np.float32), Y.astype(np.float32)
+    X, Y = grille_locale(sb[0], sb[3], res, SOUS_PX)
     # trois échantillonnages par matière (échelle, rotation), mêlés par un bruit monde
     m3 = [bruit(sb[0], sb[3], res, (SOUS_PX, SOUS_PX), 3.7, SEED + 50 + k) for k in range(3)]
     e = np.exp(np.stack(m3) * 3.0)
@@ -514,14 +549,15 @@ def sous_dalle(C, b, img20, Wf20, connu20, z05, cell, mats, nor_mats):
         h = np.zeros((SOUS_PX, SOUS_PX), np.float32)
         for k, (sc, ang) in enumerate(((1.0, 0.3 + i), (1.37, 2.1 + i), (0.81, 4.0 + i))):
             M = mats[m][k]
-            d += e[k][..., None] * M.echantillon(X, Y, ang, (0.17 * k + 0.07 * i, 0.31 * k), "diff")
-            h += e[k] * M.echantillon(X, Y, ang, (0.17 * k + 0.07 * i, 0.31 * k), "lum")
+            dk = M.echantillon(X, Y, ang, (0.17 * k + 0.07 * i, 0.31 * k), "diff")
+            d += e[k][..., None] * dk
+            h += e[k] * ((dk @ LUMA) / M.lum_moy)
         amp, chroma = DETAIL[m]
         moy = mats[m][0].moy
         lum_r = (d @ np.array([0.299, 0.587, 0.114], np.float32)) / float(moy @ np.array([0.299, 0.587, 0.114]))
         rgb_r = d / moy
         r = (1 - chroma) * lum_r[..., None] + chroma * rgb_r
-        r = 1 + amp * comp * (r - 1)
+        r = 1 + (amp / max(mats[m][0].lum_std, 0.03)) * comp * (r - 1)
         details.append(np.clip(r, 0.25, 2.2))
         scores.append(Wf[..., i] + 0.35 * (h - 1))
     S = np.stack(scores)
@@ -542,8 +578,7 @@ def sous_dalle(C, b, img20, Wf20, connu20, z05, cell, mats, nor_mats):
     nres = (sb[2] - sb[0]) / SOUS_NOR_PX
     nm = normales_mnt(zn, nres, 1.0)
     Pn = cv2.resize(np.moveaxis(P, 0, 2), (SOUS_NOR_PX, SOUS_NOR_PX), interpolation=cv2.INTER_AREA)
-    Xn, Yn = np.meshgrid(sb[0] + (np.arange(SOUS_NOR_PX) + 0.5) * nres, sb[3] - (np.arange(SOUS_NOR_PX) + 0.5) * nres)
-    Xn, Yn = Xn.astype(np.float32), Yn.astype(np.float32)
+    Xn, Yn = grille_locale(sb[0], sb[3], nres, SOUS_NOR_PX)
     nd = np.zeros((SOUS_NOR_PX, SOUS_NOR_PX, 3), np.float32)
     for i, m in enumerate(MATIERES):
         if details[i] is None:
@@ -577,12 +612,14 @@ def dalles_08(path, ref):
     return out
 
 
-def decoupe(P, tri, route_dist_fn):
+def decoupe(P, tri, route_dist_fn, bx, by):
     """Sépare les triangles de la bande route (centroïde à moins de BANDE du bord) par sous-dalle."""
     c = P[tri, :2].mean(1)
     d = route_dist_fn(c[:, 0], c[:, 1])
     bande = d <= BANDE
     cles = np.floor(c / SOUS).astype(int) * int(SOUS)
+    cles[:, 0] = np.clip(cles[:, 0], bx, bx + TILE - SOUS)        # centroïde au bord exact de la dalle
+    cles[:, 1] = np.clip(cles[:, 1], by, by + TILE - SOUS)
     groupes = {}
     for k in {tuple(v) for v in cles[bande]}:
         groupes[k] = np.flatnonzero(bande & (cles[:, 0] == k[0]) & (cles[:, 1] == k[1]))
@@ -597,7 +634,6 @@ def _init():
     _C.update(charge_communs())
     prov = json.loads((REF / "ressources_cc0.json").read_text(encoding="utf-8"))["textures_sol"]
     tex = {v["role"]: v["taille_physique_m"] for v in prov.values()}
-    _C["mat20"] = {m: Matiere(CC0_TEXTURES[m], tex[m], RES, echelle=4.0) for m in MATIERES}
     res5 = (SOUS + 2 * SOUS_MARGE) / SOUS_PX
     _C["mats"] = {m: [Matiere(CC0_TEXTURES[m], tex[m], res5, echelle=s) for s in (1.0, 1.37, 0.81)] for m in MATIERES}
     _C["nor_mats"] = {m: Matiere(CC0_TEXTURES[m], tex[m], (SOUS + 2 * SOUS_MARGE) / SOUS_NOR_PX) for m in MATIERES}
@@ -617,7 +653,7 @@ def traite_dalle(args):
         r = np.clip(((b[3] - y) / RES).astype(int), 0, npx - 1)
         return rd[r, c]
 
-    base_tri, groupes = decoupe(P, tri, route_dist_fn)
+    base_tri, groupes = decoupe(P, tri, route_dist_fn, bx, by)
     nom = f"dalle_{bx}_{by}"
     couleur = np.clip(img, 0, 255).astype(np.uint8)
     (TEX / f"{nom}_couleur.jpg").write_bytes(jpeg(couleur, 88))
@@ -871,29 +907,38 @@ def planche(manifeste):
         vues.append((pk, ch["A"][i, 0], ch["A"][i, 1]))
     W = 360
     out = Image.new("RGB", (W * 3 + 20, (W + 4) * len(vues)), (255, 255, 255))
+    def extrait(entrees, x, y, demi):
+        """Carré de 2 x demi m centré sur (x, y), pris dans l'image dont l'emprise contient le centre."""
+        e = next((e for e in entrees if e["emprise_l93"][0] <= x <= e["emprise_l93"][2]
+                  and e["emprise_l93"][1] <= y <= e["emprise_l93"][3]), None)
+        if e is None:
+            return None
+        im = np.asarray(Image.open(MOD / e["couleur"]).convert("RGB"))
+        r = e["couleur_m_par_px"]
+        n = int(round(2 * demi / r))
+        c0, r0 = int(round((x - demi - e["emprise_l93"][0]) / r)), int(round((e["emprise_l93"][3] - y - demi) / r))
+        pad = np.pad(im, ((n, n), (n, n), (0, 0)), constant_values=255)
+        return Image.fromarray(pad[r0 + n:r0 + 2 * n, c0 + n:c0 + 2 * n])
+
+    sous = [s for d in manifeste["dalles"] for s in d["sous_dalles"]]
     for k, (pk, x, y) in enumerate(vues):
-        d = next((d for d in manifeste["dalles"] if d["dalle_l93"][0] <= x < d["dalle_l93"][2]
-                  and d["dalle_l93"][1] <= y < d["dalle_l93"][3]), None)
-        if d is None:
-            continue
-        e = d["emprise_l93"]
         h = 40.0
         ph = lire(RAW / "ortho_20cm.tif", (x - h, y - h, x + h, y + h), RES, [1, 2, 3]).astype(np.uint8)
-        im = np.asarray(Image.open(MOD / d["couleur"]))
-        c0, r0 = int((x - h - e[0]) / RES), int((e[3] - y - h) / RES)
-        n = int(2 * h / RES)
-        cr = im[r0:r0 + n, c0:c0 + n]
-        s = next((s for s in d["sous_dalles"] if s["emprise_l93"][0] <= x - 6 < s["emprise_l93"][2] - 12
-                  and s["emprise_l93"][1] + 12 <= y + 6 < s["emprise_l93"][3]), None)
         out.paste(Image.fromarray(ph).resize((W, W)), (0, k * (W + 4)))
-        out.paste(Image.fromarray(cr).resize((W, W)), (W + 10, k * (W + 4)))
-        if s:
-            si = Image.open(MOD / s["couleur"])
-            se = s["emprise_l93"]
-            r = s["couleur_m_par_px"]
-            cc, rr = int((x - 6 - se[0]) / r), int((se[3] - y - 6) / r)
-            out.paste(si.crop((cc, rr, cc + int(12 / r), rr + int(12 / r))).resize((W, W)), (2 * W + 20, k * (W + 4)))
+        cr = extrait(manifeste["dalles"], x, y, h)
+        if cr is not None:
+            out.paste(cr.resize((W, W)), (W + 10, k * (W + 4)))
+        # extrait de 12 m juste au-delà du bord droit de la chaussée
+        i = int(np.argmin(np.abs(ch["pk"] - pk)))
+        xd, yd = ch["D"][i, :2] + (ch["D"][i, :2] - ch["A"][i, :2]) * 1.5
+        fin = extrait(sous, xd, yd, 6.0)
+        if fin is not None:
+            out.paste(fin.resize((W, W)), (2 * W + 20, k * (W + 4)))
     out.save(FIG5 / "sol_avant_apres.jpg", quality=85, optimize=True)
+
+
+def _json(o):
+    return o.item() if hasattr(o, "item") else list(o) if isinstance(o, tuple) else str(o)
 
 
 def main():
@@ -946,9 +991,10 @@ def main():
         glb_complet(dalles, manifeste, decoupes)
     glb_apercu(manifeste, ref)
     manifeste["controle"] = controle(manifeste, ref)
-    man_path.write_text(json.dumps(manifeste, ensure_ascii=False, indent=1), encoding="utf-8")
+    man_path.write_text(json.dumps(manifeste, ensure_ascii=False, indent=1, default=_json), encoding="utf-8")
     planche(manifeste)
-    print(json.dumps({"totaux": manifeste["totaux"], "controle": manifeste["controle"]}, ensure_ascii=False, indent=1))
+    print(json.dumps({"totaux": manifeste["totaux"], "controle": manifeste["controle"]}, ensure_ascii=False, indent=1,
+                     default=_json))
     print(f"durée : {time.time() - t0:.0f} s")
 
 

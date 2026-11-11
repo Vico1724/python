@@ -1,0 +1,167 @@
+{
+ "emprise_l93": {
+  "pres_5m": [
+   909200.0,
+   6236300.0,
+   921800.0,
+   6248300.0
+  ],
+  "loin_25m": [
+   883000.0,
+   6210000.0,
+   948000.0,
+   6274500.0
+  ]
+ },
+ "rayon_max_axe_m": 30000.0,
+ "horizon": {
+  "points_de_route": 74,
+  "directions": 180,
+  "part_horizon_au_dela_m": {
+   "3000": 0.2031,
+   "5000": 0.1831,
+   "10000": 0.088,
+   "20000": 0.0089,
+   "30000": 0.0013
+  },
+  "horizon_max_m": 34900.0,
+  "directions_ou_la_mer_est_visible": 0
+ },
+ "apercu": {
+  "bandes_m": [
+   [
+    400,
+    16
+   ],
+   [
+    1200,
+    40
+   ],
+   [
+    4000,
+    80
+   ],
+   [
+    10000,
+    200
+   ],
+   [
+    20000,
+    400
+   ],
+   [
+    30000.0,
+    800
+   ]
+  ],
+  "sommets": 54522,
+  "triangles": 107662,
+  "dalles": 282,
+  "bord": {
+   "boucles_de_bord": 15,
+   "sommets_bord_exterieur": 1267,
+   "aretes_de_bord_total": 16025
+  },
+  "aretes_de_bord_absentes_de_la_triangulation": 0,
+  "reprises_triangulation": 0,
+  "sommets_en_mer": 2444,
+  "textures": {
+   "px_min": 64,
+   "px_max": 256,
+   "m_par_px_jusqu_a_1500m": 3.14,
+   "m_par_px_max": 112.53
+  },
+  "relecture": {
+   "taille_mo": 4.0,
+   "maillages": 282,
+   "nan": false,
+   "normales_vers_le_haut_pct": 100.0,
+   "uv_hors_0_1": 0,
+   "bornes_min": [
+    -33008.5,
+    -468.8999938964844,
+    -32569.400390625
+   ],
+   "bornes_max": [
+    29391.5,
+    700.4000244140625,
+    29830.599609375
+   ],
+   "raccord_08": {
+    "sommets_du_bord": 1267,
+    "retrouves_a_1mm_pct": 100.0,
+    "ecart_max_m": 0.0
+   },
+   "sommets_dans_le_couloir": 0
+  }
+ },
+ "duree_s": 306,
+ "complet": {
+  "bandes_m": [
+   [
+    400,
+    5
+   ],
+   [
+    1200,
+    10
+   ],
+   [
+    4000,
+    20
+   ],
+   [
+    10000,
+    50
+   ],
+   [
+    20000,
+    100
+   ],
+   [
+    30000.0,
+    200
+   ]
+  ],
+  "sommets": 762076,
+  "triangles": 1521291,
+  "dalles": 290,
+  "bord": {
+   "boucles_de_bord": 17,
+   "sommets_bord_exterieur": 2539,
+   "aretes_de_bord_total": 17385
+  },
+  "aretes_de_bord_absentes_de_la_triangulation": 0,
+  "reprises_triangulation": 0,
+  "sommets_en_mer": 38597,
+  "textures": {
+   "px_min": 64,
+   "px_max": 1024,
+   "m_par_px_jusqu_a_1500m": 0.81,
+   "m_par_px_max": 12.11
+  },
+  "relecture": {
+   "taille_mo": 56.75,
+   "maillages": 290,
+   "nan": false,
+   "normales_vers_le_haut_pct": 100.0,
+   "uv_hors_0_1": 0,
+   "bornes_min": [
+    -33008.5,
+    -469.0,
+    -32569.400390625
+   ],
+   "bornes_max": [
+    29991.5,
+    720.2000122070312,
+    30030.599609375
+   ],
+   "raccord_08": {
+    "sommets_du_bord": 2539,
+    "retrouves_a_1mm_pct": 100.0,
+    "ecart_max_m": 0.0
+   },
+   "sommets_dans_le_couloir": 0
+  }
+ }
+}

@@ -15,3 +15,6 @@ python3 11_route_ouvrages.py        # route texturée, marquage, tabliers et par
 python3 12_carrefours_annexes.py    # carrefours : voies fermées en enrobé, îlot, balisage de fermeture
 python3 09_export_stage_ir.py       # export « Stage IR » v2 (ACR Extra Stages) : stage.json + collision.glb
 python3 10_semis_arbres.py          # semis des arbres et arbustes : position, hauteur, essence, élément du jeu
+python3 13_paysage_lointain.py      # paysage lointain jusqu'à l'horizon (anneau autour du couloir)
+python3 14_textures_sol.py          # images de sol par dalle, sans les arbres, et relief fin près de la route
+python3 15_vues_decor.py            # vues conducteur de contrôle avec le décor complet

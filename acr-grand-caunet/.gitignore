@@ -8,3 +8,8 @@ modele/terrain.glb
 # du directeur, où le régénérer demanderait toute la chaîne (données brutes, modèle 3D). export/ fait < 15 Mo.
 # Images de sol par dalle (script 14) : volumineuses et régénérables ; un jeu allégé est versionné dans modele/apercu/
 modele/textures_sol/
+# Phase 5 (décor) : régénérables avec scripts/13_paysage_lointain.py et 14_textures_sol.py ;
+# seules les versions légères de modele/apercu/ sont versionnées
+modele/lointain.glb
+modele/terrain_sol.glb
+modele/textures_sol/
