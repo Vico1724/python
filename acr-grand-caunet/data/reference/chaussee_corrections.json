@@ -202,59 +202,175 @@
   },
   {
    "nom": "carrefour du Lion d'Or : branche de gauche de la patte d'oie, à gauche de l'îlot",
-   "pk_debut": 3612,
-   "pk_fin": 3692,
+   "pk_debut": 3596,
+   "pk_fin": 3702,
    "bord_gauche": [
     [
-     916758.63,
-     6243529.29
+     916767.72,
+     6243516.02
     ],
     [
-     916755.19,
-     6243534.36
+     916765.95,
+     6243518.44
     ],
     [
-     916751.8,
-     6243541.8
+     916764.16,
+     6243520.84
     ],
     [
-     916748.6,
-     6243545.7
+     916762.45,
+     6243523.31
     ],
     [
-     916745.0,
+     916760.76,
+     6243525.79
+    ],
+    [
+     916759.04,
+     6243528.3
+    ],
+    [
+     916757.34,
+     6243530.78
+    ],
+    [
+     916755.64,
+     6243533.17
+    ],
+    [
+     916753.87,
+     6243535.7
+    ],
+    [
+     916751.96,
+     6243538.09
+    ],
+    [
+     916749.95,
+     6243540.25
+    ],
+    [
+     916748.84,
+     6243541.44
+    ],
+    [
+     916746.94,
+     6243543.03
+    ],
+    [
+     916744.93,
+     6243544.32
+    ],
+    [
+     916742.85,
+     6243545.67
+    ],
+    [
+     916741.03,
+     6243546.87
+    ],
+    [
+     916739.31,
+     6243548.06
+    ],
+    [
+     916737.54,
      6243549.4
     ],
     [
-     916741.0,
-     6243552.4
+     916735.8,
+     6243550.87
     ],
     [
-     916736.5,
-     6243554.6
+     916733.49,
+     6243552.29
     ],
     [
-     916731.5,
-     6243556.0
+     916731.63,
+     6243553.36
     ],
     [
-     916726.0,
-     6243556.7
+     916729.31,
+     6243554.31
     ],
     [
-     916721.0,
-     6243556.9
+     916727.04,
+     6243554.97
     ],
     [
-     916703.8,
-     6243560.01
+     916724.46,
+     6243555.61
     ],
     [
-     916698.34,
-     6243564.32
+     916721.53,
+     6243555.88
+    ],
+    [
+     916718.35,
+     6243556.17
+    ],
+    [
+     916715.52,
+     6243556.41
+    ],
+    [
+     916712.72,
+     6243556.75
+    ],
+    [
+     916709.96,
+     6243557.34
+    ],
+    [
+     916707.41,
+     6243558.11
+    ],
+    [
+     916703.35,
+     6243559.94
+    ],
+    [
+     916700.78,
+     6243562.22
+    ],
+    [
+     916698.47,
+     6243564.28
+    ],
+    [
+     916696.02,
+     6243566.72
+    ],
+    [
+     916693.93,
+     6243569.32
+    ],
+    [
+     916692.14,
+     6243571.71
+    ],
+    [
+     916691.54,
+     6243572.48
     ]
    ],
    "bord_droit": [
+    [
+     916771.8,
+     6243518.8
+    ],
+    [
+     916769.56,
+     6243522.11
+    ],
+    [
+     916767.34,
+     6243525.44
+    ],
+    [
+     916765.1,
+     6243528.73
+    ],
     [
      916762.96,
      6243532.02
@@ -302,10 +418,22 @@
     [
      916703.58,
      6243570.0
+    ],
+    [
+     916702.92,
+     6243570.56
+    ],
+    [
+     916700.37,
+     6243573.15
+    ],
+    [
+     916697.96,
+     6243576.14
     ]
    ],
    "source": "numérisation manuelle sur le relevé laser IGN (carte des pentes à 0,5 m, bosses du sol nu, hauteurs au-dessus du sol) ; forme du carrefour établie d'après les vues aérienne et Street View (octobre 2025) fournies par le directeur le 11/11/2026",
-   "remarque": "La D3D débouche sur une patte d'oie : un îlot triangulaire (terre surélevée, panneaux directionnels, repéré sur le relevé laser vers x = 916745 à 916749,5, y = 6243556 à 6243561,5) sépare la branche de gauche, vers la D1 direction Roquefort, de la branche de droite, vers la D1 direction nord. La spéciale prend la branche de gauche. Bord gauche (intérieur) : courbe régulière à environ 1,5 m de la rupture de pente du talus ; la limite exacte de l'enrobé, sous les arbres, n'est pas visible. Bord droit (extérieur) : bord droit de la D3D, puis une ligne de fermeture régulière qui barre la branche de droite, frôle l'angle sud-ouest de l'îlot et barre l'embouchure de la D1 nord jusqu'au bord nord de la D1 ouest ; la plaque d'enrobé située au nord de cette ligne (voie de la D1) reste hors chaussée. Précision estimée : 1 à 2 m. Le tracé automatique passait sur l'îlot et formait un angle vif au centre du carrefour."
+   "remarque": "La D3D débouche sur une patte d'oie : un îlot triangulaire (terre surélevée, panneaux directionnels, repéré sur le relevé laser vers x = 916745 à 916749,5, y = 6243556 à 6243561,5) sépare la branche de gauche, vers la D1 direction Roquefort, de la branche de droite, vers la D1 direction nord. La spéciale prend la branche de gauche. Bord gauche (intérieur) : sur demande du directeur (11/11/2026), il suit la limite de la plate-forme plane du relevé laser, c'est-à-dire le pied du talus, relevée automatiquement tous les mètres (première pente de plus de 11° rencontrée à gauche de l'axe) puis lissée ; la chaussée s'élargit donc à l'intérieur du virage. Bord droit (extérieur) : bord droit de la D3D, puis une ligne de fermeture régulière qui barre la branche de droite, frôle l'angle sud-ouest de l'îlot et barre l'embouchure de la D1 nord jusqu'au bord nord de la D1 ouest ; les branches fermées sont modélisées à part, comme surfaces revêtues annexes. Précision estimée : 1 m à gauche, 1 à 2 m à droite."
   }
  ]
 }
