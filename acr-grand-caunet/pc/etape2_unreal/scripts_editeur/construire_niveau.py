@@ -264,6 +264,7 @@ def arguments():
     ap.add_argument("--seulement-assets", action="store_true")
     ap.add_argument("--max-instances", type=int, default=10 ** 9)
     ap.add_argument("--quitter", action="store_true", help="ferme l'éditeur à la fin (lancement par -ExecutePythonScript)")
+    ap.add_argument("--niveau", help="chemin /Game/... du niveau à construire, à la place de celui du manifeste")
     return ap.parse_args(sys.argv[1:])
 
 
@@ -548,7 +549,8 @@ class Construction:
                 v_enregistrer(e["chemin_ue"])
             maillages[e["nom"]] = sm
         if not a.seulement_assets:
-            niveau = self.man["essais"][a.etendue]["niveau"]
+            # --niveau : voie hybride, le niveau prend le chemin d'une cellule de Hafren South (PROTOCOLE.md § 0 quater)
+            niveau = a.niveau or self.man["essais"][a.etendue]["niveau"]
             v_ouvrir_ou_creer_niveau(niveau)
             deja = {x.get_actor_label() for x in v_acteurs_du_niveau()}
             for e in mesh_el:

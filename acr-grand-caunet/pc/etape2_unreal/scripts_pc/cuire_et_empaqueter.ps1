@@ -70,6 +70,11 @@ foreach ($i in $Inclure) {
 if ($n -eq 0) { Stop-Transcript; throw "rien à empaqueter : vérifier -Inclure et le dossier $cuit" }
 Write-Host "$n fichiers retenus"
 
+# Voie hybride (PROTOCOLE.md § 0 quater) : pour qu'un niveau remplace une cellule de Hafren South, il est créé
+# dans l'éditeur DIRECTEMENT au chemin de la cellule (construire_niveau.py --niveau /Game/Levels/WalesS4HafrenSouth/
+# _Generated_/<cellule>), et cuit ici comme n'importe quel niveau. Le renommer après cuisson avec acr-additive relocate
+# ne marche pas : cet outil ne lit pas nos niveaux ni nos maillages cuits avec versions (essayé le 11/11/2026).
+
 # 3. empaquetage IoStore
 $nom = "zz_gc_$($Essai.ToLower())_P"
 Remove-Item (Join-Path $Sortie "$nom.*") -ErrorAction SilentlyContinue

@@ -114,6 +114,44 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **Ce qui manque pour voir le décor en jeu.** Le niveau E4 ne contient que du décor : ni physique, ni tracé, ni acteurs de jeu. Le charger demande l'essai E2 (classes souches) ou la voie hybride H. La bannière, elle, se voit sans rien de plus, au départ d'une spéciale galloise.
 
+## 0 quater. Voie hybride : notre décor dans une cellule de Hafren South (11/11/2026)
+
+**Décision du directeur :** voie hybride d'abord, E2 plus tard si besoin. **État : construit, contrôlé hors jeu, installé ; pas encore vu en jeu.**
+
+**Pourquoi pas la retouche de leur outil.** L'étude de son code montre qu'il ne sait pas ajouter d'objet à un niveau : il ne peut que réutiliser les composants existants de Hafren, à capacité constante (les arbres seulement en même nombre qu'au même endroit, les maillages sur une poignée d'emplacements). C'est trop étroit pour notre décor.
+
+**Ce qui est fait à la place.** Hafren South est découpé en 163 cellules de 350 m, chargées quand la voiture est à moins de 640 m (`MainGrid`). 75 d'entre elles ne portent que du terrain et de la végétation, sans couche de données. On en remplace le contenu par le nôtre :
+
+1. **Le mod de l'étape 1 garde la cellule chargée.** `pc\scripts\4_construire.ps1 -CellulesDecor <nom>` ajoute la cellule à la liste `keep` de leur `scenery.toml`. Sans cela, l'étape qui cache le décor gallois la range dans une couche jamais chargée.
+2. **Unreal construit notre niveau au chemin de la cellule**, dans le repère du clone :
+
+   ```
+   construire_niveau.py --etendue E4 --parent jeu --placement <kit>/releves/placement_etape1.json
+       --niveau /Game/Levels/WalesS4HafrenSouth/_Generated_/<cellule> --sans-eclairage --quitter
+   ```
+
+   Passer les chemins avec des barres obliques `/` : avec des antislashs, l'éditeur découpe mal la ligne de commande.
+3. **Cuisson avec versions et empaquetage**, comme pour E4 :
+
+   ```
+   cuire_et_empaqueter.ps1 -Essai h1 -Versionne -Inclure 'Environments/GrandCaunet','Levels/WalesS4HafrenSouth' -Cartes '/Game/Levels/WalesS4HafrenSouth/_Generated_/<cellule>'
+   ```
+
+4. **Deux conteneurs dans `Paks\~mods`** : `zz_acrxs_grandcaunet_P` (étape 1 reconstruite) et `zz_gc_h1_P` (notre décor, 75 Mo).
+
+**Premier essai : la cellule `590EGJL6DGUYUAF0H0TOM1H51`**, centrée en (−175 ; 875) m dans le repère du clone, qui couvre les 200 m de l'échantillon (PK 1 600 à 1 800, autour du pont). Contrôle hors jeu : relue avec les archives du jeu et les deux conteneurs, la cellule contient nos 28 maillages et nos 8 304 instances, à la position attendue, avec le lacet de −35° du clone.
+
+**Ce qui n'est pas sûr tant que ce n'est pas vu en jeu :**
+
+- le jeu attend dans le paquet de la cellule un monde nommé `WalesS4HafrenSouth` ; le nôtre porte le nom de la cellule. Je compte sur le fait que le moteur prend le premier monde du paquet ;
+- un niveau ordinaire d'Unreal peut-il tenir lieu de cellule de World Partition ?
+- l'accord entre notre décor et la physique de l'étape 1 (même tracé, même placement, mais jamais superposés à l'écran) ;
+- nos matériaux, hérités de la variante du jeu, et nos arbres, jamais affichés en jeu.
+
+**Pour la spéciale entière**, la même méthode se généralise : une cellule de Hafren par zone, chacune remplacée par la part de notre décor qui s'y trouve. Le relevé des cellules (nom, position, couches) se lit dans l'export du niveau persistant, objets `WorldPartitionRuntimeLevelStreamingCell` et `WorldPartitionRuntimeCellDataSpatialHash`.
+
+**Ce qui a échoué en route :** renommer un niveau cuit au chemin de la cellule avec `acr-additive relocate`. Leur outil ne lit ni nos niveaux ni nos maillages cuits avec versions, même après un aller-retour par `retoc`, et cet aller-retour perdait la référence au matériau du jeu. D'où la construction directe au bon chemin.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :

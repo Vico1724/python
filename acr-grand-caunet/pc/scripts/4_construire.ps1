@@ -26,6 +26,7 @@
 #>
 param(
     [string]$Jeu, [string]$Travail, [string]$Ir,
+    [string[]]$CellulesDecor = @(),
     [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles
 )
 . "$PSScriptRoot\commun.ps1"
@@ -110,7 +111,22 @@ $a = @('stage-build', '--ir', $irTravail, '--legacy', $legacy, '--out', $mod, '-
        '--visuals-vegetation', 'none', '--visuals-canopies', 'apex')               # build.ps1 l.173-181
 if (-not $Longueur) { $a += @('--keep-variants', '1') }
 if ($obstacles) { $a += @('--objects', (Join-Path $cfg 'object-collision.toml')) }
-if (-not $GarderDecor) { $a += @('--scenery', (Join-Path $cfg 'scenery.toml'), '--scenery-actor-hidden', '1') }   # build.ps1 l.168-171
+if (-not $GarderDecor) {
+    $scenery = Join-Path $cfg 'scenery.toml'
+    if ($CellulesDecor) {
+        # Voie hybride (pc\etape2_unreal\PROTOCOLE.md § 0 quater) : ces cellules de Hafren restent chargées dans la
+        # variante aller. Leur contenu gallois est remplacé par notre décor, cuit par Unreal au même chemin et livré
+        # dans un conteneur à part (zz_gc_*_P). Sans ce conteneur, elles montreraient le terrain et les arbres gallois.
+        $garder = @('22VG0QIP9ATUQI633K86KWPFP') + $CellulesDecor | ForEach-Object { "`"$_`"" }
+        $texte = (Get-Content $scenery -Raw) -replace '(?m)^keep = \[[^\]]*\]', "keep = [$($garder -join ', ')]"
+        if ($texte -notmatch [regex]::Escape($CellulesDecor[0])) { Echec "ligne « keep » introuvable dans $scenery" }
+        $scenery = Join-Path $work 'scenery-hybride.toml'
+        New-Item -ItemType Directory -Force $work | Out-Null
+        Set-Content $scenery $texte -Encoding utf8
+        Ok "cellules gardées pour notre décor : $($CellulesDecor -join ', ')"
+    }
+    $a += @('--scenery', $scenery, '--scenery-actor-hidden', '1')                                                   # build.ps1 l.168-171
+}
 if ($Textures) { $a += @('--visuals-textured', '1') }
 if ($Noms) { $a += @('--names', (Join-Path $script:Projet 'pc\config\noms-grand-caunet.toml')) }
 if ($Ciel) { $a += @('--sky', (Join-Path $cfg 'sky.toml'), '--sky-section', 'france') }
