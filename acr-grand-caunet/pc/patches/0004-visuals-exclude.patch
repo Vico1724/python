@@ -1,5 +1,5 @@
 diff --git a/tools/acr-ref/Visuals.cs b/tools/acr-ref/Visuals.cs
-index cbe50fc..41269b3 100644
+index cbe50fc..27ebdde 100644
 --- a/tools/acr-ref/Visuals.cs
 +++ b/tools/acr-ref/Visuals.cs
 @@ -38,7 +38,8 @@ internal static class Visuals
@@ -22,7 +22,7 @@ index cbe50fc..41269b3 100644
  
          public static readonly string[] Dr2Sections = ["terrain", "road", "vista", "objects"];
  
-@@ -309,6 +311,45 @@ internal static class Visuals
+@@ -309,6 +311,46 @@ internal static class Visuals
              dr2Rep["packages"] = dr2.Log.DeepClone();
              r["dr2"] = dr2Rep;
          }
@@ -58,7 +58,8 @@ index cbe50fc..41269b3 100644
 +                    double cx = (a.X + b.X + c3.X) / 3.0, cy = (a.Y + b.Y + c3.Y) / 3.0;
 +                    if (!polys.Any(p => Inside(p, cx, cy))) { keep.Add(s.Idx[t]); keep.Add(s.Idx[t + 1]); keep.Add(s.Idx[t + 2]); }
 +                }
-+                if (keep.Count == 0 || keep.Count == s.Idx.Count) continue;      // never leave an empty section
++                if (keep.Count == s.Idx.Count) continue;
++                if (keep.Count == 0) { keep.Add(s.Idx[0]); keep.Add(s.Idx[0]); keep.Add(s.Idx[0]); }   // a section may not be empty: one zero-area triangle
 +                exRep[name] = (s.Idx.Count - keep.Count) / 3;
 +                s.Idx = keep;
 +            }

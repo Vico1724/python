@@ -45,6 +45,18 @@ def main():
     def propre(x_cm, y_cm):
         return l93(x_cm / 100.0 + rep["x0"], rep["y0"] - y_cm / 100.0)
 
+    sortie = a.sortie or os.path.join(r"Z:\acrxs\unreal\hybride", f"zones_{a.etendue}.json")
+    os.makedirs(os.path.dirname(sortie), exist_ok=True)
+    if a.etendue == "complet":
+        # toute la spéciale a son décor : plus aucun visuel d'essai n'est dessiné (les portiques restent, l'outil
+        # ne les retire jamais)
+        g = 1.0e8
+        partout = [[[-g, -g], [g, -g], [g, g], [-g, g]]]
+        with open(sortie, "w", encoding="utf-8") as f:
+            json.dump({"description": "toute la spéciale : aucun visuel d'essai de l'étape 1, sauf les portiques",
+                       "etendue": "complet", "terrain": partout, "autres": partout}, f)
+        print(f"toute la spéciale -> {sortie}")
+        return
     terrain = []
     for e in man["elements"]:
         if e["type"] == "StaticMesh" and e.get("acteur") and "TerrainFin" in e["nom"] and (a.etendue in e["essais"] or a.etendue == "complet"):
@@ -66,8 +78,6 @@ def main():
     pas = max(1, len(bords) // 100)                              # une centaine de quadrilatères suffit
     pts = bords[::pas] + ([bords[-1]] if (len(bords) - 1) % pas else [])
     autres = [[l93(*pts[i][0]), l93(*pts[i + 1][0]), l93(*pts[i + 1][1]), l93(*pts[i][1])] for i in range(len(pts) - 1)]
-    sortie = a.sortie or os.path.join(r"Z:\acrxs\unreal\hybride", f"zones_{a.etendue}.json")
-    os.makedirs(os.path.dirname(sortie), exist_ok=True)
     with open(sortie, "w", encoding="utf-8") as f:
         json.dump({"description": "zones où notre décor remplace les visuels de l'étape 1 (Unreal, cm, repère du clone)",
                    "etendue": a.etendue, "pk_m": pk, "terrain": terrain, "autres": autres}, f)
