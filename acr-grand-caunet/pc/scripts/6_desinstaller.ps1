@@ -1,4 +1,4 @@
-﻿#Requires -Version 7
+﻿#Requires -Version 7.2
 <#
 .SYNOPSIS
   Désinstalle le mod d'essai : supprime nos 3 fichiers de Paks\~mods, et le dossier ~mods s'il a été créé par
@@ -10,9 +10,11 @@
 #>
 param([string]$Jeu, [string]$Travail, [switch]$Oui)
 . "$PSScriptRoot\commun.ps1"
+$ErrorActionPreference = 'Stop'
 if (-not $Jeu) { $Jeu = $script:JeuParDefaut }
 if (-not $Travail) { $Travail = $script:TravailParDefaut }
 Start-Journal $Travail '6_desinstaller'
+Assert-Jeu $Jeu                                   # chemin faux : ne rien conclure, ne rien effacer (pas même installation.json)
 if (Test-JeuLance) { Echec "fermer le jeu d'abord" }
 $mods = Join-Path (Get-Paks $Jeu) '~mods'
 $a = @(Get-ChildItem $mods "$($script:NomConteneur).*" -ErrorAction SilentlyContinue)

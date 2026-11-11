@@ -1,4 +1,4 @@
-﻿#Requires -Version 7
+﻿#Requires -Version 7.2
 <#
 .SYNOPSIS
   Récupère ACR Extra Stages à la version exacte étudiée, applique nos retouches (pc\patches\*.patch), puis construit
@@ -14,6 +14,7 @@
 #>
 param([string]$Travail, [switch]$Oui)
 . "$PSScriptRoot\commun.ps1"
+$ErrorActionPreference = 'Stop'   # toute erreur d'une commande PowerShell arrête le script (comme leurs build.ps1)
 if (-not $Travail) { $Travail = $script:TravailParDefaut }
 New-Item -ItemType Directory -Force $Travail | Out-Null
 Start-Journal $Travail '2_recuperer_acrxs'
@@ -39,11 +40,17 @@ Lancer 'git' @('-C', $src, '-c', 'core.autocrlf=false', 'checkout', '--quiet', $
 Ok "ACR Extra Stages à la version $((& git -C $src rev-parse HEAD))"
 
 Etape "Nos retouches (pc\patches)"
+# Git pour Windows convertit souvent les fichiers texte en fins de ligne Windows (CRLF) au clonage de notre dépôt ;
+# le code d'ACR Extra Stages est en LF : on applique donc une copie LF de chaque retouche.
+$patchesLf = Join-Path $Travail 'patches-lf'
+New-Item -ItemType Directory -Force $patchesLf | Out-Null
 foreach ($p in Get-ChildItem (Join-Path $script:Projet 'pc\patches') -Filter '*.patch' | Sort-Object Name) {
-    & git -C $src apply --reverse --check $p.FullName 2>$null
+    $pf = Join-Path $patchesLf $p.Name
+    [IO.File]::WriteAllText($pf, ((Get-Content -Raw $p.FullName) -replace "`r`n", "`n"))
+    & git -C $src apply --reverse --check $pf 2>$null
     if ($LASTEXITCODE -eq 0) { Ok "$($p.Name) déjà appliquée"; continue }
-    Lancer 'git' @('-C', $src, 'apply', '--check', $p.FullName) "vérification de $($p.Name)"
-    Lancer 'git' @('-C', $src, 'apply', $p.FullName) "application de $($p.Name)"
+    Lancer 'git' @('-C', $src, 'apply', '--check', $pf) "vérification de $($p.Name)"
+    Lancer 'git' @('-C', $src, 'apply', $pf) "application de $($p.Name)"
     Ok "$($p.Name) appliquée"
 }
 

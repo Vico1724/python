@@ -91,7 +91,7 @@ Ce script demande une confirmation avant chaque installation.
 
 **Ce qu'on doit voir :** « déjà installé » ou « installé » pour chacun des cinq logiciels.
 
-**Si ça échoue :** installer à la main le logiciel en cause depuis le lien du § 3, puis relancer. **Fermer ensuite la fenêtre et en ouvrir une nouvelle**, pour que les nouveaux logiciels soient trouvés. Les étapes suivantes se lancent avec `pwsh`, c'est-à-dire PowerShell 7.
+**Si ça échoue :** installer à la main le logiciel en cause depuis le lien du § 3, puis relancer. **Fermer ensuite la fenêtre et en ouvrir une nouvelle**, pour que les nouveaux logiciels soient trouvés. Les étapes suivantes se lancent avec `pwsh`, c'est-à-dire PowerShell 7 (version 7.2 au moins).
 
 ### Étape 2 : récupérer et construire les outils
 
@@ -154,7 +154,7 @@ Options, à n'utiliser qu'après un premier essai réussi :
 
 - `-Textures` : sol et route avec les matériaux texturés de Hafren. La route aura alors l'aspect du gravier gallois.
 - `-Noms` : la variante s'affiche « Le Grand Caunet ».
-- `-Ciel` : la position du soleil est réglée sur Monte-Carlo.
+- `-Ciel` : la position du soleil est réglée sur Monte-Carlo. Le contrôle hors jeu (`stage-verify`) ne vérifie pas ce réglage : leur contrôle du ciel ne connaît que la Nouvelle-Zélande **[déduit du code]**.
 - `-GarderDecor` : le décor gallois reste visible.
 - `-SansObstacles` : pas de parapets ni de balisage.
 - `-Longueur` : le menu affiche 6,74 km. **Cette option est incompatible avec BioBio installé** (§ 6).
@@ -233,6 +233,12 @@ Joindre les journaux de `Z:\acrxs\journal\` et le rapport `Z:\acrxs\construction
 - **Le Lion d'Or :** il était en cours de reprise au moment de l'export. Des morceaux d'obstacles situés sur la nouvelle chaussée (5 morceaux du parapet de pierre du carrefour, PK 3 637 à 3 640, lors du dernier export) ont été retirés de l'export (liste dans `stage.json`, rubrique `export.obstacles`). Il faudra refaire l'export quand ce carrefour sera fini.
 - **Les options `-Textures`, `-Noms`, `-Ciel`** reprennent des réglages que leur projet n'a vérifiés que hors du jeu.
 - **La cohabitation avec BioBio** n'a jamais été essayée.
+- **Points repérés à la relecture, non corrigés faute de certitude :**
+  - `1_prerequis.ps1` s'arrête si un installateur renvoie un code autre que 0. Or winget peut renvoyer un code particulier pour « redémarrage requis » (outils C++) : dans ce cas, redémarrer le PC puis relancer le script, qui reprendra où il en était ;
+  - l'installation de Rust par winget n'installe peut-être pas la chaîne de compilation « stable » : si l'étape 2 dit que `cargo` est introuvable, lancer `rustup default stable` dans une nouvelle fenêtre ;
+  - `5_installer.ps1` ne détecte pas la combinaison de l'option `-Longueur` avec BioBio installé (§ 6).
+
+Le kit a été relu ligne par ligne par un second relecteur, qui l'a confronté au code d'ACR Extra Stages et a corrigé cinq défauts (une option de ciel qui faisait échouer le contrôle final, les fins de ligne des retouches sous Windows, deux garde-fous sur le chemin du jeu, l'arrêt sur erreur). Un contrôle automatique de l'appariement des accolades, des chaînes et des variables est passé sur tous les scripts. Cela ne remplace pas une exécution.
 
 ## 9. Si l'export manque, ou pour une session Claude
 

@@ -1,4 +1,4 @@
-﻿#Requires -Version 7
+﻿#Requires -Version 7.2
 <#
 .SYNOPSIS
   Construit le mod d'essai à partir de notre dossier d'échange (export\stage_ir\grand_caunet), avec le constructeur
@@ -29,10 +29,12 @@ param(
     [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles
 )
 . "$PSScriptRoot\commun.ps1"
+$ErrorActionPreference = 'Stop'
 if (-not $Jeu) { $Jeu = $script:JeuParDefaut }
 if (-not $Travail) { $Travail = $script:TravailParDefaut }
 if (-not $Ir) { $Ir = Join-Path $script:Projet 'export\stage_ir\grand_caunet' }
 Start-Journal $Travail '4_construire'
+Assert-Jeu $Jeu
 $src = Get-Source $Travail
 $bin = Join-Path $Travail 'bin'
 $acrRef = Join-Path $bin 'acr-ref\acr-ref.exe'
@@ -43,6 +45,7 @@ if (-not (Test-Path $usmap)) { Echec "fichier de correspondance absent ($usmap) 
 if (Test-JeuLance) { Echec "fermer le jeu d'abord" }
 $env:ACR_USMAP = $usmap
 $env:ACR_GAME_DIR = $Jeu
+if (-not (Test-Path (Join-Path $src 'mods\common\vanilla.ps1'))) { Echec "ACR Extra Stages absent de $src : lancer 2_recuperer_acrxs.ps1" }
 . (Join-Path $src 'mods\common\vanilla.ps1')
 
 Etape "Notre dossier d'échange"
@@ -138,15 +141,16 @@ Copy-Item (Join-Path $dist "$($script:NomConteneur).*") $full
 $v = @('stage-verify', '--game', (Join-Path $check 'full'), '--ir', $irTravail, '--usmap', $usmap, '--out', (Join-Path $check 'verify-cue4parse.txt'))
 if (-not $GarderDecor) { $v += @('--hidden-actors', '1') }
 if (-not $Longueur) { $v += @('--keep-variants', '1') }
-if ($Ciel) { $v += @('--sky', (Join-Path $cfg 'sky.toml')) }
+# pas de --sky ici : leur stage-verify compare le ciel à la section [nz] de sky.toml (StageVerify.cs, cfg.Num("nz", ...)),
+# il signalerait FAIL pour notre section [france] ; le ciel n'est donc contrôlé que par le rapport de stage-build.
 & $acrRef @v 2>&1 | Out-Host
 $codeVerif = $LASTEXITCODE
-Get-Content (Join-Path $check 'verify-cue4parse.txt') | Out-Host
+if (Test-Path (Join-Path $check 'verify-cue4parse.txt')) { Get-Content (Join-Path $check 'verify-cue4parse.txt') | Out-Host }
 $rt = Join-Path $check 'roundtrip'
 Lancer $retoc @('to-legacy', '--version', 'UE5_6', '--no-shaders', $checkPaks, $rt) "aller-retour retoc"
 & $acrRef stage-check --legacy $rt --ir $irTravail --report $rapport --out (Join-Path $check 'verify-roundtrip.txt') 2>&1 | Out-Host
 $codeCheck = $LASTEXITCODE
-Get-Content (Join-Path $check 'verify-roundtrip.txt') | Out-Host
+if (Test-Path (Join-Path $check 'verify-roundtrip.txt')) { Get-Content (Join-Path $check 'verify-roundtrip.txt') | Out-Host }
 $fails = @(Select-String -Path (Join-Path $check 'verify-*.txt') -Pattern '^FAIL').Count
 if ($codeVerif -ne 0 -or $codeCheck -ne 0 -or $fails -gt 0) {
     Attention "contrôles : $fails ligne(s) FAIL (codes $codeVerif / $codeCheck). Ne pas installer avant d'avoir lu ces lignes ; les transmettre."

@@ -66,3 +66,10 @@ function Get-BuildJeu([string]$Jeu) {
 function Get-Source([string]$Travail) { Join-Path $Travail 'acr-extrastages' }
 function Get-Usmap([string]$Travail) { Join-Path $Travail "mappings\acr_$($script:BuildJeu).usmap" }
 function Get-Paks([string]$Jeu) { Join-Path $Jeu 'acr\Content\Paks' }
+
+# Arrête le script si $Jeu n'est pas un dossier du jeu (chemin vide ou faux) : rien ne doit alors être créé ni supprimé.
+function Assert-Jeu([string]$Jeu) {
+    if (-not $Jeu -or -not (Test-Path -LiteralPath (Join-Path (Get-Paks $Jeu) 'global.utoc'))) {
+        Echec "pas de jeu à « $Jeu » (acr\Content\Paks\global.utoc introuvable) : donner le bon chemin avec -Jeu `"...`""
+    }
+}

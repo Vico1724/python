@@ -1,4 +1,4 @@
-﻿#Requires -Version 7
+﻿#Requires -Version 7.2
 <#
 .SYNOPSIS
   Produit le « fichier de correspondance » du jeu (.usmap) : la description des structures de données du jeu,
@@ -16,12 +16,15 @@
 #>
 param([string]$Jeu, [string]$Travail, [string]$Usmap, [switch]$Oui)
 . "$PSScriptRoot\commun.ps1"
+$ErrorActionPreference = 'Stop'
 if (-not $Jeu) { $Jeu = $script:JeuParDefaut }
 if (-not $Travail) { $Travail = $script:TravailParDefaut }
 Start-Journal $Travail '3_usmap'
+Assert-Jeu $Jeu
 $src = Get-Source $Travail
 $cible = Get-Usmap $Travail
 New-Item -ItemType Directory -Force (Split-Path $cible) | Out-Null
+if (-not (Test-Path (Join-Path $src 'mods\common\vanilla.ps1'))) { Echec "ACR Extra Stages absent de $src : lancer 2_recuperer_acrxs.ps1" }
 . (Join-Path $src 'mods\common\vanilla.ps1')                 # leur fonction New-VanillaView
 
 if ($Usmap) {
