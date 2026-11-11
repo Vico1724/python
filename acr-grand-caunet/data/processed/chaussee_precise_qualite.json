@@ -16,9 +16,9 @@
   },
   "decalage_lateral_bdtopo_m": {
     "mediane": 0.7,
-    "p95": 2.42,
-    "max": 4.92,
-    "pk_max": 3105
+    "p95": 2.41,
+    "max": 4.37,
+    "pk_max": 851
   },
   "troncons_interpoles_sup_20m": {
     "nombre": 5,
@@ -56,7 +56,7 @@
     "ecart_p90_m": 3.0
   },
   "devers_pct": {
-    "mediane_abs": 4.5,
+    "mediane_abs": 4.4,
     "p95_abs": 8.1
   },
   "hors_es": {
@@ -321,7 +321,7 @@
         "id_releve": "3104-3109",
         "pk_debut": 3104,
         "pk_fin": 3109,
-        "cote": "droite",
+        "cote": "gauche",
         "largeur_m": 5.8,
         "confiance": "moyenne",
         "mode": "fixe",
@@ -486,7 +486,7 @@
         ]
       }
     ],
-    "saut_max_aux_raccords_m": 0.212
+    "saut_max_aux_raccords_m": 0.218
   },
   "controles": {
     "largeur_min_max_m": [
@@ -497,6 +497,6 @@
       "nombre": 0,
       "pk": []
     },
-    "longueur_depart_arrivee_sur_axe_final_m": 6732.4
+    "longueur_depart_arrivee_sur_axe_final_m": 6732.2
   }
 }
