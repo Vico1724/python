@@ -25,6 +25,12 @@ BD TOPO : le résultat en un point ne dépend pas de l'étendue traitée.
 Corrections manuelles : les zones de data/reference/chaussee_corrections.json (bords
 numérisés à la main sur l'ortho) remplacent le calcul automatique, avec un raccord
 de 10 m ; source « manuel ». Les stations hors zones ne bougent pas.
+Corrections de largeur issues du relevé vidéo : la liste « largeurs » du même fichier
+fixe, sur un intervalle de PK, la largeur de la chaussée et le bord à déplacer (gauche,
+droite ou les deux). Le bord est déplacé le long de la normale à l'axe, avec un raccord
+de 10 m au-delà de chaque extrémité ; les zones numérisées à la main ne sont jamais
+touchées. Ces stations portent la source « video ». Les altitudes et le dévers sont
+ensuite recalculés partout de la même façon.
 
 Entrées : data/raw (MNT, MNS, ortho RVB ; ortho IRC téléchargée si absente),
           data/processed/axe_bdtopo_l93.csv, ouvrages_es.csv, carrefours_es.csv, calage_es.json
