@@ -48,7 +48,7 @@ Les rubalises sont aux endroits vus : départ (piste GC 107), débouchés de pis
 | Aspect de la chaussée | 30 pièces d'enrobé plus sombres et 31 fissures pontées au bitume, aux endroits et dans la voie relevés. Posées en bandes minces sous les lignes blanches. |
 
 **À savoir.**
-- **Falaises** : seule la couleur change, pas la forme du relief. Le maillage lointain est grossier (un point tous les 35 m environ) : une falaise y est une pente très raide, pas une paroi verticale.
+- **Falaises** : seule la couleur change, pas la forme du relief. Le maillage lointain a un point tous les 5 m jusqu'à 400 m de la route, tous les 10 m jusqu'à 1,2 km, tous les 20 m jusqu'à 4 km, puis de plus en plus espacés : une falaise y est une pente très raide, pas une paroi verticale, et d'autant plus adoucie qu'elle est loin.
 - **Rochers** : leur nombre, leur taille et leur côté viennent du relevé ; la forme de chaque bloc est celle des rochers du jeu, et sa teinte peut différer du calcaire blanc local.
 - **Chevrons des balises** : le jeu n'a qu'un dessin ; je n'ai pas pu vérifier de quel côté il pointe.
 - **Triangles** : le jeu n'a pas « succession de virages, le premier à droite » ni « affaissement » ; ils sont rendus par le triangle de danger ordinaire. Du mât à deux triangles du km 3,75, seul « chaussée glissante » est rendu.
