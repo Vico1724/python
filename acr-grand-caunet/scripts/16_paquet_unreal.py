@@ -64,6 +64,7 @@ NOM = "GrandCaunet"
 UE = f"/Game/Environments/{NOM}"
 NIVEAU = f"/Game/Levels/{NOM}"
 GRILLE0 = (913500.0, 6240500.0)     # coin sud-ouest commun des grilles de dalles (Lambert-93)
+LOIN_APLAT_DE, LOIN_APLAT_A = 300.0, 1500.0   # m de la route : début et fin de l'adoucissement des normales lointaines
 LOIN0 = (880000, 6210000)             # coin sud-ouest de la grille kilométrique de l'anneau lointain
 TRONCON = 200.0                       # m de PK par tronçon de route et d'ouvrages
 PK_E3 = 1653.0                        # pont à parapets de pierre : la dalle qui le contient
@@ -767,8 +768,13 @@ def materiaux_modele(P, glbs, dest_tex, dest_mat, prefixe_mat):
     return vus
 
 
-def lointain(P, ref, args):
-    """Anneau lointain : un maillage par dalle de 13 (1 km près, 5 km loin), ses images JPEG telles quelles."""
+def lointain(P, ref, args, pkf):
+    """Anneau lointain : un maillage par dalle de 13 (1 km près, 5 km loin), ses images JPEG telles quelles.
+
+    Normales adoucies (--lointain-aplat) : la photo aérienne porte déjà l'ombre du relief ; éclairé en plus par le
+    soleil du jeu, un versant à l'ombre devenait très sombre (vu en jeu le 12/11/2026, massif du km 3,9). Les normales
+    sont donc ramenées vers la verticale, de 0 % à moins de LOIN_APLAT_DE m de la route (continuité avec notre
+    terrain) jusqu'au taux demandé au-delà de LOIN_APLAT_A m. La forme du relief ne change pas."""
     src = MOD / "apercu" / "lointain.glb" if P.echantillon else MOD / "lointain.glb"   # échantillon : version légère
     ms = lire_glb(src)
     centre_e4 = None
@@ -794,8 +800,17 @@ def lointain(P, ref, args):
             P.texture("T_GC_ORM_Lointain", "commun", f"{UE}/Shared/Textures", image_unie((255, 255, 0)), ["E4", "complet"])
         P.materiau(nom_mi, f"{UE}/FarRing/Materials", {"couleur": nom_t, "orm": "T_GC_ORM_Lointain"}, essais,
                    note="anneau lointain : sans ombre portée ; pas de relief")
-        P.maillage(nom_sm, "lointain", f"{UE}/FarRing/Meshes", m["pos"], m["nrm"], m["uv"], m["idx"], nom_mi, essais,
-                   extra={"distance_min_e4_m": round(dmin), "source": f"{src.relative_to(ROOT).as_posix()}#{m['nom']}"})
+        nrm = m["nrm"]
+        aplat = 0.0 if P.echantillon else float(args.lointain_aplat)
+        if aplat > 0:
+            d = pkf.t.query(g[:, [0, 2]])[0]
+            t = np.clip((d - LOIN_APLAT_DE) / (LOIN_APLAT_A - LOIN_APLAT_DE), 0.0, 1.0)
+            k = (aplat * t * t * (3.0 - 2.0 * t))[:, None]
+            nrm = (1.0 - k) * nrm + k * np.array([0.0, 1.0, 0.0])
+            nrm /= np.maximum(np.linalg.norm(nrm, axis=1, keepdims=True), 1e-9)
+        P.maillage(nom_sm, "lointain", f"{UE}/FarRing/Meshes", m["pos"], nrm, m["uv"], m["idx"], nom_mi, essais,
+                   extra={"distance_min_e4_m": round(dmin), "source": f"{src.relative_to(ROOT).as_posix()}#{m['nom']}",
+                          **({"normales_adoucies": aplat} if aplat > 0 else {})})
         n += 1
     return n
 
@@ -1262,6 +1277,8 @@ def main():
     ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
+    ap.add_argument("--lointain-aplat", type=float, default=0.75,
+                    help="part de verticale mêlée aux normales du paysage lointain, loin de la route (0 = normales du relief)")
     ap.add_argument("--buissons", choices=("jeu", "script10"), default="jeu",
                     help="jeu : buissons du jeu (GroundCover/Willow) pour les arbustes de 0,55 m et plus ; script10 : "
                          "les maillages proposés par le script 10 (plantes rampantes et arbres réduits)")
@@ -1322,7 +1339,7 @@ def main():
             "annexes": par_troncon(P, pkf, annx, "Junction", "annexes", f"{UE}/Junctions/Meshes", mi, args),
             "balisage": par_troncon(P, pkf, bali, "Tape", "balisage", f"{UE}/Props/Meshes", mi, args)}
     print("anneau lointain…", flush=True)
-    n_loin = lointain(P, ref, args)
+    n_loin = lointain(P, ref, args, pkf)
     print("instances…", flush=True)
     bilan_inst = instances(P, ref, Sol(), ruban, pkf, args)
     if glissieres_jeu:

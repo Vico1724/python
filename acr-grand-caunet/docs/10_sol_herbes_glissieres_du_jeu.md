@@ -11,7 +11,8 @@
 - **Les bas-côtés** reçoivent 82 000 touffes d'herbe sèche du jeu (12 par mètre de route), sur 14 m de part et d'autre de la chaussée. Ce sont les cinq mêmes végétaux que le jeu pose à Bollène, avec les mêmes tailles. Ils disparaissent au-delà de 100 à 150 m, comme dans le jeu, pour ne pas ralentir l'affichage.
 - **Les arbustes de garrigue** étaient rendus par des arbres réduits au tiers et par des plantes rampantes plates. 98 000 d'entre eux deviennent de vrais buissons vert olive du jeu, à leur taille (0,5 à 2 m). Ils disparaissent au-delà de 150 à 220 m.
 - **L'asphalte** reçoit le réglage de sommets des routes de Bollène, dont il hérite la matière.
-- **Les parapets, les arbres et le paysage lointain** ne changent pas.
+- **Le paysage lointain** est éclairé plus doucement. Sa photo aérienne porte déjà l'ombre des versants ; le soleil du jeu les ombrait une seconde fois, d'où le massif très sombre vu au km 3,9. C'est une hypothèse sur la cause, à juger en jeu.
+- **Les parapets et les arbres** ne changent pas.
 
 ## 2. Comment le sol est réparti
 

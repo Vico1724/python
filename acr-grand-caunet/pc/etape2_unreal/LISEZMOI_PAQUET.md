@@ -137,6 +137,7 @@ Le paquet arrive dans `paquet_unreal\`. `python scripts\16_paquet_unreal.py --ec
 | `--glissieres jeu` ou `modele` | `jeu` | `jeu` : glissières métalliques du jeu posées bout à bout (table d'instances avec lacet et tangage). `modele` : nos lisses modélisées. |
 | `--herbes jeu` ou `sans` | `jeu` | `jeu` : touffes d'herbe du jeu sur 14 m de part et d'autre de la chaussée (table avec une colonne `echelle`). |
 | `--buissons jeu` ou `script10` | `jeu` | `jeu` : buissons du jeu pour les arbustes de 0,55 m et plus. `script10` : les maillages proposés par le script 10. |
+| `--lointain-aplat 0.75` | `0.75` | part de verticale mêlée aux normales du paysage lointain au-delà de 1 500 m de la route (rien à moins de 300 m) ; `0` : normales du relief. |
 
 Nouveaux champs du manifeste : `sol` (mode, placement utilisé, cadrage de la carte) ; pour une variante, `parent_du_jeu` et `parametres_scalaires` ; pour un maillage, `couleur_de_sommet` ; pour un groupe d'instances, `distances_de_disparition_cm` et `ombre_dynamique`. Détail et raisons : `PROTOCOLE.md`, § 0 sexies.
 
