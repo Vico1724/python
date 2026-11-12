@@ -797,6 +797,210 @@
    }
   },
   {
+   "objet": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraDangerA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -50
+    ],
+    "max": [
+     45,
+     4,
+     289
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraCrossRoadsA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -51
+    ],
+    "max": [
+     45,
+     4,
+     289
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraSlipperyRoadA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -46,
+     -4,
+     -50
+    ],
+    "max": [
+     44,
+     4,
+     289
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraNarrowRoadA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -45,
+     -6,
+     -50
+    ],
+    "max": [
+     45,
+     6,
+     289
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraRightTurnA1",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -42,
+     -4,
+     -50
+    ],
+    "max": [
+     42,
+     4,
+     284
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraCurveMarkerD",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -60,
+     -3,
+     -20
+    ],
+    "max": [
+     60,
+     4,
+     102
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/FranceTrafficSigns/MileMarkerA/SM_MileMarkerA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -25
+    ],
+    "max": [
+     4,
+     4,
+     99
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/Nature/ForestRockWjxqcct/SM_ForestRockWjxqcct",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -61,
+     -49,
+     -5
+    ],
+    "max": [
+     61,
+     49,
+     57
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/Nature/RockWjwvac3/SM_RockWjwvac3",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -49,
+     -41,
+     -5
+    ],
+    "max": [
+     49,
+     40,
+     43
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/Nature/RockShopk/SM_RockShopk",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -58,
+     -81,
+     -6
+    ],
+    "max": [
+     62,
+     81,
+     119
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/Nature/ForestRockWgqrfdi/SM_ForestRockWgqrfdi",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -24,
+     -23,
+     -3
+    ],
+    "max": [
+     20,
+     20,
+     20
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -76,
+     -27,
+     0
+    ],
+    "max": [
+     76,
+     27,
+     81
+    ]
+   }
+  },
+  {
    "objet": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
    "type": "Material",
    "essai": "E3",

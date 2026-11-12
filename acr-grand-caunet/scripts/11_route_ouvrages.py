@@ -366,6 +366,70 @@ def marquage(ch, ref, rg, cfg, decks, ruban):
     return fusion(parts, "marquage", "marquage"), stats
 
 
+# --- aspect de la chaussée -----------------------------------------------------------------
+def aspect_chaussee(ch, ref, rg, ruban):
+    """Pièces d'enrobé plus sombres et fissures pontées (data/reference/aspect_chaussee.json), en bandes minces
+    posées sur l'enrobé, sous le marquage. Rend deux maillages (« reprise », « fissure ») et un bilan."""
+    f = REF / "aspect_chaussee.json"
+    if not f.exists():
+        return [], {}
+    cfg = json.loads(f.read_text(encoding="utf-8"))
+    geo = cfg["geometrie"]
+    marge = geo["marge_au_bord_m"]
+    parts = {"reprise": [], "fissure": []}
+
+    def bande(S, o, larg, dz, mat):
+        _, _, _, hG, hD = rg(S)
+        larg = np.minimum(np.broadcast_to(larg, S.shape).astype(float), hG + hD - 2 * marge)
+        o = np.clip(o, -(hG - marge) + larg / 2, (hD - marge) - larg / 2)                 # la bande reste sur l'enrobé
+        P = np.empty((2 * len(S), 3))
+        P[0::2] = rg.point(S, o - larg / 2, dz)
+        P[1::2] = rg.point(S, o + larg / 2, dz)
+        i = np.arange(len(S) - 1)
+        tri = np.concatenate([np.column_stack([2 * i, 2 * i + 1, 2 * i + 3]), np.column_stack([2 * i, 2 * i + 3, 2 * i + 2])])
+        pos = m08.to_gltf(P, ref).astype(np.float64)
+        ecart = hauteur_sur_ruban(ruban["pos"].astype(np.float64), ruban["idx"], pos, np.repeat(S, 2), ch["pk"]) - dz
+        pos[:, 1] -= np.nan_to_num(ecart)
+        tri = oriente(pos, tri, np.array([0.0, 1.0, 0.0]))
+        parts[mat].append({"pos": pos.astype(np.float32), "nrm": np.tile([0, 1, 0], (len(P), 1)).astype(np.float32),
+                           "uv": np.column_stack([np.tile([0.0, 1.0], len(S)), np.repeat(S, 2)]), "idx": tri})
+
+    def centre(S, voie):
+        _, _, _, hG, hD = rg(S)
+        return {"gauche": -hG / 2, "droite": hD / 2}.get(voie, np.zeros_like(S))
+
+    for k, e in enumerate(cfg["elements"]):
+        a, b = max(e["pk"][0], ch["pk"][0] + 1), min(e["pk"][1], ch["pk"][-1] - 1)
+        if b - a < 0.05:
+            continue
+        S = np.unique(np.concatenate([[a], np.arange(np.floor(a) + 1, b), [b]]))
+        _, _, _, hG, hD = rg(S)
+        if e["genre"] == "raccord":
+            bande(S, (hD - hG) / 2, hG + hD, geo["hauteur_fissure_m"], "fissure")
+        elif e["genre"] == "piece":
+            larg = e.get("largeur_m") or geo["part_de_voie_d_une_piece"] * (hG if e["voie"] == "gauche" else hD)
+            bande(S, centre(S, e["voie"]) + e.get("decalage_m", 0.0), larg, geo["hauteur_piece_m"], "reprise")
+        else:
+            n = int(e.get("nombre", 1))
+            amp = e.get("ondulation_m", geo["ondulation_m"])
+            for j in range(n):
+                g = np.random.default_rng(1000 * k + j)
+                if "de_a" in e:                                                     # fissure en biais, d'un bord vers l'autre
+                    o = np.interp(S, [a, b], e["de_a"])
+                else:
+                    o = centre(S, e["voie"]) + e.get("decalage_m", 0.0) + (j - (n - 1) / 2) * 0.55 * (1.0 if e["voie"] != "axe" else 0.4)
+                # ondulation lente (deux sinusoïdes de phase tirée au sort) : une fissure ne file jamais droit
+                o = o + amp * (np.sin(S / g.uniform(6, 11) + g.uniform(0, 6.3)) + 0.5 * np.sin(S / g.uniform(2.2, 3.5) + g.uniform(0, 6.3)))
+                # le faïençage : fissures voisines qui ne commencent ni ne finissent ensemble
+                d0, d1 = (g.uniform(0, 0.25) * (b - a), g.uniform(0, 0.25) * (b - a)) if n > 1 else (0.0, 0.0)
+                sel = (S >= a + d0) & (S <= b - d1)
+                if sel.sum() >= 2:
+                    bande(S[sel], o[sel], e.get("largeur_m", geo["largeur_fissure_m"]), geo["hauteur_fissure_m"], "fissure")
+    meshes = [fusion(p, nom, nom) for nom, p in parts.items() if p]
+    bilan = {nom: {"bandes": len(p), "triangles": int(sum(len(x["idx"]) for x in p))} for nom, p in parts.items()}
+    return meshes, {**bilan, "couleurs": {"reprise": geo["couleur_piece_rgb"], "fissure": geo["couleur_fissure_rgb"]}}
+
+
 # --- ouvrages ------------------------------------------------------------------------------
 def config_ouvrages(ch, deck):
     cfg = json.loads((REF / "ouvrages_parapets.json").read_text(encoding="utf-8"))
@@ -733,6 +797,7 @@ def main():
     # --- route habillée
     route = chaussee_texturee(ch, ref, rg)
     marq, stats_m = marquage(ch, ref, rg, cfg_m, decks, route)
+    aspect, stats_a = aspect_chaussee(ch, ref, rg, route)
     blanc = cfg_m["geometrie"]["couleur_rgb"]["valeur"]
 
     # --- ouvrages
@@ -795,15 +860,18 @@ def main():
         coll["pierre"] += vm
     print(f"murs de soutènement BD TOPO à moins de {MUR_DIST_MAX:.0f} m de l'axe : {len(info_murs)} {info_murs}")
 
-    rapport = {"tabliers": tableau, "parapets_hors_tablier": hors, "glissieres": gl_bilan, "marquage": stats_m}
+    rapport = {"tabliers": tableau, "parapets_hors_tablier": hors, "glissieres": gl_bilan, "marquage": stats_m,
+               "aspect_chaussee": stats_a}
     for version, px in VERSIONS.items():
         dossier = MOD if version == "complet" else MOD / "apercu"
         mats = {"enrobe": {"jpeg": tex_enrobe(px), "rough": 0.92}, "marquage": {"color": blanc, "rough": 0.6},
+                "reprise": {"color": stats_a.get("couleurs", {}).get("reprise", [0.2, 0.2, 0.2]), "rough": 0.88},
+                "fissure": {"color": stats_a.get("couleurs", {}).get("fissure", [0.06, 0.06, 0.06]), "rough": 0.7},
                 "pierre": {"jpeg": tex_pierre(px // 2), "rough": 0.95}, "beton": {"jpeg": tex_beton(px // 2), "rough": 0.9},
                 "dalle": {"jpeg": tex_beton(px // 2, seed=3), "rough": 0.9},
                 "blanc": {"color": [0.88, 0.87, 0.84], "rough": 0.8}, "chaperon": {"color": [0.62, 0.61, 0.58], "rough": 0.9},
                 "glissiere_lisse": {"color": [0.72, 0.74, 0.76], "rough": 0.45}, "glissiere_poteau": {"color": [0.55, 0.56, 0.58], "rough": 0.5}}
-        ecrire_glb(dossier / "route_habillee.glb", [route, marq], mats)
+        ecrire_glb(dossier / "route_habillee.glb", [route, marq, *aspect], mats)
         ecrire_glb(dossier / "ouvrages.glb", meshes_ouv, mats)
         if version == "complet":
             mc = {"pierre": {"color": [0.6, 0.58, 0.54]}, "beton": {"color": [0.7, 0.7, 0.68]},

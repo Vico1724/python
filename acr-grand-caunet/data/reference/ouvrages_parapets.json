@@ -526,25 +526,6 @@
   },
   {
    "pk_debut_m": 1525,
-   "pk_fin_m": 1576,
-   "route": "D3D",
-   "gauche": {
-    "type": "aucun",
-    "statut": "vu sur la vidéo de reconnaissances"
-   },
-   "droite": {
-    "type": "pierre_des_blancs",
-    "hauteur_m": 0.65,
-    "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "sans_biseau_fin": true
-   },
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-   "note": "suivi d'une brèche de 6 m fermée par des séparateurs plastique"
-  },
-  {
-   "pk_debut_m": 1582,
    "pk_fin_m": 1594,
    "route": "D3D",
    "gauche": {
@@ -556,10 +537,10 @@
     "hauteur_m": 0.65,
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "sans_biseau_debut": true
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
    },
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "continu de 1525 à 1594 : la vidéo de course (2025) montre le parapet intact ; la brèche de 6 m fermée par des séparateurs plastique, vue du PK 1576 au PK 1582 sur la vidéo de reconnaissances, est postérieure et n'est pas rendue"
   },
   {
    "pk_debut_m": 1712,

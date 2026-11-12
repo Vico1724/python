@@ -163,6 +163,348 @@
     "hauteur_m": 3.5,
     "enfoui_m": 0.3
    }
+  },
+  "panneau_danger": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraDangerA",
+   "description": "triangle de danger du jeu (autre danger), sur mât",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -50
+    ],
+    "max": [
+     45,
+     4,
+     289
+    ]
+   }
+  },
+  "panneau_intersection": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraCrossRoadsA",
+   "description": "triangle de danger « intersection »",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -51
+    ],
+    "max": [
+     45,
+     4,
+     289
+    ]
+   }
+  },
+  "panneau_chaussee_glissante": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraSlipperyRoadA",
+   "description": "triangle de danger « chaussée glissante »",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -46,
+     -4,
+     -50
+    ],
+    "max": [
+     44,
+     4,
+     289
+    ]
+   }
+  },
+  "panneau_chaussee_retrecie": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraNarrowRoadA",
+   "description": "triangle de danger « chaussée rétrécie »",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -6,
+     -50
+    ],
+    "max": [
+     45,
+     6,
+     289
+    ]
+   }
+  },
+  "panneau_virage_droite": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraRightTurnA1",
+   "description": "triangle de danger « virage à droite »",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -42,
+     -4,
+     -50
+    ],
+    "max": [
+     42,
+     4,
+     284
+    ]
+   }
+  },
+  "balise_virage": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraCurveMarkerD",
+   "description": "balise de virage à chevrons, 1,2 m de large",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -60,
+     -3,
+     -20
+    ],
+    "max": [
+     60,
+     4,
+     102
+    ]
+   }
+  },
+  "borne_kilometrique": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/MileMarkerA/SM_MileMarkerA",
+   "description": "plaque kilométrique jaune et blanche",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -25
+    ],
+    "max": [
+     4,
+     4,
+     99
+    ]
+   }
+  },
+  "rocher_a": {
+   "maillage_jeu": "/Game/Props/Nature/ForestRockWjxqcct/SM_ForestRockWjxqcct",
+   "description": "bloc de roche du jeu, 0.57 m de haut à l'échelle 1",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.05,
+   "hauteur_native_m": 0.57,
+   "largeur_native_m": 1.1,
+   "hauteurs_rendues_m": [
+    0.31,
+    1.08
+   ],
+   "bornes_cm": {
+    "min": [
+     -61,
+     -49,
+     -5
+    ],
+    "max": [
+     61,
+     49,
+     57
+    ]
+   }
+  },
+  "rocher_b": {
+   "maillage_jeu": "/Game/Props/Nature/RockWjwvac3/SM_RockWjwvac3",
+   "description": "bloc de roche du jeu, 0.43 m de haut à l'échelle 1",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.05,
+   "hauteur_native_m": 0.43,
+   "largeur_native_m": 0.9,
+   "hauteurs_rendues_m": [
+    0.24,
+    0.82
+   ],
+   "bornes_cm": {
+    "min": [
+     -49,
+     -41,
+     -5
+    ],
+    "max": [
+     49,
+     40,
+     43
+    ]
+   }
+  },
+  "rocher_c": {
+   "maillage_jeu": "/Game/Props/Nature/RockShopk/SM_RockShopk",
+   "description": "bloc de roche du jeu, 1.19 m de haut à l'échelle 1",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.05,
+   "hauteur_native_m": 1.19,
+   "largeur_native_m": 1.4,
+   "hauteurs_rendues_m": [
+    0.65,
+    2.26
+   ],
+   "bornes_cm": {
+    "min": [
+     -58,
+     -81,
+     -6
+    ],
+    "max": [
+     62,
+     81,
+     119
+    ]
+   }
+  },
+  "rocher_d": {
+   "maillage_jeu": "/Game/Props/Nature/ForestRockWgqrfdi/SM_ForestRockWgqrfdi",
+   "description": "bloc de roche du jeu, 0.2 m de haut à l'échelle 1",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.05,
+   "hauteur_native_m": 0.2,
+   "largeur_native_m": 0.44,
+   "hauteurs_rendues_m": [
+    0.11,
+    0.38
+   ],
+   "bornes_cm": {
+    "min": [
+     -24,
+     -23,
+     -3
+    ],
+    "max": [
+     20,
+     20,
+     20
+    ]
+   }
+  },
+  "piquet_rubalise": {
+   "maillage_jeu": "/Game/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
+   "description": "piquet plastique de rubalise du jeu, 1,05 m",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -23,
+     -23,
+     0
+    ],
+    "max": [
+     23,
+     18,
+     105
+    ]
+   }
+  },
+  "barriere_plastique": {
+   "maillage_jeu": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+   "description": "séparateur plastique rouge et blanc de 1,5 m",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {
+    "min": [
+     -76,
+     -27,
+     0
+    ],
+    "max": [
+     76,
+     27,
+     81
+    ]
+   },
+   "collision": {
+    "forme": "box",
+    "paroi": "PM_WallPlasticBarrier",
+    "largeur_m": 0.55,
+    "hauteur_m": 0.8,
+    "longueur_m": 1.5,
+    "enfoui_m": 0.0
+   }
+  },
+  "panneau_radio_annonce_sur_mat": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceRadioWarningB",
+   "description": "panneau jaune d'annonce de point radio, sur mât (rend ceux qui sont cloués sur un tronc)",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -30,
+     -2,
+     -25
+    ],
+    "max": [
+     30,
+     2,
+     210
+    ]
+   }
+  },
+  "panneau_public_interdit": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_NopublicSign",
+   "description": "panneau « accès interdit au public », sur piquet",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -30,
+     -1,
+     -25
+    ],
+    "max": [
+     30,
+     1,
+     180
+    ]
+   }
+  },
+  "panneau_fin_de_zone": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceControlZoneEnd",
+   "description": "panneau de fin de zone de contrôle, posé au sol",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -38,
+     -15,
+     0
+    ],
+    "max": [
+     38,
+     15,
+     73
+    ]
+   }
+  },
+  "horloge_de_depart": {
+   "maillage_jeu": "/Game/Props/RallyProps/RaceTimer/SM_RaceTimer",
+   "description": "horloge de départ sur trépied",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -31,
+     -27,
+     -1
+    ],
+    "max": [
+     31,
+     27,
+     125
+    ]
+   }
   }
  },
  "lignes_electriques": [
@@ -1130,15 +1472,122 @@
    "cote": "droite",
    "decalage_m": 1.0,
    "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 2152,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle « succession de virages, le premier à droite » : le jeu n'a que le premier à gauche, rendu par le triangle de danger",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 2264,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle temporaire à fond jaune « AFFAISSEMENT », derrière le début de la glissière",
+   "nature": "permanent"
+  },
+  {
+   "type": "balise_virage",
+   "pk_m": 2325,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : balises de virage à chevrons blancs sur fond bleu, derrière la glissière (PK 2322 et 2327)",
+   "nature": "permanent"
+  },
+  {
+   "type": "balise_virage",
+   "pk_m": 2779,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : balise de virage à chevrons, derrière le bout du parapet gauche",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_intersection",
+   "pk_m": 3523,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle de danger « intersection »",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 3712,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "lacet_en_plus_deg": 180,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle vu de dos (pour le sens inverse)",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_chaussee_glissante",
+   "pk_m": 3745,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : mât à deux triangles : animaux sauvages et chaussée glissante ; seul le second est rendu",
+   "nature": "permanent"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 3997,
+   "cote": "droite",
+   "decalage_m": 0.6,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : plaque kilométrique « D 1 - 13 » contre le mur",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_chaussee_retrecie",
+   "pk_m": 5347,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle « chaussée rétrécie »",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_virage_droite",
+   "pk_m": 5412,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle « virage à droite »",
+   "nature": "permanent"
+  },
+  {
+   "type": "balise_virage",
+   "pk_m": 5528,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : balise bleue à deux chevrons, juste avant le parapet gauche",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 5635,
+   "cote": "gauche",
+   "decalage_m": 2.0,
+   "lacet_en_plus_deg": 180,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle vu de dos (pour le sens inverse)",
+   "nature": "permanent"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 5718,
+   "cote": "gauche",
+   "decalage_m": 2.5,
+   "lacet_en_plus_deg": 180,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle vu de dos (pour le sens inverse)",
+   "nature": "permanent"
   }
  ],
  "non_poses": [
-  "Panneaux routiers (triangles de danger aux PK 2131, 3499, 3716, 5287, 5366 ; panneau directionnel PK 3321) : le jeu a des panneaux routiers de Bollène, mais leurs dessins n'ont pas été identifiés.",
-  "Balises de virage à chevrons (PK 5, 2275, 5517) : pas de maillage équivalent identifié.",
-  "Clôture en bois (PK 5259-5293) et garde-corps métallique (PK 5496) : seuls leurs murets de pierre sont modélisés (data/reference/ouvrages_parapets.json).",
-  "Public, véhicules, commissaires, rubalise hors carrefour, chronométrage.",
+  "Panneaux directionnels, panneaux DFCI rouges, signalétique de sentier : pas d'équivalent dans le jeu.",
+  "Sens des chevrons des balises de virage : le jeu n'a qu'un dessin ; il peut pointer du mauvais côté.",
+  "Triangle « animaux sauvages » du PK 3745 et panonceaux : seul le triangle « chaussée glissante » est rendu.",
   "Talus rocheux à 1 m ou plus du bord (une quarantaine de tronçons, surtout à gauche) : rendus par le terrain et par la matière « cailloux » sur les pentes raides, sans mur ajouté.",
-  "Panneaux routiers relevés sur la vidéo de reconnaissances : triangles aux PK 2152, 2264, 3523, 3745, 5347, 5412 ; balises à chevrons aux PK 2322, 2779, 5528."
+  "Public, véhicules, commissaires.",
+  "Portail du PK 5406, bornes et piquets de repérage de réseaux."
  ],
  "lignes_electriques_avant_le_releve_de_reconnaissances": [
   {
@@ -1279,6 +1728,333 @@
  "rangees": [],
  "retires_apres_le_releve_de_reconnaissances": [
   "Haie taillée du PK 5035 au PK 5234 : c'est en réalité une végétation dense non taillée de 3 à 5 m, des deux côtés, de 5075 à 5330 environ ; les arbres du semis la rendent déjà.",
-  "Barrières plastique du PK 2652 au PK 2668 : c'est une barrière fixe en bois à 6-8 m du bord, hors trajectoire."
- ]
+  "Barrières plastique du PK 2652 au PK 2668 : c'est une barrière fixe en bois à 6-8 m du bord, hors trajectoire.",
+  "Séparateurs plastique de la brèche du parapet (PK 1576-1582) : vus sur la reconnaissance, mais le parapet est intact sur la vidéo de course, qui fait référence."
+ ],
+ "rochers": [
+  {
+   "pk_debut_m": 290,
+   "pk_fin_m": 305,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.6,
+    1.0
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : affleurement calcaire à l'intérieur du virage à gauche",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 485,
+   "pk_fin_m": 485,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    1.3,
+    1.5
+   ],
+   "nombre": 1,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : bloc calcaire clair d'environ 1,5 m",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 712,
+   "pk_fin_m": 712,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "hauteur_m": [
+    0.35,
+    0.45
+   ],
+   "nombre": 1,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : pierre isolée sur l'accotement",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 1518,
+   "pk_fin_m": 1530,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.6,
+    0.8
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : affleurement calcaire à l'intérieur du virage",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 1640,
+   "pk_fin_m": 1658,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.3,
+    0.5
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : ressaut de pierres bas le long de l'accotement",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 1672,
+   "pk_fin_m": 1720,
+   "cote": "gauche",
+   "decalage_m": 2.5,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "pas_m": 3.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : affleurements de calcaire (lapiaz), en retrait",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 2192,
+   "pk_fin_m": 2202,
+   "cote": "gauche",
+   "decalage_m": 3.5,
+   "hauteur_m": [
+    0.25,
+    0.7
+   ],
+   "pas_m": 2.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : blocs posés sur le dégagement : un gros et trois ou quatre petits",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 2625,
+   "pk_fin_m": 2645,
+   "cote": "gauche",
+   "decalage_m": 3.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "pas_m": 4.0,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : blocs arrondis posés sur la plate-forme",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 2680,
+   "pk_fin_m": 2730,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "pas_m": 3.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : affleurements de calcaire blanc le long de l'accotement",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 2870,
+   "pk_fin_m": 2885,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.3,
+    0.5
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : rochers bas au bord",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 3000,
+   "pk_fin_m": 3030,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "pas_m": 2.2,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : banc de calcaire blanc de 1 à 1,5 m",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 4135,
+   "pk_fin_m": 4145,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    0.9
+   ],
+   "pas_m": 1.6,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : tas de blocs calcaires blancs (enrochement)",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 4812,
+   "pk_fin_m": 4812,
+   "cote": "gauche",
+   "decalage_m": 4.0,
+   "hauteur_m": [
+    0.9,
+    1.0
+   ],
+   "nombre": 1,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : bloc calcaire blanc d'environ 1 m, sur la pente",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 4813,
+   "pk_fin_m": 4816,
+   "cote": "gauche",
+   "decalage_m": 4.0,
+   "hauteur_m": [
+    0.3,
+    0.5
+   ],
+   "pas_m": 1.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : blocs plus petits autour du précédent",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 5070,
+   "pk_fin_m": 5070,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.35,
+    0.45
+   ],
+   "nombre": 2,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : pierres blanches sur le talus d'herbe",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 5750,
+   "pk_fin_m": 5750,
+   "cote": "droite",
+   "decalage_m": 4.0,
+   "hauteur_m": [
+    0.3,
+    0.4
+   ],
+   "nombre": 2,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : affleurement ou tas de pierre claire",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 6148,
+   "pk_fin_m": 6155,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.25,
+    0.3
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : pierraille blanche en tas",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 6515,
+   "pk_fin_m": 6515,
+   "cote": "droite",
+   "decalage_m": 2.5,
+   "hauteur_m": [
+    0.65,
+    0.75
+   ],
+   "nombre": 1,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : gros bloc de calcaire blanc après l'entrée de piste",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 6585,
+   "pk_fin_m": 6585,
+   "cote": "droite",
+   "decalage_m": 3.0,
+   "hauteur_m": [
+    0.3,
+    0.4
+   ],
+   "nombre": 2,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : affleurement calcaire bas",
+   "nature": "permanent"
+  },
+  {
+   "pk_debut_m": 6672,
+   "pk_fin_m": 6678,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.4,
+    0.5
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : deux tas de pierre ou de terre",
+   "nature": "permanent"
+  }
+ ],
+ "lisses": [
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 2630,
+   "pk_fin_m": 2662,
+   "cote": "droite",
+   "decalage_m": 7.0,
+   "hauteur_m": 1.0,
+   "pas_m": 2.0,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : barrière en bois à lisses horizontales au fond de l'aire (c'est elle que l'ancien relevé prenait pour des barrières rouges et blanches)",
+   "nature": "permanent"
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 3378,
+   "pk_fin_m": 3410,
+   "cote": "droite",
+   "decalage_m": 4.5,
+   "hauteur_m": 0.45,
+   "pas_m": 2.5,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : lisses basses en bois qui bordent l'aire de stationnement",
+   "nature": "permanent"
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 5328,
+   "pk_fin_m": 5342,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "hauteur_m": 1.2,
+   "pas_m": 2.0,
+   "lisses_a_m": [
+    1.12,
+    0.78,
+    0.44
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : clôture en bois à lattes derrière le muret de pierre sèche",
+   "nature": "permanent"
+  },
+  {
+   "genre": "barriere_de_piste",
+   "pk_debut_m": 5046,
+   "pk_fin_m": 5054,
+   "cote": "droite",
+   "decalage_m": 6.0,
+   "hauteur_m": 0.9,
+   "pas_m": 4.0,
+   "lisses_a_m": [
+    0.82
+   ],
+   "hauteur_lisse_m": 0.08,
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : barrière métallique rouge de piste DFCI",
+   "nature": "permanent"
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 5669,
+   "pk_fin_m": 5675,
+   "cote": "droite",
+   "decalage_m": 5.0,
+   "hauteur_m": 0.8,
+   "pas_m": 3.0,
+   "lisses_a_m": [
+    0.72
+   ],
+   "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : barrière basse sombre à l'entrée de la piste DFCI",
+   "nature": "permanent"
+  }
+ ],
+ "rubalises": []
 }

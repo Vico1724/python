@@ -1,5 +1,6 @@
 """Objets de bord de route posés avec des maillages du jeu (data/reference/mobilier_bord_de_route.json) : poteaux
-électriques et leurs câbles, panneaux du rallye, barrières, haie.
+électriques et leurs câbles, panneaux du rallye et panneaux routiers, barrières, rochers, piquets de rubalise ; et
+tracés des objets en long fabriqués par le paquet (rubalises, lisses en bois, barrières de piste).
 
 Module commun à 09_export_stage_ir.py (collisions) et 16_paquet_unreal.py (décor), pour que les deux lisent la même
 liste et placent chaque objet au même endroit.
@@ -10,6 +11,7 @@ la course en ce point), lacet_relatif_deg, collision (ou None), source.
 """
 import csv
 import json
+import math
 from pathlib import Path
 
 import numpy as np
@@ -70,6 +72,55 @@ def charger():
     return json.loads(FICHIER.read_text(encoding="utf-8")) if FICHIER.exists() else None
 
 
+def alea(pk, k):
+    """Nombre entre 0 et 1, varié mais reproductible (le décor et la physique doivent tirer les mêmes)."""
+    return (math.sin(pk * 12.9898 + k * 78.233) * 43758.5453) % 1.0
+
+
+def _points_en_long(route, e):
+    """Points (pk, côté, décalage) d'un objet en long, espacés de `pas_m` au plus. L'objet est donné soit par
+    pk_debut_m, pk_fin_m, cote, decalage_m (et decalage_fin_m), soit par une liste « points » de [pk, côté, décalage]
+    quand il change de côté ou de décalage en chemin."""
+    pts = e.get("points") or [[e["pk_debut_m"], e["cote"], e["decalage_m"]],
+                              [e["pk_fin_m"], e["cote"], e.get("decalage_fin_m", e["decalage_m"])]]
+    pas, out = float(e.get("pas_m", 5.0)), []
+    for (p0, c0, d0), (p1, c1, d1) in zip(pts[:-1], pts[1:]):
+        if c0 != c1:                                   # d'un côté à l'autre : un seul tronçon, sans point entre deux
+            n = 1
+        else:
+            x0, y0, _, _ = route.point(p0, c0, d0)
+            x1, y1, _, _ = route.point(p1, c1, d1)
+            n = max(1, int(math.ceil(max(abs(p1 - p0), math.hypot(x1 - x0, y1 - y0)) / pas)))
+        for k in range(n):
+            out.append((p0 + (p1 - p0) * k / n, c0, d0 + (d1 - d0) * k / n))
+    out.append(tuple(pts[-1]))
+    return out
+
+
+def en_long(route=None):
+    """Objets en long fabriqués par le paquet : pour chacun, son genre (rubalise, lisse_bois, barriere_de_piste), ses
+    réglages et ses points {x, y, z_sol, pk, cote} le long de son tracé."""
+    cfg = charger()
+    if cfg is None:
+        return []
+    route = route or Route()
+    out = []
+    for genre in ("rubalises", "lisses"):
+        for e in cfg.get(genre, []):
+            pts = []
+            for pk, cote, dec in _points_en_long(route, e):
+                x, y, zb, _ = route.point(pk, cote, dec)
+                pts.append({"x": x, "y": y, "z_sol": max(route.z_terrain(x, y, zb), zb - 1.0), "pk": float(pk), "cote": cote})
+            out.append({"genre": e.get("genre", "rubalise" if genre == "rubalises" else "lisse_bois"), "points": pts,
+                        **{k: v for k, v in e.items() if k not in ("points",)}})
+            if genre == "rubalises" and e.get("appui", "piquets") != "piquets":
+                # rubalise nouée à des troncs ou à des piquets de bois : nos arbres ne sont pas à la place des vrais,
+                # donc un piquet de bois mince à chaque appui, pour que le ruban ne flotte pas en l'air
+                out.append({"genre": "lisse_bois", "points": pts, "hauteur_m": float(e.get("hauteur_m", 0.9)) + 0.06,
+                            "section_poteau_m": 0.06, "sans_lisse": True, "source": e.get("source", "")})
+    return out
+
+
 def objets(route=None):
     """Liste de tous les objets à poser, et, par ligne électrique, la liste ordonnée de ses poteaux."""
     cfg = charger()
@@ -79,15 +130,16 @@ def objets(route=None):
     types = cfg["types"]
     out, lignes = [], []
 
-    def ajoute(typ, pk, cote, dec, source):
+    def ajoute(typ, pk, cote, dec, source, echelle=1.0, lacet_en_plus=0.0):
         t = types[typ]
         x, y, zb, d = route.point(pk, cote, dec)
-        lacet = float(t.get("lacet_relatif_deg", 0))
+        lacet = float(t.get("lacet_relatif_deg", 0)) + lacet_en_plus
         if t.get("lacet_aleatoire"):
             lacet += (pk * 137.5) % 360.0                         # orientation variée, mais reproductible
         # un objet relevé au bord de la route n'est jamais à plus d'un mètre sous la chaussée (remblai mal rendu)
         o = {"type": typ, "maillage_jeu": t["maillage_jeu"], "x": x, "y": y, "z_sol": max(route.z_terrain(x, y, zb), zb - 1.0), "z_bord": zb,
              "pk": float(pk), "cote": cote, "dir": [float(d[0]), float(d[1])], "lacet_relatif_deg": lacet,
+             "echelle": float(t.get("echelle", 1.0)) * echelle, "enfoncement_m": float(t.get("enfoncement_m", 0.03)),
              "collision": t.get("collision"), "cable": t.get("cable"), "source": source}
         out.append(o)
         return o
@@ -116,7 +168,35 @@ def objets(route=None):
             dernier = pk
         lignes.append({"nom": l["nom"], "cables": bool(l.get("cables")), "poteaux": poteaux})
     for o in cfg.get("objets", []):
-        ajoute(o["type"], o["pk_m"], o["cote"], o["decalage_m"], o.get("source", ""))
+        ajoute(o["type"], o["pk_m"], o["cote"], o["decalage_m"], o.get("source", ""), lacet_en_plus=float(o.get("lacet_en_plus_deg", 0)))
+    # Rochers : un tronçon de bord de route donne une rangée de blocs du jeu, de taille et d'orientation variées.
+    # Hauteur visée tirée entre les deux bornes relevées ; le bloc ne mord jamais sur la chaussée ; au-dessus de
+    # 35 cm il a une collision (cylindre de roche, plus étroit que le bloc pour ne pas arrêter une roue qui le frôle).
+    blocs = [k for k in types if k.startswith("rocher_")]
+    for r in cfg.get("rochers", []):
+        h0, h1 = r["hauteur_m"]
+        L = float(r.get("pk_fin_m", r["pk_debut_m"]) - r["pk_debut_m"])
+        n = max(1, int(round(L / r.get("pas_m", 2.4)))) if L > 0 else int(r.get("nombre", 1))
+        for k in range(n):
+            pk = r["pk_debut_m"] + ((k + 0.5) * L / n if L > 0 else 0.9 * k)
+            h = h0 + (h1 - h0) * alea(pk, 1)
+            # un bloc du jeu n'est pas grossi ni réduit de plus du double : choix parmi ceux dont la taille convient
+            ok = [k for k in blocs if 0.55 <= h / types[k]["hauteur_native_m"] <= 1.9] or \
+                [min(blocs, key=lambda k: abs(math.log(h / types[k]["hauteur_native_m"])))]
+            typ = ok[int(alea(pk, 2) * len(ok)) % len(ok)]
+            t = types[typ]
+            ech = h / t["hauteur_native_m"]
+            demi = 0.5 * t["largeur_native_m"] * ech
+            dec = max(r["decalage_m"] + (alea(pk, 3) - 0.3) * r.get("profondeur_m", 0.8), demi + 0.15)
+            o = ajoute(typ, pk, r["cote"], dec, r.get("source", ""), echelle=ech)
+            o["collision"] = ({"forme": "cylinder", "paroi": "PM_WallRock", "diametre_m": round(1.5 * demi, 2),
+                               "hauteur_m": round(h + 0.3, 2), "enfoui_m": 0.3} if h >= 0.35 else None)
+    # Piquets des rubalises : un piquet du jeu à chaque point d'appui (sauf rubalise tendue entre des arbres).
+    for e in cfg.get("rubalises", []):
+        if e.get("appui", "piquets") != "piquets":
+            continue
+        for pk, cote, dec in _points_en_long(route, e):
+            ajoute("piquet_rubalise", pk, cote, dec, e.get("source", ""))
     for r in cfg.get("rangees", []):
         n = max(1, int(round((r["pk_fin_m"] - r["pk_debut_m"]) / r["pas_m"])))
         for k in range(n):

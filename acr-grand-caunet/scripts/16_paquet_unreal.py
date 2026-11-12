@@ -67,6 +67,13 @@ GRILLE0 = (913500.0, 6240500.0)     # coin sud-ouest commun des grilles de dalle
 LOIN_GAMMA, LOIN_GAIN = 0.72, 1.08            # courbe d'éclaircissement des images lointaines (--lointain-clarte)
 LOIN_APLAT_DE, LOIN_APLAT_A = 150.0, 800.0   # m de la route : début et fin de l'adoucissement des normales lointaines
 LOIN0 = (880000, 6210000)             # coin sud-ouest de la grille kilométrique de l'anneau lointain
+# Barres rocheuses du massif lointain (--falaises) : la photo aérienne voit les falaises d'en haut, donc à peine ;
+# vues de la route ce sont de longues barres de calcaire clair. Là où le relief est très raide, l'image prend une
+# teinte de calcaire. Pentes en degrés : début et fin de la transition, pour le relief à 5 m puis pour celui à 25 m
+# (qui écrase les falaises, d'où des seuils plus bas).
+FALAISE = {"pente_5m_deg": (40.0, 55.0), "pente_25m_deg": (33.0, 45.0), "couleur": (216, 204, 182), "taux": 0.85,
+           "strates_m": 6.0, "strates_ampleur": 0.10,
+           "elargir_m": 8.0}     # la barre déborde de 8 m (éboulis du pied, rebord) : le maillage lointain étale la paroi
 TRONCON = 200.0                       # m de PK par tronçon de route et d'ouvrages
 PK_E3 = 1653.0                        # pont à parapets de pierre : la dalle qui le contient
 PK_E4 = (1600.0, 1800.0)              # 200 m autour de ce pont
@@ -111,6 +118,11 @@ MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (135, 135, 135, 255)},
 # Câbles électriques entre les poteaux (maillage à nous) : trois par portée, accrochés à la traverse du poteau du jeu
 # (bouts à ±1 m, milieu), à 8,6 m du sol ; flèche de 0,8 m pour 60 m de portée.
 CABLES = {"portee_max_m": 115.0, "fleche_par_m2": 0.8 / 60.0 ** 2, "segments": 12, "rayon_m": 0.02, "couleur": (30, 30, 32)}
+# Rubalise du rallye : ruban de 7,5 cm à rayures rouges et blanches, tendu à 0,9 m entre des piquets du jeu.
+RUBALISE = {"hauteur_m": 0.90, "largeur_m": 0.075, "periode_m": 0.30, "fleche_par_m": 0.012,
+            "rouge": (196, 32, 30), "blanc": (232, 232, 228)}
+# Lisses en bois (aires, clôtures) et barrières de piste forestière (rouges) : couleur unie.
+LISSES = {"couleurs": {"lisse_bois": (118, 100, 80), "barriere_de_piste": (170, 42, 36)}}
 GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
              "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
              "enfoncement_m": 0.05}
@@ -798,6 +810,74 @@ def materiaux_modele(P, glbs, dest_tex, dest_mat, prefixe_mat):
     return vus
 
 
+class Pentes:
+    """Pente du relief (RGE ALTI à 5 m, puis à 25 m au-delà) en un point Lambert-93, pour teinter les falaises."""
+
+    def __init__(self):
+        import rasterio
+        self.couches = []
+        for nom, cle in (("rgealti_5m.tif", "pente_5m_deg"), ("rgealti_25m.tif", "pente_25m_deg")):
+            p = ROOT / "data" / "raw" / "lointain" / nom
+            if not p.exists():
+                continue
+            with rasterio.open(p) as d:
+                z, t, nd = d.read(1).astype(np.float32), d.transform, d.nodata
+            ok = np.isfinite(z) & (z != nd) if nd is not None else np.isfinite(z)
+            z = np.where(ok, z, 0.0).astype(np.float32)
+            gl, gc = np.gradient(z, abs(t.e), t.a)
+            pente = np.degrees(np.arctan(np.hypot(gl, gc))).astype(np.float32)
+            from scipy import ndimage
+            pente[~ndimage.binary_erosion(ok, iterations=2)] = 0.0          # pas de fausse falaise au bord des données
+            self.couches.append((pente, z, ok, t, FALAISE[cle]))
+
+    def roche(self, x, y):
+        """Part de roche (0 à 1) et altitude en chaque point (tableaux Lambert-93 de même forme)."""
+        from scipy import ndimage
+        w, alt, fait = np.zeros(x.shape, np.float32), np.zeros(x.shape, np.float32), np.zeros(x.shape, bool)
+        for pente, z, ok, t, (a, b) in self.couches:
+            c, l = (x - t.c) / t.a - 0.5, (y - t.f) / t.e - 0.5
+            ici = ~fait & (c >= 0) & (l >= 0) & (c <= z.shape[1] - 1) & (l <= z.shape[0] - 1)
+            if not ici.any():
+                continue
+            cl = np.vstack([l[ici], c[ici]])
+            ici[ici] = ndimage.map_coordinates(ok.astype(np.float32), cl, order=0) > 0.5
+            cl = np.vstack([l[ici], c[ici]])
+            s = np.clip((ndimage.map_coordinates(pente, cl, order=1) - a) / (b - a), 0.0, 1.0)
+            w[ici], alt[ici] = s * s * (3.0 - 2.0 * s), ndimage.map_coordinates(z, cl, order=1)
+            fait |= ici
+        return w, alt
+
+
+def teinte_falaises(im, m, ref, pentes):
+    """Image de la dalle lointaine `m` avec ses versants très raides teintés de calcaire ; part de l'image teintée.
+
+    La position Lambert-93 de chaque pixel vient des sommets de la dalle (u vers l'est, v vers le sud, origine en
+    haut à gauche de l'image : convention de 13_paysage_lointain.py)."""
+    uv, g = m["uv"].astype(np.float64), m["pos"]
+    X, Y = g[:, 0] + ref["x0"], ref["y0"] - g[:, 2]
+    if np.ptp(uv[:, 0]) < 1e-6 or np.ptp(uv[:, 1]) < 1e-6:
+        return im, 0.0
+    ax, bx = np.polyfit(uv[:, 0], X, 1)
+    ay, by = np.polyfit(uv[:, 1], Y, 1)
+    W, H = im.size
+    u, v = (np.arange(W) + 0.5) / W, (np.arange(H) + 0.5) / H
+    xx, yy = np.meshgrid(ax * u + bx, ay * v + by)
+    w, alt = pentes.roche(xx, yy)
+    if w.max() <= 0:
+        return im, 0.0
+    from scipy import ndimage
+    r = FALAISE["elargir_m"] / max(abs(ax) / W, 1e-6)                     # en pixels de cette image
+    if r >= 0.75:
+        w = ndimage.gaussian_filter(ndimage.maximum_filter(w, size=2 * int(round(r)) + 1), max(r / 2.0, 0.6))
+    a = np.asarray(im, np.float32)
+    # la roche n'est pas unie : bancs horizontaux (selon l'altitude) et grain tiré de l'image elle-même
+    bancs = 1.0 + FALAISE["strates_ampleur"] * np.sin(2.0 * np.pi * alt / FALAISE["strates_m"])
+    grain = 0.85 + 0.30 * (a.mean(2) / max(float(a.mean()), 1.0)).clip(0.5, 1.5) / 1.5
+    roche = np.array(FALAISE["couleur"], np.float32)[None, None, :] * (bancs * grain)[:, :, None]
+    k = (FALAISE["taux"] * w)[:, :, None]
+    return Image.fromarray(np.clip((1.0 - k) * a + k * roche + 0.5, 0, 255).astype(np.uint8), "RGB"), float((w > 0.5).mean())
+
+
 def lointain(P, ref, args, pkf):
     """Anneau lointain : un maillage par dalle de 13 (1 km près, 5 km loin), ses images JPEG telles quelles.
 
@@ -809,6 +889,8 @@ def lointain(P, ref, args, pkf):
     ms = lire_glb(src)
     centre_e4 = None
     n = 0
+    pentes = Pentes() if not P.echantillon and args.falaises else None
+    teintees = []
     for m in ms:
         _, taille, kx, ky = m["nom"].split("_")
         kx, ky = int(kx), int(ky)
@@ -829,6 +911,10 @@ def lointain(P, ref, args, pkf):
             # sont très sombres sur la photo (66 sur 255 pour le massif au sud), et bleu ardoise une fois dans le jeu
             a = np.asarray(im, np.float32) / 255.0
             im = Image.fromarray(np.clip(255.0 * LOIN_GAIN * a ** LOIN_GAMMA + 0.5, 0, 255).astype(np.uint8), "RGB")
+        if pentes is not None:
+            im, part = teinte_falaises(im, m, ref, pentes)
+            if part > 0:
+                teintees.append((part, nom_t))
         P.texture(nom_t, "lointain", f"{UE}/FarRing/Textures", im, essais, adressage="Clamp",
                   px_max=256 if P.echantillon else None, qualite=90)
         if "T_GC_ORM_Lointain" not in P.vus:
@@ -847,6 +933,9 @@ def lointain(P, ref, args, pkf):
                    extra={"distance_min_e4_m": round(dmin), "source": f"{src.relative_to(ROOT).as_posix()}#{m['nom']}",
                           **({"normales_adoucies": aplat} if aplat > 0 else {})})
         n += 1
+    if teintees:
+        print(f"  falaises : {len(teintees)} images lointaines teintées ; les plus rocheuses : "
+              + ", ".join(f"{t} {100 * p:.0f} %" for p, t in sorted(teintees, reverse=True)[:4]))
     return n
 
 
@@ -1216,8 +1305,8 @@ def mobilier_du_bord(P, ref, pkf, sol, args):
             w = csv.writer(fh, lineterminator="\n")
             w.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle", "type"])
             for i, (g, lacet, o) in enumerate(lot):
-                w.writerow([i, f"{ue[i, 0]:.1f}", f"{ue[i, 1]:.1f}", f"{ue[i, 2] - 3.0:.1f}", f"{(lacet + 180) % 360 - 180:.2f}", "1.00",
-                            f"{pk[i]:.0f}", "1.000", o["type"]])
+                w.writerow([i, f"{ue[i, 0]:.1f}", f"{ue[i, 1]:.1f}", f"{ue[i, 2] - 100.0 * o.get('enfoncement_m', 0.03):.1f}",
+                            f"{(lacet + 180) % 360 - 180:.2f}", "1.00", f"{pk[i]:.0f}", f"{o.get('echelle', 1.0):.3f}", o["type"]])
         e = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Mobilier_{nom}", "maillage_jeu": chemin, "present_au_catalogue": chemin in cat,
                       "fichier": fichier.as_posix(), "nombre": len(lot), "composant": "HierarchicalInstancedStaticMeshComponent",
                       "collision": "NoCollision", "hauteur_native_cm": None,
@@ -1274,7 +1363,112 @@ def mobilier_du_bord(P, ref, pkf, sol, args):
         P.materiau("MI_GC_Cable", f"{UE}/Shared/Materials", {"couleur": "T_GC_Cable", "orm": "T_GC_ORM_R140M000"}, ["complet"])
         P.maillage(f"SM_{NOM}Cables", "mobilier", f"{UE}/Props/Meshes", pos, nrm, np.zeros((len(pos), 2)), tri, "MI_GC_Cable", ["complet"],
                    extra={"portees": int(k0 // (3 * 3 * (CABLES["segments"] + 1)))})
+    objets_en_long(P, ref, sol, mobilier.en_long())
     return bilan
+
+
+def _boite(a, b, largeur, hauteur):
+    """Pavé d'axe a -> b (glTF, m), de section largeur x hauteur : 24 sommets à normales franches, 12 triangles."""
+    u = b - a
+    L = max(float(np.linalg.norm(u)), 1e-9)
+    u = u / L
+    haut = np.array([0.0, 1.0, 0.0])
+    if abs(float(u @ haut)) > 0.95:                       # pavé vertical (poteau) : sa « hauteur » est horizontale
+        haut = np.array([1.0, 0.0, 0.0])
+    w = np.cross(u, haut); w /= max(np.linalg.norm(w), 1e-9)
+    v = np.cross(w, u)
+    c = [a + sx * w * largeur / 2 + sy * v * hauteur / 2 + t * u * L for t in (0, 1) for sy in (-1, 1) for sx in (-1, 1)]
+    faces = [((0, 1, 3, 2), -u), ((4, 6, 7, 5), u), ((0, 4, 5, 1), -v), ((2, 3, 7, 6), v), ((0, 2, 6, 4), -w), ((1, 5, 7, 3), w)]
+    pos, nrm, tri = [], [], []
+    for q, n in faces:
+        k = len(pos)
+        pts = [c[i] for i in q]
+        if float(np.cross(pts[1] - pts[0], pts[2] - pts[0]) @ n) < 0:
+            pts = pts[::-1]
+        pos += pts; nrm += [n] * 4; tri += [[k, k + 1, k + 2], [k, k + 2, k + 3]]
+    return pos, nrm, tri
+
+
+def objets_en_long(P, ref, sol, liste):
+    """Rubalises, lisses en bois et barrières de piste : maillages à nous, d'après les tracés de scripts/mobilier.py.
+
+    Rubalise : ruban vertical de RUBALISE["largeur_m"], vu des deux côtés, à rayures rouges et blanches (texture
+    répétée), qui pend un peu entre deux appuis. Lisse : poteaux carrés et une ou deux lisses horizontales."""
+    def au_sol(p):
+        g = m08.to_gltf(np.array([[p["x"], p["y"], p["z_sol"]]]), ref).astype(float)[0]
+        zs = sol(np.array([g[0]]), np.array([g[2]]))[0]
+        if np.isfinite(zs):
+            g[1] = zs
+        return g
+
+    lots = {}
+    for e in liste:
+        pts = [au_sol(p) for p in e["points"]]
+        genre = e["genre"]
+        pos, nrm, uv, tri = lots.setdefault(genre, ([], [], [], []))
+        if genre == "rubalise":
+            h, larg = float(e.get("hauteur_m", RUBALISE["hauteur_m"])), RUBALISE["largeur_m"]
+            cumul = 0.0
+            for A, B in zip(pts[:-1], pts[1:]):
+                A, B = A + np.array([0.0, h, 0.0]), B + np.array([0.0, h, 0.0])
+                L = float(np.linalg.norm(B - A))
+                n = max(2, int(math.ceil(L / 1.5)))
+                t = np.linspace(0.0, 1.0, n + 1)
+                axe = A[None, :] + (B - A)[None, :] * t[:, None]
+                axe[:, 1] -= 4.0 * RUBALISE["fleche_par_m"] * L * t * (1.0 - t)
+                d = (B - A) * np.array([1.0, 0.0, 1.0])
+                nz = np.cross(d / max(np.linalg.norm(d), 1e-9), [0.0, 1.0, 0.0])
+                for face in (1.0, -1.0):                                      # deux faces : le ruban se voit des deux côtés
+                    k = len(pos)
+                    for i in range(n + 1):
+                        for dv, v in ((larg / 2, 0.0), (-larg / 2, 1.0)):
+                            pos.append(axe[i] + np.array([0.0, dv, 0.0])); nrm.append(face * nz)
+                            uv.append([(cumul + L * t[i]) / RUBALISE["periode_m"], v])
+                    for i in range(n):
+                        q = [k + 2 * i, k + 2 * i + 1, k + 2 * i + 3, k + 2 * i + 2]
+                        if face < 0:
+                            q = q[::-1]
+                        tri += [[q[0], q[1], q[2]], [q[0], q[2], q[3]]]
+                cumul += L
+        else:
+            h = float(e.get("hauteur_m", 1.0))
+            sec = float(e.get("section_poteau_m", 0.10))
+            niveaux = [] if e.get("sans_lisse") else e.get("lisses_a_m") or ([h - 0.08, 0.5 * h] if h >= 0.8 else [h - 0.06])
+            for g in pts:
+                p, n_, t_ = _boite(g - np.array([0.0, 0.25, 0.0]), g + np.array([0.0, h, 0.0]), sec, sec)
+                k = len(pos); pos += p; nrm += n_; tri += [[k + a for a in x] for x in t_]; uv += [[0.5, 0.5]] * len(p)
+            for A, B in zip(pts[:-1], pts[1:]):
+                for z in niveaux:
+                    p, n_, t_ = _boite(A + np.array([0.0, z, 0.0]), B + np.array([0.0, z, 0.0]), 0.04, float(e.get("hauteur_lisse_m", 0.10)))
+                    k = len(pos); pos += p; nrm += n_; tri += [[k + a for a in x] for x in t_]; uv += [[0.5, 0.5]] * len(p)
+    faits = {}
+    for genre, (pos, nrm, uv, tri) in sorted(lots.items()):
+        if not pos:
+            continue
+        pos, nrm, uv, tri = np.array(pos), np.array(nrm), np.array(uv), np.array(tri, np.int64)
+        fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
+        envers = (fn * nrm[tri].sum(1)).sum(1) < 0
+        tri[envers] = tri[envers][:, [0, 2, 1]]
+        nom = {"rubalise": "RallyTape", "lisse_bois": "WoodRails", "barriere_de_piste": "TrackBarriers"}[genre]
+        if genre == "rubalise":
+            n = 64                                                            # rayures en biais, une période sur la largeur
+            y, x = np.mgrid[0:16, 0:n]
+            rouge = ((x + y) // (n // 2)) % 2 == 0
+            img = np.where(rouge[:, :, None], np.array(RUBALISE["rouge"], np.uint8), np.array(RUBALISE["blanc"], np.uint8)).astype(np.uint8)
+            P.texture("T_GC_RallyTape", "commun", f"{UE}/Shared/Textures", Image.fromarray(img, "RGB"), ["complet"])
+        else:
+            P.texture(f"T_GC_{nom}", "commun", f"{UE}/Shared/Textures", image_unie(LISSES["couleurs"][genre]), ["complet"])
+        if "T_GC_ORM_R200M000" not in P.vus:
+            P.texture("T_GC_ORM_R200M000", "commun", f"{UE}/Shared/Textures", image_unie((255, 200, 0)), ["complet"])
+        P.materiau(f"MI_GC_{nom}", f"{UE}/Shared/Materials", {"couleur": f"T_GC_{nom}", "orm": "T_GC_ORM_R200M000"}, ["complet"])
+        P.maillage(f"SM_{NOM}{nom}", "mobilier", f"{UE}/Props/Meshes", pos, nrm, uv, tri, f"MI_GC_{nom}", ["complet"],
+                   extra={"troncons": sum(1 for e in liste if e["genre"] == genre),
+                          "longueur_m": round(float(sum(np.linalg.norm(np.diff(np.array([[p["x"], p["y"]] for p in e["points"]]), axis=0), axis=1).sum()
+                                                        for e in liste if e["genre"] == genre)), 1)})
+        faits[genre] = len(tri)
+    if faits:
+        print("  objets en long :", {k: f"{v} triangles" for k, v in faits.items()})
+    return faits
 
 
 def catalogue_du_jeu():
@@ -1403,6 +1597,8 @@ def main():
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
     ap.add_argument("--lointain-clarte", type=int, default=1, help="1 : images du paysage lointain éclaircies ; 0 : telles quelles")
+    ap.add_argument("--falaises", type=int, default=1,
+                    help="1 : versants très raides du paysage lointain teintés de calcaire clair (barres rocheuses) ; 0 : non")
     ap.add_argument("--lointain-aplat", type=float, default=0.85,
                     help="part de verticale mêlée aux normales du paysage lointain, loin de la route (0 = normales du relief)")
     ap.add_argument("--buissons", choices=("jeu", "script10"), default="jeu",
@@ -1460,9 +1656,11 @@ def main():
     mats = materiaux_modele(P, [route, ouvr, annx, bali], f"{UE}/Shared/Textures", f"{UE}/Shared/Materials", "")
     mi = lambda mat: mats[mat]                                            # noqa: E731
     chaussee = [m for m in route if m["mat"]["nom"] == "enrobe"]
-    marquage = [m for m in route if m["mat"]["nom"] != "enrobe"]
+    marquage = [m for m in route if m["mat"]["nom"] == "marquage"]
+    aspect = [m for m in route if m["mat"]["nom"] in ("reprise", "fissure")]          # pièces d'enrobé, fissures pontées
     noms = {"route": par_troncon(P, pkf, chaussee, "Road", "route", f"{UE}/Road/Meshes", mi, args, False),
             "marquage": par_troncon(P, pkf, marquage, "RoadMarking", "route", f"{UE}/Road/Meshes", mi, args, False),
+            "aspect": par_troncon(P, pkf, aspect, "RoadWear", "route", f"{UE}/Road/Meshes", mi, args),
             "ouvrages": par_troncon(P, pkf, ouvr, "Bridge", "ouvrages", f"{UE}/Bridges/Meshes", mi, args),
             "annexes": par_troncon(P, pkf, annx, "Junction", "annexes", f"{UE}/Junctions/Meshes", mi, args),
             "balisage": par_troncon(P, pkf, bali, "Tape", "balisage", f"{UE}/Props/Meshes", mi, args)}
