@@ -42,6 +42,7 @@ COUCHES = ["aiguilles_de_pin", "herbe_haute", "herbe_seche", "terre", "cailloux"
 COULEURS_APERCU = {"paillis": (92, 70, 48), "aiguilles_de_pin": (150, 105, 60), "herbe_haute": (70, 140, 50),
                    "herbe_seche": (190, 175, 95), "terre": (120, 90, 70), "cailloux": (205, 200, 190)}
 ACCOTEMENT_M = 1.5
+PENTE_ROCHE = (30.0, 48.0)       # degrés : en dessous, pas de roche ; au-dessus, roche à 85 %
 NDVI_NU, NDVI_VERT = 0.03, 0.15
 NDVI_VIGOUREUX = (0.30, 0.42)
 CLARTE_CALCAIRE = (90.0, 130.0)
@@ -78,7 +79,11 @@ def main():
         tr, bornes, forme = d.transform, d.bounds, d.shape
     with rasterio.open(RAW / "mns_lidarhd_50cm.tif") as d:
         mnh = np.clip(d.read(1).astype(np.float32) - mnt, 0.0, 40.0)
-    del mnt
+    # pente du terrain : les talus taillés dans le rocher (une quarantaine de tronçons relevés sur la vidéo de
+    # reconnaissances, surtout à gauche) sont des pentes raides ; elles reçoivent la matière « cailloux »
+    gy, gx = np.gradient(np.where(np.isfinite(mnt), mnt, 0.0), tr.a)
+    raide = ndi.gaussian_filter(marche(np.degrees(np.arctan(np.hypot(gx, gy))), PENTE_ROCHE[0], PENTE_ROCHE[1]), 1.0)
+    del mnt, gx, gy
     mnh[~np.isfinite(mnh)] = 0.0
     irc, _ = lire("ortho_irc_20cm.tif", forme, [1, 2])                      # proche infrarouge, rouge
     ndvi = (irc[0] - irc[1]) / np.maximum(irc[0] + irc[1], 1.0)
@@ -109,6 +114,12 @@ def main():
     p["terre"] = ouvert * (1.0 - vert) * (1.0 - clair)
     p["cailloux"] = ouvert * (1.0 - vert) * clair + garrigue * (0.15 + 0.25 * (1.0 - b1))
     del arbres, garrigue, ouvert, vert, vigoureux, clair, b1, b2, melange
+
+    for k in COUCHES:
+        p[k] *= (1.0 - 0.85 * raide)
+    p["cailloux"] += 0.85 * raide
+    part_raide = float(raide.mean())
+    del raide
 
     # chaussée et accotement
     with open(RACINE / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as f:
@@ -192,6 +203,7 @@ def main():
              "part_couverte_par_les_photos": round(float(valide.mean()), 3),
              "seuils": {"ndvi_sol_nu": NDVI_NU, "ndvi_vert": NDVI_VERT, "ndvi_vigoureux": list(NDVI_VIGOUREUX),
                         "clarte_calcaire": list(CLARTE_CALCAIRE)},
+             "pente_roche_deg": list(PENTE_ROCHE), "part_de_pentes_raides": round(part_raide, 3),
              "accotement_m": ACCOTEMENT_M, "graine": GRAINE, "duree_s": round(time.time() - t0)}
     (OUT / "sols_jeu.json").write_text(json.dumps(bilan, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(bilan["parts_moyennes"], ensure_ascii=False), f"; {bilan['duree_s']} s")

@@ -678,23 +678,6 @@
    "essai": "maillages du jeu posés tels quels"
   },
   {
-   "objet": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
-   "type": "StaticMesh",
-   "essai": "mobilier de bord de route",
-   "bornes_cm": {
-    "min": [
-     -20,
-     -110,
-     -40
-    ],
-    "max": [
-     30,
-     110,
-     900
-    ]
-   }
-  },
-  {
    "objet": "/Game/Props/RallyProps/Signs/SM_RaceRadioWarningA",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",
@@ -780,36 +763,36 @@
    }
   },
   {
-   "objet": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+   "objet": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",
    "bornes_cm": {
     "min": [
-     -80,
-     -30,
-     0
+     -20,
+     -110,
+     -40
     ],
     "max": [
-     80,
      30,
-     80
+     110,
+     900
     ]
    }
   },
   {
-   "objet": "/Game/Foliage/Trees/Hedge/SM_Hedge02",
+   "objet": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",
    "bornes_cm": {
     "min": [
-     -40,
-     -350,
-     -10
+     -10,
+     -20,
+     0
     ],
     "max": [
-     40,
-     330,
-     210
+     10,
+     20,
+     630
     ]
    }
   },

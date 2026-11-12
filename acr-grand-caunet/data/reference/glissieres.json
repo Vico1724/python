@@ -41,6 +41,62 @@
  },
  "troncons": [
   {
+   "pk_debut_m": 1727,
+   "pk_fin_m": 1833,
+   "cote": "droite",
+   "detail": "au-dessus du vallon ; 40 m de plus que l'ancien relevé",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 1963,
+   "pk_fin_m": 2129,
+   "cote": "droite",
+   "detail": "commence après l'aire de gravier, se termine contre le parapet",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 2261,
+   "pk_fin_m": 2388,
+   "cote": "droite",
+   "detail": "se prolonge de 50 m dans la ligne droite",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 3232,
+   "pk_fin_m": 3366,
+   "cote": "droite",
+   "detail": "collée au bout du parapet du pont 3229",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 3746,
+   "pk_fin_m": 3978,
+   "cote": "droite",
+   "detail": "long gauche ; se termine où commence le mur de moellons",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 4090,
+   "pk_fin_m": 4221,
+   "cote": "droite",
+   "detail": "dès la sortie de l'épingle",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  }
+ ],
+ "troncons_avant_le_releve_de_reconnaissances": [
+  {
    "pk_debut_m": 1720,
    "pk_fin_m": 1793,
    "cote": "droite",

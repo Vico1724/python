@@ -47,16 +47,37 @@
    "temps_video_s": "88-89",
    "gauche": {
     "type": "pierre_des_blancs",
-    "hauteur_m": 0.75,
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 1658,
+    "pk_fin_m": 1674
    },
    "droite": {
-    "type": "pierre_des_blancs",
-    "hauteur_m": 0.75,
+    "type": "pierre",
+    "hauteur_m": 0.55,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "note": "parapet courbe qui suit la sortie de virage"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 1656,
+    "pk_fin_m": 1671,
+    "note": "mur de moellons courbe, chaperon gris, sans dés blancs"
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.75,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo"
+    },
+    "droite": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.75,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "note": "parapet courbe qui suit la sortie de virage"
+    }
    }
   },
   {
@@ -84,16 +105,36 @@
    "temps_video_s": "134-136",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 0.6,
-    "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo"
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 2587,
+    "pk_fin_m": 2592
    },
    "droite": {
     "type": "pierre",
-    "hauteur_m": 0.6,
+    "hauteur_m": 0.65,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "note": "parapets courts et bas, chaperon clair"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 2590,
+    "pk_fin_m": 2600
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "pierre",
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo"
+    },
+    "droite": {
+     "type": "pierre",
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "note": "parapets courts et bas, chaperon clair"
+    }
    }
   },
   {
@@ -103,16 +144,36 @@
    "temps_video_s": "141-143",
    "gauche": {
     "type": "pierre_des_blancs",
-    "hauteur_m": 0.7,
+    "hauteur_m": 0.65,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 2766,
+    "pk_fin_m": 2780
    },
    "droite": {
-    "type": "pierre_des_blancs",
-    "hauteur_m": 0.7,
+    "type": "pierre",
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "note": "précédé à gauche de blocs de béton bas (non modélisés)"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 2768,
+    "pk_fin_m": 2778
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo"
+    },
+    "droite": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "note": "précédé à gauche de blocs de béton bas (non modélisés)"
+    }
    }
   },
   {
@@ -122,22 +183,42 @@
    "temps_video_s": "164-166",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 0.7,
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "prolongement_avant_m": 18.0,
-    "prolongement_apres_m": 5.0,
-    "revision_longueur": "parapets longs d'environ 37 m d'après la vidéo (PK 3194 à 3231), plus longs que le tablier détecté ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 3197,
+    "pk_fin_m": 3222
    },
    "droite": {
     "type": "pierre",
     "hauteur_m": 0.7,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "note": "chaperon gris, pas de dés blancs visibles",
-    "prolongement_avant_m": 18.0,
-    "prolongement_apres_m": 5.0,
-    "revision_longueur": "parapets longs d'environ 37 m d'après la vidéo (PK 3194 à 3231), plus longs que le tablier détecté ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 3211,
+    "pk_fin_m": 3230
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "pierre",
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "prolongement_avant_m": 18.0,
+     "prolongement_apres_m": 5.0,
+     "revision_longueur": "parapets longs d'environ 37 m d'après la vidéo (PK 3194 à 3231), plus longs que le tablier détecté ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
+    },
+    "droite": {
+     "type": "pierre",
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "note": "chaperon gris, pas de dés blancs visibles",
+     "prolongement_avant_m": 18.0,
+     "prolongement_apres_m": 5.0,
+     "revision_longueur": "parapets longs d'environ 37 m d'après la vidéo (PK 3194 à 3231), plus longs que le tablier détecté ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
+    }
    }
   },
   {
@@ -147,15 +228,31 @@
    "temps_video_s": "183-185",
    "gauche": {
     "type": "beton",
-    "hauteur_m": 0.5,
-    "epaisseur_m": 0.3,
-    "statut": "vu sur la vidéo",
-    "note": "muret de béton bas tagué, à gauche à l'entrée du carrefour"
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.5,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 3629,
+    "pk_fin_m": 3632,
+    "note": "bloc de béton blanc tagué en forme de rampe (tête d'aqueduc), et non un muret long"
    },
    "droite": {
     "type": "aucun",
-    "statut": "vu sur la vidéo et le relevé laser",
-    "note": "le tablier détecté (ponceau du ruisseau sous la patte d'oie) a pour bord droit, au-delà du PK ≈ 3643, la ligne de fermeture de la branche de droite : pas de parapet sur cette ligne. Le parapet de pierre bas qui longe le bord est de la D3D puis la branche de droite (Street View 3 et 4) est modélisé par scripts/12_carrefours_annexes.py (data/reference/carrefours_annexes.json), jusqu'au bloc blanc au départ de la fermeture"
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "beton",
+     "hauteur_m": 0.5,
+     "epaisseur_m": 0.3,
+     "statut": "vu sur la vidéo",
+     "note": "muret de béton bas tagué, à gauche à l'entrée du carrefour"
+    },
+    "droite": {
+     "type": "aucun",
+     "statut": "vu sur la vidéo et le relevé laser",
+     "note": "le tablier détecté (ponceau du ruisseau sous la patte d'oie) a pour bord droit, au-delà du PK ≈ 3643, la ligne de fermeture de la branche de droite : pas de parapet sur cette ligne. Le parapet de pierre bas qui longe le bord est de la D3D puis la branche de droite (Street View 3 et 4) est modélisé par scripts/12_carrefours_annexes.py (data/reference/carrefours_annexes.json), jusqu'au bloc blanc au départ de la fermeture"
+    }
    }
   },
   {
@@ -164,19 +261,42 @@
    "bdtopo_pk": "4055-4071",
    "temps_video_s": "202-205",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 0.6,
-    "epaisseur_m": 0.4,
-    "statut": "vu sur la vidéo",
-    "note": "maçonnerie à chaperon de béton, plus basse que le côté droit",
-    "sans_biseau_debut": true
+    "type": "beton",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 4056,
+    "pk_fin_m": 4072,
+    "note": "béton peint en blanc, et non de la pierre"
    },
    "droite": {
     "type": "pierre",
     "hauteur_m": 0.75,
-    "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "sans_biseau_debut": true
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 4053,
+    "pk_fin_m": 4066,
+    "sans_biseau_debut": true,
+    "note": "fin du mur de moellons continu depuis le PK 3972"
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "pierre",
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.4,
+     "statut": "vu sur la vidéo",
+     "note": "maçonnerie à chaperon de béton, plus basse que le côté droit",
+     "sans_biseau_debut": true
+    },
+    "droite": {
+     "type": "pierre",
+     "hauteur_m": 0.75,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "sans_biseau_debut": true
+    }
    }
   },
   {
@@ -186,19 +306,39 @@
    "temps_video_s": "219-221",
    "gauche": {
     "type": "pierre_des_blancs",
-    "hauteur_m": 0.65,
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "hauteur_avant_le_12_11_2026_m": 0.75,
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 4341,
+    "pk_fin_m": 4368
    },
    "droite": {
     "type": "pierre_des_blancs",
     "hauteur_m": 0.65,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "hauteur_avant_le_12_11_2026_m": 0.75,
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 4333,
+    "pk_fin_m": 4368
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.65,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "hauteur_avant_le_12_11_2026_m": 0.75,
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    },
+    "droite": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.65,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "hauteur_avant_le_12_11_2026_m": 0.75,
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    }
    }
   },
   {
@@ -208,19 +348,39 @@
    "temps_video_s": "224-226",
    "gauche": {
     "type": "pierre_des_blancs",
-    "hauteur_m": 0.65,
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "hauteur_avant_le_12_11_2026_m": 0.75,
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 4457,
+    "pk_fin_m": 4475
    },
    "droite": {
     "type": "pierre_des_blancs",
-    "hauteur_m": 0.65,
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo",
-    "hauteur_avant_le_12_11_2026_m": 0.75,
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 4449,
+    "pk_fin_m": 4470
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.65,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "hauteur_avant_le_12_11_2026_m": 0.75,
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    },
+    "droite": {
+     "type": "pierre_des_blancs",
+     "hauteur_m": 0.65,
+     "epaisseur_m": 0.45,
+     "statut": "vu sur la vidéo",
+     "hauteur_avant_le_12_11_2026_m": 0.75,
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    }
    }
   },
   {
@@ -230,23 +390,45 @@
    "temps_video_s": "277-281",
    "gauche": {
     "type": "beton",
-    "hauteur_m": 0.7,
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.3,
-    "statut": "vu sur la vidéo",
-    "prolongement_avant_m": 2,
-    "prolongement_apres_m": 8,
-    "note": "béton lisse ; se prolonge un peu au-delà du tablier",
-    "hauteur_avant_le_12_11_2026_m": 0.8,
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 5530,
+    "pk_fin_m": 5548,
+    "note": "premier de deux tronçons ; le second est dans parapets_hors_tablier"
    },
    "droite": {
     "type": "pierre",
-    "hauteur_m": 0.55,
+    "hauteur_m": 0.7,
     "epaisseur_m": 0.4,
-    "statut": "vu sur la vidéo",
-    "hauteur_avant_le_12_11_2026_m": 0.8,
-    "type_avant_le_12_11_2026": "beton",
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm ; la capture à 4 min 37 montre à droite un mur de moellons bas, et non du béton"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 5527,
+    "pk_fin_m": 5567,
+    "note": "maçonnerie de moellons à chaperon de béton"
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "beton",
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.3,
+     "statut": "vu sur la vidéo",
+     "prolongement_avant_m": 2,
+     "prolongement_apres_m": 8,
+     "note": "béton lisse ; se prolonge un peu au-delà du tablier",
+     "hauteur_avant_le_12_11_2026_m": 0.8,
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    },
+    "droite": {
+     "type": "pierre",
+     "hauteur_m": 0.55,
+     "epaisseur_m": 0.4,
+     "statut": "vu sur la vidéo",
+     "hauteur_avant_le_12_11_2026_m": 0.8,
+     "type_avant_le_12_11_2026": "beton",
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm ; la capture à 4 min 37 montre à droite un mur de moellons bas, et non du béton"
+    }
    }
   },
   {
@@ -256,19 +438,39 @@
    "temps_video_s": "322-324",
    "gauche": {
     "type": "beton",
-    "hauteur_m": 0.6,
+    "hauteur_m": 0.55,
     "epaisseur_m": 0.3,
-    "statut": "vu sur la vidéo",
-    "hauteur_avant_le_12_11_2026_m": 0.7,
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 6478,
+    "pk_fin_m": 6492
    },
    "droite": {
     "type": "beton",
-    "hauteur_m": 0.6,
-    "epaisseur_m": 0.3,
-    "statut": "vu sur la vidéo",
-    "hauteur_avant_le_12_11_2026_m": 0.7,
-    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "pk_debut_m": 6483,
+    "pk_fin_m": 6493
+   },
+   "avant_le_releve_de_reconnaissances": {
+    "gauche": {
+     "type": "beton",
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.3,
+     "statut": "vu sur la vidéo",
+     "hauteur_avant_le_12_11_2026_m": 0.7,
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    },
+    "droite": {
+     "type": "beton",
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.3,
+     "statut": "vu sur la vidéo",
+     "hauteur_avant_le_12_11_2026_m": 0.7,
+     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+    }
    }
   }
  ],
@@ -280,6 +482,757 @@
  ],
  "note_releve_video": "Mise à jour du 11/11/2026 d'après le relevé vidéo systématique (data/reference/releve_video.json, docs/08_releve_video.md), où chaque objet est localisé à ±10 m environ (±20 m sur le premier kilomètre et demi). Les parapets qui ne sont pas portés par un tablier détecté, ou qui sont décalés de leur pont, sont décrits dans « parapets_hors_tablier » (bornes en PK de l'axe précis, PK 0 = ligne de départ).",
  "parapets_hors_tablier": [
+  {
+   "pk_debut_m": 855,
+   "pk_fin_m": 878,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.3,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.5,
+    "biseau_m": 1.5,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "front rocheux lité presque vertical, au ras de la chaussée"
+  },
+  {
+   "pk_debut_m": 1478.5,
+   "pk_fin_m": 1481,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.35,
+    "epaisseur_m": 0.5,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 1.2,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "tête de ponceau"
+  },
+  {
+   "pk_debut_m": 1525,
+   "pk_fin_m": 1576,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "suivi d'une brèche de 6 m fermée par des séparateurs plastique"
+  },
+  {
+   "pk_debut_m": 1582,
+   "pk_fin_m": 1594,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "sans_biseau_debut": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 1712,
+   "pk_fin_m": 1730,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.3
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de moellons à gros chaperon ; placé 20 m trop tôt dans l'ancien relevé"
+  },
+  {
+   "pk_debut_m": 1728,
+   "pk_fin_m": 1760,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.2,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.7,
+    "biseau_m": 1.5,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 1959.5,
+   "pk_fin_m": 1962,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.45,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.4,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "tête de ponceau, juste avant la glissière"
+  },
+  {
+   "pk_debut_m": 1962,
+   "pk_fin_m": 1985,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.1,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.7,
+    "biseau_m": 1.5,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "blocs calcaires dressés au ras de la chaussée"
+  },
+  {
+   "pk_debut_m": 2000,
+   "pk_fin_m": 2012,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.0,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.7,
+    "biseau_m": 1.5,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 2024,
+   "pk_fin_m": 2035,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.0,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.7,
+    "biseau_m": 1.5,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 2100,
+   "pk_fin_m": 2140,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 2.2,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.4,
+    "biseau_m": 2.0,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "paroi taillée verticale, sans accotement : la chaussée est serrée entre le rocher et la glissière"
+  },
+  {
+   "pk_debut_m": 2130,
+   "pk_fin_m": 2186,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 2390,
+   "pk_fin_m": 2392.5,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.6,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "muret maçonné court au bout de la glissière (tête d'aqueduc)"
+  },
+  {
+   "pk_debut_m": 2700,
+   "pk_fin_m": 2703,
+   "route": "D3D",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.3
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "ponceau : bloc de béton bas"
+  },
+  {
+   "pk_debut_m": 2703,
+   "pk_fin_m": 2705.5,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.6,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "ponceau : muret court maçonné"
+  },
+  {
+   "pk_debut_m": 2920,
+   "pk_fin_m": 2935,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.7,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.5,
+    "biseau_m": 1.5,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "nez rocheux au ras de la chaussée, intérieur du gauche"
+  },
+  {
+   "pk_debut_m": 3202,
+   "pk_fin_m": 3204,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 1.5,
+    "epaisseur_m": 0.5,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 2.7,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de béton d'un ouvrage hydraulique, en retrait"
+  },
+  {
+   "pk_debut_m": 3443,
+   "pk_fin_m": 3450,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 3447,
+   "pk_fin_m": 3457,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 3455,
+   "pk_fin_m": 3495,
+   "route": "D3D",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 2.5,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.5,
+    "biseau_m": 2.0,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "talus de roche fracturée de 3 à 4 m au ras de la chaussée"
+  },
+  {
+   "pk_debut_m": 3722,
+   "pk_fin_m": 3755,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.7,
+    "epaisseur_m": 0.6,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.8,
+    "biseau_m": 1.5
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de soutènement en pierres sèches"
+  },
+  {
+   "pk_debut_m": 3835,
+   "pk_fin_m": 3880,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.5,
+    "epaisseur_m": 0.8,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.7,
+    "biseau_m": 1.5,
+    "nature": "paroi rocheuse rendue par un mur de pierre brute de même hauteur, au même recul"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 3972,
+   "pk_fin_m": 4053,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.3,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de moellons continu sur 95 m, à l'extérieur du long gauche puis de l'épingle ; se poursuit par le parapet droit de l'ouvrage 4074"
+  },
+  {
+   "pk_debut_m": 4066,
+   "pk_fin_m": 4100,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 2.5,
+    "epaisseur_m": 0.6,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 2.5,
+    "biseau_m": 2.0
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier"
+  },
+  {
+   "pk_debut_m": 4556,
+   "pk_fin_m": 4568,
+   "route": "D1",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 4565,
+   "pk_fin_m": 4577,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 4668,
+   "pk_fin_m": 4680,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 4670,
+   "pk_fin_m": 4682,
+   "route": "D1",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 5323,
+   "pk_fin_m": 5358,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.45,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 1.5
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "muret de pierre sèche d'une propriété ; placé 60 m trop tôt dans l'ancien relevé"
+  },
+  {
+   "pk_debut_m": 5375,
+   "pk_fin_m": 5406,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 1.5
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 5425,
+   "pk_fin_m": 5440,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 1.5
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 5445,
+   "pk_fin_m": 5515,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.8,
+    "epaisseur_m": 0.5,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.8
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de soutènement en pierre sèche dans la descente vers le pont"
+  },
+  {
+   "pk_debut_m": 5470,
+   "pk_fin_m": 5492,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 1.7,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 4.5
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur enduit d'une propriété, en retrait"
+  },
+  {
+   "pk_debut_m": 5554,
+   "pk_fin_m": 5582,
+   "route": "D1",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "pont 5554 : second tronçon du parapet gauche, après un vide de 5 m"
+  },
+  {
+   "pk_debut_m": 5598,
+   "pk_fin_m": 5642,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 1.5
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "parapet de béton en trois éléments à l'extérieur du gauche après le pont"
+  },
+  {
+   "pk_debut_m": 6096,
+   "pk_fin_m": 6112,
+   "route": "D1",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.58,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.5
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 6100,
+   "pk_fin_m": 6112,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.3
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  },
+  {
+   "pk_debut_m": 6661,
+   "pk_fin_m": 6664.5,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.6,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "ponceau final : simple bloc de béton"
+  },
+  {
+   "pk_debut_m": 6672,
+   "pk_fin_m": 6680,
+   "route": "D1",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.4,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 1.2,
+    "confiance": "faible : vu de loin seulement"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+  }
+ ],
+ "parapets_hors_tablier_avant_le_releve_de_reconnaissances": [
   {
    "pk_debut_m": 1535,
    "pk_fin_m": 1590,

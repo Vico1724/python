@@ -1,0 +1,2055 @@
+{
+ "pk_couverts": [
+  4580,
+  6690
+ ],
+ "note": "Relevé visuel des planches planche_4580.jpg à planche_6620.jpg (images agrandies). Les PK des objets sont déduits du PK de la caméra et de la distance estimée devant elle (taille apparente des poteaux, suivi d'une image à la suivante) : ±10 m en général. La dernière image (PK 6680, 8:18.1) est un écran bleu de fin de vidéo : le relevé s'arrête à l'image PK 6660, qui montre la route jusqu'à environ PK 6720. Les rubalises, panneaux de rallye et spectateurs de l'ancien relevé n'existent pas sur cette vidéo de reconnaissances (route ouverte). Les véhicules garés, cycliste, moto et piéton vus ne sont pas des objets permanents.",
+ "calage": "Par rapport aux ouvrages du modèle : ponceau 4670-4680 vu en 4670-4682 (écart nul) ; pont 5554 vu en 5527-5582 (début 15 à 20 m plus tard que le tablier 5512-5571, fin au même endroit) ; ponceau 6102-6118 vu en 6096-6112 (-5 m) ; pont 6492 vu en 6478-6493 (+1 m) ; ponceau 6681-6689 vu vers 6660-6680 (-10 à -20 m). Pas de décalage d'ensemble. Confirmé aussi : aucun parapet à l'ouvrage BD TOPO 6222-6236 ; ponceaux 4670-4680 et 6102-6118 et pont 6492 du bon type (béton). En revanche les objets de l'ancien relevé entre PK 5020 et 5520 sont placés 20 à 60 m trop tôt. L'espacement réel entre images consécutives n'est pas toujours de 20 m (ralentissements vers 6020-6040, 6340-6360, 6620-6660).",
+ "observations": [
+  {
+   "pk_debut_m": 4580,
+   "pk_fin_m": 4660,
+   "cote": "gauche",
+   "type": "talus_rocheux",
+   "detail": "talus de terre et d'éboulis calcaire, 1 à 1,5 m, au ras de la chaussée dans le virage à gauche",
+   "distance_au_bord_m": 0.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4580,
+    4600,
+    4620,
+    4640
+   ]
+  },
+  {
+   "pk_debut_m": 4597,
+   "pk_fin_m": 4597,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton, câbles",
+   "distance_au_bord_m": 3.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    4580
+   ]
+  },
+  {
+   "pk_debut_m": 4640,
+   "pk_fin_m": 4640,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton avec coffret sombre à mi-hauteur",
+   "distance_au_bord_m": 3.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4580,
+    4600,
+    4620
+   ]
+  },
+  {
+   "pk_debut_m": 4667,
+   "pk_fin_m": 4667,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton, juste avant le parapet droit du ponceau",
+   "distance_au_bord_m": 2.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    4600,
+    4620,
+    4640
+   ]
+  },
+  {
+   "pk_debut_m": 4668,
+   "pk_fin_m": 4680,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "ponceau : béton lisse, environ 0,5 m, extrémités en biseau ; ligne de rive continue au droit du ponceau",
+   "distance_au_bord_m": 0.4,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4620,
+    4640,
+    4660
+   ]
+  },
+  {
+   "pk_debut_m": 4670,
+   "pk_fin_m": 4682,
+   "cote": "gauche",
+   "type": "parapet",
+   "detail": "ponceau : béton lisse en partie peint en blanc, environ 0,5 m de haut, 10 m de long, extrémités en biseau (blocs en rampe)",
+   "distance_au_bord_m": 0.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4600,
+    4620,
+    4640,
+    4660
+   ]
+  },
+  {
+   "pk_debut_m": 4697,
+   "pk_fin_m": 4697,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton avec petit boîtier, après le ponceau",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4660,
+    4680
+   ]
+  },
+  {
+   "pk_debut_m": 4712,
+   "pk_fin_m": 4712,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "gros pin penché au bord de la route",
+   "distance_au_bord_m": 1.8,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4700
+   ]
+  },
+  {
+   "pk_debut_m": 4715,
+   "pk_fin_m": 4772,
+   "cote": "droite",
+   "type": "aire",
+   "detail": "aire de stationnement en stabilisé beige, 6 à 8 m de large ; une voiture blanche y était garée vers PK 4755",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4700,
+    4720,
+    4740,
+    4760
+   ]
+  },
+  {
+   "pk_debut_m": 4770,
+   "pk_fin_m": 4770,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton, en retrait derrière l'aire de stationnement",
+   "distance_au_bord_m": 6.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4720,
+    4760
+   ]
+  },
+  {
+   "pk_debut_m": 4812,
+   "pk_fin_m": 4812,
+   "cote": "gauche",
+   "type": "rocher",
+   "detail": "bloc calcaire blanc d'environ 1 m, sur la pente, avec des blocs plus petits",
+   "distance_au_bord_m": 4.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4800
+   ]
+  },
+  {
+   "pk_debut_m": 4813,
+   "pk_fin_m": 4813,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton avec boîtier à mi-hauteur",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4760,
+    4780,
+    4800
+   ]
+  },
+  {
+   "pk_debut_m": 4822,
+   "pk_fin_m": 4850,
+   "cote": "gauche",
+   "type": "talus_rocheux",
+   "detail": "talus de terre et de pierres, 1,5 m, pin au sommet à 2 m du bord",
+   "distance_au_bord_m": 0.8,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4820,
+    4840
+   ]
+  },
+  {
+   "pk_debut_m": 4827,
+   "pk_fin_m": 4827,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "gros pin au tronc incliné vers la route",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4800,
+    4820
+   ]
+  },
+  {
+   "pk_debut_m": 4868,
+   "pk_fin_m": 4868,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4820,
+    4840,
+    4860
+   ]
+  },
+  {
+   "pk_debut_m": 4888,
+   "pk_fin_m": 4908,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "plusieurs pins à 1,5-2 m du bord à l'intérieur du virage à droite (dont un gros vers PK 4905)",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4880,
+    4900
+   ]
+  },
+  {
+   "pk_debut_m": 4892,
+   "pk_fin_m": 4892,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton, au milieu de troncs de pins au ras de la route",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4820,
+    4880
+   ]
+  },
+  {
+   "pk_debut_m": 4908,
+   "pk_fin_m": 4908,
+   "cote": "gauche",
+   "type": "autre",
+   "detail": "pin sur le talus, racines apparentes",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4900
+   ]
+  },
+  {
+   "pk_debut_m": 4930,
+   "pk_fin_m": 4960,
+   "cote": "gauche",
+   "type": "talus_rocheux",
+   "detail": "talus de terre rouge et de roche, 1,5 m",
+   "distance_au_bord_m": 1.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4920,
+    4940,
+    4960
+   ]
+  },
+  {
+   "pk_debut_m": 4935,
+   "pk_fin_m": 4935,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton mince, à l'intérieur du virage à droite",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4900,
+    4920
+   ]
+  },
+  {
+   "pk_debut_m": 4945,
+   "pk_fin_m": 4968,
+   "cote": "droite",
+   "type": "piste",
+   "detail": "débouché d'un chemin revêtu fissuré, avec ligne discontinue épaisse en travers de l'embouchure",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4940,
+    4960
+   ]
+  },
+  {
+   "pk_debut_m": 4975,
+   "pk_fin_m": 4975,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau mince gris (bois ou métal), juste après le débouché de chemin",
+   "distance_au_bord_m": 3.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    4940,
+    4960
+   ]
+  },
+  {
+   "pk_debut_m": 4975,
+   "pk_fin_m": 4975,
+   "cote": "droite",
+   "type": "borne",
+   "detail": "petite balise blanche à bague rouge",
+   "distance_au_bord_m": 1.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    4960
+   ]
+  },
+  {
+   "pk_debut_m": 5000,
+   "pk_fin_m": 5012,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "gros chênes en bord d'accotement",
+   "distance_au_bord_m": 3.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    4960,
+    5000
+   ]
+  },
+  {
+   "pk_debut_m": 5030,
+   "pk_fin_m": 5030,
+   "cote": "gauche",
+   "type": "borne",
+   "detail": "borne jaune d'environ 0,6 m (poteau d'incendie ou repère de réseau), à l'intérieur du virage à gauche",
+   "distance_au_bord_m": 1.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    4960,
+    4980,
+    5000,
+    5020
+   ]
+  },
+  {
+   "pk_debut_m": 5035,
+   "pk_fin_m": 5058,
+   "cote": "droite",
+   "type": "aire",
+   "detail": "aire de terre couverte de feuilles à l'extérieur du virage à gauche, départ de la piste DFCI barrée ; panneau d'information sur piquet",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5000,
+    5020,
+    5040
+   ]
+  },
+  {
+   "pk_debut_m": 5045,
+   "pk_fin_m": 5055,
+   "cote": "droite",
+   "type": "barriere",
+   "detail": "barrière métallique rouge de piste DFCI avec panneau rond rouge, souches en bord d'aire ; deux voitures garées devant le jour de la reconnaissance",
+   "distance_au_bord_m": 6.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5020,
+    5040
+   ]
+  },
+  {
+   "pk_debut_m": 5066,
+   "pk_fin_m": 5066,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau mince gris, à côté d'un gros tronc mort écorcé, à l'extérieur du virage à gauche, après la piste DFCI",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5020,
+    5040,
+    5060
+   ]
+  },
+  {
+   "pk_debut_m": 5067,
+   "pk_fin_m": 5067,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "gros tronc mort écorcé, blanc, à côté du poteau",
+   "distance_au_bord_m": 3.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5040,
+    5060
+   ]
+  },
+  {
+   "pk_debut_m": 5070,
+   "pk_fin_m": 5070,
+   "cote": "gauche",
+   "type": "rocher",
+   "detail": "pierres blanches d'environ 0,4 m sur le talus d'herbe",
+   "distance_au_bord_m": 1.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5060
+   ]
+  },
+  {
+   "pk_debut_m": 5075,
+   "pk_fin_m": 5320,
+   "cote": "droite",
+   "type": "haie",
+   "detail": "végétation dense continue (arbres et arbustes mêlés, cyprès vers PK 5270), 3 à 5 m de haut, non taillée ; ce n'est pas une haie taillée de 2 m",
+   "distance_au_bord_m": 1.8,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5060,
+    5080,
+    5100,
+    5120,
+    5140,
+    5160,
+    5180,
+    5200,
+    5220,
+    5240,
+    5260,
+    5280,
+    5300
+   ]
+  },
+  {
+   "pk_debut_m": 5080,
+   "pk_fin_m": 5330,
+   "cote": "gauche",
+   "type": "haie",
+   "detail": "végétation dense continue, environ 3 m de haut, derrière un accotement d'herbe",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5080,
+    5100,
+    5120,
+    5140,
+    5160,
+    5180,
+    5200,
+    5220,
+    5240,
+    5260,
+    5280,
+    5300,
+    5320
+   ]
+  },
+  {
+   "pk_debut_m": 5130,
+   "pk_fin_m": 5130,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau noyé dans la végétation dense ; position déduite des câbles vus en haut à droite",
+   "distance_au_bord_m": 2.0,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    5100,
+    5120
+   ]
+  },
+  {
+   "pk_debut_m": 5190,
+   "pk_fin_m": 5190,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton dépassant de la végétation dense",
+   "distance_au_bord_m": 2.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5140,
+    5160,
+    5180
+   ]
+  },
+  {
+   "pk_debut_m": 5270,
+   "pk_fin_m": 5270,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton à traverse, sur l'accotement d'herbe devant des cyprès sombres",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5220,
+    5240,
+    5260
+   ]
+  },
+  {
+   "pk_debut_m": 5306,
+   "pk_fin_m": 5306,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau gris en partie masqué par la végétation (vu très près, bord droit de l'image)",
+   "distance_au_bord_m": 3.0,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    5300
+   ]
+  },
+  {
+   "pk_debut_m": 5323,
+   "pk_fin_m": 5358,
+   "cote": "droite",
+   "type": "mur",
+   "detail": "muret de pierre sèche d'une propriété, 0,4 à 0,5 m, moellons bruts ; continu sur environ 35 m",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5320,
+    5340
+   ]
+  },
+  {
+   "pk_debut_m": 5328,
+   "pk_fin_m": 5342,
+   "cote": "droite",
+   "type": "cloture",
+   "detail": "clôture en bois à lattes, environ 1,2 m, posée derrière le muret de pierre sèche (portail en bois probable)",
+   "distance_au_bord_m": 2.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5320
+   ]
+  },
+  {
+   "pk_debut_m": 5345,
+   "pk_fin_m": 5345,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau métallique ou béton gris clair, contre le muret de pierre sèche de la propriété",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5300,
+    5320,
+    5340
+   ]
+  },
+  {
+   "pk_debut_m": 5347,
+   "pk_fin_m": 5347,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "triangle de danger « chaussée rétrécie » (A3)",
+   "distance_au_bord_m": 1.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5300,
+    5320,
+    5340
+   ]
+  },
+  {
+   "pk_debut_m": 5360,
+   "pk_fin_m": 5360,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "très grand pin parasol",
+   "distance_au_bord_m": 4.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5240,
+    5300,
+    5320,
+    5340
+   ]
+  },
+  {
+   "pk_debut_m": 5375,
+   "pk_fin_m": 5406,
+   "cote": "gauche",
+   "type": "mur",
+   "detail": "muret de pierre sèche bien appareillé, 0,5 m puis 0,7 m, terminé par une dalle de couronnement ; entrée de propriété juste après",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5360,
+    5380,
+    5400
+   ]
+  },
+  {
+   "pk_debut_m": 5387,
+   "pk_fin_m": 5387,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5380
+   ]
+  },
+  {
+   "pk_debut_m": 5406,
+   "pk_fin_m": 5412,
+   "cote": "gauche",
+   "type": "portail",
+   "detail": "entrée de propriété après la fin du muret (objet blanc horizontal, boîte aux lettres ou plaque)",
+   "distance_au_bord_m": 2.0,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    5400
+   ]
+  },
+  {
+   "pk_debut_m": 5412,
+   "pk_fin_m": 5412,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "triangle de danger « virage à droite » (A1a) avec panonceau rectangulaire rouge dessous (non lu) ; petit panneau carré blanc 12 m plus loin",
+   "distance_au_bord_m": 1.2,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5380,
+    5400
+   ]
+  },
+  {
+   "pk_debut_m": 5425,
+   "pk_fin_m": 5440,
+   "cote": "gauche",
+   "type": "mur",
+   "detail": "muret de pierre bas (0,5 m) sous la végétation",
+   "distance_au_bord_m": 1.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5420
+   ]
+  },
+  {
+   "pk_debut_m": 5430,
+   "pk_fin_m": 5430,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton dans la haie",
+   "distance_au_bord_m": 3.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5420
+   ]
+  },
+  {
+   "pk_debut_m": 5445,
+   "pk_fin_m": 5515,
+   "cote": "gauche",
+   "type": "mur_de_soutenement",
+   "detail": "mur de soutènement en pierre sèche, 0,6 à 1 m, surmonté d'herbe ou d'une haie ; derrière lui (3 à 4 m), vers PK 5500-5515, une clôture ajourée beige à poteaux ; le mur s'arrête 15 m avant le pont",
+   "distance_au_bord_m": 0.8,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5440,
+    5460,
+    5480,
+    5500
+   ]
+  },
+  {
+   "pk_debut_m": 5470,
+   "pk_fin_m": 5492,
+   "cote": "droite",
+   "type": "mur",
+   "detail": "mur maçonné enduit beige d'une propriété, 1,6 à 1,8 m, avec plaque verte et jardinière blanche ; en retrait derrière une entrée gravillonnée",
+   "distance_au_bord_m": 4.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5440,
+    5460
+   ]
+  },
+  {
+   "pk_debut_m": 5490,
+   "pk_fin_m": 5490,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau vu au-dessus des arbres, après le mur enduit de la propriété",
+   "distance_au_bord_m": 3.0,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    5460
+   ]
+  },
+  {
+   "pk_debut_m": 5508,
+   "pk_fin_m": 5527,
+   "cote": "droite",
+   "type": "mur",
+   "detail": "mur ou pilier de maçonnerie d'environ 1 m derrière le poteau, qui rejoint le parapet du pont",
+   "distance_au_bord_m": 3.0,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    5500
+   ]
+  },
+  {
+   "pk_debut_m": 5523,
+   "pk_fin_m": 5523,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton au ras de la chaussée, à l'intérieur du virage à droite, collé au début du parapet droit du pont ; obstacle dur à la corde",
+   "distance_au_bord_m": 0.7,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5500,
+    5520
+   ]
+  },
+  {
+   "pk_debut_m": 5527,
+   "pk_fin_m": 5567,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "pont : maçonnerie de moellons jointoyés à chaperon de béton plat, environ 0,7 m de haut et 0,4 m d'épaisseur, courbe à l'intérieur du virage à droite ; départ par un pilier maçonné",
+   "distance_au_bord_m": 0.4,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5500,
+    5520,
+    5540,
+    5560
+   ]
+  },
+  {
+   "pk_debut_m": 5528,
+   "pk_fin_m": 5528,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "balise de virage bleue à deux chevrons blancs pointant à droite, sur poteau de 1,5 m, juste avant le parapet gauche",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5480,
+    5500,
+    5520
+   ]
+  },
+  {
+   "pk_debut_m": 5530,
+   "pk_fin_m": 5548,
+   "cote": "gauche",
+   "type": "parapet",
+   "detail": "pont, premier tronçon : béton lisse gris clair en éléments, environ 0,6 m, extrémités en biseau",
+   "distance_au_bord_m": 0.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5500,
+    5520,
+    5540
+   ]
+  },
+  {
+   "pk_debut_m": 5554,
+   "pk_fin_m": 5582,
+   "cote": "gauche",
+   "type": "parapet",
+   "detail": "pont, second tronçon, séparé du premier par un vide d'environ 5 m en herbe : béton lisse, environ 0,6 m, extrémités en biseau, tag noir près de la fin",
+   "distance_au_bord_m": 0.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5540,
+    5560
+   ]
+  },
+  {
+   "pk_debut_m": 5565,
+   "pk_fin_m": 5580,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "pins plantés à 1 m du bord, à la sortie du virage du pont",
+   "distance_au_bord_m": 1.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5540,
+    5560
+   ]
+  },
+  {
+   "pk_debut_m": 5570,
+   "pk_fin_m": 5570,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton haut, juste après la fin du parapet droit du pont, à côté de pins plantés à 1 m du bord",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5540,
+    5560
+   ]
+  },
+  {
+   "pk_debut_m": 5575,
+   "pk_fin_m": 5575,
+   "cote": "droite",
+   "type": "borne",
+   "detail": "balise blanche à tête rouge",
+   "distance_au_bord_m": 2.0,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    5540
+   ]
+  },
+  {
+   "pk_debut_m": 5583,
+   "pk_fin_m": 5583,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "petit panneau double (deux plaques carrées sombres) juste après la fin du parapet",
+   "distance_au_bord_m": 1.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5540,
+    5560
+   ]
+  },
+  {
+   "pk_debut_m": 5586,
+   "pk_fin_m": 5586,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "très gros pin",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5580
+   ]
+  },
+  {
+   "pk_debut_m": 5586,
+   "pk_fin_m": 5586,
+   "cote": "gauche",
+   "type": "autre",
+   "detail": "pin juste après la fin du parapet gauche",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5560
+   ]
+  },
+  {
+   "pk_debut_m": 5588,
+   "pk_fin_m": 5628,
+   "cote": "gauche",
+   "type": "talus_rocheux",
+   "detail": "talus rocheux taillé dans le calcaire lité, 3 à 4 m de haut, incliné ; bande d'herbe et de pierraille au pied",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5540,
+    5560,
+    5580,
+    5600,
+    5620
+   ]
+  },
+  {
+   "pk_debut_m": 5598,
+   "pk_fin_m": 5642,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "parapet de béton lisse en trois éléments, environ 0,65 m, extrémités en biseau marquées de blanc, à l'extérieur du virage à gauche ; accotement de terre et d'aiguilles de pin entre la rive et le parapet",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5600,
+    5620
+   ]
+  },
+  {
+   "pk_debut_m": 5635,
+   "pk_fin_m": 5635,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "triangle vu de dos (pour le sens inverse)",
+   "distance_au_bord_m": 2.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5620
+   ]
+  },
+  {
+   "pk_debut_m": 5636,
+   "pk_fin_m": 5636,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton planté juste derrière le parapet de béton droit",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5600,
+    5620
+   ]
+  },
+  {
+   "pk_debut_m": 5668,
+   "pk_fin_m": 5680,
+   "cote": "droite",
+   "type": "piste",
+   "detail": "entrée de piste DFCI en terre avec butte de terre rouge",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5660
+   ]
+  },
+  {
+   "pk_debut_m": 5672,
+   "pk_fin_m": 5672,
+   "cote": "droite",
+   "type": "barriere",
+   "detail": "entrée de piste DFCI : barrière basse sombre et panneau rond rouge, aire de terre",
+   "distance_au_bord_m": 5.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5660
+   ]
+  },
+  {
+   "pk_debut_m": 5680,
+   "pk_fin_m": 5680,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton entre des pins, juste après l'entrée de piste DFCI",
+   "distance_au_bord_m": 2.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5640,
+    5660
+   ]
+  },
+  {
+   "pk_debut_m": 5685,
+   "pk_fin_m": 5700,
+   "cote": "gauche",
+   "type": "mur",
+   "detail": "restes de muret de pierre sèche ou talus empierré, 0,5 m",
+   "distance_au_bord_m": 2.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5680
+   ]
+  },
+  {
+   "pk_debut_m": 5718,
+   "pk_fin_m": 5718,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "triangle vu de dos (pour le sens inverse), sur le talus d'herbe",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5660,
+    5680,
+    5700
+   ]
+  },
+  {
+   "pk_debut_m": 5725,
+   "pk_fin_m": 5725,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton, câbles (début de la ligne bien visible du plateau)",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5680,
+    5700,
+    5720
+   ]
+  },
+  {
+   "pk_debut_m": 5750,
+   "pk_fin_m": 5750,
+   "cote": "droite",
+   "type": "rocher",
+   "detail": "affleurement ou tas de pierre claire, 0,4 m",
+   "distance_au_bord_m": 4.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5740
+   ]
+  },
+  {
+   "pk_debut_m": 5760,
+   "pk_fin_m": 5760,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5720,
+    5740
+   ]
+  },
+  {
+   "pk_debut_m": 5785,
+   "pk_fin_m": 5785,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton (seulement 25 m après le précédent)",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5740,
+    5760,
+    5780
+   ]
+  },
+  {
+   "pk_debut_m": 5831,
+   "pk_fin_m": 5831,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton à traverse ; un piéton se tient 5 m plus loin dans l'herbe",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5800,
+    5820
+   ]
+  },
+  {
+   "pk_debut_m": 5863,
+   "pk_fin_m": 5863,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau sombre (bois ?) dans le gauche en montée, avant le pin rond",
+   "distance_au_bord_m": 2.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5820,
+    5840,
+    5860
+   ]
+  },
+  {
+   "pk_debut_m": 5886,
+   "pk_fin_m": 5886,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau métallique gris lisse, plus en retrait, au pied du pin rond",
+   "distance_au_bord_m": 4.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5860,
+    5880
+   ]
+  },
+  {
+   "pk_debut_m": 5912,
+   "pk_fin_m": 5912,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton portant une petite plaque",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5880,
+    5900
+   ]
+  },
+  {
+   "pk_debut_m": 5918,
+   "pk_fin_m": 5918,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "petite plaque carrée blanche sur piquet ; une autre plaque blanche clouée sur un chêne vers PK 5926",
+   "distance_au_bord_m": 2.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5900,
+    5920
+   ]
+  },
+  {
+   "pk_debut_m": 5922,
+   "pk_fin_m": 5922,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "pylône béton de ligne moyenne tension (armement en V), très en retrait ; un second vers PK 5928",
+   "distance_au_bord_m": 10.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5880,
+    5900,
+    5920
+   ]
+  },
+  {
+   "pk_debut_m": 5954,
+   "pk_fin_m": 5954,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5900,
+    5920,
+    5940
+   ]
+  },
+  {
+   "pk_debut_m": 5986,
+   "pk_fin_m": 5986,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton à bandes claires",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5960,
+    5980
+   ]
+  },
+  {
+   "pk_debut_m": 6006,
+   "pk_fin_m": 6006,
+   "cote": "droite",
+   "type": "borne",
+   "detail": "petite balise blanche à tête jaune (repère de réseau enterré)",
+   "distance_au_bord_m": 3.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    5980,
+    6000
+   ]
+  },
+  {
+   "pk_debut_m": 6037,
+   "pk_fin_m": 6037,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton portant une couronne de câble noire",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    5980,
+    6000,
+    6020,
+    6040
+   ]
+  },
+  {
+   "pk_debut_m": 6075,
+   "pk_fin_m": 6105,
+   "cote": "gauche",
+   "type": "aire",
+   "detail": "aire gravillonnée claire et départ de piste, juste avant le ponceau ; une voiture grise y était garée",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6040,
+    6060,
+    6080
+   ]
+  },
+  {
+   "pk_debut_m": 6078,
+   "pk_fin_m": 6078,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau bois sombre (téléphone ?)",
+   "distance_au_bord_m": 3.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6020,
+    6040,
+    6060
+   ]
+  },
+  {
+   "pk_debut_m": 6096,
+   "pk_fin_m": 6112,
+   "cote": "gauche",
+   "type": "parapet",
+   "detail": "ponceau : béton banché gris patiné, 0,55 à 0,6 m, 0,3 m d'épaisseur, fin en biseau ; ligne de rive continue",
+   "distance_au_bord_m": 0.8,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6100
+   ]
+  },
+  {
+   "pk_debut_m": 6100,
+   "pk_fin_m": 6112,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "ponceau : béton, environ 0,6 m, courbe à l'intérieur du virage à droite ; culée en maçonnerie de pierre visible dessous",
+   "distance_au_bord_m": 0.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6060,
+    6080,
+    6100
+   ]
+  },
+  {
+   "pk_debut_m": 6125,
+   "pk_fin_m": 6140,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "bordure de béton claire le long de la rive à l'intérieur du virage à droite, pierres blanches sur l'accotement",
+   "distance_au_bord_m": 0.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6120
+   ]
+  },
+  {
+   "pk_debut_m": 6130,
+   "pk_fin_m": 6170,
+   "cote": "gauche",
+   "type": "mur",
+   "detail": "bande de pierre sèche (restanque) ou affleurement calcaire, 0,5 à 1 m",
+   "distance_au_bord_m": 4.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6100,
+    6120,
+    6140,
+    6160
+   ]
+  },
+  {
+   "pk_debut_m": 6135,
+   "pk_fin_m": 6135,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau bois double (poteau et contrefiche inclinée), à l'intérieur du virage à droite après le ponceau",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6100,
+    6120
+   ]
+  },
+  {
+   "pk_debut_m": 6148,
+   "pk_fin_m": 6155,
+   "cote": "droite",
+   "type": "rocher",
+   "detail": "pierraille blanche en tas, 0,3 m",
+   "distance_au_bord_m": 1.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6140
+   ]
+  },
+  {
+   "pk_debut_m": 6160,
+   "pk_fin_m": 6160,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "grand pin penché",
+   "distance_au_bord_m": 3.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6140,
+    6160
+   ]
+  },
+  {
+   "pk_debut_m": 6172,
+   "pk_fin_m": 6172,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton, juste avant le départ d'une piste à droite",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6140,
+    6160
+   ]
+  },
+  {
+   "pk_debut_m": 6178,
+   "pk_fin_m": 6178,
+   "cote": "droite",
+   "type": "piste",
+   "detail": "départ d'une piste en terre qui longe ensuite la route à 8-10 m",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6140,
+    6160,
+    6180
+   ]
+  },
+  {
+   "pk_debut_m": 6204,
+   "pk_fin_m": 6204,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton devant un chêne",
+   "distance_au_bord_m": 2.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6180
+   ]
+  },
+  {
+   "pk_debut_m": 6238,
+   "pk_fin_m": 6238,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton portant deux petites plaques blanches",
+   "distance_au_bord_m": 3.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6200,
+    6220
+   ]
+  },
+  {
+   "pk_debut_m": 6263,
+   "pk_fin_m": 6263,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton portant une plaque",
+   "distance_au_bord_m": 3.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6220,
+    6240
+   ]
+  },
+  {
+   "pk_debut_m": 6272,
+   "pk_fin_m": 6272,
+   "cote": "droite",
+   "type": "autre",
+   "detail": "grand pin",
+   "distance_au_bord_m": 4.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6240,
+    6260
+   ]
+  },
+  {
+   "pk_debut_m": 6285,
+   "pk_fin_m": 6285,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau bois brun, après un grand pin",
+   "distance_au_bord_m": 3.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6240,
+    6260,
+    6280
+   ]
+  },
+  {
+   "pk_debut_m": 6322,
+   "pk_fin_m": 6322,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton (non vu de près : déjà dépassé sur l'image 6320)",
+   "distance_au_bord_m": 2.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6260,
+    6280,
+    6300
+   ]
+  },
+  {
+   "pk_debut_m": 6330,
+   "pk_fin_m": 6345,
+   "cote": "droite",
+   "type": "piste",
+   "detail": "débouché ou aire de sable et de gravier clair",
+   "distance_au_bord_m": 0.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6280,
+    6300,
+    6320
+   ]
+  },
+  {
+   "pk_debut_m": 6355,
+   "pk_fin_m": 6355,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton à console, pied dans une tache de sable",
+   "distance_au_bord_m": 3.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6320,
+    6340
+   ]
+  },
+  {
+   "pk_debut_m": 6368,
+   "pk_fin_m": 6385,
+   "cote": "gauche",
+   "type": "piste",
+   "detail": "débouché d'un chemin à tablier clair (béton ou enrobé gris clair)",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6340,
+    6360,
+    6380
+   ]
+  },
+  {
+   "pk_debut_m": 6380,
+   "pk_fin_m": 6380,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton à traverse, en face du débouché de gauche",
+   "distance_au_bord_m": 2.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6340,
+    6360
+   ]
+  },
+  {
+   "pk_debut_m": 6410,
+   "pk_fin_m": 6410,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton clair, près d'un grand pin",
+   "distance_au_bord_m": 3.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6360,
+    6380,
+    6400
+   ]
+  },
+  {
+   "pk_debut_m": 6440,
+   "pk_fin_m": 6468,
+   "cote": "gauche",
+   "type": "talus_rocheux",
+   "detail": "affleurement et éboulis de calcaire blanc, 0,5 à 1 m, puis tas de gravier blanc avant le pont",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6400,
+    6420,
+    6440,
+    6460
+   ]
+  },
+  {
+   "pk_debut_m": 6470,
+   "pk_fin_m": 6470,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau gris légèrement penché, avec panneau fléché rouge « DFCI » à côté, avant le pont",
+   "distance_au_bord_m": 3.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6440,
+    6460
+   ]
+  },
+  {
+   "pk_debut_m": 6470,
+   "pk_fin_m": 6470,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau fléché rouge à lettres blanches « DFCI » pointant à droite, sur mât de 2 m",
+   "distance_au_bord_m": 4.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6460
+   ]
+  },
+  {
+   "pk_debut_m": 6478,
+   "pk_fin_m": 6492,
+   "cote": "gauche",
+   "type": "parapet",
+   "detail": "pont : béton patiné, 0,5 à 0,55 m, fin en biseau",
+   "distance_au_bord_m": 0.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6440,
+    6460,
+    6480
+   ]
+  },
+  {
+   "pk_debut_m": 6483,
+   "pk_fin_m": 6493,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "pont : béton épais (0,4 m), environ 0,7 m, bloc d'extrémité en biseau",
+   "distance_au_bord_m": 0.4,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6460,
+    6480
+   ]
+  },
+  {
+   "pk_debut_m": 6495,
+   "pk_fin_m": 6510,
+   "cote": "gauche",
+   "type": "aire",
+   "detail": "aire gravillonnée et départ de piste juste après le pont ; deux voitures garées le jour de la reconnaissance",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6440,
+    6460,
+    6480,
+    6500
+   ]
+  },
+  {
+   "pk_debut_m": 6498,
+   "pk_fin_m": 6498,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau électrique béton immédiatement après la fin du parapet droit du pont",
+   "distance_au_bord_m": 1.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6480
+   ]
+  },
+  {
+   "pk_debut_m": 6503,
+   "pk_fin_m": 6512,
+   "cote": "droite",
+   "type": "piste",
+   "detail": "entrée de piste gravillonnée (DFCI) juste après le pont",
+   "distance_au_bord_m": 0.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6500
+   ]
+  },
+  {
+   "pk_debut_m": 6515,
+   "pk_fin_m": 6515,
+   "cote": "droite",
+   "type": "rocher",
+   "detail": "gros bloc de calcaire blanc, environ 0,7 m, juste après l'entrée de piste",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6500
+   ]
+  },
+  {
+   "pk_debut_m": 6535,
+   "pk_fin_m": 6535,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton penché",
+   "distance_au_bord_m": 2.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6500,
+    6520
+   ]
+  },
+  {
+   "pk_debut_m": 6565,
+   "pk_fin_m": 6565,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "petit panneau rectangulaire sur piquet, vu de profil",
+   "distance_au_bord_m": 2.0,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    6540
+   ]
+  },
+  {
+   "pk_debut_m": 6568,
+   "pk_fin_m": 6568,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau gris à bague bleue et blanche",
+   "distance_au_bord_m": 3.5,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6540,
+    6560
+   ]
+  },
+  {
+   "pk_debut_m": 6585,
+   "pk_fin_m": 6585,
+   "cote": "droite",
+   "type": "rocher",
+   "detail": "affleurement calcaire bas",
+   "distance_au_bord_m": 3.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6560
+   ]
+  },
+  {
+   "pk_debut_m": 6600,
+   "pk_fin_m": 6600,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau bois sombre",
+   "distance_au_bord_m": 2.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6560,
+    6580
+   ]
+  },
+  {
+   "pk_debut_m": 6628,
+   "pk_fin_m": 6628,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau gris clair",
+   "distance_au_bord_m": 4.0,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6600,
+    6620
+   ]
+  },
+  {
+   "pk_debut_m": 6660,
+   "pk_fin_m": 6665,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "ponceau : bloc de béton court (3 m environ), 0,5 m, à la corde du virage à droite, poteau planté derrière ; fossé en contrebas juste après",
+   "distance_au_bord_m": 0.8,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6640
+   ]
+  },
+  {
+   "pk_debut_m": 6663,
+   "pk_fin_m": 6663,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau à bague jaune au ras de la chaussée, à la corde du virage à droite, planté contre le petit bloc de béton du ponceau",
+   "distance_au_bord_m": 1.0,
+   "confiance": "élevée",
+   "vu_sur_images_pk": [
+    6620,
+    6640
+   ]
+  },
+  {
+   "pk_debut_m": 6672,
+   "pk_fin_m": 6680,
+   "cote": "gauche",
+   "type": "parapet",
+   "detail": "ponceau : muret bas clair (béton blanc ?) de 6 à 8 m, 0,4 m ; vu de loin seulement ; sur l'image 6660 on ne voit à gauche que deux tas de pierre ou de terre ocre",
+   "distance_au_bord_m": 1.5,
+   "confiance": "faible",
+   "vu_sur_images_pk": [
+    6620,
+    6640
+   ]
+  },
+  {
+   "pk_debut_m": 6672,
+   "pk_fin_m": 6678,
+   "cote": "gauche",
+   "type": "rocher",
+   "detail": "deux tas de pierre ou de terre ocre, 0,4 à 0,5 m, puis un pin à 2,5 m du bord",
+   "distance_au_bord_m": 1.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6660
+   ]
+  },
+  {
+   "pk_debut_m": 6676,
+   "pk_fin_m": 6676,
+   "cote": "droite",
+   "type": "poteau",
+   "detail": "poteau béton dans les buissons",
+   "distance_au_bord_m": 3.5,
+   "confiance": "moyenne",
+   "vu_sur_images_pk": [
+    6660
+   ]
+  }
+ ],
+ "bords_par_troncon": [
+  {
+   "pk_debut_m": 4580,
+   "pk_fin_m": 4700,
+   "gauche": "talus de terre et d'éboulis de 1 à 1,5 m collé à la chaussée, puis pente douce en herbe sous les chênes",
+   "droite": "accotement d'herbe de 2 à 3 m, plat, puis pins ; poteaux à 2-3 m",
+   "marquage": "axe discontinu, rives discontinues ; rives continues au ponceau 4670-4682",
+   "largeur": "environ 5,5 à 6 m, deux voies"
+  },
+  {
+   "pk_debut_m": 4700,
+   "pk_fin_m": 4800,
+   "gauche": "talus bas de terre et de pierres (0,5 à 1 m), herbe, chênes",
+   "droite": "aire en stabilisé beige de 6 à 8 m de large (PK 4715-4772), puis herbe de 3 m",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "environ 6 m"
+  },
+  {
+   "pk_debut_m": 4800,
+   "pk_fin_m": 4960,
+   "gauche": "talus de terre et de pierres de 1 à 1,5 m, racines, pins au sommet",
+   "droite": "accotement d'herbe ou de terre de 1,5 à 2 m, pins très proches, terrain qui descend",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "environ 5,5 m ; surlargeur revêtue au débouché 4945-4968"
+  },
+  {
+   "pk_debut_m": 4960,
+   "pk_fin_m": 5075,
+   "gauche": "accotement d'herbe bas de 2 m, talus pierreux bas à l'intérieur du virage",
+   "droite": "terre et feuilles sur 3 à 5 m, gros chênes, aire de la piste DFCI (5035-5058)",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "environ 5,5 à 6 m"
+  },
+  {
+   "pk_debut_m": 5075,
+   "pk_fin_m": 5320,
+   "gauche": "herbe sur 1,5 à 2 m avec quelques pierres, puis végétation dense de 3 m",
+   "droite": "herbe sur 1,5 à 2 m, puis végétation dense continue de 3 à 5 m",
+   "marquage": "axe discontinu, rives discontinues des deux côtés",
+   "largeur": "environ 5,5 m, longue ligne droite plate en couloir"
+  },
+  {
+   "pk_debut_m": 5320,
+   "pk_fin_m": 5445,
+   "gauche": "herbe sur 1,5 m puis murets de pierre sèche (5375-5406, 5425-5440) et végétation",
+   "droite": "muret de pierre sèche à 1,5 m (5323-5358), puis terre et feuilles sur 1,5 m et arbres denses",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "panneau « chaussée rétrécie » au PK 5347 ; chaussée d'environ 5 m ensuite"
+  },
+  {
+   "pk_debut_m": 5445,
+   "pk_fin_m": 5527,
+   "gauche": "mur de soutènement en pierre sèche de 0,6 à 1 m à moins d'un mètre de la rive",
+   "droite": "terre et feuilles sur 1,5 m, haie dense ; entrée gravillonnée et mur enduit (5470-5492) ; poteau au ras de la chaussée au PK 5523",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "environ 5 m, en descente vers le pont"
+  },
+  {
+   "pk_debut_m": 5527,
+   "pk_fin_m": 5585,
+   "gauche": "parapet de béton en deux tronçons (5530-5548 et 5554-5582), vide derrière",
+   "droite": "parapet maçonné à 0,4 m (5527-5567), puis pente d'herbe avec pins à 1 m",
+   "marquage": "axe discontinu ; rive droite continue et épaisse dans le virage, rive gauche continue",
+   "largeur": "environ 5,5 m entre parapets"
+  },
+  {
+   "pk_debut_m": 5585,
+   "pk_fin_m": 5660,
+   "gauche": "talus rocheux taillé de 3 à 4 m à 2 m du bord (jusqu'au PK 5628), puis talus bas de pierraille",
+   "droite": "herbe puis parapet de béton à 1,5 m (5598-5642), puis terre nue sur 2 à 3 m sous les pins",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "environ 6 m, en montée"
+  },
+  {
+   "pk_debut_m": 5660,
+   "pk_fin_m": 6075,
+   "gauche": "talus d'herbe et de pierraille de 0,5 à 1,5 m, garrigue",
+   "droite": "accotement d'herbe de 2 à 4 m, plat ou en légère descente, poteaux à 2,5 m, chênes à 5 m",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "environ 6 m"
+  },
+  {
+   "pk_debut_m": 6075,
+   "pk_fin_m": 6140,
+   "gauche": "aire gravillonnée (6075-6105), parapet du ponceau, puis herbe large et restanque à 4 m",
+   "droite": "herbe en descente vers le vallon, parapet du ponceau, bordure de béton à la corde (6125-6140)",
+   "marquage": "axe discontinu ; rives continues sur le ponceau",
+   "largeur": "environ 5,5 m sur le ponceau"
+  },
+  {
+   "pk_debut_m": 6140,
+   "pk_fin_m": 6440,
+   "gauche": "talus empierré ou de pierre sèche de 1 m à 1,5-2 m du bord, puis talus d'herbe ; débouché 6368-6385",
+   "droite": "accotement d'herbe et de pierraille de 3 m, piste parallèle à 8-10 m après le PK 6178, sable au PK 6330-6345",
+   "marquage": "axe discontinu, rives discontinues",
+   "largeur": "environ 6 m"
+  },
+  {
+   "pk_debut_m": 6440,
+   "pk_fin_m": 6520,
+   "gauche": "affleurement calcaire à 2,5 m, parapet du pont, aire gravillonnée (6495-6510)",
+   "droite": "herbe large, parapet du pont, entrée de piste (6503-6512), bloc rocheux au PK 6515",
+   "marquage": "axe discontinu ; rive droite continue et large à partir du pont",
+   "largeur": "environ 5,5 m sur le pont"
+  },
+  {
+   "pk_debut_m": 6520,
+   "pk_fin_m": 6690,
+   "gauche": "talus pierreux bas (0,5 m) puis herbe et garrigue ouverte ; tas de pierre et pin vers 6672-6678",
+   "droite": "herbe large et plate (pré), poteaux à 2-4 m sauf celui du PK 6663 à 1 m",
+   "marquage": "axe discontinu, rives continues des deux côtés",
+   "largeur": "environ 6 m"
+  }
+ ],
+ "chaussee": [
+  {
+   "pk_m": 4675,
+   "detail": "reprise d'enrobé plus sombre sur la voie de droite au droit du ponceau",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 4770,
+   "detail": "fissures longitudinales dans la voie de droite",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 4825,
+   "detail": "taches sombres (traces ou reprises) sur la voie de droite",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5075,
+   "detail": "grande reprise d'enrobé sombre sur la voie de gauche, sur 10 à 15 m",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5200,
+   "detail": "joint longitudinal sombre le long de l'axe sur toute la ligne droite 5100-5300, fissures",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5480,
+   "detail": "rupture de pente : la route plonge vers le pont, joint d'axe refait au bitume",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5612,
+   "detail": "plusieurs reprises sombres sur la voie de gauche dans la montée après le pont",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5670,
+   "detail": "taches de reprise au milieu de la chaussée ; sommet de côte vers PK 5670-5700",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5790,
+   "detail": "bande sombre longitudinale dans la voie de droite (5720-5810)",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5865,
+   "detail": "sommet de côte dans le virage à gauche",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 6045,
+   "detail": "voie de gauche très rapiécée, joint d'axe marqué",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 6300,
+   "detail": "revêtement faïencé et fissuré sur les deux voies de 6260 à 6360",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 6500,
+   "detail": "revêtement faïencé après le pont, montée vers une crête vers PK 6540",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 6650,
+   "detail": "fissures et faïençage marqués",
+   "confiance": "élevée"
+  }
+ ],
+ "paysage": [
+  {
+   "pk_debut_m": 4580,
+   "pk_fin_m": 4960,
+   "detail": "forêt de pins d'Alep et de chênes, couloir fermé ; le terrain monte à gauche et descend à droite",
+   "cote": "les deux"
+  },
+  {
+   "pk_debut_m": 4960,
+   "pk_fin_m": 5075,
+   "detail": "chênaie claire aux couleurs d'automne, sous-bois dégagé",
+   "cote": "les deux"
+  },
+  {
+   "pk_debut_m": 5075,
+   "pk_fin_m": 5330,
+   "detail": "couloir fermé par une végétation dense des deux côtés ; barre rocheuse calcaire visible au-dessus des arbres (vers PK 5160 et 5240) ; grand pin parasol en bout de ligne droite",
+   "cote": "gauche pour la barre rocheuse"
+  },
+  {
+   "pk_debut_m": 5360,
+   "pk_fin_m": 5500,
+   "detail": "descente vers un vallon ; grande falaise calcaire en haut d'un versant boisé, colline boisée en face ; propriétés, grands arbres (pins, cèdres ou sapins, feuillus jaunes)",
+   "cote": "gauche pour la falaise"
+  },
+  {
+   "pk_debut_m": 5520,
+   "pk_fin_m": 5660,
+   "detail": "franchissement du vallon puis pinède sur pente rocheuse ; talus de calcaire lité",
+   "cote": "les deux"
+  },
+  {
+   "pk_debut_m": 5660,
+   "pk_fin_m": 6440,
+   "detail": "plateau ouvert : garrigue et herbe, chênes isolés, bosquets de pins ; vue dégagée à droite sur des collines lointaines (5660-5760, 5840) ; restanques de pierre sèche (6060, 6130-6170) ; crête rocheuse au loin à gauche vers PK 6360",
+   "cote": "vue à droite"
+  },
+  {
+   "pk_debut_m": 6440,
+   "pk_fin_m": 6690,
+   "detail": "plateau ouvert, pré à droite avec collines au loin (6500-6560), pins et chênes épars, garrigue à gauche",
+   "cote": "les deux"
+  }
+ ],
+ "ecarts_avec_le_modele": [
+  {
+   "pk_m": 5523,
+   "cote": "droite",
+   "ecart": "absent du modèle",
+   "detail": "poteau béton à moins d'un mètre de la rive, à la corde du virage à droite du pont, collé au départ du parapet ; le modèle place son premier poteau au PK 5568 à 3 m du bord",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5620,
+   "cote": "droite",
+   "ecart": "absent du modèle",
+   "detail": "parapet de béton de 0,65 m, long d'environ 44 m (PK 5598-5642), à 1,5 m de la rive à l'extérieur du virage à gauche après le pont, avec un poteau juste derrière (PK 5636) ; rien dans ouvrages_parapets.json (l'ancien relevé notait un « prolongement » 5558-5605)",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5480,
+   "cote": "gauche",
+   "ecart": "absent du modèle",
+   "detail": "mur de soutènement en pierre sèche de 0,6 à 1 m à moins d'un mètre de la rive, PK 5445-5515, dans la descente vers le pont ; précédé de murets de pierre à gauche (5375-5406, 5425-5440)",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5340,
+   "cote": "droite",
+   "ecart": "mal placé",
+   "detail": "le muret de pierre sèche à clôture en bois modélisé PK 5259-5293 est en réalité vers PK 5323-5358 (environ 60 m plus loin) ; même longueur ; à 5259-5293 il n'y a que de la végétation",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5554,
+   "cote": "gauche",
+   "ecart": "mauvaise longueur",
+   "detail": "parapet gauche du pont 5554 : deux tronçons de béton (5530-5548 et 5554-5582) séparés par un vide de 5 m, au lieu d'un parapet continu 5510-5579 ; le début est environ 20 m plus tard",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5547,
+   "cote": "droite",
+   "ecart": "mauvaise longueur",
+   "detail": "parapet droit du pont 5554 : maçonnerie à chaperon béton de PK 5527 à 5567 environ (40 m), au lieu de 5512-5571 ; hauteur estimée 0,7 m contre 0,55 m dans le modèle",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 6663,
+   "cote": "droite",
+   "ecart": "mal placé",
+   "detail": "ponceau final : à droite, simple bloc de béton de 3 m vers PK 6660-6665 avec un poteau à 1 m de la rive, au lieu d'un parapet de 8 m en 6681-6689 ; à gauche muret bas vers 6672-6680 (vu de loin, nature incertaine)",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 6100,
+   "cote": "droite",
+   "ecart": "mal placé",
+   "detail": "ligne électrique du plateau : 32 poteaux relevés entre PK 5570 et 6676, espacés de 25 à 50 m (parfois deux lignes mêlées, béton et bois), contre 19 poteaux tous les 62 m dans le modèle ; positions à reprendre sur la liste des observations ; décalage type 2,5 m, sauf PK 5523 (0,7 m), 5570 et 6498 (1,5 m), 6663 (1 m)",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 4580,
+   "cote": "droite",
+   "ecart": "absent du modèle",
+   "detail": "ligne électrique sur poteaux béton à droite dès le PK 4597 et jusqu'au pont (20 poteaux relevés de 4597 à 5523, à 1,5-3 m du bord) ; le modèle n'a aucun poteau entre 4340 et 5568",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 4890,
+   "cote": "droite",
+   "ecart": "absent du modèle",
+   "detail": "pins à 1,5-2 m du bord (PK 4712, 4827, 4888-4908) et à 1 m du bord à la sortie du pont (5565-5580) ; arbres isolés non posés",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5200,
+   "cote": "droite",
+   "ecart": "mauvais type",
+   "detail": "la « haie » 5035-5234 est une végétation dense non taillée de 3 à 5 m de haut, qui va de PK 5075 à 5320 environ, et il y a la même à gauche (5080-5330) ; la haie taillée de 2 m commence 40 m trop tôt et s'arrête 85 m trop tôt",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5588,
+   "cote": "gauche",
+   "ecart": "absent du modèle",
+   "detail": "talus rocheux taillé de 3 à 4 m, PK 5588-5628, à 2 m de la rive",
+   "confiance": "élevée"
+  },
+  {
+   "pk_m": 5496,
+   "cote": "droite",
+   "ecart": "mal placé",
+   "detail": "muret à garde-corps modélisé PK 5490-5502 : on voit un mur enduit de 1,7 m en retrait de 4,5 m (5470-5492) puis un mur ou pilier maçonné vers 5508-5527 ; pas de garde-corps métallique reconnu à droite",
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 5050,
+   "cote": "droite",
+   "ecart": "mal placé",
+   "detail": "croisement de pistes modélisé 5019-5031 (panneau au PK 5025) : l'aire et la barrière DFCI sont vers PK 5035-5058",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5672,
+   "cote": "droite",
+   "ecart": "absent du modèle",
+   "detail": "entrée de piste DFCI avec barrière et butte de terre vers PK 5668-5680 (l'ancien relevé la situait en 5650-5663)",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 6375,
+   "cote": "gauche",
+   "ecart": "mal placé",
+   "detail": "débouché de chemin à gauche vers PK 6368-6385, noté 6343 dans l'ancien relevé ; à droite, aire de sable vers 6330-6345",
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 5412,
+   "cote": "droite",
+   "ecart": "mal placé",
+   "detail": "panneaux routiers : triangle « chaussée rétrécie » au PK 5347 (ancien relevé : 5287) et triangle « virage à droite » au PK 5412 (ancien relevé et panneau du modèle : 5366) ; balise à chevrons au PK 5528 (ancien relevé : 5517)",
+   "confiance": "élevée"
+  }
+ ]
+}

@@ -388,6 +388,8 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
     s = echant(s0, s1)
     E, n = rg.bord(s, cote)
     h, t = p["hauteur_m"], p["epaisseur_m"]
+    dec = float(p.get("decalage_m", 0.0))                 # recul par rapport au bord de chaussée (0 : posé sur le bord)
+    biseau = float(p.get("biseau_m", BISEAU_M))
 
     def haut(ss):
         """Hauteur du dessus : extrémités en biseau (vu sur la vidéo du 12/11/2026 : tous les parapets, de pierre
@@ -396,18 +398,18 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
         # "sans_biseau_debut" / "sans_biseau_fin" : le parapet se raccorde à un autre, pas de sifflet de ce côté
         d0 = np.full(len(ss), np.inf) if p.get("sans_biseau_debut") else ss - s0
         d1 = np.full(len(ss), np.inf) if p.get("sans_biseau_fin") else s1 - ss
-        return h * np.clip(BISEAU_BAS + (1.0 - BISEAU_BAS) * np.minimum(d0, d1) / BISEAU_M, BISEAU_BAS, 1.0)
+        return h * np.clip(BISEAU_BAS + (1.0 - BISEAU_BAS) * np.minimum(d0, d1) / biseau, BISEAU_BAS, 1.0)
 
     def base(ss):
         if mnt is None:
             return np.full(len(ss), -DALLE_RETRAIT - 0.02)
         EE, nn = rg.bord(ss, cote)
-        q = EE[:, :2] + nn * t
+        q = EE[:, :2] + nn * (dec + t)
         return np.minimum(mnt.z(q[:, 0], q[:, 1]) - EE[:, 2], 0) - 0.3
 
     def bloc(ss, o0, o1, z0, z1):
         EE, nn = rg.bord(ss, cote)
-        o3 = lambda o: np.column_stack([nn * o, np.zeros(len(ss))])          # noqa: E731
+        o3 = lambda o: np.column_stack([nn * (o + dec), np.zeros(len(ss))])    # noqa: E731
         zz = lambda v: np.column_stack([np.zeros(len(ss)), np.zeros(len(ss)), np.broadcast_to(v, len(ss))])  # noqa: E731
         z0 = base(ss) if isinstance(z0, str) else z0(ss) if callable(z0) else z0
         z1 = z1(ss) if callable(z1) else z1
@@ -748,9 +750,13 @@ def main():
             ligne[cote] = f"{p['type']} {p.get('hauteur_m', '')} ({p['statut']})"
             if p["type"] == "aucun":
                 continue
-            s0 = pa - p.get("prolongement_avant_m", prol)
-            s1 = pb + p.get("prolongement_apres_m", prol)
-            pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p)
+            # "pk_debut_m" / "pk_fin_m" : bornes du parapet relevées sur la vidéo de reconnaissances ; à défaut, le
+            # tablier détecté et son prolongement
+            s0 = float(p.get("pk_debut_m", pa - p.get("prolongement_avant_m", prol)))
+            s1 = float(p.get("pk_fin_m", pb + p.get("prolongement_apres_m", prol)))
+            # hors du tablier (prolongement de plus de 3 m, ou recul), le pied descend jusqu'au terrain
+            hors = s0 < pa - 3 or s1 > pb + 3 or p.get("decalage_m")
+            pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p, mnt=mnt if hors else None)
             coll["beton" if p["type"] == "beton" else "pierre"].append(cb)
             corps = "beton" if p["type"] == "beton" else "pierre"
             meshes_ouv.append(fusion(pcs[corps], f"parapet_{nom}_{cote}", corps))

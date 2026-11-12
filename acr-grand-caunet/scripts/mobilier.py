@@ -82,9 +82,13 @@ def objets(route=None):
     def ajoute(typ, pk, cote, dec, source):
         t = types[typ]
         x, y, zb, d = route.point(pk, cote, dec)
-        o = {"type": typ, "maillage_jeu": t["maillage_jeu"], "x": x, "y": y, "z_sol": route.z_terrain(x, y, zb), "z_bord": zb,
-             "pk": float(pk), "cote": cote, "dir": [float(d[0]), float(d[1])], "lacet_relatif_deg": float(t.get("lacet_relatif_deg", 0)),
-             "collision": t.get("collision"), "source": source}
+        lacet = float(t.get("lacet_relatif_deg", 0))
+        if t.get("lacet_aleatoire"):
+            lacet += (pk * 137.5) % 360.0                         # orientation variée, mais reproductible
+        # un objet relevé au bord de la route n'est jamais à plus d'un mètre sous la chaussée (remblai mal rendu)
+        o = {"type": typ, "maillage_jeu": t["maillage_jeu"], "x": x, "y": y, "z_sol": max(route.z_terrain(x, y, zb), zb - 1.0), "z_bord": zb,
+             "pk": float(pk), "cote": cote, "dir": [float(d[0]), float(d[1])], "lacet_relatif_deg": lacet,
+             "collision": t.get("collision"), "cable": t.get("cable"), "source": source}
         out.append(o)
         return o
 
@@ -100,10 +104,15 @@ def objets(route=None):
     for l in cfg.get("lignes_electriques", []):
         poteaux, dernier = [], -1e9
         for p in l["poteaux"]:
-            pk = pk_hors_ravin(p["pk_m"], l["cote"], l["decalage_m"])
-            if pk - dernier < PORTEE_MIN_M:                      # deux poteaux décalés l'un vers l'autre : un seul
-                continue
-            poteaux.append(ajoute("poteau", pk, l["cote"], l["decalage_m"], p.get("statut") or l.get("source", "")))
+            dec = p.get("decalage_m", l.get("decalage_m", 2.5))
+            typ = p.get("type", "poteau_beton")
+            if l.get("releve"):                                  # poteau relevé sur la vidéo : posé où il a été vu
+                pk = p["pk_m"]
+            else:
+                pk = pk_hors_ravin(p["pk_m"], l["cote"], dec)
+                if pk - dernier < PORTEE_MIN_M:                  # deux poteaux décalés l'un vers l'autre : un seul
+                    continue
+            poteaux.append(ajoute(typ, pk, l["cote"], dec, p.get("statut") or l.get("source", "")))
             dernier = pk
         lignes.append({"nom": l["nom"], "cables": bool(l.get("cables")), "poteaux": poteaux})
     for o in cfg.get("objets", []):

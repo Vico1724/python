@@ -1,74 +1,1184 @@
 {
- "note": "Objets de bord de route posés avec des maillages du jeu : poteaux électriques, panneaux du rallye, barrières, haie. Lu par scripts/mobilier.py, utilisé par 09_export_stage_ir.py (collisions) et 16_paquet_unreal.py (décor). Positions : PK sur l'axe précis, côté dans le sens de la course, décalage en mètres au-delà du bord de chaussée. Sources : data/reference/releve_video.json (inventaire_bord_de_route, vidéo VMRS 2025, PK à ±10 m) et les captures de cette vidéo envoyées par le directeur le 12/11/2026 (PK de la caméra d'après table_temps_pk, objet situé 15 à 70 m devant : ±25 m). Rien ici n'est mesuré sur le terrain.",
+ "note": "Objets de bord de route posés avec des maillages du jeu : poteaux électriques, panneaux du rallye, barrières, haie. Lu par scripts/mobilier.py, utilisé par 09_export_stage_ir.py (collisions) et 16_paquet_unreal.py (décor). Positions : PK sur l'axe précis, côté dans le sens de la course, décalage en mètres au-delà du bord de chaussée. Sources : data/reference/releve_video.json (inventaire_bord_de_route, vidéo VMRS 2025, PK à ±10 m) et les captures de cette vidéo envoyées par le directeur le 12/11/2026 (PK de la caméra d'après table_temps_pk, objet situé 15 à 70 m devant : ±25 m). Rien ici n'est mesuré sur le terrain. Mise à jour du 12/11/2026 au soir : les poteaux, les arbres de bord et les retraits viennent du relevé de la vidéo de reconnaissances (data/reference/releve_reco/), bien plus lisible ; les panneaux du rallye, absents un jour de reconnaissances, restent ceux de l'ancien relevé et peuvent être décalés de 20 à 60 m.",
  "conventions_du_jeu": "Lu dans le niveau de Bollène le 12/11/2026 : un panneau du rallye est posé à 2,5-4 m de l'axe, perpendiculaire à la route, lacet = cap de la route + 90 degrés pour faire face aux concurrents ; une barrière plastique est posée dans le sens de la route.",
  "types": {
-  "poteau": {
-   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
-   "description": "poteau de 9 m à traverse (2,2 m), le long d'une ligne : traverse en travers de la ligne",
-   "lacet_relatif_deg": 0,
-   "bornes_cm": {"min": [-20, -110, -40], "max": [30, 110, 900]},
-   "collision": {"forme": "cylinder", "paroi": "PM_WallConcrete", "diametre_m": 0.3, "hauteur_m": 3.5, "enfoui_m": 0.4}
-  },
   "panneau_radio_annonce": {
    "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceRadioWarningA",
    "description": "panneau jaune à éclair : annonce d'un point radio",
    "lacet_relatif_deg": 90,
-   "bornes_cm": {"min": [-30, -10, 0], "max": [30, 10, 80]}
+   "bornes_cm": {
+    "min": [
+     -30,
+     -10,
+     0
+    ],
+    "max": [
+     30,
+     10,
+     80
+    ]
+   }
   },
   "panneau_radio": {
    "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceRadioPointA",
    "description": "panneau bleu à éclair : point radio",
    "lacet_relatif_deg": 90,
-   "bornes_cm": {"min": [-30, -10, 0], "max": [30, 10, 80]}
+   "bornes_cm": {
+    "min": [
+     -30,
+     -10,
+     0
+    ],
+    "max": [
+     30,
+     10,
+     80
+    ]
+   }
   },
   "panneau_secours_annonce": {
    "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceMedicWarningA",
    "description": "panneau jaune à croix rouge : annonce d'un point de secours",
    "lacet_relatif_deg": 90,
-   "bornes_cm": {"min": [-30, -10, 0], "max": [30, 10, 80]}
+   "bornes_cm": {
+    "min": [
+     -30,
+     -10,
+     0
+    ],
+    "max": [
+     30,
+     10,
+     80
+    ]
+   }
   },
   "panneau_annonce_arrivee": {
    "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RacePreFlyingFinish",
    "description": "panneau jaune à damier : annonce de l'arrivée lancée",
    "lacet_relatif_deg": 90,
-   "bornes_cm": {"min": [-40, -10, 0], "max": [40, 10, 70]}
+   "bornes_cm": {
+    "min": [
+     -40,
+     -10,
+     0
+    ],
+    "max": [
+     40,
+     10,
+     70
+    ]
+   }
   },
   "panneau_arrivee": {
    "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceFlyingFinish",
    "description": "panneau rouge à damier : arrivée lancée",
    "lacet_relatif_deg": 90,
-   "bornes_cm": {"min": [-40, -10, 0], "max": [40, 10, 70]}
+   "bornes_cm": {
+    "min": [
+     -40,
+     -10,
+     0
+    ],
+    "max": [
+     40,
+     10,
+     70
+    ]
+   }
   },
-  "barriere_plastique": {
-   "maillage_jeu": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
-   "description": "barrière plastique rouge et blanche de 1,6 m",
+  "poteau_beton": {
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
+   "description": "poteau de 9 m à traverse (béton, métal ou matière non lue sur la vidéo)",
    "lacet_relatif_deg": 0,
-   "bornes_cm": {"min": [-80, -30, 0], "max": [80, 30, 80]},
-   "collision": {"forme": "box", "paroi": "PM_WallPlasticBarrier", "largeur_m": 0.6, "hauteur_m": 0.8, "longueur_m": 1.6, "enfoui_m": 0.0}
+   "bornes_cm": {
+    "min": [
+     -20,
+     -110,
+     -40
+    ],
+    "max": [
+     30,
+     110,
+     900
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallConcrete",
+    "diametre_m": 0.3,
+    "hauteur_m": 3.5,
+    "enfoui_m": 0.4
+   },
+   "cable": {
+    "hauteur_m": 8.6,
+    "ecarts_m": [
+     -1.0,
+     0.0,
+     1.0
+    ]
+   }
   },
-  "haie": {
-   "maillage_jeu": "/Game/Foliage/Trees/Hedge/SM_Hedge02",
-   "description": "haie taillée de 2,1 m de haut, 6,8 m de long, 0,8 m d'épaisseur",
-   "lacet_relatif_deg": 90,
-   "bornes_cm": {"min": [-40, -350, -10], "max": [40, 330, 210]},
-   "collision": {"forme": "box", "paroi": "PM_WallBush", "largeur_m": 0.8, "hauteur_m": 2.0, "longueur_m": 6.6, "enfoui_m": 0.2}
+  "poteau_bois": {
+   "maillage_jeu": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
+   "description": "poteau de bois de 6,3 m",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {
+    "min": [
+     -10,
+     -20,
+     0
+    ],
+    "max": [
+     10,
+     20,
+     630
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallWoodPole",
+    "diametre_m": 0.25,
+    "hauteur_m": 3.5,
+    "enfoui_m": 0.4
+   },
+   "cable": {
+    "hauteur_m": 6.0,
+    "ecarts_m": [
+     -0.15,
+     0.0,
+     0.15
+    ]
+   }
+  },
+  "arbre_de_bord": {
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine11",
+   "description": "grand pin dont le tronc est à 1 ou 2 m du bord (13 m de haut, houppier étroit)",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallWoodTreeTrunks",
+    "diametre_m": 0.45,
+    "hauteur_m": 3.5,
+    "enfoui_m": 0.3
+   }
   }
  },
  "lignes_electriques": [
+  {
+   "nom": "ligne_du_pk_2985",
+   "cote": "droite",
+   "cables": true,
+   "releve": true,
+   "poteaux": [
+    {
+     "pk_m": 2985,
+     "decalage_m": 4.0,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau double en bois (deux fûts accolés ou jambe de force)"
+    },
+    {
+     "pk_m": 3015,
+     "decalage_m": 5.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau clair, au fond de l'aire"
+    },
+    {
+     "pk_m": 3092,
+     "decalage_m": 2.0,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois au pied du talus"
+    },
+    {
+     "pk_m": 3125,
+     "decalage_m": 1.5,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois, bague rouge et blanche"
+    },
+    {
+     "pk_m": 3155,
+     "decalage_m": 2.0,
+     "type": "poteau_bois",
+     "confiance": "faible",
+     "statut": "poteau en bois fin"
+    },
+    {
+     "pk_m": 3195,
+     "decalage_m": 1.5,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau en bois, juste avant le pont"
+    },
+    {
+     "pk_m": 3238,
+     "decalage_m": 2.3,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau en bois penché, derrière la glissière"
+    },
+    {
+     "pk_m": 3272,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris fin derrière la glissière"
+    },
+    {
+     "pk_m": 3297,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris fin derrière la glissière"
+    },
+    {
+     "pk_m": 3308,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris derrière la glissière (pastille bleue)"
+    },
+    {
+     "pk_m": 3375,
+     "decalage_m": 3.0,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois"
+    },
+    {
+     "pk_m": 3402,
+     "decalage_m": 1.5,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau en bois fin"
+    },
+    {
+     "pk_m": 3490,
+     "decalage_m": 2.5,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois"
+    },
+    {
+     "pk_m": 3592,
+     "decalage_m": 1.5,
+     "type": "poteau_beton",
+     "confiance": "faible",
+     "statut": "poteau gris fin (PK corrigé de +14 m, voir calage)"
+    }
+   ],
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "nom": "ligne_du_pk_3708",
+   "cote": "droite",
+   "cables": true,
+   "releve": true,
+   "poteaux": [
+    {
+     "pk_m": 3708,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris"
+    },
+    {
+     "pk_m": 3728,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau fin"
+    },
+    {
+     "pk_m": 3770,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière"
+    },
+    {
+     "pk_m": 3795,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière"
+    },
+    {
+     "pk_m": 3814,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière"
+    },
+    {
+     "pk_m": 3838,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière"
+    },
+    {
+     "pk_m": 3856,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière ; bague rouge et blanche"
+    },
+    {
+     "pk_m": 3884,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière"
+    },
+    {
+     "pk_m": 3911,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière"
+    },
+    {
+     "pk_m": 3935,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière ; marque rouge"
+    },
+    {
+     "pk_m": 3959,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière ; double traverse en tête"
+    },
+    {
+     "pk_m": 3974,
+     "decalage_m": 2.7,
+     "type": "poteau_beton",
+     "confiance": "élevée pour l'existence, moyenne pour le PK (±8 m)",
+     "statut": "poteau de ligne électrique en béton gris, derrière la glissière ; boîtier noir"
+    },
+    {
+     "pk_m": 3998,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau de ligne électrique en béton, derrière le mur"
+    },
+    {
+     "pk_m": 4026,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau de ligne électrique en béton, derrière le mur"
+    },
+    {
+     "pk_m": 4106,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris derrière la glissière"
+    },
+    {
+     "pk_m": 4149,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau en béton derrière la glissière, boîtier"
+    },
+    {
+     "pk_m": 4203,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau en béton clair derrière la glissière"
+    },
+    {
+     "pk_m": 4222,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau en béton, au bout de la glissière, boîtier"
+    },
+    {
+     "pk_m": 4259,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau en béton clair, non protégé"
+    },
+    {
+     "pk_m": 4291,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau en béton, marque jaune, non protégé"
+    },
+    {
+     "pk_m": 4310,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau gris, non protégé"
+    },
+    {
+     "pk_m": 4333,
+     "decalage_m": 1.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau gris haut, au tout début du parapet droit du pont"
+    },
+    {
+     "pk_m": 4369,
+     "decalage_m": 1.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau en béton gris, juste après la fin du parapet droit"
+    },
+    {
+     "pk_m": 4402,
+     "decalage_m": 2.5,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois"
+    },
+    {
+     "pk_m": 4420,
+     "decalage_m": 2.5,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois"
+    },
+    {
+     "pk_m": 4450,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau métallique gris penché, marques rouge et bleue, au début du parapet droit"
+    },
+    {
+     "pk_m": 4480,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris"
+    },
+    {
+     "pk_m": 4515,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "faible",
+     "statut": "poteau fin"
+    },
+    {
+     "pk_m": 4555,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris-vert, marque bleue"
+    },
+    {
+     "pk_m": 4597,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau électrique béton, câbles"
+    },
+    {
+     "pk_m": 4640,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton avec coffret sombre à mi-hauteur"
+    },
+    {
+     "pk_m": 4667,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau électrique béton, juste avant le parapet droit du ponceau"
+    },
+    {
+     "pk_m": 4697,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton avec petit boîtier, après le ponceau"
+    },
+    {
+     "pk_m": 4770,
+     "decalage_m": 6.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton, en retrait derrière l'aire de stationnement"
+    },
+    {
+     "pk_m": 4813,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton avec boîtier à mi-hauteur"
+    },
+    {
+     "pk_m": 4868,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton"
+    },
+    {
+     "pk_m": 4892,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton, au milieu de troncs de pins au ras de la route"
+    },
+    {
+     "pk_m": 4935,
+     "decalage_m": 1.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau béton mince, à l'intérieur du virage à droite"
+    },
+    {
+     "pk_m": 4975,
+     "decalage_m": 3.0,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau mince gris (bois ou métal), juste après le débouché de chemin"
+    },
+    {
+     "pk_m": 5066,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau mince gris, à côté d'un gros tronc mort écorcé, à l'extérieur du virage à gauche, a"
+    },
+    {
+     "pk_m": 5130,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "faible",
+     "statut": "poteau noyé dans la végétation dense ; position déduite des câbles vus en haut à droite"
+    },
+    {
+     "pk_m": 5190,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau béton dépassant de la végétation dense"
+    },
+    {
+     "pk_m": 5270,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton à traverse, sur l'accotement d'herbe devant des cyprès sombres"
+    },
+    {
+     "pk_m": 5306,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "faible",
+     "statut": "poteau gris en partie masqué par la végétation (vu très près, bord droit de l'image)"
+    },
+    {
+     "pk_m": 5345,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau métallique ou béton gris clair, contre le muret de pierre sèche de la propriété"
+    },
+    {
+     "pk_m": 5387,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton"
+    },
+    {
+     "pk_m": 5430,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau béton dans la haie"
+    },
+    {
+     "pk_m": 5490,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "faible",
+     "statut": "poteau vu au-dessus des arbres, après le mur enduit de la propriété"
+    },
+    {
+     "pk_m": 5523,
+     "decalage_m": 0.7,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton au ras de la chaussée, à l'intérieur du virage à droite, collé au "
+    },
+    {
+     "pk_m": 5570,
+     "decalage_m": 1.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau béton haut, juste après la fin du parapet droit du pont, à côté de pins plantés à 1"
+    },
+    {
+     "pk_m": 5636,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton planté juste derrière le parapet de béton droit"
+    },
+    {
+     "pk_m": 5680,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau béton entre des pins, juste après l'entrée de piste DFCI"
+    },
+    {
+     "pk_m": 5725,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton, câbles (début de la ligne bien visible du plateau)"
+    },
+    {
+     "pk_m": 5760,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton"
+    },
+    {
+     "pk_m": 5785,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton (seulement 25 m après le précédent)"
+    },
+    {
+     "pk_m": 5831,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton à traverse ; un piéton se tient 5 m plus loin dans l'herbe"
+    },
+    {
+     "pk_m": 5863,
+     "decalage_m": 2.5,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau sombre (bois ?) dans le gauche en montée, avant le pin rond"
+    },
+    {
+     "pk_m": 5886,
+     "decalage_m": 4.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau métallique gris lisse, plus en retrait, au pied du pin rond"
+    },
+    {
+     "pk_m": 5912,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton portant une petite plaque"
+    },
+    {
+     "pk_m": 5922,
+     "decalage_m": 10.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "pylône béton de ligne moyenne tension (armement en V), très en retrait ; un second vers PK"
+    },
+    {
+     "pk_m": 5954,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton"
+    },
+    {
+     "pk_m": 5986,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton à bandes claires"
+    },
+    {
+     "pk_m": 6037,
+     "decalage_m": 2.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau béton portant une couronne de câble noire"
+    },
+    {
+     "pk_m": 6078,
+     "decalage_m": 3.0,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau bois sombre (téléphone ?)"
+    },
+    {
+     "pk_m": 6135,
+     "decalage_m": 2.5,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau bois double (poteau et contrefiche inclinée), à l'intérieur du virage à droite aprè"
+    },
+    {
+     "pk_m": 6172,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton, juste avant le départ d'une piste à droite"
+    },
+    {
+     "pk_m": 6204,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau béton devant un chêne"
+    },
+    {
+     "pk_m": 6238,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau béton portant deux petites plaques blanches"
+    },
+    {
+     "pk_m": 6263,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau béton portant une plaque"
+    },
+    {
+     "pk_m": 6285,
+     "decalage_m": 3.5,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau bois brun, après un grand pin"
+    },
+    {
+     "pk_m": 6322,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau béton (non vu de près : déjà dépassé sur l'image 6320)"
+    },
+    {
+     "pk_m": 6355,
+     "decalage_m": 3.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton à console, pied dans une tache de sable"
+    },
+    {
+     "pk_m": 6380,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau électrique béton à traverse, en face du débouché de gauche"
+    },
+    {
+     "pk_m": 6410,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau béton clair, près d'un grand pin"
+    },
+    {
+     "pk_m": 6470,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau gris légèrement penché, avec panneau fléché rouge « DFCI » à côté, avant le pont"
+    },
+    {
+     "pk_m": 6498,
+     "decalage_m": 1.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton immédiatement après la fin du parapet droit du pont"
+    },
+    {
+     "pk_m": 6535,
+     "decalage_m": 2.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau béton penché"
+    },
+    {
+     "pk_m": 6568,
+     "decalage_m": 3.5,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau gris à bague bleue et blanche"
+    },
+    {
+     "pk_m": 6600,
+     "decalage_m": 2.0,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau bois sombre"
+    },
+    {
+     "pk_m": 6628,
+     "decalage_m": 4.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau gris clair"
+    },
+    {
+     "pk_m": 6663,
+     "decalage_m": 1.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau à bague jaune au ras de la chaussée, à la corde du virage à droite, planté contre l"
+    },
+    {
+     "pk_m": 6676,
+     "decalage_m": 3.5,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau béton dans les buissons"
+    }
+   ],
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  }
+ ],
+ "objets": [
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 2180,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune à l'entrée de l'épingle (non lu), PK 2176-2185"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 2606,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune (non lu)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 2660,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "source": "inventaire : piste, voiture garée, panneau bleu, PK 2647-2674"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 2857,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune (non lu)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 2985,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "inventaire : piste, aire en terre, panneau rond bleu, PK 2971-2999"
+  },
+  {
+   "type": "panneau_secours_annonce",
+   "pk_m": 3077,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau carré jaune à pictogramme rouge (non lu)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 3188,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "inventaire : piste, commissaire, panneau bleu, fût"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 3550,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : petit panneau jaune"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 4966,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune ; confirmé par la capture à 4 min 12 (panneau jaune à éclair)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 5025,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "inventaire : croisement de pistes, panneau bleu à droite, PK 5019-5031"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 5366,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau triangle « virage à droite » et panneau jaune"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 5590,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "capture à 4 min 39 (caméra au PK 5549) : panneau jaune carré à droite ; absent de l'inventaire"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 1497,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "source": "inventaire : débouché de piste, panneau bleu numéroté, PK 1490-1504"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 6493,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "source": "inventaire : croisement de pistes, panneau bleu à gauche, PK 6489-6497"
+  },
+  {
+   "type": "panneau_annonce_arrivee",
+   "pk_m": 6543,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune à damier (annonce d'arrivée)"
+  },
+  {
+   "type": "panneau_arrivee",
+   "pk_m": 6736,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau rouge à damier d'arrivée"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 370,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 880,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 905,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1232,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1410,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1432,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1455,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1838,
+   "cote": "droite",
+   "decalage_m": 1.3,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1849,
+   "cote": "droite",
+   "decalage_m": 1.3,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1860,
+   "cote": "droite",
+   "decalage_m": 1.3,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 1870,
+   "cote": "droite",
+   "decalage_m": 1.3,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 2195,
+   "cote": "droite",
+   "decalage_m": 1.3,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 2768,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 3822,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 4228,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 4472,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 4712,
+   "cote": "droite",
+   "decalage_m": 1.7,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 4827,
+   "cote": "droite",
+   "decalage_m": 1.7,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 4890,
+   "cote": "droite",
+   "decalage_m": 1.7,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 4900,
+   "cote": "droite",
+   "decalage_m": 1.7,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 4908,
+   "cote": "droite",
+   "decalage_m": 1.7,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 5567,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 5578,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
+  }
+ ],
+ "non_poses": [
+  "Panneaux routiers (triangles de danger aux PK 2131, 3499, 3716, 5287, 5366 ; panneau directionnel PK 3321) : le jeu a des panneaux routiers de Bollène, mais leurs dessins n'ont pas été identifiés.",
+  "Balises de virage à chevrons (PK 5, 2275, 5517) : pas de maillage équivalent identifié.",
+  "Clôture en bois (PK 5259-5293) et garde-corps métallique (PK 5496) : seuls leurs murets de pierre sont modélisés (data/reference/ouvrages_parapets.json).",
+  "Public, véhicules, commissaires, rubalise hors carrefour, chronométrage.",
+  "Talus rocheux à 1 m ou plus du bord (une quarantaine de tronçons, surtout à gauche) : rendus par le terrain et par la matière « cailloux » sur les pentes raides, sans mur ajouté.",
+  "Panneaux routiers relevés sur la vidéo de reconnaissances : triangles aux PK 2152, 2264, 3523, 3745, 5347, 5412 ; balises à chevrons aux PK 2322, 2779, 5528."
+ ],
+ "lignes_electriques_avant_le_releve_de_reconnaissances": [
   {
    "nom": "epingle_du_km_4",
    "cote": "droite",
    "decalage_m": 3.0,
    "cables": true,
    "poteaux": [
-    {"pk_m": 3850, "statut": "vu sur la capture à 3 min 13 (caméra au PK 3818)"},
-    {"pk_m": 3912, "statut": "interpolé entre deux poteaux vus"},
-    {"pk_m": 3975, "statut": "vu sur la capture à 3 min 18 (caméra au PK 3958)"},
-    {"pk_m": 4045, "statut": "vu sur les captures à 3 min 18 et 3 min 22, derrière le mur de pierre"},
-    {"pk_m": 4125, "statut": "interpolé entre deux poteaux vus"},
-    {"pk_m": 4204, "statut": "vu sur la vidéo (inventaire du relevé : poteau électrique à droite)"},
-    {"pk_m": 4272, "statut": "interpolé entre deux poteaux vus"},
-    {"pk_m": 4340, "statut": "vu sur la capture à 3 min 39 (caméra au PK 4325), à l'entrée du pont 4360"}
+    {
+     "pk_m": 3850,
+     "statut": "vu sur la capture à 3 min 13 (caméra au PK 3818)"
+    },
+    {
+     "pk_m": 3912,
+     "statut": "interpolé entre deux poteaux vus"
+    },
+    {
+     "pk_m": 3975,
+     "statut": "vu sur la capture à 3 min 18 (caméra au PK 3958)"
+    },
+    {
+     "pk_m": 4045,
+     "statut": "vu sur les captures à 3 min 18 et 3 min 22, derrière le mur de pierre"
+    },
+    {
+     "pk_m": 4125,
+     "statut": "interpolé entre deux poteaux vus"
+    },
+    {
+     "pk_m": 4204,
+     "statut": "vu sur la vidéo (inventaire du relevé : poteau électrique à droite)"
+    },
+    {
+     "pk_m": 4272,
+     "statut": "interpolé entre deux poteaux vus"
+    },
+    {
+     "pk_m": 4340,
+     "statut": "vu sur la capture à 3 min 39 (caméra au PK 4325), à l'entrée du pont 4360"
+    }
    ],
    "source": "captures de la vidéo VMRS 2025 du 12/11/2026 ; l'inventaire du relevé n'avait noté que le poteau du PK 4204",
    "confiance": "moyenne pour l'existence de la ligne, faible pour la position de chaque poteau (±25 m)"
@@ -79,43 +1189,96 @@
    "decalage_m": 3.0,
    "cables": true,
    "poteaux": [
-    {"pk_m": 5568, "statut": "vu sur la capture à 4 min 39 (caméra au PK 5549)"},
-    {"pk_m": 5607}, {"pk_m": 5669}, {"pk_m": 5731}, {"pk_m": 5794}, {"pk_m": 5856}, {"pk_m": 5918}, {"pk_m": 5980}, {"pk_m": 6043},
-    {"pk_m": 6105, "statut": "vu sur la capture à 5 min 04 (caméra au PK 6072), au ponceau 6102"},
-    {"pk_m": 6167}, {"pk_m": 6229}, {"pk_m": 6292}, {"pk_m": 6354}, {"pk_m": 6416}, {"pk_m": 6478}, {"pk_m": 6541}, {"pk_m": 6603},
-    {"pk_m": 6665, "statut": "vu sur la capture à 5 min 32 (caméra au PK 6652), au ponceau 6681"}
+    {
+     "pk_m": 5568,
+     "statut": "vu sur la capture à 4 min 39 (caméra au PK 5549)"
+    },
+    {
+     "pk_m": 5607
+    },
+    {
+     "pk_m": 5669
+    },
+    {
+     "pk_m": 5731
+    },
+    {
+     "pk_m": 5794
+    },
+    {
+     "pk_m": 5856
+    },
+    {
+     "pk_m": 5918
+    },
+    {
+     "pk_m": 5980
+    },
+    {
+     "pk_m": 6043
+    },
+    {
+     "pk_m": 6105,
+     "statut": "vu sur la capture à 5 min 04 (caméra au PK 6072), au ponceau 6102"
+    },
+    {
+     "pk_m": 6167
+    },
+    {
+     "pk_m": 6229
+    },
+    {
+     "pk_m": 6292
+    },
+    {
+     "pk_m": 6354
+    },
+    {
+     "pk_m": 6416
+    },
+    {
+     "pk_m": 6478
+    },
+    {
+     "pk_m": 6541
+    },
+    {
+     "pk_m": 6603
+    },
+    {
+     "pk_m": 6665,
+     "statut": "vu sur la capture à 5 min 32 (caméra au PK 6652), au ponceau 6681"
+    }
    ],
    "source": "inventaire du relevé vidéo : « ligne électrique sur poteaux bois ou béton, un poteau tous les 50 à 80 m environ », PK 5663 à 6712, à droite ; trois poteaux calés sur les captures du 12/11/2026, les autres répartis tous les 62 m",
    "confiance": "élevée pour l'existence de la ligne, faible pour la position de chaque poteau"
   }
  ],
- "objets": [
-  {"type": "panneau_radio_annonce", "pk_m": 2180, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau jaune à l'entrée de l'épingle (non lu), PK 2176-2185"},
-  {"type": "panneau_radio_annonce", "pk_m": 2606, "cote": "gauche", "decalage_m": 0.8, "source": "inventaire : panneau jaune (non lu)"},
-  {"type": "panneau_radio", "pk_m": 2660, "cote": "gauche", "decalage_m": 1.2, "source": "inventaire : piste, voiture garée, panneau bleu, PK 2647-2674"},
-  {"type": "panneau_radio_annonce", "pk_m": 2857, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau jaune (non lu)"},
-  {"type": "panneau_radio", "pk_m": 2985, "cote": "droite", "decalage_m": 1.2, "source": "inventaire : piste, aire en terre, panneau rond bleu, PK 2971-2999"},
-  {"type": "panneau_secours_annonce", "pk_m": 3077, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau carré jaune à pictogramme rouge (non lu)"},
-  {"type": "panneau_radio", "pk_m": 3188, "cote": "droite", "decalage_m": 1.2, "source": "inventaire : piste, commissaire, panneau bleu, fût"},
-  {"type": "panneau_radio_annonce", "pk_m": 3550, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : petit panneau jaune"},
-  {"type": "panneau_radio_annonce", "pk_m": 4966, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau jaune ; confirmé par la capture à 4 min 12 (panneau jaune à éclair)"},
-  {"type": "panneau_radio", "pk_m": 5025, "cote": "droite", "decalage_m": 1.2, "source": "inventaire : croisement de pistes, panneau bleu à droite, PK 5019-5031"},
-  {"type": "panneau_radio_annonce", "pk_m": 5366, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau triangle « virage à droite » et panneau jaune"},
-  {"type": "panneau_radio_annonce", "pk_m": 5590, "cote": "droite", "decalage_m": 0.8, "source": "capture à 4 min 39 (caméra au PK 5549) : panneau jaune carré à droite ; absent de l'inventaire"},
-  {"type": "panneau_radio", "pk_m": 1497, "cote": "gauche", "decalage_m": 1.2, "source": "inventaire : débouché de piste, panneau bleu numéroté, PK 1490-1504"},
-  {"type": "panneau_radio", "pk_m": 6493, "cote": "gauche", "decalage_m": 1.2, "source": "inventaire : croisement de pistes, panneau bleu à gauche, PK 6489-6497"},
-  {"type": "panneau_annonce_arrivee", "pk_m": 6543, "cote": "gauche", "decalage_m": 0.8, "source": "inventaire : panneau jaune à damier (annonce d'arrivée)"},
-  {"type": "panneau_arrivee", "pk_m": 6736, "cote": "gauche", "decalage_m": 0.8, "source": "inventaire : panneau rouge à damier d'arrivée"}
+ "rangees_avant_le_releve_de_reconnaissances": [
+  {
+   "type": "haie",
+   "pk_debut_m": 5035,
+   "pk_fin_m": 5234,
+   "cote": "droite",
+   "decalage_m": 1.6,
+   "pas_m": 6.5,
+   "source": "inventaire : haie dense continue à droite",
+   "confiance": "élevée pour l'existence, moyenne pour les bornes ; hauteur supposée (2 m)"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_debut_m": 2652,
+   "pk_fin_m": 2668,
+   "cote": "droite",
+   "decalage_m": 2.5,
+   "pas_m": 1.7,
+   "source": "inventaire : piste barrée par barrière à piquets rouges et blancs, aire en terre, PK 2647-2674",
+   "confiance": "moyenne : le relevé décrit une barrière à piquets, rendue ici par des barrières plastique du jeu"
+  }
  ],
- "rangees": [
-  {"type": "haie", "pk_debut_m": 5035, "pk_fin_m": 5234, "cote": "droite", "decalage_m": 1.6, "pas_m": 6.5, "source": "inventaire : haie dense continue à droite", "confiance": "élevée pour l'existence, moyenne pour les bornes ; hauteur supposée (2 m)"},
-  {"type": "barriere_plastique", "pk_debut_m": 2652, "pk_fin_m": 2668, "cote": "droite", "decalage_m": 2.5, "pas_m": 1.7, "source": "inventaire : piste barrée par barrière à piquets rouges et blancs, aire en terre, PK 2647-2674", "confiance": "moyenne : le relevé décrit une barrière à piquets, rendue ici par des barrières plastique du jeu"}
- ],
- "non_poses": [
-  "Panneaux routiers (triangles de danger aux PK 2131, 3499, 3716, 5287, 5366 ; panneau directionnel PK 3321) : le jeu a des panneaux routiers de Bollène, mais leurs dessins n'ont pas été identifiés.",
-  "Balises de virage à chevrons (PK 5, 2275, 5517) : pas de maillage équivalent identifié.",
-  "Rochers au ras de la chaussée (PK 1540-1607 à gauche) et talus rocheux (PK 247-836, 2083-2176) : leur position individuelle n'est pas connue, et ce sont des obstacles durs ; à poser d'après une vidéo.",
-  "Clôture en bois (PK 5259-5293) et garde-corps métallique (PK 5496) : seuls leurs murets de pierre sont modélisés (data/reference/ouvrages_parapets.json).",
-  "Public, véhicules, commissaires, rubalise hors carrefour, chronométrage."
+ "rangees": [],
+ "retires_apres_le_releve_de_reconnaissances": [
+  "Haie taillée du PK 5035 au PK 5234 : c'est en réalité une végétation dense non taillée de 3 à 5 m, des deux côtés, de 5075 à 5330 environ ; les arbres du semis la rendent déjà.",
+  "Barrières plastique du PK 2652 au PK 2668 : c'est une barrière fixe en bois à 6-8 m du bord, hors trajectoire."
  ]
 }

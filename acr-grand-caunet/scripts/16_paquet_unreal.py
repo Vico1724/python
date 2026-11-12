@@ -110,8 +110,7 @@ MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (135, 135, 135, 255)},
                "chaperon": {"uv": 2.0 / 3.144, "couleur": None}}
 # Câbles électriques entre les poteaux (maillage à nous) : trois par portée, accrochés à la traverse du poteau du jeu
 # (bouts à ±1 m, milieu), à 8,6 m du sol ; flèche de 0,8 m pour 60 m de portée.
-CABLES = {"ecarts_m": (-1.0, 0.0, 1.0), "hauteur_m": 8.6, "fleche_par_m2": 0.8 / 60.0 ** 2, "segments": 14, "rayon_m": 0.02,
-          "couleur": (30, 30, 32)}
+CABLES = {"portee_max_m": 115.0, "fleche_par_m2": 0.8 / 60.0 ** 2, "segments": 12, "rayon_m": 0.02, "couleur": (30, 30, 32)}
 GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
              "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
              "enfoncement_m": 0.05}
@@ -1232,13 +1231,16 @@ def mobilier_du_bord(P, ref, pkf, sol, args):
             continue
         pts = l["poteaux"]
         for a, b in zip(pts[:-1], pts[1:]):
-            for lat in CABLES["ecarts_m"]:
+            if math.hypot(b["x"] - a["x"], b["y"] - a["y"]) > CABLES["portee_max_m"] or not a.get("cable") or not b.get("cable"):
+                continue
+            for k_fil in range(3):
                 bouts = []
                 for o in (a, b):
                     d = np.array(o["dir"])
                     travers = np.array([-d[1], d[0]])                       # en travers de la ligne (est, nord)
+                    lat = o["cable"]["ecarts_m"][k_fil]
                     bouts.append(m08.to_gltf(np.array([[o["x"] + travers[0] * lat, o["y"] + travers[1] * lat, 0.0]]), ref).astype(float)[0]
-                                 * np.array([1.0, 0.0, 1.0]) + np.array([0.0, o["_g"][1] + CABLES["hauteur_m"], 0.0]))
+                                 * np.array([1.0, 0.0, 1.0]) + np.array([0.0, o["_g"][1] + o["cable"]["hauteur_m"], 0.0]))
                 A, B = bouts
                 portee = float(np.linalg.norm(B - A))
                 fleche = CABLES["fleche_par_m2"] * portee ** 2
@@ -1271,8 +1273,7 @@ def mobilier_du_bord(P, ref, pkf, sol, args):
             P.texture("T_GC_ORM_R140M000", "commun", f"{UE}/Shared/Textures", image_unie((255, 140, 0)), ["complet"])
         P.materiau("MI_GC_Cable", f"{UE}/Shared/Materials", {"couleur": "T_GC_Cable", "orm": "T_GC_ORM_R140M000"}, ["complet"])
         P.maillage(f"SM_{NOM}Cables", "mobilier", f"{UE}/Props/Meshes", pos, nrm, np.zeros((len(pos), 2)), tri, "MI_GC_Cable", ["complet"],
-                   extra={"portees": int(sum(len(l["poteaux"]) - 1 for l in lignes if l["cables"]))})
-        P.cables_portees = int(sum(len(l["poteaux"]) - 1 for l in lignes if l["cables"]))
+                   extra={"portees": int(k0 // (3 * 3 * (CABLES["segments"] + 1)))})
     return bilan
 
 

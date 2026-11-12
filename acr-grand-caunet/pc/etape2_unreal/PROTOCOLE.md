@@ -259,6 +259,22 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **État.** Mod de l'étape 1 et décor reconstruits, relus conformes le 12/11/2026 à 16 h 07 (466 maillages, 246 276 instances dont 82 objets de mobilier) et installés ensemble. La version d'avant ces ajouts est gardée sous `sol_jeu_sans_mobilier`. *Pas encore vu en jeu.*
 
+## 0 nonies. Relevé de la vidéo des reconnaissances (12/11/2026 au soir)
+
+**Demande du directeur :** comparer route, obstacles et relief avec la vidéo des reconnaissances (8 min 21 s, hors dépôt, `Projet_grand_caunet\reconnaissance\`). Détail pour lui : `docs/12_releve_reconnaissances.md`.
+
+- **Calage de la vidéo sur la route** : `scripts/19_calage_video.py <vidéo> --nom reco` → `data/processed/calage_reco.json` (table temps → PK) et planches `figures/reco/` (hors dépôt). Lacet de la caméra par corrélation de phase, plus court chemin (Viterbi) contre le cap de la route, biais fixe et biais par mètre ajustés avec l'échelle. À lancer avec `python -P` depuis un dossier neutre (la vidéo est un fichier téléchargé ; `-I` empêche de trouver cv2).
+- **Virages** : 50 changements de direction sur 50 retrouvés ; écart d'angle médian 5,8°, 13,8° au 9ᵉ décile, 17,6° au plus. Aucune géométrie modifiée. **Le tangage ne se mesure pas ainsi** (corrélation de 0,13 avec la pente du modèle) : pas de contrôle des compressions par la vidéo.
+- **Relevé visuel** : `data/reference/releve_reco/partie_{1,2,3}.json` (374 observations, 67 écarts ; bords par tronçon, chaussée, paysage). Les PK de l'ancien relevé (`releve_video.json`, vidéo de course) étaient souvent 20 à 60 m trop tôt.
+- **Corrections portées dans les données** (anciennes valeurs gardées sous `*_avant_le_releve_de_reconnaissances`) :
+  - `glissieres.json` : 6 tronçons recalés, 896 m ;
+  - `ouvrages_parapets.json` : côtés des 10 ponts donnés en PK absolus (`pk_debut_m`, `pk_fin_m` : `11_route_ouvrages.py` descend le pied du parapet jusqu'au terrain hors du tablier) ; 39 parapets hors tablier, dont 9 parois rocheuses rendues en mur de pierre (`decalage_m` par rapport au bord) ;
+  - `mobilier_bord_de_route.json` : 2 lignes relevées (`"releve": true` : poteaux posés où ils sont vus, sans décalage hors ravin ni portée minimale), 96 poteaux dont 17 en bois (`AlsaceProps/FraMunPylonA/SM_FraMunPylonA`, collision `PM_WallWoodPole`), 23 arbres de bord (`SM_AleppoPine11`, collision de tronc), haie et barrières plastique retirées ;
+  - `15b_sols_du_jeu.py` : matière « cailloux » sur les pentes de 30° à 48° et plus (`PENTE_ROCHE`).
+- **Câbles** : accrochage par poteau (`cable` dans le type : hauteur et demi-largeur), portée maximale 115 m ; 94 portées, 20 304 triangles.
+- **Profil en long** : le relevé note à l'œil une plongée vers le pont au PK 5480 (présente dans le modèle : −3 % → −5 %), des « sommets de côte » aux PK 5670–5700 et 6540 (dans le modèle : montée qui s'adoucit, 6,6 → 3,9 % et 3,0 → 1,5 %, sans redescendre) et au PK 5865 (rien dans le modèle : 4,8 % constant ; rien non plus dans `mnt_couloir_1m.tif` lu sous l'axe, 4 à 5 % réguliers, que le modèle suit à 4 cm près entre les PK 5800 et 5930). Profil non modifié ; à regarder en jeu.
+- **Non fait** : panneaux routiers, balises à chevrons, talus rocheux à plus d'un mètre du bord (terrain + matière), clôtures et barrière en bois, bornes, défauts d'aspect de la chaussée, barres rocheuses du massif lointain. Rubrique `non_poses` du fichier du mobilier.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :

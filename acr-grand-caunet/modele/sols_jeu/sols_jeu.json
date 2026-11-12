@@ -21,12 +21,12 @@
  ],
  "matiere_de_fond": "paillis (matière 1 du jeu) = 1 - somme des couches",
  "parts_moyennes": {
-  "paillis": 0.21,
-  "aiguilles_de_pin": 0.389,
+  "paillis": 0.205,
+  "aiguilles_de_pin": 0.38,
   "herbe_haute": 0.014,
-  "herbe_seche": 0.215,
+  "herbe_seche": 0.212,
   "terre": 0.048,
-  "cailloux": 0.123
+  "cailloux": 0.141
  },
  "couleur_1m": {
   "fichier": "couleur_1m.npy",
@@ -52,7 +52,12 @@
    130.0
   ]
  },
+ "pente_roche_deg": [
+  30.0,
+  48.0
+ ],
+ "part_de_pentes_raides": 0.013,
  "accotement_m": 1.5,
  "graine": 20261112,
- "duree_s": 66
+ "duree_s": 69
 }

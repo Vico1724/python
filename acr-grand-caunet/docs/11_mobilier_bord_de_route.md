@@ -4,6 +4,8 @@
 
 **Demande du directeur.** Ajouter, sans attendre d'essai en jeu, les obstacles que l'on sait manquants : poteaux électriques, barrières, etc.
 
+> **Mise à jour du 12 novembre au soir.** La vidéo des reconnaissances a montré que plusieurs objets de cette première version étaient mal placés ou n'existaient pas. Les poteaux (96 au lieu de 26, chacun où il est vu), les murs, les glissières et les parapets ont été repris ; la haie et les barrières plastique ont été retirées ; 23 arbres de bord et 9 parois rocheuses ont été ajoutés. Le détail est dans `docs/12_releve_reconnaissances.md`. Les sections 1 à 4 ci-dessous décrivent la première version, gardée sur le PC sous `sol_jeu_avant_releve_reco` ; seuls les panneaux du rallye en sont repris tels quels.
+
 ## 1. Ce qui est ajouté
 
 Tout est posé avec des objets du jeu lui-même, sauf les câbles et les murs, qui sont à nous.
