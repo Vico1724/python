@@ -1,5 +1,5 @@
 {
- "source": "chaussee_precise.csv",
+ "source": "chaussee_precise_brut.csv",
  "points": 7549,
  "tolerances_m": {
   "lidar+ortho": 0.2,
@@ -1135,6 +1135,132 @@
   "mediane_apres": 6.5,
   "saut_max_avant": 0.41,
   "saut_max_apres": 0.25
+ },
+ "profil_en_travers": {
+  "toit_admis_pct": [
+   -4.5,
+   3.0
+  ],
+  "saut_de_devers_max_pct_par_m": 4.0,
+  "metres_repris": 340,
+  "troncons": [
+   {
+    "pk_debut": 1195,
+    "pk_fin": 1206,
+    "correction_max_gauche_m": 0.03,
+    "correction_max_droite_m": 0.23
+   },
+   {
+    "pk_debut": 1685,
+    "pk_fin": 1697,
+    "correction_max_gauche_m": 0.02,
+    "correction_max_droite_m": 0.3
+   },
+   {
+    "pk_debut": 1785,
+    "pk_fin": 1794,
+    "correction_max_gauche_m": 0.17,
+    "correction_max_droite_m": 0.03
+   },
+   {
+    "pk_debut": 1798,
+    "pk_fin": 1810,
+    "correction_max_gauche_m": 0.37,
+    "correction_max_droite_m": 0.03
+   },
+   {
+    "pk_debut": 1939,
+    "pk_fin": 1952,
+    "correction_max_gauche_m": 0.03,
+    "correction_max_droite_m": 0.33
+   },
+   {
+    "pk_debut": 2435,
+    "pk_fin": 2444,
+    "correction_max_gauche_m": 0.17,
+    "correction_max_droite_m": 0.01
+   },
+   {
+    "pk_debut": 3060,
+    "pk_fin": 3067,
+    "correction_max_gauche_m": 0.4,
+    "correction_max_droite_m": 0.02
+   },
+   {
+    "pk_debut": 3351,
+    "pk_fin": 3402,
+    "correction_max_gauche_m": 0.07,
+    "correction_max_droite_m": 0.56
+   },
+   {
+    "pk_debut": 3467,
+    "pk_fin": 3480,
+    "correction_max_gauche_m": 0.35,
+    "correction_max_droite_m": 0.21
+   },
+   {
+    "pk_debut": 3902,
+    "pk_fin": 3970,
+    "correction_max_gauche_m": 0.16,
+    "correction_max_droite_m": 0.86
+   },
+   {
+    "pk_debut": 4040,
+    "pk_fin": 4061,
+    "correction_max_gauche_m": 0.9,
+    "correction_max_droite_m": 0.24
+   },
+   {
+    "pk_debut": 4571,
+    "pk_fin": 4585,
+    "correction_max_gauche_m": 0.69,
+    "correction_max_droite_m": 0.19
+   },
+   {
+    "pk_debut": 4673,
+    "pk_fin": 4687,
+    "correction_max_gauche_m": 0.87,
+    "correction_max_droite_m": 0.47
+   },
+   {
+    "pk_debut": 4988,
+    "pk_fin": 5000,
+    "correction_max_gauche_m": 0.03,
+    "correction_max_droite_m": 0.7
+   },
+   {
+    "pk_debut": 5749,
+    "pk_fin": 5756,
+    "correction_max_gauche_m": 0.01,
+    "correction_max_droite_m": 0.14
+   },
+   {
+    "pk_debut": 6028,
+    "pk_fin": 6042,
+    "correction_max_gauche_m": 0.05,
+    "correction_max_droite_m": 0.36
+   },
+   {
+    "pk_debut": 6104,
+    "pk_fin": 6122,
+    "correction_max_gauche_m": 0.69,
+    "correction_max_droite_m": 1.22
+   },
+   {
+    "pk_debut": 6331,
+    "pk_fin": 6337,
+    "correction_max_gauche_m": 0.01,
+    "correction_max_droite_m": 0.23
+   },
+   {
+    "pk_debut": 6675,
+    "pk_fin": 6685,
+    "correction_max_gauche_m": 0.02,
+    "correction_max_droite_m": 0.35
+   }
+  ],
+  "devers_extreme_avant_pct": 50.1,
+  "devers_extreme_apres_pct": 15.2
  },
  "echecs": []
 }

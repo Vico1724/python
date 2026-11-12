@@ -2454,6 +2454,13 @@
    "releve": "releves/materiaux_maitres.json (valeurs par défaut, textures par défaut)"
   },
   {
+   "objet": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+   "type": "Material",
+   "parametres_texture": [],
+   "parametres_scalaires": [],
+   "essai": "parent vide d'une variante du jeu dont nos variantes héritent sans rien régler"
+  },
+  {
    "objet": "/Game/Environments/MonteCarloS1Bollene/AsphaltMaterial/MI_BolleneAsphalt1",
    "type": "MaterialInstanceConstant",
    "parent": "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv",
@@ -2464,6 +2471,33 @@
    "static_switch": {},
    "essai": "E3b",
    "pourquoi": "asphalte de Bollène : plaqué d'après la position dans le monde (static switch UseWSPlanarUV), donc indépendant du dépliage de nos maillages ; fissures, traces de pneus, taches d'huile"
+  },
+  {
+   "objet": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA2",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+   "role": "parent_du_jeu",
+   "pour": [
+    "MI_GC_Pierre",
+    "MI_GC_Pierre_sombre"
+   ],
+   "static_switch": {},
+   "essai": "E3b",
+   "pourquoi": "mur de pierres sèches de Bollène (pierre brute et mousse, répétable) : matière de nos parapets et murs de pierre, qui étaient unis en jeu"
+  },
+  {
+   "objet": "/Game/Props/MonteCarloProps/MonBolConcreteWalls/MI_MonBolConcreteWallsA",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+   "role": "parent_du_jeu",
+   "pour": [
+    "MI_GC_Beton",
+    "MI_GC_Dalle",
+    "MI_GC_Chaperon"
+   ],
+   "static_switch": {},
+   "essai": "E3b",
+   "pourquoi": "mur de béton de Bollène (deux bétons mêlés, répétable) : matière de nos parapets de béton, des tabliers et des chaperons"
   },
   {
    "objet": "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild",

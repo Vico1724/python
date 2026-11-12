@@ -1,407 +1,482 @@
 {
-  "note": "Parapets des ouvrages de l'ES, lus par scripts/11_route_ouvrages.py. Chaque entrée est rattachée au tablier détecté sur l'axe précis (logique de 08_modele_3d.py) dont le centre est le plus proche de pk_centre_m (à 40 m près). Relevé sur la vidéo embarquée n° 2 (2025, ES 1, régularité) image par image ; temps vidéo t en secondes, PK estimé par PK ≈ (t - 11) / 323 x 6736 à ±150 m près, l'appariement vidéo / ouvrage se fait par l'ordre de passage et la forme du virage. Hauteurs et épaisseurs estimées à l'œil (référence : hauteur du capot ≈ 0,8 m, largeur d'une voie ≈ 3 m), incertitude ±0,15 m sur la hauteur, ±0,1 m sur l'épaisseur. Hauteur comptée depuis le bord de chaussée.",
-  "types": {
-    "pierre_des_blancs": "maçonnerie de moellons calcaires gris, dés (potelets) de béton peints en blanc tous les 3 à 4 m et chaperon blanc",
-    "pierre": "maçonnerie de moellons, chaperon de pierre ou de béton gris, sans dés blancs nets",
-    "beton": "béton lisse banché, couleur gris clair",
-    "aucun": "pas de parapet vu de ce côté (talus rocheux ou terrain au niveau de la chaussée)"
+ "note": "Parapets des ouvrages de l'ES, lus par scripts/11_route_ouvrages.py. Chaque entrée est rattachée au tablier détecté sur l'axe précis (logique de 08_modele_3d.py) dont le centre est le plus proche de pk_centre_m (à 40 m près). Relevé sur la vidéo embarquée n° 2 (2025, ES 1, régularité) image par image ; temps vidéo t en secondes, PK estimé par PK ≈ (t - 11) / 323 x 6736 à ±150 m près, l'appariement vidéo / ouvrage se fait par l'ordre de passage et la forme du virage. Hauteurs et épaisseurs estimées à l'œil (référence : hauteur du capot ≈ 0,8 m, largeur d'une voie ≈ 3 m), incertitude ±0,15 m sur la hauteur, ±0,1 m sur l'épaisseur. Hauteur comptée depuis le bord de chaussée.",
+ "types": {
+  "pierre_des_blancs": "maçonnerie de moellons calcaires gris, dés (potelets) de béton peints en blanc tous les 3 à 4 m et chaperon blanc",
+  "pierre": "maçonnerie de moellons, chaperon de pierre ou de béton gris, sans dés blancs nets",
+  "beton": "béton lisse banché, couleur gris clair",
+  "aucun": "pas de parapet vu de ce côté (talus rocheux ou terrain au niveau de la chaussée)"
+ },
+ "valeurs_par_defaut": {
+  "D3D": {
+   "type": "pierre_des_blancs",
+   "hauteur_m": 0.75,
+   "epaisseur_m": 0.45,
+   "statut": "supposé"
   },
-  "valeurs_par_defaut": {
-    "D3D": {
-      "type": "pierre_des_blancs",
-      "hauteur_m": 0.75,
-      "epaisseur_m": 0.45,
-      "statut": "supposé"
-    },
-    "D1": {
-      "type": "beton",
-      "hauteur_m": 0.7,
-      "epaisseur_m": 0.3,
-      "statut": "supposé"
-    },
-    "pk_limite_D3D_D1_m": 3650,
-    "prolongement_par_defaut_m": 2.0
+  "D1": {
+   "type": "beton",
+   "hauteur_m": 0.7,
+   "epaisseur_m": 0.3,
+   "statut": "supposé"
   },
-  "ouvrages": [
-    {
-      "pk_centre_m": 1484,
-      "route": "D3D",
-      "bdtopo_pk": "1475-1486",
-      "temps_video_s": "83-86",
-      "gauche": {
-        "type": "aucun",
-        "statut": "vu sur la vidéo",
-        "note": "talus rocheux taillé à gauche"
-      },
-      "droite": {
-        "type": "aucun",
-        "statut": "vu sur la vidéo",
-        "confiance": "élevée",
-        "note": "rien au PK 1484 (ligne droite, débouché de piste en terre à gauche) ; le long parapet à dés blancs autrefois attribué à ce ponceau est à droite du PK 1535 au PK 1590 : voir parapets_hors_tablier (relevé vidéo du 11/11/2026 (data/reference/releve_video.json))"
-      }
-    },
-    {
-      "pk_centre_m": 1661,
-      "route": "D3D",
-      "bdtopo_pk": "1644-1673",
-      "temps_video_s": "88-89",
-      "gauche": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      },
-      "droite": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo",
-        "note": "parapet courbe qui suit la sortie de virage"
-      }
-    },
-    {
-      "pk_centre_m": 1963,
-      "route": "D3D",
-      "bdtopo_pk": "1955-1966",
-      "temps_video_s": "110-114",
-      "gauche": {
-        "type": "aucun",
-        "statut": "vu sur la vidéo",
-        "note": "talus rocheux à gauche"
-      },
-      "droite": {
-        "type": "aucun",
-        "statut": "vu sur la vidéo",
-        "confiance": "élevée",
-        "note": "au PK 1963, simple glissière métallique à droite (non modélisée) et aire de terre à gauche ; le parapet à dés blancs autrefois attribué à ce ponceau est celui du virage avant la première épingle, à droite du PK 2128 au PK 2178 : voir parapets_hors_tablier (relevé vidéo du 11/11/2026 (data/reference/releve_video.json))",
-        "glissiere": true
-      }
-    },
-    {
-      "pk_centre_m": 2602,
-      "route": "D3D",
-      "bdtopo_pk": "2599-2606",
-      "temps_video_s": "134-136",
-      "gauche": {
-        "type": "pierre",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      },
-      "droite": {
-        "type": "pierre",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo",
-        "note": "parapets courts et bas, chaperon clair"
-      }
-    },
-    {
-      "pk_centre_m": 2777,
-      "route": "D3D",
-      "bdtopo_pk": "2767-2783",
-      "temps_video_s": "141-143",
-      "gauche": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      },
-      "droite": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo",
-        "note": "précédé à gauche de blocs de béton bas (non modélisés)"
-      }
-    },
-    {
-      "pk_centre_m": 3229,
-      "route": "D3D",
-      "bdtopo_pk": "3212-3226",
-      "temps_video_s": "164-166",
-      "gauche": {
-        "type": "pierre",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      },
-      "droite": {
-        "type": "pierre",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo",
-        "note": "chaperon gris, pas de dés blancs visibles"
-      }
-    },
-    {
-      "pk_centre_m": 3648,
-      "route": "carrefour du Lion d'Or",
-      "bdtopo_pk": "3624-3646",
-      "temps_video_s": "183-185",
-      "gauche": {
-        "type": "beton",
-        "hauteur_m": 0.5,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "note": "muret de béton bas tagué, à gauche à l'entrée du carrefour"
-      },
-      "droite": {
-        "type": "aucun",
-        "statut": "vu sur la vidéo et le relevé laser",
-        "note": "le tablier détecté (ponceau du ruisseau sous la patte d'oie) a pour bord droit, au-delà du PK ≈ 3643, la ligne de fermeture de la branche de droite : pas de parapet sur cette ligne. Le parapet de pierre bas qui longe le bord est de la D3D puis la branche de droite (Street View 3 et 4) est modélisé par scripts/12_carrefours_annexes.py (data/reference/carrefours_annexes.json), jusqu'au bloc blanc au départ de la fermeture"
-      }
-    },
-    {
-      "pk_centre_m": 4074,
-      "route": "D1",
-      "bdtopo_pk": "4055-4071",
-      "temps_video_s": "202-205",
-      "gauche": {
-        "type": "pierre",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.4,
-        "statut": "vu sur la vidéo",
-        "note": "maçonnerie à chaperon de béton, plus basse que le côté droit"
-      },
-      "droite": {
-        "type": "pierre",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      }
-    },
-    {
-      "pk_centre_m": 4360,
-      "route": "D1",
-      "bdtopo_pk": "4339-4357",
-      "temps_video_s": "219-221",
-      "gauche": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      },
-      "droite": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      }
-    },
-    {
-      "pk_centre_m": 4463,
-      "route": "D1",
-      "bdtopo_pk": "4432-4460",
-      "temps_video_s": "224-226",
-      "gauche": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      },
-      "droite": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo"
-      }
-    },
-    {
-      "pk_centre_m": 5554,
-      "route": "D1",
-      "bdtopo_pk": "5512-5571",
-      "temps_video_s": "277-281",
-      "gauche": {
-        "type": "beton",
-        "hauteur_m": 0.8,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "prolongement_avant_m": 2,
-        "prolongement_apres_m": 8,
-        "note": "béton lisse ; se prolonge un peu au-delà du tablier"
-      },
-      "droite": {
-        "type": "beton",
-        "hauteur_m": 0.8,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo"
-      }
-    },
-    {
-      "pk_centre_m": 6492,
-      "route": "D1",
-      "bdtopo_pk": "6479-6491",
-      "temps_video_s": "322-324",
-      "gauche": {
-        "type": "beton",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo"
-      },
-      "droite": {
-        "type": "beton",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo"
-      }
-    }
-  ],
-  "vus_mais_non_modelises": [
-    "Glissières métalliques (simple glissière) : PK ≈ 1700-2050 (dont le PK 1963, à droite), ≈ 2280, ≈ 3270-3300, ≈ 3700-4000 et ≈ 4100-4150 ; non modélisées.",
-    "Mur de pierre bas à droite, PK ≈ 1688-1720, après le pont 1661 (relevé vidéo).",
-    "Pont 3229 : parapets de pierre longs d'environ 30 m (PK ≈ 3210-3240 d'après la vidéo), plus longs que le tablier détecté.",
-    "Ouvrage BD TOPO 6222-6236 : aucun parapet visible sur la vidéo."
-  ],
-  "note_releve_video": "Mise à jour du 11/11/2026 d'après le relevé vidéo systématique (data/reference/releve_video.json, docs/08_releve_video.md), où chaque objet est localisé à ±10 m environ (±20 m sur le premier kilomètre et demi). Les parapets qui ne sont pas portés par un tablier détecté, ou qui sont décalés de leur pont, sont décrits dans « parapets_hors_tablier » (bornes en PK de l'axe précis, PK 0 = ligne de départ).",
-  "parapets_hors_tablier": [
-    {
-      "pk_debut_m": 1535,
-      "pk_fin_m": 1590,
-      "route": "D3D",
-      "temps_video_s": "83,0-85,8 (vidéo n° 2)",
-      "gauche": {
-        "type": "aucun",
-        "statut": "vu sur la vidéo",
-        "note": "talus rocheux"
-      },
-      "droite": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo",
-        "confiance": "élevée pour l'existence, moyenne pour les bornes",
-        "note": "long parapet à dés blancs à l'extérieur du gauche 3, extrémités biseautées en béton blanc ; un mur de pierre bas lui fait suite à droite vers PK 1688-1720, après le pont 1661 (non modélisé)"
-      }
-    },
-    {
-      "pk_debut_m": 2128,
-      "pk_fin_m": 2178,
-      "route": "D3D",
-      "temps_video_s": "110-114 (vidéo n° 2)",
-      "gauche": {
-        "type": "aucun",
-        "statut": "vu sur la vidéo",
-        "note": "rocher (rétrécissement à ≈ 5 m)"
-      },
-      "droite": {
-        "type": "pierre_des_blancs",
-        "hauteur_m": 0.75,
-        "epaisseur_m": 0.45,
-        "statut": "vu sur la vidéo",
-        "confiance": "élevée",
-        "note": "parapet à dés blancs à l'extérieur du gauche 4, juste avant la première épingle"
-      }
-    },
-    {
-      "pk_debut_m": 3442,
-      "pk_fin_m": 3450,
-      "route": "D3D",
-      "temps_video_s": "176,7 (vidéo n° 2)",
-      "gauche": {
-        "type": "pierre",
-        "hauteur_m": 0.5,
-        "epaisseur_m": 0.4,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "ponceau sans tablier détecté (route à moins de 0,3 m du MNT) ; maçonnerie basse, extrémités en béton blanc, 6 à 8 m de long"
-      },
-      "droite": {
-        "type": "pierre",
-        "hauteur_m": 0.5,
-        "epaisseur_m": 0.4,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "idem côté droit"
-      }
-    },
-    {
-      "pk_debut_m": 4567,
-      "pk_fin_m": 4577,
-      "route": "D1",
-      "temps_video_s": "232,4 (vidéo n° 2)",
-      "gauche": {
-        "type": "beton",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "ponceau sans tablier détecté ; parapet de béton bas de 8 à 10 m centré vers PK 4572 (zone 4565-4585)"
-      },
-      "droite": {
-        "type": "beton",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "idem côté droit"
-      }
-    },
-    {
-      "pk_debut_m": 4670,
-      "pk_fin_m": 4680,
-      "route": "D1",
-      "temps_video_s": "237,3 (vidéo n° 2)",
-      "gauche": {
-        "type": "beton",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "ponceau sans tablier détecté ; parapet de béton bas centré vers PK 4675 (zone 4670-4690), longueur supposée 10 m"
-      },
-      "droite": {
-        "type": "beton",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "idem côté droit"
-      }
-    },
-    {
-      "pk_debut_m": 6102,
-      "pk_fin_m": 6118,
-      "route": "D1",
-      "temps_video_s": "305,6 (vidéo n° 2)",
-      "gauche": {
-        "type": "beton",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "ponceau dans le droite 3, sans tablier détecté (zone 6100-6125) ; l'ouvrage BD TOPO 6222-6236 n'a, lui, aucun parapet visible"
-      },
-      "droite": {
-        "type": "beton",
-        "hauteur_m": 0.7,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "moyenne",
-        "note": "idem côté droit"
-      }
-    },
-    {
-      "pk_debut_m": 6681,
-      "pk_fin_m": 6689,
-      "route": "D1",
-      "temps_video_s": "333,0 (vidéo n° 2)",
-      "gauche": {
-        "type": "beton",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "faible pour les bornes",
-        "note": "ponceau à parapets de béton bas juste avant l'arrivée ; longueur non mesurée (8 m supposés)"
-      },
-      "droite": {
-        "type": "beton",
-        "hauteur_m": 0.6,
-        "epaisseur_m": 0.3,
-        "statut": "vu sur la vidéo",
-        "confiance": "faible pour les bornes",
-        "note": "idem côté droit"
-      }
-    }
-  ]
+  "pk_limite_D3D_D1_m": 3650,
+  "prolongement_par_defaut_m": 2.0
+ },
+ "ouvrages": [
+  {
+   "pk_centre_m": 1484,
+   "route": "D3D",
+   "bdtopo_pk": "1475-1486",
+   "temps_video_s": "83-86",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo",
+    "note": "talus rocheux taillé à gauche"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo",
+    "confiance": "élevée",
+    "note": "rien au PK 1484 (ligne droite, débouché de piste en terre à gauche) ; le long parapet à dés blancs autrefois attribué à ce ponceau est à droite du PK 1535 au PK 1590 : voir parapets_hors_tablier (relevé vidéo du 11/11/2026 (data/reference/releve_video.json))"
+   }
+  },
+  {
+   "pk_centre_m": 1661,
+   "route": "D3D",
+   "bdtopo_pk": "1644-1673",
+   "temps_video_s": "88-89",
+   "gauche": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "note": "parapet courbe qui suit la sortie de virage"
+   }
+  },
+  {
+   "pk_centre_m": 1963,
+   "route": "D3D",
+   "bdtopo_pk": "1955-1966",
+   "temps_video_s": "110-114",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo",
+    "note": "talus rocheux à gauche"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo",
+    "confiance": "élevée",
+    "note": "au PK 1963, simple glissière métallique à droite (non modélisée) et aire de terre à gauche ; le parapet à dés blancs autrefois attribué à ce ponceau est celui du virage avant la première épingle, à droite du PK 2128 au PK 2178 : voir parapets_hors_tablier (relevé vidéo du 11/11/2026 (data/reference/releve_video.json))",
+    "glissiere": true
+   }
+  },
+  {
+   "pk_centre_m": 2602,
+   "route": "D3D",
+   "bdtopo_pk": "2599-2606",
+   "temps_video_s": "134-136",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "note": "parapets courts et bas, chaperon clair"
+   }
+  },
+  {
+   "pk_centre_m": 2777,
+   "route": "D3D",
+   "bdtopo_pk": "2767-2783",
+   "temps_video_s": "141-143",
+   "gauche": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "note": "précédé à gauche de blocs de béton bas (non modélisés)"
+   }
+  },
+  {
+   "pk_centre_m": 3229,
+   "route": "D3D",
+   "bdtopo_pk": "3212-3226",
+   "temps_video_s": "164-166",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "note": "chaperon gris, pas de dés blancs visibles"
+   }
+  },
+  {
+   "pk_centre_m": 3648,
+   "route": "carrefour du Lion d'Or",
+   "bdtopo_pk": "3624-3646",
+   "temps_video_s": "183-185",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "note": "muret de béton bas tagué, à gauche à l'entrée du carrefour"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo et le relevé laser",
+    "note": "le tablier détecté (ponceau du ruisseau sous la patte d'oie) a pour bord droit, au-delà du PK ≈ 3643, la ligne de fermeture de la branche de droite : pas de parapet sur cette ligne. Le parapet de pierre bas qui longe le bord est de la D3D puis la branche de droite (Street View 3 et 4) est modélisé par scripts/12_carrefours_annexes.py (data/reference/carrefours_annexes.json), jusqu'au bloc blanc au départ de la fermeture"
+   }
+  },
+  {
+   "pk_centre_m": 4074,
+   "route": "D1",
+   "bdtopo_pk": "4055-4071",
+   "temps_video_s": "202-205",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "note": "maçonnerie à chaperon de béton, plus basse que le côté droit",
+    "sans_biseau_debut": true
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "sans_biseau_debut": true
+   }
+  },
+  {
+   "pk_centre_m": 4360,
+   "route": "D1",
+   "bdtopo_pk": "4339-4357",
+   "temps_video_s": "219-221",
+   "gauche": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "hauteur_avant_le_12_11_2026_m": 0.75,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "hauteur_avant_le_12_11_2026_m": 0.75,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  },
+  {
+   "pk_centre_m": 4463,
+   "route": "D1",
+   "bdtopo_pk": "4432-4460",
+   "temps_video_s": "224-226",
+   "gauche": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "hauteur_avant_le_12_11_2026_m": 0.75,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "hauteur_avant_le_12_11_2026_m": 0.75,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  },
+  {
+   "pk_centre_m": 5554,
+   "route": "D1",
+   "bdtopo_pk": "5512-5571",
+   "temps_video_s": "277-281",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "prolongement_avant_m": 2,
+    "prolongement_apres_m": 8,
+    "note": "béton lisse ; se prolonge un peu au-delà du tablier",
+    "hauteur_avant_le_12_11_2026_m": 0.8,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.55,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "hauteur_avant_le_12_11_2026_m": 0.8,
+    "type_avant_le_12_11_2026": "beton",
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm ; la capture à 4 min 37 montre à droite un mur de moellons bas, et non du béton"
+   }
+  },
+  {
+   "pk_centre_m": 6492,
+   "route": "D1",
+   "bdtopo_pk": "6479-6491",
+   "temps_video_s": "322-324",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "hauteur_avant_le_12_11_2026_m": 0.7,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "hauteur_avant_le_12_11_2026_m": 0.7,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  }
+ ],
+ "vus_mais_non_modelises": [
+  "Glissières métalliques (simple glissière) : PK ≈ 1700-2050 (dont le PK 1963, à droite), ≈ 2280, ≈ 3270-3300, ≈ 3700-4000 et ≈ 4100-4150 ; non modélisées.",
+  "Mur de pierre bas à droite, PK ≈ 1688-1720, après le pont 1661 (relevé vidéo).",
+  "Pont 3229 : parapets de pierre longs d'environ 30 m (PK ≈ 3210-3240 d'après la vidéo), plus longs que le tablier détecté.",
+  "Ouvrage BD TOPO 6222-6236 : aucun parapet visible sur la vidéo."
+ ],
+ "note_releve_video": "Mise à jour du 11/11/2026 d'après le relevé vidéo systématique (data/reference/releve_video.json, docs/08_releve_video.md), où chaque objet est localisé à ±10 m environ (±20 m sur le premier kilomètre et demi). Les parapets qui ne sont pas portés par un tablier détecté, ou qui sont décalés de leur pont, sont décrits dans « parapets_hors_tablier » (bornes en PK de l'axe précis, PK 0 = ligne de départ).",
+ "parapets_hors_tablier": [
+  {
+   "pk_debut_m": 1535,
+   "pk_fin_m": 1590,
+   "route": "D3D",
+   "temps_video_s": "83,0-85,8 (vidéo n° 2)",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo",
+    "note": "talus rocheux"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "confiance": "élevée pour l'existence, moyenne pour les bornes",
+    "note": "long parapet à dés blancs à l'extérieur du gauche 3, extrémités biseautées en béton blanc ; un mur de pierre bas lui fait suite à droite vers PK 1688-1720, après le pont 1661 (non modélisé)"
+   }
+  },
+  {
+   "pk_debut_m": 2128,
+   "pk_fin_m": 2178,
+   "route": "D3D",
+   "temps_video_s": "110-114 (vidéo n° 2)",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo",
+    "note": "rocher (rétrécissement à ≈ 5 m)"
+   },
+   "droite": {
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "statut": "vu sur la vidéo",
+    "confiance": "élevée",
+    "note": "parapet à dés blancs à l'extérieur du gauche 4, juste avant la première épingle"
+   }
+  },
+  {
+   "pk_debut_m": 3442,
+   "pk_fin_m": 3450,
+   "route": "D3D",
+   "temps_video_s": "176,7 (vidéo n° 2)",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "ponceau sans tablier détecté (route à moins de 0,3 m du MNT) ; maçonnerie basse, extrémités en béton blanc, 6 à 8 m de long"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "idem côté droit"
+   }
+  },
+  {
+   "pk_debut_m": 4012,
+   "pk_fin_m": 4053.0,
+   "route": "D3D",
+   "temps_video_s": "201,0-204,0 (vidéo n° 2)",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo",
+    "note": "talus rocheux"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "sans_biseau_fin": true,
+    "statut": "vu sur la vidéo",
+    "confiance": "élevée pour l'existence, ±10 m pour le début",
+    "note": "mur de moellons bas à l'extérieur de la courbe, qui se poursuit par le parapet droit de l'ouvrage 4074 ; inventaire du relevé vidéo (data/reference/releve_video.json : mur de pierre bas à droite PK 4012-4033, parapets des deux côtés PK 4037-4073) et captures de la vidéo VMRS 2025 à 3 min 22 et 3 min 23 envoyées par le directeur le 12/11/2026"
+   }
+  },
+  {
+   "pk_debut_m": 4037,
+   "pk_fin_m": 4053.0,
+   "route": "D3D",
+   "temps_video_s": "204,0 (vidéo n° 2)",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.4,
+    "sans_biseau_fin": true,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "parapet de pierre à l'intérieur de l'épingle, avant l'ouvrage 4074 ; inventaire du relevé vidéo (data/reference/releve_video.json : mur de pierre bas à droite PK 4012-4033, parapets des deux côtés PK 4037-4073) et captures de la vidéo VMRS 2025 à 3 min 22 et 3 min 23 envoyées par le directeur le 12/11/2026"
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "sans objet",
+    "note": "couvert par le tronçon 4012 ci-dessus"
+   }
+  },
+  {
+   "pk_debut_m": 4567,
+   "pk_fin_m": 4577,
+   "route": "D1",
+   "temps_video_s": "232,4 (vidéo n° 2)",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "ponceau sans tablier détecté ; parapet de béton bas de 8 à 10 m centré vers PK 4572 (zone 4565-4585)",
+    "hauteur_avant_le_12_11_2026_m": 0.6,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "idem côté droit",
+    "hauteur_avant_le_12_11_2026_m": 0.6,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  },
+  {
+   "pk_debut_m": 4670,
+   "pk_fin_m": 4680,
+   "route": "D1",
+   "temps_video_s": "237,3 (vidéo n° 2)",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "ponceau sans tablier détecté ; parapet de béton bas centré vers PK 4675 (zone 4670-4690), longueur supposée 10 m",
+    "hauteur_avant_le_12_11_2026_m": 0.6,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "idem côté droit",
+    "hauteur_avant_le_12_11_2026_m": 0.6,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  },
+  {
+   "pk_debut_m": 6102,
+   "pk_fin_m": 6118,
+   "route": "D1",
+   "temps_video_s": "305,6 (vidéo n° 2)",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.55,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "ponceau dans le droite 3, sans tablier détecté (zone 6100-6125) ; l'ouvrage BD TOPO 6222-6236 n'a, lui, aucun parapet visible",
+    "hauteur_avant_le_12_11_2026_m": 0.7,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.55,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne",
+    "note": "idem côté droit",
+    "hauteur_avant_le_12_11_2026_m": 0.7,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  },
+  {
+   "pk_debut_m": 6681,
+   "pk_fin_m": 6689,
+   "route": "D1",
+   "temps_video_s": "333,0 (vidéo n° 2)",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "faible pour les bornes",
+    "note": "ponceau à parapets de béton bas juste avant l'arrivée ; longueur non mesurée (8 m supposés)",
+    "hauteur_avant_le_12_11_2026_m": 0.6,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo",
+    "confiance": "faible pour les bornes",
+    "note": "idem côté droit",
+    "hauteur_avant_le_12_11_2026_m": 0.6,
+    "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  }
+ ]
 }

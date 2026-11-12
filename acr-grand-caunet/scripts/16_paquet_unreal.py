@@ -64,7 +64,8 @@ NOM = "GrandCaunet"
 UE = f"/Game/Environments/{NOM}"
 NIVEAU = f"/Game/Levels/{NOM}"
 GRILLE0 = (913500.0, 6240500.0)     # coin sud-ouest commun des grilles de dalles (Lambert-93)
-LOIN_APLAT_DE, LOIN_APLAT_A = 300.0, 1500.0   # m de la route : début et fin de l'adoucissement des normales lointaines
+LOIN_GAMMA, LOIN_GAIN = 0.72, 1.08            # courbe d'éclaircissement des images lointaines (--lointain-clarte)
+LOIN_APLAT_DE, LOIN_APLAT_A = 150.0, 800.0   # m de la route : début et fin de l'adoucissement des normales lointaines
 LOIN0 = (880000, 6210000)             # coin sud-ouest de la grille kilométrique de l'anneau lointain
 TRONCON = 200.0                       # m de PK par tronçon de route et d'ouvrages
 PK_E3 = 1653.0                        # pont à parapets de pierre : la dalle qui le contient
@@ -99,6 +100,14 @@ HERBES = {"dossier": "/Game/Foliage/GroundCover", "bande_m": 14.0, "debut_m": 0.
 # portent pas d'ombre ; ici entre 150 et 220 m, parce qu'ils tiennent lieu de garrigue.
 BUISSONS = {"maillage": "/Game/Foliage/GroundCover/Willow/SM_Willow_03a", "hauteur_min_m": 0.55,
             "boxthorn_a_partir_de_m": 1.3, "disparition_cm": [15000, 22000]}
+# Parapets, murs et tabliers : leur matière est héritée de deux matériaux de mur de Bollène (factices.json, role
+# parent_du_jeu). Lu dans le jeu le 12/11/2026 : les murs de pierre de Bollène sont dépliés à 5 m par unité et
+# peints de gris aux sommets (médiane 135, alpha 255) ; ses murs de béton à 3,14 m par unité, sans couleur. Nos
+# parapets sont dépliés à 2 m par unité (scripts/11_route_ouvrages.py, S_PAROI).
+MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (135, 135, 135, 255)},
+               "pierre_sombre": {"uv": 2.0 / 5.0, "couleur": (135, 135, 135, 255)},
+               "beton": {"uv": 2.0 / 3.144, "couleur": None}, "dalle": {"uv": 2.0 / 3.144, "couleur": None},
+               "chaperon": {"uv": 2.0 / 3.144, "couleur": None}}
 GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
              "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
              "enfoncement_m": 0.05}
@@ -107,7 +116,7 @@ SOL_CELLULE_M = 350.0
 SOL_MASQUE_PX = 1024
 SOL_CARTE_PX = 4096
 SOL_CARTE_UNITE_M = 70.0              # côté de la carte = UVDivideWP x 70 m (relevé sur Hafren South et Bollène)
-SOL_CARTE_CIBLE = {"moyenne": 86.5, "ecart_type": 27.8}   # clarté de T_MonteCarloS1BGMap_C, sur 255
+SOL_CARTE_CIBLE = {"moyenne": 118.0}   # clarté moyenne visée sur le terrain, sur 255 (celle de Bollène est de 86,5)
 IMPORT_MAILLAGE = {"collision": "aucune", "nanite": False, "generer_lightmap_uv": False, "importer_materiaux": False,
                    "importer_textures": False, "recalculer_normales": False, "recalculer_tangentes": True,
                    "combiner_maillages": True, "echelle_import": 1.0}
@@ -279,7 +288,7 @@ class Paquet:
         return not self.echantillon or bool({"E3", "E4"} & set(essais))
 
     def maillage(self, nom, famille, dest, pos_g, nrm_g, uv, tri, section, essais, pk=None, extra=None,
-                 couleur_nulle=False):
+                 couleur_nulle=False, couleur=None):
         """pos_g, nrm_g : glTF du projet (m) ; écrit le glb recentré et renvoie l'élément du manifeste.
         couleur_nulle : couleur de sommet (0, 0, 0, 0) partout, comme les sommets ordinaires des sols du jeu ; sans
         elle Unreal donne du blanc opaque, que le matériau de terrain du jeu pourrait lire comme un masque plein."""
@@ -296,8 +305,10 @@ class Paquet:
             uv = uv - np.floor(uv.min(0))      # UV répétées : petites valeurs (précision), même aspect
         f, n_f, uv, t = dedoublonne(f, n_f, uv, t)
         fichier = Path("maillages") / famille / f"{nom}.glb"
+        if couleur_nulle:
+            couleur = (0, 0, 0, 0)
         ecrire_glb(self.sortie / fichier, nom, section, f, n_f, uv, t,
-                   couleur=np.zeros((len(f), 4), np.uint8) if couleur_nulle else None)
+                   couleur=np.tile(np.array(couleur, np.uint8), (len(f), 1)) if couleur is not None else None)
         e = {"type": "StaticMesh", "nom": nom, "fichier": fichier.as_posix(), "destination": dest,
              "chemin_ue": f"{dest}/{nom}", "section_materiau": section, "materiau": section,
              "import": IMPORT_MAILLAGE,
@@ -306,8 +317,8 @@ class Paquet:
                         "ombre_portee": not famille.startswith("lointain")},
              "bornes_locales_cm": {"min": np.round(loc.min(0), 1).tolist(), "max": np.round(loc.max(0), 1).tolist()},
              "sommets": int(len(f)), "triangles": int(len(t)), "essais": essais}
-        if couleur_nulle:
-            e["couleur_de_sommet"] = [0, 0, 0, 0]
+        if couleur is not None:
+            e["couleur_de_sommet"] = [int(v) for v in couleur]
         if pk is not None:
             e["pk_m"] = [round(float(pk[0]), 1), round(float(pk[1]), 1)]
         if extra:
@@ -646,15 +657,23 @@ def terrain_jeu(P, ref, args, ch, ruban):
     coul = np.load(src / "couleur_1m.npy")
     lig, col = (e[3] - y93) / pas1 - 0.5, (x93 - e[0]) / pas1 - 0.5
     dedans = (lig >= 0) & (lig <= coul.shape[0] - 1) & (col >= 0) & (col <= coul.shape[1] - 1)
+    f_sol14 = src / "couleur_1m_sol14.npy"
+    if f_sol14.exists():                       # clarté mesurée là où la couleur vient des dalles de sol de l'étape 14
+        sol14 = ndi.map_coordinates(np.load(f_sol14).astype(np.float32), [lig, col], order=0, mode="constant") > 0.5
+        if (dedans & sol14).sum() > 1000:
+            dedans &= sol14
     carte = np.stack([ndi.map_coordinates(ndi.gaussian_filter(coul[..., k].astype(np.float32), 0.7), [lig, col], order=1,
                                           mode="nearest") for k in range(3)], -1)
     del coul
     # mise à la clarté et au contraste de la carte de Bollène (lue dans le jeu), en gardant nos teintes
     lum = carte @ np.array([0.299, 0.587, 0.114], np.float32)
     m_lum, s_lum = float(lum[dedans].mean()), float(lum[dedans].std())
-    gain = float(np.clip(SOL_CARTE_CIBLE["ecart_type"] / max(s_lum, 1.0), 0.6, 1.6))
+    # Vu en jeu le 12/11/2026 : calée sur la clarté de la carte de Bollène (86 sur 255), la carte donnait un sol
+    # anthracite sous les arbres ; les talus de terre claire, eux, étaient justes. La clarté moyenne est donc remontée,
+    # sans toucher au contraste ni aux teintes.
+    gain = 1.0
     moy = carte[dedans].mean(0)
-    carte = (carte - moy) * gain + moy * (SOL_CARTE_CIBLE["moyenne"] / m_lum)
+    carte = carte * (SOL_CARTE_CIBLE["moyenne"] / m_lum)
     carte = np.clip(carte, 0, 255).astype(np.uint8)
     P.texture("T_Sol_Carte", "terrain_jeu", tex_dest, Image.fromarray(carte, "RGB"), essais, adressage="Wrap", qualite=92)
     scal = {"UVDivideWP": float(diviseur), "U_Add": S * 50.0 - centre[0] * 100.0, "V_Add": S * 50.0 - centre[1] * 100.0}
@@ -734,8 +753,16 @@ def par_troncon(P, pkf, meshes, prefixe, famille, dest_mesh, nom_mat, args, grou
         nom = f"SM_{NOM}{prefixe}{suffixe}_{kk:02d}"
         # enrobé : son parent est l'asphalte de Bollène, dont les routes ont des sommets presque noirs (rouge 0 à 10,
         # vert et bleu toujours nuls) ; sans couleur, Unreal donnerait du blanc opaque
+        couleur = None
+        if not P.echantillon:
+            if mat == "enrobe":
+                couleur = (0, 0, 0, 0)
+            elif mat in MURS_DU_JEU:
+                # dépliage ramené à celui des murs du jeu dont la matière est héritée, et leur couleur de sommet
+                uv = uv * MURS_DU_JEU[mat]["uv"]
+                couleur = MURS_DU_JEU[mat]["couleur"]
         P.maillage(nom, famille, dest_mesh, pos, nrm, uv, tri, nom_mat(mat), essais, pk=pkr,
-                   extra={"troncon": kk}, couleur_nulle=(mat == "enrobe" and not P.echantillon))
+                   extra={"troncon": kk}, couleur=couleur)
         out.append(nom)
     return out
 
@@ -794,6 +821,11 @@ def lointain(P, ref, args, pkf):
             continue
         nom_t, nom_mi, nom_sm = f"T_FarRing{L}_{suf}", f"MI_FarRing{L}_{suf}", f"SM_{NOM}FarRing{L}_{suf}"
         im = Image.open(io.BytesIO(m["mat"]["image"])).convert("RGB")
+        if not P.echantillon and args.lointain_clarte:
+            # même courbe pour toutes les dalles, pour ne pas créer de marche entre voisines : les forêts vues du ciel
+            # sont très sombres sur la photo (66 sur 255 pour le massif au sud), et bleu ardoise une fois dans le jeu
+            a = np.asarray(im, np.float32) / 255.0
+            im = Image.fromarray(np.clip(255.0 * LOIN_GAIN * a ** LOIN_GAMMA + 0.5, 0, 255).astype(np.uint8), "RGB")
         P.texture(nom_t, "lointain", f"{UE}/FarRing/Textures", im, essais, adressage="Clamp",
                   px_max=256 if P.echantillon else None, qualite=90)
         if "T_GC_ORM_Lointain" not in P.vus:
@@ -1277,7 +1309,8 @@ def main():
     ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
-    ap.add_argument("--lointain-aplat", type=float, default=0.75,
+    ap.add_argument("--lointain-clarte", type=int, default=1, help="1 : images du paysage lointain éclaircies ; 0 : telles quelles")
+    ap.add_argument("--lointain-aplat", type=float, default=0.85,
                     help="part de verticale mêlée aux normales du paysage lointain, loin de la route (0 = normales du relief)")
     ap.add_argument("--buissons", choices=("jeu", "script10"), default="jeu",
                     help="jeu : buissons du jeu (GroundCover/Willow) pour les arbustes de 0,55 m et plus ; script10 : "

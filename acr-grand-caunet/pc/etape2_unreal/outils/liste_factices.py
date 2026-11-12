@@ -38,6 +38,16 @@ PARENTS_DU_JEU = [
      "parent": "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv", "pour": ["MI_GC_Enrobe"],
      "pourquoi": "asphalte de Bollène : plaqué d'après la position dans le monde (static switch UseWSPlanarUV), donc "
                  "indépendant du dépliage de nos maillages ; fissures, traces de pneus, taches d'huile"},
+    {"objet": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA2",
+     "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+     "pour": ["MI_GC_Pierre", "MI_GC_Pierre_sombre"],
+     "pourquoi": "mur de pierres sèches de Bollène (pierre brute et mousse, répétable) : matière de nos parapets et murs "
+                 "de pierre, qui étaient unis en jeu"},
+    {"objet": "/Game/Props/MonteCarloProps/MonBolConcreteWalls/MI_MonBolConcreteWallsA",
+     "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+     "pour": ["MI_GC_Beton", "MI_GC_Dalle", "MI_GC_Chaperon"],
+     "pourquoi": "mur de béton de Bollène (deux bétons mêlés, répétable) : matière de nos parapets de béton, des tabliers "
+                 "et des chaperons"},
     {"objet": "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild",
      "parent": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light", "pour": [],
      "pourquoi": "terrain de Bollène : paillis, aiguilles de pin, herbe haute, herbe sèche, terre et cailloux déjà "
@@ -137,6 +147,12 @@ def main():
     liste += [{"objet": c, "type": "StaticMesh", "essai": "maillages du jeu posés tels quels", **({"bornes_cm": b} if b else {})}
               for c, b in MAILLAGES_POSES.items() if c not in deja]
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
+    # parents sans relevé : un matériau factice vide suffit, puisque nos variantes n'y règlent rien
+    connus = {x["objet"] for x in liste if not x.get("a_completer")}
+    for parent in sorted({p["parent"] for p in PARENTS_DU_JEU} - connus):
+        liste = [x for x in liste if x["objet"] != parent]
+        liste.append({"objet": parent, "type": "Material", "parametres_texture": [], "parametres_scalaires": [],
+                      "essai": "parent vide d'une variante du jeu dont nos variantes héritent sans rien régler"})
     liste += [{"objet": p["objet"], "type": "MaterialInstanceConstant", "parent": p["parent"], "role": "parent_du_jeu",
                "pour": p["pour"], "static_switch": {}, "essai": "E3b", "pourquoi": p["pourquoi"]} for p in PARENTS_DU_JEU]
     for o in BLUEPRINTS:

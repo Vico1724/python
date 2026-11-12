@@ -52,6 +52,7 @@ DALLE_RETRAIT = 0.03  # m : dessus de la dalle sous la chaussée (évite le scin
 CORNICHE = 0.3        # m : débord de la dalle côté sans parapet
 DALLE_DEBORD = 2      # m (rangs) : la dalle entre dans le remblai à chaque bout
 CHAPERON = 0.08       # m : hauteur du chaperon (couronnement)
+BISEAU_M, BISEAU_BAS = 1.0, 0.3   # extrémités des parapets : biseau d'un mètre, partant de 30 % de la hauteur
 DES_PAS, DES_LONG = 3.5, 0.35   # m : dés blancs (supposé : 3 à 4 m sur la vidéo)
 MUR_DIST_MAX = 15.0   # m : murs BD TOPO retenus à moins de cette distance de l'axe
 
@@ -388,6 +389,15 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
     E, n = rg.bord(s, cote)
     h, t = p["hauteur_m"], p["epaisseur_m"]
 
+    def haut(ss):
+        """Hauteur du dessus : extrémités en biseau (vu sur la vidéo du 12/11/2026 : tous les parapets, de pierre
+        comme de béton, finissent en sifflet), de BISEAU_BAS x h au bout jusqu'à h sur BISEAU_M."""
+        ss = np.asarray(ss, float)
+        # "sans_biseau_debut" / "sans_biseau_fin" : le parapet se raccorde à un autre, pas de sifflet de ce côté
+        d0 = np.full(len(ss), np.inf) if p.get("sans_biseau_debut") else ss - s0
+        d1 = np.full(len(ss), np.inf) if p.get("sans_biseau_fin") else s1 - ss
+        return h * np.clip(BISEAU_BAS + (1.0 - BISEAU_BAS) * np.minimum(d0, d1) / BISEAU_M, BISEAU_BAS, 1.0)
+
     def base(ss):
         if mnt is None:
             return np.full(len(ss), -DALLE_RETRAIT - 0.02)
@@ -399,23 +409,25 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
         EE, nn = rg.bord(ss, cote)
         o3 = lambda o: np.column_stack([nn * o, np.zeros(len(ss))])          # noqa: E731
         zz = lambda v: np.column_stack([np.zeros(len(ss)), np.zeros(len(ss)), np.broadcast_to(v, len(ss))])  # noqa: E731
-        z0 = base(ss) if isinstance(z0, str) else z0
+        z0 = base(ss) if isinstance(z0, str) else z0(ss) if callable(z0) else z0
+        z1 = z1(ss) if callable(z1) else z1
         return [EE + o3(o0) + zz(z0), EE + o3(o1) + zz(z0), EE + o3(o1) + zz(z1), EE + o3(o0) + zz(z1)]
 
     pieces = {}
     base_ = "pied"
     if p["type"] == "beton":
-        pieces["beton"] = [boite(bloc(s, 0, t, base_, h), ref)]
+        pieces["beton"] = [boite(bloc(s, 0, t, base_, haut), ref)]
     else:
-        pieces["pierre"] = [boite(bloc(s, 0, t, base_, h - CHAPERON), ref)]
+        sous = lambda q: haut(q) - CHAPERON                                 # noqa: E731
+        pieces["pierre"] = [boite(bloc(s, 0, t, base_, sous), ref)]
         blanc = p["type"] == "pierre_des_blancs"
-        pieces["blanc" if blanc else "chaperon"] = [boite(bloc(s, -0.02, t + 0.02, h - CHAPERON, h), ref)]
+        pieces["blanc" if blanc else "chaperon"] = [boite(bloc(s, -0.02, t + 0.02, sous, haut), ref)]
         if blanc:
             L = s1 - s0
             for c in s0 + (L - np.floor(L / DES_PAS) * DES_PAS) / 2 + np.arange(np.floor(L / DES_PAS) + 1) * DES_PAS:
                 ss = np.array([max(c - DES_LONG / 2, s0), min(c + DES_LONG / 2, s1)])
                 if ss[1] - ss[0] > 0.1:
-                    pieces["blanc"].append(boite(bloc(ss, -0.015, t + 0.015, base_, h - CHAPERON), ref, fond=False))
+                    pieces["blanc"].append(boite(bloc(ss, -0.015, t + 0.015, base_, sous), ref, fond=False))
     coll = boite(bloc(s, 0, t, base_, h), ref)
     return pieces, coll, E
 

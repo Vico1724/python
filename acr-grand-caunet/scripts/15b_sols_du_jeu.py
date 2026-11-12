@@ -150,7 +150,29 @@ def main():
         for k in range(3):
             flou = ndi.gaussian_filter(rvb1[k] * poids, 40.0) / np.maximum(voisin, 1e-3)
             rvb1[k] = np.where(noir, flou * part + moyenne[k] * (1.0 - part), rvb1[k])
+    # Là où l'étape 14 a produit une dalle de sol, sa couleur remplace la photo : sous les arbres, la photo montre les
+    # houppiers, sombres, alors que la dalle porte un sol reconstruit (aiguilles, litière, cailloux). Vu en jeu le
+    # 12/11/2026 : teinté par les houppiers, le sol sous les arbres était anthracite au lieu d'une terre claire.
+    sol14 = np.zeros(forme1, bool)
+    f14 = RACINE / "data" / "processed" / "textures_sol.json"
+    if f14.exists():
+        pas1 = tr.a * 2
+        for d in json.loads(f14.read_text(encoding="utf-8"))["dalles"]:
+            src14 = RACINE / "modele" / d["couleur"]
+            if not src14.exists():
+                continue
+            em, cz = d["emprise_l93"], d["dalle_l93"]
+            n14 = int(round((em[2] - em[0]) / pas1))
+            im = np.asarray(Image.open(src14).convert("RGB").resize((n14, n14), Image.BOX), np.float32)
+            c0, r0 = int(round((cz[0] - em[0]) / pas1)), int(round((em[3] - cz[3]) / pas1))
+            nc, nr = int(round((cz[2] - cz[0]) / pas1)), int(round((cz[3] - cz[1]) / pas1))
+            col, lig = int(round((cz[0] - bornes.left) / pas1)), int(round((bornes.top - cz[3]) / pas1))
+            if col < 0 or lig < 0 or col + nc > forme1[1] or lig + nr > forme1[0]:
+                continue
+            rvb1[:, lig:lig + nr, col:col + nc] = im[r0:r0 + nr, c0:c0 + nc].transpose(2, 0, 1)
+            sol14[lig:lig + nr, col:col + nc] = True
     np.save(OUT / "couleur_1m.npy", np.clip(rvb1, 0, 255).astype(np.uint8).transpose(1, 2, 0))
+    np.save(OUT / "couleur_1m_sol14.npy", sol14)
     moyenne_valide = [round(float(v), 1) for v in rvb1[:, ~noir].mean(1)]
 
     # aperçu : matière dominante, 2 m par point
@@ -165,7 +187,8 @@ def main():
              "couches": COUCHES, "matiere_de_fond": "paillis (matière 1 du jeu) = 1 - somme des couches",
              "parts_moyennes": {k: round(v, 3) for k, v in parts.items()},
              "couleur_1m": {"fichier": "couleur_1m.npy", "pas_m": tr.a * 2, "moyenne_rvb_dans_les_photos": moyenne_valide,
-                            "hors_photo": "couleur des environs adoucie sur 40 m, puis moyenne générale"},
+                            "hors_photo": "couleur des environs adoucie sur 40 m, puis moyenne générale",
+                            "part_tiree_des_dalles_de_sol_de_l_etape_14": round(float(sol14.mean()), 3)},
              "part_couverte_par_les_photos": round(float(valide.mean()), 3),
              "seuils": {"ndvi_sol_nu": NDVI_NU, "ndvi_vert": NDVI_VERT, "ndvi_vigoureux": list(NDVI_VIGOUREUX),
                         "clarte_calcaire": list(CLARTE_CALCAIRE)},

@@ -17,6 +17,8 @@ Principe (rien n'est redessiné, tout part des points mesurés) :
   2. BORDS. Les demi-largeurs gauche et droite, mesurées perpendiculairement à l'axe régularisé, sont lissées à
      l'ordre 2 : un changement de largeur réel reste, un saut d'un mètre au suivant devient un raccord progressif.
   3. ALTITUDES. Chaque point déplacé garde l'altitude du profil en travers mesuré.
+  3 bis. PROFIL EN TRAVERS. Là où l'altitude d'un bord a été lue hors de la chaussée (vide d'un pont, talus), les
+     bords sont reconstruits d'après l'inclinaison et le toit des profils sains voisins. L'axe n'est pas touché.
   4. CONTRÔLES, écrits dans data/processed/regularisation_chaussee.json. Si l'un échoue, rien n'est écrit :
        - déplacement de chaque point sous sa tolérance ;
        - même enchaînement de virages (nombre, sens, position), lu à l'échelle de 25 m ;
@@ -58,6 +60,9 @@ POIDS_RACCORD = 0.02
 ECART_RAYON_MAX = 0.10
 ECART_CAP_MAX_DEG = 2.0
 ECART_LONGUEUR_MAX_M = 3.0
+TOIT_ADMIS = (-0.045, 0.030)      # demi-somme des dévers gauche et droit : toit de 4,5 % au plus, V de 3 % au plus
+SAUT_DEVERS_MAX = 0.04            # variation de dévers d'un mètre au suivant
+ELARGIR_PROFIL = 3                # points repris de part et d'autre d'un profil douteux
 
 
 def whittaker(y, poids, lam, ordre):
@@ -177,6 +182,35 @@ def main():
     za1, zg1, zd1 = z_sur_profil(ax), z_sur_profil(g1), z_sur_profil(d1)
     za1[fixe], zg1[fixe], zd1[fixe] = za[fixe], zg[fixe], zd[fixe]
 
+    # 3 bis. profil en travers : là où l'altitude d'un bord a été lue hors de la chaussée (dans le vide d'un pont, sur
+    # un talus), le profil mesuré forme un toit ou un V impossible pour une chaussée. Vu en jeu le 12/11/2026 : arête
+    # en travers au km 6,1, marche au km 5,0, plis au km 4,0, parapets ondulés. Une chaussée est un plan incliné
+    # (dévers), au plus un toit de 2,5 % : on décompose chaque profil en inclinaison d'ensemble et en toit ; là où le
+    # toit sort de l'intervalle admis ou saute d'un mètre au suivant, l'altitude des bords est reconstruite en
+    # raccordant inclinaison et toit entre les profils sains voisins. L'axe n'est pas touché, ni les profils sains.
+    lg1, ld1 = np.maximum(np.hypot(*(g1 - ax).T), 0.5), np.maximum(np.hypot(*(d1 - ax).T), 0.5)
+    dev_g, dev_d = (zg1 - za1) / lg1, (zd1 - za1) / ld1
+    incl, toit = (dev_g - dev_d) / 2.0, (dev_g + dev_d) / 2.0
+    saut = np.maximum(np.abs(np.r_[0.0, np.diff(dev_g)]), np.abs(np.r_[0.0, np.diff(dev_d)]))
+    douteux = (toit < TOIT_ADMIS[0]) | (toit > TOIT_ADMIS[1]) | (saut > SAUT_DEVERS_MAX)
+    douteux = np.convolve(douteux.astype(float), np.ones(2 * ELARGIR_PROFIL + 1), "same") > 0
+    douteux &= ~fixe
+    rang = np.arange(n)
+    sains = ~douteux
+    incl2, toit2 = np.interp(rang, rang[sains], incl[sains]), np.interp(rang, rang[sains], toit[sains])
+    zg2 = np.where(douteux, za1 + (incl2 + toit2) * lg1, zg1)
+    zd2 = np.where(douteux, za1 + (-incl2 + toit2) * ld1, zd1)
+    i_d = np.flatnonzero(douteux)
+    troncons = [(int(t[0]), int(t[-1])) for t in np.split(i_d, np.flatnonzero(np.diff(i_d) > 1) + 1)] if len(i_d) else []
+    profil = {"toit_admis_pct": [x * 100 for x in TOIT_ADMIS], "saut_de_devers_max_pct_par_m": SAUT_DEVERS_MAX * 100,
+              "metres_repris": int(douteux.sum()),
+              "troncons": [{"pk_debut": round(float(pk[i])), "pk_fin": round(float(pk[j])),
+                            "correction_max_gauche_m": round(float(np.abs(zg2 - zg1)[i:j + 1].max()), 2),
+                            "correction_max_droite_m": round(float(np.abs(zd2 - zd1)[i:j + 1].max()), 2)} for i, j in troncons],
+              "devers_extreme_avant_pct": round(float(max(np.abs(dev_g).max(), np.abs(dev_d).max()) * 100), 1),
+              "devers_extreme_apres_pct": round(float(max(np.abs((zg2 - za1) / lg1).max(), np.abs((zd2 - za1) / ld1).max()) * 100), 1)}
+    zg1, zd1 = zg2, zd2
+
     # 4. contrôles
     dep = {"axe": np.hypot(*(ax - axe).T), "gauche": np.hypot(*(g1 - g).T), "droite": np.hypot(*(d1 - d).T)}
     par_source = {}
@@ -250,6 +284,7 @@ def main():
         "largeur_m": {"mediane_avant": round(float(np.median(col("largeur_m"))), 2), "mediane_apres": round(float(np.median(largeur1)), 2),
                       "saut_max_avant": round(float(np.abs(np.diff(col("largeur_m")))[~fixe[:-1]].max()), 2),
                       "saut_max_apres": round(float(np.abs(np.diff(largeur1))[~fixe[:-1]].max()), 2)},
+        "profil_en_travers": profil,
         "echecs": echecs,
     }
     print(f"{n} points lus dans {source.name} ; {len(groupes)} cassures artificielles :", [(c["pk_debut"], c["pk_fin"]) for c in bilan["cassures_artificielles"]])
@@ -258,6 +293,9 @@ def main():
     print("virages :", {k: v for k, v in bilan["virages"].items() if k != "detail"})
     print("  près d'une cassure :", [(t["pk"], t["rayon_avant_m"], t["rayon_apres_m"]) for t in tableau if t["pres_d_une_cassure"]][:12])
     print("longueur ES :", bilan["longueur_es_m"], "| largeur :", bilan["largeur_m"])
+    print(f"profil en travers : {profil['metres_repris']} m repris en {len(profil['troncons'])} tronçons ; dévers extrême "
+          f"{profil['devers_extreme_avant_pct']} % -> {profil['devers_extreme_apres_pct']} %")
+    print("  ", [(t["pk_debut"], t["pk_fin"], max(t["correction_max_gauche_m"], t["correction_max_droite_m"])) for t in profil["troncons"]])
     print("CONTRÔLES :", "tous passés" if not echecs else echecs[:10])
     if a.essai:
         return
