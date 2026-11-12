@@ -589,7 +589,7 @@ def decouper_par_cellule(pos, nrm, tri, xy, pas):
     return out, int((~simple).sum())
 
 
-def terrain_jeu(P, ref, args):
+def terrain_jeu(P, ref, args, ch, ruban):
     """Terrain habillé par le matériau de terrain du jeu (variante de Bollène) au lieu de la photo aérienne.
 
     Lu dans le jeu le 12/11/2026 (PROTOCOLE.md § 0 sexies) : le matériau lit ses deux masques d'après la position
@@ -605,6 +605,19 @@ def terrain_jeu(P, ref, args):
     nrm = np.vstack([m["nrm"] for m in ms])
     dec = np.cumsum([0] + [len(m["pos"]) for m in ms[:-1]])
     tri = np.vstack([m["idx"] + d for m, d in zip(ms, dec)])
+    # Sous la chaussée, le terrain portait jusqu'ici la photo de la route ; il porte maintenant des cailloux. Les rares
+    # sommets de terrain situés sous la chaussée (culées de ponts) et qui l'affleurent sont abaissés de 15 cm sous elle.
+    x93, y93 = pos[:, 0] + ref["x0"], ref["y0"] - pos[:, 2]
+    pres = np.flatnonzero(cKDTree(ch["A"][:, :2]).query(np.column_stack([x93, y93]))[0] < 8.0)
+    sous = pres[shapely.contains_xy(ruban.buffer(-0.05), x93[pres], y93[pres])]
+    n_abaisses = 0
+    if len(sous):
+        bords = np.vstack([ch["A"], ch["G"], ch["D"]])
+        _, k = cKDTree(bords[:, :2]).query(np.column_stack([x93[sous], y93[sous]]), k=3)
+        z_route = bords[k, 2].min(1) - ref["z0"]
+        haut = pos[sous, 1] > z_route - 0.08
+        pos[sous[haut], 1] = z_route[haut] - 0.15
+        n_abaisses = int(haut.sum())
     xy = pl.monde(pos)
     cellules, n_coupes = decouper_par_cellule(pos, nrm, tri, xy, SOL_CELLULE_M)
     i0, j0 = min(c[0] for c in cellules), min(c[1] for c in cellules)
@@ -680,6 +693,7 @@ def terrain_jeu(P, ref, args):
                        "clarte_avant": round(m_lum, 1), "contraste_avant": round(s_lum, 1), "gain": round(gain, 3)},
              "parts_moyennes": dict(zip(["paillis"] + meta["couches"], [round(float(x), 3) for x in parts]))}
     return {"cellules": len(cellules), "triangles_coupes": n_coupes, "triangles_source": int(len(tri)),
+            "sommets_sous_la_chaussee": int(len(sous)), "sommets_abaisses_sous_la_chaussee": n_abaisses,
             "triangles": int(sum(len(c[3]) for c in cellules.values()))}
 
 
@@ -1248,8 +1262,12 @@ def main():
     mire_relief(P)
     print("terrain…", flush=True)
     P.sol = {"mode": "photo"}
+    G, D = ch["G"][:, :2], ch["D"][:, :2]
+    ruban = shapely.union_all(shapely.make_valid(shapely.polygons(
+        [np.array([G[i], G[i + 1], D[i + 1], D[i], G[i]]) for i in range(len(G) - 1)])))
+    shapely.prepare(ruban)
     if args.sol == "jeu" and not args.echantillon:
-        n_terrain = terrain_jeu(P, ref, args)
+        n_terrain = terrain_jeu(P, ref, args, ch, ruban)
     else:
         n_terrain = terrain(P, ref, pkf, args)
     sources = {}
@@ -1280,10 +1298,6 @@ def main():
     print("anneau lointain…", flush=True)
     n_loin = lointain(P, ref, args)
     print("instances…", flush=True)
-    G, D = ch["G"][:, :2], ch["D"][:, :2]
-    ruban = shapely.union_all(shapely.make_valid(shapely.polygons(
-        [np.array([G[i], G[i + 1], D[i + 1], D[i], G[i]]) for i in range(len(G) - 1)])))
-    shapely.prepare(ruban)
     bilan_inst = instances(P, ref, Sol(), ruban, pkf, args)
     if glissieres_jeu:
         bilan_inst.update(glissieres_du_jeu(P, ref, ch, pkf, args))
