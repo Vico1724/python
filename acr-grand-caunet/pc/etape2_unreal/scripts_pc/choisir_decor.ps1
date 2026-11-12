@@ -2,9 +2,12 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu    sol habillé par le matériau de terrain du jeu, herbes et glissières du jeu (12/11/2026)
-    sol_photo  sol portant la photo aérienne, nos glissières, pas d'herbes (version vue en jeu le 11/11/2026,
-               sur le tracé régularisé)
+    sol_jeu         sol habillé par le matériau de terrain du jeu ; herbes, buissons et glissières du jeu ;
+                    paysage lointain adouci (12/11/2026)
+    sol_photo_plus  les mêmes nouveautés, mais avec l'ancien sol portant la photo aérienne : à essayer si seul le
+                    nouveau sol s'affiche mal
+    sol_photo       sol portant la photo aérienne, nos glissières, pas d'herbes, arbustes d'avant (version vue en
+                    jeu le 11/11/2026, sur le tracé régularisé)
   Sans -Decor : liste les versions disponibles et dit laquelle est installée. Ne touche qu'aux trois fichiers
   zz_gc_gc_P.* de ~mods ; le mod de l'étape 1 (route physique) reste en place, il est le même pour les deux versions.
   Jeu fermé obligatoirement.

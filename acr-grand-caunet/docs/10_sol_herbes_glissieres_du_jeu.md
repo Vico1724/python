@@ -51,17 +51,24 @@ Tout a été contrôlé hors du jeu, en relisant les fichiers produits avec les 
 
 ## 5. Revenir en arrière
 
-Les deux versions du décor sont gardées sur le PC : `sol_jeu` (la nouvelle, installée) et `sol_photo` (sol en photo aérienne, nos glissières, pas d'herbes). La route et la physique sont les mêmes dans les deux.
+Trois versions du décor sont gardées sur le PC. La route et la physique sont les mêmes dans les trois.
 
-Jeu fermé, pour remettre l'ancienne :
+| Version | Contenu |
+|---|---|
+| `sol_jeu` (installée) | nouveau sol, herbes, buissons et glissières du jeu, paysage lointain adouci |
+| `sol_photo_plus` | les mêmes nouveautés, mais avec l'ancien sol en photo aérienne |
+| `sol_photo` | le décor vu en jeu le 11 novembre, sur le tracé régularisé : sol en photo, nos glissières, pas d'herbes |
+
+Jeu fermé, pour changer de version :
 
 ```
-pwsh -ExecutionPolicy Bypass -File pc\etape2_unreal\scripts_pc\choisir_decor.ps1 -Decor sol_photo
+pwsh -ExecutionPolicy Bypass -File pc\etape2_unreal\scripts_pc\choisir_decor.ps1 -Decor sol_photo_plus
 ```
 
-Et pour revenir à la nouvelle, la même commande avec `-Decor sol_jeu`. Sans `-Decor`, le script liste les versions et dit laquelle est installée.
+Sans `-Decor`, le script liste les versions et dit laquelle est installée.
 
-Si le sol apparaît noir, uni, blanc ou décalé, c'est ce retour en arrière qu'il faut faire, puis le signaler. Si seuls les herbes, les buissons ou les glissières gênent, ils se retirent séparément (`--herbes sans`, `--buissons script10`, `--glissieres modele` dans `scripts/16_paquet_unreal.py`), au prix d'une reconstruction du décor d'une dizaine de minutes.
+- **Si le sol apparaît noir, uni, blanc ou décalé** : passer à `sol_photo_plus`, qui garde tout le reste, et le signaler.
+- **Si autre chose gêne** (herbes, buissons, glissières, lointain) : passer à `sol_photo` en attendant. Chaque nouveauté se retire séparément dans `scripts/16_paquet_unreal.py` (`--herbes sans`, `--buissons script10`, `--glissieres modele`, `--lointain-aplat 0`), au prix d'une reconstruction du décor de 10 à 40 minutes.
 
 ## 6. Autre correction faite au passage
 
