@@ -242,7 +242,9 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **Ce qui n'est pas corrigé.** Les poteaux électriques, les panneaux et les rochers de bord de route visibles sur la vidéo ne sont pas modélisés. Les talus rocheux côté montagne sont du terrain habillé de terre, pas de la roche.
 
-**État.** Mod de l'étape 1 reconstruit (tous contrôles passés, 2 578 obstacles, placement inchangé). Décor reconstruit et relu : voir `releves/relecture_decor.json`. *Corrections pas encore vues en jeu.*
+**État.** Mod de l'étape 1 reconstruit (tous contrôles passés, 2 578 obstacles, placement inchangé). Décor reconstruit et relu le 12/11/2026 à 15 h 16 : RELECTURE CONFORME (460 maillages, 246 194 instances, 41 variantes de sol, 82 masques, 6 variantes héritées d'un matériau du jeu, couleurs de sommet conformes). Les deux conteneurs sont installés ensemble. *Corrections pas encore vues en jeu.*
+
+**Versions gardées.** Les anciennes versions du décor vont avec l'ancienne route physique (bords non corrigés) : chaque dossier de `Z:\acrxs\unreal\dist\sol_*` contient donc aussi le mod de l'étape 1 qui lui correspond, et `choisir_decor.ps1` installe les deux. La version vue en jeu le 12/11 au matin est `sol_jeu_vu_le_12_11`.
 
 ## 1. L'idée générale
 

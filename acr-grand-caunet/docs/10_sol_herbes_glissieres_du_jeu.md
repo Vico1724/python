@@ -49,24 +49,22 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Trois versions du décor sont gardées sur le PC. La route et la physique sont les mêmes dans les trois.
+Quatre versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | nouveau sol, herbes, buissons et glissières du jeu, paysage lointain adouci |
-| `sol_photo_plus` | les mêmes nouveautés, mais avec l'ancien sol en photo aérienne |
-| `sol_photo` | le décor vu en jeu le 11 novembre, sur le tracé régularisé : sol en photo, nos glissières, pas d'herbes |
+| `sol_jeu` (installée) | version courante : chaussée corrigée aux ponts, parapets bas en pierre et en béton, sol et lointain éclaircis |
+| `sol_jeu_vu_le_12_11` | celle que vous avez vue en jeu le 12 novembre au matin, avec ses défauts |
+| `sol_photo_plus` | la même que la précédente, mais avec l'ancien sol en photo aérienne |
+| `sol_photo` | le décor vu en jeu le 11 novembre : sol en photo, nos glissières, pas d'herbes |
 
 Jeu fermé, pour changer de version :
 
 ```
-pwsh -ExecutionPolicy Bypass -File pc\etape2_unreal\scripts_pc\choisir_decor.ps1 -Decor sol_photo_plus
+pwsh -ExecutionPolicy Bypass -File pc\etape2_unreal\scripts_pc\choisir_decor.ps1 -Decor sol_jeu_vu_le_12_11
 ```
 
-Sans `-Decor`, le script liste les versions et dit laquelle est installée.
-
-- **Si le sol apparaît noir, uni, blanc ou décalé** : passer à `sol_photo_plus`, qui garde tout le reste, et le signaler.
-- **Si autre chose gêne** (herbes, buissons, glissières, lointain) : passer à `sol_photo` en attendant. Chaque nouveauté se retire séparément dans `scripts/16_paquet_unreal.py` (`--herbes sans`, `--buissons script10`, `--glissieres modele`, `--lointain-aplat 0`), au prix d'une reconstruction du décor de 10 à 40 minutes.
+Sans `-Decor`, le script liste les versions et dit laquelle est installée. Chaque nouveauté se retire aussi séparément dans `scripts/16_paquet_unreal.py` (`--herbes sans`, `--buissons script10`, `--glissieres modele`, `--lointain-aplat 0`, `--lointain-clarte 0`, `--sol photo`), au prix d'une reconstruction du décor de 10 à 50 minutes.
 
 ## 6. Autre correction faite au passage
 

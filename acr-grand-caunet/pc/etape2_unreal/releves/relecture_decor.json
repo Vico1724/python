@@ -1,11 +1,11 @@
 {
  "conteneur": {
-  "fichiers": 2033,
+  "fichiers": 2031,
   "hors_de_notre_dossier": 0
  },
  "niveau": {
-  "maillages_poses": 458,
-  "attendus": 458,
+  "maillages_poses": 460,
+  "attendus": 460,
   "instances": 246194,
   "attendues": 246194,
   "composants_d_instances": 61,
@@ -44,8 +44,12 @@
   },
   "masques_de_format_different": [],
   "ecart_moyen_au_fichier_source_sur_255": 2.57,
-  "maillages": 82,
-  "maillages_sans_couleur_nulle": []
+  "maillages": 95,
+  "maillages_a_mauvaise_couleur_de_sommet": []
+ },
+ "variantes_heritees_du_jeu": {
+  "controlees": 6,
+  "non_conformes": []
  },
  "erreurs": []
 }

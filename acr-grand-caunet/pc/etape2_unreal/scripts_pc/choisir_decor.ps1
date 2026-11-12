@@ -2,15 +2,14 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu         sol habillé par le matériau de terrain du jeu ; herbes, buissons et glissières du jeu ;
-                    paysage lointain adouci (12/11/2026)
-    sol_photo_plus  les mêmes nouveautés, mais avec l'ancien sol portant la photo aérienne : à essayer si seul le
-                    nouveau sol s'affiche mal
-    sol_photo       sol portant la photo aérienne, nos glissières, pas d'herbes, arbustes d'avant (version vue en
-                    jeu le 11/11/2026, sur le tracé régularisé)
-  Sans -Decor : liste les versions disponibles et dit laquelle est installée. Ne touche qu'aux trois fichiers
-  zz_gc_gc_P.* de ~mods ; le mod de l'étape 1 (route physique) reste en place, il est le même pour les deux versions.
-  Jeu fermé obligatoirement.
+    sol_jeu              version courante : chaussée corrigée aux ponts, parapets bas en pierre et en béton, sol
+                         éclairci, lointain éclairci (12/11/2026 après-midi)
+    sol_jeu_vu_le_12_11  celle que le directeur a vue en jeu le 12/11/2026 au matin, avec ses défauts
+    sol_photo_plus       la même que la précédente, mais avec l'ancien sol portant la photo aérienne
+    sol_photo            sol en photo, nos glissières, pas d'herbes (décor vu en jeu le 11/11/2026, tracé régularisé)
+  Sans -Decor : liste les versions disponibles et dit laquelle est installée. Chaque version est gardée avec le mod
+  de l'étape 1 (route physique) qui va avec elle : le script installe les deux conteneurs ensemble, pour que route
+  visible et route physique restent superposées. Jeu fermé obligatoirement.
 
 .EXAMPLE
   pwsh -ExecutionPolicy Bypass -File pc\etape2_unreal\scripts_pc\choisir_decor.ps1
@@ -39,5 +38,7 @@ if (-not $choix) { Echec "version inconnue : $Decor (disponibles : $($versions.N
 if (Test-JeuLance) { Echec "fermer le jeu d'abord" }
 if (-not (Confirmer "Installer le décor « $Decor » dans $mods ?" -Oui:$Oui)) { Echec "abandon à la demande" }
 New-Item -ItemType Directory -Force $mods | Out-Null
-foreach ($f in Get-ChildItem $choix.FullName "$Nom.*") { Copy-Item $f.FullName (Join-Path $mods $f.Name) -Force }
-Ok "décor « $Decor » installé. Lancer le jeu (Steam hors ligne), Pays de Galles > Hafren South, Free Practice."
+$lot = @(Get-ChildItem $choix.FullName 'zz_*_P.*')          # le décor et, s'il est rangé avec lui, le mod de l'étape 1
+foreach ($f in $lot) { Copy-Item $f.FullName (Join-Path $mods $f.Name) -Force }
+if (-not ($lot.Name -like 'zz_acrxs_*')) { Attention "cette version n'a pas de mod de l'étape 1 rangé avec elle : celui en place est gardé" }
+Ok "décor « $Decor » installé ($($lot.Count) fichiers). Lancer le jeu (Steam hors ligne), Pays de Galles > Hafren South, Free Practice."
