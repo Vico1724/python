@@ -19,3 +19,5 @@ paquet_unreal/
 # Sols « façon jeu » (script 15b) : rasters volumineux et régénérables ; le bilan et l'aperçu sont versionnés
 modele/sols_jeu/*.npz
 modele/sols_jeu/*.npy
+# Planches d'images tirées des vidéos (script 19) : volumineuses et régénérables
+figures/reco/
