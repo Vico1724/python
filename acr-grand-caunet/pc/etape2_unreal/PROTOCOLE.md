@@ -171,6 +171,22 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **Ce qui a échoué en route :** renommer un niveau cuit au chemin de la cellule avec `acr-additive relocate`. Leur outil ne lit ni nos niveaux ni nos maillages cuits avec versions, même après un aller-retour par `retoc`, et cet aller-retour perdait la référence au matériau du jeu. D'où la construction directe au bon chemin.
 
+## 0 quinquies. Matériaux du jeu, tracé régularisé, troncs (12/11/2026)
+
+**Feu vert du directeur pour avancer sans essai en jeu à chaque étape.** Ce qui suit est construit et contrôlé hors jeu ; l'état « vu en jeu » est précisé ligne par ligne.
+
+- **Asphalte.** Notre enrobé `MI_GC_Enrobe` hérite de `MI_BolleneAsphalt1`, l'asphalte des routes de Monte-Carlo. Il est plaqué d'après la position dans le monde (static switch `UseWSPlanarUV`) et ne dépend donc pas du dépliage de nos maillages. Le mécanisme est général : dans `outils/liste_factices.py`, `PARENTS_DU_JEU` désigne une variante du jeu comme parent d'une des nôtres, qui n'y règle alors rien. *Pas encore vu en jeu. Risque connu : ce matériau lit peut-être les couleurs des sommets, que nos maillages n'ont pas.*
+- **Sol.** Les terrains de Bollène descendent de `MI_MonteCarloS1BolleneTerrainFirstChild` : matières détaillées (paillis, aiguilles de pin, herbe sèche, terre, cailloux) plaquées d'après la position dans le monde, mélangées par deux textures de masques par carré de 350 m (`MasksA`, `MasksB`, textures virtuelles), le tout teinté par une grande carte de couleurs (`Texture`, calée par `U_Add`, `V_Add`, `UVDivideWP`, `UVRotation`). C'est le rendu visé, mais il demande de redécouper notre terrain selon ces carrés de 350 m dans le repère du clone, et de comprendre le calage de la carte et le sens des masques. **Non fait.**
+- **Tracé régularisé, dégagement des arbres, collision des troncs** : voir `docs/09_regularisation_et_videos.md`. *Pas encore vu en jeu.*
+- **Étape 1** : construite avec `-Noms -Ciel` en plus de la cellule gardée et de l'exclusion des visuels. Le menu affiche « Le Grand Caunet », et le ciel prend la latitude de la Provence. *Pas encore vu en jeu.*
+
+**Refaire le décor après un changement du tracé :**
+
+1. `python scripts\tout_lancer.py --depuis 70 --sans-rendus` (17 minutes) ;
+2. dans le projet Unreal, supprimer `Content\Environments\GrandCaunet\{Road,Bridges,Junctions,Props,Terrain,Shared}` et le niveau de la cellule : le script d'import ne remplace pas ce qui existe ;
+3. relancer `construire_niveau.py` (§ 0 quater), puis `cuire_et_empaqueter.ps1` ;
+4. reconstruire l'étape 1 (`4_construire.ps1`) : la physique vient du même tracé, les deux conteneurs s'installent ensemble.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :

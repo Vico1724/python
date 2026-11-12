@@ -613,7 +613,7 @@ def instances(P, ref, sol, ruban, pkf, args):
     bilan = {}
     rng = np.random.default_rng(SEED)
 
-    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True):
+    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None):
         x = np.array([float(r["x_l93"]) for r in rows])
         y = np.array([float(r["y_l93"]) for r in rows])
         zc = np.array([float(r.get("z_sol_m") or r.get("z_m")) for r in rows])
@@ -625,6 +625,11 @@ def instances(P, ref, sol, ruban, pkf, args):
         lacet = rng.uniform(-180.0, 180.0, len(rows))
         pk = pkf(g)
         sur_chaussee = shapely.contains_xy(ruban, x, y)
+        if degagement is not None:
+            # Dégagement : une plante trop près du bord de chaussée est retirée, pas seulement celle qui est dessus.
+            # Vu en jeu le 12/11/2026 (km 0,1) : des branches basses barraient la route jusqu'au pare-brise.
+            marge = np.array([degagement(r) for r in rows])
+            sur_chaussee |= shapely.distance(ruban, shapely.points(x, y)) < marge
         groupes = {}
         for i, r in enumerate(rows):
             groupes.setdefault(chemin_de(r), []).append(i)
@@ -665,11 +670,15 @@ def instances(P, ref, sol, ruban, pkf, args):
     with open(OUT / "arbres.csv", encoding="utf-8") as f:
         arbres = list(csv.DictReader(f))
     table("arbres", arbres, lambda r: f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}",
-          lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"])
+          lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"],
+          # tronc à 2,5 m au moins du bord, et davantage pour un grand houppier (un quart de son diamètre)
+          degagement=lambda r: max(2.5, 0.25 * float(r.get("diametre_houppier_m") or 0)))
     with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
         arbustes = list(csv.DictReader(f))
     table("arbustes", arbustes, lambda r: f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}",
-          lambda r: float(r["hauteur_m"]), ["diametre_m"])
+          lambda r: float(r["hauteur_m"]), ["diametre_m"],
+          # buissons et couvre-sols : leur demi-diamètre plus 0,5 m (le jeu les rend comme des arbres réduits)
+          degagement=lambda r: 0.5 + 0.5 * float(r.get("diametre_m") or 0))
     with open(OUT / "balisage.csv", encoding="utf-8") as f:
         bal = [r for r in csv.DictReader(f) if r["type"] == "piquet de rubalise"]
     table("balisage", bal, lambda r: "/Game/" + r["maillage_jeu_propose"][len("acr/Content/"):],

@@ -54,7 +54,7 @@
  "totaux": {
   "dalles": 26,
   "sous_dalles": 126,
-  "surface_terrain_m2": 1918650,
+  "surface_terrain_m2": 1918890,
   "part_reconstruite": 0.894,
   "part_sous_couvert": 0.791,
   "part_ombre_reconstruite": 0.09
@@ -80,11 +80,11 @@
    "relief": "textures_sol/dalle_913500_6242500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 32198,
+   "surface_terrain_m2": 32197,
    "part_sous_couvert": 0.541,
    "part_ombre_reconstruite": 0.108,
    "part_reconstruite": 0.654,
-   "triangles_hors_bande": 4930,
+   "triangles_hors_bande": 4933,
    "sous_dalles": [
     {
      "nom": "sous_913800_6242900",
@@ -106,7 +106,7 @@
      "relief": "textures_sol/sous_913800_6242900_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2387,
+     "triangles": 2378,
      "part_reconstruite": 0.816
     },
     {
@@ -133,7 +133,7 @@
      "part_reconstruite": 0.575
     }
    ],
-   "duree_s": 35.1
+   "duree_s": 31.1
   },
   {
    "nom": "dalle_913500_6243000",
@@ -159,7 +159,7 @@
    "part_sous_couvert": 0.926,
    "part_ombre_reconstruite": 0.044,
    "part_reconstruite": 0.975,
-   "triangles_hors_bande": 7565,
+   "triangles_hors_bande": 7562,
    "sous_dalles": [
     {
      "nom": "sous_913800_6243000",
@@ -181,7 +181,7 @@
      "relief": "textures_sol/sous_913800_6243000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 1256,
+     "triangles": 1258,
      "part_reconstruite": 0.996
     },
     {
@@ -204,7 +204,7 @@
      "relief": "textures_sol/sous_913900_6243000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6708,
+     "triangles": 6706,
      "part_reconstruite": 0.943
     },
     {
@@ -231,7 +231,7 @@
      "part_reconstruite": 0.991
     }
    ],
-   "duree_s": 44.2
+   "duree_s": 41.1
   },
   {
    "nom": "dalle_914000_6242500",
@@ -259,7 +259,7 @@
    "part_reconstruite": 0.659,
    "triangles_hors_bande": 440,
    "sous_dalles": [],
-   "duree_s": 14.8
+   "duree_s": 9.8
   },
   {
    "nom": "dalle_914000_6243000",
@@ -281,11 +281,11 @@
    "relief": "textures_sol/dalle_914000_6243000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 152180,
+   "surface_terrain_m2": 152221,
    "part_sous_couvert": 0.645,
    "part_ombre_reconstruite": 0.122,
    "part_reconstruite": 0.81,
-   "triangles_hors_bande": 25534,
+   "triangles_hors_bande": 25543,
    "sous_dalles": [
     {
      "nom": "sous_914000_6243000",
@@ -307,7 +307,7 @@
      "relief": "textures_sol/sous_914000_6243000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 293,
+     "triangles": 295,
      "part_reconstruite": 0.833
     },
     {
@@ -330,7 +330,7 @@
      "relief": "textures_sol/sous_914000_6243100_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5277,
+     "triangles": 5266,
      "part_reconstruite": 0.847
     },
     {
@@ -353,7 +353,7 @@
      "relief": "textures_sol/sous_914000_6243200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5545,
+     "triangles": 5541,
      "part_reconstruite": 0.826
     },
     {
@@ -399,7 +399,7 @@
      "relief": "textures_sol/sous_914100_6243200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 76,
+     "triangles": 79,
      "part_reconstruite": 0.824
     },
     {
@@ -422,7 +422,7 @@
      "relief": "textures_sol/sous_914100_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6381,
+     "triangles": 6366,
      "part_reconstruite": 0.667
     },
     {
@@ -468,7 +468,7 @@
      "relief": "textures_sol/sous_914200_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5311,
+     "triangles": 5317,
      "part_reconstruite": 0.717
     },
     {
@@ -514,8 +514,8 @@
      "relief": "textures_sol/sous_914300_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3842,
-     "part_reconstruite": 0.764
+     "triangles": 3848,
+     "part_reconstruite": 0.763
     },
     {
      "nom": "sous_914300_6243400",
@@ -537,7 +537,7 @@
      "relief": "textures_sol/sous_914300_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2541,
+     "triangles": 2537,
      "part_reconstruite": 0.844
     },
     {
@@ -560,7 +560,7 @@
      "relief": "textures_sol/sous_914400_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 102,
+     "triangles": 100,
      "part_reconstruite": 0.753
     },
     {
@@ -583,11 +583,11 @@
      "relief": "textures_sol/sous_914400_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5416,
+     "triangles": 5414,
      "part_reconstruite": 0.75
     }
    ],
-   "duree_s": 137.8
+   "duree_s": 136.0
   },
   {
    "nom": "dalle_914000_6243500",
@@ -609,13 +609,13 @@
    "relief": "textures_sol/dalle_914000_6243500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 14117,
-   "part_sous_couvert": 0.572,
-   "part_ombre_reconstruite": 0.174,
+   "surface_terrain_m2": 14133,
+   "part_sous_couvert": 0.571,
+   "part_ombre_reconstruite": 0.173,
    "part_reconstruite": 0.749,
-   "triangles_hors_bande": 1708,
+   "triangles_hors_bande": 1710,
    "sous_dalles": [],
-   "duree_s": 11.6
+   "duree_s": 8.5
   },
   {
    "nom": "dalle_914500_6243000",
@@ -637,11 +637,11 @@
    "relief": "textures_sol/dalle_914500_6243000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 60094,
+   "surface_terrain_m2": 60128,
    "part_sous_couvert": 0.525,
    "part_ombre_reconstruite": 0.075,
    "part_reconstruite": 0.661,
-   "triangles_hors_bande": 8802,
+   "triangles_hors_bande": 8813,
    "sous_dalles": [
     {
      "nom": "sous_914500_6243300",
@@ -663,7 +663,7 @@
      "relief": "textures_sol/sous_914500_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 97,
+     "triangles": 96,
      "part_reconstruite": 0.736
     },
     {
@@ -686,11 +686,11 @@
      "relief": "textures_sol/sous_914500_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6659,
-     "part_reconstruite": 0.691
+     "triangles": 6652,
+     "part_reconstruite": 0.69
     }
    ],
-   "duree_s": 28.5
+   "duree_s": 27.1
   },
   {
    "nom": "dalle_914500_6243500",
@@ -716,7 +716,7 @@
    "part_sous_couvert": 0.667,
    "part_ombre_reconstruite": 0.112,
    "part_reconstruite": 0.812,
-   "triangles_hors_bande": 16965,
+   "triangles_hors_bande": 16963,
    "sous_dalles": [
     {
      "nom": "sous_914500_6243500",
@@ -738,7 +738,7 @@
      "relief": "textures_sol/sous_914500_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3043,
+     "triangles": 3029,
      "part_reconstruite": 0.741
     },
     {
@@ -761,7 +761,7 @@
      "relief": "textures_sol/sous_914600_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5850,
+     "triangles": 5845,
      "part_reconstruite": 0.606
     },
     {
@@ -784,8 +784,8 @@
      "relief": "textures_sol/sous_914700_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6026,
-     "part_reconstruite": 0.723
+     "triangles": 6019,
+     "part_reconstruite": 0.722
     },
     {
      "nom": "sous_914800_6243500",
@@ -807,7 +807,7 @@
      "relief": "textures_sol/sous_914800_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5713,
+     "triangles": 5724,
      "part_reconstruite": 0.651
     },
     {
@@ -830,7 +830,7 @@
      "relief": "textures_sol/sous_914800_6243600_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 969,
+     "triangles": 971,
      "part_reconstruite": 0.904
     },
     {
@@ -853,7 +853,7 @@
      "relief": "textures_sol/sous_914900_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5672,
+     "triangles": 5679,
      "part_reconstruite": 0.688
     },
     {
@@ -876,11 +876,11 @@
      "relief": "textures_sol/sous_914900_6243600_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 649,
+     "triangles": 651,
      "part_reconstruite": 0.876
     }
    ],
-   "duree_s": 78.1
+   "duree_s": 78.3
   },
   {
    "nom": "dalle_915000_6243000",
@@ -902,11 +902,11 @@
    "relief": "textures_sol/dalle_915000_6243000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 139227,
+   "surface_terrain_m2": 139236,
    "part_sous_couvert": 0.604,
    "part_ombre_reconstruite": 0.064,
    "part_reconstruite": 0.707,
-   "triangles_hors_bande": 23270,
+   "triangles_hors_bande": 23282,
    "sous_dalles": [
     {
      "nom": "sous_915000_6243300",
@@ -951,7 +951,7 @@
      "relief": "textures_sol/sous_915000_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5026,
+     "triangles": 5021,
      "part_reconstruite": 0.768
     },
     {
@@ -974,7 +974,7 @@
      "relief": "textures_sol/sous_915100_6243200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2882,
+     "triangles": 2883,
      "part_reconstruite": 0.924
     },
     {
@@ -997,7 +997,7 @@
      "relief": "textures_sol/sous_915100_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6204,
+     "triangles": 6196,
      "part_reconstruite": 0.941
     },
     {
@@ -1020,7 +1020,7 @@
      "relief": "textures_sol/sous_915100_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2164,
+     "triangles": 2160,
      "part_reconstruite": 0.945
     },
     {
@@ -1066,7 +1066,7 @@
      "relief": "textures_sol/sous_915200_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3017,
+     "triangles": 3012,
      "part_reconstruite": 0.806
     },
     {
@@ -1112,7 +1112,7 @@
      "relief": "textures_sol/sous_915300_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5716,
+     "triangles": 5715,
      "part_reconstruite": 0.558
     },
     {
@@ -1139,7 +1139,7 @@
      "part_reconstruite": 0.389
     }
    ],
-   "duree_s": 107.8
+   "duree_s": 106.8
   },
   {
    "nom": "dalle_915000_6243500",
@@ -1161,11 +1161,11 @@
    "relief": "textures_sol/dalle_915000_6243500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 24398,
+   "surface_terrain_m2": 24413,
    "part_sous_couvert": 0.686,
-   "part_ombre_reconstruite": 0.147,
+   "part_ombre_reconstruite": 0.146,
    "part_reconstruite": 0.855,
-   "triangles_hors_bande": 3650,
+   "triangles_hors_bande": 3651,
    "sous_dalles": [
     {
      "nom": "sous_915000_6243500",
@@ -1187,11 +1187,11 @@
      "relief": "textures_sol/sous_915000_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3584,
+     "triangles": 3575,
      "part_reconstruite": 0.83
     }
    ],
-   "duree_s": 20.8
+   "duree_s": 18.0
   },
   {
    "nom": "dalle_915500_6243000",
@@ -1213,11 +1213,11 @@
    "relief": "textures_sol/dalle_915500_6243000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 106268,
+   "surface_terrain_m2": 106272,
    "part_sous_couvert": 0.879,
    "part_ombre_reconstruite": 0.039,
    "part_reconstruite": 0.923,
-   "triangles_hors_bande": 18403,
+   "triangles_hors_bande": 18407,
    "sous_dalles": [
     {
      "nom": "sous_915500_6243300",
@@ -1239,7 +1239,7 @@
      "relief": "textures_sol/sous_915500_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3923,
+     "triangles": 3921,
      "part_reconstruite": 0.884
     },
     {
@@ -1262,7 +1262,7 @@
      "relief": "textures_sol/sous_915500_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 1811,
+     "triangles": 1812,
      "part_reconstruite": 0.542
     },
     {
@@ -1285,7 +1285,7 @@
      "relief": "textures_sol/sous_915600_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 574,
+     "triangles": 573,
      "part_reconstruite": 0.986
     },
     {
@@ -1308,7 +1308,7 @@
      "relief": "textures_sol/sous_915600_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5061,
+     "triangles": 5064,
      "part_reconstruite": 0.848
     },
     {
@@ -1331,7 +1331,7 @@
      "relief": "textures_sol/sous_915700_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2137,
+     "triangles": 2136,
      "part_reconstruite": 1.0
     },
     {
@@ -1354,7 +1354,7 @@
      "relief": "textures_sol/sous_915700_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3634,
+     "triangles": 3635,
      "part_reconstruite": 0.991
     },
     {
@@ -1377,7 +1377,7 @@
      "relief": "textures_sol/sous_915800_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 4,
+     "triangles": 3,
      "part_reconstruite": 0.999
     },
     {
@@ -1400,7 +1400,7 @@
      "relief": "textures_sol/sous_915800_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5914,
+     "triangles": 5909,
      "part_reconstruite": 0.973
     },
     {
@@ -1423,11 +1423,11 @@
      "relief": "textures_sol/sous_915900_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5512,
+     "triangles": 5509,
      "part_reconstruite": 0.97
     }
    ],
-   "duree_s": 96.2
+   "duree_s": 96.8
   },
   {
    "nom": "dalle_915500_6243500",
@@ -1455,7 +1455,7 @@
    "part_reconstruite": 0.859,
    "triangles_hors_bande": 3189,
    "sous_dalles": [],
-   "duree_s": 11.3
+   "duree_s": 8.1
   },
   {
    "nom": "dalle_916000_6241000",
@@ -1477,11 +1477,11 @@
    "relief": "textures_sol/dalle_916000_6241000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 115315,
+   "surface_terrain_m2": 115330,
    "part_sous_couvert": 0.834,
    "part_ombre_reconstruite": 0.124,
    "part_reconstruite": 0.961,
-   "triangles_hors_bande": 19048,
+   "triangles_hors_bande": 19051,
    "sous_dalles": [
     {
      "nom": "sous_916100_6241400",
@@ -1549,7 +1549,7 @@
      "relief": "textures_sol/sous_916200_6241400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6294,
+     "triangles": 6287,
      "part_reconstruite": 0.95
     },
     {
@@ -1572,8 +1572,8 @@
      "relief": "textures_sol/sous_916300_6241200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5571,
-     "part_reconstruite": 0.979
+     "triangles": 5562,
+     "part_reconstruite": 0.978
     },
     {
      "nom": "sous_916300_6241300",
@@ -1595,7 +1595,7 @@
      "relief": "textures_sol/sous_916300_6241300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5271,
+     "triangles": 5263,
      "part_reconstruite": 0.973
     },
     {
@@ -1664,11 +1664,11 @@
      "relief": "textures_sol/sous_916400_6241300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 289,
+     "triangles": 290,
      "part_reconstruite": 0.919
     }
    ],
-   "duree_s": 87.2
+   "duree_s": 85.8
   },
   {
    "nom": "dalle_916000_6241500",
@@ -1690,11 +1690,11 @@
    "relief": "textures_sol/dalle_916000_6241500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 139826,
+   "surface_terrain_m2": 139855,
    "part_sous_couvert": 0.789,
    "part_ombre_reconstruite": 0.165,
    "part_reconstruite": 0.959,
-   "triangles_hors_bande": 22921,
+   "triangles_hors_bande": 22924,
    "sous_dalles": [
     {
      "nom": "sous_916100_6241500",
@@ -1716,7 +1716,7 @@
      "relief": "textures_sol/sous_916100_6241500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3982,
+     "triangles": 3977,
      "part_reconstruite": 0.983
     },
     {
@@ -1739,7 +1739,7 @@
      "relief": "textures_sol/sous_916100_6241600_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5647,
+     "triangles": 5641,
      "part_reconstruite": 0.991
     },
     {
@@ -1762,7 +1762,7 @@
      "relief": "textures_sol/sous_916100_6241700_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5773,
+     "triangles": 5790,
      "part_reconstruite": 0.986
     },
     {
@@ -1785,7 +1785,7 @@
      "relief": "textures_sol/sous_916100_6241800_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2315,
+     "triangles": 2318,
      "part_reconstruite": 0.966
     },
     {
@@ -1808,7 +1808,7 @@
      "relief": "textures_sol/sous_916200_6241500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2094,
+     "triangles": 2092,
      "part_reconstruite": 0.932
     },
     {
@@ -1831,7 +1831,7 @@
      "relief": "textures_sol/sous_916200_6241800_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 4727,
+     "triangles": 4722,
      "part_reconstruite": 0.955
     },
     {
@@ -1854,11 +1854,11 @@
      "relief": "textures_sol/sous_916200_6241900_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6056,
+     "triangles": 6061,
      "part_reconstruite": 0.976
     }
    ],
-   "duree_s": 78.3
+   "duree_s": 78.1
   },
   {
    "nom": "dalle_916000_6242000",
@@ -1880,11 +1880,11 @@
    "relief": "textures_sol/dalle_916000_6242000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 130802,
+   "surface_terrain_m2": 130817,
    "part_sous_couvert": 0.803,
    "part_ombre_reconstruite": 0.133,
    "part_reconstruite": 0.941,
-   "triangles_hors_bande": 21926,
+   "triangles_hors_bande": 21904,
    "sous_dalles": [
     {
      "nom": "sous_916200_6242000",
@@ -1906,7 +1906,7 @@
      "relief": "textures_sol/sous_916200_6242000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5986,
+     "triangles": 5990,
      "part_reconstruite": 0.948
     },
     {
@@ -1929,7 +1929,7 @@
      "relief": "textures_sol/sous_916200_6242100_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 286,
+     "triangles": 282,
      "part_reconstruite": 0.993
     },
     {
@@ -1998,7 +1998,7 @@
      "relief": "textures_sol/sous_916300_6242100_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5353,
+     "triangles": 5365,
      "part_reconstruite": 0.941
     },
     {
@@ -2021,8 +2021,8 @@
      "relief": "textures_sol/sous_916300_6242200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6814,
-     "part_reconstruite": 0.911
+     "triangles": 6819,
+     "part_reconstruite": 0.912
     },
     {
      "nom": "sous_916300_6242300",
@@ -2044,7 +2044,7 @@
      "relief": "textures_sol/sous_916300_6242300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 759,
+     "triangles": 761,
      "part_reconstruite": 0.884
     },
     {
@@ -2090,7 +2090,7 @@
      "relief": "textures_sol/sous_916400_6242300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5624,
+     "triangles": 5616,
      "part_reconstruite": 0.97
     },
     {
@@ -2113,11 +2113,11 @@
      "relief": "textures_sol/sous_916400_6242400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 8826,
+     "triangles": 8843,
      "part_reconstruite": 0.99
     }
    ],
-   "duree_s": 103.1
+   "duree_s": 105.9
   },
   {
    "nom": "dalle_916000_6242500",
@@ -2143,7 +2143,7 @@
    "part_sous_couvert": 0.956,
    "part_ombre_reconstruite": 0.04,
    "part_reconstruite": 0.997,
-   "triangles_hors_bande": 5181,
+   "triangles_hors_bande": 5179,
    "sous_dalles": [
     {
      "nom": "sous_916400_6242500",
@@ -2165,11 +2165,11 @@
      "relief": "textures_sol/sous_916400_6242500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 332,
+     "triangles": 334,
      "part_reconstruite": 0.994
     }
    ],
-   "duree_s": 17.8
+   "duree_s": 16.5
   },
   {
    "nom": "dalle_916000_6243000",
@@ -2191,11 +2191,11 @@
    "relief": "textures_sol/dalle_916000_6243000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 83917,
+   "surface_terrain_m2": 83916,
    "part_sous_couvert": 0.953,
    "part_ombre_reconstruite": 0.031,
    "part_reconstruite": 0.986,
-   "triangles_hors_bande": 14369,
+   "triangles_hors_bande": 14362,
    "sous_dalles": [
     {
      "nom": "sous_916000_6243400",
@@ -2217,7 +2217,7 @@
      "relief": "textures_sol/sous_916000_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5820,
+     "triangles": 5824,
      "part_reconstruite": 0.971
     },
     {
@@ -2240,7 +2240,7 @@
      "relief": "textures_sol/sous_916100_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5691,
+     "triangles": 5695,
      "part_reconstruite": 0.997
     },
     {
@@ -2263,7 +2263,7 @@
      "relief": "textures_sol/sous_916200_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6902,
+     "triangles": 6907,
      "part_reconstruite": 0.99
     },
     {
@@ -2286,7 +2286,7 @@
      "relief": "textures_sol/sous_916300_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 1473,
+     "triangles": 1471,
      "part_reconstruite": 0.938
     },
     {
@@ -2309,11 +2309,11 @@
      "relief": "textures_sol/sous_916400_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2140,
+     "triangles": 2143,
      "part_reconstruite": 0.991
     }
    ],
-   "duree_s": 56.5
+   "duree_s": 58.5
   },
   {
    "nom": "dalle_916000_6243500",
@@ -2339,7 +2339,7 @@
    "part_sous_couvert": 0.889,
    "part_ombre_reconstruite": 0.066,
    "part_reconstruite": 0.96,
-   "triangles_hors_bande": 11182,
+   "triangles_hors_bande": 11181,
    "sous_dalles": [
     {
      "nom": "sous_916200_6243500",
@@ -2384,7 +2384,7 @@
      "relief": "textures_sol/sous_916300_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6575,
+     "triangles": 6571,
      "part_reconstruite": 0.92
     },
     {
@@ -2430,11 +2430,11 @@
      "relief": "textures_sol/sous_916400_6243600_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 159,
+     "triangles": 158,
      "part_reconstruite": 0.904
     }
    ],
-   "duree_s": 45.4
+   "duree_s": 45.3
   },
   {
    "nom": "dalle_916500_6240500",
@@ -2456,13 +2456,13 @@
    "relief": "textures_sol/dalle_916500_6240500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 12847,
+   "surface_terrain_m2": 12879,
    "part_sous_couvert": 0.802,
    "part_ombre_reconstruite": 0.102,
    "part_reconstruite": 0.909,
-   "triangles_hors_bande": 1772,
+   "triangles_hors_bande": 1777,
    "sous_dalles": [],
-   "duree_s": 10.8
+   "duree_s": 7.9
   },
   {
    "nom": "dalle_916500_6241000",
@@ -2484,11 +2484,11 @@
    "relief": "textures_sol/dalle_916500_6241000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 145931,
+   "surface_terrain_m2": 145933,
    "part_sous_couvert": 0.836,
    "part_ombre_reconstruite": 0.137,
    "part_reconstruite": 0.975,
-   "triangles_hors_bande": 24079,
+   "triangles_hors_bande": 24090,
    "sous_dalles": [
     {
      "nom": "sous_916500_6241200",
@@ -2510,7 +2510,7 @@
      "relief": "textures_sol/sous_916500_6241200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2012,
+     "triangles": 2014,
      "part_reconstruite": 0.929
     },
     {
@@ -2533,7 +2533,7 @@
      "relief": "textures_sol/sous_916500_6241300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3615,
+     "triangles": 3609,
      "part_reconstruite": 0.977
     },
     {
@@ -2556,7 +2556,7 @@
      "relief": "textures_sol/sous_916600_6241200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3297,
+     "triangles": 3293,
      "part_reconstruite": 0.992
     },
     {
@@ -2579,7 +2579,7 @@
      "relief": "textures_sol/sous_916600_6241300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2656,
+     "triangles": 2651,
      "part_reconstruite": 0.965
     },
     {
@@ -2602,7 +2602,7 @@
      "relief": "textures_sol/sous_916700_6241100_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 37,
+     "triangles": 38,
      "part_reconstruite": 0.993
     },
     {
@@ -2625,7 +2625,7 @@
      "relief": "textures_sol/sous_916700_6241200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6420,
+     "triangles": 6411,
      "part_reconstruite": 0.991
     },
     {
@@ -2671,7 +2671,7 @@
      "relief": "textures_sol/sous_916800_6241100_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6130,
+     "triangles": 6128,
      "part_reconstruite": 0.984
     },
     {
@@ -2694,7 +2694,7 @@
      "relief": "textures_sol/sous_916800_6241200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 1903,
+     "triangles": 1895,
      "part_reconstruite": 0.995
     },
     {
@@ -2717,7 +2717,7 @@
      "relief": "textures_sol/sous_916900_6241000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5020,
+     "triangles": 5029,
      "part_reconstruite": 1.0
     },
     {
@@ -2740,11 +2740,11 @@
      "relief": "textures_sol/sous_916900_6241100_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2186,
+     "triangles": 2179,
      "part_reconstruite": 0.962
     }
    ],
-   "duree_s": 111.3
+   "duree_s": 113.8
   },
   {
    "nom": "dalle_916500_6242000",
@@ -2766,11 +2766,11 @@
    "relief": "textures_sol/dalle_916500_6242000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 24890,
+   "surface_terrain_m2": 24875,
    "part_sous_couvert": 0.932,
    "part_ombre_reconstruite": 0.031,
    "part_reconstruite": 0.964,
-   "triangles_hors_bande": 3570,
+   "triangles_hors_bande": 3569,
    "sous_dalles": [
     {
      "nom": "sous_916500_6242400",
@@ -2792,11 +2792,11 @@
      "relief": "textures_sol/sous_916500_6242400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2685,
+     "triangles": 2682,
      "part_reconstruite": 0.994
     }
    ],
-   "duree_s": 19.9
+   "duree_s": 18.0
   },
   {
    "nom": "dalle_916500_6242500",
@@ -2818,11 +2818,11 @@
    "relief": "textures_sol/dalle_916500_6242500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 144269,
+   "surface_terrain_m2": 144283,
    "part_sous_couvert": 0.898,
    "part_ombre_reconstruite": 0.051,
    "part_reconstruite": 0.952,
-   "triangles_hors_bande": 24432,
+   "triangles_hors_bande": 24439,
    "sous_dalles": [
     {
      "nom": "sous_916500_6242500",
@@ -2844,7 +2844,7 @@
      "relief": "textures_sol/sous_916500_6242500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5399,
+     "triangles": 5400,
      "part_reconstruite": 0.995
     },
     {
@@ -2867,7 +2867,7 @@
      "relief": "textures_sol/sous_916500_6242600_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5467,
+     "triangles": 5461,
      "part_reconstruite": 0.998
     },
     {
@@ -2890,7 +2890,7 @@
      "relief": "textures_sol/sous_916500_6242700_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5223,
+     "triangles": 5212,
      "part_reconstruite": 0.981
     },
     {
@@ -2936,7 +2936,7 @@
      "relief": "textures_sol/sous_916600_6242700_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 1545,
+     "triangles": 1542,
      "part_reconstruite": 0.989
     },
     {
@@ -2959,7 +2959,7 @@
      "relief": "textures_sol/sous_916600_6242800_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6842,
+     "triangles": 6838,
      "part_reconstruite": 0.945
     },
     {
@@ -2982,7 +2982,7 @@
      "relief": "textures_sol/sous_916600_6242900_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 568,
+     "triangles": 564,
      "part_reconstruite": 0.952
     },
     {
@@ -3005,7 +3005,7 @@
      "relief": "textures_sol/sous_916700_6242800_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3658,
+     "triangles": 3662,
      "part_reconstruite": 0.96
     },
     {
@@ -3028,7 +3028,7 @@
      "relief": "textures_sol/sous_916700_6242900_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 1946,
+     "triangles": 1945,
      "part_reconstruite": 0.968
     },
     {
@@ -3051,7 +3051,7 @@
      "relief": "textures_sol/sous_916800_6242800_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 595,
+     "triangles": 594,
      "part_reconstruite": 0.883
     },
     {
@@ -3074,11 +3074,11 @@
      "relief": "textures_sol/sous_916800_6242900_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6437,
+     "triangles": 6440,
      "part_reconstruite": 0.873
     }
    ],
-   "duree_s": 111.3
+   "duree_s": 114.4
   },
   {
    "nom": "dalle_916500_6243000",
@@ -3100,11 +3100,11 @@
    "relief": "textures_sol/dalle_916500_6243000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 146621,
+   "surface_terrain_m2": 146592,
    "part_sous_couvert": 0.944,
    "part_ombre_reconstruite": 0.031,
    "part_reconstruite": 0.983,
-   "triangles_hors_bande": 23826,
+   "triangles_hors_bande": 23823,
    "sous_dalles": [
     {
      "nom": "sous_916500_6243400",
@@ -3126,7 +3126,7 @@
      "relief": "textures_sol/sous_916500_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 1084,
+     "triangles": 1081,
      "part_reconstruite": 0.976
     },
     {
@@ -3149,7 +3149,7 @@
      "relief": "textures_sol/sous_916700_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3,
+     "triangles": 1,
      "part_reconstruite": 0.989
     },
     {
@@ -3172,7 +3172,7 @@
      "relief": "textures_sol/sous_916700_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2132,
+     "triangles": 2130,
      "part_reconstruite": 0.99
     },
     {
@@ -3195,8 +3195,8 @@
      "relief": "textures_sol/sous_916800_6243000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5115,
-     "part_reconstruite": 0.981
+     "triangles": 5095,
+     "part_reconstruite": 0.982
     },
     {
      "nom": "sous_916800_6243100",
@@ -3241,7 +3241,7 @@
      "relief": "textures_sol/sous_916800_6243200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3754,
+     "triangles": 3751,
      "part_reconstruite": 0.995
     },
     {
@@ -3264,7 +3264,7 @@
      "relief": "textures_sol/sous_916800_6243300_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6332,
+     "triangles": 6328,
      "part_reconstruite": 0.986
     },
     {
@@ -3287,7 +3287,7 @@
      "relief": "textures_sol/sous_916800_6243400_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3864,
+     "triangles": 3871,
      "part_reconstruite": 0.962
     },
     {
@@ -3310,7 +3310,7 @@
      "relief": "textures_sol/sous_916900_6243000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 287,
+     "triangles": 292,
      "part_reconstruite": 0.999
     },
     {
@@ -3333,7 +3333,7 @@
      "relief": "textures_sol/sous_916900_6243100_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2884,
+     "triangles": 2878,
      "part_reconstruite": 0.997
     },
     {
@@ -3356,11 +3356,11 @@
      "relief": "textures_sol/sous_916900_6243200_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2132,
+     "triangles": 2142,
      "part_reconstruite": 0.964
     }
    ],
-   "duree_s": 110.1
+   "duree_s": 113.2
   },
   {
    "nom": "dalle_916500_6243500",
@@ -3382,11 +3382,11 @@
    "relief": "textures_sol/dalle_916500_6243500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 87923,
+   "surface_terrain_m2": 87938,
    "part_sous_couvert": 0.878,
    "part_ombre_reconstruite": 0.091,
    "part_reconstruite": 0.972,
-   "triangles_hors_bande": 14564,
+   "triangles_hors_bande": 14556,
    "sous_dalles": [
     {
      "nom": "sous_916500_6243500",
@@ -3408,7 +3408,7 @@
      "relief": "textures_sol/sous_916500_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 3271,
+     "triangles": 3270,
      "part_reconstruite": 0.98
     },
     {
@@ -3431,7 +3431,7 @@
      "relief": "textures_sol/sous_916500_6243600_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6141,
+     "triangles": 6144,
      "part_reconstruite": 0.921
     },
     {
@@ -3454,7 +3454,7 @@
      "relief": "textures_sol/sous_916600_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2085,
+     "triangles": 2098,
      "part_reconstruite": 0.999
     },
     {
@@ -3477,7 +3477,7 @@
      "relief": "textures_sol/sous_916600_6243600_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5663,
+     "triangles": 5666,
      "part_reconstruite": 0.938
     },
     {
@@ -3500,7 +3500,7 @@
      "relief": "textures_sol/sous_916700_6243500_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 6066,
+     "triangles": 6072,
      "part_reconstruite": 0.993
     },
     {
@@ -3550,7 +3550,7 @@
      "part_reconstruite": 0.997
     }
    ],
-   "duree_s": 71.7
+   "duree_s": 75.2
   },
   {
    "nom": "dalle_917000_6240500",
@@ -3572,11 +3572,11 @@
    "relief": "textures_sol/dalle_917000_6240500_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 42676,
+   "surface_terrain_m2": 42672,
    "part_sous_couvert": 0.535,
    "part_ombre_reconstruite": 0.113,
    "part_reconstruite": 0.658,
-   "triangles_hors_bande": 7060,
+   "triangles_hors_bande": 7063,
    "sous_dalles": [
     {
      "nom": "sous_917000_6240900",
@@ -3598,7 +3598,7 @@
      "relief": "textures_sol/sous_917000_6240900_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 5391,
+     "triangles": 5385,
      "part_reconstruite": 0.822
     },
     {
@@ -3621,11 +3621,11 @@
      "relief": "textures_sol/sous_917100_6240900_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2828,
+     "triangles": 2827,
      "part_reconstruite": 0.622
     }
    ],
-   "duree_s": 29.7
+   "duree_s": 28.3
   },
   {
    "nom": "dalle_917000_6241000",
@@ -3647,11 +3647,11 @@
    "relief": "textures_sol/dalle_917000_6241000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 27007,
+   "surface_terrain_m2": 27024,
    "part_sous_couvert": 0.607,
    "part_ombre_reconstruite": 0.117,
    "part_reconstruite": 0.729,
-   "triangles_hors_bande": 3860,
+   "triangles_hors_bande": 3862,
    "sous_dalles": [
     {
      "nom": "sous_917000_6241000",
@@ -3673,11 +3673,11 @@
      "relief": "textures_sol/sous_917000_6241000_relief.jpg",
      "relief_px": 1024,
      "relief_m_par_px": 0.1023,
-     "triangles": 2569,
+     "triangles": 2565,
      "part_reconstruite": 0.817
     }
    ],
-   "duree_s": 21.4
+   "duree_s": 17.8
   },
   {
    "nom": "dalle_917000_6243000",
@@ -3699,21 +3699,21 @@
    "relief": "textures_sol/dalle_917000_6243000_relief.png",
    "relief_px": 1064,
    "relief_m_par_px": 0.5,
-   "surface_terrain_m2": 7579,
-   "part_sous_couvert": 0.916,
+   "surface_terrain_m2": 7611,
+   "part_sous_couvert": 0.917,
    "part_ombre_reconstruite": 0.076,
    "part_reconstruite": 0.995,
-   "triangles_hors_bande": 909,
+   "triangles_hors_bande": 913,
    "sous_dalles": [],
-   "duree_s": 10.6
+   "duree_s": 7.4
   }
  ],
  "controle": {
   "terrain_sol_glb": {
-   "taille_mo": 17.01,
+   "taille_mo": 17.0,
    "maillages": 152,
-   "triangles": 728981,
-   "triangles_terrain_08": 728981,
+   "triangles": 728895,
+   "triangles_terrain_08": 728895,
    "nan": false,
    "normales_unitaires_ecart_max": 0.0,
    "normales_vers_le_haut_pct": 100.0,
@@ -3733,7 +3733,7 @@
    "relief_norme_moyenne": 1.001,
    "relief_z_min": 0.2
   },
-  "coutures_entre_dalles_ecart_moyen_rvb": 3.15,
+  "coutures_entre_dalles_ecart_moyen_rvb": 3.14,
   "apercu_glb_mo": 5.48
  }
 }

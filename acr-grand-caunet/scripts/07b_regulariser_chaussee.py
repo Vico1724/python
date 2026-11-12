@@ -4,22 +4,26 @@ irrégularités dues aux mesures et aux coutures entre sources, SANS changer la 
 Ce que le diagnostic (scripts/17_diagnostic_trace.py) a montré le 12/11/2026 :
   - le cap de l'axe oscille d'environ 1 degré en permanence, celui des bords de 1,8 degré ;
   - des cassures de 5 à 24 degrés se trouvent aux limites des sections dont la largeur a été corrigée d'après les
-    vidéos : la correction y commence et s'y arrête d'un mètre au suivant, ce qui décroche le bord et l'axe ;
+    vidéos : la correction y commence et s'y arrête d'un mètre au suivant, ce qui décroche le bord, et l'axe avec lui ;
   - les sections dessinées à la main (approche, carrefour du Lion d'Or) ont aussi des cassures, mais voulues.
 
 Principe (rien n'est redessiné, tout part des points mesurés) :
-  1. AXE. Lissage de Whittaker d'ordre 3 sur x(s) et y(s) : il pénalise la VARIATION de courbure, pas la courbure.
-     Un arc de cercle ou une droite le traversent donc presque inchangés ; ce sont les zigzags qui sont retirés.
+  1. AXE. Lissage de Whittaker d'ordre 3 sur x(s) et y(s) : il pénalise la VARIATION de courbure, pas la courbure ;
+     un arc de cercle ou une droite le traversent presque inchangés. Il est réglé LÉGER (LAMBDA_AXE : longueurs
+     d'onde de moins d'une dizaine de mètres). Autour d'une cassure artificielle seulement, le poids des points est
+     abaissé, pour que le raccord se fasse sur une quinzaine de mètres au lieu d'un.
      Chaque point a une tolérance de déplacement selon sa source (TOLERANCE_M) ; tant qu'un point la dépasse, son
-     poids est augmenté et le lissage refait. Les points « manuel » sont tenus fixes.
+     poids est augmenté et le lissage refait. Les points « manuel » ne bougent pas.
   2. BORDS. Les demi-largeurs gauche et droite, mesurées perpendiculairement à l'axe régularisé, sont lissées à
      l'ordre 2 : un changement de largeur réel reste, un saut d'un mètre au suivant devient un raccord progressif.
-     Mêmes tolérances, mêmes points fixes.
-  3. ALTITUDES. Chaque point déplacé garde l'altitude du profil en travers mesuré (interpolation ou prolongement
-     linéaire le long de la section gauche - axe - droite).
-  4. CONTRÔLES, écrits dans data/processed/regularisation_chaussee.json : déplacements par source, cassures avant et
-     après, rayon minimal de chaque virage avant et après (écart toléré : ECART_RAYON_MAX), longueur de l'ES.
-     Si un contrôle échoue, le fichier n'est PAS remplacé.
+  3. ALTITUDES. Chaque point déplacé garde l'altitude du profil en travers mesuré.
+  4. CONTRÔLES, écrits dans data/processed/regularisation_chaussee.json. Si l'un échoue, rien n'est écrit :
+       - déplacement de chaque point sous sa tolérance ;
+       - même enchaînement de virages (nombre, sens, position), lu à l'échelle de 25 m ;
+       - même changement de cap dans chaque virage (à ECART_CAP_MAX_DEG près) ;
+       - même rayon au sommet de chaque virage (à ECART_RAYON_MAX près), mesuré à l'échelle de 15 m, hors des
+         abords d'une cassure artificielle, où le rayon d'origine n'a pas de sens ;
+       - longueur de l'ES inchangée (à ECART_LONGUEUR_MAX_M près).
 
 Le fichier d'origine est conservé dans data/processed/chaussee_precise_brut.csv ; ce script repart toujours de lui
 s'il existe, il peut donc être relancé sans cumuler les lissages.
@@ -34,6 +38,7 @@ from pathlib import Path
 
 import numpy as np
 from scipy import sparse
+from scipy.signal import savgol_filter
 from scipy.sparse.linalg import spsolve
 
 RACINE = Path(__file__).resolve().parents[1]
@@ -42,11 +47,17 @@ BRUT = RACINE / "data" / "processed" / "chaussee_precise_brut.csv"
 
 # déplacement latéral maximal admis, en mètres, selon la source de la mesure
 TOLERANCE_M = {"lidar+ortho": 0.20, "lidar": 0.25, "ortho": 0.40, "video": 0.50, "interpole": 0.50, "manuel": 0.0}
-LAMBDA_AXE = 150.0        # lissage d'ordre 3 de l'axe (pas d'environ 1 m) : coupe sous 14 m de longueur d'onde environ
-                          # (2 pi lambda^(1/6)) ; 3e4 coupait sous 35 m et aplatissait les virages : refusé par les contrôles
-LAMBDA_BORD = 60.0        # lissage d'ordre 2 des demi-largeurs : raccord d'une dizaine de mètres
-ECART_RAYON_MAX = 0.05    # un virage ne doit pas voir son rayon minimal changer de plus de 5 %
-FENETRE_RAYON_M = 15      # le rayon d'un virage est mesuré sur un cap lissé à cette échelle
+LAMBDA_AXE = 8.0          # lissage d'ordre 3 de l'axe : coupe sous 2 pi lambda^(1/6), soit environ 9 m de longueur d'onde.
+                          # Essais du 12/11/2026 : 3e4 aplatissait les virages (refusé par les contrôles) ; 25 agrandissait leur
+                          # rayon de 2,5 % en médiane ; 8 le laisse à moins de 1 % près, en retirant un tiers du bruit de cap.
+LAMBDA_BORD = 60.0        # lissage d'ordre 2 des demi-largeurs : raccord d'une quinzaine de mètres
+SEUIL_CASSURE_AXE_DEG = 5.0
+SEUIL_CASSURE_BORD_DEG = 9.0
+DEMI_RACCORD = 8          # points de part et d'autre d'une cassure où le poids est abaissé
+POIDS_RACCORD = 0.02
+ECART_RAYON_MAX = 0.10
+ECART_CAP_MAX_DEG = 2.0
+ECART_LONGUEUR_MAX_M = 3.0
 
 
 def whittaker(y, poids, lam, ordre):
@@ -54,13 +65,12 @@ def whittaker(y, poids, lam, ordre):
     d = sparse.eye(n, format="csc")
     for _ in range(ordre):
         d = d[1:] - d[:-1]
-    w = sparse.diags(poids)
-    return spsolve((w + lam * (d.T @ d)).tocsc(), poids * y)
+    return spsolve((sparse.diags(poids) + lam * (d.T @ d)).tocsc(), poids * y)
 
 
-def lisser_borne(y, tol, lam, ordre, fixe, tours=40):
-    """Lissage de Whittaker dont aucun point ne s'écarte de sa valeur de plus de tol ; les points fixes ne bougent pas."""
-    poids = np.where(fixe, 1.0e6, 1.0)
+def lisser_borne(y, tol, lam, ordre, fixe, poids0, tours=60):
+    """Whittaker dont aucun point ne s'écarte de sa valeur de plus de tol ; les points fixes ne bougent pas."""
+    poids = np.where(fixe, 1.0e6, poids0).astype(float)
     z = y
     for _ in range(tours):
         z = whittaker(y, poids, lam, ordre)
@@ -71,104 +81,100 @@ def lisser_borne(y, tol, lam, ordre, fixe, tours=40):
     return np.where(fixe, y, z)
 
 
-def normales(p):
+def reperes(p):
     d = np.gradient(p, axis=0)
     t = d / np.maximum(np.hypot(d[:, 0], d[:, 1]), 1e-9)[:, None]
     return t, np.c_[-t[:, 1], t[:, 0]]                       # tangente, normale à gauche
 
 
-def cap_lisse(p, fenetre):
-    from scipy.signal import savgol_filter
+def ecart_de_cap(p):
+    """Écart, en degrés, entre le cap d'un segment et le cap lissé sur 21 m : une cassure y fait un pic."""
+    d = np.diff(p, axis=0)
+    cap = np.unwrap(np.arctan2(d[:, 1], d[:, 0]))
+    return np.degrees(cap - savgol_filter(cap, 21, 2))
+
+
+def courbure(p, fenetre):
     d = np.gradient(p, axis=0)
-    return savgol_filter(np.unwrap(np.arctan2(d[:, 1], d[:, 0])), fenetre | 1, 2), np.hypot(d[:, 0], d[:, 1])
+    cap = savgol_filter(np.unwrap(np.arctan2(d[:, 1], d[:, 0])), fenetre | 1, 2)
+    return np.gradient(cap) / np.maximum(np.hypot(d[:, 0], d[:, 1]), 1e-6), cap
 
 
 def virages(p):
-    """Structure du tracé : [(i0, i1, sens)], un virage = un passage continu sous 120 m de rayon, le cap étant lissé
-    sur FENETRE_RAYON_M ; seule la partie centrale (courbure au-dessus de 70 % du maximum) est rendue."""
-    cap, ds = cap_lisse(p, FENETRE_RAYON_M)
-    k = np.gradient(cap) / np.maximum(ds, 1e-6)
-    dans = np.abs(k) > 1.0 / 120.0
+    """Enchaînement des virages à l'échelle de 25 m : [(i0, i1, sens)] pour chaque passage continu sous 150 m de rayon."""
+    k, _ = courbure(p, 25)
+    dans = np.abs(k) > 1.0 / 150.0
     out, i = [], 0
     while i < len(k):
         if dans[i]:
             j = i
             while j + 1 < len(k) and dans[j + 1] and np.sign(k[j + 1]) == np.sign(k[i]):
                 j += 1
-            if j - i >= 10:
-                fort = np.where(np.abs(k[i:j + 1]) >= 0.7 * np.abs(k[i:j + 1]).max())[0]
-                if fort[-1] - fort[0] >= 6:
-                    out.append((i + int(fort[0]), i + int(fort[-1]), "gauche" if k[i] > 0 else "droite"))
+            if j - i >= 12:
+                out.append((i, j, 1 if k[i] > 0 else -1, float(1.0 / np.abs(k[i:j + 1]).max())))
             i = j + 1
         else:
             i += 1
     return out
 
 
-def rayon_ajuste(p):
-    """Rayon du cercle ajusté aux points (moindres carrés) : insensible au bruit point à point."""
-    q = p - p.mean(axis=0)
-    a = np.c_[q, np.ones(len(q))]
-    s, *_ = np.linalg.lstsq(a, -(q ** 2).sum(axis=1), rcond=None)
-    return float(np.sqrt(max(s[0] ** 2 / 4 + s[1] ** 2 / 4 - s[2], 1e-6)))
-
-
-def cassures(p, seuil_deg):
-    from scipy.signal import savgol_filter
-    d = np.diff(p, axis=0)
-    cap = np.unwrap(np.arctan2(d[:, 1], d[:, 0]))
-    e = np.degrees(cap - savgol_filter(cap, 21, 2))
-    return int((np.abs(e) > seuil_deg).sum()), float(np.abs(e).std()), float(np.abs(e).max())
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--essai", action="store_true")
+    ap.add_argument("--neuf", action="store_true", help="chaussee_precise.csv vient d'être recalculé par l'étape 07 : repartir de lui")
     a = ap.parse_args()
-    source = BRUT if BRUT.exists() else SORTIE
+    source = SORTIE if a.neuf else (BRUT if BRUT.exists() else SORTIE)
     with open(source, encoding="utf-8") as f:
         lignes = list(csv.DictReader(f))
         champs = list(lignes[0].keys())
     col = lambda k: np.array([float(x[k]) for x in lignes])
     pk = col("pk_m")
+    n = len(pk)
     axe, g, d = np.c_[col("x_axe"), col("y_axe")], np.c_[col("x_gauche"), col("y_gauche")], np.c_[col("x_droite"), col("y_droite")]
     za, zg, zd = col("z_axe"), col("z_gauche"), col("z_droite")
     src = [x["source"] for x in lignes]
     tol = np.array([TOLERANCE_M.get(s, 0.25) for s in src])
     fixe = np.array([s == "manuel" for s in src])
-    # les points fixes tiennent aussi leurs voisins immédiats, pour que le raccord se fasse hors de la section manuelle
-    fixe_large = fixe.copy()
+
+    # cassures artificielles : pics de cap sur l'axe ou sur un bord, hors des sections dessinées à la main
+    pics = (np.abs(ecart_de_cap(axe)) > SEUIL_CASSURE_AXE_DEG) | (np.abs(ecart_de_cap(g)) > SEUIL_CASSURE_BORD_DEG) | \
+           (np.abs(ecart_de_cap(d)) > SEUIL_CASSURE_BORD_DEG)
+    pics = np.r_[pics, False] & ~fixe
+    pres = np.zeros(n, bool)
+    for i in np.where(pics)[0]:
+        pres[max(0, i - DEMI_RACCORD): i + DEMI_RACCORD + 1] = True
+    pres &= ~fixe
+    poids0 = np.where(pres, POIDS_RACCORD, 1.0)
+    groupes = []
+    for i in np.where(pics)[0]:
+        if groupes and i - groupes[-1][1] <= 2 * DEMI_RACCORD:
+            groupes[-1][1] = i
+        else:
+            groupes.append([i, i])
 
     # 1. axe
-    ax = np.c_[lisser_borne(axe[:, 0], tol / np.sqrt(2), LAMBDA_AXE, 3, fixe_large), lisser_borne(axe[:, 1], tol / np.sqrt(2), LAMBDA_AXE, 3, fixe_large)]
-    t0, n0 = normales(axe)
-    t1, n1 = normales(ax)
-    dep_axe = np.einsum("ij,ij->i", ax - axe, n0)                                 # déplacement latéral de l'axe, + à gauche
+    ax = np.c_[lisser_borne(axe[:, 0], tol / np.sqrt(2), LAMBDA_AXE, 3, fixe, poids0),
+               lisser_borne(axe[:, 1], tol / np.sqrt(2), LAMBDA_AXE, 3, fixe, poids0)]
+    t0, n0 = reperes(axe)
+    t1, n1 = reperes(ax)
 
-    # 2. demi-largeurs, mesurées sur la normale de l'axe régularisé
-    og = np.einsum("ij,ij->i", g - ax, n1)
-    od = -np.einsum("ij,ij->i", d - ax, n1)
-    og1 = lisser_borne(og, tol, LAMBDA_BORD, 2, fixe)
-    od1 = lisser_borne(od, tol, LAMBDA_BORD, 2, fixe)
-    # la composante le long de l'axe des bords d'origine est gardée telle quelle (sections pas tout à fait perpendiculaires)
-    lg = np.einsum("ij,ij->i", g - ax, t1)
-    ld = np.einsum("ij,ij->i", d - ax, t1)
-    g1 = ax + n1 * og1[:, None] + t1 * lg[:, None]
-    d1 = ax - n1 * od1[:, None] + t1 * ld[:, None]
+    # 2. demi-largeurs sur la normale de l'axe régularisé ; la composante le long de l'axe des bords est gardée
+    og, od = np.einsum("ij,ij->i", g - ax, n1), -np.einsum("ij,ij->i", d - ax, n1)
+    og1 = lisser_borne(og, tol, LAMBDA_BORD, 2, fixe, poids0)
+    od1 = lisser_borne(od, tol, LAMBDA_BORD, 2, fixe, poids0)
+    g1 = ax + n1 * og1[:, None] + t1 * np.einsum("ij,ij->i", g - ax, t1)[:, None]
+    d1 = ax - n1 * od1[:, None] + t1 * np.einsum("ij,ij->i", d - ax, t1)[:, None]
     g1[fixe], d1[fixe], ax[fixe] = g[fixe], d[fixe], axe[fixe]
 
-    # 3. altitudes le long du profil en travers d'origine
-    def z_sur_profil(lat):
-        """Altitude à la distance latérale lat de l'axe d'origine (+ à gauche), sur le profil gauche - axe - droite."""
-        lg0 = np.einsum("ij,ij->i", g - axe, n0)
-        ld0 = np.einsum("ij,ij->i", d - axe, n0)                                  # négatif
-        pente_g = (zg - za) / np.maximum(lg0, 0.5)
-        pente_d = (zd - za) / np.minimum(ld0, -0.5)
+    # 3. altitudes sur le profil en travers d'origine (gauche - axe - droite), prolongé linéairement
+    lg0, ld0 = np.einsum("ij,ij->i", g - axe, n0), np.einsum("ij,ij->i", d - axe, n0)
+    pente_g, pente_d = (zg - za) / np.maximum(lg0, 0.5), (zd - za) / np.minimum(ld0, -0.5)
+
+    def z_sur_profil(q):
+        lat = np.einsum("ij,ij->i", q - axe, n0)
         return za + np.where(lat >= 0, pente_g, pente_d) * lat
 
-    za1 = z_sur_profil(dep_axe)
-    zg1 = z_sur_profil(np.einsum("ij,ij->i", g1 - axe, n0))
-    zd1 = z_sur_profil(np.einsum("ij,ij->i", d1 - axe, n0))
+    za1, zg1, zd1 = z_sur_profil(ax), z_sur_profil(g1), z_sur_profil(d1)
     za1[fixe], zg1[fixe], zd1[fixe] = za[fixe], zg[fixe], zd[fixe]
 
     # 4. contrôles
@@ -177,60 +183,92 @@ def main():
     for s in sorted(set(src)):
         m = np.array([x == s for x in src])
         par_source[s] = {"points": int(m.sum()), **{k: {"moyen_m": round(float(v[m].mean()), 3), "max_m": round(float(v[m].max()), 3)} for k, v in dep.items()}}
-    # virages : la structure est lue sur l'axe régularisé, puis le MÊME intervalle de points sert à ajuster un cercle
-    # sur l'axe d'origine et sur l'axe régularisé ; l'écart de rayon mesure donc ce que la régularisation a changé
-    vb = virages(ax)
-    va = virages(axe)
-    appar = []
-    for i0, i1, s in vb:
-        r0, r1 = rayon_ajuste(axe[i0:i1 + 1]), rayon_ajuste(ax[i0:i1 + 1])
-        appar.append((float(pk[(i0 + i1) // 2]), r0, r1, (r1 - r0) / r0))
-    pires = sorted(appar, key=lambda x: -abs(x[3]))[:8]
-    es = (pk >= 0) & (pk <= pk[np.array([x["zone"] == "es" for x in lignes])].max())
-    long0 = float(np.hypot(*np.diff(axe[es], axis=0).T).sum())
-    long1 = float(np.hypot(*np.diff(ax[es], axis=0).T).sum())
+
+    def cap_stats(p):
+        e = np.abs(ecart_de_cap(p))[~fixe[:-1]]
+        return {"cassures_sup_5_deg": int((e > 5).sum()), "ecart_type_deg": round(float(e.std()), 2), "max_deg": round(float(e.max()), 2)}
+
+    va, vb = virages(axe), virages(ax)
+    k0, cap0 = courbure(axe, 15)
+    k1, cap1 = courbure(ax, 15)
+    _, capl0 = courbure(axe, 25)
+    _, capl1 = courbure(ax, 25)
+    echecs, tableau, hors_controle = [], [], 0
+    # Enchaînement : tout virage net (moins de 80 m de rayon à l'échelle de 25 m) doit se retrouver de l'autre côté,
+    # de même sens, à moins de 10 m. Les courbes très ouvertes, au seuil de détection, ne sont pas comptées : elles
+    # apparaissent ou disparaissent pour un écart de courbure infime.
+    def nets(v):
+        return [c for c in v if c[3] < 80.0]
+
+    def retrouve(c, autres):
+        # même sens, et les deux intervalles se recouvrent à 10 m près : deux virages de même sens qui se rejoignent
+        # en un seul, ou l'inverse, ne sont pas un changement d'enchaînement
+        return any(s == c[2] and i <= c[1] + 10 and j >= c[0] - 10 for i, j, s, r in autres)
+
+    perdus = [round(float(pk[(c[0] + c[1]) // 2])) for c in nets(va) if not retrouve(c, vb)]
+    nouveaux = [round(float(pk[(c[0] + c[1]) // 2])) for c in nets(vb) if not retrouve(c, va)]
+    if perdus or nouveaux:
+        echecs.append(f"enchaînement des virages changé : virages nets perdus aux PK {perdus}, apparus aux PK {nouveaux}")
+    for (i0, j0, s0, _) in vb:
+        a0, a1 = max(0, i0 - 6), min(n - 1, j0 + 6)
+        dcap0, dcap1 = np.degrees(capl0[a1] - capl0[a0]), np.degrees(capl1[a1] - capl1[a0])
+        # rayon du cœur du virage : courbure MOYENNE sur les points où elle dépasse 70 % de son maximum (lu sur
+        # l'axe régularisé). Une moyenne n'est pas tirée vers le haut par le bruit, contrairement à un maximum.
+        coeur = np.where(np.abs(k1[i0:j0 + 1]) >= 0.7 * np.abs(k1[i0:j0 + 1]).max())[0] + i0
+        r0, r1 = 1.0 / max(abs(k0[coeur].mean()), 1e-6), 1.0 / max(abs(k1[coeur].mean()), 1e-6)
+        artefact = bool(pres[a0:a1 + 1].any())
+        tableau.append({"pk": round(float(pk[(i0 + j0) // 2])), "sens": "gauche" if s0 > 0 else "droite", "cap_avant_deg": round(float(dcap0), 1),
+                        "cap_apres_deg": round(float(dcap1), 1), "rayon_avant_m": round(float(r0), 1), "rayon_apres_m": round(float(r1), 1),
+                        "ecart_rayon_pct": round(float((r1 - r0) / r0 * 100), 1), "pres_d_une_cassure": artefact})
+        if abs(dcap1 - dcap0) > ECART_CAP_MAX_DEG and not artefact:
+            echecs.append(f"virage du PK {tableau[-1]['pk']} : cap changé de {dcap1 - dcap0:+.1f} deg")
+        if artefact:
+            hors_controle += 1
+        elif abs(r1 - r0) / r0 > ECART_RAYON_MAX:
+            echecs.append(f"virage du PK {tableau[-1]['pk']} : rayon {r0:.1f} -> {r1:.1f} m")
+    for k, v in dep.items():
+        marge = 0.02 if k == "axe" else 0.30                 # les bords cumulent le déplacement de l'axe et le leur
+        if (v > tol + marge).any():
+            echecs.append(f"{k} : déplacement au-delà de la tolérance en {int((v > tol + marge).sum())} points")
+    es = np.array([x["zone"] == "es" for x in lignes])
+    long0, long1 = float(np.hypot(*np.diff(axe[es], axis=0).T).sum()), float(np.hypot(*np.diff(ax[es], axis=0).T).sum())
+    if abs(long1 - long0) > ECART_LONGUEUR_MAX_M:
+        echecs.append(f"longueur de l'ES changée de {long1 - long0:+.2f} m")
     largeur1 = np.hypot(*(g1 - d1).T)
+    ecarts = [abs(t["ecart_rayon_pct"]) for t in tableau if not t["pres_d_une_cassure"]]
     bilan = {
-        "source": source.name, "points": len(pk), "tolerances_m": TOLERANCE_M, "lambda_axe": LAMBDA_AXE, "lambda_bord": LAMBDA_BORD,
-        "deplacement_par_source": par_source,
-        "deplacement_max_m": {k: round(float(v.max()), 3) for k, v in dep.items()},
-        "cap_avant": {k: dict(zip(("cassures_sup_5_deg", "ecart_type_deg", "max_deg"), [round(x, 2) for x in cassures(p, 5)])) for k, p in (("axe", axe), ("gauche", g), ("droite", d))},
-        "cap_apres": {k: dict(zip(("cassures_sup_5_deg", "ecart_type_deg", "max_deg"), [round(x, 2) for x in cassures(p, 5)])) for k, p in (("axe", ax), ("gauche", g1), ("droite", d1))},
-        "virages": {"avant": len(va), "apres": len(vb), "apparies": len(appar),
-                    "ecart_de_rayon_median_pct": round(float(np.median([abs(x[3]) for x in appar]) * 100), 2),
-                    "ecart_de_rayon_max_pct": round(float(max(abs(x[3]) for x in appar) * 100), 2),
-                    "les_plus_modifies": [{"pk": round(p), "rayon_avant_m": round(r0, 1), "rayon_apres_m": round(r1, 1), "ecart_pct": round(e * 100, 1)} for p, r0, r1, e in pires]},
+        "source": source.name, "points": n, "tolerances_m": TOLERANCE_M, "lambda_axe": LAMBDA_AXE, "lambda_bord": LAMBDA_BORD,
+        "cassures_artificielles": [{"pk_debut": round(float(pk[i])), "pk_fin": round(float(pk[j])), "source": src[i]} for i, j in groupes],
+        "deplacement_par_source": par_source, "deplacement_max_m": {k: round(float(v.max()), 3) for k, v in dep.items()},
+        "cap_avant_hors_manuel": {k: cap_stats(p) for k, p in (("axe", axe), ("gauche", g), ("droite", d))},
+        "cap_apres_hors_manuel": {k: cap_stats(p) for k, p in (("axe", ax), ("gauche", g1), ("droite", d1))},
+        "virages": {"nombre_avant": len(va), "nombre_apres": len(vb), "nets_avant": len(nets(va)), "nets_apres": len(nets(vb)),
+                    "controles_sur_le_rayon": len(ecarts), "pres_d_une_cassure": hors_controle,
+                    "ecart_de_rayon_median_pct": round(float(np.median(ecarts)), 2) if ecarts else None,
+                    "ecart_de_rayon_max_pct": round(float(max(ecarts)), 2) if ecarts else None, "detail": tableau},
         "longueur_es_m": {"avant": round(long0, 2), "apres": round(long1, 2)},
         "largeur_m": {"mediane_avant": round(float(np.median(col("largeur_m"))), 2), "mediane_apres": round(float(np.median(largeur1)), 2),
-                      "saut_max_avant": round(float(np.abs(np.diff(col("largeur_m"))).max()), 2), "saut_max_apres": round(float(np.abs(np.diff(largeur1)).max()), 2)},
+                      "saut_max_avant": round(float(np.abs(np.diff(col("largeur_m")))[~fixe[:-1]].max()), 2),
+                      "saut_max_apres": round(float(np.abs(np.diff(largeur1))[~fixe[:-1]].max()), 2)},
+        "echecs": echecs,
     }
-    echecs = []
-    for k, v in dep.items():
-        if (v > tol + (0.02 if k == "axe" else 0.30)).any():      # les bords cumulent le déplacement de l'axe et le leur
-            echecs.append(f"{k} : déplacement au-delà de la tolérance en {int((v > tol + (0.02 if k == 'axe' else 0.30)).sum())} points")
-    if bilan["virages"]["ecart_de_rayon_max_pct"] > ECART_RAYON_MAX * 100:
-        echecs.append(f"rayon d'un virage modifié de {bilan['virages']['ecart_de_rayon_max_pct']} % (> {ECART_RAYON_MAX * 100:.0f} %)")
-    sens_avant = [s for _, _, s in virages(np.c_[whittaker(axe[:, 0], np.ones(len(pk)), 30.0, 3), whittaker(axe[:, 1], np.ones(len(pk)), 30.0, 3)])]
-    if [s for _, _, s in vb] != sens_avant:
-        echecs.append(f"enchaînement des virages changé : {len(sens_avant)} virages avant, {len(vb)} après, ou sens différent")
-    if abs(long1 - long0) > 1.0:
-        echecs.append(f"longueur de l'ES changée de {long1 - long0:+.2f} m")
-    bilan["echecs"] = echecs
-    print(f"{len(pk)} points lus dans {source.name}")
-    print("déplacement max (m) :", bilan["deplacement_max_m"], "| par source (axe moyen/max) :", {s: (v["axe"]["moyen_m"], v["axe"]["max_m"]) for s, v in par_source.items()})
-    print("cap avant :", bilan["cap_avant"]); print("cap après :", bilan["cap_apres"])
-    print("virages :", {k: v for k, v in bilan["virages"].items() if k != "les_plus_modifies"}); print("  les plus modifiés :", bilan["virages"]["les_plus_modifies"][:4])
+    print(f"{n} points lus dans {source.name} ; {len(groupes)} cassures artificielles :", [(c["pk_debut"], c["pk_fin"]) for c in bilan["cassures_artificielles"]])
+    print("déplacement max (m) :", bilan["deplacement_max_m"], "| axe, moyen/max par source :", {s: (v["axe"]["moyen_m"], v["axe"]["max_m"]) for s, v in par_source.items()})
+    print("cap avant :", bilan["cap_avant_hors_manuel"]); print("cap après :", bilan["cap_apres_hors_manuel"])
+    print("virages :", {k: v for k, v in bilan["virages"].items() if k != "detail"})
+    print("  près d'une cassure :", [(t["pk"], t["rayon_avant_m"], t["rayon_apres_m"]) for t in tableau if t["pres_d_une_cassure"]][:12])
     print("longueur ES :", bilan["longueur_es_m"], "| largeur :", bilan["largeur_m"])
-    print("CONTRÔLES :", "tous passés" if not echecs else echecs)
+    print("CONTRÔLES :", "tous passés" if not echecs else echecs[:10])
     if a.essai:
         return
     (RACINE / "data" / "processed" / "regularisation_chaussee.json").write_text(json.dumps(bilan, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     if echecs:
         raise SystemExit("contrôles en échec : chaussee_precise.csv n'est pas modifié")
-    if not BRUT.exists():
+    if a.neuf or not BRUT.exists():
         shutil.copyfile(SORTIE, BRUT)
     deci = {k: len(lignes[0][k].split(".")[1]) if "." in lignes[0][k] else 0 for k in champs}
-    signe = np.sign(np.nanmedian(col("devers_pct") / np.where(np.abs(zd - zg) > 1e-3, (zd - zg) / np.maximum(col("largeur_m"), 0.1) * 100, np.nan)))
+    brut_dev = np.where(np.abs(zd - zg) > 1e-3, (zd - zg) / np.maximum(col("largeur_m"), 0.1) * 100, np.nan)
+    signe = np.sign(np.nanmedian(col("devers_pct") / brut_dev))
     for i, x in enumerate(lignes):
         if fixe[i]:
             continue

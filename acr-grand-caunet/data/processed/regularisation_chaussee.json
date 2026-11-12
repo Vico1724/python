@@ -1,0 +1,1140 @@
+{
+ "source": "chaussee_precise.csv",
+ "points": 7549,
+ "tolerances_m": {
+  "lidar+ortho": 0.2,
+  "lidar": 0.25,
+  "ortho": 0.4,
+  "video": 0.5,
+  "interpole": 0.5,
+  "manuel": 0.0
+ },
+ "lambda_axe": 8.0,
+ "lambda_bord": 60.0,
+ "cassures_artificielles": [
+  {
+   "pk_debut": 736,
+   "pk_fin": 736,
+   "source": "video"
+  },
+  {
+   "pk_debut": 1568,
+   "pk_fin": 1574,
+   "source": "ortho"
+  },
+  {
+   "pk_debut": 1646,
+   "pk_fin": 1646,
+   "source": "video"
+  },
+  {
+   "pk_debut": 1927,
+   "pk_fin": 1927,
+   "source": "video"
+  },
+  {
+   "pk_debut": 1979,
+   "pk_fin": 1979,
+   "source": "video"
+  },
+  {
+   "pk_debut": 2454,
+   "pk_fin": 2462,
+   "source": "video"
+  },
+  {
+   "pk_debut": 2775,
+   "pk_fin": 2787,
+   "source": "video"
+  },
+  {
+   "pk_debut": 3105,
+   "pk_fin": 3107,
+   "source": "video"
+  },
+  {
+   "pk_debut": 3974,
+   "pk_fin": 3974,
+   "source": "video"
+  },
+  {
+   "pk_debut": 4037,
+   "pk_fin": 4037,
+   "source": "lidar"
+  },
+  {
+   "pk_debut": 5632,
+   "pk_fin": 5635,
+   "source": "video"
+  },
+  {
+   "pk_debut": 6099,
+   "pk_fin": 6099,
+   "source": "video"
+  }
+ ],
+ "deplacement_par_source": {
+  "interpole": {
+   "points": 992,
+   "axe": {
+    "moyen_m": 0.007,
+    "max_m": 0.189
+   },
+   "gauche": {
+    "moyen_m": 0.04,
+    "max_m": 0.418
+   },
+   "droite": {
+    "moyen_m": 0.039,
+    "max_m": 0.252
+   }
+  },
+  "lidar": {
+   "points": 4292,
+   "axe": {
+    "moyen_m": 0.005,
+    "max_m": 0.183
+   },
+   "gauche": {
+    "moyen_m": 0.033,
+    "max_m": 0.21
+   },
+   "droite": {
+    "moyen_m": 0.033,
+    "max_m": 0.235
+   }
+  },
+  "lidar+ortho": {
+   "points": 566,
+   "axe": {
+    "moyen_m": 0.006,
+    "max_m": 0.117
+   },
+   "gauche": {
+    "moyen_m": 0.042,
+    "max_m": 0.179
+   },
+   "droite": {
+    "moyen_m": 0.042,
+    "max_m": 0.2
+   }
+  },
+  "manuel": {
+   "points": 220,
+   "axe": {
+    "moyen_m": 0.0,
+    "max_m": 0.0
+   },
+   "gauche": {
+    "moyen_m": 0.0,
+    "max_m": 0.0
+   },
+   "droite": {
+    "moyen_m": 0.0,
+    "max_m": 0.0
+   }
+  },
+  "ortho": {
+   "points": 254,
+   "axe": {
+    "moyen_m": 0.006,
+    "max_m": 0.088
+   },
+   "gauche": {
+    "moyen_m": 0.05,
+    "max_m": 0.327
+   },
+   "droite": {
+    "moyen_m": 0.046,
+    "max_m": 0.203
+   }
+  },
+  "video": {
+   "points": 1225,
+   "axe": {
+    "moyen_m": 0.014,
+    "max_m": 0.182
+   },
+   "gauche": {
+    "moyen_m": 0.045,
+    "max_m": 0.473
+   },
+   "droite": {
+    "moyen_m": 0.045,
+    "max_m": 0.44
+   }
+  }
+ },
+ "deplacement_max_m": {
+  "axe": 0.189,
+  "gauche": 0.473,
+  "droite": 0.44
+ },
+ "cap_avant_hors_manuel": {
+  "axe": {
+   "cassures_sup_5_deg": 14,
+   "ecart_type_deg": 0.72,
+   "max_deg": 12.53
+  },
+  "gauche": {
+   "cassures_sup_5_deg": 110,
+   "ecart_type_deg": 1.24,
+   "max_deg": 23.82
+  },
+  "droite": {
+   "cassures_sup_5_deg": 85,
+   "ecart_type_deg": 1.18,
+   "max_deg": 17.73
+  }
+ },
+ "cap_apres_hors_manuel": {
+  "axe": {
+   "cassures_sup_5_deg": 0,
+   "ecart_type_deg": 0.49,
+   "max_deg": 3.57
+  },
+  "gauche": {
+   "cassures_sup_5_deg": 2,
+   "ecart_type_deg": 0.57,
+   "max_deg": 5.05
+  },
+  "droite": {
+   "cassures_sup_5_deg": 1,
+   "ecart_type_deg": 0.55,
+   "max_deg": 7.81
+  }
+ },
+ "virages": {
+  "nombre_avant": 88,
+  "nombre_apres": 91,
+  "nets_avant": 85,
+  "nets_apres": 83,
+  "controles_sur_le_rayon": 79,
+  "pres_d_une_cassure": 12,
+  "ecart_de_rayon_median_pct": 1.0,
+  "ecart_de_rayon_max_pct": 6.8,
+  "detail": [
+   {
+    "pk": -148,
+    "sens": "droite",
+    "cap_avant_deg": -11.8,
+    "cap_apres_deg": -11.8,
+    "rayon_avant_m": 79.2,
+    "rayon_apres_m": 79.2,
+    "ecart_rayon_pct": 0.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": -85,
+    "sens": "droite",
+    "cap_avant_deg": -32.5,
+    "cap_apres_deg": -32.1,
+    "rayon_avant_m": 24.8,
+    "rayon_apres_m": 24.8,
+    "ecart_rayon_pct": 0.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": -57,
+    "sens": "droite",
+    "cap_avant_deg": -28.5,
+    "cap_apres_deg": -28.3,
+    "rayon_avant_m": 21.9,
+    "rayon_apres_m": 20.4,
+    "ecart_rayon_pct": -6.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 11,
+    "sens": "gauche",
+    "cap_avant_deg": 28.4,
+    "cap_apres_deg": 28.4,
+    "rayon_avant_m": 39.6,
+    "rayon_apres_m": 40.4,
+    "ecart_rayon_pct": 2.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 236,
+    "sens": "droite",
+    "cap_avant_deg": -13.7,
+    "cap_apres_deg": -13.7,
+    "rayon_avant_m": 48.9,
+    "rayon_apres_m": 49.8,
+    "ecart_rayon_pct": 1.9,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 322,
+    "sens": "gauche",
+    "cap_avant_deg": 54.8,
+    "cap_apres_deg": 54.8,
+    "rayon_avant_m": 39.0,
+    "rayon_apres_m": 39.5,
+    "ecart_rayon_pct": 1.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 362,
+    "sens": "gauche",
+    "cap_avant_deg": 8.6,
+    "cap_apres_deg": 8.6,
+    "rayon_avant_m": 104.3,
+    "rayon_apres_m": 105.1,
+    "ecart_rayon_pct": 0.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 430,
+    "sens": "droite",
+    "cap_avant_deg": -12.6,
+    "cap_apres_deg": -12.6,
+    "rayon_avant_m": 50.4,
+    "rayon_apres_m": 50.8,
+    "ecart_rayon_pct": 0.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 452,
+    "sens": "droite",
+    "cap_avant_deg": -15.5,
+    "cap_apres_deg": -15.6,
+    "rayon_avant_m": 43.3,
+    "rayon_apres_m": 43.5,
+    "ecart_rayon_pct": 0.5,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 495,
+    "sens": "gauche",
+    "cap_avant_deg": 25.5,
+    "cap_apres_deg": 25.6,
+    "rayon_avant_m": 21.4,
+    "rayon_apres_m": 21.7,
+    "ecart_rayon_pct": 1.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 525,
+    "sens": "gauche",
+    "cap_avant_deg": 38.6,
+    "cap_apres_deg": 38.6,
+    "rayon_avant_m": 29.5,
+    "rayon_apres_m": 30.1,
+    "ecart_rayon_pct": 1.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 643,
+    "sens": "gauche",
+    "cap_avant_deg": 50.1,
+    "cap_apres_deg": 50.1,
+    "rayon_avant_m": 30.4,
+    "rayon_apres_m": 31.0,
+    "ecart_rayon_pct": 1.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 715,
+    "sens": "droite",
+    "cap_avant_deg": -77.7,
+    "cap_apres_deg": -78.0,
+    "rayon_avant_m": 26.6,
+    "rayon_apres_m": 28.6,
+    "ecart_rayon_pct": 7.5,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 792,
+    "sens": "droite",
+    "cap_avant_deg": -10.9,
+    "cap_apres_deg": -11.0,
+    "rayon_avant_m": 93.3,
+    "rayon_apres_m": 93.4,
+    "ecart_rayon_pct": 0.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 837,
+    "sens": "droite",
+    "cap_avant_deg": -63.4,
+    "cap_apres_deg": -63.5,
+    "rayon_avant_m": 36.7,
+    "rayon_apres_m": 37.0,
+    "ecart_rayon_pct": 0.7,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 909,
+    "sens": "gauche",
+    "cap_avant_deg": 70.8,
+    "cap_apres_deg": 70.8,
+    "rayon_avant_m": 49.8,
+    "rayon_apres_m": 49.8,
+    "ecart_rayon_pct": -0.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1007,
+    "sens": "droite",
+    "cap_avant_deg": -38.7,
+    "cap_apres_deg": -38.8,
+    "rayon_avant_m": 42.9,
+    "rayon_apres_m": 43.5,
+    "ecart_rayon_pct": 1.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1121,
+    "sens": "gauche",
+    "cap_avant_deg": 11.9,
+    "cap_apres_deg": 11.9,
+    "rayon_avant_m": 29.0,
+    "rayon_apres_m": 29.4,
+    "ecart_rayon_pct": 1.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1183,
+    "sens": "droite",
+    "cap_avant_deg": -13.1,
+    "cap_apres_deg": -13.0,
+    "rayon_avant_m": 54.8,
+    "rayon_apres_m": 54.7,
+    "ecart_rayon_pct": -0.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1212,
+    "sens": "droite",
+    "cap_avant_deg": -11.9,
+    "cap_apres_deg": -11.9,
+    "rayon_avant_m": 37.5,
+    "rayon_apres_m": 37.4,
+    "ecart_rayon_pct": -0.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1315,
+    "sens": "droite",
+    "cap_avant_deg": -19.7,
+    "cap_apres_deg": -19.8,
+    "rayon_avant_m": 30.8,
+    "rayon_apres_m": 31.2,
+    "ecart_rayon_pct": 1.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1373,
+    "sens": "droite",
+    "cap_avant_deg": -16.7,
+    "cap_apres_deg": -16.7,
+    "rayon_avant_m": 45.5,
+    "rayon_apres_m": 46.3,
+    "ecart_rayon_pct": 1.6,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1569,
+    "sens": "gauche",
+    "cap_avant_deg": 68.1,
+    "cap_apres_deg": 68.1,
+    "rayon_avant_m": 20.7,
+    "rayon_apres_m": 21.2,
+    "ecart_rayon_pct": 2.5,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 1665,
+    "sens": "droite",
+    "cap_avant_deg": -62.0,
+    "cap_apres_deg": -62.0,
+    "rayon_avant_m": 20.4,
+    "rayon_apres_m": 21.3,
+    "ecart_rayon_pct": 4.0,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 1728,
+    "sens": "droite",
+    "cap_avant_deg": -11.7,
+    "cap_apres_deg": -11.7,
+    "rayon_avant_m": 49.3,
+    "rayon_apres_m": 49.6,
+    "ecart_rayon_pct": 0.7,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1796,
+    "sens": "gauche",
+    "cap_avant_deg": 52.9,
+    "cap_apres_deg": 53.0,
+    "rayon_avant_m": 19.3,
+    "rayon_apres_m": 19.8,
+    "ecart_rayon_pct": 2.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1869,
+    "sens": "droite",
+    "cap_avant_deg": -17.0,
+    "cap_apres_deg": -17.0,
+    "rayon_avant_m": 41.4,
+    "rayon_apres_m": 42.0,
+    "ecart_rayon_pct": 1.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 1918,
+    "sens": "droite",
+    "cap_avant_deg": -17.4,
+    "cap_apres_deg": -17.3,
+    "rayon_avant_m": 33.0,
+    "rayon_apres_m": 32.7,
+    "ecart_rayon_pct": -0.9,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 1936,
+    "sens": "gauche",
+    "cap_avant_deg": 11.1,
+    "cap_apres_deg": 11.1,
+    "rayon_avant_m": 57.9,
+    "rayon_apres_m": 58.7,
+    "ecart_rayon_pct": 1.4,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 1963,
+    "sens": "droite",
+    "cap_avant_deg": -33.0,
+    "cap_apres_deg": -33.0,
+    "rayon_avant_m": 32.3,
+    "rayon_apres_m": 33.4,
+    "ecart_rayon_pct": 3.3,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 2049,
+    "sens": "gauche",
+    "cap_avant_deg": 42.2,
+    "cap_apres_deg": 42.2,
+    "rayon_avant_m": 44.0,
+    "rayon_apres_m": 44.1,
+    "ecart_rayon_pct": 0.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2145,
+    "sens": "gauche",
+    "cap_avant_deg": 38.6,
+    "cap_apres_deg": 38.6,
+    "rayon_avant_m": 43.3,
+    "rayon_apres_m": 43.2,
+    "ecart_rayon_pct": -0.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2224,
+    "sens": "droite",
+    "cap_avant_deg": -150.7,
+    "cap_apres_deg": -150.6,
+    "rayon_avant_m": 17.3,
+    "rayon_apres_m": 17.3,
+    "ecart_rayon_pct": 0.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2282,
+    "sens": "gauche",
+    "cap_avant_deg": 39.7,
+    "cap_apres_deg": 39.7,
+    "rayon_avant_m": 31.5,
+    "rayon_apres_m": 31.6,
+    "ecart_rayon_pct": 0.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2325,
+    "sens": "gauche",
+    "cap_avant_deg": 87.5,
+    "cap_apres_deg": 87.5,
+    "rayon_avant_m": 16.4,
+    "rayon_apres_m": 16.4,
+    "ecart_rayon_pct": 0.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2583,
+    "sens": "droite",
+    "cap_avant_deg": -21.0,
+    "cap_apres_deg": -21.0,
+    "rayon_avant_m": 37.8,
+    "rayon_apres_m": 37.9,
+    "ecart_rayon_pct": 0.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2613,
+    "sens": "droite",
+    "cap_avant_deg": -12.6,
+    "cap_apres_deg": -12.6,
+    "rayon_avant_m": 30.8,
+    "rayon_apres_m": 31.0,
+    "ecart_rayon_pct": 0.9,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2659,
+    "sens": "droite",
+    "cap_avant_deg": -10.3,
+    "cap_apres_deg": -10.2,
+    "rayon_avant_m": 54.8,
+    "rayon_apres_m": 56.1,
+    "ecart_rayon_pct": 2.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2724,
+    "sens": "gauche",
+    "cap_avant_deg": 20.4,
+    "cap_apres_deg": 20.4,
+    "rayon_avant_m": 30.7,
+    "rayon_apres_m": 31.0,
+    "ecart_rayon_pct": 1.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2782,
+    "sens": "droite",
+    "cap_avant_deg": -79.4,
+    "cap_apres_deg": -79.3,
+    "rayon_avant_m": 16.1,
+    "rayon_apres_m": 17.0,
+    "ecart_rayon_pct": 5.4,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 2886,
+    "sens": "gauche",
+    "cap_avant_deg": 26.3,
+    "cap_apres_deg": 26.4,
+    "rayon_avant_m": 46.1,
+    "rayon_apres_m": 46.7,
+    "ecart_rayon_pct": 1.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 2967,
+    "sens": "gauche",
+    "cap_avant_deg": 44.5,
+    "cap_apres_deg": 44.5,
+    "rayon_avant_m": 39.8,
+    "rayon_apres_m": 40.2,
+    "ecart_rayon_pct": 1.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3044,
+    "sens": "gauche",
+    "cap_avant_deg": 9.1,
+    "cap_apres_deg": 9.1,
+    "rayon_avant_m": 68.1,
+    "rayon_apres_m": 68.5,
+    "ecart_rayon_pct": 0.6,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3314,
+    "sens": "gauche",
+    "cap_avant_deg": 31.8,
+    "cap_apres_deg": 31.8,
+    "rayon_avant_m": 40.3,
+    "rayon_apres_m": 40.7,
+    "ecart_rayon_pct": 0.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3422,
+    "sens": "droite",
+    "cap_avant_deg": -21.9,
+    "cap_apres_deg": -21.9,
+    "rayon_avant_m": 43.7,
+    "rayon_apres_m": 43.8,
+    "ecart_rayon_pct": 0.4,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3478,
+    "sens": "droite",
+    "cap_avant_deg": -9.4,
+    "cap_apres_deg": -9.4,
+    "rayon_avant_m": 95.2,
+    "rayon_apres_m": 95.1,
+    "ecart_rayon_pct": -0.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3504,
+    "sens": "gauche",
+    "cap_avant_deg": 11.8,
+    "cap_apres_deg": 11.8,
+    "rayon_avant_m": 63.9,
+    "rayon_apres_m": 64.5,
+    "ecart_rayon_pct": 0.9,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3643,
+    "sens": "gauche",
+    "cap_avant_deg": 52.8,
+    "cap_apres_deg": 52.8,
+    "rayon_avant_m": 26.9,
+    "rayon_apres_m": 26.9,
+    "ecart_rayon_pct": 0.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3688,
+    "sens": "droite",
+    "cap_avant_deg": -50.4,
+    "cap_apres_deg": -50.4,
+    "rayon_avant_m": 28.6,
+    "rayon_apres_m": 28.7,
+    "ecart_rayon_pct": 0.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3798,
+    "sens": "gauche",
+    "cap_avant_deg": 47.4,
+    "cap_apres_deg": 47.4,
+    "rayon_avant_m": 43.5,
+    "rayon_apres_m": 43.9,
+    "ecart_rayon_pct": 1.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3840,
+    "sens": "gauche",
+    "cap_avant_deg": 10.8,
+    "cap_apres_deg": 10.9,
+    "rayon_avant_m": 101.2,
+    "rayon_apres_m": 103.0,
+    "ecart_rayon_pct": 1.7,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 3912,
+    "sens": "gauche",
+    "cap_avant_deg": 75.3,
+    "cap_apres_deg": 75.5,
+    "rayon_avant_m": 42.9,
+    "rayon_apres_m": 43.4,
+    "ecart_rayon_pct": 1.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4005,
+    "sens": "gauche",
+    "cap_avant_deg": 18.9,
+    "cap_apres_deg": 18.9,
+    "rayon_avant_m": 44.7,
+    "rayon_apres_m": 44.9,
+    "ecart_rayon_pct": 0.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4024,
+    "sens": "gauche",
+    "cap_avant_deg": 11.3,
+    "cap_apres_deg": 11.6,
+    "rayon_avant_m": 56.2,
+    "rayon_apres_m": 59.1,
+    "ecart_rayon_pct": 5.2,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 4067,
+    "sens": "droite",
+    "cap_avant_deg": -147.6,
+    "cap_apres_deg": -147.9,
+    "rayon_avant_m": 11.2,
+    "rayon_apres_m": 11.2,
+    "ecart_rayon_pct": 0.3,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 4115,
+    "sens": "droite",
+    "cap_avant_deg": -18.2,
+    "cap_apres_deg": -18.3,
+    "rayon_avant_m": 21.0,
+    "rayon_apres_m": 21.4,
+    "ecart_rayon_pct": 2.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4189,
+    "sens": "gauche",
+    "cap_avant_deg": 64.8,
+    "cap_apres_deg": 64.9,
+    "rayon_avant_m": 38.6,
+    "rayon_apres_m": 39.6,
+    "ecart_rayon_pct": 2.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4261,
+    "sens": "gauche",
+    "cap_avant_deg": 25.0,
+    "cap_apres_deg": 25.1,
+    "rayon_avant_m": 43.8,
+    "rayon_apres_m": 44.6,
+    "ecart_rayon_pct": 1.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4300,
+    "sens": "gauche",
+    "cap_avant_deg": 49.7,
+    "cap_apres_deg": 49.8,
+    "rayon_avant_m": 30.1,
+    "rayon_apres_m": 30.7,
+    "ecart_rayon_pct": 2.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4359,
+    "sens": "droite",
+    "cap_avant_deg": -77.0,
+    "cap_apres_deg": -77.0,
+    "rayon_avant_m": 21.7,
+    "rayon_apres_m": 22.0,
+    "ecart_rayon_pct": 1.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4421,
+    "sens": "gauche",
+    "cap_avant_deg": 42.8,
+    "cap_apres_deg": 42.8,
+    "rayon_avant_m": 31.5,
+    "rayon_apres_m": 31.9,
+    "ecart_rayon_pct": 1.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4480,
+    "sens": "droite",
+    "cap_avant_deg": -74.6,
+    "cap_apres_deg": -74.7,
+    "rayon_avant_m": 15.3,
+    "rayon_apres_m": 15.2,
+    "ecart_rayon_pct": -0.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4580,
+    "sens": "gauche",
+    "cap_avant_deg": 13.8,
+    "cap_apres_deg": 13.8,
+    "rayon_avant_m": 62.6,
+    "rayon_apres_m": 62.9,
+    "ecart_rayon_pct": 0.5,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4619,
+    "sens": "gauche",
+    "cap_avant_deg": 19.6,
+    "cap_apres_deg": 19.7,
+    "rayon_avant_m": 68.2,
+    "rayon_apres_m": 69.1,
+    "ecart_rayon_pct": 1.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4648,
+    "sens": "gauche",
+    "cap_avant_deg": 11.4,
+    "cap_apres_deg": 11.3,
+    "rayon_avant_m": 71.5,
+    "rayon_apres_m": 72.5,
+    "ecart_rayon_pct": 1.5,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4678,
+    "sens": "droite",
+    "cap_avant_deg": -21.2,
+    "cap_apres_deg": -21.2,
+    "rayon_avant_m": 53.9,
+    "rayon_apres_m": 55.1,
+    "ecart_rayon_pct": 2.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4723,
+    "sens": "droite",
+    "cap_avant_deg": -15.6,
+    "cap_apres_deg": -15.5,
+    "rayon_avant_m": 79.6,
+    "rayon_apres_m": 80.3,
+    "ecart_rayon_pct": 0.9,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4851,
+    "sens": "gauche",
+    "cap_avant_deg": 44.8,
+    "cap_apres_deg": 44.8,
+    "rayon_avant_m": 41.9,
+    "rayon_apres_m": 42.7,
+    "ecart_rayon_pct": 1.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 4940,
+    "sens": "droite",
+    "cap_avant_deg": -41.5,
+    "cap_apres_deg": -41.5,
+    "rayon_avant_m": 37.1,
+    "rayon_apres_m": 37.0,
+    "ecart_rayon_pct": -0.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 5036,
+    "sens": "gauche",
+    "cap_avant_deg": 14.6,
+    "cap_apres_deg": 14.6,
+    "rayon_avant_m": 55.9,
+    "rayon_apres_m": 56.0,
+    "ecart_rayon_pct": 0.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 5057,
+    "sens": "gauche",
+    "cap_avant_deg": 13.5,
+    "cap_apres_deg": 13.5,
+    "rayon_avant_m": 36.6,
+    "rayon_apres_m": 37.2,
+    "ecart_rayon_pct": 1.7,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 5542,
+    "sens": "droite",
+    "cap_avant_deg": -81.9,
+    "cap_apres_deg": -82.0,
+    "rayon_avant_m": 27.9,
+    "rayon_apres_m": 28.5,
+    "ecart_rayon_pct": 2.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 5585,
+    "sens": "droite",
+    "cap_avant_deg": -23.9,
+    "cap_apres_deg": -23.9,
+    "rayon_avant_m": 27.6,
+    "rayon_apres_m": 27.9,
+    "ecart_rayon_pct": 1.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 5647,
+    "sens": "gauche",
+    "cap_avant_deg": 17.7,
+    "cap_apres_deg": 17.7,
+    "rayon_avant_m": 30.5,
+    "rayon_apres_m": 30.9,
+    "ecart_rayon_pct": 1.3,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 5865,
+    "sens": "gauche",
+    "cap_avant_deg": 18.7,
+    "cap_apres_deg": 18.8,
+    "rayon_avant_m": 46.9,
+    "rayon_apres_m": 48.0,
+    "ecart_rayon_pct": 2.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 5960,
+    "sens": "gauche",
+    "cap_avant_deg": 30.5,
+    "cap_apres_deg": 30.5,
+    "rayon_avant_m": 43.5,
+    "rayon_apres_m": 43.8,
+    "ecart_rayon_pct": 0.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6036,
+    "sens": "gauche",
+    "cap_avant_deg": 42.0,
+    "cap_apres_deg": 41.9,
+    "rayon_avant_m": 26.2,
+    "rayon_apres_m": 26.5,
+    "ecart_rayon_pct": 1.2,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6095,
+    "sens": "droite",
+    "cap_avant_deg": -37.0,
+    "cap_apres_deg": -36.6,
+    "rayon_avant_m": 30.3,
+    "rayon_apres_m": 30.8,
+    "ecart_rayon_pct": 1.7,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 6133,
+    "sens": "droite",
+    "cap_avant_deg": -50.6,
+    "cap_apres_deg": -50.7,
+    "rayon_avant_m": 23.7,
+    "rayon_apres_m": 24.0,
+    "ecart_rayon_pct": 1.4,
+    "pres_d_une_cassure": true
+   },
+   {
+    "pk": 6237,
+    "sens": "gauche",
+    "cap_avant_deg": 46.3,
+    "cap_apres_deg": 46.3,
+    "rayon_avant_m": 43.8,
+    "rayon_apres_m": 44.5,
+    "ecart_rayon_pct": 1.7,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6321,
+    "sens": "gauche",
+    "cap_avant_deg": 53.7,
+    "cap_apres_deg": 53.8,
+    "rayon_avant_m": 58.5,
+    "rayon_apres_m": 59.7,
+    "ecart_rayon_pct": 2.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6464,
+    "sens": "droite",
+    "cap_avant_deg": -84.5,
+    "cap_apres_deg": -84.5,
+    "rayon_avant_m": 30.1,
+    "rayon_apres_m": 30.8,
+    "ecart_rayon_pct": 2.5,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6599,
+    "sens": "gauche",
+    "cap_avant_deg": 52.2,
+    "cap_apres_deg": 52.2,
+    "rayon_avant_m": 38.9,
+    "rayon_apres_m": 39.2,
+    "ecart_rayon_pct": 0.8,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6679,
+    "sens": "droite",
+    "cap_avant_deg": -38.0,
+    "cap_apres_deg": -38.0,
+    "rayon_avant_m": 33.4,
+    "rayon_apres_m": 33.6,
+    "ecart_rayon_pct": 0.6,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6715,
+    "sens": "droite",
+    "cap_avant_deg": -10.2,
+    "cap_apres_deg": -10.2,
+    "rayon_avant_m": 48.3,
+    "rayon_apres_m": 48.5,
+    "ecart_rayon_pct": 0.3,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6850,
+    "sens": "gauche",
+    "cap_avant_deg": 13.6,
+    "cap_apres_deg": 13.6,
+    "rayon_avant_m": 42.3,
+    "rayon_apres_m": 42.7,
+    "ecart_rayon_pct": 1.0,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6870,
+    "sens": "gauche",
+    "cap_avant_deg": 13.4,
+    "cap_apres_deg": 13.5,
+    "rayon_avant_m": 55.5,
+    "rayon_apres_m": 56.9,
+    "ecart_rayon_pct": 2.5,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6894,
+    "sens": "gauche",
+    "cap_avant_deg": 14.3,
+    "cap_apres_deg": 14.4,
+    "rayon_avant_m": 52.3,
+    "rayon_apres_m": 53.4,
+    "ecart_rayon_pct": 2.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 6929,
+    "sens": "gauche",
+    "cap_avant_deg": 22.2,
+    "cap_apres_deg": 22.1,
+    "rayon_avant_m": 54.1,
+    "rayon_apres_m": 54.4,
+    "ecart_rayon_pct": 0.5,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 7113,
+    "sens": "droite",
+    "cap_avant_deg": -14.0,
+    "cap_apres_deg": -14.1,
+    "rayon_avant_m": 28.2,
+    "rayon_apres_m": 28.5,
+    "ecart_rayon_pct": 1.1,
+    "pres_d_une_cassure": false
+   },
+   {
+    "pk": 7261,
+    "sens": "droite",
+    "cap_avant_deg": -13.2,
+    "cap_apres_deg": -13.2,
+    "rayon_avant_m": 75.9,
+    "rayon_apres_m": 76.0,
+    "ecart_rayon_pct": 0.2,
+    "pres_d_une_cassure": false
+   }
+  ]
+ },
+ "longueur_es_m": {
+  "avant": 6732.27,
+  "apres": 6731.56
+ },
+ "largeur_m": {
+  "mediane_avant": 6.49,
+  "mediane_apres": 6.5,
+  "saut_max_avant": 0.41,
+  "saut_max_apres": 0.25
+ },
+ "echecs": []
+}

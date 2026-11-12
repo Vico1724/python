@@ -314,6 +314,39 @@ def quaternion(R):
     return q / np.linalg.norm(q)
 
 
+# Troncs d'arbres : obstacles physiques pour les arbres qu'une voiture peut atteindre en sortant de la route. Vu en
+# jeu le 12/11/2026 : sans cela, la voiture traverse les arbres. PM_WallWoodTreeTrunks est inscrit au registre des
+# surfaces du jeu (c'est la paroi que le projet ACR Extra Stages donne aux troncs de DiRT Rally).
+TRONCS = {"paroi": "PM_WallWoodTreeTrunks", "gabarit": "gc_tronc", "distance_max_m": 6.0, "hauteur_m": 3.0, "enfoui_m": 0.3}
+
+
+def troncs_proches():
+    """[(x, y, z du sol, diamètre du tronc)] en Lambert-93 : arbres de data/processed/arbres.csv à moins de
+    distance_max_m du bord de chaussée, MOINS ceux que le paquet Unreal retire parce qu'ils sont trop près
+    (même règle que scripts/16_paquet_unreal.py : tronc à moins de max(2,5 m ; un quart du houppier) du bord)."""
+    import shapely
+    f = OUT / "arbres.csv"
+    if not f.exists():
+        print("data/processed/arbres.csv absent : pas de troncs dans la physique (lancer 10_semis_arbres.py avant)")
+        return []
+    with open(OUT / "chaussee_precise.csv", encoding="utf-8") as h:
+        rows = list(csv.DictReader(h))
+    g = np.array([[float(r["x_gauche"]), float(r["y_gauche"])] for r in rows])
+    d = np.array([[float(r["x_droite"]), float(r["y_droite"])] for r in rows])
+    ruban = shapely.union_all(shapely.make_valid(shapely.polygons(
+        [np.array([g[i], g[i + 1], d[i + 1], d[i]]) for i in range(len(g) - 1)])))
+    shapely.prepare(ruban)
+    with open(f, encoding="utf-8") as h:
+        a = list(csv.DictReader(h))
+    x = np.array([float(r["x_l93"]) for r in a]); y = np.array([float(r["y_l93"]) for r in a])
+    z = np.array([float(r["z_sol_m"]) for r in a]); ht = np.array([float(r["hauteur_m"]) for r in a])
+    diam = np.array([float(r.get("diametre_houppier_m") or 0) for r in a])
+    dist = shapely.distance(ruban, shapely.points(x, y))
+    garde = (dist >= np.maximum(2.5, 0.25 * diam)) & (dist <= TRONCS["distance_max_m"])
+    tronc = np.clip(0.035 * ht, 0.20, 0.60)                     # diamètre du tronc d'après la hauteur de l'arbre
+    return [(float(x[i]), float(y[i]), float(z[i]), float(tronc[i])) for i in np.where(garde)[0]]
+
+
 def obstacles(ref):
     """Section `objects` du Stage IR (forme lue par ObjectColliders.cs) + volumes pour objects_collision.glb."""
     gabarits, instances, volumes, info = {}, [], {}, {"sources": [], "par_materiau": {}, "non_exportes": {}}
@@ -357,6 +390,27 @@ def obstacles(ref):
                                                     "scale": r3(L, 4), "matrix": None},
                                       "_paroi": paroi, "_forme": forme, "_centre": c, "_R": R, "_L": L})
             info["par_materiau"][f"{nom} ({mat})"] = f"{len(instances) - n0} {forme} -> {paroi}"
+    # troncs des arbres proches de la chaussée : un cylindre vertical chacun (voir troncs_proches)
+    arbres = troncs_proches()
+    if arbres:
+        gab, paroi = TRONCS["gabarit"], TRONCS["paroi"]
+        gabarits[gab] = {
+            "source": "data/processed/arbres.csv (troncs)", "renderables": [], "inactive_subentities": 0, "constraints": 0,
+            "bodies": [{"sub_entity": gab, "static": True, "renderable": None, "shapes": [{
+                "id": f"{gab}_col_shape", "kind": "cylinder", "dimensions": {"height": 1.0, "radius": 0.5, "shell": 0.0},
+                "transform": {"position": [0.0, 0.5, 0.0], "rotation": [0.0, 0.0, 0.0, 1.0], "scale": None, "matrix": None},
+                "shape_class": gab, "dr2_material": None, "acr_wall": paroi, "breaks_on_impulse": None, "mesh_file": None}]}]}
+        R = np.eye(3)
+        for x, y, z, dia in arbres:
+            L = np.array([dia, TRONCS["hauteur_m"], dia])
+            c = vers_ir(np.array([[x, y, z + L[1] / 2 - TRONCS["enfoui_m"]]]), ref)[0]
+            base = c - R[:, 1] * L[1] / 2
+            instances.append({"id": f"{gab}_{len(instances):04d}", "template": gab, "kind": "basic", "tag": None,
+                              "transform": {"position": r3(base), "rotation": r3(quaternion(R), 6), "scale": r3(L, 4), "matrix": None},
+                              "_paroi": paroi, "_forme": "cylinder", "_centre": c, "_R": R, "_L": L})
+        info["sources"].append("data/processed/arbres.csv (troncs)")
+        info["par_materiau"]["troncs d'arbres"] = f"{len(arbres)} cylinder -> {paroi}"
+        print(f"obstacles : {len(arbres)} troncs d'arbres à moins de {TRONCS['distance_max_m']:.0f} m du bord de chaussée -> {paroi}")
     for it in instances:
         volumes.setdefault(it["_paroi"], []).append(volume(it["_forme"], it["_centre"], it["_R"], it["_L"]))
     publiques = [{k: v for k, v in it.items() if not k.startswith("_")} for it in instances]

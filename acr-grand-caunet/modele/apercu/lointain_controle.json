@@ -60,7 +60,7 @@
   "bord": {
    "boucles_de_bord": 15,
    "sommets_bord_exterieur": 1267,
-   "aretes_de_bord_total": 16025
+   "aretes_de_bord_total": 16021
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -72,7 +72,7 @@
    "m_par_px_max": 112.53
   },
   "relecture": {
-   "taille_mo": 4.0,
+   "taille_mo": 3.99,
    "maillages": 282,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,
@@ -95,7 +95,7 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 306,
+ "duree_s": 243,
  "complet": {
   "bandes_m": [
    [
@@ -123,13 +123,13 @@
     200
    ]
   ],
-  "sommets": 762076,
-  "triangles": 1521291,
+  "sommets": 762064,
+  "triangles": 1521270,
   "dalles": 290,
   "bord": {
-   "boucles_de_bord": 17,
-   "sommets_bord_exterieur": 2539,
-   "aretes_de_bord_total": 17385
+   "boucles_de_bord": 21,
+   "sommets_bord_exterieur": 2536,
+   "aretes_de_bord_total": 17391
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -141,7 +141,7 @@
    "m_par_px_max": 12.11
   },
   "relecture": {
-   "taille_mo": 56.75,
+   "taille_mo": 56.74,
    "maillages": 290,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,
@@ -157,7 +157,7 @@
     30030.599609375
    ],
    "raccord_08": {
-    "sommets_du_bord": 2539,
+    "sommets_du_bord": 2536,
     "retrouves_a_1mm_pct": 100.0,
     "ecart_max_m": 0.0
    },

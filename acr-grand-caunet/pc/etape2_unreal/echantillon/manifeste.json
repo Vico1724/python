@@ -1,7 +1,7 @@
 {
  "description": "Paquet d'import Unreal Engine 5.6 de la spéciale GrandCaunet (scripts/16_paquet_unreal.py)",
  "version": 1,
- "genere_le": "2026-11-11 13:19",
+ "genere_le": "2026-11-12 02:25",
  "echantillon": true,
  "chemins": {
   "racine": "/Game/Environments/GrandCaunet",
@@ -14,7 +14,7 @@
  "repere": {
   "unreal": "X = est, Y = sud, Z = haut ; centimètres ; origine = axe de la chaussée au PK 0 (départ)",
   "depuis_gltf_du_projet": "UE_cm = 100 * (gX, gZ, gY)  (modele/*.glb : X est, Y haut, Z sud, mètres)",
-  "depuis_lambert93": "UE_cm = 100 * (x - 917008.49, 6241030.6 - y, z - 398.55)",
+  "depuis_lambert93": "UE_cm = 100 * (x - 917008.5, 6241030.6 - y, z - 398.55)",
   "maillages": "chaque maillage est recentré sur son pivot ; l'acteur se pose à acteur.position_cm, sans rotation ni échelle",
   "axes_import_glb": {
    "valeur": "X,Z,Y",
@@ -26,7 +26,7 @@
     "nom": "départ (PK 0)",
     "pk_m": 0.0,
     "lambert93_m": [
-     917008.49,
+     917008.5,
      6241030.6,
      398.55
     ],
@@ -45,18 +45,18 @@
     "nom": "arrivée (PK 6736)",
     "pk_m": 6736.0,
     "lambert93_m": [
-     914282.52,
-     6243375.66,
+     914282.4,
+     6243375.68,
      344.71
     ],
     "gltf_m": [
-     -2725.97,
+     -2726.1,
      -53.84,
-     -2345.06
+     -2345.08
     ],
     "unreal_cm": [
-     -272597.0,
-     -234506.0,
+     -272610.0,
+     -234508.0,
      -5384.0
     ]
    }
@@ -299,7 +299,7 @@
     "Relief": "T_TerrainN_5y2"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -329,7 +329,7 @@
    "acteur": {
     "label": "SM_GrandCaunetTerrain_5_2",
     "position_cm": [
-     -79849.0,
+     -80050.0,
      -71740.0,
      -6005.0
     ],
@@ -349,18 +349,18 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -19000.0,
+     -19200.0,
      -25200.0,
      0.1
     ],
     "max": [
-     19000.0,
+     19200.0,
      25200.0,
      6443.6
     ]
    },
    "sommets": 11958,
-   "triangles": 22921,
+   "triangles": 22924,
    "essais": [
     "E3",
     "E4",
@@ -440,7 +440,7 @@
     "Relief": "T_TerrainFinN_27y14"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -469,8 +469,8 @@
    "acteur": {
     "label": "SM_GrandCaunetTerrainFin_27_14",
     "position_cm": [
-     -75949.0,
-     -91940.0,
+     -75950.0,
+     -91916.0,
      -5863.0
     ],
     "rotation_deg": [
@@ -490,24 +490,24 @@
    "bornes_locales_cm": {
     "min": [
      -3700.0,
-     -5000.0,
+     -5024.0,
      0.2
     ],
     "max": [
      3700.0,
-     5000.0,
+     5024.0,
      1288.7
     ]
    },
-   "sommets": 3235,
-   "triangles": 6056,
+   "sommets": 3239,
+   "triangles": 6061,
    "essais": [
     "E4",
     "complet"
    ],
    "pk_m": [
-    1532.0,
-    1660.0
+    1533.0,
+    1661.0
    ],
    "emprise_texture_l93": [
     916197.6,
@@ -583,7 +583,7 @@
     "Relief": "T_TerrainN_5y3"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -612,7 +612,7 @@
    "acteur": {
     "label": "SM_GrandCaunetTerrain_5_3",
     "position_cm": [
-     -70449.0,
+     -70450.0,
      -121940.0,
      -9136.0
     ],
@@ -642,8 +642,8 @@
      8371.3
     ]
    },
-   "sommets": 11503,
-   "triangles": 21926,
+   "sommets": 11488,
+   "triangles": 21904,
    "essais": [
     "E4",
     "complet"
@@ -722,7 +722,7 @@
     "Relief": "T_TerrainFinN_27y15"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -751,7 +751,7 @@
    "acteur": {
     "label": "SM_GrandCaunetTerrainFin_27_15",
     "position_cm": [
-     -75230.0,
+     -75232.0,
      -101940.0,
      -6073.0
     ],
@@ -771,7 +771,7 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -4419.0,
+     -4418.0,
      -5000.0,
      -0.3
     ],
@@ -781,14 +781,14 @@
      1596.7
     ]
    },
-   "sommets": 3195,
-   "triangles": 5986,
+   "sommets": 3192,
+   "triangles": 5990,
    "essais": [
     "E4",
     "complet"
    ],
    "pk_m": [
-    1658.0,
+    1659.0,
     1779.0
    ],
    "emprise_texture_l93": [
@@ -865,7 +865,7 @@
     "Relief": "T_TerrainFinN_27y16"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -894,7 +894,7 @@
    "acteur": {
     "label": "SM_GrandCaunetTerrainFin_27_16",
     "position_cm": [
-     -71349.0,
+     -71350.0,
      -111940.0,
      -5144.0
     ],
@@ -921,11 +921,11 @@
     "max": [
      500.0,
      5000.0,
-     500.0
+     484.5
     ]
    },
-   "sommets": 214,
-   "triangles": 286,
+   "sommets": 209,
+   "triangles": 282,
    "essais": [
     "E4",
     "complet"
@@ -1008,7 +1008,7 @@
     "Relief": "T_TerrainFinN_28y15"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -1037,8 +1037,8 @@
    "acteur": {
     "label": "SM_GrandCaunetTerrainFin_28_15",
     "position_cm": [
-     -68857.0,
-     -104657.0,
+     -68858.0,
+     -104654.0,
      -6128.0
     ],
     "rotation_deg": [
@@ -1058,12 +1058,12 @@
    "bornes_locales_cm": {
     "min": [
      -2007.0,
-     -2316.0,
+     -2314.0,
      -0.4
     ],
     "max": [
      2008.0,
-     2317.0,
+     2314.0,
      1209.9
     ]
    },
@@ -1074,8 +1074,8 @@
     "complet"
    ],
    "pk_m": [
-    1747.0,
-    1796.0
+    1748.0,
+    1797.0
    ],
    "emprise_texture_l93": [
     916297.6,
@@ -1151,7 +1151,7 @@
     "Relief": "T_TerrainFinN_28y16"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -1180,7 +1180,7 @@
    "acteur": {
     "label": "SM_GrandCaunetTerrainFin_28_16",
     "position_cm": [
-     -68749.0,
+     -68750.0,
      -111940.0,
      -6270.0
     ],
@@ -1210,15 +1210,15 @@
      1442.4
     ]
    },
-   "sommets": 2872,
-   "triangles": 5353,
+   "sommets": 2878,
+   "triangles": 5365,
    "essais": [
     "E4",
     "complet"
    ],
    "pk_m": [
     1779.0,
-    1899.0
+    1900.0
    ],
    "emprise_texture_l93": [
     916297.6,
@@ -1294,7 +1294,7 @@
     "ORM": "T_GC_ORM_R235M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1368,7 +1368,7 @@
     "ORM": "T_GC_ORM_R153M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1441,7 +1441,7 @@
     "ORM": "T_GC_ORM_R230M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1514,7 +1514,7 @@
     "ORM": "T_GC_ORM_R242M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1587,7 +1587,7 @@
     "ORM": "T_GC_ORM_R204M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1635,7 +1635,7 @@
     "ORM": "T_GC_ORM_R230M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1683,7 +1683,7 @@
     "ORM": "T_GC_ORM_R230M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1756,7 +1756,7 @@
     "ORM": "T_GC_ORM_R115M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1829,7 +1829,7 @@
     "ORM": "T_GC_ORM_R128M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1902,7 +1902,7 @@
     "ORM": "T_GC_ORM_R255M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1950,7 +1950,7 @@
     "ORM": "T_GC_ORM_R242M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -1998,7 +1998,7 @@
     "ORM": "T_GC_ORM_R153M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -2046,7 +2046,7 @@
     "ORM": "T_GC_ORM_R153M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -2094,7 +2094,7 @@
     "ORM": "T_GC_ORM_R153M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -2142,7 +2142,7 @@
     "ORM": "T_GC_ORM_R128M000"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E3",
     "E4",
@@ -2171,9 +2171,9 @@
    "acteur": {
     "label": "SM_GrandCaunetRoad_09",
     "position_cm": [
-     -73156.0,
+     -73152.0,
      -99580.0,
-     -5356.0
+     -5357.0
     ],
     "rotation_deg": [
      0.0,
@@ -2191,14 +2191,14 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -4578.0,
+     -4583.0,
      -8249.0,
-     -0.0
+     0.0
     ],
     "max": [
-     4579.0,
+     4583.0,
      8250.0,
-     227.0
+     228.0
     ]
    },
    "sommets": 604,
@@ -2235,9 +2235,9 @@
    "acteur": {
     "label": "SM_GrandCaunetRoadMarking_09",
     "position_cm": [
-     -73175.0,
-     -99500.0,
-     -5352.0
+     -73171.0,
+     -99502.0,
+     -5353.0
     ],
     "rotation_deg": [
      0.0,
@@ -2255,14 +2255,14 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -4540.0,
-     -8162.4,
+     -4545.0,
+     -8162.6,
      -0.4
     ],
     "max": [
-     4539.2,
-     8161.4,
-     224.6
+     4544.7,
+     8163.3,
+     225.6
     ]
    },
    "sommets": 791,
@@ -2299,9 +2299,9 @@
    "acteur": {
     "label": "SM_GrandCaunetBridge_Blanc_09",
     "position_cm": [
-     -77294.0,
-     -97194.0,
-     -5218.0
+     -77299.0,
+     -97193.0,
+     -5219.0
     ],
     "rotation_deg": [
      0.0,
@@ -2319,14 +2319,14 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -487.0,
-     -1105.0,
-     -0.0
+     -483.0,
+     -1104.1,
+     0.0
     ],
     "max": [
-     486.5,
-     1105.7,
-     140.0
+     483.5,
+     1104.7,
+     141.0
     ]
    },
    "sommets": 592,
@@ -2363,9 +2363,9 @@
    "acteur": {
     "label": "SM_GrandCaunetBridge_Dalle_09",
     "position_cm": [
-     -77294.0,
-     -97194.0,
-     -5445.0
+     -77299.0,
+     -97193.0,
+     -5453.0
     ],
     "rotation_deg": [
      0.0,
@@ -2383,14 +2383,14 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -485.0,
-     -1104.3,
-     -0.3
+     -481.0,
+     -1103.4,
+     0.0
     ],
     "max": [
-     484.6,
-     1105.1,
-     289.0
+     481.6,
+     1104.2,
+     297.0
     ]
    },
    "sommets": 240,
@@ -2427,8 +2427,8 @@
    "acteur": {
     "label": "SM_GrandCaunetBridge_Glissiere_lisse_09",
     "position_cm": [
-     -71265.0,
-     -104364.0,
+     -71263.0,
+     -104360.0,
      -5245.0
     ],
     "rotation_deg": [
@@ -2447,13 +2447,13 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -2549.7,
-     -2658.2,
+     -2546.9,
+     -2660.8,
      -0.0
     ],
     "max": [
-     2549.7,
-     2658.9,
+     2547.6,
+     2660.1,
      94.0
     ]
    },
@@ -2491,8 +2491,8 @@
    "acteur": {
     "label": "SM_GrandCaunetBridge_Glissiere_poteau_09",
     "position_cm": [
-     -71255.0,
-     -104354.0,
+     -71253.0,
+     -104351.0,
      -5362.0
     ],
     "rotation_deg": [
@@ -2511,13 +2511,13 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -2528.4,
-     -2619.4,
-     -0.4
+     -2525.5,
+     -2621.6,
+     -0.5
     ],
     "max": [
-     2528.4,
-     2618.8,
+     2525.3,
+     2620.6,
      208.5
     ]
    },
@@ -2555,9 +2555,9 @@
    "acteur": {
     "label": "SM_GrandCaunetBridge_Pierre_09",
     "position_cm": [
-     -77294.0,
-     -97194.0,
-     -5218.0
+     -77299.0,
+     -97193.0,
+     -5220.0
     ],
     "rotation_deg": [
      0.0,
@@ -2575,14 +2575,14 @@
    },
    "bornes_locales_cm": {
     "min": [
-     -485.0,
-     -1104.3,
+     -481.0,
+     -1103.4,
      -0.0
     ],
     "max": [
-     484.6,
-     1105.1,
-     132.0
+     481.6,
+     1104.2,
+     134.0
     ]
    },
    "sommets": 352,
@@ -2661,7 +2661,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -2690,7 +2690,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_34_31",
     "position_cm": [
-     -248849.0,
+     -248850.0,
      -44940.0,
      -1645.0
     ],
@@ -2769,7 +2769,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -2798,7 +2798,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_34_32",
     "position_cm": [
-     -250449.0,
+     -250450.0,
      -147340.0,
      -6831.0
     ],
@@ -2877,7 +2877,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -2906,7 +2906,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_35_30",
     "position_cm": [
-     -152849.0,
+     -152850.0,
      51060.0,
      -18412.0
     ],
@@ -2985,7 +2985,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3014,7 +3014,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_35_31",
     "position_cm": [
-     -152849.0,
+     -152850.0,
      -44940.0,
      -2781.0
     ],
@@ -3093,7 +3093,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3122,7 +3122,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_35_32",
     "position_cm": [
-     -151249.0,
+     -151250.0,
      -147340.0,
      -7171.0
     ],
@@ -3153,7 +3153,7 @@
     ]
    },
    "sommets": 1022,
-   "triangles": 1876,
+   "triangles": 1875,
    "essais": [
     "E4",
     "complet"
@@ -3201,7 +3201,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3230,7 +3230,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_35_33",
     "position_cm": [
-     -151249.0,
+     -151250.0,
      -246540.0,
      -17399.0
     ],
@@ -3260,8 +3260,8 @@
      26401.4
     ]
    },
-   "sommets": 2478,
-   "triangles": 4565,
+   "sommets": 2479,
+   "triangles": 4566,
    "essais": [
     "E4",
     "complet"
@@ -3309,7 +3309,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3338,7 +3338,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_36_30",
     "position_cm": [
-     -50449.0,
+     -50450.0,
      52660.0,
      -8943.0
     ],
@@ -3368,7 +3368,7 @@
      16012.9
     ]
    },
-   "sommets": 1324,
+   "sommets": 1326,
    "triangles": 2474,
    "essais": [
     "E4",
@@ -3417,7 +3417,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3446,7 +3446,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_36_31",
     "position_cm": [
-     -50449.0,
+     -50450.0,
      -46540.0,
      -4842.0
     ],
@@ -3473,7 +3473,7 @@
     "max": [
      50400.0,
      50400.0,
-     8584.6
+     8584.7
     ]
    },
    "sommets": 2242,
@@ -3525,7 +3525,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3554,7 +3554,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_36_32",
     "position_cm": [
-     -50449.0,
+     -50450.0,
      -147340.0,
      -12984.0
     ],
@@ -3576,7 +3576,7 @@
     "min": [
      -50400.0,
      -50400.0,
-     0.4
+     0.3
     ],
     "max": [
      50400.0,
@@ -3633,7 +3633,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3662,7 +3662,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_36_33",
     "position_cm": [
-     -50449.0,
+     -50450.0,
      -246540.0,
      -19625.0
     ],
@@ -3692,7 +3692,7 @@
      26529.3
     ]
    },
-   "sommets": 2462,
+   "sommets": 2459,
    "triangles": 4528,
    "essais": [
     "E4",
@@ -3741,7 +3741,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3770,7 +3770,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_37_30",
     "position_cm": [
-     48751.0,
+     48750.0,
      52660.0,
      -5175.0
     ],
@@ -3800,7 +3800,7 @@
      13224.7
     ]
    },
-   "sommets": 1227,
+   "sommets": 1229,
    "triangles": 2293,
    "essais": [
     "E4",
@@ -3849,7 +3849,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3878,7 +3878,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_37_31",
     "position_cm": [
-     48751.0,
+     48750.0,
      -46540.0,
      -3187.0
     ],
@@ -3957,7 +3957,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -3986,7 +3986,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_37_32",
     "position_cm": [
-     48751.0,
+     48750.0,
      -147340.0,
      -13116.0
     ],
@@ -4008,7 +4008,7 @@
     "min": [
      -50400.0,
      -50400.0,
-     0.2
+     -0.1
     ],
     "max": [
      50400.0,
@@ -4065,7 +4065,7 @@
     "ORM": "T_GC_ORM_Lointain"
    },
    "static_switch": "aucun ne doit être modifié",
-   "a_confirmer": "noms de paramètres de M_Simple repris de la configuration d'ACR Extra Stages ; parent et paramètres à confirmer sur le PC (acr-ref export du matériau, PROTOCOLE.md E1b) ; en attendant, le script d'import utilise le parent de secours M_GC_Secours",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
    "essais": [
     "E4",
     "complet"
@@ -4094,7 +4094,7 @@
    "acteur": {
     "label": "SM_GrandCaunetFarRing_37_33",
     "position_cm": [
-     48751.0,
+     48750.0,
      -246540.0,
      -23590.0
     ],
@@ -4124,7 +4124,7 @@
      20042.2
     ]
    },
-   "sommets": 1312,
+   "sommets": 1309,
    "triangles": 2449,
    "essais": [
     "E4",
@@ -4139,12 +4139,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine01",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine01.csv",
-   "nombre": 20,
+   "nombre": 32,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 23,
    "essais": [
     "E4"
    ]
@@ -4155,12 +4155,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine02",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine02.csv",
-   "nombre": 18,
+   "nombre": 13,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
    "essais": [
     "E4"
    ]
@@ -4171,12 +4171,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine03",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine03.csv",
-   "nombre": 23,
+   "nombre": 20,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 22,
    "essais": [
     "E4"
    ]
@@ -4187,12 +4187,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine04",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine04.csv",
-   "nombre": 15,
+   "nombre": 16,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
    "essais": [
     "E4"
    ]
@@ -4203,12 +4203,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine05",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine05.csv",
-   "nombre": 20,
+   "nombre": 18,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 20,
    "essais": [
     "E4"
    ]
@@ -4219,12 +4219,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine06",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine06.csv",
-   "nombre": 21,
+   "nombre": 20,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 28,
    "essais": [
     "E4"
    ]
@@ -4235,12 +4235,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine07",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine07.csv",
-   "nombre": 24,
+   "nombre": 18,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 21,
    "essais": [
     "E4"
    ]
@@ -4251,12 +4251,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine08",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine08.csv",
-   "nombre": 21,
+   "nombre": 20,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 21,
    "essais": [
     "E4"
    ]
@@ -4267,12 +4267,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine09",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine09.csv",
-   "nombre": 9,
+   "nombre": 19,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 24,
    "essais": [
     "E4"
    ]
@@ -4283,12 +4283,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine10",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine10.csv",
-   "nombre": 21,
+   "nombre": 28,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 24,
    "essais": [
     "E4"
    ]
@@ -4299,12 +4299,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine11",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine11.csv",
-   "nombre": 23,
+   "nombre": 19,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 25,
    "essais": [
     "E4"
    ]
@@ -4315,12 +4315,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine12",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine12.csv",
-   "nombre": 28,
+   "nombre": 26,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 25,
    "essais": [
     "E4"
    ]
@@ -4331,12 +4331,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine13",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine13.csv",
-   "nombre": 14,
+   "nombre": 20,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 30,
    "essais": [
     "E4"
    ]
@@ -4347,12 +4347,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine14",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine14.csv",
-   "nombre": 19,
+   "nombre": 18,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 30,
    "essais": [
     "E4"
    ]
@@ -4363,12 +4363,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine15",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_AleppoPine15.csv",
-   "nombre": 17,
+   "nombre": 15,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
    "essais": [
     "E4"
    ]
@@ -4379,12 +4379,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple01",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Blackmaple01.csv",
-   "nombre": 16,
+   "nombre": 9,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 7,
    "essais": [
     "E4"
    ]
@@ -4395,12 +4395,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple02",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Blackmaple02.csv",
-   "nombre": 13,
+   "nombre": 9,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 3,
    "essais": [
     "E4"
    ]
@@ -4411,12 +4411,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple03",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Blackmaple03.csv",
-   "nombre": 8,
+   "nombre": 12,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 3,
    "essais": [
     "E4"
    ]
@@ -4431,8 +4431,8 @@
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 5,
    "essais": [
     "E4"
    ]
@@ -4443,12 +4443,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple06",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Blackmaple06.csv",
-   "nombre": 11,
+   "nombre": 8,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 5,
    "essais": [
     "E4"
    ]
@@ -4459,12 +4459,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo01",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_BlackmapleMonteCarlo01.csv",
-   "nombre": 49,
+   "nombre": 40,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 37,
    "essais": [
     "E4"
    ]
@@ -4475,12 +4475,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo02",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_BlackmapleMonteCarlo02.csv",
-   "nombre": 44,
+   "nombre": 42,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 35,
    "essais": [
     "E4"
    ]
@@ -4495,8 +4495,8 @@
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
    "essais": [
     "E4"
    ]
@@ -4507,12 +4507,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree01",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Smoketree01.csv",
-   "nombre": 154,
+   "nombre": 174,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 22,
    "essais": [
     "E4"
    ]
@@ -4523,12 +4523,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree02",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Smoketree02.csv",
-   "nombre": 146,
+   "nombre": 150,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 25,
    "essais": [
     "E4"
    ]
@@ -4539,12 +4539,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree04",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Smoketree04.csv",
-   "nombre": 151,
+   "nombre": 132,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 21,
    "essais": [
     "E4"
    ]
@@ -4555,12 +4555,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree06",
    "present_au_catalogue": true,
    "fichier": "instances/arbres/SM_Smoketree06.csv",
-   "nombre": 153,
+   "nombre": 147,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
    "essais": [
     "E4"
    ]
@@ -4571,12 +4571,12 @@
    "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper01",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_BroomCreeper01.csv",
-   "nombre": 578,
+   "nombre": 594,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 7,
    "essais": [
     "E4"
    ]
@@ -4587,12 +4587,12 @@
    "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper02",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_BroomCreeper02.csv",
-   "nombre": 594,
+   "nombre": 605,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 6,
    "essais": [
     "E4"
    ]
@@ -4603,12 +4603,12 @@
    "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper03",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_BroomCreeper03.csv",
-   "nombre": 609,
+   "nombre": 611,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 6,
    "essais": [
     "E4"
    ]
@@ -4619,12 +4619,12 @@
    "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper04",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_BroomCreeper04.csv",
-   "nombre": 619,
+   "nombre": 636,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 12,
    "essais": [
     "E4"
    ]
@@ -4635,12 +4635,12 @@
    "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper05",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_BroomCreeper05.csv",
-   "nombre": 591,
+   "nombre": 627,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 7,
    "essais": [
     "E4"
    ]
@@ -4651,12 +4651,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn01",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_Boxthorn01.csv",
-   "nombre": 820,
+   "nombre": 823,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 10,
    "essais": [
     "E4"
    ]
@@ -4667,12 +4667,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn02",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_Boxthorn02.csv",
-   "nombre": 816,
+   "nombre": 793,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 17,
    "essais": [
     "E4"
    ]
@@ -4683,12 +4683,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn03",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_Boxthorn03.csv",
-   "nombre": 858,
+   "nombre": 869,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 12,
    "essais": [
     "E4"
    ]
@@ -4699,12 +4699,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn04",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_Boxthorn04.csv",
-   "nombre": 844,
+   "nombre": 826,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 13,
    "essais": [
     "E4"
    ]
@@ -4715,12 +4715,12 @@
    "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn05",
    "present_au_catalogue": true,
    "fichier": "instances/arbustes/SM_Boxthorn05.csv",
-   "nombre": 885,
+   "nombre": 882,
    "composant": "HierarchicalInstancedStaticMeshComponent",
    "collision": "NoCollision",
    "hauteur_native_cm": null,
-   "echelle": "hauteur_voulue_m * 100 / hauteur_native_cm (hauteurs_maillages.json, à relever sur le PC) ; 1 tant qu'elle est inconnue",
-   "retirees_sur_chaussee": 0,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 11,
    "essais": [
     "E4"
    ]
@@ -4730,10 +4730,10 @@
   "maillages": 31,
   "erreurs": [],
   "terrain_ecart_au_modele_cm": {
-   "max": 0.0008,
-   "moyen": 0.00035
+   "max": 0.0007,
+   "moyen": 0.00028
   },
-  "terrain_sommets_partages_entre_dalles": 1353,
+  "terrain_sommets_partages_entre_dalles": 1323,
   "terrain_ecart_max_sommets_partages_cm": 0.0008,
   "glb_taille_max_mo": 0.52,
   "taille_totale_mo": 11.9,
@@ -4745,45 +4745,45 @@
    "InstanceGroup": 37
   },
   "instances_par_maillage": {
-   "SM_AleppoPine01": 20,
-   "SM_AleppoPine02": 18,
-   "SM_AleppoPine03": 23,
-   "SM_AleppoPine04": 15,
-   "SM_AleppoPine05": 20,
-   "SM_AleppoPine06": 21,
-   "SM_AleppoPine07": 24,
-   "SM_AleppoPine08": 21,
-   "SM_AleppoPine09": 9,
-   "SM_AleppoPine10": 21,
-   "SM_AleppoPine11": 23,
-   "SM_AleppoPine12": 28,
-   "SM_AleppoPine13": 14,
-   "SM_AleppoPine14": 19,
-   "SM_AleppoPine15": 17,
-   "SM_Blackmaple01": 16,
-   "SM_Blackmaple02": 13,
-   "SM_Blackmaple03": 8,
+   "SM_AleppoPine01": 32,
+   "SM_AleppoPine02": 13,
+   "SM_AleppoPine03": 20,
+   "SM_AleppoPine04": 16,
+   "SM_AleppoPine05": 18,
+   "SM_AleppoPine06": 20,
+   "SM_AleppoPine07": 18,
+   "SM_AleppoPine08": 20,
+   "SM_AleppoPine09": 19,
+   "SM_AleppoPine10": 28,
+   "SM_AleppoPine11": 19,
+   "SM_AleppoPine12": 26,
+   "SM_AleppoPine13": 20,
+   "SM_AleppoPine14": 18,
+   "SM_AleppoPine15": 15,
+   "SM_Blackmaple01": 9,
+   "SM_Blackmaple02": 9,
+   "SM_Blackmaple03": 12,
    "SM_Blackmaple04": 7,
-   "SM_Blackmaple06": 11,
-   "SM_BlackmapleMonteCarlo01": 49,
-   "SM_BlackmapleMonteCarlo02": 44,
+   "SM_Blackmaple06": 8,
+   "SM_BlackmapleMonteCarlo01": 40,
+   "SM_BlackmapleMonteCarlo02": 42,
    "SM_BlackmapleMonteCarlo03": 45,
-   "SM_Smoketree01": 154,
-   "SM_Smoketree02": 146,
-   "SM_Smoketree04": 151,
-   "SM_Smoketree06": 153,
-   "SM_BroomCreeper01": 578,
-   "SM_BroomCreeper02": 594,
-   "SM_BroomCreeper03": 609,
-   "SM_BroomCreeper04": 619,
-   "SM_BroomCreeper05": 591,
-   "SM_Boxthorn01": 820,
-   "SM_Boxthorn02": 816,
-   "SM_Boxthorn03": 858,
-   "SM_Boxthorn04": 844,
-   "SM_Boxthorn05": 885
+   "SM_Smoketree01": 174,
+   "SM_Smoketree02": 150,
+   "SM_Smoketree04": 132,
+   "SM_Smoketree06": 147,
+   "SM_BroomCreeper01": 594,
+   "SM_BroomCreeper02": 605,
+   "SM_BroomCreeper03": 611,
+   "SM_BroomCreeper04": 636,
+   "SM_BroomCreeper05": 627,
+   "SM_Boxthorn01": 823,
+   "SM_Boxthorn02": 793,
+   "SM_Boxthorn03": 869,
+   "SM_Boxthorn04": 826,
+   "SM_Boxthorn05": 882
   },
-  "instances_retirees_sur_chaussee": 0,
+  "instances_retirees_sur_chaussee": 692,
   "instances_absentes_du_catalogue": [],
   "terrain": {
    "dalles": 2,
@@ -4797,7 +4797,7 @@
    "annexes": 0,
    "balisage": 0
   },
-  "instances": 8304,
-  "duree_s": 7
+  "instances": 8343,
+  "duree_s": 40
  }
 }

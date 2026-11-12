@@ -9,85 +9,86 @@
   "distances": {
     "croissantes": true,
     "pas_min_m": 0.9,
-    "pas_median_m": 6.0,
-    "pas_max_m": 10.26
+    "pas_median_m": 9.93,
+    "pas_max_m": 10.1
   },
   "longueur_competitive": {
-    "length_m": 6738.78,
-    "distance_finish_moins_start": 6738.78,
-    "polyligne_portes_3d_m": 6736.36,
+    "length_m": 6740.83,
+    "distance_finish_moins_start": 6740.83,
+    "polyligne_portes_3d_m": 6735.69,
     "pk_arrivee_plan_m": 6735.8
   },
   "gauche_droite": {
-    "portes": 1097,
-    "droite_du_cote_cross_f_Y": 1097,
-    "gauche_du_cote_oppose": 1097,
-    "demi_largeur_droite_min_m": 2.29,
-    "demi_largeur_gauche_min_m": 2.29,
+    "portes": 1009,
+    "droite_du_cote_cross_f_Y": 1009,
+    "gauche_du_cote_oppose": 1009,
+    "demi_largeur_droite_min_m": 2.33,
+    "demi_largeur_gauche_min_m": 2.31,
     "width_coherente": true
   },
   "notes_sens_vs_geometrie": {
-    "virages": 51,
-    "coherents": 51
+    "virages": 52,
+    "coherents": 52
   },
   "sol_sous_portes": {
-    "portes": 1097,
+    "portes": 1009,
     "sans_sol": 0,
     "max_abs_dy_m": 0.0,
     "moyenne_abs_dy_m": 0.0,
     "hors_ponts": {
-      "portes": 1065,
+      "portes": 982,
       "max_abs_dy_m": 0.0
     }
   },
   "sol_le_long_de_l_axe_tous_les_m": {
-    "echantillons": 8279,
+    "echantillons": 8120,
     "sans_sol": 0,
-    "max_abs_dy_a_la_corde_m": 0.101
+    "max_abs_dy_a_la_corde_m": 0.107
   },
   "sol_aux_bords_95pct": {
-    "points": 2194,
+    "points": 2018,
     "sans_sol": 0,
-    "max_abs_dy_m": 0.007,
+    "max_abs_dy_m": 0.0,
     "p99_abs_dy_m": 0.0
   },
   "sol_5m_au_dela_des_bords": {
-    "points": 2194,
+    "points": 2018,
     "sans_sol": 0
   },
   "sol_30cm_au_dela_des_bords": {
-    "points": 2194,
+    "points": 2018,
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 760762,
+    "triangles": 760658,
     "par_code": {
-      "TSD+": 33108,
-      "DBK+": 92699,
-      "GRS+": 634955
+      "TSD+": 33086,
+      "DBK+": 92660,
+      "GRS+": 634912
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 760762
+    "triangles_annonces_dans_stage_json": 760658
   },
   "obstacles": {
-    "instances": 1498,
-    "gabarits": 4,
+    "instances": 2521,
+    "gabarits": 5,
     "formes": {
       "box": 1486,
-      "cylinder": 12
+      "cylinder": 1035
     },
     "parois": {
       "PM_WallRock": 378,
       "PM_WallConcrete": 264,
       "PM_WallMetalGuardrail": 844,
-      "PM_WallPlasticPole": 12
+      "PM_WallPlasticPole": 12,
+      "PM_WallWoodTreeTrunks": 1023
     },
     "parois_absentes_du_catalogue": [],
-    "penetration_max_dans_la_chaussee_m": 0.19,
+    "penetration_max_dans_la_chaussee_m": 0.192,
     "intrusions_plus_de_30_cm": 0,
     "sommets_source_hors_paves_max_m": 0.001,
     "retires_sur_la_chaussee": 6,
-    "objects_collision_triangles": 18168
+    "objects_collision_triangles": 46812
   },
   "annexes": {
     "points_testes": 297,
@@ -102,27 +103,33 @@
   "erreurs": [],
   "notes_brouillon": {
     "virages_calcules": 55,
-    "virages_annonces": 51,
-    "retouches_appliquees": 16,
-    "retouches_non_appliquees": [],
+    "virages_annonces": 52,
+    "retouches_appliquees": 15,
+    "retouches_non_appliquees": [
+      {
+        "action": "supprimer",
+        "pk_m": 3173,
+        "pourquoi": "aucun virage left à ± 30 m"
+      }
+    ],
     "dangers_non_exprimables": 24,
     "ne_pas_couper": 3,
     "par_severite": {
       "6": 1,
-      "5": 13,
-      "4": 22,
-      "3": 10,
+      "5": 14,
+      "4": 21,
+      "3": 11,
       "hairpin": 2,
       "1": 1,
       "2": 2
     },
     "appels": 33,
-    "jetons": 71,
+    "jetons": 73,
     "avance_lecture_m": 80.0
   },
   "fichiers_mo": {
     "collision.glb": 14.12,
-    "objects_collision.glb": 0.37,
-    "stage.json": 0.98
+    "objects_collision.glb": 0.91,
+    "stage.json": 1.4
   }
 }

@@ -37,11 +37,12 @@ ETAPES = [
     (5, "05_couloir_vecteurs.py", "décor dans le couloir et carrefours", False),
     (6, "06_figures.py", "cartes et graphiques de contrôle (fonds IGN téléchargés)", True),
     (7, "07_chaussee_precise.py", "axe précis et bords de chaussée, tous les mètres", False),
+    (70, "07b_regulariser_chaussee.py", "régularisation de l'axe et des bords (bruit de mesure, coutures entre sources)", False),
     (8, "08_modele_3d.py", "modèle 3D : route et terrain texturé", False),
     (11, "11_route_ouvrages.py", "route texturée, marquage, tabliers et parapets", False),
     (12, "12_carrefours_annexes.py", "carrefours : voies fermées, îlot, balisage", False),
-    (9, "09_export_stage_ir.py", "export « Stage IR » (ACR Extra Stages)", False),
     (10, "10_semis_arbres.py", "semis des arbres et arbustes", False),
+    (9, "09_export_stage_ir.py", "export « Stage IR » (ACR Extra Stages)", False),
     (13, "13_paysage_lointain.py", "paysage lointain jusqu'à l'horizon", False),
     (14, "14_textures_sol.py", "images de sol par dalle et relief fin", False),
     (15, "15_vues_decor.py", "vues conducteur de contrôle", False),
@@ -100,6 +101,8 @@ def main():
         print(f"\n=== {s} : {role}", flush=True)
         t = time.time()
         cmd = [sys.executable, str(ICI / s)] + (extra if n == 16 else [])
+        if n == 70 and any(m == 7 for m, *_ in choix):
+            cmd.append("--neuf")          # l'étape 07 vient de recalculer la chaussée : la régularisation repart d'elle
         # PYTHONUTF8 : sous Windows, fichiers et sorties redirigées en UTF-8 (sinon cp1252 et erreurs sur « ≈ », « → »)
         r = subprocess.run(cmd, cwd=ICI, env={**os.environ, "PYTHONUTF8": "1"})
         if r.returncode != 0:
