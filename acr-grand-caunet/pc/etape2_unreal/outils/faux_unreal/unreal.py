@@ -258,6 +258,10 @@ class MaterialEditingLibrary:
         mi.props.setdefault("textures", {})[nom] = tex
 
     @staticmethod
+    def set_material_instance_scalar_parameter_value(mi, nom, valeur):
+        mi.props.setdefault("scalaires", {})[nom] = float(valeur)
+
+    @staticmethod
     def create_material_expression(m, cls, x, y):
         return cls()
 

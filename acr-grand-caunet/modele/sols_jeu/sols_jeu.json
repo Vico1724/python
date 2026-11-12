@@ -1,0 +1,57 @@
+{
+ "description": "proportions des matières de sol du jeu, par point de 50 cm (scripts/15b_sols_du_jeu.py)",
+ "emprise_l93": [
+  913000.0,
+  6240500.0,
+  917500.0,
+  6244000.0
+ ],
+ "pas_m": 0.5,
+ "lignes_colonnes": [
+  7000,
+  9000
+ ],
+ "origine": "coin haut gauche = (x min, y max) ; ligne vers le sud",
+ "couches": [
+  "aiguilles_de_pin",
+  "herbe_haute",
+  "herbe_seche",
+  "terre",
+  "cailloux"
+ ],
+ "matiere_de_fond": "paillis (matière 1 du jeu) = 1 - somme des couches",
+ "parts_moyennes": {
+  "paillis": 0.21,
+  "aiguilles_de_pin": 0.389,
+  "herbe_haute": 0.014,
+  "herbe_seche": 0.215,
+  "terre": 0.048,
+  "cailloux": 0.123
+ },
+ "couleur_1m": {
+  "fichier": "couleur_1m.npy",
+  "pas_m": 1.0,
+  "moyenne_rvb_dans_les_photos": [
+   60.1,
+   70.2,
+   69.1
+  ],
+  "hors_photo": "couleur des environs adoucie sur 40 m, puis moyenne générale"
+ },
+ "part_couverte_par_les_photos": 0.348,
+ "seuils": {
+  "ndvi_sol_nu": 0.03,
+  "ndvi_vert": 0.15,
+  "ndvi_vigoureux": [
+   0.3,
+   0.42
+  ],
+  "clarte_calcaire": [
+   90.0,
+   130.0
+  ]
+ },
+ "accotement_m": 1.5,
+ "graine": 20261112,
+ "duree_s": 84
+}

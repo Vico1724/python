@@ -28,7 +28,12 @@ DÉCISIONS (détail dans pc/etape2_unreal/LISEZMOI_PAQUET.md)
 - Axes de l'importeur : supposés UE = 100 * (gX, gZ, gY) pour un glb (« X,Z,Y »). Si la mire (E3) montre une
   autre correspondance, relancer avec --axes <valeur lue par construire_niveau.py> : seuls les sommets des glb
   changent, pas le manifeste.
+- Sol (--sol jeu, par défaut pour le paquet complet) : le terrain est redécoupé par cellule de 350 m du monde du jeu
+  et prend pour parent le matériau de terrain de Bollène ; ses masques (TGA, textures virtuelles) et sa carte de
+  couleur viennent de scripts/15b_sols_du_jeu.py. Le découpage dépend du placement de l'étape 1 : relancer ce script
+  après pc/etape2_unreal/outils/relever_placement.py si le placement a changé. --sol photo : l'ancien terrain.
 Usage : python 16_paquet_unreal.py [--echantillon] [--pk-min A --pk-max B] [--axes X,Z,Y] [--sortie DOSSIER]
+                                   [--sol jeu|photo]
 """
 import argparse
 import csv
@@ -76,6 +81,14 @@ PARAM_SECOURS = {"couleur": "Couleur", "orm": "ORM", "relief": "Relief"}
 A_CONFIRMER = ("noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante "
                "modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; "
                "sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours")
+# Sol « façon jeu » (--sol jeu) : variante de terrain de Bollène prise pour parent (paillis, aiguilles de pin, herbe
+# haute, herbe sèche, terre, cailloux déjà actifs), cellules de 350 m comme dans le jeu, carte de couleur 4096.
+SOL_PARENT = "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild"
+SOL_CELLULE_M = 350.0
+SOL_MASQUE_PX = 1024
+SOL_CARTE_PX = 4096
+SOL_CARTE_UNITE_M = 70.0              # côté de la carte = UVDivideWP x 70 m (relevé sur Hafren South et Bollène)
+SOL_CARTE_CIBLE = {"moyenne": 86.5, "ecart_type": 27.8}   # clarté de T_MonteCarloS1BGMap_C, sur 255
 IMPORT_MAILLAGE = {"collision": "aucune", "nanite": False, "generer_lightmap_uv": False, "importer_materiaux": False,
                    "importer_textures": False, "recalculer_normales": False, "recalculer_tangentes": True,
                    "combiner_maillages": True, "echelle_import": 1.0}
@@ -167,9 +180,10 @@ def lire_glb(path):
 
 
 # --- écriture d'un glb « géométrie seule » ----------------------------------------------------------------
-def ecrire_glb(path, nom, section, pos, nrm, uv, tri):
+def ecrire_glb(path, nom, section, pos, nrm, uv, tri, couleur=None):
     """Un maillage, un nœud, une section de matériau (nom seulement, sans texture) : l'import ne crée aucun
-    matériau ni texture, et la section porte le nom de la variante à lui affecter."""
+    matériau ni texture, et la section porte le nom de la variante à lui affecter. couleur : RVBA par sommet
+    (octets), ou None."""
     gl = {"asset": {"version": "2.0", "generator": "acr-grand-caunet 16_paquet_unreal.py"}, "scene": 0,
           "scenes": [{"nodes": [0]}], "nodes": [{"name": nom, "mesh": 0}],
           "meshes": [{"name": nom, "primitives": [{"attributes": {}, "material": 0, "mode": 4}]}],
@@ -184,8 +198,10 @@ def ecrire_glb(path, nom, section, pos, nrm, uv, tri):
         gl["bufferViews"].append({"buffer": 0, "byteOffset": len(blob), "byteLength": a.nbytes, "target": target})
         blob.extend(a.tobytes())
         d = {"bufferView": len(gl["bufferViews"]) - 1,
-             "componentType": {np.float32: 5126, np.uint32: 5125, np.uint16: 5123}[a.dtype.type],
+             "componentType": {np.float32: 5126, np.uint32: 5125, np.uint16: 5123, np.uint8: 5121}[a.dtype.type],
              "count": int(len(a) if a.ndim > 1 else a.size), "type": kind}
+        if a.dtype.type is np.uint8:
+            d["normalized"] = True
         if minmax:
             d["min"], d["max"] = a.min(0).tolist(), a.max(0).tolist()
         gl["accessors"].append(d)
@@ -196,6 +212,8 @@ def ecrire_glb(path, nom, section, pos, nrm, uv, tri):
     pr["attributes"]["NORMAL"] = acc(nrm.astype(np.float32), "VEC3", 34962)
     if uv is not None:
         pr["attributes"]["TEXCOORD_0"] = acc(uv.astype(np.float32), "VEC2", 34962)
+    if couleur is not None:
+        pr["attributes"]["COLOR_0"] = acc(np.ascontiguousarray(couleur, dtype=np.uint8), "VEC4", 34962)
     pr["indices"] = acc(tri.ravel().astype(np.uint16 if len(pos) < 65536 else np.uint32), "SCALAR", 34963)
     while len(blob) % 4:
         blob.append(0)
@@ -241,8 +259,11 @@ class Paquet:
         """En échantillon, seuls les éléments des essais E3 et E4 sont écrits."""
         return not self.echantillon or bool({"E3", "E4"} & set(essais))
 
-    def maillage(self, nom, famille, dest, pos_g, nrm_g, uv, tri, section, essais, pk=None, extra=None):
-        """pos_g, nrm_g : glTF du projet (m) ; écrit le glb recentré et renvoie l'élément du manifeste."""
+    def maillage(self, nom, famille, dest, pos_g, nrm_g, uv, tri, section, essais, pk=None, extra=None,
+                 couleur_nulle=False):
+        """pos_g, nrm_g : glTF du projet (m) ; écrit le glb recentré et renvoie l'élément du manifeste.
+        couleur_nulle : couleur de sommet (0, 0, 0, 0) partout, comme les sommets ordinaires des sols du jeu ; sans
+        elle Unreal donne du blanc opaque, que le matériau de terrain du jeu pourrait lire comme un masque plein."""
         ue = Axes.ue(pos_g)
         lo, hi = ue.min(0), ue.max(0)
         pivot = np.round(np.array([(lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, lo[2]]))
@@ -256,7 +277,8 @@ class Paquet:
             uv = uv - np.floor(uv.min(0))      # UV répétées : petites valeurs (précision), même aspect
         f, n_f, uv, t = dedoublonne(f, n_f, uv, t)
         fichier = Path("maillages") / famille / f"{nom}.glb"
-        ecrire_glb(self.sortie / fichier, nom, section, f, n_f, uv, t)
+        ecrire_glb(self.sortie / fichier, nom, section, f, n_f, uv, t,
+                   couleur=np.zeros((len(f), 4), np.uint8) if couleur_nulle else None)
         e = {"type": "StaticMesh", "nom": nom, "fichier": fichier.as_posix(), "destination": dest,
              "chemin_ue": f"{dest}/{nom}", "section_materiau": section, "materiau": section,
              "import": IMPORT_MAILLAGE,
@@ -265,6 +287,8 @@ class Paquet:
                         "ombre_portee": not famille.startswith("lointain")},
              "bornes_locales_cm": {"min": np.round(loc.min(0), 1).tolist(), "max": np.round(loc.max(0), 1).tolist()},
              "sommets": int(len(f)), "triangles": int(len(t)), "essais": essais}
+        if couleur_nulle:
+            e["couleur_de_sommet"] = [0, 0, 0, 0]
         if pk is not None:
             e["pk_m"] = [round(float(pk[0]), 1), round(float(pk[1]), 1)]
         if extra:
@@ -302,6 +326,33 @@ class Paquet:
                                        "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
                                        if relief else None},
                             "essais": essais})
+
+    def masque(self, nom, famille, dest, rvba, essais):
+        """Masque de matières (RVBA, linéaire) pour le matériau de terrain du jeu : TGA sans compression, parce
+        qu'Unreal retouche les couleurs des PNG là où l'alpha est nul ; texture virtuelle, comme les masques du jeu."""
+        h, w = rvba.shape[:2]
+        fichier = Path("textures") / famille / f"{nom}.tga"
+        out = self.sortie / fichier
+        out.parent.mkdir(parents=True, exist_ok=True)
+        Image.fromarray(rvba, "RGBA").save(out, "TGA")
+        return self.ajoute({"type": "Texture2D", "nom": nom, "fichier": fichier.as_posix(), "destination": dest,
+                            "chemin_ue": f"{dest}/{nom}", "dimensions": [w, h],
+                            "import": {"srgb": False, "compression": "TC_Masks", "groupe_lod": "TEXTUREGROUP_World",
+                                       "adressage": "Clamp", "mipmaps": "FromTextureGroup",
+                                       "virtual_texture_streaming": True, "convention_relief": None},
+                            "essais": essais})
+
+    def materiau_du_jeu(self, nom, dest, parent, textures, scalaires, essais, note=None):
+        """Variante dont le parent est une variante du jeu (factices.json, role parent_du_jeu) : elle n'y règle que
+        les textures et les nombres donnés ici, et hérite du reste, static switch compris."""
+        e = {"type": "MaterialInstance", "nom": nom, "destination": dest, "chemin_ue": f"{dest}/{nom}",
+             "parent_jeu_pressenti": parent, "parent_du_jeu": parent, "parametres_texture": dict(textures),
+             "parametres_scalaires": {k: float(v) for k, v in scalaires.items()},
+             "parent_secours": SECOURS, "parametres_secours": {},
+             "static_switch": "aucun ne doit être modifié", "essais": essais}
+        if note:
+            e["note"] = note
+        return self.ajoute(e)
 
     def materiau(self, nom, dest, textures, essais, parent_jeu=M_SIMPLE, alternatif=None, note=None):
         """textures : {"couleur": nom de texture, "orm": ..., "relief": ...}"""
@@ -434,6 +485,190 @@ def terrain(P, ref, pkf, args):
                        extra={"emprise_texture_l93": e["emprise_l93"], "source": f"modele/terrain_sol.glb#{e['nom']}"})
             n["dalles" if genre == "dalle" else "sous_dalles"] += 1
     return n
+
+
+# --- sol « façon jeu » : matériau de terrain de Bollène, masques par cellule de 350 m, carte de couleur ------
+class Placement:
+    """Passage entre le glTF du projet et le monde du jeu (mètres, X et Y d'Unreal), par le placement de l'étape 1
+    (pc/etape2_unreal/releves/placement_etape1.json, tenu à jour par outils/relever_placement.py)."""
+
+    def __init__(self, ref):
+        d = json.loads((KIT / "releves" / "placement_etape1.json").read_text(encoding="utf-8"))
+        self.p = d["placement"]
+        o = json.loads((ROOT / "export" / "stage_ir" / "grand_caunet" / "stage.json").read_text(encoding="utf-8"))["coordinates"]["origin"]
+        self.ox, self.oy = o["lambert93_x_m"], o["lambert93_y_m"]
+        self.x0, self.y0 = ref["x0"], ref["y0"]
+        t = math.radians(self.p["theta_deg"])
+        self.c, self.s = math.cos(t), math.sin(t)
+
+    def monde(self, g):
+        g = np.asarray(g, float)
+        ix, iz = g[:, 0] + self.x0 - self.ox, g[:, 2] - (self.y0 - self.oy)
+        dx, dz = ix - self.p["cx"], iz - self.p["cz"]
+        return np.column_stack([self.c * dx + self.s * dz + self.p["tx"], -self.s * dx + self.c * dz + self.p["tz"]])
+
+    def l93(self, X, Y):
+        ax, az = X - self.p["tx"], Y - self.p["tz"]
+        ix = self.c * ax - self.s * az + self.p["cx"]
+        iz = self.s * ax + self.c * az + self.p["cz"]
+        return ix + self.ox, self.oy - iz
+
+
+def _couper(poly, axe, borne, sens):
+    """Garde la partie du polygone convexe (lignes : X, Y monde, puis attributs) où sens * (coord - borne) >= 0."""
+    out = []
+    n = len(poly)
+    for k in range(n):
+        a, b = poly[k], poly[(k + 1) % n]
+        da, db = sens * (a[axe] - borne), sens * (b[axe] - borne)
+        if da >= 0:
+            out.append(a)
+        if (da > 0 and db < 0) or (da < 0 and db > 0):
+            p, q = (a, b) if (a[0], a[1]) <= (b[0], b[1]) else (b, a)      # même calcul pour les deux triangles voisins
+            t = (borne - p[axe]) / (q[axe] - p[axe])
+            m = p + t * (q - p)
+            m[axe] = borne
+            out.append(m)
+    return out
+
+
+def decouper_par_cellule(pos, nrm, tri, xy, pas):
+    """Répartit les triangles par cellule de `pas` mètres du monde du jeu ; ceux qui chevauchent une limite sont
+    coupés sur cette limite. Rend {(i, j): (pos, nrm, xy, tri)}."""
+    ci = np.floor(xy / pas).astype(np.int64)
+    tc = ci[tri]
+    lo, hi = tc.min(1), tc.max(1)
+    simple = (lo == hi).all(1)
+    par = {}
+    for t in np.flatnonzero(simple):
+        par.setdefault((int(lo[t, 0]), int(lo[t, 1])), []).append(t)
+    A = np.hstack([xy, pos, nrm])
+    coupes = {}
+    for t in np.flatnonzero(~simple):
+        poly = [A[k].copy() for k in tri[t]]
+        for i in range(int(lo[t, 0]), int(hi[t, 0]) + 1):
+            pi = _couper(_couper(poly, 0, i * pas, 1.0), 0, (i + 1) * pas, -1.0)
+            if len(pi) < 3:
+                continue
+            for j in range(int(lo[t, 1]), int(hi[t, 1]) + 1):
+                pj = _couper(_couper(pi, 1, j * pas, 1.0), 1, (j + 1) * pas, -1.0)
+                if len(pj) < 3:
+                    continue
+                q = np.array(pj)
+                aire = 0.5 * abs(np.sum(q[:, 0] * np.roll(q[:, 1], -1) - np.roll(q[:, 0], -1) * q[:, 1]))
+                if aire > 1e-6:
+                    coupes.setdefault((i, j), []).append(q)
+    out = {}
+    for cle in sorted(set(par) | set(coupes)):
+        P_, N_, X_, T_ = [], [], [], []
+        n0 = 0
+        if cle in par:
+            used, inv = np.unique(tri[par[cle]], return_inverse=True)
+            P_.append(pos[used]); N_.append(nrm[used]); X_.append(xy[used]); T_.append(inv.reshape(-1, 3))
+            n0 = len(used)
+        for q in coupes.get(cle, []):
+            k = len(q)
+            P_.append(q[:, 2:5]); N_.append(q[:, 5:8]); X_.append(q[:, 0:2])
+            T_.append(np.array([[n0, n0 + a, n0 + a + 1] for a in range(1, k - 1)], np.int64))
+            n0 += k
+        n = np.vstack(N_)
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-12)
+        out[cle] = (np.vstack(P_), n, np.vstack(X_), np.vstack(T_))
+    return out, int((~simple).sum())
+
+
+def terrain_jeu(P, ref, args):
+    """Terrain habillé par le matériau de terrain du jeu (variante de Bollène) au lieu de la photo aérienne.
+
+    Lu dans le jeu le 12/11/2026 (PROTOCOLE.md § 0 sexies) : le matériau lit ses deux masques d'après la position
+    dans le monde, par cellule de 350 m alignée sur l'origine, u = 1 - frac(X / 350 m), v = 1 - frac(Y / 350 m) ;
+    un maillage ne porte qu'un jeu de masques, donc ne doit pas dépasser de sa cellule. La carte de couleur est lue
+    à (tu, tv) = (v0, 1 - u0), u0 = (X + U_Add) / S, v0 = (Y + V_Add) / S, S = UVDivideWP x 70 m."""
+    from scipy import ndimage as ndi
+    src = MOD / "sols_jeu"
+    meta = json.loads((src / "sols_jeu.json").read_text(encoding="utf-8"))
+    pl = Placement(ref)
+    ms = lire_glb(MOD / "terrain_sol.glb")
+    pos = np.vstack([m["pos"] for m in ms])
+    nrm = np.vstack([m["nrm"] for m in ms])
+    dec = np.cumsum([0] + [len(m["pos"]) for m in ms[:-1]])
+    tri = np.vstack([m["idx"] + d for m, d in zip(ms, dec)])
+    xy = pl.monde(pos)
+    cellules, n_coupes = decouper_par_cellule(pos, nrm, tri, xy, SOL_CELLULE_M)
+    i0, j0 = min(c[0] for c in cellules), min(c[1] for c in cellules)
+    tex_dest, mesh_dest, mat_dest = f"{UE}/Terrain/Textures", f"{UE}/Terrain/Meshes", f"{UE}/Terrain/Materials"
+    essais = ["complet"]
+
+    # carte de couleur : un carré centré sur le terrain, côté multiple de 70 m
+    lo, hi = xy.min(0), xy.max(0)
+    centre = np.round((lo + hi) / 2)
+    diviseur = math.ceil(float((hi - lo).max()) * 1.04 / SOL_CARTE_UNITE_M)
+    S = diviseur * SOL_CARTE_UNITE_M
+    n = SOL_CARTE_PX
+    tv, tu = np.meshgrid((np.arange(n) + 0.5) / n, (np.arange(n) + 0.5) / n, indexing="ij")
+    X = centre[0] + ((1.0 - tv) - 0.5) * S
+    Y = centre[1] + (tu - 0.5) * S
+    x93, y93 = pl.l93(X, Y)
+    e = meta["emprise_l93"]
+    pas1 = meta["couleur_1m"]["pas_m"]
+    coul = np.load(src / "couleur_1m.npy")
+    lig, col = (e[3] - y93) / pas1 - 0.5, (x93 - e[0]) / pas1 - 0.5
+    dedans = (lig >= 0) & (lig <= coul.shape[0] - 1) & (col >= 0) & (col <= coul.shape[1] - 1)
+    carte = np.stack([ndi.map_coordinates(ndi.gaussian_filter(coul[..., k].astype(np.float32), 0.7), [lig, col], order=1,
+                                          mode="nearest") for k in range(3)], -1)
+    del coul
+    # mise à la clarté et au contraste de la carte de Bollène (lue dans le jeu), en gardant nos teintes
+    lum = carte @ np.array([0.299, 0.587, 0.114], np.float32)
+    m_lum, s_lum = float(lum[dedans].mean()), float(lum[dedans].std())
+    gain = float(np.clip(SOL_CARTE_CIBLE["ecart_type"] / max(s_lum, 1.0), 0.6, 1.6))
+    moy = carte[dedans].mean(0)
+    carte = (carte - moy) * gain + moy * (SOL_CARTE_CIBLE["moyenne"] / m_lum)
+    carte = np.clip(carte, 0, 255).astype(np.uint8)
+    P.texture("T_Sol_Carte", "terrain_jeu", tex_dest, Image.fromarray(carte, "RGB"), essais, adressage="Wrap", qualite=92)
+    scal = {"UVDivideWP": float(diviseur), "U_Add": S * 50.0 - centre[0] * 100.0, "V_Add": S * 50.0 - centre[1] * 100.0}
+
+    # masques et maillages, cellule par cellule
+    prop = np.load(src / "proportions_l93.npz")
+    couches = [prop[k] for k in meta["couches"]]                     # aiguilles, herbe haute, herbe sèche, terre, cailloux
+    pas = meta["pas_m"]
+    n = SOL_MASQUE_PX
+    f = (np.arange(n) + 0.5) / n
+    v, u = np.meshgrid(f, f, indexing="ij")
+    parts = np.zeros(6)
+    for (i, j), (p_c, n_c, xy_c, t_c) in cellules.items():
+        suf = f"{i - i0:02d}{j - j0:02d}"
+        X, Y = (i + 1.0 - u) * SOL_CELLULE_M, (j + 1.0 - v) * SOL_CELLULE_M
+        x93, y93 = pl.l93(X, Y)
+        coord = [(e[3] - y93) / pas - 0.5, (x93 - e[0]) / pas - 0.5]
+        pr = [ndi.map_coordinates(c, coord, order=1, mode="nearest").astype(np.float32) / 255.0 for c in couches]
+        # le jeu superpose ses matières dans l'ordre 2 à 6 : la part voulue de chacune devient une opacité
+        reste = np.ones_like(pr[0])
+        m = [None] * 5
+        for k in (4, 3, 2, 1, 0):
+            m[k] = np.clip(pr[k] / np.maximum(reste, 1e-3), 0.0, 1.0)
+            reste = np.clip(reste - pr[k], 0.0, 1.0)
+        parts += np.array([reste.mean()] + [x.mean() for x in pr])
+        a = np.clip(np.stack(m[:4], -1) * 255.0 + 0.5, 0, 255).astype(np.uint8)
+        b = np.zeros_like(a)
+        b[..., 0] = np.clip(m[4] * 255.0 + 0.5, 0, 255).astype(np.uint8)
+        P.masque(f"T_Sol_{suf}_M1", "terrain_jeu", tex_dest, a, essais)
+        P.masque(f"T_Sol_{suf}_M2", "terrain_jeu", tex_dest, b, essais)
+        P.materiau_du_jeu(f"MI_Sol_{suf}", mat_dest, SOL_PARENT,
+                          {"MasksA (T2d)": f"T_Sol_{suf}_M1", "MasksB (T2d)": f"T_Sol_{suf}_M2", "Texture": "T_Sol_Carte"},
+                          scal, essais)
+        uv = np.clip(np.column_stack([i + 1.0 - xy_c[:, 0] / SOL_CELLULE_M, j + 1.0 - xy_c[:, 1] / SOL_CELLULE_M]), 0.0, 1.0)
+        P.maillage(f"SM_{NOM}Sol_{suf}", "terrain_jeu", mesh_dest, p_c, n_c, uv, t_c, f"MI_Sol_{suf}", essais,
+                   extra={"cellule_du_jeu": [i, j], "emprise_monde_m": [i * SOL_CELLULE_M, j * SOL_CELLULE_M,
+                                                                        (i + 1) * SOL_CELLULE_M, (j + 1) * SOL_CELLULE_M]},
+                   couleur_nulle=True)
+    parts /= len(cellules)
+    P.sol = {"mode": "jeu", "parent": SOL_PARENT, "cellule_m": SOL_CELLULE_M, "masque_px": SOL_MASQUE_PX,
+             "placement": {k: pl.p[k] for k in ("theta_deg", "cx", "cz", "tx", "dy", "tz")},
+             "carte": {"px": SOL_CARTE_PX, "cote_m": S, "centre_monde_m": centre.tolist(), **scal,
+                       "clarte_avant": round(m_lum, 1), "contraste_avant": round(s_lum, 1), "gain": round(gain, 3)},
+             "parts_moyennes": dict(zip(["paillis"] + meta["couches"], [round(float(x), 3) for x in parts]))}
+    return {"cellules": len(cellules), "triangles_coupes": n_coupes, "triangles_source": int(len(tri)),
+            "triangles": int(sum(len(c[3]) for c in cellules.values()))}
 
 
 def troncon(pk):
@@ -798,6 +1033,9 @@ def main():
     ap.add_argument("--pk-min", type=float)
     ap.add_argument("--pk-max", type=float)
     ap.add_argument("--px-dalle", type=int, default=2048, help="images des dalles de 500 m : 2048 (26 cm) ou 4096")
+    ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
+                    help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
+                         "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
     args = ap.parse_args()
     if (args.pk_min is None) != (args.pk_max is None):
         raise SystemExit("--pk-min et --pk-max vont ensemble")
@@ -815,7 +1053,11 @@ def main():
     mire(P)
     mire_relief(P)
     print("terrain…", flush=True)
-    n_terrain = terrain(P, ref, pkf, args)
+    P.sol = {"mode": "photo"}
+    if args.sol == "jeu" and not args.echantillon:
+        n_terrain = terrain_jeu(P, ref, args)
+    else:
+        n_terrain = terrain(P, ref, pkf, args)
     sources = {}
     for m in lire_glb(MOD / "terrain_sol.glb"):
         sources[m["nom"]] = m["pos"]
@@ -873,6 +1115,7 @@ def main():
         "materiau_secours": {"chemin": SECOURS, "parametres": PARAM_SECOURS,
                              "role": "matériau simple créé par le script d'import pour voir le décor dans l'éditeur tant "
                                      "que le parent du jeu n'est pas confirmé ; à NE PAS livrer"},
+        "sol": P.sol,
         "elements": P.elements,
     }
     manifeste["controle"] = controle(P, sources_paquet)

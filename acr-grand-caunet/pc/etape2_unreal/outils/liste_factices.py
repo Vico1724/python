@@ -38,6 +38,12 @@ PARENTS_DU_JEU = [
      "parent": "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv", "pour": ["MI_GC_Enrobe"],
      "pourquoi": "asphalte de Bollène : plaqué d'après la position dans le monde (static switch UseWSPlanarUV), donc "
                  "indépendant du dépliage de nos maillages ; fissures, traces de pneus, taches d'huile"},
+    {"objet": "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild",
+     "parent": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light", "pour": [],
+     "pourquoi": "terrain de Bollène : paillis, aiguilles de pin, herbe haute, herbe sèche, terre et cailloux déjà "
+                 "actifs. Parent des variantes MI_Sol_* du paquet (scripts/16_paquet_unreal.py --sol jeu), qui le "
+                 "désignent elles-mêmes (\"parent_du_jeu\") et n'y règlent que leurs deux masques, la carte de couleur "
+                 "et son cadrage"},
 ]
 AUTRES_MATERIAUX = ["/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
                     "/Game/Environments/RallyShared/Materials/M_RoadSurface_Layered",

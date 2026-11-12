@@ -46,6 +46,7 @@ ETAPES = [
     (13, "13_paysage_lointain.py", "paysage lointain jusqu'à l'horizon", False),
     (14, "14_textures_sol.py", "images de sol par dalle et relief fin", False),
     (15, "15_vues_decor.py", "vues conducteur de contrôle", False),
+    (150, "15b_sols_du_jeu.py", "matières de sol du jeu : proportions par point, pour les masques du terrain", False),
     (16, "16_paquet_unreal.py", "paquet prêt à importer dans Unreal (paquet_unreal/)", False),
 ]
 MODULES = ["numpy", "scipy", "requests", "pyproj", "shapely", "rasterio", "matplotlib", "PIL", "skimage", "cv2"]

@@ -160,6 +160,10 @@ def v_parametre_texture(mi, nom, tex):
     unreal.MaterialEditingLibrary.set_material_instance_texture_parameter_value(mi, nom, tex)
 
 
+def v_parametre_scalaire(mi, nom, valeur):
+    unreal.MaterialEditingLibrary.set_material_instance_scalar_parameter_value(mi, nom, float(valeur))
+
+
 def v_creer_materiau_secours(chemin, params):
     """Matériau simple : Couleur -> BaseColor, ORM (R occlusion, G rugosité, B métal), Relief -> Normal."""
     if v_existe(chemin):
@@ -303,6 +307,13 @@ class Construction:
             self.origine_ir = json.load(open(os.path.join(racine, "export", "stage_ir", "grand_caunet", "stage.json"),
                                              encoding="utf-8"))["coordinates"]["origin"]
             self.rep = R.charger_repere()
+            # le sol « façon jeu » est découpé d'après le placement : le paquet et la pose doivent utiliser le même
+            sol = self.man.get("sol", {}).get("placement")
+            if sol:
+                ecart = max(abs(sol[k] - self.placement[k]) for k in ("theta_deg", "cx", "cz", "tx", "dy", "tz"))
+                if ecart > 0.005:
+                    self.alerte(f"le paquet a été découpé avec un autre placement que --placement (écart {ecart:.3f}) : "
+                                f"relancer outils/relever_placement.py puis scripts/16_paquet_unreal.py")
 
     def alerte(self, msg):
         self.rapport["alertes"].append(msg)
@@ -412,6 +423,14 @@ class Construction:
     # --- matériaux ---
     def parent(self, e):
         """(parent, paramètres de texture, vrai si le parent est la variante modèle du jeu)"""
+        if self.a.parent == "jeu" and e.get("parent_du_jeu"):
+            # variante du jeu nommée par le paquet (sol « façon jeu ») : la nôtre y règle ses textures et ses nombres
+            if v_existe(e["parent_du_jeu"]):
+                self.rapport["variantes_sur_un_materiau_du_jeu"] += 1
+                return v_charger(e["parent_du_jeu"]), e["parametres_texture"], False
+            self.alerte(f"{e['nom']} : parent du jeu {e['parent_du_jeu']} absent (liste_factices.py puis creer_factices.py) ; secours")
+            sec = self.man["materiau_secours"]
+            return v_creer_materiau_secours(sec["chemin"], sec["parametres"]), e["parametres_secours"], False
         if self.a.parent == "jeu":
             special = self.parents_du_jeu.get(e["nom"])
             if special:
@@ -470,6 +489,9 @@ class Construction:
         for p, t in params.items():
             if t in textures and textures[t] is not None:
                 v_parametre_texture(mi, p, textures[t])
+        if self.a.parent == "jeu" and e.get("parent_du_jeu") and v_existe(e["parent_du_jeu"]):
+            for p, valeur in e.get("parametres_scalaires", {}).items():
+                v_parametre_scalaire(mi, p, valeur)
         if sur_modele:
             self.rapport["variantes_sur_le_modele_du_jeu"] += 1
             if PARAM_RELIEF not in params:
