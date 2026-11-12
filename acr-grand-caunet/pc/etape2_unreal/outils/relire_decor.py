@@ -150,7 +150,8 @@ def main():
     hism = [o for o in j if "InstancedStaticMeshComponent" in o["Type"] and (o.get("Properties") or {}).get("StaticMesh")]
     par = {}
     for o in hism:
-        par[o["Properties"]["StaticMesh"]["ObjectPath"].split(".")[0]] = len(o.get("PerInstanceSMData", []))
+        k = o["Properties"]["StaticMesh"]["ObjectPath"].split(".")[0]    # un même maillage peut avoir deux composants
+        par[k] = par.get(k, 0) + len(o.get("PerInstanceSMData", []))    # (pin de la forêt et pin de bord de route)
     man = json.loads((Path(a.paquet) / "manifeste.json").read_text(encoding="utf-8"))
     attendu_m = sum(1 for e in man["elements"] if e["type"] == "StaticMesh" and e.get("acteur"))
     attendu_i = sum(e["nombre"] for e in man["elements"] if e["type"] == "InstanceGroup")

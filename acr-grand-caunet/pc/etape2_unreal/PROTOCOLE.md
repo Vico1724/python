@@ -275,6 +275,10 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 - **Profil en long** : le relevé note à l'œil une plongée vers le pont au PK 5480 (présente dans le modèle : −3 % → −5 %), des « sommets de côte » aux PK 5670–5700 et 6540 (dans le modèle : montée qui s'adoucit, 6,6 → 3,9 % et 3,0 → 1,5 %, sans redescendre) et au PK 5865 (rien dans le modèle : 4,8 % constant ; rien non plus dans `mnt_couloir_1m.tif` lu sous l'axe, 4 à 5 % réguliers, que le modèle suit à 4 cm près entre les PK 5800 et 5930). Profil non modifié ; à regarder en jeu.
 - **Non fait** : panneaux routiers, balises à chevrons, talus rocheux à plus d'un mètre du bord (terrain + matière), clôtures et barrière en bois, bornes, défauts d'aspect de la chaussée, barres rocheuses du massif lointain. Rubrique `non_poses` du fichier du mobilier.
 
+**État.** Mod de l'étape 1 reconstruit (tous contrôles passés, 3 313 obstacles, `PM_WallWoodPole` accepté, placement inchangé). Décor reconstruit et relu le 12/11/2026 à 17 h 08 : RELECTURE CONFORME (485 maillages, 245 978 instances en 69 composants, glissières 6 + 215 + 6 modules, 79 poteaux béton et 17 bois). Les deux conteneurs sont installés ensemble. La version précédente est gardée sous `sol_jeu_avant_releve_reco`. *Pas encore vu en jeu.*
+
+**Piège rencontré.** `relire_decor.py` comptait les instances par maillage et écrasait le compte quand deux composants désignent le même maillage (le pin d'Alep : forêt et arbres de bord). Il annonçait à tort des instances manquantes ; il additionne désormais.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :
