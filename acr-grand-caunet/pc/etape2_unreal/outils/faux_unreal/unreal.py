@@ -281,6 +281,9 @@ class _Composant(_Objet):
     def set_static_mesh(self, m):
         self.props["mesh"] = m
 
+    def set_cull_distances(self, debut, fin):
+        self.props["disparition"] = (debut, fin)
+
     def add_instances(self, t, retour, monde):
         self.props.setdefault("instances", []).extend(t)
 

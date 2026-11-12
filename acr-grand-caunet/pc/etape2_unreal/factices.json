@@ -584,7 +584,7 @@
   {
    "objet": "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleBegin",
    "type": "StaticMesh",
-   "essai": "glissières du jeu",
+   "essai": "maillages du jeu posés tels quels",
    "bornes_cm": {
     "min": [
      -60,
@@ -601,7 +601,7 @@
   {
    "objet": "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleCenter",
    "type": "StaticMesh",
-   "essai": "glissières du jeu",
+   "essai": "maillages du jeu posés tels quels",
    "bornes_cm": {
     "min": [
      -20,
@@ -618,7 +618,7 @@
   {
    "objet": "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleEnd",
    "type": "StaticMesh",
-   "essai": "glissières du jeu",
+   "essai": "maillages du jeu posés tels quels",
    "bornes_cm": {
     "min": [
      -20,
@@ -631,6 +631,31 @@
      80
     ]
    }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/DryGrass04/SM_Drygrass04",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/DryGrass05/SM_Drygrass05",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/DryGrass06/SM_Drygrass06",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass05",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass03",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
   },
   {
    "objet": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",

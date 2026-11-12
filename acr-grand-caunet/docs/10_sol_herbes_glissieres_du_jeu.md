@@ -1,4 +1,4 @@
-# Sol et glissières repris du jeu
+# Sol, herbes et glissières repris du jeu
 
 *12 novembre 2026. Document destiné au directeur de projet et à la session qui reprendra le travail.*
 
@@ -8,7 +8,9 @@
 
 - **Le sol** ne porte plus la photo aérienne. Il est fait des matières du jeu lui-même : paillis forestier, aiguilles de pin, herbe sèche, herbe haute, terre, cailloux. Elles sont nettes de près, puisqu'elles se répètent tous les 3 m. La photo aérienne sert encore, mais seulement à teinter l'ensemble vu de loin.
 - **Les glissières** sont celles du jeu, posées le long des six mêmes tronçons (848 m) : 212 modules de 4 m, avec leurs extrémités.
-- **La route, les parapets, les arbres et le paysage lointain** ne changent pas.
+- **Les bas-côtés** reçoivent 82 000 touffes d'herbe sèche du jeu (12 par mètre de route), sur 14 m de part et d'autre de la chaussée. Ce sont les cinq mêmes végétaux que le jeu pose à Bollène, avec les mêmes tailles. Ils disparaissent au-delà de 100 à 150 m, comme dans le jeu, pour ne pas ralentir l'affichage.
+- **L'asphalte** reçoit le réglage de sommets des routes de Bollène, dont il hérite la matière.
+- **Les parapets, les arbres et le paysage lointain** ne changent pas.
 
 ## 2. Comment le sol est réparti
 
@@ -35,7 +37,7 @@ Tout a été contrôlé hors du jeu, en relisant les fichiers produits avec les 
 - **Le calage de la carte de couleur** a été lu sur Hafren South puis sur Bollène, de la même façon.
 - **Le terrain redécoupé** a exactement la même surface que l'original (1 985 967 m²), et ses morceaux se raccordent.
 - **Les glissières** ont toutes la chaussée du bon côté, à 50 cm du bord, et suivent la pente.
-- **Le conteneur livré** a été relu par `pc/etape2_unreal/outils/relire_decor.py` : 458 maillages posés et 163 850 objets, comme prévu ; aucun fichier hors de notre dossier ; les 41 matériaux de sol ont bien le terrain de Bollène pour parent ; les 82 masques ont le même format que ceux du jeu et le même contenu que leurs fichiers d'origine ; les sommets du sol ont une couleur nulle. Le détail est dans `pc/etape2_unreal/releves/relecture_decor.json`.
+- **Le conteneur livré** a été relu par `pc/etape2_unreal/outils/relire_decor.py` : 458 maillages posés et 246 194 objets (arbres, arbustes, herbes, glissières), comme prévu ; aucun fichier hors de notre dossier ; les 41 matériaux de sol ont bien le terrain de Bollène pour parent ; les 82 masques ont le même format que ceux du jeu et le même contenu que leurs fichiers d'origine ; les sommets du sol et de l'enrobé ont une couleur nulle ; les herbes ont les distances de disparition du jeu et ne portent pas d'ombre. Le détail est dans `pc/etape2_unreal/releves/relecture_decor.json`.
 
 ## 4. Ce qui n'est pas vérifié
 
@@ -47,7 +49,7 @@ Tout a été contrôlé hors du jeu, en relisant les fichiers produits avec les 
 
 ## 5. Revenir en arrière
 
-L'ancien décor (sol en photo aérienne, nos glissières) est gardé dans `Z:\acrxs\unreal\dist\sol_photo\`. Jeu fermé, recopier ses trois fichiers `zz_gc_gc_P.*` dans `Paks\~mods` à la place des nouveaux. La route et la physique sont les mêmes dans les deux versions.
+L'ancien décor (sol en photo aérienne, nos glissières, pas d'herbes) est gardé dans `Z:\acrxs\unreal\dist\sol_photo\`. Jeu fermé, recopier ses trois fichiers `zz_gc_gc_P.*` dans `Paks\~mods` à la place des nouveaux. La route et la physique sont les mêmes dans les deux versions.
 
 Si le sol apparaît noir, uni, blanc ou décalé, c'est ce retour en arrière qu'il faut faire, puis le signaler.
 

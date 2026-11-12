@@ -240,6 +240,13 @@ def v_composant_instances(acteur, nom, mesh):
     return comp
 
 
+def v_regler_herbes(comp, distances_cm, ombre):
+    """Réglages des herbes du jeu (relevés à Bollène) : disparition progressive avec la distance, pas d'ombre portée."""
+    comp.set_cull_distances(int(distances_cm[0]), int(distances_cm[1]))
+    comp.set_editor_property("cast_dynamic_shadow", bool(ombre))
+    comp.set_editor_property("affect_distance_field_lighting", False)
+
+
 def v_ajouter_instances(comp, transfos):
     comp.add_instances(transfos, False, True)          # (transforms, renvoyer les indices, espace monde)
 
@@ -536,6 +543,7 @@ class Construction:
         reste = self.a.max_instances
         pk = self.man["essais"].get(self.a.etendue, {}).get("pk_m")
         groupes = {}                                   # (étiquette de l'acteur, chemin du maillage) -> transformations
+        reglages = {}                                  # même clé -> élément du manifeste (distances de disparition, ombre)
         for e in self.el:
             if e["type"] != "InstanceGroup" or reste <= 0:
                 continue
@@ -550,7 +558,9 @@ class Construction:
                     if reste <= 0:
                         break
                     p, lacet = self.position((float(r["x_cm"]), float(r["y_cm"]), float(r["z_cm"])), float(r["lacet_deg"]))
-                    if candidats:
+                    if r.get("echelle"):                       # échelle fixée par le paquet : maillage posé tel quel
+                        choisi, s = nom_mesh, float(r["echelle"])
+                    elif candidats:
                         diam = r.get("diametre_m") or r.get("diametre_houppier_m")
                         choisi, s = A.choisir(candidats, float(r["hauteur_voulue_m"]), float(diam) if diam else None,
                                               f"{e['nom']}:{r['id']}")
@@ -559,6 +569,7 @@ class Construction:
                     else:
                         choisi = nom_mesh
                         s = float(r["hauteur_voulue_m"]) * 100.0 / h_nat if h_nat and h_nat >= A.PLAT_CM else 1.0
+                    reglages[(f"{prefixe}_{choisi}", f"{dossier}/{choisi}")] = e
                     groupes.setdefault((f"{prefixe}_{choisi}", f"{dossier}/{choisi}"), []).append(
                         v_transfo(p, lacet, s, float(r.get("tangage_deg") or 0.0)))
                     reste -= 1
@@ -568,6 +579,9 @@ class Construction:
                 continue
             acteur = v_poser_classe(unreal.Actor, (0.0, 0.0, 0.0), label, "GrandCaunet/Vegetation")
             comp = v_composant_instances(acteur, f"HISM_{chemin.rsplit('/', 1)[1]}", v_charger(chemin))
+            el = reglages.get((label, chemin), {})
+            if el.get("distances_de_disparition_cm"):
+                v_regler_herbes(comp, el["distances_de_disparition_cm"], el.get("ombre_dynamique", True))
             v_ajouter_instances(comp, transfos)
             self.rapport["instances"] += len(transfos)
             v_journal(f"{label} : {len(transfos)} instances")

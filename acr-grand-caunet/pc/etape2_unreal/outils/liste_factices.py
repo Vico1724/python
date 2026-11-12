@@ -51,6 +51,10 @@ MAILLAGES_POSES = {
     "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleBegin": {"min": [-60, -40, 0], "max": [420, 0, 80]},
     "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleCenter": {"min": [-20, -30, 0], "max": [420, 0, 70]},
     "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleEnd": {"min": [-20, -40, 0], "max": [460, 0, 80]},
+    # herbes des bas-côtés : leurs dimensions sont dans releves/maillages_vegetation.json
+    "/Game/Foliage/GroundCover/DryGrass04/SM_Drygrass04": None, "/Game/Foliage/GroundCover/DryGrass05/SM_Drygrass05": None,
+    "/Game/Foliage/GroundCover/DryGrass06/SM_Drygrass06": None, "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass05": None,
+    "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass03": None,
 }
 AUTRES_MATERIAUX = ["/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
                     "/Game/Environments/RallyShared/Materials/M_RoadSurface_Layered",
@@ -126,7 +130,9 @@ def main():
                       "parametres_texture": sorted(v["textures"]), "essai": "E1b, E3",
                       "pourquoi": "parent de nos variantes : ses static switch de texture sont déjà actifs dans le jeu"})
     liste += [{"objet": c, "type": "StaticMesh", "essai": "E2, E4"} for c in maillages]
-    liste += [{"objet": c, "type": "StaticMesh", "essai": "glissières du jeu", "bornes_cm": b} for c, b in MAILLAGES_POSES.items()]
+    deja = {x["objet"] for x in liste}
+    liste += [{"objet": c, "type": "StaticMesh", "essai": "maillages du jeu posés tels quels", **({"bornes_cm": b} if b else {})}
+              for c, b in MAILLAGES_POSES.items() if c not in deja]
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
     liste += [{"objet": p["objet"], "type": "MaterialInstanceConstant", "parent": p["parent"], "role": "parent_du_jeu",
                "pour": p["pour"], "static_switch": {}, "essai": "E3b", "pourquoi": p["pourquoi"]} for p in PARENTS_DU_JEU]

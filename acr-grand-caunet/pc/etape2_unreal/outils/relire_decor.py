@@ -9,7 +9,8 @@ Contrôles :
   3. sol « façon jeu » : chaque variante MI_Sol_* a pour parent la variante de terrain du jeu, ne porte aucune
      permutation propre, et désigne ses deux masques et la carte ; les masques sont des textures virtuelles au même
      format que ceux du jeu (DXT5, dalles de 128 + 4), et leur contenu relu est celui du fichier source ;
-  4. les maillages de sol ont une couleur de sommet nulle.
+  4. les maillages de sol et d'enrobé ont une couleur de sommet nulle ;
+  5. les herbes disparaissent avec la distance et ne portent pas d'ombre, comme celles du jeu.
 Ce script ne prouve pas l'affichage en jeu.
 
 Usage : python pc/etape2_unreal/outils/relire_decor.py [--conteneur Z:/acrxs/unreal/dist] [--paquet paquet_unreal]
@@ -160,6 +161,18 @@ def main():
         erreurs.append(f"{len(smc)} maillages posés pour {attendu_m} attendus")
     if sum(par.values()) != attendu_i:
         erreurs.append(f"{sum(par.values())} instances pour {attendu_i} attendues")
+    # herbes : distances de disparition et ombre, comme dans le jeu
+    voulu = {e["maillage_jeu"]: e for e in man["elements"] if e["type"] == "InstanceGroup" and e.get("distances_de_disparition_cm")}
+    mal = []
+    for o in hism:
+        chemin = o["Properties"]["StaticMesh"]["ObjectPath"].split(".")[0]
+        if chemin in voulu:
+            p, d = o["Properties"], voulu[chemin]["distances_de_disparition_cm"]
+            if [p.get("InstanceStartCullDistance"), p.get("InstanceEndCullDistance")] != d or p.get("bCastDynamicShadow", True):
+                mal.append(chemin.rsplit("/", 1)[1])
+    bilan["niveau"]["herbes_mal_reglees"] = mal
+    if mal:
+        erreurs.append(f"herbes sans distance de disparition ou avec ombre : {mal}")
     tout = {l.strip() for l in ref("list").splitlines()}
     absents = [k for k in par if "acr/Content/" + k[len("/Game/"):] + ".uasset" not in tout]
     if absents:

@@ -83,6 +83,15 @@ A_CONFIRMER = ("noms de paramètres confirmés dans le jeu ; M_Simple nommé ici
                "sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours")
 # Sol « façon jeu » (--sol jeu) : variante de terrain de Bollène prise pour parent (paillis, aiguilles de pin, herbe
 # haute, herbe sèche, terre, cailloux déjà actifs), cellules de 350 m comme dans le jeu, carte de couleur 4096.
+# Herbes des bas-côtés (--herbes jeu). Échelles : du 5e au 95e centile de celles de Bollène (du 5e au 50e pour
+# WildGrass05, dont les plus grandes touffes font 7 m). Disparition entre 100 et 150 m, sans ombre, comme dans le jeu.
+HERBES = {"dossier": "/Game/Foliage/GroundCover", "bande_m": 14.0, "debut_m": 0.5, "portee_m": 6.0,
+          "candidats_par_metre": 30, "disparition_cm": [10000, 15000], "petit": "DryGrass05/SM_Drygrass05",
+          "maillages": {"DryGrass05/SM_Drygrass05": {"part": 0.36, "echelle": [0.65, 1.32], "largeur_m": 1.46},
+                        "DryGrass04/SM_Drygrass04": {"part": 0.22, "echelle": [0.80, 1.37], "largeur_m": 2.35},
+                        "DryGrass06/SM_Drygrass06": {"part": 0.18, "echelle": [1.03, 1.76], "largeur_m": 1.52},
+                        "WildGrass/SM_WildGrass05": {"part": 0.16, "echelle": [2.24, 3.64], "largeur_m": 0.99},
+                        "WildGrass/SM_WildGrass03": {"part": 0.08, "echelle": [2.76, 3.61], "largeur_m": 0.61}}}
 GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
              "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
              "enfoncement_m": 0.05}
@@ -702,8 +711,10 @@ def par_troncon(P, pkf, meshes, prefixe, famille, dest_mesh, nom_mat, args, grou
         tri = np.vstack([p[3] + off[i] for i, p in enumerate(parts)])
         suffixe = f"_{mat.capitalize()}" if groupe_par_materiau else ""
         nom = f"SM_{NOM}{prefixe}{suffixe}_{kk:02d}"
+        # enrobé : son parent est l'asphalte de Bollène, dont les routes ont des sommets presque noirs (rouge 0 à 10,
+        # vert et bleu toujours nuls) ; sans couleur, Unreal donnerait du blanc opaque
         P.maillage(nom, famille, dest_mesh, pos, nrm, uv, tri, nom_mat(mat), essais, pk=pkr,
-                   extra={"troncon": kk})
+                   extra={"troncon": kk}, couleur_nulle=(mat == "enrobe" and not P.echantillon))
         out.append(nom)
     return out
 
@@ -992,6 +1003,103 @@ def glissieres_du_jeu(P, ref, ch, pkf, args):
     return bilan
 
 
+def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
+    """Touffes d'herbe du jeu sur les bas-côtés, là où notre répartition des sols (scripts/15b_sols_du_jeu.py) dit
+    qu'il y a de l'herbe, de la garrigue ou du sol nu. Recette lue dans le niveau de Bollène le 12/11/2026 : mêmes
+    maillages (DryGrass04, 05, 06, WildGrass05, 03), mêmes échelles, une vingtaine de touffes par mètre de route
+    chez eux ; ici une dizaine, sur HERBES["bande_m"] de part et d'autre. Les positions sont tirées au sort (graine
+    fixe) : c'est un habillage, pas un relevé."""
+    from scipy import ndimage as ndi
+    src = MOD / "sols_jeu"
+    meta = json.loads((src / "sols_jeu.json").read_text(encoding="utf-8"))
+    prop = np.load(src / "proportions_l93.npz")
+    e, pas = meta["emprise_l93"], meta["pas_m"]
+    rng = np.random.default_rng(SEED + 7)
+    A, G, D = ch["A"], ch["G"], ch["D"]
+    es = ch["zone"] == "es" if "zone" in ch else np.ones(len(A), bool)
+    n_par_m = HERBES["candidats_par_metre"]
+    pts = []
+    for bord in (G, D):
+        nrm = bord[:, :2] - A[:, :2]
+        nrm /= np.maximum(np.linalg.norm(nrm, axis=1, keepdims=True), 1e-9)
+        tan = np.gradient(bord[:, :2], axis=0)
+        k = rng.integers(0, len(bord), int(len(bord) * n_par_m / 2))
+        d = HERBES["debut_m"] + rng.exponential(HERBES["portee_m"], len(k))
+        d = d[d < HERBES["bande_m"]]
+        k = k[:len(d)]
+        pts.append(bord[k, :2] + nrm[k] * d[:, None] + tan[k] * rng.uniform(-0.5, 0.5, (len(k), 1)))
+    xy = np.vstack(pts)
+    coord = [(e[3] - xy[:, 1]) / pas - 0.5, (xy[:, 0] - e[0]) / pas - 0.5]
+    c = {k: ndi.map_coordinates(prop[k], coord, order=1, mode="nearest").astype(np.float32) / 255.0 for k in meta["couches"]}
+    paillis = np.clip(1.0 - sum(c.values()), 0.0, 1.0)
+    w = (c["herbe_seche"] + c["herbe_haute"] + 0.35 * c["cailloux"] + 0.30 * c["terre"] + 0.20 * c["aiguilles_de_pin"]
+         + 0.30 * paillis)
+    garde = rng.random(len(xy)) < w
+    # hors chaussée et hors routes annexes revêtues
+    interdit = [ruban]
+    f_ann = OUT / "annexes_revetues.geojson"
+    if f_ann.exists():
+        for ft in json.loads(f_ann.read_text(encoding="utf-8"))["features"]:
+            g = shapely.geometry.shape(ft["geometry"])
+            interdit.append(g.buffer(0.5) if g.geom_type == "Polygon" else g.buffer(2.5))
+    zone = shapely.union_all(interdit)
+    shapely.prepare(zone)
+    dist = shapely.distance(zone, shapely.points(xy[:, 0], xy[:, 1]))
+    # maillage et échelle : tirage pondéré, puis dégagement (une touffe ne doit pas déborder sur la chaussée)
+    noms = list(HERBES["maillages"])
+    poids = np.array([HERBES["maillages"][n]["part"] for n in noms], float)
+    vert = c["herbe_haute"] > 0.3
+    choix = rng.choice(len(noms), len(xy), p=poids / poids.sum())
+    ech = np.zeros(len(xy))
+    rayon = np.zeros(len(xy))
+    for i, n in enumerate(noms):
+        m = HERBES["maillages"][n]
+        sel = choix == i
+        ech[sel] = rng.uniform(m["echelle"][0], m["echelle"][1], sel.sum())
+        rayon[sel] = 0.4 * m["largeur_m"] * ech[sel]
+    petit = noms.index(HERBES["petit"])
+    trop_pres = garde & (dist < 0.3 + rayon)
+    choix[trop_pres] = petit                         # près du bord : la plus petite touffe, à petite échelle
+    mp = HERBES["maillages"][HERBES["petit"]]
+    ech[trop_pres] = rng.uniform(mp["echelle"][0], (mp["echelle"][0] + mp["echelle"][1]) / 2, trop_pres.sum())
+    rayon[trop_pres] = 0.4 * mp["largeur_m"] * ech[trop_pres]
+    garde &= dist >= 0.3 + rayon
+    xy, choix, ech = xy[garde], choix[garde], ech[garde]
+    g = m08.to_gltf(np.column_stack([xy, np.zeros(len(xy))]), ref).astype(float)
+    zs = sol(g[:, 0], g[:, 2])
+    ok = np.isfinite(zs)
+    g, choix, ech = g[ok], choix[ok], ech[ok]
+    g[:, 1] = zs[ok] - 0.03
+    ue = Axes.ue(g)
+    pk = pkf(g)
+    lacet = rng.uniform(-180.0, 180.0, len(g))
+    cat = catalogue_du_jeu()
+    bilan = {}
+    for i, n in enumerate(noms):
+        sel = np.flatnonzero(choix == i)
+        if not len(sel):
+            continue
+        chemin = f"{HERBES['dossier']}/{n}"
+        nom = n.rsplit("/", 1)[1]
+        fichier = Path("instances") / "herbes" / f"{nom}.csv"
+        out = P.sortie / fichier
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with open(out, "w", newline="", encoding="utf-8") as fh:
+            wr = csv.writer(fh, lineterminator="\n")
+            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle"])
+            for j in sel:
+                wr.writerow([j, f"{ue[j, 0]:.1f}", f"{ue[j, 1]:.1f}", f"{ue[j, 2]:.1f}", f"{lacet[j]:.1f}", "1.00", f"{pk[j]:.0f}",
+                             f"{ech[j]:.3f}"])
+        el = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Herbes_{nom}", "maillage_jeu": chemin,
+                       "present_au_catalogue": chemin in cat, "fichier": fichier.as_posix(), "nombre": int(len(sel)),
+                       "composant": "HierarchicalInstancedStaticMeshComponent", "collision": "NoCollision",
+                       "hauteur_native_cm": None, "echelle": "colonne « echelle » de la table, maillage posé tel quel",
+                       "distances_de_disparition_cm": HERBES["disparition_cm"], "ombre_dynamique": False,
+                       "retirees_sur_chaussee": 0, "essais": ["complet"]})
+        bilan[el["nom"]] = el["nombre"]
+    return bilan
+
+
 def catalogue_du_jeu():
     cat = set()
     with gzip.open(sorted(REF.glob("catalogue_jeu_*.txt.gz"))[-1], "rt", encoding="utf-8") as f:
@@ -1117,6 +1225,8 @@ def main():
     ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
+    ap.add_argument("--herbes", choices=("jeu", "sans"), default="jeu",
+                    help="jeu : touffes d'herbe du jeu sur les bas-côtés (paquet complet seulement) ; sans : aucune")
     ap.add_argument("--glissieres", choices=("jeu", "modele"), default="jeu",
                     help="jeu : glissières métalliques du jeu posées le long de nos tronçons ; modele : nos lisses "
                          "modélisées. L'échantillon garde les nôtres.")
@@ -1177,6 +1287,8 @@ def main():
     bilan_inst = instances(P, ref, Sol(), ruban, pkf, args)
     if glissieres_jeu:
         bilan_inst.update(glissieres_du_jeu(P, ref, ch, pkf, args))
+    if args.herbes == "jeu" and not args.echantillon and args.pk_min is None and (MOD / "sols_jeu" / "sols_jeu.json").exists():
+        bilan_inst.update(herbes_du_bord(P, ref, ch, pkf, Sol(), ruban, args))
     manifeste = {
         "description": f"Paquet d'import Unreal Engine 5.6 de la spéciale {NOM} (scripts/16_paquet_unreal.py)",
         "version": 1, "genere_le": time.strftime("%Y-%m-%d %H:%M"), "echantillon": args.echantillon,
