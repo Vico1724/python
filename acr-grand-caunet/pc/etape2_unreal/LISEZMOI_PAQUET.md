@@ -129,6 +129,17 @@ python scripts\tout_lancer.py --seulement 16 -- --axes X,Z,Y   # refaire le paqu
 
 Le paquet arrive dans `paquet_unreal\`. `python scripts\16_paquet_unreal.py --echantillon` refait l'échantillon. Sous l'option `--pk-min A --pk-max B`, seuls les éléments de cette plage sont écrits.
 
+### Options ajoutées le 12/11/2026 (paquet complet seulement ; l'échantillon ne change pas)
+
+| Option | Par défaut | Effet |
+|---|---|---|
+| `--sol jeu` ou `photo` | `jeu` | `jeu` : terrain redécoupé par carré de 350 m du monde du jeu, habillé par le matériau de terrain de Bollène (deux masques TGA par carré, une carte de couleur). Demande `scripts/15b_sols_du_jeu.py` et un placement à jour (`outils/relever_placement.py`). `photo` : dalles portant la photo aérienne. |
+| `--glissieres jeu` ou `modele` | `jeu` | `jeu` : glissières métalliques du jeu posées bout à bout (table d'instances avec lacet et tangage). `modele` : nos lisses modélisées. |
+| `--herbes jeu` ou `sans` | `jeu` | `jeu` : touffes d'herbe du jeu sur 14 m de part et d'autre de la chaussée (table avec une colonne `echelle`). |
+| `--buissons jeu` ou `script10` | `jeu` | `jeu` : buissons du jeu pour les arbustes de 0,55 m et plus. `script10` : les maillages proposés par le script 10. |
+
+Nouveaux champs du manifeste : `sol` (mode, placement utilisé, cadrage de la carte) ; pour une variante, `parent_du_jeu` et `parametres_scalaires` ; pour un maillage, `couleur_de_sommet` ; pour un groupe d'instances, `distances_de_disparition_cm` et `ombre_dynamique`. Détail et raisons : `PROTOCOLE.md`, § 0 sexies.
+
 ## 5. Ce qui reste à décider ou à faire dans l'éditeur
 
 1. **Vérifier les appels du script** (`A_VERIFIER.md`). Le plus incertain est l'ajout d'un composant d'instances à un acteur.

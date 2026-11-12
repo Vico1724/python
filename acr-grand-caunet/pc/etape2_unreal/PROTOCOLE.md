@@ -541,10 +541,10 @@ Si l'éditeur ne produit rien d'acceptable (E1), on écrit nous-mêmes le conten
 |---|---|---|
 | `PROTOCOLE.md` | ce document | |
 | `elements_jeu_utiles.json` | 27 rubriques : arbres par essence (pin d'Alep, arbre à perruque, érables pour les chênes, pins noirs, cyprès, oliviers…), herbes sèches, asphaltes et terrains de Monte-Carlo, matériaux maîtres, murs, ponts, rochers, glissières, panneaux français, rubalise, portiques, ciels et météo, surfaces physiques, acteurs de niveau, tables, niveaux | régénérable : `outils/extraire_elements.py` |
-| `factices.json` | 72 factices, tous présents dans le jeu : 4 matériaux avec leurs paramètres réels, la variante modèle, 56 maillages (arbres, arbustes, couvre-sols, piquet de rubalise), 11 Blueprints avec leur classe native | régénérable : `outils/liste_factices.py` |
+| `factices.json` | 72 factices, tous présents dans le jeu : 4 matériaux avec leurs paramètres réels, la variante modèle, 56 maillages (arbres, arbustes, couvre-sols, piquet de rubalise), 11 Blueprints avec leur classe native | régénéré par `outils/liste_factices.py` : 86 factices au 12/11/2026 (terrain de Bollène, glissières, herbes, buissons en plus) |
 | `LISEZMOI_PAQUET.md` | contenu du paquet d'import, conventions de noms et de repère, production sur le PC | |
 | `echantillon/` | paquet des essais E3 et E4 (PK 1 600 à 1 800), avec `manifeste.json` | produit par `scripts/16_paquet_unreal.py --echantillon`, contrôlé |
-| `scripts_editeur/construire_niveau.py` | import complet piloté par le manifeste : textures, maillages, variantes, niveau, instances | jamais exécuté dans Unreal ; logique vérifiée avec `outils/essai_construire.py` (faux module `unreal`) |
+| `scripts_editeur/construire_niveau.py` | import complet piloté par le manifeste : textures, maillages, variantes, niveau, instances | **exécuté dans Unreal 5.6.1 depuis le 11/11/2026** (éditeur complet, `--quitter`) ; logique vérifiée aussi avec `outils/essai_construire.py` |
 | `A_VERIFIER.md` | les appels Unreal du script à vérifier, et où regarder | |
 | `outils/relever_jeu.py` | relève dans le jeu maillages, matériaux, variantes, textures, acteurs, niveau hôte | **exécuté le 11/11/2026** |
 | `scripts_editeur/attribution.py` | choisit pour chaque plante un maillage de taille voisine et son échelle ; utilisé par `construire_niveau.py` | **exécuté le 11/11/2026** en Python ordinaire ; vérifié par `outils/essai_construire.py` |
@@ -553,7 +553,11 @@ Si l'éditeur ne produit rien d'acceptable (E1), on écrit nous-mêmes le conten
 | `registre/gc_essai.json` | fiche d'inscription du niveau d'essai aux menus (E2a) | utilisée par `construire_registre.ps1` |
 | `projet/DefaultEngine_extrait.ini` | réglages du jeu à recopier dans le projet (E0) | tirés des fichiers du jeu |
 | `scripts_editeur/repere_unreal.py` | conversions Lambert-93, glTF, Unreal, point de contrôle | testé en Python ordinaire, et recoupé avec le mod de l'étape 1 à 20 cm près ; jamais dans Unreal |
-| `scripts_editeur/creer_factices.py` | crée les factices | corrigé d'après les relevés ; jamais exécuté |
+| `scripts_editeur/creer_factices.py` | crée les factices | **exécuté depuis le 11/11/2026** (ligne de commande de l'éditeur) |
 | `scripts_editeur/importer_dalles.py`, `poser_arbres.py` | premiers squelettes | remplacés par `construire_niveau.py` ; corrigés d'après les relevés, pour mémoire |
-| `scripts_pc/cuire_et_empaqueter.ps1` | cuisson, tri des factices, retoc | jamais exécuté ; options de cuisson à vérifier |
+| `scripts_pc/cuire_et_empaqueter.ps1` | cuisson, tri des factices, retoc | **exécuté depuis le 11/11/2026** ; `-Versionne` obligatoire pour les niveaux (§ 0 ter) |
 | `scripts_pc/construire_registre.ps1` | construit le conteneur des tables de menus (E2a) | **exécuté le 11/11/2026** ; conteneur jamais installé |
+| `outils/relever_placement.py` | recopie dans `releves/placement_etape1.json` le placement calculé par le constructeur de l'étape 1, et dit de combien il a bougé | **exécuté le 12/11/2026** |
+| `outils/relire_decor.py` | relit le conteneur du décor avec les archives du jeu : niveau, variantes de sol, masques, couleurs de sommet, réglages des herbes | **exécuté le 12/11/2026** : RELECTURE CONFORME |
+| `scripts_pc/choisir_decor.ps1` | installe l'une des versions du décor gardées sur le PC (`sol_jeu`, `sol_photo`) | **exécuté le 12/11/2026** |
+| `../../scripts/15b_sols_du_jeu.py` | proportions des matières de sol du jeu, par point de 50 cm (§ 0 sexies) | **exécuté le 12/11/2026** |
