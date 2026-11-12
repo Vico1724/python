@@ -1,5 +1,5 @@
 {
- "source": "rubrique placement de Z:\\acrxs\\construction\\stage-grandcaunet.report.json (acr-ref stage-build, étape 1), relevée le 12/11/2026 02:50 par pc/etape2_unreal/outils/relever_placement.py",
+ "source": "rubrique placement de Z:\\acrxs\\construction\\stage-grandcaunet.report.json (acr-ref stage-build, étape 1), relevée le 12/11/2026 14:23 par pc/etape2_unreal/outils/relever_placement.py",
  "lecture": "à passer à construire_niveau.py --placement : pose le décor dans le repère physique du mod de l'étape 1. À relever après CHAQUE construction de l'étape 1 : le placement suit l'emprise de la route.",
  "placement": {
   "formula": "physics = R_y(theta) * (dr2 - (cx, 0, cz)) + (tx, dy, tz); UE cm = (px, pz, py) * 100; R_y: x' = cos*x + sin*z, z' = -sin*x + cos*z",
@@ -55,6 +55,5 @@
    140746.5,
    51618.1
   ]
- },
- "reperes_du_mod_au_11_11_2026": "ligne de départ construite en UE (115499, 140768, 51641) cm, point de départ de la voiture (127103, 142401, 51378) cm (journal de stage-build)"
+ }
 }

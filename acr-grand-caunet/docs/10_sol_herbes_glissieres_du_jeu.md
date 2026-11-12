@@ -41,13 +41,11 @@ Tout a été contrôlé hors du jeu, en relisant les fichiers produits avec les 
 - **Les glissières** ont toutes la chaussée du bon côté, à 50 cm du bord, et suivent la pente.
 - **Le conteneur livré** a été relu par `pc/etape2_unreal/outils/relire_decor.py` : 458 maillages posés et 246 194 objets (arbres, arbustes, herbes, glissières), comme prévu ; aucun fichier hors de notre dossier ; les 41 matériaux de sol ont bien le terrain de Bollène pour parent ; les 82 masques ont le même format que ceux du jeu et le même contenu que leurs fichiers d'origine ; les sommets du sol et de l'enrobé ont une couleur nulle ; les herbes ont les distances de disparition du jeu et ne portent pas d'ombre. Le détail est dans `pc/etape2_unreal/releves/relecture_decor.json`.
 
-## 4. Ce qui n'est pas vérifié
+## 4. Essai en jeu du 12 novembre
 
-**Rien de ceci n'a été vu en jeu.** Trois points peuvent mal tourner :
+Le directeur confirme que le nouveau décor s'affiche : sol, herbes, buissons, glissières. Les trois craintes d'avant l'essai (textures de masques, ordre des matières, neige) ne se sont pas réalisées.
 
-1. nos masques sont des « textures virtuelles » cuites par l'Unreal du commerce, pas par celui du studio ;
-2. l'ordre dans lequel le jeu superpose ses matières est supposé ;
-3. le matériau de sol de Bollène prévoit de la neige selon la météo du niveau.
+Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux ponts, parapets trop hauts et unis, sol anthracite sous les arbres, massif lointain bleu ardoise. Le détail est dans `pc/etape2_unreal/PROTOCOLE.md` (§ 0 septies) et dans `docs/09_regularisation_et_videos.md` (section 7). **Ces corrections n'ont pas encore été vues en jeu.**
 
 ## 5. Revenir en arrière
 

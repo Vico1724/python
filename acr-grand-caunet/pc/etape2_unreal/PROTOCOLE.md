@@ -176,8 +176,8 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 **Feu vert du directeur pour avancer sans essai en jeu à chaque étape.** Ce qui suit est construit et contrôlé hors jeu ; l'état « vu en jeu » est précisé ligne par ligne.
 
 - **Asphalte.** Notre enrobé `MI_GC_Enrobe` hérite de `MI_BolleneAsphalt1`, l'asphalte des routes de Monte-Carlo. Il est plaqué d'après la position dans le monde (static switch `UseWSPlanarUV`) et ne dépend donc pas du dépliage de nos maillages. Le mécanisme est général : dans `outils/liste_factices.py`, `PARENTS_DU_JEU` désigne une variante du jeu comme parent d'une des nôtres, qui n'y règle alors rien. *Pas encore vu en jeu. Risque connu : ce matériau lit peut-être les couleurs des sommets, que nos maillages n'ont pas.*
-- **Sol.** Fait le 12/11/2026 : notre terrain prend le matériau de terrain de Bollène. Voir § 0 sexies. *Pas encore vu en jeu.*
-- **Tracé régularisé, dégagement des arbres, collision des troncs** : voir `docs/09_regularisation_et_videos.md`. *Pas encore vu en jeu.*
+- **Sol.** Fait le 12/11/2026 : notre terrain prend le matériau de terrain de Bollène. Voir § 0 sexies. *Vu en jeu le 12/11/2026 : s'affiche ; trop sombre sous les arbres, corrigé au § 0 septies.*
+- **Tracé régularisé, dégagement des arbres, collision des troncs** : voir `docs/09_regularisation_et_videos.md`. *Vu en jeu le 12/11/2026 ; des plis de chaussée aux ponts, corrigés au § 0 septies.*
 - **Étape 1** : construite avec `-Noms -Ciel` en plus de la cellule gardée et de l'exclusion des visuels. Le menu affiche « Le Grand Caunet », et le ciel prend la latitude de la Provence. *Pas encore vu en jeu.*
 
 **Refaire le décor après un changement du tracé.** L'ordre compte : le constructeur de l'étape 1 recalcule le placement de la spéciale dans le niveau hôte à partir de l'emprise de la route, et le décor doit être posé avec ce placement-là. Après la régularisation, il avait bougé de 6,8 cm ; le niveau a été reposé avant d'être cuit.
@@ -225,7 +225,24 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **Relecture hors jeu.** `python pc\etape2_unreal\outils\relire_decor.py`, à lancer après chaque cuisson : il relit le conteneur avec les archives du jeu et contrôle le niveau, les variantes de sol, le format et le contenu des masques, les couleurs de sommet. Le 12/11/2026 : RELECTURE CONFORME (458 maillages, 246 194 instances dont 212 glissières, 82 344 touffes d'herbe et 98 376 buissons, 82 masques, herbes et buissons bien réglés). Conteneur installé le 12/11/2026 à 04 h 49 (avec le paysage lointain adouci), gardé aussi dans `Z:\acrxs\unreal\dist\sol_jeu\`.
 
-**Ce qui n'est pas vérifié.** Rien de ceci n'a été vu en jeu. Trois points peuvent mal tourner : nos textures virtuelles sont cuites par l'Unreal du commerce et non par celui du studio ; l'ordre dans lequel le jeu superpose ses matières est supposé (de la 2 à la 6) ; le matériau de Bollène prévoit de la neige, qui dépend de la météo du niveau hôte. Si le sol apparaît noir, uni, blanc ou décalé, revenir à l'ancien sol et le signaler.
+**Vu en jeu le 12/11/2026.** Le directeur confirme que le nouveau décor s'affiche (sol, herbes, buissons, glissières), puis envoie huit captures de défauts : voir § 0 septies. Ce qui était à craindre avant l'essai : Trois points peuvent mal tourner : nos textures virtuelles sont cuites par l'Unreal du commerce et non par celui du studio ; l'ordre dans lequel le jeu superpose ses matières est supposé (de la 2 à la 6) ; le matériau de Bollène prévoit de la neige, qui dépend de la météo du niveau hôte. Si le sol apparaît noir, uni, blanc ou décalé, revenir à l'ancien sol et le signaler.
+
+## 0 septies. Essai en jeu du 12/11/2026 : défauts relevés et corrections
+
+**Constat du directeur.** Le décor du § 0 sexies s'affiche. Il envoie huit captures du jeu et neuf images de la vidéo VMRS 2025 montrant l'attendu.
+
+| Défaut vu en jeu | Cause trouvée | Correction |
+|---|---|---|
+| Arête en travers de la route au km 6,1, marche au km 5,0, plis au km 4,0, encoche au bord au km 6,7 | L'altitude des **bords** de chaussée avait été lue hors de la chaussée : dans le vide aux ponts et ponceaux, sur le talus ailleurs. Jusqu'à 1,22 m d'écart, alors que l'axe est juste. | `scripts/07b_regulariser_chaussee.py`, étape 3 bis : chaque profil en travers est décomposé en inclinaison d'ensemble et en toit ; là où le toit sort de -4,5 % à +3 %, ou saute de plus de 4 % d'un mètre au suivant, les bords sont reconstruits d'après les profils sains voisins. 340 m repris en 19 tronçons. L'axe n'est pas touché. |
+| Parapets ondulés | Ils suivent l'altitude des bords. | La même. |
+| Parapets trop hauts, unis, bouts carrés | Hauteurs supposées (0,6 à 0,8 m), matière unie, pas de biseau. | `scripts/11_route_ouvrages.py` : extrémités en biseau d'un mètre ; hauteurs revues d'après les images de la vidéo (0,5 à 0,7 m, `data/reference/ouvrages_parapets.json`, avec l'ancienne valeur gardée) ; matière héritée des murs de pierre et de béton de Bollène (`MI_MonBolStoneWallsA2`, `MI_MonBolConcreteWallsA`), dépliage et couleur de sommet ramenés aux leurs. |
+| Mur de pierre absent avant l'épingle du km 4 | Relevé dans `releve_video.json` (PK 4012 à 4033, puis parapets des deux côtés jusqu'à 4073) mais jamais modélisé. | Ajouté aux parapets hors tablier, raccordé sans biseau à l'ouvrage 4074. |
+| Sol anthracite sous les arbres | La carte de couleur venait de la photo aérienne, qui montre les houppiers, sombres ; elle était de plus calée sur la clarté de la carte de Bollène. Les talus de terre nue, eux, étaient justes. | La carte prend la couleur des dalles de sol de l'étape 14, où le sol sous couvert est reconstruit (aiguilles, litière) ; clarté moyenne visée 118 sur 255 au lieu de 86. |
+| Massif lointain bleu ardoise au km 3,9 | Photo de forêt vue du ciel très sombre (65 sur 255), ombrée une seconde fois par le soleil bas. L'adoucissement des normales du § 0 sexies ne suffisait pas. | Images lointaines éclaircies par une même courbe (gamma 0,72, gain 1,08) ; normales adoucies dès 150 m, à 85 % au-delà de 800 m. *Les falaises claires vues de la route ne peuvent pas venir d'une photo prise du ciel : le massif restera plus sombre que nature.* |
+
+**Ce qui n'est pas corrigé.** Les poteaux électriques, les panneaux et les rochers de bord de route visibles sur la vidéo ne sont pas modélisés. Les talus rocheux côté montagne sont du terrain habillé de terre, pas de la roche.
+
+**État.** Mod de l'étape 1 reconstruit (tous contrôles passés, 2 578 obstacles, placement inchangé). Décor reconstruit et relu : voir `releves/relecture_decor.json`. *Corrections pas encore vues en jeu.*
 
 ## 1. L'idée générale
 

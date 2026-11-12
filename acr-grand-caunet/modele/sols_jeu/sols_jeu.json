@@ -32,11 +32,12 @@
   "fichier": "couleur_1m.npy",
   "pas_m": 1.0,
   "moyenne_rvb_dans_les_photos": [
-   60.1,
-   70.2,
-   69.1
+   107.3,
+   103.1,
+   82.9
   ],
-  "hors_photo": "couleur des environs adoucie sur 40 m, puis moyenne générale"
+  "hors_photo": "couleur des environs adoucie sur 40 m, puis moyenne générale",
+  "part_tiree_des_dalles_de_sol_de_l_etape_14": 0.413
  },
  "part_couverte_par_les_photos": 0.348,
  "seuils": {
@@ -53,5 +54,5 @@
  },
  "accotement_m": 1.5,
  "graine": 20261112,
- "duree_s": 84
+ "duree_s": 66
 }

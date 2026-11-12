@@ -67,7 +67,7 @@ Cette comparaison confirme l'enchaînement et le sens des virages, comme l'avait
 - **Trois tronçons n'ont jamais pu être mesurés** et restent interpolés : PK 451 à 473, 4 097 à 4 117, 6 450 à 6 470. La régularisation ne les améliore pas : elle n'invente pas de mesure.
 - **Le rayon des épingles** repose sur le relevé laser seul. Aucune autre source ne permet de le vérifier à mieux qu'un ou deux mètres.
 - **La largeur** reste la donnée la moins sûre du tracé.
-- **Rien de cela n'a encore été vu en jeu** au moment où ce document est écrit.
+- **Vu en jeu le 12 novembre 2026** : le tracé est bon, mais la chaussée faisait des plis à quatre endroits. Voir la section 7.
 
 ## 6. Ce qui a changé en aval
 
@@ -75,3 +75,24 @@ Tout ce qui dépend de la chaussée a été recalculé : modèle 3D, route et ou
 
 - **Dégagement des arbres** (`scripts/16_paquet_unreal.py`) : un arbre est retiré si son tronc est à moins de 2,5 m du bord de chaussée, ou à moins d'un quart du diamètre de son houppier ; un buisson, à moins de son demi-diamètre plus 0,5 m. En jeu, des branches barraient la route au km 0,1.
 - **Collision des troncs** (`scripts/09_export_stage_ir.py`) : 1 023 arbres situés entre ce dégagement et 6 m du bord reçoivent un cylindre de 3 m de haut dans la physique, avec la surface « tronc d'arbre » du jeu. Avant, la voiture traversait les arbres.
+
+## 7. Profil en travers aux ponts et aux talus (12 novembre 2026, après l'essai en jeu)
+
+**Ce que le directeur a vu en jeu.** Une arête en travers de la route au km 6,1, une marche au km 5,0, des plis au km 4,0, une encoche au bord au km 6,7.
+
+**La cause.** L'axe de la chaussée est juste, mais l'altitude de ses bords avait été lue dans le modèle de terrain, qui ne contient pas les tabliers des ponts : au droit d'un pont ou d'un ponceau, le bord tombait dans le vide ; le long d'un talus, il montait dessus. L'écart atteignait 1,22 m.
+
+**Comment c'est repéré.** Une chaussée est un plan incliné (le dévers), au plus un toit de 2,5 %. Chaque profil en travers est donc décomposé en deux nombres : l'inclinaison d'ensemble et le toit. Un toit de plus de 4,5 %, un V de plus de 3 %, ou un dévers qui saute de plus de 4 % d'un mètre au suivant, ne sont pas ceux d'une chaussée.
+
+**Ce qui est fait.** Sur ces profils-là seulement, et 3 m de part et d'autre, l'altitude des deux bords est reconstruite en raccordant l'inclinaison et le toit des profils sains voisins. L'axe n'est pas touché, la position en plan non plus.
+
+| | Avant | Après |
+|---|---|---|
+| Longueur reprise | | 340 m, en 19 tronçons |
+| Dévers le plus fort | 50,1 % | 15,2 % |
+| Plus forte correction d'altitude d'un bord | | 1,22 m (km 6,1) |
+| Toit ou V, du 0,5e au 99,5e centile | de -8,4 % à +2,1 % (1er au 99e) | de -3,2 % à +1,9 % |
+
+Les quatre endroits signalés font partie des 19 tronçons. Les quinze autres sont de même nature et auraient été vus tôt ou tard : PK 1 195, 1 685, 1 785, 1 798, 1 939, 2 435, 3 060, 3 351, 3 467, 3 902, 4 571, 4 673, 5 749, 6 028, 6 331. La liste complète est dans `data/processed/regularisation_chaussee.json`, rubrique `profil_en_travers`.
+
+**Limite.** Un dévers réel de plus de 4,5 % d'un seul côté serait pris pour une erreur. Le plus long tronçon repris (PK 3 902 à 3 970) longe un mur de soutènement : le bord droit y était lu en contrebas.

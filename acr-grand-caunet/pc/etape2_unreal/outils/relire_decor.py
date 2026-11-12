@@ -232,13 +232,31 @@ def main():
             s = ref("mesh-uv", "acr/Content/" + e["chemin_ue"][len("/Game/"):] + ".uasset", "--limit", "40")
             m = re.search(r"(\d+) vertices.*colours (\d+)", s)
             couleurs = set(re.findall(r"rgba (\d+),(\d+),(\d+),(\d+)", s))
-            if not m or m.group(1) != m.group(2) or couleurs != {("0", "0", "0", "0")}:
+            if not m or m.group(1) != m.group(2) or couleurs != {tuple(str(v) for v in e["couleur_de_sommet"])}:
                 sans.append(e["nom"])
         bilan["sol"]["maillages"] = len(sols)
-        bilan["sol"]["maillages_sans_couleur_nulle"] = sans[:5]
+        bilan["sol"]["maillages_a_mauvaise_couleur_de_sommet"] = sans[:5]
         if sans:
-            erreurs.append(f"maillages de sol sans couleur de sommet nulle : {sans[:3]}")
+            erreurs.append(f"maillages dont la couleur de sommet n'est pas celle prévue : {sans[:3]}")
 
+    # variantes qui héritent tout d'une variante du jeu (factices.json, role parent_du_jeu) : asphalte, murs
+    herite = {}
+    for x in json.loads((KIT / "factices.json").read_text(encoding="utf-8"))["factices"]:
+        if x.get("role") == "parent_du_jeu":
+            for nom in x.get("pour", []):
+                herite[nom] = x["objet"]
+    mal_herite, vus = [], 0
+    utilises = {e.get("materiau") for e in man["elements"] if e["type"] == "StaticMesh" and e.get("acteur")}
+    for e in man["elements"]:
+        if e["type"] == "MaterialInstance" and e["nom"] in herite and e["nom"] in utilises:
+            vus += 1
+            p = exporter("acr/Content/" + e["chemin_ue"][len("/Game/"):] + ".uasset")[0]["Properties"]
+            if (p["Parent"]["ObjectPath"].split(".")[0] != herite[e["nom"]] or p.get("bHasStaticPermutationResource")
+                    or p.get("TextureParameterValues")):
+                mal_herite.append(e["nom"])
+    bilan["variantes_heritees_du_jeu"] = {"controlees": vus, "non_conformes": mal_herite}
+    if mal_herite:
+        erreurs.append(f"variantes qui devraient hériter d'un matériau du jeu sans rien régler : {mal_herite}")
     bilan["erreurs"] = erreurs
     (KIT / "releves" / "relecture_decor.json").write_text(json.dumps(bilan, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(bilan, ensure_ascii=False, indent=1))
