@@ -1,19 +1,26 @@
 {
  "conteneur": {
-  "fichiers": 2031,
+  "fichiers": 2046,
   "hors_de_notre_dossier": 0
  },
  "niveau": {
-  "maillages_poses": 460,
-  "attendus": 460,
-  "instances": 246194,
-  "attendues": 246194,
-  "composants_d_instances": 61,
+  "maillages_poses": 466,
+  "attendus": 466,
+  "instances": 246276,
+  "attendues": 246276,
+  "composants_d_instances": 69,
   "instances_hors_vegetation": {
    "SM_PlasticTapePoleA": 12,
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 200,
-   "SM_MetalGuardrailASimpleEnd": 6
+   "SM_MetalGuardrailASimpleEnd": 6,
+   "SM_MonPylonB15": 26,
+   "SM_PlasticBarrierAFix": 9,
+   "SM_RaceFlyingFinish": 1,
+   "SM_RaceMedicWarningA": 1,
+   "SM_RacePreFlyingFinish": 1,
+   "SM_RaceRadioPointA": 6,
+   "SM_RaceRadioWarningA": 7
   },
   "composants_a_disparition_reglee": 9,
   "herbes_mal_reglees": []
@@ -44,7 +51,7 @@
   },
   "masques_de_format_different": [],
   "ecart_moyen_au_fichier_source_sur_255": 2.57,
-  "maillages": 95,
+  "maillages": 96,
   "maillages_a_mauvaise_couleur_de_sommet": []
  },
  "variantes_heritees_du_jeu": {

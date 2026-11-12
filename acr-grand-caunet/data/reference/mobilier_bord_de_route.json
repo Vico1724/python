@@ -1,0 +1,121 @@
+{
+ "note": "Objets de bord de route posés avec des maillages du jeu : poteaux électriques, panneaux du rallye, barrières, haie. Lu par scripts/mobilier.py, utilisé par 09_export_stage_ir.py (collisions) et 16_paquet_unreal.py (décor). Positions : PK sur l'axe précis, côté dans le sens de la course, décalage en mètres au-delà du bord de chaussée. Sources : data/reference/releve_video.json (inventaire_bord_de_route, vidéo VMRS 2025, PK à ±10 m) et les captures de cette vidéo envoyées par le directeur le 12/11/2026 (PK de la caméra d'après table_temps_pk, objet situé 15 à 70 m devant : ±25 m). Rien ici n'est mesuré sur le terrain.",
+ "conventions_du_jeu": "Lu dans le niveau de Bollène le 12/11/2026 : un panneau du rallye est posé à 2,5-4 m de l'axe, perpendiculaire à la route, lacet = cap de la route + 90 degrés pour faire face aux concurrents ; une barrière plastique est posée dans le sens de la route.",
+ "types": {
+  "poteau": {
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
+   "description": "poteau de 9 m à traverse (2,2 m), le long d'une ligne : traverse en travers de la ligne",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {"min": [-20, -110, -40], "max": [30, 110, 900]},
+   "collision": {"forme": "cylinder", "paroi": "PM_WallConcrete", "diametre_m": 0.3, "hauteur_m": 3.5, "enfoui_m": 0.4}
+  },
+  "panneau_radio_annonce": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceRadioWarningA",
+   "description": "panneau jaune à éclair : annonce d'un point radio",
+   "lacet_relatif_deg": 90,
+   "bornes_cm": {"min": [-30, -10, 0], "max": [30, 10, 80]}
+  },
+  "panneau_radio": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceRadioPointA",
+   "description": "panneau bleu à éclair : point radio",
+   "lacet_relatif_deg": 90,
+   "bornes_cm": {"min": [-30, -10, 0], "max": [30, 10, 80]}
+  },
+  "panneau_secours_annonce": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceMedicWarningA",
+   "description": "panneau jaune à croix rouge : annonce d'un point de secours",
+   "lacet_relatif_deg": 90,
+   "bornes_cm": {"min": [-30, -10, 0], "max": [30, 10, 80]}
+  },
+  "panneau_annonce_arrivee": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RacePreFlyingFinish",
+   "description": "panneau jaune à damier : annonce de l'arrivée lancée",
+   "lacet_relatif_deg": 90,
+   "bornes_cm": {"min": [-40, -10, 0], "max": [40, 10, 70]}
+  },
+  "panneau_arrivee": {
+   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceFlyingFinish",
+   "description": "panneau rouge à damier : arrivée lancée",
+   "lacet_relatif_deg": 90,
+   "bornes_cm": {"min": [-40, -10, 0], "max": [40, 10, 70]}
+  },
+  "barriere_plastique": {
+   "maillage_jeu": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+   "description": "barrière plastique rouge et blanche de 1,6 m",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {"min": [-80, -30, 0], "max": [80, 30, 80]},
+   "collision": {"forme": "box", "paroi": "PM_WallPlasticBarrier", "largeur_m": 0.6, "hauteur_m": 0.8, "longueur_m": 1.6, "enfoui_m": 0.0}
+  },
+  "haie": {
+   "maillage_jeu": "/Game/Foliage/Trees/Hedge/SM_Hedge02",
+   "description": "haie taillée de 2,1 m de haut, 6,8 m de long, 0,8 m d'épaisseur",
+   "lacet_relatif_deg": 90,
+   "bornes_cm": {"min": [-40, -350, -10], "max": [40, 330, 210]},
+   "collision": {"forme": "box", "paroi": "PM_WallBush", "largeur_m": 0.8, "hauteur_m": 2.0, "longueur_m": 6.6, "enfoui_m": 0.2}
+  }
+ },
+ "lignes_electriques": [
+  {
+   "nom": "epingle_du_km_4",
+   "cote": "droite",
+   "decalage_m": 3.0,
+   "cables": true,
+   "poteaux": [
+    {"pk_m": 3850, "statut": "vu sur la capture à 3 min 13 (caméra au PK 3818)"},
+    {"pk_m": 3912, "statut": "interpolé entre deux poteaux vus"},
+    {"pk_m": 3975, "statut": "vu sur la capture à 3 min 18 (caméra au PK 3958)"},
+    {"pk_m": 4045, "statut": "vu sur les captures à 3 min 18 et 3 min 22, derrière le mur de pierre"},
+    {"pk_m": 4125, "statut": "interpolé entre deux poteaux vus"},
+    {"pk_m": 4204, "statut": "vu sur la vidéo (inventaire du relevé : poteau électrique à droite)"},
+    {"pk_m": 4272, "statut": "interpolé entre deux poteaux vus"},
+    {"pk_m": 4340, "statut": "vu sur la capture à 3 min 39 (caméra au PK 4325), à l'entrée du pont 4360"}
+   ],
+   "source": "captures de la vidéo VMRS 2025 du 12/11/2026 ; l'inventaire du relevé n'avait noté que le poteau du PK 4204",
+   "confiance": "moyenne pour l'existence de la ligne, faible pour la position de chaque poteau (±25 m)"
+  },
+  {
+   "nom": "plateau_final",
+   "cote": "droite",
+   "decalage_m": 3.0,
+   "cables": true,
+   "poteaux": [
+    {"pk_m": 5568, "statut": "vu sur la capture à 4 min 39 (caméra au PK 5549)"},
+    {"pk_m": 5607}, {"pk_m": 5669}, {"pk_m": 5731}, {"pk_m": 5794}, {"pk_m": 5856}, {"pk_m": 5918}, {"pk_m": 5980}, {"pk_m": 6043},
+    {"pk_m": 6105, "statut": "vu sur la capture à 5 min 04 (caméra au PK 6072), au ponceau 6102"},
+    {"pk_m": 6167}, {"pk_m": 6229}, {"pk_m": 6292}, {"pk_m": 6354}, {"pk_m": 6416}, {"pk_m": 6478}, {"pk_m": 6541}, {"pk_m": 6603},
+    {"pk_m": 6665, "statut": "vu sur la capture à 5 min 32 (caméra au PK 6652), au ponceau 6681"}
+   ],
+   "source": "inventaire du relevé vidéo : « ligne électrique sur poteaux bois ou béton, un poteau tous les 50 à 80 m environ », PK 5663 à 6712, à droite ; trois poteaux calés sur les captures du 12/11/2026, les autres répartis tous les 62 m",
+   "confiance": "élevée pour l'existence de la ligne, faible pour la position de chaque poteau"
+  }
+ ],
+ "objets": [
+  {"type": "panneau_radio_annonce", "pk_m": 2180, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau jaune à l'entrée de l'épingle (non lu), PK 2176-2185"},
+  {"type": "panneau_radio_annonce", "pk_m": 2606, "cote": "gauche", "decalage_m": 0.8, "source": "inventaire : panneau jaune (non lu)"},
+  {"type": "panneau_radio", "pk_m": 2660, "cote": "gauche", "decalage_m": 1.2, "source": "inventaire : piste, voiture garée, panneau bleu, PK 2647-2674"},
+  {"type": "panneau_radio_annonce", "pk_m": 2857, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau jaune (non lu)"},
+  {"type": "panneau_radio", "pk_m": 2985, "cote": "droite", "decalage_m": 1.2, "source": "inventaire : piste, aire en terre, panneau rond bleu, PK 2971-2999"},
+  {"type": "panneau_secours_annonce", "pk_m": 3077, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau carré jaune à pictogramme rouge (non lu)"},
+  {"type": "panneau_radio", "pk_m": 3188, "cote": "droite", "decalage_m": 1.2, "source": "inventaire : piste, commissaire, panneau bleu, fût"},
+  {"type": "panneau_radio_annonce", "pk_m": 3550, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : petit panneau jaune"},
+  {"type": "panneau_radio_annonce", "pk_m": 4966, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau jaune ; confirmé par la capture à 4 min 12 (panneau jaune à éclair)"},
+  {"type": "panneau_radio", "pk_m": 5025, "cote": "droite", "decalage_m": 1.2, "source": "inventaire : croisement de pistes, panneau bleu à droite, PK 5019-5031"},
+  {"type": "panneau_radio_annonce", "pk_m": 5366, "cote": "droite", "decalage_m": 0.8, "source": "inventaire : panneau triangle « virage à droite » et panneau jaune"},
+  {"type": "panneau_radio_annonce", "pk_m": 5590, "cote": "droite", "decalage_m": 0.8, "source": "capture à 4 min 39 (caméra au PK 5549) : panneau jaune carré à droite ; absent de l'inventaire"},
+  {"type": "panneau_radio", "pk_m": 1497, "cote": "gauche", "decalage_m": 1.2, "source": "inventaire : débouché de piste, panneau bleu numéroté, PK 1490-1504"},
+  {"type": "panneau_radio", "pk_m": 6493, "cote": "gauche", "decalage_m": 1.2, "source": "inventaire : croisement de pistes, panneau bleu à gauche, PK 6489-6497"},
+  {"type": "panneau_annonce_arrivee", "pk_m": 6543, "cote": "gauche", "decalage_m": 0.8, "source": "inventaire : panneau jaune à damier (annonce d'arrivée)"},
+  {"type": "panneau_arrivee", "pk_m": 6736, "cote": "gauche", "decalage_m": 0.8, "source": "inventaire : panneau rouge à damier d'arrivée"}
+ ],
+ "rangees": [
+  {"type": "haie", "pk_debut_m": 5035, "pk_fin_m": 5234, "cote": "droite", "decalage_m": 1.6, "pas_m": 6.5, "source": "inventaire : haie dense continue à droite", "confiance": "élevée pour l'existence, moyenne pour les bornes ; hauteur supposée (2 m)"},
+  {"type": "barriere_plastique", "pk_debut_m": 2652, "pk_fin_m": 2668, "cote": "droite", "decalage_m": 2.5, "pas_m": 1.7, "source": "inventaire : piste barrée par barrière à piquets rouges et blancs, aire en terre, PK 2647-2674", "confiance": "moyenne : le relevé décrit une barrière à piquets, rendue ici par des barrières plastique du jeu"}
+ ],
+ "non_poses": [
+  "Panneaux routiers (triangles de danger aux PK 2131, 3499, 3716, 5287, 5366 ; panneau directionnel PK 3321) : le jeu a des panneaux routiers de Bollène, mais leurs dessins n'ont pas été identifiés.",
+  "Balises de virage à chevrons (PK 5, 2275, 5517) : pas de maillage équivalent identifié.",
+  "Rochers au ras de la chaussée (PK 1540-1607 à gauche) et talus rocheux (PK 247-836, 2083-2176) : leur position individuelle n'est pas connue, et ce sont des obstacles durs ; à poser d'après une vidéo.",
+  "Clôture en bois (PK 5259-5293) et garde-corps métallique (PK 5496) : seuls leurs murets de pierre sont modélisés (data/reference/ouvrages_parapets.json).",
+  "Public, véhicules, commissaires, rubalise hors carrefour, chronométrage."
+ ]
+}

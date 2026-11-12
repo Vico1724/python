@@ -2,8 +2,10 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante : chaussée corrigée aux ponts, parapets bas en pierre et en béton, sol
-                         éclairci, lointain éclairci (12/11/2026 après-midi)
+    sol_jeu              version courante : la suivante, plus les poteaux électriques et leurs câbles, les
+                         panneaux du rallye, les barrières, la haie et les murs manquants (12/11/2026, 16 h)
+    sol_jeu_sans_mobilier  chaussée corrigée aux ponts, parapets bas en pierre et en béton, sol éclairci, lointain
+                         éclairci (12/11/2026, 15 h) ; jamais vue en jeu
     sol_jeu_vu_le_12_11  celle que le directeur a vue en jeu le 12/11/2026 au matin, avec ses défauts
     sol_photo_plus       la même que la précédente, mais avec l'ancien sol portant la photo aérienne
     sol_photo            sol en photo, nos glissières, pas d'herbes (décor vu en jeu le 11/11/2026, tracé régularisé)

@@ -678,6 +678,142 @@
    "essai": "maillages du jeu posés tels quels"
   },
   {
+   "objet": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -20,
+     -110,
+     -40
+    ],
+    "max": [
+     30,
+     110,
+     900
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RaceRadioWarningA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -30,
+     -10,
+     0
+    ],
+    "max": [
+     30,
+     10,
+     80
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RaceRadioPointA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -30,
+     -10,
+     0
+    ],
+    "max": [
+     30,
+     10,
+     80
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RaceMedicWarningA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -30,
+     -10,
+     0
+    ],
+    "max": [
+     30,
+     10,
+     80
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RacePreFlyingFinish",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -40,
+     -10,
+     0
+    ],
+    "max": [
+     40,
+     10,
+     70
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RaceFlyingFinish",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -40,
+     -10,
+     0
+    ],
+    "max": [
+     40,
+     10,
+     70
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -80,
+     -30,
+     0
+    ],
+    "max": [
+     80,
+     30,
+     80
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/Trees/Hedge/SM_Hedge02",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -40,
+     -350,
+     -10
+    ],
+    "max": [
+     40,
+     330,
+     210
+    ]
+   }
+  },
+  {
    "objet": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
    "type": "Material",
    "essai": "E3",

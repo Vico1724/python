@@ -124,14 +124,20 @@
     "type": "pierre",
     "hauteur_m": 0.7,
     "epaisseur_m": 0.45,
-    "statut": "vu sur la vidéo"
+    "statut": "vu sur la vidéo",
+    "prolongement_avant_m": 18.0,
+    "prolongement_apres_m": 5.0,
+    "revision_longueur": "parapets longs d'environ 37 m d'après la vidéo (PK 3194 à 3231), plus longs que le tablier détecté ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
    },
    "droite": {
     "type": "pierre",
     "hauteur_m": 0.7,
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo",
-    "note": "chaperon gris, pas de dés blancs visibles"
+    "note": "chaperon gris, pas de dés blancs visibles",
+    "prolongement_avant_m": 18.0,
+    "prolongement_apres_m": 5.0,
+    "revision_longueur": "parapets longs d'environ 37 m d'après la vidéo (PK 3194 à 3231), plus longs que le tablier détecté ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
    }
   },
   {
@@ -294,6 +300,23 @@
    }
   },
   {
+   "pk_debut_m": 1688,
+   "pk_fin_m": 1711,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "sans objet"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne ; hauteur supposée",
+    "note": "mur de pierre bas à droite après le pont 1661 ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
+   }
+  },
+  {
    "pk_debut_m": 2128,
    "pk_fin_m": 2178,
    "route": "D3D",
@@ -310,6 +333,42 @@
     "statut": "vu sur la vidéo",
     "confiance": "élevée",
     "note": "parapet à dés blancs à l'extérieur du gauche 4, juste avant la première épingle"
+   }
+  },
+  {
+   "pk_debut_m": 2339.5,
+   "pk_fin_m": 2341.5,
+   "route": "D3D",
+   "gauche": {
+    "type": "aucun",
+    "statut": "sans objet"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.5,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne ; dimensions supposées",
+    "note": "bloc de béton blanc en fin de glissière ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
+   }
+  },
+  {
+   "pk_debut_m": 2697,
+   "pk_fin_m": 2707,
+   "route": "D3D",
+   "droite": {
+    "type": "aucun",
+    "statut": "sans objet"
+   },
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.4,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "confiance": "faible : longueur et hauteur supposées",
+    "note": "blocs de béton bas à gauche avant le pont 2777 ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
    }
   },
   {
@@ -424,6 +483,40 @@
     "note": "idem côté droit",
     "hauteur_avant_le_12_11_2026_m": 0.6,
     "revision": "hauteur revue d'après les captures de la vidéo VMRS 2025 envoyées par le directeur le 12/11/2026 (parapets jugés trop hauts en jeu) ; estimation à l'œil, à ±10 cm"
+   }
+  },
+  {
+   "pk_debut_m": 5259,
+   "pk_fin_m": 5293,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "sans objet"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "confiance": "moyenne ; hauteur supposée",
+    "note": "muret de pierre sèche d'une propriété ; la clôture en bois qui le surmonte n'est pas modélisée ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
+   }
+  },
+  {
+   "pk_debut_m": 5490,
+   "pk_fin_m": 5502,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "sans objet"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo",
+    "confiance": "faible : longueur supposée (12 m)",
+    "note": "muret de pierre portant un garde-corps métallique (non modélisé) ; inventaire du relevé vidéo (data/reference/releve_video.json), ajouté le 12/11/2026 à la demande du directeur (obstacles manquants)"
    }
   },
   {

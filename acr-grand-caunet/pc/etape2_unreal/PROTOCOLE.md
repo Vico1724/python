@@ -246,6 +246,19 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **Versions gardées.** Les anciennes versions du décor vont avec l'ancienne route physique (bords non corrigés) : chaque dossier de `Z:\acrxs\unreal\dist\sol_*` contient donc aussi le mod de l'étape 1 qui lui correspond, et `choisir_decor.ps1` installe les deux. La version vue en jeu le 12/11 au matin est `sol_jeu_vu_le_12_11`.
 
+## 0 octies. Obstacles et objets de bord de route (12/11/2026)
+
+**Demande du directeur :** ajouter les obstacles manquants connus, sans attendre d'essai. Détail pour lui : `docs/11_mobilier_bord_de_route.md`.
+
+- **Liste** : `data/reference/mobilier_bord_de_route.json` (types d'objets, lignes électriques, objets isolés, rangées ; source et confiance de chacun). **Code** : `scripts/mobilier.py`, lu par `09_export_stage_ir.py` (collisions) et `16_paquet_unreal.py` (décor, `--mobilier jeu`), pour que les deux placent chaque objet au même endroit.
+- **Maillages du jeu** : poteau `MonteCarloProps/MonPylonB/SM_MonPylonB15` ; panneaux `RallyProps/Signs/SM_RaceRadioWarningA`, `SM_RaceRadioPointA`, `SM_RaceMedicWarningA`, `SM_RacePreFlyingFinish`, `SM_RaceFlyingFinish` ; barrière `RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix` ; haie `Foliage/Trees/Hedge/SM_Hedge02`.
+- **Orientation, lue dans le niveau de Bollène** : un panneau du rallye fait face aux concurrents avec un lacet égal au cap de la route + 90° (vérifié sur les paires annonce radio puis point radio, et sur les panneaux de départ et d'arrivée) ; il est posé à 2,5-4 m de l'axe. La barrière plastique et la haie sont posées dans le sens de la route (la haie a sa longueur selon son axe Y : lacet + 90°). Le poteau a sa traverse selon Y : lacet égal au cap, pour qu'elle soit en travers de la ligne.
+- **Câbles** : maillage à nous (`SM_GrandCaunetCables`, 6 048 triangles), trois câbles par portée accrochés à ±1 m et au milieu, à 8,6 m du sol, flèche de 0,8 m pour 60 m.
+- **Collisions** : poteau = cylindre `PM_WallConcrete` ; haie = pavés `PM_WallBush` ; barrière = pavé `PM_WallPlasticBarrier`. Le constructeur de l'étape 1 les accepte (ALL PASS, 2 763 obstacles). Les murs ajoutés passent par `ouvrages_parapets.json` comme les autres parapets.
+- **Non fait** : panneaux routiers, balises à chevrons, rochers de bord de chaussée, clôture en bois, garde-corps. Voir la rubrique `non_poses` du fichier.
+
+**État.** Mod de l'étape 1 et décor reconstruits, relus conformes le 12/11/2026 à 16 h 07 (466 maillages, 246 276 instances dont 82 objets de mobilier) et installés ensemble. La version d'avant ces ajouts est gardée sous `sol_jeu_sans_mobilier`. *Pas encore vu en jeu.*
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :

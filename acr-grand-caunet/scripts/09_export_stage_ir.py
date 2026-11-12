@@ -411,6 +411,44 @@ def obstacles(ref):
         info["sources"].append("data/processed/arbres.csv (troncs)")
         info["par_materiau"]["troncs d'arbres"] = f"{len(arbres)} cylinder -> {paroi}"
         print(f"obstacles : {len(arbres)} troncs d'arbres à moins de {TRONCS['distance_max_m']:.0f} m du bord de chaussée -> {paroi}")
+    # objets de bord de route posés avec des maillages du jeu (scripts/mobilier.py) : poteaux, haie, barrières
+    import mobilier
+    poses, _ = mobilier.objets()
+    par_type = {}
+    for o in poses:
+        col = o.get("collision")
+        if not col:
+            continue
+        gab, paroi, forme = f"gc_{o['type']}", col["paroi"], col["forme"]
+        if gab not in gabarits:
+            dims = ({"width": 1.0, "height": 1.0, "length": 1.0, "shell": 0.0} if forme == "box"
+                    else {"height": 1.0, "radius": 0.5, "shell": 0.0})
+            gabarits[gab] = {
+                "source": "data/reference/mobilier_bord_de_route.json", "renderables": [], "inactive_subentities": 0, "constraints": 0,
+                "bodies": [{"sub_entity": gab, "static": True, "renderable": None, "shapes": [{
+                    "id": f"{gab}_col_shape", "kind": forme, "dimensions": dims,
+                    "transform": {"position": [0.0, 0.5, 0.0], "rotation": [0.0, 0.0, 0.0, 1.0], "scale": None, "matrix": None},
+                    "shape_class": gab, "dr2_material": None, "acr_wall": paroi, "breaks_on_impulse": None, "mesh_file": None}]}]}
+        h = col["hauteur_m"]
+        if forme == "cylinder":
+            L, R = np.array([col["diametre_m"], h, col["diametre_m"]]), np.eye(3)
+        else:
+            # repère du Stage IR : X est, Y haut, Z sud ; longueur le long de la route, largeur en travers
+            z_ax = np.array([o["dir"][0], 0.0, -o["dir"][1]])
+            y_ax = np.array([0.0, 1.0, 0.0])
+            R = np.column_stack([np.cross(y_ax, z_ax), y_ax, z_ax])
+            L = np.array([col["largeur_m"], h, col["longueur_m"]])
+        c = vers_ir(np.array([[o["x"], o["y"], o["z_sol"] + h / 2 - col.get("enfoui_m", 0.0)]]), ref)[0]
+        base = c - R[:, 1] * L[1] / 2
+        instances.append({"id": f"{gab}_{len(instances):04d}", "template": gab, "kind": "basic", "tag": None,
+                          "transform": {"position": r3(base), "rotation": r3(quaternion(R), 6), "scale": r3(L, 4), "matrix": None},
+                          "_paroi": paroi, "_forme": forme, "_centre": c, "_R": R, "_L": L})
+        par_type[o["type"]] = par_type.get(o["type"], 0) + 1
+    if par_type:
+        info["sources"].append("data/reference/mobilier_bord_de_route.json")
+        for k, v in par_type.items():
+            info["par_materiau"][f"mobilier : {k}"] = f"{v} -> {next(o['collision']['paroi'] for o in poses if o['type'] == k)}"
+        print("obstacles : mobilier de bord de route :", par_type)
     for it in instances:
         volumes.setdefault(it["_paroi"], []).append(volume(it["_forme"], it["_centre"], it["_R"], it["_L"]))
     publiques = [{k: v for k, v in it.items() if not k.startswith("_")} for it in instances]

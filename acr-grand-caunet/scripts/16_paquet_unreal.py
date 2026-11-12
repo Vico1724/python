@@ -108,6 +108,10 @@ MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (135, 135, 135, 255)},
                "pierre_sombre": {"uv": 2.0 / 5.0, "couleur": (135, 135, 135, 255)},
                "beton": {"uv": 2.0 / 3.144, "couleur": None}, "dalle": {"uv": 2.0 / 3.144, "couleur": None},
                "chaperon": {"uv": 2.0 / 3.144, "couleur": None}}
+# Câbles électriques entre les poteaux (maillage à nous) : trois par portée, accrochés à la traverse du poteau du jeu
+# (bouts à ±1 m, milieu), à 8,6 m du sol ; flèche de 0,8 m pour 60 m de portée.
+CABLES = {"ecarts_m": (-1.0, 0.0, 1.0), "hauteur_m": 8.6, "fleche_par_m2": 0.8 / 60.0 ** 2, "segments": 14, "rayon_m": 0.02,
+          "couleur": (30, 30, 32)}
 GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
              "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
              "enfoncement_m": 0.05}
@@ -1184,6 +1188,94 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
     return bilan
 
 
+def mobilier_du_bord(P, ref, pkf, sol, args):
+    """Poteaux électriques, panneaux du rallye, barrières et haie posés avec des maillages du jeu, et câbles entre
+    les poteaux (data/reference/mobilier_bord_de_route.json, scripts/mobilier.py). Les mêmes objets reçoivent leur
+    collision dans scripts/09_export_stage_ir.py."""
+    import mobilier
+    objets, lignes = mobilier.objets()
+    if not objets:
+        return {}
+    cat = catalogue_du_jeu()
+    bilan, par_maillage = {}, {}
+    for o in objets:
+        g = m08.to_gltf(np.array([[o["x"], o["y"], o["z_sol"]]]), ref).astype(float)[0]
+        zs = sol(np.array([g[0]]), np.array([g[2]]))[0]
+        if np.isfinite(zs):
+            g[1] = zs                                    # posé sur le terrain importé, pas sur le MNT brut
+        o["_g"] = g
+        cap = math.degrees(math.atan2(-o["dir"][1], o["dir"][0]))           # lacet Unreal du sens de la course
+        par_maillage.setdefault(o["maillage_jeu"], []).append((g, cap + o["lacet_relatif_deg"], o))
+    for chemin, lot in sorted(par_maillage.items()):
+        nom = chemin.rsplit("/", 1)[1]
+        ue = Axes.ue(np.array([x[0] for x in lot]))
+        pk = pkf(np.array([x[0] for x in lot]))
+        fichier = Path("instances") / "mobilier" / f"{nom}.csv"
+        out = P.sortie / fichier
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with open(out, "w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh, lineterminator="\n")
+            w.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle", "type"])
+            for i, (g, lacet, o) in enumerate(lot):
+                w.writerow([i, f"{ue[i, 0]:.1f}", f"{ue[i, 1]:.1f}", f"{ue[i, 2] - 3.0:.1f}", f"{(lacet + 180) % 360 - 180:.2f}", "1.00",
+                            f"{pk[i]:.0f}", "1.000", o["type"]])
+        e = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Mobilier_{nom}", "maillage_jeu": chemin, "present_au_catalogue": chemin in cat,
+                      "fichier": fichier.as_posix(), "nombre": len(lot), "composant": "HierarchicalInstancedStaticMeshComponent",
+                      "collision": "NoCollision", "hauteur_native_cm": None,
+                      "echelle": "colonne « echelle » de la table, maillage posé tel quel", "retirees_sur_chaussee": 0, "essais": ["complet"]})
+        bilan[e["nom"]] = e["nombre"]
+    # câbles : trois par portée, en chaînette approchée, accrochés aux bouts et au milieu de la traverse
+    pos, nrm, tri = [], [], []
+    k0 = 0
+    for l in lignes:
+        if not l["cables"]:
+            continue
+        pts = l["poteaux"]
+        for a, b in zip(pts[:-1], pts[1:]):
+            for lat in CABLES["ecarts_m"]:
+                bouts = []
+                for o in (a, b):
+                    d = np.array(o["dir"])
+                    travers = np.array([-d[1], d[0]])                       # en travers de la ligne (est, nord)
+                    bouts.append(m08.to_gltf(np.array([[o["x"] + travers[0] * lat, o["y"] + travers[1] * lat, 0.0]]), ref).astype(float)[0]
+                                 * np.array([1.0, 0.0, 1.0]) + np.array([0.0, o["_g"][1] + CABLES["hauteur_m"], 0.0]))
+                A, B = bouts
+                portee = float(np.linalg.norm(B - A))
+                fleche = CABLES["fleche_par_m2"] * portee ** 2
+                n = CABLES["segments"]
+                t = np.linspace(0.0, 1.0, n + 1)
+                axe = A[None, :] + (B - A)[None, :] * t[:, None]
+                axe[:, 1] -= 4.0 * fleche * t * (1.0 - t)
+                u = (B - A) / max(portee, 1e-9)
+                w1 = np.cross(u, [0.0, 1.0, 0.0]); w1 /= max(np.linalg.norm(w1), 1e-9)
+                w2 = np.cross(u, w1)
+                for i in range(n + 1):
+                    for s in range(3):
+                        ang = 2.0 * math.pi * s / 3.0
+                        r = math.cos(ang) * w1 + math.sin(ang) * w2
+                        pos.append(axe[i] + CABLES["rayon_m"] * r); nrm.append(r)
+                for i in range(n):
+                    for s in range(3):
+                        p0, p1, q0, q1 = k0 + 3 * i + s, k0 + 3 * i + (s + 1) % 3, k0 + 3 * (i + 1) + s, k0 + 3 * (i + 1) + (s + 1) % 3
+                        tri += [[p0, q0, p1], [p1, q0, q1]]
+                k0 += 3 * (n + 1)
+    if pos:
+        pos, nrm, tri = np.array(pos), np.array(nrm), np.array(tri, np.int64)
+        # triangles orientés vers l'extérieur du câble
+        fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
+        dehors = (fn * nrm[tri].sum(1)).sum(1) < 0
+        tri[dehors] = tri[dehors][:, [0, 2, 1]]
+        if "T_GC_Cable" not in P.vus:
+            P.texture("T_GC_Cable", "commun", f"{UE}/Shared/Textures", image_unie(CABLES["couleur"]), ["complet"])
+        if "T_GC_ORM_R140M000" not in P.vus:
+            P.texture("T_GC_ORM_R140M000", "commun", f"{UE}/Shared/Textures", image_unie((255, 140, 0)), ["complet"])
+        P.materiau("MI_GC_Cable", f"{UE}/Shared/Materials", {"couleur": "T_GC_Cable", "orm": "T_GC_ORM_R140M000"}, ["complet"])
+        P.maillage(f"SM_{NOM}Cables", "mobilier", f"{UE}/Props/Meshes", pos, nrm, np.zeros((len(pos), 2)), tri, "MI_GC_Cable", ["complet"],
+                   extra={"portees": int(sum(len(l["poteaux"]) - 1 for l in lignes if l["cables"]))})
+        P.cables_portees = int(sum(len(l["poteaux"]) - 1 for l in lignes if l["cables"]))
+    return bilan
+
+
 def catalogue_du_jeu():
     cat = set()
     with gzip.open(sorted(REF.glob("catalogue_jeu_*.txt.gz"))[-1], "rt", encoding="utf-8") as f:
@@ -1315,6 +1407,8 @@ def main():
     ap.add_argument("--buissons", choices=("jeu", "script10"), default="jeu",
                     help="jeu : buissons du jeu (GroundCover/Willow) pour les arbustes de 0,55 m et plus ; script10 : "
                          "les maillages proposés par le script 10 (plantes rampantes et arbres réduits)")
+    ap.add_argument("--mobilier", choices=("jeu", "sans"), default="jeu",
+                    help="jeu : poteaux électriques et câbles, panneaux du rallye, barrières, haie (mobilier_bord_de_route.json)")
     ap.add_argument("--herbes", choices=("jeu", "sans"), default="jeu",
                     help="jeu : touffes d'herbe du jeu sur les bas-côtés (paquet complet seulement) ; sans : aucune")
     ap.add_argument("--glissieres", choices=("jeu", "modele"), default="jeu",
@@ -1377,6 +1471,8 @@ def main():
     bilan_inst = instances(P, ref, Sol(), ruban, pkf, args)
     if glissieres_jeu:
         bilan_inst.update(glissieres_du_jeu(P, ref, ch, pkf, args))
+    if args.mobilier == "jeu" and not args.echantillon and args.pk_min is None:
+        bilan_inst.update(mobilier_du_bord(P, ref, pkf, Sol(), args))
     if args.herbes == "jeu" and not args.echantillon and args.pk_min is None and (MOD / "sols_jeu" / "sols_jeu.json").exists():
         bilan_inst.update(herbes_du_bord(P, ref, ch, pkf, Sol(), ruban, args))
     manifeste = {

@@ -49,11 +49,12 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Quatre versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
+Cinq versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | version courante : chaussée corrigée aux ponts, parapets bas en pierre et en béton, sol et lointain éclaircis |
+| `sol_jeu` (installée) | version courante : la suivante, plus les poteaux, panneaux, barrières, haie et murs du 12 novembre (`docs/11_mobilier_bord_de_route.md`) |
+| `sol_jeu_sans_mobilier` | chaussée corrigée aux ponts, parapets bas en pierre et en béton, sol et lointain éclaircis ; jamais vue en jeu |
 | `sol_jeu_vu_le_12_11` | celle que vous avez vue en jeu le 12 novembre au matin, avec ses défauts |
 | `sol_photo_plus` | la même que la précédente, mais avec l'ancien sol en photo aérienne |
 | `sol_photo` | le décor vu en jeu le 11 novembre : sol en photo, nos glissières, pas d'herbes |

@@ -146,6 +146,15 @@ def main():
     deja = {x["objet"] for x in liste}
     liste += [{"objet": c, "type": "StaticMesh", "essai": "maillages du jeu posés tels quels", **({"bornes_cm": b} if b else {})}
               for c, b in MAILLAGES_POSES.items() if c not in deja]
+    # mobilier de bord de route : poteaux, panneaux, barrières, haie (data/reference/mobilier_bord_de_route.json)
+    f_mob = RACINE / "data" / "reference" / "mobilier_bord_de_route.json"
+    if f_mob.exists():
+        deja = {x["objet"] for x in liste}
+        for t in json.loads(f_mob.read_text(encoding="utf-8"))["types"].values():
+            if t["maillage_jeu"] not in deja:
+                liste.append({"objet": t["maillage_jeu"], "type": "StaticMesh", "essai": "mobilier de bord de route",
+                              **({"bornes_cm": t["bornes_cm"]} if t.get("bornes_cm") else {})})
+                deja.add(t["maillage_jeu"])
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
     # parents sans relevé : un matériau factice vide suffit, puisque nos variantes n'y règlent rien
     connus = {x["objet"] for x in liste if not x.get("a_completer")}
