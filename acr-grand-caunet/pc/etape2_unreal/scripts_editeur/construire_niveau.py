@@ -244,8 +244,8 @@ def v_ajouter_instances(comp, transfos):
     comp.add_instances(transfos, False, True)          # (transforms, renvoyer les indices, espace monde)
 
 
-def v_transfo(pos, lacet, echelle):
-    return unreal.Transform(location=unreal.Vector(*pos), rotation=unreal.Rotator(roll=0.0, pitch=0.0, yaw=lacet),
+def v_transfo(pos, lacet, echelle, tangage=0.0):
+    return unreal.Transform(location=unreal.Vector(*pos), rotation=unreal.Rotator(roll=0.0, pitch=tangage, yaw=lacet),
                             scale=unreal.Vector(echelle, echelle, echelle))
 
 
@@ -559,7 +559,8 @@ class Construction:
                     else:
                         choisi = nom_mesh
                         s = float(r["hauteur_voulue_m"]) * 100.0 / h_nat if h_nat and h_nat >= A.PLAT_CM else 1.0
-                    groupes.setdefault((f"{prefixe}_{choisi}", f"{dossier}/{choisi}"), []).append(v_transfo(p, lacet, s))
+                    groupes.setdefault((f"{prefixe}_{choisi}", f"{dossier}/{choisi}"), []).append(
+                        v_transfo(p, lacet, s, float(r.get("tangage_deg") or 0.0)))
                     reste -= 1
         for (label, chemin), transfos in sorted(groupes.items()):
             if not v_existe(chemin):

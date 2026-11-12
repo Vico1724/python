@@ -176,16 +176,45 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 **Feu vert du directeur pour avancer sans essai en jeu à chaque étape.** Ce qui suit est construit et contrôlé hors jeu ; l'état « vu en jeu » est précisé ligne par ligne.
 
 - **Asphalte.** Notre enrobé `MI_GC_Enrobe` hérite de `MI_BolleneAsphalt1`, l'asphalte des routes de Monte-Carlo. Il est plaqué d'après la position dans le monde (static switch `UseWSPlanarUV`) et ne dépend donc pas du dépliage de nos maillages. Le mécanisme est général : dans `outils/liste_factices.py`, `PARENTS_DU_JEU` désigne une variante du jeu comme parent d'une des nôtres, qui n'y règle alors rien. *Pas encore vu en jeu. Risque connu : ce matériau lit peut-être les couleurs des sommets, que nos maillages n'ont pas.*
-- **Sol.** Les terrains de Bollène descendent de `MI_MonteCarloS1BolleneTerrainFirstChild` : matières détaillées (paillis, aiguilles de pin, herbe sèche, terre, cailloux) plaquées d'après la position dans le monde, mélangées par deux textures de masques par carré de 350 m (`MasksA`, `MasksB`, textures virtuelles), le tout teinté par une grande carte de couleurs (`Texture`, calée par `U_Add`, `V_Add`, `UVDivideWP`, `UVRotation`). C'est le rendu visé, mais il demande de redécouper notre terrain selon ces carrés de 350 m dans le repère du clone, et de comprendre le calage de la carte et le sens des masques. **Non fait.**
+- **Sol.** Fait le 12/11/2026 : notre terrain prend le matériau de terrain de Bollène. Voir § 0 sexies. *Pas encore vu en jeu.*
 - **Tracé régularisé, dégagement des arbres, collision des troncs** : voir `docs/09_regularisation_et_videos.md`. *Pas encore vu en jeu.*
 - **Étape 1** : construite avec `-Noms -Ciel` en plus de la cellule gardée et de l'exclusion des visuels. Le menu affiche « Le Grand Caunet », et le ciel prend la latitude de la Provence. *Pas encore vu en jeu.*
 
-**Refaire le décor après un changement du tracé :**
+**Refaire le décor après un changement du tracé.** L'ordre compte : le constructeur de l'étape 1 recalcule le placement de la spéciale dans le niveau hôte à partir de l'emprise de la route, et le décor doit être posé avec ce placement-là. Après la régularisation, il avait bougé de 6,8 cm ; le niveau a été reposé avant d'être cuit.
 
-1. `python scripts\tout_lancer.py --depuis 70 --sans-rendus` (17 minutes) ;
-2. dans le projet Unreal, supprimer `Content\Environments\GrandCaunet\{Road,Bridges,Junctions,Props,Terrain,Shared}` et le niveau de la cellule : le script d'import ne remplace pas ce qui existe ;
-3. relancer `construire_niveau.py` (§ 0 quater), puis `cuire_et_empaqueter.ps1` ;
-4. reconstruire l'étape 1 (`4_construire.ps1`) : la physique vient du même tracé, les deux conteneurs s'installent ensemble.
+1. `python scripts\tout_lancer.py --depuis 70 --jusqua 15 --sans-rendus` : tout sauf le paquet Unreal ;
+2. reconstruire l'étape 1 (`4_construire.ps1`), puis `python pc\etape2_unreal\outils\relever_placement.py` : le script dit de combien le placement a bougé et met à jour `releves/placement_etape1.json` ;
+3. `python scripts\15b_sols_du_jeu.py` puis `python scripts\16_paquet_unreal.py` (2 minutes) : le sol est découpé d'après ce placement ;
+4. dans le projet Unreal, supprimer `Content\Environments\GrandCaunet\{Road,Bridges,Junctions,Props,Terrain,Shared}` et le niveau de la cellule : le script d'import ne remplace pas ce qui existe ;
+5. relancer `construire_niveau.py` (§ 0 quater ; 30 minutes pour tout réimporter, 3 minutes si seul le niveau est à reposer), puis `cuire_et_empaqueter.ps1` ;
+6. installer les deux conteneurs ensemble.
+
+## 0 sexies. Le sol habillé par le matériau de terrain du jeu (12/11/2026)
+
+**But.** En jeu, notre sol était flou de près : il portait la photo aérienne, qui n'a qu'un point tous les 20 cm. Le jeu habille ses terrains autrement, et c'est ce rendu que le sol reprend maintenant.
+
+**Ce qui a été lu dans le jeu** (archives d'origine, rien n'y est modifié) :
+
+- **Les matières.** `MI_MonteCarloS1BolleneTerrainFirstChild` a six matières actives : paillis forestier (le fond), aiguilles de pin, herbe haute, herbe sèche, terre, cailloux. Chacune se répète tous les 2,5 à 3 m, plaquée d'après la position dans le monde.
+- **Les masques.** Deux textures par carré de 350 m disent où va chaque matière : `MasksA` (rouge = aiguilles, vert = herbe haute, bleu = herbe sèche, alpha = terre) et `MasksB` (rouge = cailloux). La correspondance des canaux a été déduite des 138 dalles de Monte-Carlo.
+- **Leur calage.** Le matériau lit ses masques d'après la position dans le monde, par carré de 350 m aligné sur l'origine : `u = 1 - frac(X / 350 m)`, `v = 1 - frac(Y / 350 m)`. Vérifié sur la dalle 0016 de Bollène : des huit orientations possibles, c'est la seule qui place la bande de la route du masque sur le tracé de la route (255 sur 255 le long de l'axe, contre 16 à 126 pour les sept autres). Un maillage ne porte qu'un jeu de masques : il ne doit donc pas dépasser de son carré.
+- **La carte de couleur.** Une image du paysage vu du ciel (`Texture`) teinte le tout. Elle est lue à `(tu, tv) = (v0, 1 - u0)`, avec `u0 = (X + U_Add) / S`, `v0 = (Y + V_Add) / S`, `S = UVDivideWP × 70 m`. Vérifié sur Hafren South puis sur Bollène : seule cette orientation fait apparaître la route sur la carte.
+- **Les sommets.** Les sommets ordinaires des sols du jeu ont une couleur (0, 0, 0, 0). Les nôtres la reçoivent aussi : sans elle Unreal met du blanc opaque, que le matériau pourrait lire comme un masque plein.
+- **Les masques sont des textures virtuelles** (DXT5, dalles de 128 points et bordure de 4). Les nôtres sont créés ainsi.
+
+**Ce qui est fait.**
+
+1. `scripts/15b_sols_du_jeu.py` calcule, par point de 50 cm, la part de chaque matière : aiguilles et paillis sous les arbres, herbe sèche et cailloux dans la garrigue, herbe là où la végétation est vigoureuse, cailloux sur le calcaire nu, terre sur le sol nu sombre, cailloux sur 1,5 m le long de la chaussée. Sources : hauteur de végétation du LiDAR, photo infrarouge, photo couleur. Ce sont des règles de bon sens, pas un relevé de terrain.
+2. `scripts/16_paquet_unreal.py --sol jeu` (réglage par défaut du paquet complet) redécoupe le terrain selon les carrés de 350 m du monde du jeu, écrit les deux masques de chaque carré et une carte de couleur de 4096 points de côté (1 m par point), mise à la clarté et au contraste de celle de Bollène.
+3. `construire_niveau.py` donne aux variantes `MI_Sol_*` le terrain de Bollène pour parent ; elles n'y règlent que leurs deux masques, la carte et son cadrage.
+
+**Revenir à l'ancien sol** (photo aérienne) : le conteneur correspondant est gardé dans `Z:\acrxs\unreal\dist\sol_photo\`. Jeu fermé, le recopier dans `Paks\~mods` à la place de `zz_gc_gc_P.*`. Pour le reconstruire : `python scripts\16_paquet_unreal.py --sol photo`.
+
+**Glissières du jeu.** Nos glissières étaient des lisses unies. Le paquet pose maintenant à leur place les glissières métalliques du jeu (`Props/Guardrails/MetalGuardrailA`), bout à bout le long des six mêmes tronçons (844 m) : un maillage de début, des modules de 4 m, un maillage de fin, orientés en plan et en pente. Lu dans le jeu : le module court le long de +X, la lisse est du côté +Y, les poteaux derrière, tous les 2 m. La physique ne change pas (boîtes de l'étape 1, sur la même ligne). `python scripts\16_paquet_unreal.py --glissieres modele` rend les anciennes.
+
+**Relecture hors jeu.** `python pc\etape2_unreal\outils\relire_decor.py`, à lancer après chaque cuisson : il relit le conteneur avec les archives du jeu et contrôle le niveau, les variantes de sol, le format et le contenu des masques, les couleurs de sommet. Le 12/11/2026 : RELECTURE CONFORME (458 maillages, 163 850 instances dont 212 glissières, 82 masques). Conteneur installé le 12/11/2026 à 03 h 19, gardé aussi dans `Z:\acrxs\unreal\dist\sol_jeu\`.
+
+**Ce qui n'est pas vérifié.** Rien de ceci n'a été vu en jeu. Trois points peuvent mal tourner : nos textures virtuelles sont cuites par l'Unreal du commerce et non par celui du studio ; l'ordre dans lequel le jeu superpose ses matières est supposé (de la 2 à la 6) ; le matériau de Bollène prévoit de la neige, qui dépend de la météo du niveau hôte. Si le sol apparaît noir, uni, blanc ou décalé, revenir à l'ancien sol et le signaler.
 
 ## 1. L'idée générale
 

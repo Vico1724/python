@@ -45,6 +45,13 @@ PARENTS_DU_JEU = [
                  "désignent elles-mêmes (\"parent_du_jeu\") et n'y règlent que leurs deux masques, la carte de couleur "
                  "et son cadrage"},
 ]
+# Maillages du jeu posés tels quels par le paquet (scripts/16_paquet_unreal.py, glissières). "bornes_cm" : bornes
+# réelles lues dans le jeu, données au cube factice pour que les instances ne soient pas éliminées trop tôt.
+MAILLAGES_POSES = {
+    "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleBegin": {"min": [-60, -40, 0], "max": [420, 0, 80]},
+    "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleCenter": {"min": [-20, -30, 0], "max": [420, 0, 70]},
+    "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleEnd": {"min": [-20, -40, 0], "max": [460, 0, 80]},
+}
 AUTRES_MATERIAUX = ["/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
                     "/Game/Environments/RallyShared/Materials/M_RoadSurface_Layered",
                     "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv"]
@@ -119,6 +126,7 @@ def main():
                       "parametres_texture": sorted(v["textures"]), "essai": "E1b, E3",
                       "pourquoi": "parent de nos variantes : ses static switch de texture sont déjà actifs dans le jeu"})
     liste += [{"objet": c, "type": "StaticMesh", "essai": "E2, E4"} for c in maillages]
+    liste += [{"objet": c, "type": "StaticMesh", "essai": "glissières du jeu", "bornes_cm": b} for c, b in MAILLAGES_POSES.items()]
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
     liste += [{"objet": p["objet"], "type": "MaterialInstanceConstant", "parent": p["parent"], "role": "parent_du_jeu",
                "pour": p["pour"], "static_switch": {}, "essai": "E3b", "pourquoi": p["pourquoi"]} for p in PARENTS_DU_JEU]

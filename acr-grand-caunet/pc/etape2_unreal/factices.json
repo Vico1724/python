@@ -582,6 +582,57 @@
    "essai": "E2, E4"
   },
   {
+   "objet": "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleBegin",
+   "type": "StaticMesh",
+   "essai": "glissières du jeu",
+   "bornes_cm": {
+    "min": [
+     -60,
+     -40,
+     0
+    ],
+    "max": [
+     420,
+     0,
+     80
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleCenter",
+   "type": "StaticMesh",
+   "essai": "glissières du jeu",
+   "bornes_cm": {
+    "min": [
+     -20,
+     -30,
+     0
+    ],
+    "max": [
+     420,
+     0,
+     70
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/Guardrails/MetalGuardrailA/SM_MetalGuardrailASimpleEnd",
+   "type": "StaticMesh",
+   "essai": "glissières du jeu",
+   "bornes_cm": {
+    "min": [
+     -20,
+     -40,
+     0
+    ],
+    "max": [
+     460,
+     0,
+     80
+    ]
+   }
+  },
+  {
    "objet": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
    "type": "Material",
    "essai": "E3",

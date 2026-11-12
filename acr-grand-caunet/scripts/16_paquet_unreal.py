@@ -83,6 +83,9 @@ A_CONFIRMER = ("noms de paramètres confirmés dans le jeu ; M_Simple nommé ici
                "sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours")
 # Sol « façon jeu » (--sol jeu) : variante de terrain de Bollène prise pour parent (paillis, aiguilles de pin, herbe
 # haute, herbe sèche, terre, cailloux déjà actifs), cellules de 350 m comme dans le jeu, carte de couleur 4096.
+GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
+             "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
+             "enfoncement_m": 0.05}
 SOL_PARENT = "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild"
 SOL_CELLULE_M = 350.0
 SOL_MASQUE_PX = 1024
@@ -921,6 +924,84 @@ def instances(P, ref, sol, ruban, pkf, args):
     return bilan
 
 
+def glissieres_du_jeu(P, ref, ch, pkf, args):
+    """Glissières métalliques du jeu (Props/Guardrails/MetalGuardrailA) posées bout à bout le long de nos tronçons de
+    glissière (data/reference/glissieres.json), à la place de nos lisses unies. Lu dans le jeu le 12/11/2026 : module
+    de 4 m le long de +X, lisse côté +Y (à droite du sens de pose), poteaux derrière, tous les 2 m ; un maillage de
+    début, un de milieu, un de fin. La physique ne change pas : elle vient des boîtes de l'étape 1, sur la même ligne."""
+    cfg = json.loads((REF / "glissieres.json").read_text(encoding="utf-8"))
+    dec = cfg["geometrie"]["decalage_depuis_bord_m"]["valeur"]
+    M = GLISSIERE["module_m"]
+    rangs = {"debut": [], "milieu": [], "fin": []}
+    for t in cfg["troncons"]:
+        s0, s1 = max(t["pk_debut_m"], ch["pk"][0]), min(t["pk_fin_m"], ch["pk"][-1])
+        sel = (ch["pk"] >= s0) & (ch["pk"] <= s1)
+        if sel.sum() < 2 * M:
+            continue
+        E, A = ch["G" if t["cote"] == "gauche" else "D"][sel], ch["A"][sel]
+        n = E[:, :2] - A[:, :2]
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+        L = np.column_stack([E[:, :2] + n * dec, E[:, 2]])
+        if t["cote"] != "gauche":
+            L = L[::-1]                                   # la chaussée doit rester à droite du sens de pose
+        # ligne dense (2 cm), puis points espacés d'un module en corde
+        d = np.r_[0.0, np.cumsum(np.linalg.norm(np.diff(L[:, :2], axis=0), axis=1))]
+        sd = np.arange(0.0, d[-1], 0.02)
+        Ld = np.column_stack([np.interp(sd, d, L[:, k]) for k in range(3)])
+        pts, k = [Ld[0]], 0
+        while True:
+            reste = Ld[k:]
+            loin = np.flatnonzero(np.linalg.norm(reste[:, :2] - pts[-1][:2], axis=1) >= M)
+            if not len(loin):
+                break
+            k += int(loin[0])
+            pts.append(Ld[k])
+        nb = len(pts) - 1
+        for i in range(nb):
+            a, b = pts[i], pts[i + 1]
+            piece = "milieu" if nb == 1 else "debut" if i == 0 else "fin" if i == nb - 1 else "milieu"
+            dx, dy, dz = b - a
+            rangs[piece].append((a[0], a[1], a[2] - GLISSIERE["enfoncement_m"], math.degrees(math.atan2(-dy, dx)),
+                                 math.degrees(math.atan2(dz, math.hypot(dx, dy)))))
+    cat = catalogue_du_jeu()
+    bilan = {}
+    for piece, rows in rangs.items():
+        if not rows:
+            continue
+        r = np.array(rows)
+        g = m08.to_gltf(r[:, :3], ref).astype(float)
+        ue = Axes.ue(g)
+        pk = pkf(g)
+        nom = GLISSIERE[piece]
+        chemin = f"{GLISSIERE['dossier']}/{nom}"
+        fichier = Path("instances") / "glissieres" / f"{nom}.csv"
+        out = P.sortie / fichier
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with open(out, "w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh, lineterminator="\n")
+            w.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "tangage_deg"])
+            for i in range(len(r)):
+                w.writerow([i, f"{ue[i, 0]:.1f}", f"{ue[i, 1]:.1f}", f"{ue[i, 2]:.1f}", f"{r[i, 3]:.2f}", "1.00", f"{pk[i]:.0f}",
+                            f"{r[i, 4]:.2f}"])
+        e = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Glissieres_{nom}", "maillage_jeu": chemin,
+                      "present_au_catalogue": chemin in cat, "fichier": fichier.as_posix(), "nombre": int(len(r)),
+                      "composant": "HierarchicalInstancedStaticMeshComponent", "collision": "NoCollision",
+                      "hauteur_native_cm": None, "echelle": "1 : maillage du jeu posé tel quel, orienté par lacet_deg et tangage_deg",
+                      "retirees_sur_chaussee": 0, "essais": ["complet"]})
+        bilan[e["nom"]] = e["nombre"]
+    return bilan
+
+
+def catalogue_du_jeu():
+    cat = set()
+    with gzip.open(sorted(REF.glob("catalogue_jeu_*.txt.gz"))[-1], "rt", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line.endswith(".uasset"):
+                cat.add("/Game/" + line[len("acr/Content/"):-len(".uasset")])
+    return cat
+
+
 # --- contrôles relus sur disque --------------------------------------------------------------------------
 def lire_glb_paquet(path):
     b = Path(path).read_bytes()
@@ -1036,6 +1117,9 @@ def main():
     ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
+    ap.add_argument("--glissieres", choices=("jeu", "modele"), default="jeu",
+                    help="jeu : glissières métalliques du jeu posées le long de nos tronçons ; modele : nos lisses "
+                         "modélisées. L'échantillon garde les nôtres.")
     args = ap.parse_args()
     if (args.pk_min is None) != (args.pk_max is None):
         raise SystemExit("--pk-min et --pk-max vont ensemble")
@@ -1070,6 +1154,9 @@ def main():
     route = lire_glb(MOD / "route_habillee.glb")
     ouvr = lire_glb(MOD / "ouvrages.glb")
     annx = lire_glb(MOD / "annexes.glb")
+    glissieres_jeu = args.glissieres == "jeu" and not args.echantillon and args.pk_min is None
+    if glissieres_jeu:
+        ouvr = [m for m in ouvr if not m["mat"]["nom"].startswith("glissiere")]
     bali = lire_glb(MOD / "balisage.glb")
     mats = materiaux_modele(P, [route, ouvr, annx, bali], f"{UE}/Shared/Textures", f"{UE}/Shared/Materials", "")
     mi = lambda mat: mats[mat]                                            # noqa: E731
@@ -1088,6 +1175,8 @@ def main():
         [np.array([G[i], G[i + 1], D[i + 1], D[i], G[i]]) for i in range(len(G) - 1)])))
     shapely.prepare(ruban)
     bilan_inst = instances(P, ref, Sol(), ruban, pkf, args)
+    if glissieres_jeu:
+        bilan_inst.update(glissieres_du_jeu(P, ref, ch, pkf, args))
     manifeste = {
         "description": f"Paquet d'import Unreal Engine 5.6 de la spéciale {NOM} (scripts/16_paquet_unreal.py)",
         "version": 1, "genere_le": time.strftime("%Y-%m-%d %H:%M"), "echantillon": args.echantillon,

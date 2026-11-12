@@ -50,7 +50,7 @@ def dimensions_reelles():
 DIMENSIONS = dimensions_reelles()
 
 
-def maillage(objet):
+def maillage(objet, bornes=None):
     """Cube du moteur (1 m), dont les bornes sont étendues à celles du vrai maillage du jeu quand on les connaît.
     Constaté le 11/11/2026 : un composant d'instances calcule son arbre de tri et ses bornes avec les bornes du
     maillage au moment où les instances sont ajoutées ; avec un cube d'un mètre à la place d'un pin de 15 m, les
@@ -64,6 +64,11 @@ def maillage(objet):
         cote = max(0.0, largeur / 2.0 - 50.0)
         sm.set_editor_property("positive_bounds_extension", unreal.Vector(cote, cote, max(0.0, haut - 50.0)))
         sm.set_editor_property("negative_bounds_extension", unreal.Vector(cote, cote, 0.0))
+        EAL.save_asset(objet)
+    elif bornes:                                      # bornes réelles (cm) ; le cube du moteur va de -50 à +50
+        sm = EAL.load_asset(objet)
+        sm.set_editor_property("positive_bounds_extension", unreal.Vector(*[max(0.0, v - 50.0) for v in bornes["max"]]))
+        sm.set_editor_property("negative_bounds_extension", unreal.Vector(*[max(0.0, -v - 50.0) for v in bornes["min"]]))
         EAL.save_asset(objet)
 
 
@@ -147,7 +152,7 @@ def main():
     ordre = {"Material": 0, "MaterialInstanceConstant": 1, "StaticMesh": 2, "Blueprint": 3}
     for x in sorted(liste, key=lambda x: ordre.get(x["type"], 9)):
         if x["type"] == "StaticMesh":
-            maillage(x["objet"])
+            maillage(x["objet"], x.get("bornes_cm"))
         elif x["type"] == "Material":
             if x.get("a_completer"):
                 unreal.log_warning(f"{x['objet']} : {x['a_completer']} ; non créé")
