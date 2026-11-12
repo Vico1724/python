@@ -291,6 +291,8 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 - **Aspect de la chaussée** (`aspect_chaussee.json`, `aspect_chaussee()` dans `11_route_ouvrages.py`) : matériaux `reprise` et `fissure` dans `route_habillee.glb`, 8 et 11 mm au-dessus de l'enrobé (marquage : 15 mm) ; maillages `SM_GrandCaunetRoadWear_*` dans le paquet.
 - **Piège rencontré** : `09_export_stage_ir.py` supposait une collision à tout objet d'un type qui en a une ; un rocher de moins de 35 cm n'en a pas.
 
+**État.** Mod de l'étape 1 reconstruit (tous contrôles passés, 3 407 obstacles, placement inchangé). Décor reconstruit (dossiers `Road`, `Bridges`, `Props`, `FarRing` réimportés : 46 minutes en tout) et relu le 12/11/2026 à 22 h 24 : RELECTURE CONFORME (525 maillages, 246 111 instances en 85 composants). Les deux conteneurs sont installés ensemble. La version précédente est gardée sous `sol_jeu_releve_reco`. *Pas encore vu en jeu.*
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :
