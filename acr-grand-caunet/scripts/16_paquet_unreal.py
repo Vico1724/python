@@ -43,6 +43,7 @@ import json
 import math
 import shutil
 import time
+import zlib
 from pathlib import Path
 
 import importlib.util
@@ -92,6 +93,11 @@ HERBES = {"dossier": "/Game/Foliage/GroundCover", "bande_m": 14.0, "debut_m": 0.
                         "DryGrass06/SM_Drygrass06": {"part": 0.18, "echelle": [1.03, 1.76], "largeur_m": 1.52},
                         "WildGrass/SM_WildGrass05": {"part": 0.16, "echelle": [2.24, 3.64], "largeur_m": 0.99},
                         "WildGrass/SM_WildGrass03": {"part": 0.08, "echelle": [2.76, 3.61], "largeur_m": 0.61}}}
+# Buissons (--buissons jeu) : à l'import, attribution.py choisit dans ce dossier le maillage à la taille de chaque
+# arbuste (Willow_01, 03a, 03b, 04a : 0,5 à 1,4 m de haut). À Bollène ils disparaissent entre 100 et 150 m et ne
+# portent pas d'ombre ; ici entre 150 et 220 m, parce qu'ils tiennent lieu de garrigue.
+BUISSONS = {"maillage": "/Game/Foliage/GroundCover/Willow/SM_Willow_03a", "hauteur_min_m": 0.55,
+            "boxthorn_a_partir_de_m": 1.3, "disparition_cm": [15000, 22000]}
 GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
              "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
              "enfoncement_m": 0.05}
@@ -876,7 +882,7 @@ def instances(P, ref, sol, ruban, pkf, args):
     bilan = {}
     rng = np.random.default_rng(SEED)
 
-    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None):
+    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None, reglages=None):
         x = np.array([float(r["x_l93"]) for r in rows])
         y = np.array([float(r["y_l93"]) for r in rows])
         zc = np.array([float(r.get("z_sol_m") or r.get("z_m")) for r in rows])
@@ -928,6 +934,8 @@ def instances(P, ref, sol, ruban, pkf, args):
                                      "déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
                           "retirees_sur_chaussee": int(sur_chaussee[np.array(groupes[chemin])].sum()),
                           "essais": essais})
+            if reglages and reglages(chemin):
+                e.update(reglages(chemin))
             bilan[e["nom"]] = e["nombre"]
 
     with open(OUT / "arbres.csv", encoding="utf-8") as f:
@@ -938,10 +946,25 @@ def instances(P, ref, sol, ruban, pkf, args):
           degagement=lambda r: max(2.5, 0.25 * float(r.get("diametre_houppier_m") or 0)))
     with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
         arbustes = list(csv.DictReader(f))
-    table("arbustes", arbustes, lambda r: f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}",
+    buissons_jeu = args.buissons == "jeu" and not P.echantillon
+
+    def chemin_arbuste(r):
+        """Le script 10 propose une plante rampante plate (BroomCreeper) pour les arbustes de 0,4 à 1 m et un arbre
+        (Boxthorn, 3,5 à 12 m) pour ceux de 1 à 2 m, que l'import réduisait au tiers. Le jeu a de vrais buissons
+        vert olive de 0,5 à 1,4 m (GroundCover/Willow, ceux de Bollène) : ils prennent les arbustes de 0,55 m et
+        plus, sauf un quart de ceux de 1,3 m et plus, laissés en Boxthorn pour varier et rester visibles de loin."""
+        h = float(r["hauteur_m"])
+        if buissons_jeu and h >= BUISSONS["hauteur_min_m"] and (
+                h < BUISSONS["boxthorn_a_partir_de_m"] or zlib.crc32(f"{r['x_l93']}:{r['y_l93']}".encode()) % 4):
+            return BUISSONS["maillage"]
+        return f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}"
+
+    table("arbustes", arbustes, chemin_arbuste,
           lambda r: float(r["hauteur_m"]), ["diametre_m"],
-          # buissons et couvre-sols : leur demi-diamètre plus 0,5 m (le jeu les rend comme des arbres réduits)
-          degagement=lambda r: 0.5 + 0.5 * float(r.get("diametre_m") or 0))
+          # buissons et couvre-sols : leur demi-diamètre plus 0,5 m
+          degagement=lambda r: 0.5 + 0.5 * float(r.get("diametre_m") or 0),
+          reglages=lambda chemin: {"distances_de_disparition_cm": BUISSONS["disparition_cm"], "ombre_dynamique": False}
+          if chemin == BUISSONS["maillage"] else None)
     with open(OUT / "balisage.csv", encoding="utf-8") as f:
         bal = [r for r in csv.DictReader(f) if r["type"] == "piquet de rubalise"]
     table("balisage", bal, lambda r: "/Game/" + r["maillage_jeu_propose"][len("acr/Content/"):],
@@ -1239,6 +1262,9 @@ def main():
     ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
+    ap.add_argument("--buissons", choices=("jeu", "script10"), default="jeu",
+                    help="jeu : buissons du jeu (GroundCover/Willow) pour les arbustes de 0,55 m et plus ; script10 : "
+                         "les maillages proposés par le script 10 (plantes rampantes et arbres réduits)")
     ap.add_argument("--herbes", choices=("jeu", "sans"), default="jeu",
                     help="jeu : touffes d'herbe du jeu sur les bas-côtés (paquet complet seulement) ; sans : aucune")
     ap.add_argument("--glissieres", choices=("jeu", "modele"), default="jeu",

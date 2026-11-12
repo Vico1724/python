@@ -55,6 +55,9 @@ MAILLAGES_POSES = {
     "/Game/Foliage/GroundCover/DryGrass04/SM_Drygrass04": None, "/Game/Foliage/GroundCover/DryGrass05/SM_Drygrass05": None,
     "/Game/Foliage/GroundCover/DryGrass06/SM_Drygrass06": None, "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass05": None,
     "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass03": None,
+    # buissons : attribution.py choisit parmi les quatre d'après la taille de chaque arbuste
+    "/Game/Foliage/GroundCover/Willow/SM_Willow_01": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_03a": None,
+    "/Game/Foliage/GroundCover/Willow/SM_Willow_03b": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_04a": None,
 }
 AUTRES_MATERIAUX = ["/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
                     "/Game/Environments/RallyShared/Materials/M_RoadSurface_Layered",

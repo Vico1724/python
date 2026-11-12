@@ -658,6 +658,26 @@
    "essai": "maillages du jeu posés tels quels"
   },
   {
+   "objet": "/Game/Foliage/GroundCover/Willow/SM_Willow_01",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/Willow/SM_Willow_03a",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/Willow/SM_Willow_03b",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/Willow/SM_Willow_04a",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels"
+  },
+  {
    "objet": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
    "type": "Material",
    "essai": "E3",

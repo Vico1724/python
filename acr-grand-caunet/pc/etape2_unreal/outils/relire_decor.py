@@ -162,12 +162,16 @@ def main():
     if sum(par.values()) != attendu_i:
         erreurs.append(f"{sum(par.values())} instances pour {attendu_i} attendues")
     # herbes : distances de disparition et ombre, comme dans le jeu
-    voulu = {e["maillage_jeu"]: e for e in man["elements"] if e["type"] == "InstanceGroup" and e.get("distances_de_disparition_cm")}
+    # (par dossier : pour les buissons, l'import choisit le maillage dans le dossier d'après la taille de l'arbuste)
+    voulu = {e["maillage_jeu"].rsplit("/", 1)[0]: e for e in man["elements"]
+             if e["type"] == "InstanceGroup" and e.get("distances_de_disparition_cm")}
     mal = []
+    bilan["niveau"]["composants_a_disparition_reglee"] = 0
     for o in hism:
         chemin = o["Properties"]["StaticMesh"]["ObjectPath"].split(".")[0]
-        if chemin in voulu:
-            p, d = o["Properties"], voulu[chemin]["distances_de_disparition_cm"]
+        if chemin.rsplit("/", 1)[0] in voulu:
+            bilan["niveau"]["composants_a_disparition_reglee"] += 1
+            p, d = o["Properties"], voulu[chemin.rsplit("/", 1)[0]]["distances_de_disparition_cm"]
             if [p.get("InstanceStartCullDistance"), p.get("InstanceEndCullDistance")] != d or p.get("bCastDynamicShadow", True):
                 mal.append(chemin.rsplit("/", 1)[1])
     bilan["niveau"]["herbes_mal_reglees"] = mal
