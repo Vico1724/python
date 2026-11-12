@@ -66,4 +66,6 @@ Le relevé note où des barres rocheuses claires dominent la route : km 3,04 à 
 - Les données corrigées, chacune avec ses anciennes valeurs gardées à côté : `data/reference/glissieres.json`, `ouvrages_parapets.json`, `mobilier_bord_de_route.json`.
 - La version d'avant ce relevé est gardée sur le PC sous `sol_jeu_avant_releve_reco`, avec sa route physique.
 
+> **Suite, le même soir.** Les points des sections 4 et 5 ont été repris depuis : falaises du massif, panneaux routiers, rochers, lisses en bois, aspect de la chaussée. Les objets du rallye ont été replacés d'après la vidéo de course, qui reste la référence. Voir `docs/13_decor_fixe_et_objets_du_rallye.md`.
+
 **Rien de ceci n'a encore été vu en jeu.**

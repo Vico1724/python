@@ -1,5 +1,5 @@
 {
- "note": "Objets de bord de route posés avec des maillages du jeu : poteaux électriques, panneaux du rallye, barrières, haie. Lu par scripts/mobilier.py, utilisé par 09_export_stage_ir.py (collisions) et 16_paquet_unreal.py (décor). Positions : PK sur l'axe précis, côté dans le sens de la course, décalage en mètres au-delà du bord de chaussée. Sources : data/reference/releve_video.json (inventaire_bord_de_route, vidéo VMRS 2025, PK à ±10 m) et les captures de cette vidéo envoyées par le directeur le 12/11/2026 (PK de la caméra d'après table_temps_pk, objet situé 15 à 70 m devant : ±25 m). Rien ici n'est mesuré sur le terrain. Mise à jour du 12/11/2026 au soir : les poteaux, les arbres de bord et les retraits viennent du relevé de la vidéo de reconnaissances (data/reference/releve_reco/), bien plus lisible ; les panneaux du rallye, absents un jour de reconnaissances, restent ceux de l'ancien relevé et peuvent être décalés de 20 à 60 m.",
+ "note": "Objets de bord de route posés avec des maillages du jeu : poteaux électriques, panneaux du rallye, barrières, haie. Lu par scripts/mobilier.py, utilisé par 09_export_stage_ir.py (collisions) et 16_paquet_unreal.py (décor). Positions : PK sur l'axe précis, côté dans le sens de la course, décalage en mètres au-delà du bord de chaussée. Sources : data/reference/releve_video.json (inventaire_bord_de_route, vidéo VMRS 2025, PK à ±10 m) et les captures de cette vidéo envoyées par le directeur le 12/11/2026 (PK de la caméra d'après table_temps_pk, objet situé 15 à 70 m devant : ±25 m). Rien ici n'est mesuré sur le terrain. Mise à jour du 12/11/2026 au soir : les poteaux, les arbres de bord et les retraits viennent du relevé de la vidéo de reconnaissances (data/reference/releve_reco/), bien plus lisible ; les panneaux du rallye, absents un jour de reconnaissances, restent ceux de l'ancien relevé et peuvent être décalés de 20 à 60 m. Mise à jour du 12/11/2026 (nuit) : les objets du rallye (panneaux, rubalises, horloge) viennent du relevé de la vidéo de course recalé sur les repères fixes (data/reference/releve_course/) ; l'ancienne liste est gardée sous objets_du_rallye_avant_le_releve_de_course.",
  "conventions_du_jeu": "Lu dans le niveau de Bollène le 12/11/2026 : un panneau du rallye est posé à 2,5-4 m de l'axe, perpendiculaire à la route, lacet = cap de la route + 90 degrés pour faire face aux concurrents ; une barrière plastique est posée dans le sens de la route.",
  "types": {
   "panneau_radio_annonce": {
@@ -22,23 +22,6 @@
   "panneau_radio": {
    "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceRadioPointA",
    "description": "panneau bleu à éclair : point radio",
-   "lacet_relatif_deg": 90,
-   "bornes_cm": {
-    "min": [
-     -30,
-     -10,
-     0
-    ],
-    "max": [
-     30,
-     10,
-     80
-    ]
-   }
-  },
-  "panneau_secours_annonce": {
-   "maillage_jeu": "/Game/Props/RallyProps/Signs/SM_RaceMedicWarningA",
-   "description": "panneau jaune à croix rouge : annonce d'un point de secours",
    "lacet_relatif_deg": 90,
    "bornes_cm": {
     "min": [
@@ -503,6 +486,24 @@
      31,
      27,
      125
+    ]
+   }
+  },
+  "cone": {
+   "maillage_jeu": "/Game/Props/RallyProps/TrafficConeA/SM_TrafficConeA",
+   "description": "cône de signalisation orange",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -22,
+     -22,
+     0
+    ],
+    "max": [
+     22,
+     22,
+     55
     ]
    }
   }
@@ -1201,118 +1202,6 @@
  ],
  "objets": [
   {
-   "type": "panneau_radio_annonce",
-   "pk_m": 2180,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau jaune à l'entrée de l'épingle (non lu), PK 2176-2185"
-  },
-  {
-   "type": "panneau_radio_annonce",
-   "pk_m": 2606,
-   "cote": "gauche",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau jaune (non lu)"
-  },
-  {
-   "type": "panneau_radio",
-   "pk_m": 2660,
-   "cote": "gauche",
-   "decalage_m": 1.2,
-   "source": "inventaire : piste, voiture garée, panneau bleu, PK 2647-2674"
-  },
-  {
-   "type": "panneau_radio_annonce",
-   "pk_m": 2857,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau jaune (non lu)"
-  },
-  {
-   "type": "panneau_radio",
-   "pk_m": 2985,
-   "cote": "droite",
-   "decalage_m": 1.2,
-   "source": "inventaire : piste, aire en terre, panneau rond bleu, PK 2971-2999"
-  },
-  {
-   "type": "panneau_secours_annonce",
-   "pk_m": 3077,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau carré jaune à pictogramme rouge (non lu)"
-  },
-  {
-   "type": "panneau_radio",
-   "pk_m": 3188,
-   "cote": "droite",
-   "decalage_m": 1.2,
-   "source": "inventaire : piste, commissaire, panneau bleu, fût"
-  },
-  {
-   "type": "panneau_radio_annonce",
-   "pk_m": 3550,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "inventaire : petit panneau jaune"
-  },
-  {
-   "type": "panneau_radio_annonce",
-   "pk_m": 4966,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau jaune ; confirmé par la capture à 4 min 12 (panneau jaune à éclair)"
-  },
-  {
-   "type": "panneau_radio",
-   "pk_m": 5025,
-   "cote": "droite",
-   "decalage_m": 1.2,
-   "source": "inventaire : croisement de pistes, panneau bleu à droite, PK 5019-5031"
-  },
-  {
-   "type": "panneau_radio_annonce",
-   "pk_m": 5366,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau triangle « virage à droite » et panneau jaune"
-  },
-  {
-   "type": "panneau_radio_annonce",
-   "pk_m": 5590,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "capture à 4 min 39 (caméra au PK 5549) : panneau jaune carré à droite ; absent de l'inventaire"
-  },
-  {
-   "type": "panneau_radio",
-   "pk_m": 1497,
-   "cote": "gauche",
-   "decalage_m": 1.2,
-   "source": "inventaire : débouché de piste, panneau bleu numéroté, PK 1490-1504"
-  },
-  {
-   "type": "panneau_radio",
-   "pk_m": 6493,
-   "cote": "gauche",
-   "decalage_m": 1.2,
-   "source": "inventaire : croisement de pistes, panneau bleu à gauche, PK 6489-6497"
-  },
-  {
-   "type": "panneau_annonce_arrivee",
-   "pk_m": 6543,
-   "cote": "gauche",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau jaune à damier (annonce d'arrivée)"
-  },
-  {
-   "type": "panneau_arrivee",
-   "pk_m": 6736,
-   "cote": "gauche",
-   "decalage_m": 0.8,
-   "source": "inventaire : panneau rouge à damier d'arrivée"
-  },
-  {
    "type": "arbre_de_bord",
    "pk_m": 370,
    "cote": "droite",
@@ -1579,6 +1468,262 @@
    "lacet_en_plus_deg": 180,
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : triangle vu de dos (pour le sens inverse)",
    "nature": "permanent"
+  },
+  {
+   "type": "horloge_de_depart",
+   "pk_m": 5,
+   "cote": "droite",
+   "decalage_m": 0.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : horloge de départ sur trépied, au bord de la chaussée",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_fin_de_zone",
+   "pk_m": 11,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : panneau de fin de zone de contrôle posé au sol contre un gros pin",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 3,
+   "cote": "droite",
+   "decalage_m": 3.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur le pin penché où passe la rubalise du départ",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 1490,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio sur chevalet, à l'angle amont du débouché de la piste",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce_sur_mat",
+   "pk_m": 2606,
+   "cote": "gauche",
+   "decalage_m": 2.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio clouée sur un tronc de pin à 1,6 m",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 2661,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio sur chevalet, au pied de la butte",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 2667,
+   "cote": "droite",
+   "decalage_m": 6.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur piquet au fond de l'aire, devant le portail du chemin",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce_sur_mat",
+   "pk_m": 2887,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio sur un tronc mince",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 2986,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio sur chevalet, au début de la grande aire",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 2995,
+   "cote": "droite",
+   "decalage_m": 9.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur piquet au milieu de la rubalise, devant le départ de la piste",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce_sur_mat",
+   "pk_m": 3092,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio fixée sur un poteau en bois de la ligne électrique",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 3208,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio sur chevalet, 2 m avant le biseau du parapet droit",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 3360,
+   "cote": "droite",
+   "decalage_m": 3.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur un poteau derrière la glissière, juste avant l'aire de Fontblanche",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce_sur_mat",
+   "pk_m": 3572,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio sur un poteau gris fin, avant le Lion d'Or",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 3641,
+   "cote": "droite",
+   "decalage_m": 0.7,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio au ras du bord droit, devant le bloc de béton blanc du Lion d'Or",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 4085,
+   "cote": "gauche",
+   "decalage_m": 3.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur le mur de pierres sèches derrière la surlargeur de l'épingle",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 4099,
+   "cote": "gauche",
+   "decalage_m": 3.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : second panneau, où le mur s'abaisse",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 4997,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio posée bas au pied d'un gros chêne",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 5033,
+   "cote": "gauche",
+   "decalage_m": 3.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : au bout de la rubalise",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 5036,
+   "cote": "droite",
+   "decalage_m": 3.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio posé au sol sur l'aire, devant la barrière de la piste DFCI",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 5040,
+   "cote": "droite",
+   "decalage_m": 5.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur piquet à côté du gros pin",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 5413.5,
+   "cote": "droite",
+   "decalage_m": 1.6,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio fixée sous le triangle « virage à droite » ; rendue au pied du mât",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 5476,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio posé au sol à l'entrée de la propriété",
+   "nature": "rallye"
+  },
+  {
+   "type": "cone",
+   "pk_m": 5477,
+   "cote": "droite",
+   "decalage_m": 2.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : cône orange à côté du panneau bleu",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce_sur_mat",
+   "pk_m": 5570,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio sur le poteau en béton après le parapet du pont",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 5650,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur un poteau en béton après la fin du parapet",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 5656,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio au coin amont de l'entrée de la piste DFCI",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_public_interdit",
+   "pk_m": 5680,
+   "cote": "droite",
+   "decalage_m": 2.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur le poteau en béton juste après la piste",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio_annonce_sur_mat",
+   "pk_m": 6380,
+   "cote": "droite",
+   "decalage_m": 2.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio sur le poteau en béton à traverse",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 6510,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : point radio posé au sol au bout aval de l'aire",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_annonce_arrivee",
+   "pk_m": 6565,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce d'arrivée posée bas au pied du talus (entre 6555 et 6575)",
+   "nature": "rallye"
+  },
+  {
+   "type": "panneau_arrivee",
+   "pk_m": 6731,
+   "cote": "gauche",
+   "decalage_m": 4.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : panneau d'arrivée contre le tronc du chêne, 5 m avant la ligne",
+   "nature": "rallye"
   }
  ],
  "non_poses": [
@@ -1587,7 +1732,9 @@
   "Triangle « animaux sauvages » du PK 3745 et panonceaux : seul le triangle « chaussée glissante » est rendu.",
   "Talus rocheux à 1 m ou plus du bord (une quarantaine de tronçons, surtout à gauche) : rendus par le terrain et par la matière « cailloux » sur les pentes raides, sans mur ajouté.",
   "Public, véhicules, commissaires.",
-  "Portail du PK 5406, bornes et piquets de repérage de réseaux."
+  "Portail du PK 5406, bornes et piquets de repérage de réseaux.",
+  "Objets du rallye non rendus : chevalets « ATTENTION CELLULE » et cellules de chronométrage (départ, arrivée), fléchage jaune du PK 3549, banderole à chevrons et filet orange du Lion d'Or (la fermeture de la branche de droite y reste en rubalise, étape 12), lambeaux de ruban du PK 3490-3510.",
+  "Panneaux temporaires de chantier vus le jour de la course : « ABSENCE DE MARQUAGE » (PK 2192), triangle « ! » sur pied (PK 5310)."
  ],
  "lignes_electriques_avant_le_releve_de_reconnaissances": [
   {
@@ -2056,5 +2203,439 @@
    "nature": "permanent"
   }
  ],
- "rubalises": []
+ "rubalises": [
+  {
+   "points": [
+    [
+     -1,
+     "droite",
+     3.5
+    ],
+    [
+     11,
+     "droite",
+     3.5
+    ]
+   ],
+   "hauteur_m": 1.6,
+   "appui": "arbres",
+   "pas_m": 4.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban rouge qui ferme l'entrée de la piste GC 107 au départ",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     1497,
+     "gauche",
+     6.0
+    ],
+    [
+     1520,
+     "gauche",
+     6.0
+    ]
+   ],
+   "hauteur_m": 1.2,
+   "appui": "arbres",
+   "pas_m": 6.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban tendu d'arbre en arbre après le débouché de la piste",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     1868,
+     "gauche",
+     6.0
+    ],
+    [
+     1880,
+     "gauche",
+     6.0
+    ]
+   ],
+   "hauteur_m": 1.0,
+   "appui": "arbres",
+   "pas_m": 6.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban qui barre le débouché de la piste DFCI GC 204",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     2648,
+     "gauche",
+     9.0
+    ],
+    [
+     2662,
+     "gauche",
+     9.0
+    ]
+   ],
+   "hauteur_m": 1.0,
+   "appui": "arbres",
+   "pas_m": 7.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban qui barre la piste GC 105, le long de sa barrière",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     2645,
+     "droite",
+     7.0
+    ],
+    [
+     2662,
+     "droite",
+     7.0
+    ],
+    [
+     2672,
+     "droite",
+     3.0
+    ]
+   ],
+   "hauteur_m": 1.2,
+   "appui": "arbres",
+   "pas_m": 6.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban rouge le long de la barrière de bois du fond de l'aire, puis jusqu'à un arbre du bord",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     2988,
+     "droite",
+     9.0
+    ],
+    [
+     3003,
+     "droite",
+     9.0
+    ]
+   ],
+   "hauteur_m": 1.0,
+   "appui": "bois",
+   "pas_m": 5.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban rouge en travers du départ de la piste, au fond de l'aire, sur 2 ou 3 piquets de bois",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     3372,
+     "droite",
+     3.5
+    ],
+    [
+     3404,
+     "droite",
+     3.5
+    ]
+   ],
+   "hauteur_m": 1.1,
+   "appui": "arbres",
+   "pas_m": 8.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban qui ferme l'aire de Fontblanche côté route, tendu d'arbre en arbre",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     3405,
+     "droite",
+     3.5
+    ],
+    [
+     3411,
+     "droite",
+     3.5
+    ]
+   ],
+   "hauteur_m": 0.9,
+   "appui": "piquets",
+   "pas_m": 2.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : 3 ou 4 piquets rouges et blancs avec des bouts de rubalise, avant l'accès revêtu de l'aire",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     3625,
+     "gauche",
+     3.5
+    ],
+    [
+     3636,
+     "gauche",
+     3.5
+    ]
+   ],
+   "hauteur_m": 1.1,
+   "appui": "arbres",
+   "pas_m": 5.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : Lion d'Or, coin gauche : ruban jusqu'aux mâts des panneaux",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     3621,
+     "droite",
+     3.0
+    ],
+    [
+     3632,
+     "droite",
+     3.0
+    ],
+    [
+     3643,
+     "droite",
+     1.0
+    ]
+   ],
+   "hauteur_m": 1.1,
+   "appui": "bois",
+   "pas_m": 5.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : Lion d'Or, bord droit avant l'îlot : ruban sur piquets jusqu'au bloc de béton blanc",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     4957,
+     "gauche",
+     3.5
+    ],
+    [
+     4978,
+     "gauche",
+     3.5
+    ]
+   ],
+   "hauteur_m": 1.0,
+   "appui": "arbres",
+   "pas_m": 7.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban en haut du talus de terre rouge",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     5008,
+     "gauche",
+     4.5
+    ],
+    [
+     5033,
+     "gauche",
+     4.5
+    ]
+   ],
+   "hauteur_m": 1.2,
+   "appui": "arbres",
+   "pas_m": 6.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban derrière les buissons, jusqu'au panneau « public interdit »",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     5040,
+     "droite",
+     6.0
+    ],
+    [
+     5055,
+     "droite",
+     6.0
+    ]
+   ],
+   "hauteur_m": 1.6,
+   "appui": "arbres",
+   "pas_m": 7.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban haut qui ferme l'aire et le départ de la piste DFCI",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     5469,
+     "droite",
+     4.0
+    ],
+    [
+     5476,
+     "droite",
+     4.0
+    ]
+   ],
+   "hauteur_m": 1.2,
+   "appui": "bois",
+   "pas_m": 3.5,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban de 6 m le long du mur de la propriété, qui délimite le poste",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     5503,
+     "gauche",
+     3.0
+    ],
+    [
+     5512,
+     "gauche",
+     3.0
+    ],
+    [
+     5528,
+     "gauche",
+     2.0
+    ]
+   ],
+   "hauteur_m": 1.0,
+   "appui": "bois",
+   "pas_m": 5.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban qui ferme l'aire de gravier avant le pont, jusqu'à la balise à chevrons",
+   "nature": "rallye"
+  },
+  {
+   "points": [
+    [
+     5635,
+     "gauche",
+     4.0
+    ],
+    [
+     5650,
+     "gauche",
+     4.0
+    ]
+   ],
+   "hauteur_m": 1.2,
+   "appui": "arbres",
+   "pas_m": 5.0,
+   "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : ruban blanc festonné sur le haut du petit talus (rendu rouge et blanc)",
+   "nature": "rallye"
+  }
+ ],
+ "objets_du_rallye_avant_le_releve_de_course": [
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 2180,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune à l'entrée de l'épingle (non lu), PK 2176-2185"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 2606,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune (non lu)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 2660,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "source": "inventaire : piste, voiture garée, panneau bleu, PK 2647-2674"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 2857,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune (non lu)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 2985,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "inventaire : piste, aire en terre, panneau rond bleu, PK 2971-2999"
+  },
+  {
+   "type": "panneau_secours_annonce",
+   "pk_m": 3077,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau carré jaune à pictogramme rouge (non lu)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 3188,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "inventaire : piste, commissaire, panneau bleu, fût"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 3550,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : petit panneau jaune"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 4966,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune ; confirmé par la capture à 4 min 12 (panneau jaune à éclair)"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 5025,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "source": "inventaire : croisement de pistes, panneau bleu à droite, PK 5019-5031"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 5366,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau triangle « virage à droite » et panneau jaune"
+  },
+  {
+   "type": "panneau_radio_annonce",
+   "pk_m": 5590,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "source": "capture à 4 min 39 (caméra au PK 5549) : panneau jaune carré à droite ; absent de l'inventaire"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 1497,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "source": "inventaire : débouché de piste, panneau bleu numéroté, PK 1490-1504"
+  },
+  {
+   "type": "panneau_radio",
+   "pk_m": 6493,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "source": "inventaire : croisement de pistes, panneau bleu à gauche, PK 6489-6497"
+  },
+  {
+   "type": "panneau_annonce_arrivee",
+   "pk_m": 6543,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau jaune à damier (annonce d'arrivée)"
+  },
+  {
+   "type": "panneau_arrivee",
+   "pk_m": 6736,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "source": "inventaire : panneau rouge à damier d'arrivée"
+  }
+ ]
 }

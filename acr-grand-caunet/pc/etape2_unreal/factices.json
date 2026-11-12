@@ -712,23 +712,6 @@
    }
   },
   {
-   "objet": "/Game/Props/RallyProps/Signs/SM_RaceMedicWarningA",
-   "type": "StaticMesh",
-   "essai": "mobilier de bord de route",
-   "bornes_cm": {
-    "min": [
-     -30,
-     -10,
-     0
-    ],
-    "max": [
-     30,
-     10,
-     80
-    ]
-   }
-  },
-  {
    "objet": "/Game/Props/RallyProps/Signs/SM_RacePreFlyingFinish",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",
@@ -997,6 +980,91 @@
      76,
      27,
      81
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RaceRadioWarningB",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -30,
+     -2,
+     -25
+    ],
+    "max": [
+     30,
+     2,
+     210
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_NopublicSign",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -30,
+     -1,
+     -25
+    ],
+    "max": [
+     30,
+     1,
+     180
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RaceControlZoneEnd",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -38,
+     -15,
+     0
+    ],
+    "max": [
+     38,
+     15,
+     73
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/RaceTimer/SM_RaceTimer",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -31,
+     -27,
+     -1
+    ],
+    "max": [
+     31,
+     27,
+     125
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/TrafficConeA/SM_TrafficConeA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -22,
+     -22,
+     0
+    ],
+    "max": [
+     22,
+     22,
+     55
     ]
    }
   },

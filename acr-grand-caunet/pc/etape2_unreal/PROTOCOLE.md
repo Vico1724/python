@@ -279,6 +279,18 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **Piège rencontré.** `relire_decor.py` comptait les instances par maillage et écrasait le compte quand deux composants désignent le même maillage (le pin d'Alep : forêt et arbres de bord). Il annonçait à tort des instances manquantes ; il additionne désormais.
 
+## 0 decies. Décor fixe affiné, objets du rallye, falaises (12/11/2026, nuit)
+
+**Consigne du directeur (à garder) :** les vidéos de course sont le rendu de référence ; la reconnaissance n'affine que le décor fixe ; les objets du rallye vus en course restent. Détail pour lui : `docs/13_decor_fixe_et_objets_du_rallye.md`.
+
+- **Relevé de la vidéo de course** : `data/reference/releve_course/partie_{1,2}.json` (122 observations). `19_calage_video.py` échoue sur cette vidéo (échelle fausse, départ au PK 280) : chaque objet est recalé à l'œil sur un repère fixe connu par la reconnaissance. L'ancienne table `releve_video.json` s'écarte de −17 à +52 m.
+- **Mobilier** (`mobilier_bord_de_route.json`, `scripts/mobilier.py`) : nouvelles rubriques `rochers` (rangées de blocs : hauteur visée, bloc du jeu choisi pour ne pas être grossi ni réduit de plus du double, collision `PM_WallRock` en cylindre au-dessus de 35 cm), `lisses` et `rubalises` (tracés en `points` [PK, côté, décalage] ou PK de début et de fin) ; par type : `echelle`, `enfoncement_m` ; par objet : `lacet_en_plus_deg` (panneau vu de dos : 180). `mobilier.en_long()` rend les tracés ; `alea()` donne les mêmes tirages au décor et à la physique.
+- **Maillages du jeu ajoutés** : `Props/FranceTrafficSigns/SM_TrafficSignFra{DangerA,CrossRoadsA,SlipperyRoadA,NarrowRoadA,RightTurnA1,CurveMarkerD}`, `MileMarkerA/SM_MileMarkerA` ; `Props/Nature/{ForestRockWjxqcct,RockWjwvac3,RockShopk,ForestRockWgqrfdi}` ; `RallyProps/Signs/SM_{RaceRadioWarningB,NopublicSign,RaceControlZoneEnd}`, `RaceTimer/SM_RaceTimer`, `TrafficConeA/SM_TrafficConeA`, `TapePlasticPoleA/SM_PlasticTapePoleA`. **Face d'un panneau routier : +Y** (lu dans la collision du maillage : la plaque est devant le mât du côté +Y), donc lacet = cap + 90° comme les panneaux du rallye. Le mât descend 50 cm sous l'origine : posé sans enfoncement.
+- **Maillages à nous** (`objets_en_long` dans `16_paquet_unreal.py`) : `SM_GrandCaunetRallyTape` (ruban de 7,5 cm à deux faces, texture rayée répétée `T_GC_RallyTape`), `SM_GrandCaunetWoodRails`, `SM_GrandCaunetTrackBarriers`. Une rubalise à appui « arbres » ou « bois » reçoit des piquets de bois ; à appui « piquets », le piquet plastique du jeu.
+- **Falaises** (`--falaises 1`, `FALAISE`, `Pentes`, `teinte_falaises`) : pente de `rgealti_5m.tif` (40° à 55°), puis de `rgealti_25m.tif` (33° à 45°) au-delà ; bande élargie de 8 m ; position de chaque pixel d'après les sommets de la dalle (u vers l'est, v vers le sud, origine en haut à gauche).
+- **Aspect de la chaussée** (`aspect_chaussee.json`, `aspect_chaussee()` dans `11_route_ouvrages.py`) : matériaux `reprise` et `fissure` dans `route_habillee.glb`, 8 et 11 mm au-dessus de l'enrobé (marquage : 15 mm) ; maillages `SM_GrandCaunetRoadWear_*` dans le paquet.
+- **Piège rencontré** : `09_export_stage_ir.py` supposait une collision à tout objet d'un type qui en a une ; un rocher de moins de 35 cm n'en a pas.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :

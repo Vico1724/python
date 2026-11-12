@@ -447,7 +447,7 @@ def obstacles(ref):
     if par_type:
         info["sources"].append("data/reference/mobilier_bord_de_route.json")
         for k, v in par_type.items():
-            info["par_materiau"][f"mobilier : {k}"] = f"{v} -> {next(o['collision']['paroi'] for o in poses if o['type'] == k)}"
+            info["par_materiau"][f"mobilier : {k}"] = f"{v} -> {next(o['collision']['paroi'] for o in poses if o['type'] == k and o.get('collision'))}"
         print("obstacles : mobilier de bord de route :", par_type)
     for it in instances:
         volumes.setdefault(it["_paroi"], []).append(volume(it["_forme"], it["_centre"], it["_R"], it["_L"]))
