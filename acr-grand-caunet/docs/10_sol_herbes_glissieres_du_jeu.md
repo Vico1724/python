@@ -49,9 +49,17 @@ Tout a été contrôlé hors du jeu, en relisant les fichiers produits avec les 
 
 ## 5. Revenir en arrière
 
-L'ancien décor (sol en photo aérienne, nos glissières, pas d'herbes) est gardé dans `Z:\acrxs\unreal\dist\sol_photo\`. Jeu fermé, recopier ses trois fichiers `zz_gc_gc_P.*` dans `Paks\~mods` à la place des nouveaux. La route et la physique sont les mêmes dans les deux versions.
+Les deux versions du décor sont gardées sur le PC : `sol_jeu` (la nouvelle, installée) et `sol_photo` (sol en photo aérienne, nos glissières, pas d'herbes). La route et la physique sont les mêmes dans les deux.
 
-Si le sol apparaît noir, uni, blanc ou décalé, c'est ce retour en arrière qu'il faut faire, puis le signaler.
+Jeu fermé, pour remettre l'ancienne :
+
+```
+pwsh -ExecutionPolicy Bypass -File pc\etape2_unreal\scripts_pc\choisir_decor.ps1 -Decor sol_photo
+```
+
+Et pour revenir à la nouvelle, la même commande avec `-Decor sol_jeu`. Sans `-Decor`, le script liste les versions et dit laquelle est installée.
+
+Si le sol apparaît noir, uni, blanc ou décalé, c'est ce retour en arrière qu'il faut faire, puis le signaler. Si seules les herbes ou les glissières gênent, elles se retirent séparément (`--herbes sans`, `--glissieres modele` dans `scripts/16_paquet_unreal.py`), au prix d'une reconstruction du décor d'une dizaine de minutes.
 
 ## 6. Autre correction faite au passage
 
