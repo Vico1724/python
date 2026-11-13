@@ -41,58 +41,76 @@
  },
  "troncons": [
   {
-   "pk_debut_m": 1727,
-   "pk_fin_m": 1833,
+   "pk_debut_m": 1725.0,
+   "pk_fin_m": 1834.5,
    "cote": "droite",
    "detail": "au-dessus du vallon ; 40 m de plus que l'ancien relevé",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 1727,
+   "pk_releve_fin_m": 1833,
+   "calage": "PK corrigé de -2,0 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 1963,
-   "pk_fin_m": 2129,
+   "pk_debut_m": 1966.5,
+   "pk_fin_m": 2134.0,
    "cote": "droite",
    "detail": "commence après l'aire de gravier, se termine contre le parapet",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 1963,
+   "pk_releve_fin_m": 2129,
+   "calage": "PK corrigé de +3,5 m à +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 2261,
-   "pk_fin_m": 2388,
+   "pk_debut_m": 2266.5,
+   "pk_fin_m": 2394.5,
    "cote": "droite",
    "detail": "se prolonge de 50 m dans la ligne droite",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 2261,
+   "pk_releve_fin_m": 2388,
+   "calage": "PK corrigé de +5,5 m à +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 3232,
-   "pk_fin_m": 3366,
+   "pk_debut_m": 3246.0,
+   "pk_fin_m": 3381.5,
    "cote": "droite",
    "detail": "collée au bout du parapet du pont 3229",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 3232,
+   "pk_releve_fin_m": 3366,
+   "calage": "PK corrigé de +14,0 m à +15,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 3746,
-   "pk_fin_m": 3978,
+   "pk_debut_m": 3747.0,
+   "pk_fin_m": 3985.5,
    "cote": "droite",
    "detail": "long gauche ; se termine où commence le mur de moellons",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 3746,
+   "pk_releve_fin_m": 3978,
+   "calage": "PK corrigé de +1,0 m à +7,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 4090,
-   "pk_fin_m": 4221,
+   "pk_debut_m": 4100.0,
+   "pk_fin_m": 4229.5,
    "cote": "droite",
    "detail": "dès la sortie de l'épingle",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 4090,
+   "pk_releve_fin_m": 4221,
+   "calage": "PK corrigé de +10,0 m à +8,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   }
  ],
  "troncons_avant_le_releve_de_reconnaissances": [

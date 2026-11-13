@@ -127,6 +127,8 @@ La vidéo a été calée sur la route d'après la barre de progression du jeu (7
 
 **Sixième version : construite, relue, installée le 13 novembre à 21 h 10.** Relecture du décor cuit conforme (aucune erreur, aucune alerte) : 24 parois de roche (42 207 triangles), 4 545 pierres calcaires sur les 61 talus de rocaille, 103 grands pins de bord de route, 515 254 objets en tout. Route physique reconstruite avec la table asphalte ; décalage entre la route et le décor : 0,0 cm. Rien de tout cela n'a encore été vu en jeu. La cinquième version est gardée (`sol_jeu_cycle5_du_13_11`).
 
+**Préparé pour la septième version (données seulement, rien de construit ni d'installé).** Le reste du relevé de la reconnaissance (glissières, murets hors pont, poteaux, panneaux, rochers, lisses, aires, rubans du rallye) est recalé comme les parois : 201 objets déplacés de 0,5 à 23 m, valeur lue gardée à côté (`scripts/25_recaler_objets_reco.py`). Le carrefour du Lion d'Or et les objets déjà déplacés à la main ne bougent pas. À vérifier au prochain passage de la chaîne : le raccord de la glissière du PK 3246 avec le parapet du pont 3229. Constat sur les « blocs gris-rosé » des accotements : ce sont les pierres calcaires du jeu, dont la texture est beige rosé assombrie ; piste retenue, non commencée : fabriquer nos propres pierres anguleuses avec notre matière de roche claire, pour les accotements, la rocaille et les blocs isolés.
+
 **Non traité, relevé pour la suite** : glissières réelles fermées par un écran bas (celles du jeu sont à jour dessous) ; murs de pierre sèche des km 3,72, 4,08 et 5,3 à 5,5, trop sombres ou en retrait ; quelques arbres trop près dans les zones ouvertes du km 6 ; rochers ronds isolés.
 
 ## 7. Où c'est décrit
