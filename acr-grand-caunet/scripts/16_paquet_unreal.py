@@ -1135,6 +1135,7 @@ class Sol:
 # sol : la surface lointaine passe à hauteur de houppier, seules leurs cimes en sortent, ce qui donne aux crêtes une
 # silhouette d'arbres. Positions tirées au sort (graine fixe) : un habillage, pas un relevé. Aucune collision.
 ARBRES_LOIN = {"de_m": 135.0, "a_m": 430.0, "pas_m": 8.5, "mnh_min_m": 3.0, "part_pin": 0.65, "depasse_m": (2.0, 4.0),
+               "disparition_cm": [95000, 130000],
                "pin": ("Foliage/Trees/AleppoPine", "SM_AleppoPine04", "pin d'Alep"),
                "feuillu": ("Foliage/Trees/Smoketree", "SM_Smoketree01", "chêne vert")}
 
@@ -1331,8 +1332,7 @@ def instances(P, ref, sol, ruban, pkf, args):
         arbres = list(csv.DictReader(f))
     if args.sous_bois and not P.echantillon and args.pk_min is None:
         arbres += sous_bois_de_bord(ref, arbres)
-    if args.arbres_lointains and not P.echantillon and args.pk_min is None:
-        arbres += arbres_lointains(ref)
+    loin = arbres_lointains(ref) if args.arbres_lointains and not P.echantillon and args.pk_min is None else []
     def chemin_arbre(r):
         """Les grands chênes verts étaient rendus par un érable du jeu (BlackmapleMonteCarlo, 13 à 20 m, grandes feuilles) :
         vu en jeu le 13/11/2026, « feuillus tempérés » au lieu de chênes verts. Le Smoketree du jeu, à petites feuilles
@@ -1344,6 +1344,11 @@ def instances(P, ref, sol, ruban, pkf, args):
     table("arbres", arbres, chemin_arbre,
           lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"],
           ajuster=lambda r, d: regles_arbres.ajuste(float(r["hauteur_m"]), d, r["famille_jeu"]))
+    if loin:
+        # Arbres des versants : un groupe à part, sans ombre portée et masqué au-delà d'un kilomètre environ. Ils sont
+        # 29 000 de plus ; avec les ombres et sans limite de distance, ils pèseraient sur la fluidité pour rien.
+        table("versants", loin, chemin_arbre, lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"],
+              reglages=lambda chemin: {"distances_de_disparition_cm": ARBRES_LOIN["disparition_cm"], "ombre_dynamique": False})
     with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
         arbustes = list(csv.DictReader(f))
     buissons_jeu = args.buissons == "jeu" and not P.echantillon
@@ -1738,7 +1743,7 @@ def objets_en_long(P, ref, sol, liste):
 # --- parois rocheuses ------------------------------------------------------------------------------------
 # Parois et talus rocheux du bord de route (data/reference/parois_rocheuses.json) : une nappe de roche par paroi, de
 # forme irrégulière, habillée de la roche répétable de Bollène (MI_GC_Roche, matieres_du_jeu.json).
-ROCHE = {"pas_m": 0.45, "rang_m": 0.25, "biseau_m": 3.5, "enfoui_m": 0.4, "uv_m": 2.5, "marge_chaussee_m": 0.3,
+ROCHE = {"pas_m": 0.4, "rang_m": 0.2, "biseau_m": 3.5, "enfoui_m": 0.4, "uv_m": 2.5, "marge_chaussee_m": 0.3,
          "recul_arriere_m": 1.6, "couleur_secours": (188, 182, 168)}
 
 
@@ -1798,7 +1803,7 @@ def parois_rocheuses(P, ref, sol):
         # hauteur : entre les deux bornes relevées, avec une crête déchiquetée (2 m) ; la paroi meurt en sifflet à ses bouts
         h = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.78 + 0.44 * _bruit(S / 2.1, 7.0, k + 2)) * (0.12 + 0.88 * fin)
         recul = h / math.tan(pente)
-        nv = int(np.clip(math.ceil(h1 / ROCHE["rang_m"]) + 1, 5, 16))
+        nv = int(np.clip(math.ceil(h1 / ROCHE["rang_m"]) + 1, 5, 22))
         T = np.linspace(0.0, 1.0, nv)
         d0 = float(e["decalage_m"]) + 0.30 * (_bruit(S / 6.5, 3.0, k + 4) - 0.35) * fin      # le pied de la paroi serpente
         normale_face = -dehors * math.sin(pente) + haut[None, :] * math.cos(pente)
@@ -1810,20 +1815,30 @@ def parois_rocheuses(P, ref, sol):
             # version, deux fois moins accidentée, avait l'allure d'un ruban)
             dep = 0.30 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 2.6, zrel / 1.3 + 3.1 * k, k)
             dep += 0.22 * np.sqrt(np.maximum(h, 0.2)) * (_bruit(S / 5.5, 1.0, k + 6) - 0.5) * 2.0 * math.sin(math.pi * min(t + 0.15, 1.0))
-            if e["genre"] == "lite":                                                # bancs horizontaux, joints en retrait
-                ep = 0.34
-                banc = np.floor((zrel + 5.0) / ep)
-                dep += 0.20 * (_bruit(S / 3.2, banc * 1.7, k + 5) - 0.5) * 2.0
-                joint = np.abs(((zrel + 5.0) / ep) % 1.0 - 0.5) * 2.0
-                dep -= 0.10 * np.clip((joint - 0.8) / 0.2, 0.0, 1.0)
-            elif e["genre"] == "blocs":                                             # blocs séparés par des joints verticaux
+            if e["genre"] == "lite":
+                # Calcaire lité : des bancs horizontaux d'épaisseur inégale, chacun débité en blocs de longueur
+                # inégale ; chaque bloc avance ou recule d'un coup (décrochements francs), les joints sont en creux.
+                # Vu hors jeu le 13/11/2026 : des bosses continues donnaient une paroi molle, comme du sable.
+                ep = 0.42
+                banc = np.floor((zrel + 5.0) / ep + 0.35 * _bruit(S / 7.0, 0.0, k + 13))
+                long_bloc = 0.9 + 1.6 * _alea(banc, 0.0, k + 14)
+                bloc = np.floor(S / long_bloc + 3.7 * _alea(banc, 1.0, k + 15))
+                dep += 0.30 * (_alea(bloc, banc, k + 5) - 0.5) * 2.0
+                dep += 0.10 * (_alea(banc, 2.0, k + 16) - 0.5) * 2.0                 # un banc entier en saillie ou en retrait
+                joint_h = np.abs(((zrel + 5.0) / ep) % 1.0 - 0.5) * 2.0
+                joint_v = np.abs((S / long_bloc + 3.7 * _alea(banc, 1.0, k + 15)) % 1.0 - 0.5) * 2.0
+                dep -= 0.12 * np.clip((joint_h - 0.82) / 0.18, 0.0, 1.0)
+                dep -= 0.14 * np.clip((joint_v - 0.86) / 0.14, 0.0, 1.0)
+            elif e["genre"] == "blocs":                                             # gros blocs séparés par des joints verticaux
                 larg = 1.5
                 bloc = np.floor(S / larg + 0.35 * _bruit(zrel / 0.9, 0.0, k + 9))
-                dep += 0.34 * (_alea(bloc, np.floor((zrel + 5.0) / 0.8), k + 3) - 0.5) * 2.0
+                dep += 0.38 * (_alea(bloc, np.floor((zrel + 5.0) / 0.8), k + 3) - 0.5) * 2.0
                 jv = np.abs((S / larg) % 1.0 - 0.5) * 2.0
-                dep -= 0.16 * np.clip((jv - 0.82) / 0.18, 0.0, 1.0)
-            else:                                                                   # éboulis : bosses rondes plus marquées
+                dep -= 0.20 * np.clip((jv - 0.82) / 0.18, 0.0, 1.0)
+            else:                                                                   # éboulis : pierres rondes, à deux tailles
                 dep += 0.30 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 1.1, zrel / 0.55, k + 11, 3)
+                pierre = np.floor(S / 0.9 + 2.3 * _alea(np.floor((zrel + 5.0) / 0.6), 0.0, k + 17))
+                dep += 0.16 * (_alea(pierre, np.floor((zrel + 5.0) / 0.6), k + 18) - 0.5) * 2.0
             p = base + normale_face * (dep * (0.25 + 0.75 * fin))[:, None]
             # jamais sur la chaussée : distance au bord, mesurée à l'horizontale, d'au moins la marge
             hors = np.einsum("ij,ij->i", (p - B) * np.array([1.0, 0.0, 1.0]), dehors)
@@ -1858,6 +1873,14 @@ def parois_rocheuses(P, ref, sol):
         usure = np.clip(0.28 + 0.45 * _fbm(np.repeat(S, nr) / 3.0, Z.ravel() / 1.5, k + 23, 3), 0.0, 0.62)
         coul = np.column_stack([(255 * usure).astype(np.uint8), np.zeros(len(pos), np.uint8), np.full(len(pos), 255, np.uint8),
                                 np.full(len(pos), 255, np.uint8)])
+        # facettes franches : chaque triangle porte sa propre normale, à peine adoucie vers celle de ses voisins ; une
+        # roche fracturée a des arêtes vives, des normales moyennées la faisaient fondre
+        fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
+        fn /= np.maximum(np.linalg.norm(fn, axis=1, keepdims=True), 1e-9)
+        nrm = 0.72 * np.repeat(fn, 3, axis=0) + 0.28 * nrm[tri].reshape(-1, 3)
+        nrm /= np.maximum(np.linalg.norm(nrm, axis=1, keepdims=True), 1e-9)
+        pos, uv, coul = pos[tri].reshape(-1, 3), uv[tri].reshape(-1, 2), coul[tri].reshape(-1, 4)
+        tri = np.arange(len(pos)).reshape(-1, 3)
         P.maillage(f"SM_{NOM}Rock_{int(pk0):04d}{'L' if cote == 'gauche' else 'R'}", "parois", f"{UE}/Bridges/Meshes", pos, nrm, uv, tri, "MI_GC_Roche",
                    ["complet"], pk=(pk0, pk1), couleurs=coul,
                    extra={"genre": e["genre"], "hauteur_m": [h0, h1], "decalage_m": float(e["decalage_m"]), "cote": cote})
