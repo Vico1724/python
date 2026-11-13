@@ -2930,6 +2930,25 @@
    "releve": "releves/materiaux_maitres.json (valeurs par défaut, textures par défaut)"
   },
   {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterial/M_MasterDecals",
+   "type": "Material",
+   "parametres_texture": [
+    "ColorOpacity",
+    "Normal",
+    "ORM"
+   ],
+   "parametres_scalaires": [
+    "FaintRoadlinesPower",
+    "FaintRoadlinesTiling",
+    "OpacityPower",
+    "Tiling"
+   ],
+   "parametres_vecteur": [
+    "BaseColorMultiply"
+   ],
+   "essai": "parent d'une variante du jeu dont nos variantes héritent ; paramètres : matieres_du_jeu.json"
+  },
+  {
    "objet": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
    "type": "Material",
    "parametres_texture": [
@@ -3035,6 +3054,18 @@
    "static_switch": {},
    "essai": "E3b",
    "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc"
+  },
+  {
+   "objet": "/Game/Environments/MonteCarloS1Bollene/MeshDecalsMaterialInstances/MI_RoadmarkingsTileableTrack0116",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/AlsaceShared/DecalMaterial/M_MasterDecals",
+   "role": "parent_du_jeu",
+   "pour": [
+    "MI_GC_Marquage"
+   ],
+   "static_switch": {},
+   "essai": "E3b",
+   "pourquoi": "lignes blanches : le jeu peint les siennes par un décalque (peinture usée, bords rongés, fondue dans l'asphalte) ; les nôtres étaient un aplat blanc uni. Variante employée sur la route de Bollène. Dépliage ramené à 1,5 m par unité et couleur de sommet blanche, comme les marquages du jeu."
   },
   {
    "objet": "/Game/Environments/AlsaceShared/TerrainTextures/T_AlsaceGreenGrass1_C",

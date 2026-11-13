@@ -312,7 +312,12 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 - Arbres : `scripts/regles_arbres.py` (`ajuste`, `emprises_degagees`), lu par 09 et 16. Arbres des versants : `ARBRES_LOIN`, `--arbres-lointains 0` pour les retirer.
 - Route : `07b_regulariser_chaussee.py`, lissage modulé par le changement de cap sur 40 m (`CAP_DROIT_DEG`, `CAP_VIRAGE_DEG`) ; les contrôles de rayon ne portent plus que sur les virages qui tournent d'au moins 12°.
 
-**Paris à vérifier au premier essai** : textures du jeu désignées par chemin ; teintes par paramètres ; parent `MI_BolleneRockfacesParent` (jamais porté directement par un maillage du jeu). Signe d'échec : sol ou roche gris uni, damier, ou teinte sans rapport.
+- Marquage : `MI_GC_Marquage` hérite du décalque du jeu `MeshDecalsMaterialInstances/MI_RoadmarkingsTileableTrack0116` (maître `M_MasterDecals`, peinture répétable `T_RoadmarkingsTileable_BO`, bords rongés) ; dépliage à 1,5 m par unité, couleur de sommet blanche (lu sur `SM_BolleneTrack1412_decal01`).
+- Bord d'enrobé : `BORD`, `bande_de_bord()` (bande de sol ajoutée au terrain avant le découpage par cellule ; absente des surfaces revêtues annexes ; arrêtée au pied des murs). Sous-bois : `SOUS_BOIS`, `sous_bois_de_bord()`. Pistes de l'IGN : `PISTES_IGN`, `pistes_ign()` dans `regles_arbres.py` (terre dans 15b, dégagées dans 09 et 16).
+- Relief lointain : dalles à moins de 600 m de l'axe en 2048 px (`TRES_PRES_M` dans `13_paysage_lointain.py`).
+- Relecture : `relire_decor.py` vérifie que chaque variante cuite porte ses `reglages_du_jeu` (rubrique `reglages_du_jeu` du bilan).
+
+**Paris à vérifier au premier essai** : le marquage en décalque (s'il échoue, les lignes blanches disparaissent : repasser `MI_GC_Marquage` sans parent dans `matieres_du_jeu.json`) ; textures du jeu désignées par chemin ; teintes par paramètres ; parent `MI_BolleneRockfacesParent` (jamais porté directement par un maillage du jeu). Signe d'échec : sol ou roche gris uni, damier, ou teinte sans rapport.
 
 ## 1. L'idée générale
 

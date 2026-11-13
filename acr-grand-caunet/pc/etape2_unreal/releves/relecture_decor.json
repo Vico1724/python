@@ -4,21 +4,21 @@
   "hors_de_notre_dossier": 0
  },
  "niveau": {
-  "maillages_poses": 525,
-  "attendus": 525,
-  "instances": 246111,
-  "attendues": 246111,
-  "composants_d_instances": 85,
+  "maillages_poses": 524,
+  "attendus": 524,
+  "instances": 346757,
+  "attendues": 346757,
+  "composants_d_instances": 87,
   "instances_hors_vegetation": {
    "SM_PlasticTapePoleA": 17,
    "SM_MetalGuardrailASimpleBegin": 6,
-   "SM_MetalGuardrailASimpleCenter": 215,
+   "SM_MetalGuardrailASimpleCenter": 214,
    "SM_MetalGuardrailASimpleEnd": 6,
-   "SM_ForestRockWgqrfdi": 10,
-   "SM_ForestRockWjxqcct": 36,
+   "SM_ForestRockWgqrfdi": 24,
+   "SM_ForestRockWjxqcct": 23,
    "SM_FraMunPylonA": 17,
    "SM_MileMarkerA": 1,
-   "SM_MonPylonB15": 79,
+   "SM_MonPylonC9": 79,
    "SM_NopublicSign": 10,
    "SM_RaceControlZoneEnd": 1,
    "SM_RaceFlyingFinish": 1,
@@ -27,8 +27,8 @@
    "SM_RaceRadioWarningA": 2,
    "SM_RaceRadioWarningB": 6,
    "SM_RaceTimer": 1,
-   "SM_RockShopk": 29,
-   "SM_RockWjwvac3": 24,
+   "SM_RockShopk": 18,
+   "SM_RockWjwvac3": 34,
    "SM_TrafficConeA": 1,
    "SM_TrafficSignFraCrossRoadsA": 1,
    "SM_TrafficSignFraCurveMarkerD": 3,
@@ -37,7 +37,7 @@
    "SM_TrafficSignFraRightTurnA1": 1,
    "SM_TrafficSignFraSlipperyRoadA": 1
   },
-  "composants_a_disparition_reglee": 9,
+  "composants_a_disparition_reglee": 12,
   "herbes_mal_reglees": []
  },
  "sol": {
@@ -65,13 +65,24 @@
    ]
   },
   "masques_de_format_different": [],
-  "ecart_moyen_au_fichier_source_sur_255": 2.57,
-  "maillages": 103,
+  "ecart_moyen_au_fichier_source_sur_255": 2.39,
+  "maillages": 100,
   "maillages_a_mauvaise_couleur_de_sommet": []
  },
  "variantes_heritees_du_jeu": {
-  "controlees": 6,
+  "controlees": 7,
   "non_conformes": []
  },
- "erreurs": []
+ "erreurs": [],
+ "reglages_du_jeu": {
+  "variantes": 44,
+  "controlees": 6,
+  "manques": [],
+  "parents": [
+   "MI_BolleneAsphalt1",
+   "MI_BolleneRockfacesParent",
+   "MI_MonBolStoneWallsA",
+   "MI_MonteCarloS1BolleneTerrainFirstChild"
+  ]
+ }
 }

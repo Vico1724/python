@@ -121,7 +121,12 @@ HERBES = {"dossier": "/Game/Foliage/GroundCover", "bande_m": 14.0, "debut_m": 0.
                         "DeadLeaves/SM_Dead_Leaves_01": {"vert": 0.06, "sec": 0.06, "echelle": [1.4, 2.6], "largeur_m": 0.42},        # feuilles mortes, à plat
                         "DryGrass05/SM_Drygrass05": {"vert": 0.06, "sec": 0.38, "echelle": [0.55, 0.95], "largeur_m": 1.47},          # 18 à 31 cm
                         "DryGrass06/SM_Drygrass06": {"vert": 0.0, "sec": 0.18, "echelle": [0.42, 0.72], "largeur_m": 1.53},           # 34 à 59 cm
-                        "WildGrass/SM_WildGrass03": {"vert": 0.0, "sec": 0.10, "echelle": [1.5, 2.6], "largeur_m": 0.62}}}            # 21 à 36 cm
+                        "WildGrass/SM_WildGrass03": {"vert": 0.0, "sec": 0.10, "echelle": [1.5, 2.6], "largeur_m": 0.62},             # 21 à 36 cm
+                        # pierraille calcaire claire, omniprésente sur les accotements et les talus de la reconnaissance :
+                        # trois pierres calcaires du jeu (Grèce), de 15 à 70 cm une fois mises à l'échelle
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneD": {"vert": 0.035, "sec": 0.07, "echelle": [0.6, 1.5], "largeur_m": 0.68},
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneB": {"vert": 0.04, "sec": 0.08, "echelle": [0.8, 2.2], "largeur_m": 0.33},
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneA": {"vert": 0.03, "sec": 0.06, "echelle": [1.0, 2.6], "largeur_m": 0.24}}}
 # Buissons (--buissons jeu) : à l'import, attribution.py choisit dans ce dossier le maillage à la taille de chaque
 # arbuste (Willow_01, 03a, 03b, 04a : 0,5 à 1,4 m de haut). À Bollène ils disparaissent entre 100 et 150 m et ne
 # portent pas d'ombre ; ici entre 150 et 220 m, parce qu'ils tiennent lieu de garrigue.
@@ -671,6 +676,20 @@ def bande_de_bord(ch, ref):
                     a_, b_ = p.get("pk_debut_m", e.get("pk_debut_m")), p.get("pk_fin_m", e.get("pk_fin_m"))
                     if a_ is not None and b_ is not None:
                         murs[cote].append((float(a_) - 1.0, float(b_) + 1.0))
+    # pas de bande de sol là où le bord de la chaussée touche une surface revêtue annexe (carrefours, dégagements)
+    revetu = None
+    f_ann = OUT / "annexes_revetues.geojson"
+    if f_ann.exists():
+        from pyproj import Transformer
+        vers_l93 = Transformer.from_crs("EPSG:4326", "EPSG:2154", always_xy=True).transform
+        polys = []
+        for ft in json.loads(f_ann.read_text(encoding="utf-8"))["features"]:
+            g_ = shapely.geometry.shape(ft["geometry"])
+            if g_.geom_type == "Polygon" and "revêtue" in str(ft["properties"].get("type", "")):
+                polys.append(shapely.transform(g_, lambda c: np.column_stack(vers_l93(c[:, 0], c[:, 1]))).buffer(0.6))
+        if polys:
+            revetu = shapely.union_all(polys)
+            shapely.prepare(revetu)
     pk = ch["pk"]
     S = np.arange(pk[0] + 1.0, pk[-1] - 1.0, BORD["pas_m"])
     A = np.column_stack([np.interp(S, pk, ch["A"][:, k]) for k in range(3)])
@@ -694,6 +713,9 @@ def bande_de_bord(ch, ref):
         L = np.stack([dedans, bord, ext], 1).reshape(-1, 3)
         g = m08.to_gltf(L, ref).astype(np.float64)
         i = np.arange(len(S) - 1)
+        if revetu is not None:
+            sur = shapely.contains_xy(revetu, E[:, 0] + 0.4 * n[:, 0], E[:, 1] + 0.4 * n[:, 1])
+            i = i[~(sur[:-1] | sur[1:])]
         for c in (0, 1):
             a0, a1, b0, b1 = 3 * i + c, 3 * i + c + 1, 3 * (i + 1) + c, 3 * (i + 1) + c + 1
             t = np.concatenate([np.column_stack([a0, b0, a1]), np.column_stack([a1, b0, b1])]) + k0
@@ -1489,7 +1511,7 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
         sel = np.flatnonzero(choix == i)
         if not len(sel):
             continue
-        chemin = f"{HERBES['dossier']}/{n}"
+        chemin = n if n.startswith("/Game/") else f"{HERBES['dossier']}/{n}"
         nom = n.rsplit("/", 1)[1]
         fichier = Path("instances") / "herbes" / f"{nom}.csv"
         out = P.sortie / fichier

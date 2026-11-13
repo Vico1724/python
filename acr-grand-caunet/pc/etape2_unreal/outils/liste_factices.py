@@ -71,6 +71,10 @@ MAILLAGES_POSES = {
     "/Game/Foliage/GroundCover/Ribwort/SM_Ribwort_01": {"min": [-49, -49, -2], "max": [49, 49, 16]},
     "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass01": {"min": [-50, -50, -2], "max": [50, 50, 29]},
     "/Game/Foliage/GroundCover/DeadLeaves/SM_Dead_Leaves_01": {"min": [-21, -21, -1], "max": [21, 21, 3]},
+    # pierraille calcaire des accotements
+    "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneD": {"min": [-35, -20, -16], "max": [33, 17, 20]},
+    "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneB": {"min": [-17, -14, -9], "max": [16, 14, 11]},
+    "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneA": {"min": [-14, -6, -8], "max": [10, 6, 10]},
     # buissons : attribution.py choisit parmi les quatre d'après la taille de chaque arbuste
     "/Game/Foliage/GroundCover/Willow/SM_Willow_01": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_03a": None,
     "/Game/Foliage/GroundCover/Willow/SM_Willow_03b": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_04a": None,
