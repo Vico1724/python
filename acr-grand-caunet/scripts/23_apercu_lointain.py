@@ -162,12 +162,12 @@ class Ecran:
 def arbres_du_paquet(paquet):
     """{genre : (bases glTF (n, 3), hauteurs)} lus dans les tables d'instances du paquet."""
     out = {"pin": [], "feuillu": [], "arbuste": []}
-    for dossier in ("arbres", "versants", "arbustes", "mobilier"):
+    for dossier in ("arbres", "versants", "arbustes", "garrigue", "mobilier"):
         for f in sorted((paquet / "instances" / dossier).glob("*.csv")):
             nom = f.stem.lower()
             if dossier == "mobilier" and "pine" not in nom and "tree" not in nom and "maple" not in nom:
                 continue
-            genre = "arbuste" if dossier == "arbustes" else "pin" if ("pine" in nom or "cypress" in nom) else "feuillu"
+            genre = "arbuste" if dossier in ("arbustes", "garrigue") else "pin" if ("pine" in nom or "cypress" in nom) else "feuillu"
             with open(f, encoding="utf-8") as fh:
                 for r in csv.DictReader(fh):
                     h = float(r.get("hauteur_voulue_m") or r.get("hauteur_m") or 0) or (1.2 if genre == "arbuste" else 7.0)
@@ -235,7 +235,7 @@ def main():
             if len(tt):
                 e.triangles(pos, tt, TEINTES[t])
         for genre, (base, h) in arbres.items():
-            e.houppiers(base, h, genre, 260.0 if genre == "arbuste" else 1500.0)
+            e.houppiers(base, h, genre, 420.0 if genre == "arbuste" else 1500.0)
         im = e.image()
         ImageDraw.Draw(im).text((8, 6), f"PK {p:.0f} - aperçu du paysage hors jeu (images du relief lointain, arbres en silhouettes)", fill=(20, 20, 20))
         nom = f"pk_{int(round(p)):04d}{a.suffixe}.jpg"

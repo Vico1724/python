@@ -22,7 +22,8 @@ _spec = importlib.util.spec_from_file_location("s16", Path(__file__).with_name("
 s16 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(s16)
 
-TEINTES = {"terrain": (128, 122, 96), "chaussee": (92, 92, 96), "bord": (150, 132, 104), "roche": (205, 198, 182), "mur": (170, 160, 148)}
+TEINTES = {"terrain": (128, 122, 96), "chaussee": (92, 92, 96), "bord": (150, 132, 104), "roche": (205, 198, 182), "mur": (170, 160, 148),
+           "annexe": (112, 108, 112), "terre": (176, 150, 112), "marquage": (240, 240, 235)}
 
 
 class Recolte:
@@ -45,16 +46,20 @@ class Recolte:
 def scene(ref):
     """[(positions glTF, triangles, teinte)] : terrain, chaussée, ouvrages, bande de bord, parois rocheuses."""
     out = []
-    for fichier, teinte in (("terrain_sol.glb", "terrain"), ("route.glb", "chaussee"), ("ouvrages.glb", "mur")):
+    for fichier, teinte in (("terrain_sol.glb", "terrain"), ("route.glb", "chaussee"), ("ouvrages.glb", "mur"), ("annexes.glb", "annexe"),
+                            ("balisage.glb", "mur")):
         for m in s16.lire_glb(s16.MOD / fichier):
-            out.append((np.asarray(m["pos"], float), np.asarray(m["idx"]).reshape(-1, 3), teinte))
+            nom = str(m["mat"]["nom"]).lower() + " " + str(m["nom"]).lower()
+            tt = teinte if teinte != "annexe" else ("marquage" if "marqu" in nom else "terre" if ("terre" in nom or "plein" in nom) else "annexe")
+            out.append((np.asarray(m["pos"], float), np.asarray(m["idx"]).reshape(-1, 3), tt))
+    for m in s16.lire_glb(s16.MOD / "route_habillee.glb"):                # lignes blanches de la chaussée
+        if "marqu" in (str(m["mat"]["nom"]) + str(m["nom"])).lower():
+            out.append((np.asarray(m["pos"], float) + np.array([0.0, 0.02, 0.0]), np.asarray(m["idx"]).reshape(-1, 3), "marquage"))
     with open(s16.OUT / "chaussee_precise.csv", encoding="utf-8") as f:
         r = list(csv.DictReader(f))
     c = lambda *k: np.array([[float(x[a]) for a in k] for x in r])                      # noqa: E731
     ch = {"pk": c("pk_m")[:, 0], "A": c("x_axe", "y_axe", "z_axe"), "G": c("x_gauche", "y_gauche", "z_gauche"),
           "D": c("x_droite", "y_droite", "z_droite")}
-    p, _, t = s16.bande_de_bord(ch, ref)
-    out.append((np.asarray(p, float), t, "bord"))
     rec = Recolte()
     s16.parois_rocheuses(rec, ref, s16.Sol())
     out += [(p_, t_, "roche") for p_, t_ in rec.m]

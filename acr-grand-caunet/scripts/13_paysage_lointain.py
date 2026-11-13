@@ -69,8 +69,16 @@ VERSIONS = {   # (bandes (distance max à l'axe, pas)), (px texture près / moye
     "complet": ([(400, 5), (1200, 10), (4000, 20), (10000, 50), (20000, 100), (R_MAX, 200)], (1024, 1024, 512)),
     "apercu": ([(400, 16), (1200, 40), (4000, 80), (10000, 200), (20000, 400), (R_MAX, 800)], (256, 128, 64)),
 }
-CANOPEE = (140.0, 220.0)   # m : introduction de la hauteur de végétation
-LIDAR = (220.0, 280.0)     # m : passage du MNT LiDAR au RGE ALTI
+# Vu en jeu le 13/11/2026 (quatrième version) : « les reliefs moyennement lointains font tas de sable avec une photo
+# de dessus ». La surface passait à hauteur de cime dès 140 à 220 m de l'axe : une nappe lisse d'où ne sortaient que
+# quelques cimes. Elle reste désormais au niveau du SOL jusqu'à 450 m, où des arbres et des buissons entiers sont
+# plantés à la densité du relevé laser (16_paquet_unreal.py, ARBRES_LOIN), et ne monte à hauteur de cime qu'ensuite.
+CANOPEE = (450.0, 650.0)   # m : introduction de la hauteur de végétation
+# Falaises : le pas de 5, 10 puis 20 m écrase les barres rocheuses en talus. Jusqu'à 4 km de l'axe, là où la pente du
+# RGE ALTI à 5 m dépasse RAIDE_DEG, des points sont ajoutés au demi-pas (2,5 m à moins de 400 m).
+RAIDE_DEG = 30.0
+LIDAR = (550.0, 650.0)     # m : passage du MNT LiDAR (50 cm) au RGE ALTI (5 m) ; 220 à 280 m jusqu'au 13/11/2026.
+                           # Le relevé laser couvre toute cette bande : barres rocheuses et ravins y gardent leur forme.
 TRES_PRES_M = 600.0        # m de l'axe : en deçà, image des dalles à 50 cm par point
 
 
@@ -187,8 +195,9 @@ def bord_exterieur(path, ref):
 
 
 # --- maillage ------------------------------------------------------------------------------------------
-def points_anneau(axe, bord, bandes):
-    """Grilles imbriquées (pas multiples les uns des autres) selon la distance à l'axe."""
+def points_anneau(axe, bord, bandes, raide=None):
+    """Grilles imbriquées (pas multiples les uns des autres) selon la distance à l'axe. `raide(x, y)` : pente en
+    degrés ; là où elle dépasse RAIDE_DEG, la grille est doublée (bandes de pas 10 et 20 m)."""
     line = LineString(axe)
     poly = shapely.make_valid(Polygon(bord[:, :2]))
     shapely.prepare(poly)
@@ -213,6 +222,16 @@ def points_anneau(axe, bord, bandes):
             d = shapely.distance(line.simplify(20), shapely.points(X, Y))
         sel = (d > lo) & (d <= dmax)
         pts.append(np.column_stack([X[sel], Y[sel], d[sel]]))
+        if raide is not None and pas <= 20:
+            # points intermédiaires (demi-pas) sur les versants raides : milieux d'arêtes et centres de mailles
+            ajout = []
+            for dx, dy in ((pas / 2, 0.0), (0.0, pas / 2), (pas / 2, pas / 2)):
+                xa, ya = X[sel] + dx, Y[sel] + dy
+                r = raide(xa, ya) >= RAIDE_DEG
+                ajout.append(np.column_stack([xa[r], ya[r], d[sel][r]]))
+            ajout = np.vstack(ajout)
+            print(f"  bande jusqu'à {dmax:.0f} m (pas {pas} m) : {len(ajout)} points ajoutés sur les versants raides, pour {int(sel.sum())}")
+            pts.append(ajout)
         lo = dmax
     Q = np.vstack(pts)
     Q = Q[(Q[:, 0] >= x0) & (Q[:, 0] <= x1) & (Q[:, 1] >= y0) & (Q[:, 1] <= y1)]
@@ -266,6 +285,12 @@ def altitudes(Pxy, dist, nb, bord, src, centre):
     z_l = np.where(ok_l, lid(x, y), z_rge)
     ok_l &= z_l > -1000
     wl = np.where(ok_l, 1 - np.clip((dist - LIDAR[0]) / (LIDAR[1] - LIDAR[0]), 0, 1), 0)
+    # le relevé laser ne couvre pas partout LIDAR[1] mètres autour de l'axe : fondu sur 60 m avant le bord de son image,
+    # pour ne pas laisser une marche là où il s'arrête
+    cb = (np.asarray(x) - lid.tr.c) / lid.tr.a
+    rb = (lid.tr.f - np.asarray(y)) / -lid.tr.e
+    au_bord = np.minimum(np.minimum(cb, rb), np.minimum(lid.a.shape[1] - cb, lid.a.shape[0] - rb)) * abs(lid.tr.a)
+    wl = wl * np.clip((au_bord - 10.0) / 60.0, 0, 1)
     zg = wl * z_l + (1 - wl) * z_rge
     # mer : RGE ALTI sans valeur (-99999) ; l'interpolation près de la côte mélange cette valeur
     # aux altitudes : tout ce qui passe sous -20 m est la mer
@@ -323,7 +348,18 @@ def construit(version, ref, axe, src, centre, rapport):
     bandes, px_niv = VERSIONS[version]
     dossier = MOD if version == "complet" else MOD / "apercu"
     bord, info_bord = bord_exterieur(dossier / "terrain.glb", ref)
-    Q, poly = points_anneau(axe, bord, bandes)
+    def raide(x, y, h=5.0):
+        a5 = src["alti5"]
+        ok = a5.dedans(x - h, y - h) & a5.dedans(x + h, y + h)
+        p = np.zeros(len(x))
+        if ok.any():
+            gx = (a5(x[ok] + h, y[ok]) - a5(x[ok] - h, y[ok])) / (2 * h)
+            gy = (a5(x[ok], y[ok] + h) - a5(x[ok], y[ok] - h)) / (2 * h)
+            p[ok] = np.degrees(np.arctan(np.hypot(gx, gy)))
+            p[ok] = np.where(np.abs(a5(x[ok], y[ok])) < 5000, p[ok], 0.0)      # hors données (mer, bord) : pas de falaise
+        return p
+
+    Q, poly = points_anneau(axe, bord, bandes, raide if version == "complet" else None)
     P2, T, manque, essais = triangule(bord, Q, poly)
     nb = len(bord)
     line = LineString(axe)

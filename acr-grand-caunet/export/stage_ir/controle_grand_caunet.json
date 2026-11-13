@@ -2,7 +2,7 @@
   "repere": {
     "determinant": 1.0,
     "y_axe_min_max_m": [
-      250.05,
+      249.79,
       398.65
     ]
   },
@@ -13,9 +13,9 @@
     "pas_max_m": 10.13
   },
   "longueur_competitive": {
-    "length_m": 6737.47,
-    "distance_finish_moins_start": 6737.47,
-    "polyligne_portes_3d_m": 6734.93,
+    "length_m": 6737.53,
+    "distance_finish_moins_start": 6737.53,
+    "polyligne_portes_3d_m": 6734.99,
     "pk_arrivee_plan_m": 6735.8
   },
   "gauche_droite": {
@@ -36,19 +36,19 @@
     "max_abs_dy_m": 0.0,
     "moyenne_abs_dy_m": 0.0,
     "hors_ponts": {
-      "portes": 911,
+      "portes": 918,
       "max_abs_dy_m": 0.0
     }
   },
   "sol_le_long_de_l_axe_tous_les_m": {
     "echantillons": 8129,
     "sans_sol": 0,
-    "max_abs_dy_a_la_corde_m": 0.101
+    "max_abs_dy_a_la_corde_m": 0.05
   },
   "sol_aux_bords_95pct": {
     "points": 1876,
     "sans_sol": 0,
-    "max_abs_dy_m": 0.021,
+    "max_abs_dy_m": 0.0,
     "p99_abs_dy_m": 0.0
   },
   "sol_5m_au_dela_des_bords": {
@@ -60,36 +60,36 @@
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 760564,
+    "triangles": 760070,
     "par_code": {
       "TSD+": 33081,
-      "DBK+": 92750,
-      "GRS+": 634733
+      "DBK+": 92309,
+      "GRS+": 634680
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 760564
+    "triangles_annonces_dans_stage_json": 760070
   },
   "obstacles": {
-    "instances": 3491,
+    "instances": 3546,
     "gabarits": 12,
     "formes": {
-      "box": 2076,
+      "box": 2131,
       "cylinder": 1415
     },
     "parois": {
-      "PM_WallRock": 995,
-      "PM_WallConcrete": 333,
+      "PM_WallRock": 1035,
+      "PM_WallConcrete": 348,
       "PM_WallMetalGuardrail": 896,
       "PM_WallPlasticPole": 12,
       "PM_WallWoodTreeTrunks": 1238,
       "PM_WallWoodPole": 17
     },
     "parois_absentes_du_catalogue": [],
-    "penetration_max_dans_la_chaussee_m": 0.343,
+    "penetration_max_dans_la_chaussee_m": 0.342,
     "intrusions_plus_de_30_cm": 0,
     "sommets_source_hors_paves_max_m": 0.001,
     "retires_sur_la_chaussee": 5,
-    "objects_collision_triangles": 64532
+    "objects_collision_triangles": 65192
   },
   "annexes": {
     "points_testes": 298,
@@ -129,8 +129,8 @@
     "avance_lecture_m": 80.0
   },
   "fichiers_mo": {
-    "collision.glb": 14.11,
-    "objects_collision.glb": 1.25,
-    "stage.json": 1.8
+    "collision.glb": 14.1,
+    "objects_collision.glb": 1.26,
+    "stage.json": 1.82
   }
 }

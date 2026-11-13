@@ -772,11 +772,40 @@ def main():
     devers = -slope * 100                               # > 0 : bord droit plus bas
     # ponts : altitude interpolée entre culées, dévers interpolé entre les abords
     spans = []
+    tabliers = []
     for i0, i1 in runs(bridge):
         a, b = max(i0 - 1, 0), min(i1 + 1, len(pk) - 1)
         spans.append((pk[i0], pk[i1]))
         za[i0:i1 + 1] = np.interp(pk[i0:i1 + 1], [pk[a], pk[b]], [za[max(a - 2, 0):a + 1].mean(), za[b:b + 3].mean()])
         devers[i0:i1 + 1] = np.interp(pk[i0:i1 + 1], [pk[a], pk[b]], [devers[a], devers[b]])
+        # Tablier lu dans le relevé des surfaces (MNS). Constat du 13/11/2026, après la remarque du directeur sur le
+        # nivellement du carrefour du Lion d'Or : la ligne droite tirée entre les culées passe 0,3 m au-dessus de la
+        # chaussée réelle au Lion d'Or (un ponceau sous remblai : le sol du relevé y EST la chaussée) et jusqu'à 1 m
+        # au-dessus du tablier du pont du PK 5512 à 5571, dont le profil réel est en creux. Là où le MNS voit le
+        # tablier (pas d'arbre au-dessus : trois points en travers concordants, à moins de 2,5 m de la ligne droite),
+        # l'altitude et le dévers sont ceux du tablier ; ailleurs la correction est interpolée le long du pont.
+        tb_s = slice(i0, i1 + 1)
+        tb_lat = (-1.5, 0.0, 1.5)
+        tb_zs = np.stack([R.z(A[tb_s, 0] + d * nA[tb_s, 0], A[tb_s, 1] + d * nA[tb_s, 1], "mns") for d in tb_lat], 1)
+        tb_ecart = tb_zs[:, 1] - za[tb_s]
+        tb_vu = np.isfinite(tb_zs).all(1) & (np.abs(tb_ecart) < 2.5) & (np.ptp(tb_zs, axis=1) < 0.6)
+        if tb_vu.sum() >= max(4, 0.3 * len(tb_ecart)):
+            tb_idx = np.flatnonzero(tb_vu)
+            tb_ref = median_filter(np.interp(np.arange(len(tb_ecart)), tb_idx, tb_ecart[tb_idx]), 5, mode="nearest")
+            tb_vu &= np.abs(tb_ecart - tb_ref) < 0.25                  # une branche basse, une voiture
+            tb_idx = np.flatnonzero(tb_vu)
+            tb_corr = np.interp(np.arange(len(tb_ecart)), tb_idx, tb_ecart[tb_idx])
+            # sous les arbres le MNS ne voit pas la chaussée ; si le sol du relevé n'y est pas dans le vide de l'ouvrage
+            # (il passe à moins de 25 cm sous le tablier interpolé, ou au-dessus), c'est lui la chaussée
+            tb_sol = R.z(A[tb_s, 0], A[tb_s, 1]) - za[tb_s]
+            tb_plein = ~tb_vu & np.isfinite(tb_sol) & (tb_sol > tb_corr - 0.25) & (tb_sol < tb_corr + 1.0)
+            tb_corr = np.where(tb_plein, tb_sol, tb_corr)
+            tb_dev = np.interp(np.arange(len(tb_ecart)), tb_idx, ((tb_zs[:, 0] - tb_zs[:, 2]) / (tb_lat[2] - tb_lat[0]) * 100)[tb_idx])
+            if len(tb_corr) >= 9:
+                tb_corr, tb_dev = savgol_filter(tb_corr, 9, 2), savgol_filter(tb_dev, 9, 2)
+            za[tb_s] += tb_corr
+            devers[tb_s] = tb_dev
+            tabliers.append((round(float(pk[i0])), round(float(pk[i1])), round(float(tb_vu.mean()), 2), round(float(tb_corr.min()), 2), round(float(tb_corr.max()), 2)))
         zg[i0:i1 + 1] = za[i0:i1 + 1] + devers[i0:i1 + 1] / 100 * width[i0:i1 + 1] / 2
         zd[i0:i1 + 1] = za[i0:i1 + 1] - devers[i0:i1 + 1] / 100 * width[i0:i1 + 1] / 2
     # creux résiduels : un ponceau que la BD TOPO situe quelques mètres à côté de sa position
@@ -790,6 +819,7 @@ def main():
             z[a:b + 1] += dz
         creux.append((round(float(pk[i0])), round(float(pk[i1])), round(float(dz.max()), 2)))
     print("creux comblés hors ouvrages BD TOPO (pk début, pk fin, profondeur m) :", creux)
+    print("tabliers lus dans le MNS (pk début, pk fin, part vue, correction min et max en m) :", tabliers)
     za, zg, zd = (savgol_filter(z, 7, 2) for z in (za, zg, zd))
     devers = savgol_filter(devers, 7, 2)
 

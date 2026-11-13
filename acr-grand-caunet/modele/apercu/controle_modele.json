@@ -40,13 +40,13 @@
     ],
     "texture_px_par_dalle": 2048,
     "terrain": {
-      "sommets": 373077,
-      "triangles": 728787,
+      "sommets": 372860,
+      "triangles": 728297,
       "dalles": 26,
-      "sommets_de_bord": 14752,
+      "sommets_de_bord": 14826,
       "recalage_bords_mnt_m": {
         "median_abs": 0.007,
-        "p95_abs": 0.07,
+        "p95_abs": 0.077,
         "max_abs": 2.63
       }
     },
@@ -70,10 +70,10 @@
         "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
-        "taille_mo": 39.5,
+        "taille_mo": 39.48,
         "maillages": 26,
-        "sommets": 376079,
-        "triangles": 728787,
+        "sommets": 375865,
+        "triangles": 728297,
         "nan": false,
         "bornes_min": [
           -3280.5,
@@ -87,9 +87,9 @@
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
-        "bords_testes": 14752,
-        "sommets_partages_pct": 99.98,
-        "ecart_vertical_max_m": 0.021,
+        "bords_testes": 14826,
+        "sommets_partages_pct": 99.987,
+        "ecart_vertical_max_m": 0.015,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -112,12 +112,12 @@
     "texture_px_par_dalle": 512,
     "terrain": {
       "sommets": 104335,
-      "triangles": 192667,
+      "triangles": 192598,
       "dalles": 26,
-      "sommets_de_bord": 14752,
+      "sommets_de_bord": 14826,
       "recalage_bords_mnt_m": {
         "median_abs": 0.007,
-        "p95_abs": 0.07,
+        "p95_abs": 0.077,
         "max_abs": 2.63
       }
     },
@@ -144,7 +144,7 @@
         "taille_mo": 7.51,
         "maillages": 26,
         "sommets": 106036,
-        "triangles": 192667,
+        "triangles": 192598,
         "nan": false,
         "bornes_min": [
           -3280.5,
@@ -158,8 +158,8 @@
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
-        "bords_testes": 14752,
-        "sommets_partages_pct": 99.986,
+        "bords_testes": 14826,
+        "sommets_partages_pct": 99.987,
         "ecart_vertical_max_m": 0.02,
         "ecart_vertical_p99_m": 0.0
       }
@@ -168,8 +168,8 @@
   "rendus_webgl": false,
   "vues_rapprochees_pk": {
     "pont": [
-      5522,
-      5586
+      5534,
+      5552
     ],
     "virage": 4079
   }

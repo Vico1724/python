@@ -79,24 +79,38 @@
   },
   {
    "pk_debut_m": 3560,
-   "pk_fin_m": 3625,
+   "pk_fin_m": 3637,
    "ligne": "axiale",
    "type": "continue",
-   "provenance": "vidéo : axiale continue à l'approche du carrefour du Lion d'Or (t ≈ 181-183 s) ; début du tronçon estimé à ±40 m"
+   "provenance": "vidéo : axiale continue à l'approche du carrefour du Lion d'Or (t ≈ 181-183 s) ; début du tronçon estimé à ±40 m ; prolongée le 13/11/2026 jusqu'à la pointe de la zone hachurée (PK 3637)"
   },
   {
-   "pk_debut_m": 3625,
+   "pk_debut_m": 3637,
    "pk_fin_m": 3700,
    "ligne": "axiale",
    "type": "aucune",
-   "provenance": "carrefour du Lion d'Or : îlot hachuré et lignes de cédez-le-passage vus (t ≈ 184 s) mais non modélisés ; géométrie du carrefour en cours de reprise"
+   "provenance": "carrefour du Lion d'Or : l'axe du ruban n'y est pas l'axe d'une voie ; la zone hachurée est tracée à part (zones_hachurees)"
   },
   {
    "pk_debut_m": 3625,
    "pk_fin_m": 3700,
-   "ligne": "rives",
+   "ligne": "rive_gauche",
+   "type": "continue",
+   "provenance": "rive gauche continue le long de la branche de gauche, celle de la spéciale : vidéo de reconnaissance (images aux PK 3596 à 3686, 13/11/2026) et note de la zone 2 de chaussee_corrections.json ; demandé par le directeur après son essai du 13/11/2026 (« les marques n'y sont pas »)"
+  },
+  {
+   "pk_debut_m": 3625,
+   "pk_fin_m": 3655,
+   "ligne": "rive_droite",
    "type": "aucune",
-   "provenance": "idem"
+   "provenance": "débouché de la branche de droite (fermée par les barrières du rallye) : pas de rive"
+  },
+  {
+   "pk_debut_m": 3655,
+   "pk_fin_m": 3700,
+   "ligne": "rive_droite",
+   "type": "continue",
+   "provenance": "rive droite continue le long du terre-plein : vidéo de reconnaissance (images aux PK 3596 à 3686, 13/11/2026) et note de la zone 2 de chaussee_corrections.json ; demandé par le directeur après son essai du 13/11/2026 (« les marques n'y sont pas »)"
   },
   {
    "pk_debut_m": 3700,
@@ -180,5 +194,22 @@
   "Lignes continues et lignes d'annonce T3 dans les courbes sans visibilité : vues à plusieurs endroits, pas relevées PK par PK (non vérifié).",
   "Marquage du carrefour du Lion d'Or (îlot hachuré, ligne d'effet du cédez-le-passage) et des débouchés.",
   "Usure et effacement partiel (rendu uniforme)."
+ ],
+ "zones_hachurees": [
+  {
+   "nom": "carrefour du Lion d'Or",
+   "pk_pointe_m": 3636.3,
+   "decalage_pointe_m": 0.3,
+   "pk_bout_m": 3651.6,
+   "decalage_bout_m": 3.8,
+   "largeur_max_m": 2.7,
+   "pleine_largeur_a_m": 9.0,
+   "contour_m": 0.15,
+   "bande_m": 0.45,
+   "pas_m": 1.4,
+   "biais_m": 1.2,
+   "lecture": "zone en fuseau allongé aux deux bouts arrondis, large de 2 à 2,7 m ; décalages comptés depuis l'axe du ruban, positifs à droite ; contour continu et bandes obliques",
+   "provenance": "pointe et bout repris de la note de la zone 2 de chaussee_corrections.json (nuage de points LiDAR, intensité du marquage : de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0, environ 14 x 2,7 m) ; largeur et écartement des bandes estimés sur la vidéo de reconnaissance (PK 3596 et 3608) ; forme reprise du polygone zone_hachuree de carrefours_annexes.json (points de forte intensité du nuage LiDAR)"
+  }
  ]
 }

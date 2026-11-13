@@ -363,6 +363,51 @@ def marquage(ch, ref, rg, cfg, decks, ruban):
         tri = oriente(pos.astype(np.float64), tri, np.array([0.0, 1.0, 0.0]))
         uv = np.column_stack([np.tile([0.0, 1.0], len(S)), np.repeat(S, 2)])
         parts.append({"pos": pos, "nrm": np.tile([0, 1, 0], (len(P), 1)).astype(np.float32), "uv": uv, "idx": tri})
+
+    # zones hachurées (marquage_route.json, zones_hachurees) : un fuseau entre deux voies, contour continu et bandes obliques
+    def bande_libre(Sa, Oa, Sb, Ob):
+        """Bande entre deux lignes de points (station, décalage) de même longueur, posée sur le ruban."""
+        Sa, Oa, Sb, Ob = (np.asarray(x, float) for x in (Sa, Oa, Sb, Ob))
+        P = np.empty((2 * len(Sa), 3))
+        P[0::2] = rg.point(Sa, Oa, dz)
+        P[1::2] = rg.point(Sb, Ob, dz)
+        i = np.arange(len(Sa) - 1)
+        tri = np.concatenate([np.column_stack([2 * i, 2 * i + 1, 2 * i + 3]), np.column_stack([2 * i, 2 * i + 3, 2 * i + 2])])
+        pos = m08.to_gltf(P, ref).astype(np.float64)
+        Sv = np.empty(2 * len(Sa))
+        Sv[0::2], Sv[1::2] = Sa, Sb
+        ecart = hauteur_sur_ruban(ruban["pos"].astype(np.float64), ruban["idx"], pos, Sv, ch["pk"]) - dz
+        pos[:, 1] -= np.nan_to_num(ecart)
+        tri = oriente(pos, tri, np.array([0.0, 1.0, 0.0]))
+        parts.append({"pos": pos.astype(np.float32), "nrm": np.tile([0, 1, 0], (len(P), 1)).astype(np.float32),
+                      "uv": np.column_stack([np.tile([0.0, 1.0], len(Sa)), np.repeat(Sa, 2)]), "idx": tri})
+
+    for zh in cfg.get("zones_hachurees", []):
+        s0, s1 = float(zh["pk_pointe_m"]), float(zh["pk_bout_m"])
+
+        def centre(s):
+            return zh["decalage_pointe_m"] + (zh["decalage_bout_m"] - zh["decalage_pointe_m"]) * (s - s0) / (s1 - s0)
+
+        def demi(s):
+            u = np.clip((np.asarray(s, float) - s0) / (s1 - s0), 0.0, 1.0)
+            h = zh["largeur_max_m"] / 2 * (0.75 + 0.25 * np.clip(u * (s1 - s0) / zh["pleine_largeur_a_m"], 0.0, 1.0))
+            b0, b1 = np.clip(u / 0.1, 0.0, 1.0), np.clip((1.0 - u) / 0.1, 0.0, 1.0)      # deux bouts arrondis
+            return h * np.sqrt(b0 * (2.0 - b0)) * np.sqrt(b1 * (2.0 - b1))
+
+        S = np.arange(s0, s1 + 1e-6, 0.5)
+        lc = zh["contour_m"]
+        for signe in (-1.0, 1.0):                                         # les deux contours
+            o = centre(S) + signe * demi(S)
+            bande_libre(S, o - lc / 2, S, o + lc / 2)
+        n_bandes = 0
+        for sk in np.arange(s0 + 1.6, s1 - 0.8, zh["pas_m"]):             # bandes obliques
+            Sd = sk + np.linspace(0.0, zh["biais_m"], 6)
+            if Sd[-1] > s1 - 0.3 or demi(Sd).min() < 0.25:
+                continue
+            o = centre(Sd) - demi(Sd) + np.linspace(0.0, 1.0, 6) * 2 * demi(Sd)
+            bande_libre(Sd - zh["bande_m"] / 2, o, Sd + zh["bande_m"] / 2, o)
+            n_bandes += 1
+        stats[f"zone hachurée : {zh['nom']}"] = {"bandes": n_bandes, "longueur_m": round(s1 - s0, 1)}
     return fusion(parts, "marquage", "marquage"), stats
 
 
@@ -828,7 +873,8 @@ def main():
             pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p, mnt=mnt if hors else None)
             coll["beton" if p["type"] == "beton" else "pierre"].append(cb)
             corps = "beton" if p["type"] == "beton" else "pierre"
-            meshes_ouv.append(fusion(pcs[corps], f"parapet_{nom}_{cote}", corps))
+            # "peint_en_blanc" : béton peint (bloc du Lion d'Or, blanc sur la reconnaissance, gris sombre en jeu le 13/11/2026)
+            meshes_ouv.append(fusion(pcs[corps], f"parapet_{nom}_{cote}", "blanc" if p.get("peint_en_blanc") else corps))
             if "blanc" in pcs:
                 meshes_ouv.append(fusion(pcs["blanc"], f"parapet_{nom}_{cote}_des", "blanc"))
             if "chaperon" in pcs:
@@ -850,7 +896,7 @@ def main():
                 hors.append(f"{s0:.0f}-{s1:.0f} {cote} paroi rocheuse (collision seule)")
                 continue
             nom = f"PK{s0:.0f}"
-            meshes_ouv.append(fusion(pcs[corps], f"parapet_hors_tablier_{nom}_{cote}", corps))
+            meshes_ouv.append(fusion(pcs[corps], f"parapet_hors_tablier_{nom}_{cote}", "blanc" if p.get("peint_en_blanc") else corps))
             if "blanc" in pcs:
                 meshes_ouv.append(fusion(pcs["blanc"], f"parapet_hors_tablier_{nom}_{cote}_des", "blanc"))
             if "chaperon" in pcs:

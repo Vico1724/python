@@ -234,7 +234,8 @@
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "pk_debut_m": 3629,
     "pk_fin_m": 3632,
-    "note": "bloc de béton blanc tagué en forme de rampe (tête d'aqueduc), et non un muret long"
+    "note": "bloc de béton blanc tagué en forme de rampe (tête d'aqueduc), et non un muret long",
+    "peint_en_blanc": true
    },
    "droite": {
     "type": "aucun",
@@ -793,8 +794,8 @@
    "note": "mur de béton d'un ouvrage hydraulique, en retrait"
   },
   {
-   "pk_debut_m": 3443,
-   "pk_fin_m": 3450,
+   "pk_debut_m": 3469.5,
+   "pk_fin_m": 3476.5,
    "route": "D3D",
    "gauche": {
     "type": "pierre",
@@ -807,11 +808,12 @@
     "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances"
    },
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "relevé aux PK 3443 à 3450 sur la vidéo ; déplacé le 13/11/2026 sur le vide que le relevé laser montre sous la chaussée (PK 3472 à 3474, 1,6 m de profondeur) : la BD TOPO place ce ponceau au PK 3443-3450, où le sol du relevé ne montre aucun vide, et le relevé vidéo s'était calé sur elle. La paroi rocheuse qui suit le ponceau avait déjà été recalée de 28 m dans le même sens (parois_rocheuses.json)"
   },
   {
-   "pk_debut_m": 3447,
-   "pk_fin_m": 3457,
+   "pk_debut_m": 3468.0,
+   "pk_fin_m": 3478.0,
    "route": "D3D",
    "gauche": {
     "type": "aucun",
@@ -824,7 +826,8 @@
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
    },
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)"
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "relevé aux PK 3447 à 3457 sur la vidéo ; déplacé le 13/11/2026 sur le vide que le relevé laser montre sous la chaussée (PK 3472 à 3474, 1,6 m de profondeur) : la BD TOPO place ce ponceau au PK 3443-3450, où le sol du relevé ne montre aucun vide, et le relevé vidéo s'était calé sur elle. La paroi rocheuse qui suit le ponceau avait déjà été recalée de 28 m dans le même sens (parois_rocheuses.json)"
   },
   {
    "pk_debut_m": 3455,

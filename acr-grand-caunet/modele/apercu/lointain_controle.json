@@ -58,9 +58,9 @@
   "triangles": 107664,
   "dalles": 282,
   "bord": {
-   "boucles_de_bord": 15,
+   "boucles_de_bord": 16,
    "sommets_bord_exterieur": 1267,
-   "aretes_de_bord_total": 16033
+   "aretes_de_bord_total": 16102
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -95,7 +95,7 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 419,
+ "duree_s": 271,
  "complet": {
   "bandes_m": [
    [
@@ -123,13 +123,13 @@
     200
    ]
   ],
-  "sommets": 762071,
-  "triangles": 1521284,
+  "sommets": 858337,
+  "triangles": 1713602,
   "dalles": 290,
   "bord": {
-   "boucles_de_bord": 25,
+   "boucles_de_bord": 26,
    "sommets_bord_exterieur": 2536,
-   "aretes_de_bord_total": 17387
+   "aretes_de_bord_total": 17445
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -141,7 +141,7 @@
    "m_par_px_max": 12.11
   },
   "relecture": {
-   "taille_mo": 68.62,
+   "taille_mo": 73.2,
    "maillages": 290,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,

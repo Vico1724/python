@@ -1,5 +1,5 @@
 {
- "source": "chaussee_precise_brut.csv",
+ "source": "chaussee_precise.csv",
  "points": 7549,
  "tolerances_m": {
   "lidar+ortho": 0.2,
@@ -1222,7 +1222,7 @@
    3.0
   ],
   "saut_de_devers_max_pct_par_m": 4.0,
-  "metres_repris": 339,
+  "metres_repris": 366,
   "troncons": [
    {
     "pk_debut": 1195,
@@ -1233,8 +1233,8 @@
    {
     "pk_debut": 1685,
     "pk_fin": 1697,
-    "correction_max_gauche_m": 0.02,
-    "correction_max_droite_m": 0.31
+    "correction_max_gauche_m": 0.03,
+    "correction_max_droite_m": 0.36
    },
    {
     "pk_debut": 1785,
@@ -1250,9 +1250,9 @@
    },
    {
     "pk_debut": 1939,
-    "pk_fin": 1952,
-    "correction_max_gauche_m": 0.03,
-    "correction_max_droite_m": 0.34
+    "pk_fin": 1958,
+    "correction_max_gauche_m": 0.14,
+    "correction_max_droite_m": 0.48
    },
    {
     "pk_debut": 2436,
@@ -1273,10 +1273,10 @@
     "correction_max_droite_m": 0.56
    },
    {
-    "pk_debut": 3467,
+    "pk_debut": 3464,
     "pk_fin": 3480,
-    "correction_max_gauche_m": 0.35,
-    "correction_max_droite_m": 0.21
+    "correction_max_gauche_m": 0.53,
+    "correction_max_droite_m": 0.34
    },
    {
     "pk_debut": 3902,
@@ -1287,8 +1287,20 @@
    {
     "pk_debut": 4040,
     "pk_fin": 4061,
-    "correction_max_gauche_m": 0.89,
-    "correction_max_droite_m": 0.23
+    "correction_max_gauche_m": 0.91,
+    "correction_max_droite_m": 0.24
+   },
+   {
+    "pk_debut": 4448,
+    "pk_fin": 4456,
+    "correction_max_gauche_m": 0.26,
+    "correction_max_droite_m": 0.28
+   },
+   {
+    "pk_debut": 4475,
+    "pk_fin": 4483,
+    "correction_max_gauche_m": 0.2,
+    "correction_max_droite_m": 0.19
    },
    {
     "pk_debut": 4571,
@@ -1340,7 +1352,7 @@
    }
   ],
   "devers_extreme_avant_pct": 50.1,
-  "devers_extreme_apres_pct": 15.2
+  "devers_extreme_apres_pct": 17.2
  },
  "echecs": []
 }

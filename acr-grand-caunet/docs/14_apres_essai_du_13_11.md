@@ -73,7 +73,33 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 
 Dans la même version : l'échelle de la texture de roche est réglée sur celle des parois du jeu.
 
-## 5. Où c'est décrit
+## 5. Troisième essai du directeur, le 13 novembre au soir (quatrième version)
+
+**Son constat** (vidéo fournie). « C'est beaucoup mieux. » Restent : les parois rocheuses proches et surtout lointaines à affiner ; les reliefs à mi-distance, qui « font tas de sable avec une photo de dessus » ; au carrefour du Lion d'Or, un nivellement étrange de la route vers le terre-plein, et pas de lignes au sol.
+
+La vidéo a été calée sur la route d'après la barre de progression du jeu (7 m près), puis comparée à la reconnaissance tous les 40 m.
+
+| Défaut | Cause trouvée | Correction (cinquième version) |
+|---|---|---|
+| Nivellement étrange au Lion d'Or | La chaussée passe sur un ponceau. Comme pour un pont, le modèle y tirait une ligne droite entre les deux bouts : un palier plat, 15 à 60 cm au-dessus de la vraie chaussée, avec une cassure de pente à chaque bout. Le terre-plein, lui, était au bon niveau | La hauteur de la chaussée sur les ouvrages est maintenant lue dans le relevé laser des surfaces. Au Lion d'Or, l'écart au laser tombe sous 2 cm et les cassures disparaissent |
+| Terre-plein blanc et nu | Une nappe à part, d'une teinte unie | Retirée : le terrain qui était dessous porte le sol, l'herbe et les arbres du reste du décor |
+| Pas de lignes au Lion d'Or | Jamais modélisées | Ligne axiale continue jusqu'à la pointe de la zone hachurée, zone hachurée (position lue dans le relevé laser), rive gauche continue, rive droite continue le long du terre-plein |
+| Bloc de béton sombre à l'entrée du carrefour | Rendu en béton gris | Peint en blanc, comme le vrai |
+| Reliefs à mi-distance en « tas de sable » | Au-delà de 140 à 220 m de la route, le relief était une nappe lisse posée à hauteur de cime des arbres, avec la photo aérienne dessus ; trois fois moins d'arbres que près de la route, aucun buisson | Le relief reste au niveau du sol jusqu'à 450 m, avec le détail du relevé laser. Des arbres entiers y sont plantés à la densité mesurée (plus de 200 par hectare), puis moins serrés jusqu'à 650 m ; des buissons couvrent la garrigue |
+| Parois rocheuses lointaines molles | Le maillage écrasait les barres rocheuses, et la photo aérienne n'y met que quelques pixels étirés | Maillage deux fois plus fin sur les versants raides, jusqu'à 4 km. À moins de 700 m de la route, les faces très raides sont habillées de la roche du jeu |
+| Parois proches gris ardoise | Roche trop sombre à l'ombre | Éclaircie et réchauffée (au soleil elle était déjà beige clair : réglage mesuré) |
+| Pointes de roche en forme de tente (km 2, km 4) | Un sommet de roche visible isolé au milieu de voisins enfouis | La roche ne peut plus dépasser nettement son voisinage |
+| Terre orange vif sur les talus (km 4, km 6,4) | Teinte trop saturée | Désaturée vers le beige gris |
+| Parapets plus sombres que les vrais | Réglage | Pierre et béton éclaircis |
+| Route trop ouverte vers le km 5,2 | La vraie route passe entre deux haies ; le modèle plantait trop peu au ras du bord | Un rang serré de végétation basse est ajouté tout près du bord, là où le relevé laser montre une végétation haute |
+| Accotement en marches d'escalier | La limite pierraille / herbe suivait une grille de 50 cm | Calculée d'après le bord exact de la chaussée, à la finesse des masques du jeu (34 cm) |
+
+**Deux corrections de la route elle-même**, trouvées en vérifiant le Lion d'Or. Elles ne déplacent rien en plan.
+
+- **Pont du km 5,5** (59 m). Le tablier réel est en creux ; la ligne droite du modèle passait jusqu'à 1,04 m trop haut en son milieu. Le profil suit maintenant le tablier mesuré au laser, à 3 cm près.
+- **Ponceau du km 3,45.** L'IGN le place au PK 3443-3450, mais le relevé laser ne montre un vide sous la chaussée qu'au PK 3472-3474. Ses deux parapets sont déplacés de 26 m. La paroi rocheuse qui le suit avait déjà été recalée de 28 m dans le même sens.
+
+## 6. Où c'est décrit
 
 - Écarts relevés : `data/reference/releve_essai_13_11/partie_1.json` et `partie_2.json`. Paires d'images : `scripts/20_planches_comparees.py` (images hors dépôt, `figures/compare_jeu_13_11/`).
 - Lissage de la route : `scripts/07b_regulariser_chaussee.py` (réglages et raisons en tête de fichier).

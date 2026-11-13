@@ -104,20 +104,20 @@
     }
    },
    "5": {
-    "role": "terre ocre (texture de Bollène, éclaircie et réchauffée vers la terre rouge de Provence vue sur la reconnaissance)",
+    "role": "terre ocre (texture de Bollène, éclaircie et réchauffée vers la terre rouge de Provence vue sur la reconnaissance) ; désaturée le 13/11/2026 : en jeu (quatrième version, PK 4000 et 6400) elle tirait sur l'orange vif, la terre réelle est beige gris",
     "textures": {},
     "scalaires": {},
     "vecteurs": {
      "Material5AlbedoControls": [
-      1.3,
-      0.85,
+      1.4,
+      0.6,
       1.0,
       0.0
      ],
      "Material5Tint": [
-      1.08,
-      0.9,
-      0.74,
+      1.0,
+      0.94,
+      0.84,
       1.0
      ]
     }
@@ -166,45 +166,45 @@
   },
   "MI_GC_Pierre": {
    "parent": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA",
-   "pourquoi": "parapets vus trop sombres : la variante A de Bollène a une pierre claire (T_StoneWallVmghfd3o) teintée beige, au lieu de la pierre brute sombre de la variante A2",
+   "pourquoi": "parapets vus trop sombres : la variante A de Bollène a une pierre claire (T_StoneWallVmghfd3o) teintée beige, au lieu de la pierre brute sombre de la variante A2 ; éclaircie le 13/11/2026 (1,55 -> 2,0) : parapets plus sombres en jeu que sur la reconnaissance (PK 4000, 5600)",
    "scalaires": {
     "Mat1_UVTiling": 2.9
    },
    "vecteurs": {
     "Mat1_AlbedoControls": [
-     1.55,
-     0.9,
-     1.05,
+     2.0,
+     0.8,
+     1.0,
      0.0
     ]
    }
   },
   "MI_GC_Roche": {
    "parent": "/Game/Props/MonteCarloProps/MonBolRockfaces/MI_BolleneRockfacesParent",
-   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc ; échelle réglée sur celle des parois du jeu (dépliage du jeu à 3,9 m par unité et Mat1_UVTiling de 0,7 à 0,95, soit un motif de 4 à 5,6 m ; le nôtre est à 2,5 m par unité : 0,45 et 0,5 donnent 5,6 et 5 m). Sans ce réglage, valeur par défaut du maître, inconnue",
+   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc ; échelle réglée sur celle des parois du jeu (dépliage du jeu à 3,9 m par unité et Mat1_UVTiling de 0,7 à 0,95, soit un motif de 4 à 5,6 m ; le nôtre est à 2,5 m par unité : 0,45 et 0,5 donnent 5,6 et 5 m). Sans ce réglage, valeur par défaut du maître, inconnue ; vu en jeu le 13/11/2026 (quatrième version, PK 2400) : roche gris ardoise, bien plus sombre que le calcaire clair de la reconnaissance : clarté passée de 1,9 à 3,0, teinte réchauffée (les parois du jeu vont de 1,7 à 4,2) ; réglage final du 13/11/2026 : 2,4 et non 3,0, car au soleil (PK 4000 de la vidéo du quatrième essai) la roche est déjà beige clair ; c'est à l'ombre, sous le ciel bleu du matin, qu'elle vire à l'ardoise",
    "vecteurs": {
     "Mat1_AlbedoControls": [
-     1.9,
-     0.3,
+     2.4,
+     0.35,
      1.0,
      0.0
     ],
     "Mat2_AlbedoControls": [
-     1.9,
-     0.3,
+     2.4,
+     0.35,
      1.0,
      0.0
     ],
     "Mat1_TintMult": [
      1.0,
-     0.99,
-     0.95,
+     0.96,
+     0.88,
      1.0
     ],
     "Mat2_TintMult": [
      1.0,
-     0.99,
-     0.95,
+     0.96,
+     0.88,
      1.0
     ]
    },
@@ -227,6 +227,18 @@
      0.97,
      0.9,
      1.0
+    ],
+    "Mat1_AlbedoControls": [
+     1.45,
+     0.8,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.45,
+     0.8,
+     1.0,
+     0.0
     ]
    }
   },
@@ -244,6 +256,18 @@
      0.97,
      0.9,
      1.0
+    ],
+    "Mat1_AlbedoControls": [
+     1.45,
+     0.8,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.45,
+     0.8,
+     1.0,
+     0.0
     ]
    }
   },
@@ -261,6 +285,18 @@
      0.97,
      0.9,
      1.0
+    ],
+    "Mat1_AlbedoControls": [
+     1.45,
+     0.8,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.45,
+     0.8,
+     1.0,
+     0.0
     ]
    }
   }

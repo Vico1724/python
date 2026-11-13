@@ -84,6 +84,7 @@ LOIN0 = (880000, 6210000)             # coin sud-ouest de la grille kilométriqu
 # teinte de calcaire. Pentes en degrés : début et fin de la transition, pour le relief à 5 m puis pour celui à 25 m
 # (qui écrase les falaises, d'où des seuils plus bas).
 FALAISE = {"pente_5m_deg": (46.0, 58.0), "couleur": (196, 186, 166), "taux": 0.70, "elargir_m": 4.0}
+FALAISE_ROCHE = {"pente_deg": 50.0, "a_m": 700.0}      # faces du relief lointain rendues par la roche du jeu (--falaises-roche)
 # Vu en jeu le 13/11/2026 : massifs lointains blancs, d'aspect enneigé, et rayés de bandes horizontales. Les bancs
 # (strates) sont retirés, la teinte est moins claire et moins couvrante, et elle n'est plus posée au-delà du relief à
 # 5 m (6 km environ) : le relief à 25 m ne montre pas les falaises, les seuils abaissés teintaient des versants entiers.
@@ -1081,6 +1082,7 @@ def lointain(P, ref, args, pkf):
     n = 0
     pentes = Pentes() if not P.echantillon and args.falaises else None
     teintees = []
+    n_falaises = [0, 0]
     for m in ms:
         _, taille, kx, ky = m["nom"].split("_")
         kx, ky = int(kx), int(ky)
@@ -1121,10 +1123,41 @@ def lointain(P, ref, args, pkf):
             k = (aplat * t * t * (3.0 - 2.0 * t))[:, None]
             nrm = (1.0 - k) * nrm + k * np.array([0.0, 1.0, 0.0])
             nrm /= np.maximum(np.linalg.norm(nrm, axis=1, keepdims=True), 1e-9)
-        P.maillage(nom_sm, "lointain", f"{UE}/FarRing/Meshes", m["pos"], nrm, m["uv"], m["idx"], nom_mi, essais,
+        tri_dalle = m["idx"]
+        if not P.echantillon and args.falaises_roche:
+            # Falaises des versants (demande du directeur, 13/11/2026 : « affiner les parois rocheuses, surtout lointaines »).
+            # Sur une face très raide, la photo aérienne n'apporte que quelques pixels étirés. À moins de
+            # FALAISE_ROCHE["a_m"] de la route, ces faces quittent la dalle et forment un maillage à part, habillé de la
+            # roche du jeu (texture répétée et relief), dépliée selon l'horizontale et la hauteur.
+            p3 = g[tri_dalle]
+            fn = np.cross(p3[:, 1] - p3[:, 0], p3[:, 2] - p3[:, 0])
+            fn /= np.maximum(np.linalg.norm(fn, axis=1, keepdims=True), 1e-12)
+            fn[fn[:, 1] < 0] *= -1.0
+            cen = p3.mean(1)
+            d_tri = pkf.t.query(cen[:, [0, 2]])[0]
+            raide = (fn[:, 1] < math.cos(math.radians(FALAISE_ROCHE["pente_deg"]))) & (d_tri < FALAISE_ROCHE["a_m"])
+            if raide.sum() >= 4:
+                materiau_roche(P)
+                pr = p3[raide].reshape(-1, 3)
+                nf = fn[raide]
+                selon_x = np.abs(nf[:, 0]) >= np.abs(nf[:, 2])                    # face tournée vers l'est ou l'ouest : dépliée le long du nord-sud
+                u = np.where(np.repeat(selon_x, 3), pr[:, 2], pr[:, 0]) / ROCHE["uv_m"]
+                uvr = np.column_stack([u, -pr[:, 1] / ROCHE["uv_m"]])
+                usure = np.clip(0.30 + 0.40 * _fbm(pr[:, 0] / 6.0 + pr[:, 2] / 9.0, pr[:, 1] / 3.0, 41, 3), 0.0, 0.62)
+                coul = np.column_stack([(255 * usure).astype(np.uint8), np.zeros(len(pr), np.uint8), np.full(len(pr), 255, np.uint8),
+                                        np.full(len(pr), 255, np.uint8)])
+                P.maillage(f"SM_{NOM}Cliff{L}_{suf}", "falaises", f"{UE}/FarRing/Meshes", pr, np.repeat(nf, 3, axis=0), uvr,
+                           np.arange(len(pr)).reshape(-1, 3), "MI_GC_Roche", essais, couleurs=coul,
+                           extra={"triangles_raides": int(raide.sum()), "pente_min_deg": FALAISE_ROCHE["pente_deg"]})
+                tri_dalle = tri_dalle[~raide]
+                n_falaises[0] += 1
+                n_falaises[1] += int(raide.sum())
+        P.maillage(nom_sm, "lointain", f"{UE}/FarRing/Meshes", m["pos"], nrm, m["uv"], tri_dalle, nom_mi, essais,
                    extra={"distance_min_e4_m": round(dmin), "source": f"{src.relative_to(ROOT).as_posix()}#{m['nom']}",
                           **({"normales_adoucies": aplat} if aplat > 0 else {})})
         n += 1
+    if n_falaises[0]:
+        print(f"  falaises des versants : {n_falaises[1]} faces raides habillées de roche, en {n_falaises[0]} maillages")
     if teintees:
         print(f"  falaises : {len(teintees)} images lointaines teintées ; les plus rocheuses : "
               + ", ".join(f"{t} {100 * p:.0f} %" for p, t in sorted(teintees, reverse=True)[:4]))
@@ -1175,9 +1208,12 @@ class Sol:
     """Altitude du terrain de terrain_sol.glb en un point (interpolation dans ses triangles) : les arbres
     sont posés sur le maillage importé, pas sur le MNT brut."""
 
-    def __init__(self):
-        ms = lire_glb(MOD / "terrain_sol.glb")
+    def __init__(self, fichier="terrain_sol.glb", garder=None):
+        """`garder(centres xz des triangles)` : masque des triangles à retenir (relief lointain : ceux proches de la route)."""
+        ms = lire_glb(MOD / fichier)
         self.T = np.vstack([m["pos"][m["idx"]] for m in ms])           # (n, 3 sommets, xyz glTF)
+        if garder is not None:
+            self.T = self.T[garder(self.T[:, :, [0, 2]].mean(1))]
         self.arbre = cKDTree(self.T[:, :, [0, 2]].mean(1))
 
     def __call__(self, gx, gz, k=16):
@@ -1207,10 +1243,15 @@ class Sol:
 # jusqu'à ARBRES_LOIN["a_m"], là où le relevé de hauteur de végétation de l'IGN montre de la forêt. Ils sont posés au
 # sol : la surface lointaine passe à hauteur de houppier, seules leurs cimes en sortent, ce qui donne aux crêtes une
 # silhouette d'arbres. Positions tirées au sort (graine fixe) : un habillage, pas un relevé. Aucune collision.
-ARBRES_LOIN = {"de_m": 135.0, "a_m": 430.0, "pas_m": 8.5, "mnh_min_m": 3.0, "part_pin": 0.65, "depasse_m": (2.0, 4.0),
-               "disparition_cm": [95000, 130000],
+# Depuis l'essai du 13/11/2026 (quatrième version, « tas de sable avec une photo de dessus ») : la surface lointaine
+# reste au niveau du sol jusqu'à 450 m (13_paysage_lointain.py), et les arbres y sont plantés ENTIERS, à la densité du
+# relevé laser près de la route (un peu plus de 200 par hectare), puis moins serrés jusqu'à 650 m, où la surface monte
+# à hauteur de cime. Des buissons couvrent la garrigue (végétation de 0,5 à 3 m), que rien ne rendait.
+ARBRES_LOIN = {"de_m": 135.0, "a_m": 650.0, "bandes": [(300.0, 4.8), (450.0, 6.0), (650.0, 8.0)], "mnh_min_m": 3.0, "part_pin": 0.65,
+               "hauteur_m": (4.0, 20.0), "disparition_cm": [95000, 130000],
                "pin": ("Foliage/Trees/AleppoPine", "SM_AleppoPine04", "pin d'Alep"),
-               "feuillu": ("Foliage/Trees/Smoketree", "SM_Smoketree01", "chêne vert")}
+               "feuillu": ("Foliage/Trees/Smoketree", "SM_Smoketree01", "chêne vert"),
+               "buissons": {"a_m": 380.0, "pas_m": 3.6, "mnh_m": (0.5, 3.0), "hauteur_m": (0.6, 2.4), "disparition_cm": [36000, 46000]}}
 
 
 def arbres_lointains(ref):
@@ -1222,36 +1263,52 @@ def arbres_lointains(ref):
     with open(OUT / "chaussee_precise.csv", encoding="utf-8") as h:
         axe = np.array([[float(r["x_axe"]), float(r["y_axe"])] for r in csv.DictReader(h)])
     rng = np.random.default_rng(SEED + 31)
-    pas, R = ARBRES_LOIN["pas_m"], ARBRES_LOIN["a_m"]
-    xs = np.arange(axe[:, 0].min() - R, axe[:, 0].max() + R, pas)
-    ys = np.arange(axe[:, 1].min() - R, axe[:, 1].max() + R, pas)
-    X, Y = np.meshgrid(xs, ys)
-    X = (X + rng.uniform(-0.45, 0.45, X.shape) * pas).ravel()
-    Y = (Y + rng.uniform(-0.45, 0.45, Y.shape) * pas).ravel()
-    d, _ = cKDTree(axe[::3]).query(np.column_stack([X, Y]))
-    sel = (d >= ARBRES_LOIN["de_m"]) & (d <= R)
-    X, Y, d = X[sel], Y[sel], d[sel]
+    arbre_axe = cKDTree(axe[::3])
 
-    def lire(fichier):
-        with rasterio.open(fichier) as src:
-            v = np.array([q[0] for q in src.sample(np.column_stack([X, Y]))], float)
-            return np.where((v == src.nodata) | (v < -1000), np.nan, v)
+    def semis(de, a, pas):
+        """Points d'une grille tirée au sort, entre `de` et `a` mètres de l'axe : x, y, distance, hauteur de végétation, sol."""
+        xs = np.arange(axe[:, 0].min() - a, axe[:, 0].max() + a, pas)
+        ys = np.arange(axe[:, 1].min() - a, axe[:, 1].max() + a, pas)
+        X, Y = np.meshgrid(xs, ys)
+        X = (X + rng.uniform(-0.45, 0.45, X.shape) * pas).ravel()
+        Y = (Y + rng.uniform(-0.45, 0.45, Y.shape) * pas).ravel()
+        d, _ = arbre_axe.query(np.column_stack([X, Y]))
+        sel = (d >= de) & (d < a)
+        X, Y, d = X[sel], Y[sel], d[sel]
+        out = []
+        for fichier in (f_mnh, f_alt):
+            with rasterio.open(fichier) as src:
+                v = np.array([q[0] for q in src.sample(np.column_stack([X, Y]))], float)
+                out.append(np.where((v == src.nodata) | (v < -1000), np.nan, v))
+        ok = np.isfinite(out[0]) & np.isfinite(out[1])
+        return X[ok], Y[ok], d[ok], out[0][ok], out[1][ok]
 
-    mnh, alt = lire(f_mnh), lire(f_alt)
-    ok = np.isfinite(mnh) & np.isfinite(alt) & (mnh >= ARBRES_LOIN["mnh_min_m"])
-    # moins dense en s'éloignant : on ne distingue plus les arbres un à un au-delà de 300 m
-    ok &= rng.random(len(X)) < np.clip(1.15 - 0.55 * (d - ARBRES_LOIN["de_m"]) / (R - ARBRES_LOIN["de_m"]), 0.4, 1.0)
+    rows, n_pins = [], 0
+    de = ARBRES_LOIN["de_m"]
+    for a, pas in ARBRES_LOIN["bandes"]:
+        X, Y, d, mnh, alt = semis(de, a, pas)
+        ok = mnh >= ARBRES_LOIN["mnh_min_m"]
+        X, Y, d, mnh, alt = X[ok], Y[ok], d[ok], mnh[ok], alt[ok]
+        haut = np.clip(mnh * rng.uniform(0.85, 1.1, len(X)), *ARBRES_LOIN["hauteur_m"])
+        pin = rng.random(len(X)) < ARBRES_LOIN["part_pin"]
+        n_pins += int(pin.sum())
+        for i in range(len(X)):
+            fam, elt, ess = ARBRES_LOIN["pin" if pin[i] else "feuillu"]
+            rows.append({"x_l93": f"{X[i]:.2f}", "y_l93": f"{Y[i]:.2f}", "z_sol_m": f"{alt[i]:.2f}", "hauteur_m": f"{haut[i]:.1f}",
+                         "diametre_houppier_m": f"{0.7 * haut[i]:.1f}", "essence": ess, "famille_jeu": fam, "element_jeu_propose": elt,
+                         "regle_essence": "versant lointain", "dist_axe_m": f"{d[i]:.1f}", "pk_m": "", "cote": "", "detection": "tirage"})
+        de = a
+    b = ARBRES_LOIN["buissons"]
+    X, Y, d, mnh, alt = semis(ARBRES_LOIN["de_m"], b["a_m"], b["pas_m"])
+    ok = (mnh >= b["mnh_m"][0]) & (mnh < b["mnh_m"][1])
     X, Y, d, mnh, alt = X[ok], Y[ok], d[ok], mnh[ok], alt[ok]
-    haut = np.clip(mnh + rng.uniform(*ARBRES_LOIN["depasse_m"], len(X)), 5.0, 18.0)
-    pin = rng.random(len(X)) < ARBRES_LOIN["part_pin"]
-    rows = []
-    for i in range(len(X)):
-        fam, elt, ess = ARBRES_LOIN["pin" if pin[i] else "feuillu"]
-        rows.append({"x_l93": f"{X[i]:.2f}", "y_l93": f"{Y[i]:.2f}", "z_sol_m": f"{alt[i]:.2f}", "hauteur_m": f"{haut[i]:.1f}",
-                     "diametre_houppier_m": f"{0.7 * haut[i]:.1f}", "essence": ess, "famille_jeu": fam, "element_jeu_propose": elt,
-                     "regle_essence": "versant lointain", "dist_axe_m": f"{d[i]:.1f}", "pk_m": "", "cote": "", "detection": "tirage"})
-    print(f"  arbres des versants : {len(rows)} entre {ARBRES_LOIN['de_m']:.0f} et {R:.0f} m de l'axe ({int(pin.sum())} pins)")
-    return rows
+    haut = np.clip(mnh * rng.uniform(0.8, 1.2, len(X)), *b["hauteur_m"])
+    buissons = [{"x_l93": f"{X[i]:.2f}", "y_l93": f"{Y[i]:.2f}", "z_sol_m": f"{alt[i]:.2f}", "hauteur_m": f"{haut[i]:.2f}",
+                 "diametre_m": f"{1.1 * haut[i]:.2f}", "famille_jeu": "", "element_jeu_propose": "", "dist_axe_m": f"{d[i]:.1f}", "pk_m": ""}
+                for i in range(len(X))]
+    print(f"  versants : {len(rows)} arbres entre {ARBRES_LOIN['de_m']:.0f} et {ARBRES_LOIN['a_m']:.0f} m de l'axe ({n_pins} pins), "
+          f"{len(buissons)} buissons de garrigue jusqu'à {b['a_m']:.0f} m")
+    return rows, buissons
 
 
 # Sous-bois de bord de route (--sous-bois) : vu sur les paires jeu / reconnaissance du 13/11/2026, la route réelle court
@@ -1260,6 +1317,7 @@ def arbres_lointains(ref):
 # bande le long de chaque bord, là où le relevé laser (hauteur au-dessus du sol) montre de la végétation. La règle de
 # dégagement (scripts/regles_arbres.py) les tient hors de la chaussée. Positions tirées au sort ; aucune collision.
 SOUS_BOIS = {"de_m": 1.7, "a_m": 9.0, "pas_m": 1.1, "par_pas": 2, "mnh_min_m": 1.3, "garde": 0.6, "voisin_min_m": 1.3,
+             "haie_m": (1.6, 2.3), "haie_pas_m": 1.4, "haie_mnh_m": 2.2,
              "hauteur_m": (1.6, 4.8), "famille": ("Foliage/Trees/Smoketree", "SM_Smoketree01", "chêne vert")}
 
 
@@ -1290,11 +1348,25 @@ def sous_bois_de_bord(ref, arbres):
             pts.append(np.column_stack([E + n * d[:, None] + t * rng.uniform(-0.5, 0.5, (len(S), 1)), np.repeat(S, 1)]))
     Q = np.vstack(pts)
     Q = Q[rng.random(len(Q)) < SOUS_BOIS["garde"]]
+    # Rang de haie : vu sur la vidéo du quatrième essai (13/11/2026, PK 5200), la route réelle passe entre deux murs de
+    # végétation au ras de l'enrobé, alors que le jeu la montrait ouverte. Un rang serré est ajouté tout près du bord,
+    # gardé plus bas là où le relevé laser montre de la végétation haute au bord même (seuil SOUS_BOIS["haie_mnh_m"]).
+    hd0, hd1 = SOUS_BOIS["haie_m"]
+    haie = []
+    S_h = np.arange(pk[0] + 2.0, pk[-1] - 2.0, SOUS_BOIS["haie_pas_m"])
+    A_h = np.column_stack([np.interp(S_h, pk, ch["A"][:, k]) for k in (0, 1)])
+    for cle in ("G", "D"):
+        E = np.column_stack([np.interp(S_h, pk, ch[cle][:, k]) for k in (0, 1)])
+        n = E - A_h
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+        d = rng.uniform(hd0, hd1, len(S_h))
+        haie.append(np.column_stack([E + n * d[:, None], S_h, np.ones(len(S_h))]))
+    Q = np.vstack([np.column_stack([Q, np.zeros(len(Q))]), np.vstack(haie)])
     with rasterio.open(f_mns) as a_, rasterio.open(f_mnt) as b_:
         zs = np.array([v[0] for v in a_.sample(Q[:, :2])], float)
         zt = np.array([v[0] for v in b_.sample(Q[:, :2])], float)
     mnh = zs - zt
-    ok = np.isfinite(mnh) & (zt > -1000) & (zs > -1000) & (mnh >= SOUS_BOIS["mnh_min_m"])
+    ok = np.isfinite(mnh) & (zt > -1000) & (zs > -1000) & (mnh >= np.where(Q[:, 3] > 0, SOUS_BOIS["haie_mnh_m"], SOUS_BOIS["mnh_min_m"]))
     if arbres:                                                   # pas dans le pied d'un arbre du semis
         tr = cKDTree(np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in arbres]))
         ok &= tr.query(Q[:, :2])[0] >= SOUS_BOIS["voisin_min_m"]
@@ -1325,13 +1397,16 @@ def instances(P, ref, sol, ruban, pkf, args):
     if degagee is not None:
         shapely.prepare(degagee)
 
-    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None, reglages=None, ajuster=None):
+    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None, reglages=None, ajuster=None, sol_loin=None):
         x = np.array([float(r["x_l93"]) for r in rows])
         y = np.array([float(r["y_l93"]) for r in rows])
         zc = np.array([float(r.get("z_sol_m") or r.get("z_m")) for r in rows])
         g = m08.to_gltf(np.column_stack([x, y, zc]), ref).astype(float)
         if sur_terrain:
             zs = sol(g[:, 0], g[:, 2])
+            if sol_loin is not None:                         # au-delà du terrain proche : posé sur le maillage du relief lointain
+                hors = np.flatnonzero(~np.isfinite(zs))
+                zs[hors] = sol_loin(g[hors, 0], g[hors, 2])
             g[:, 1] = np.where(np.isfinite(zs), zs, g[:, 1])
         ue = Axes.ue(g)
         lacet = rng.uniform(-180.0, 180.0, len(rows))
@@ -1416,7 +1491,7 @@ def instances(P, ref, sol, ruban, pkf, args):
         arbres = list(csv.DictReader(f))
     if args.sous_bois and not P.echantillon and args.pk_min is None:
         arbres += sous_bois_de_bord(ref, arbres)
-    loin = arbres_lointains(ref) if args.arbres_lointains and not P.echantillon and args.pk_min is None else []
+    loin, loin_buissons = arbres_lointains(ref) if args.arbres_lointains and not P.echantillon and args.pk_min is None else ([], [])
     def chemin_arbre(r):
         """Les grands chênes verts étaient rendus par un érable du jeu (BlackmapleMonteCarlo, 13 à 20 m, grandes feuilles) :
         vu en jeu le 13/11/2026, « feuillus tempérés » au lieu de chênes verts. Le Smoketree du jeu, à petites feuilles
@@ -1432,8 +1507,15 @@ def instances(P, ref, sol, ruban, pkf, args):
     if loin:
         # Arbres des versants : un groupe à part, sans ombre portée et masqué au-delà d'un kilomètre environ. Ils sont
         # 29 000 de plus ; avec les ombres et sans limite de distance, ils pèseraient sur la fluidité pour rien.
-        table("versants", loin, chemin_arbre, lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"],
+        # posés sur le maillage du relief lointain lui-même (pas de 5 m), pour ne ni flotter ni s'enfoncer
+        axe_g = pkf.A[:, [0, 2]] if pkf.A.shape[1] == 3 else pkf.A
+        arbre_axe_g = cKDTree(axe_g[::3])
+        sol_loin = Sol("lointain.glb", garder=lambda c: arbre_axe_g.query(c)[0] < ARBRES_LOIN["a_m"] + 60.0)
+        table("versants", loin, chemin_arbre, lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"], sol_loin=sol_loin,
               reglages=lambda chemin: {"distances_de_disparition_cm": ARBRES_LOIN["disparition_cm"], "ombre_dynamique": False})
+        if loin_buissons:
+            table("garrigue", loin_buissons, lambda r: BUISSONS["maillage"], lambda r: float(r["hauteur_m"]), ["diametre_m"], sol_loin=sol_loin,
+                  reglages=lambda chemin: {"distances_de_disparition_cm": ARBRES_LOIN["buissons"]["disparition_cm"], "ombre_dynamique": False})
     with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
         arbustes = list(csv.DictReader(f))
     buissons_jeu = args.buissons == "jeu" and not P.echantillon
@@ -1865,6 +1947,19 @@ def _fbm(u, v, k, octaves=4):
     return out / tot
 
 
+def materiau_roche(P):
+    """Déclare une fois la roche du jeu (MI_GC_Roche), commune aux parois du bord de route et aux falaises des versants."""
+    if getattr(P, "_roche_declaree", False):
+        return
+    P._roche_declaree = True
+    if "T_GC_Roche" not in P.vus:
+        P.texture("T_GC_Roche", "commun", f"{UE}/Shared/Textures", image_unie(ROCHE["couleur_secours"]), ["complet"])
+    if "T_GC_ORM_R230M000" not in P.vus:
+        P.texture("T_GC_ORM_R230M000", "commun", f"{UE}/Shared/Textures", image_unie((255, 230, 0)), ["complet"])
+    P.materiau("MI_GC_Roche", f"{UE}/Shared/Materials", {"couleur": "T_GC_Roche", "orm": "T_GC_ORM_R230M000"}, ["complet"],
+               note="parois rocheuses : parent du jeu MI_BolleneRockfacesParent (factices.json), réglages dans matieres_du_jeu.json")
+
+
 def parois_rocheuses(P, ref, sol):
     """Une nappe de roche par paroi relevée, posée sur le terrain.
 
@@ -1883,12 +1978,7 @@ def parois_rocheuses(P, ref, sol):
     cfg = json.loads(f.read_text(encoding="utf-8"))
     route = mobilier.Route()
     haut = np.array([0.0, 1.0, 0.0])
-    if "T_GC_Roche" not in P.vus:
-        P.texture("T_GC_Roche", "commun", f"{UE}/Shared/Textures", image_unie(ROCHE["couleur_secours"]), ["complet"])
-    if "T_GC_ORM_R230M000" not in P.vus:
-        P.texture("T_GC_ORM_R230M000", "commun", f"{UE}/Shared/Textures", image_unie((255, 230, 0)), ["complet"])
-    P.materiau("MI_GC_Roche", f"{UE}/Shared/Materials", {"couleur": "T_GC_Roche", "orm": "T_GC_ORM_R230M000"}, ["complet"],
-               note="parois rocheuses : parent du jeu MI_BolleneRockfacesParent (factices.json), réglages dans matieres_du_jeu.json")
+    materiau_roche(P)
     # parapets et murs du même côté : la roche, allongée de quelques mètres au-delà du relevé, ne doit pas mordre dessus
     murs = []
     ouvrages = json.loads((ROOT / "data" / "reference" / "ouvrages_parapets.json").read_text(encoding="utf-8"))
@@ -1982,7 +2072,7 @@ def parois_rocheuses(P, ref, sol):
         penche = pendage * (S - S.mean())
         T0 = T[:, :n_o]
         x_top = ou(z_top)
-        rangs, rentres = [], []
+        rangs, rentres, attente = [], [], []
 
         def rang(niveau, z_sortie, dx):
             rentre = niveau > z_top
@@ -1993,9 +2083,7 @@ def parois_rocheuses(P, ref, sol):
             w = en(x, W) * plaque * plaque * (3 - 2 * plaque)
             o = np.where(rentre, o0 + x * do, np.maximum(o0 + x * do - dx, ROCHE["marge_chaussee_m"]))
             sous_terre = en((o - o0) / do, T0) - 0.35
-            z = np.where(rentre, sous_terre - 0.1, sous_terre + (z_sortie - sous_terre) * w)
-            rangs.append(B + dehors * o[:, None] + haut[None, :] * z[:, None])
-            rentres.append(rentre | (w < 0.02))
+            attente.append((o, np.where(rentre, sous_terre - 0.1, z_sortie), sous_terre, np.where(rentre, 0.0, w), rentre))
 
         rang(bords[0] + penche, np.minimum(bords[0] + penche, T0[:, 0] - 0.4), 0.0)
         ampl = np.clip(avance / 0.8, 0.15, 1.0)
@@ -2018,6 +2106,17 @@ def parois_rocheuses(P, ref, sol):
             fb, ft = 0.5 - g["front"] / 2, 0.5 + g["front"] / 2
             rang(bas + fb * ep, bas - de_niveau, dx)
             rang(bas + ft * ep, hautb + de_niveau, dx - 0.05 * ampl)
+        # Présence adoucie d'un rang et d'une station à l'autre. Vu en jeu le 13/11/2026 (quatrième version, PK 2000) : une
+        # pointe de roche isolée, dressée comme une tente. C'était un sommet visible seul au milieu de voisins enfouis ;
+        # la présence d'un sommet ne peut plus dépasser nettement celle de son voisinage.
+        from scipy import ndimage as ndi_r
+        Wg = np.stack([x[3] for x in attente], 1)                 # (stations, rangs)
+        Wg = np.minimum(Wg, np.clip(1.8 * ndi_r.uniform_filter(Wg, size=(7, 3), mode="nearest") - 0.25, 0.0, 1.0))
+        for r_, (o_, zs_, st_, _, rentre_) in enumerate(attente):
+            w_ = Wg[:, r_]
+            z_ = np.where(rentre_, zs_, st_ + (zs_ - st_) * w_)
+            rangs.append(B + dehors * o_[:, None] + haut[None, :] * z_[:, None])
+            rentres.append(rentre_ | (w_ < 0.02))
         G = np.stack(rangs, 1)                                    # (stations, rangs, 3)
         nr = G.shape[1]
         pos = G.reshape(-1, 3)
@@ -2187,6 +2286,8 @@ def main():
     ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
+    ap.add_argument("--falaises-roche", type=int, default=1,
+                    help="1 : faces très raides du relief à moins de 700 m de la route habillées de la roche du jeu ; 0 : photo aérienne")
     ap.add_argument("--lointain-rasant", type=int, default=1,
                     help="1 : images du paysage lointain traitées pour être vues de la route (versants boisés vert sombre, pistes "
                          "et trouées effacées sous les arbres ; remplace --lointain-clarte) ; 0 : non")
@@ -2250,6 +2351,10 @@ def main():
     route = lire_glb(MOD / "route_habillee.glb")
     ouvr = lire_glb(MOD / "ouvrages.glb")
     annx = lire_glb(MOD / "annexes.glb")
+    # Terre-plein du carrefour du Lion d'Or : vu en jeu le 13/11/2026 (quatrième version), une nappe presque blanche,
+    # nue, qui remonte depuis la chaussée. Le terrain existe dessous (à 3 cm près) et porte le sol, l'herbe et les
+    # arbres du reste du décor : le terre-plein n'est plus livré comme maillage à part.
+    annx = [m for m in annx if "terre_plein" not in m["nom"]]
     glissieres_jeu = args.glissieres == "jeu" and not args.echantillon and args.pk_min is None
     if glissieres_jeu:
         ouvr = [m for m in ouvr if not m["mat"]["nom"].startswith("glissiere")]
