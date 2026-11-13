@@ -21,3 +21,5 @@ modele/sols_jeu/*.npz
 modele/sols_jeu/*.npy
 # Planches d'images tirées des vidéos (script 19) : volumineuses et régénérables
 figures/reco/
+paquet_unreal_*/
+figures/apercu_lointain/

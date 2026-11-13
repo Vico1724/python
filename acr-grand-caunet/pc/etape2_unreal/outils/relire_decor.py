@@ -233,7 +233,9 @@ def main():
             s = ref("mesh-uv", "acr/Content/" + e["chemin_ue"][len("/Game/"):] + ".uasset", "--limit", "40")
             m = re.search(r"(\d+) vertices.*colours (\d+)", s)
             couleurs = set(re.findall(r"rgba (\d+),(\d+),(\d+),(\d+)", s))
-            if not m or m.group(1) != m.group(2) or couleurs != {tuple(str(v) for v in e["couleur_de_sommet"])}:
+            # une couleur blanche partout n'est pas gardée à la cuisson : c'est la valeur par défaut du moteur
+            blanc_omis = bool(m) and m.group(2) == "0" and list(e["couleur_de_sommet"]) == [255, 255, 255, 255]
+            if not blanc_omis and (not m or m.group(1) != m.group(2) or couleurs != {tuple(str(v) for v in e["couleur_de_sommet"])}):
                 sans.append(e["nom"])
         bilan["sol"]["maillages"] = len(sols)
         bilan["sol"]["maillages_a_mauvaise_couleur_de_sommet"] = sans[:5]

@@ -37,6 +37,8 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 | Asphalte sombre et bleuté | Réglage de Bollène | Teinte éclaircie et réchauffée, grandes fissures atténuées |
 | Parapets sombres | Pierre brute sombre | Pierre claire de Bollène, teintée beige |
 | Massifs blancs et rayés | Teinte de falaise trop claire, posée jusque sur le relief lointain à 25 m | Bandes retirées, teinte moins claire, limitée au relief fin (6 km) |
+| Versants lointains gris pâle, rayés de pistes blanches | La photo aérienne montre le sol entre les arbres, et ses forêts sont gris-bleu ; je l'avais en plus éclaircie le 12 novembre | Images retraitées pour être vues de la route : là où la forêt domine, le versant prend le vert sombre des pins, les pistes et les trouées disparaissent sous les arbres ; champs, villages et rocher nu gardent la photo. Contrôlé sur un aperçu hors jeu : au km 3,08, on retrouve la falaise claire au-dessus des versants verts de la reconnaissance |
+| Taches blanches floues sur les versants | Ma teinte de falaise débordait sur des pentes boisées | Réservée aux pentes de plus de 46°, sans débord |
 | Relief proche plat et flou | Au-delà de 135 m, une surface peinte sans arbres | Arbres du jeu sur les versants jusqu'à 430 m : seules leurs cimes dépassent de la surface |
 | Bords de route ouverts et clairsemés | Le semis ne compte que les grands arbres ; la route réelle court entre deux murs de végétation de 2 à 5 m | Environ 9 000 petits arbres ajoutés le long des bords, là où le relevé laser montre de la végétation |
 | Lignes blanches en aplat pur | Blanc uni | Nos lignes héritent de la peinture de marquage du jeu : usée, bords rongés, fondue dans l'asphalte |
@@ -50,6 +52,7 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 
 ## 3. Ce qu'il faut savoir
 
+- **Deux aperçus hors jeu m'ont servi d'yeux** faute de voir le jeu : l'un montre les formes proches (route, talus, parois), l'autre le paysage (relief lointain avec ses images, arbres en silhouettes). Quinze vues ont été comparées à la reconnaissance, du km 0,4 au km 6,4 : tracé, talus, glissières, parapets et grandes masses d'arbres tombent au bon endroit. Ces aperçus ne montrent ni les matières ni l'éclairage du jeu.
 - **Rien de ceci n'a encore été vu en jeu.** Plusieurs réglages sont des choix de teinte faits d'après la couleur mesurée des textures du jeu : ils demanderont sans doute une retouche après essai.
 - **Trois paris techniques** dans cette version : nos matériaux désignent des textures du jeu par leur chemin (jamais copiées) ; ils règlent des teintes sur les matériaux du jeu ; la roche hérite d'un matériau de Bollène que le jeu n'emploie lui-même que comme modèle. Si l'un échoue, le sol ou la roche paraîtront gris uni ou d'une teinte inattendue : c'est le premier point à regarder.
 - **La largeur de la route n'a pas été touchée.** Sur les images, la chaussée du jeu paraît plus large que la réelle. J'ai vérifié : là où l'asphalte est visible sur la photo aérienne, il mesure 6,4 à 6,8 m, ce que donne aussi l'IGN (6,5 à 7 m) ; le modèle est à 6,2 à 6,5 m. L'impression vient de la caméra (capot dans le jeu, pare-brise sur la vidéo).
@@ -63,6 +66,7 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 - Écarts relevés : `data/reference/releve_essai_13_11/partie_1.json` et `partie_2.json`. Paires d'images : `scripts/20_planches_comparees.py` (images hors dépôt, `figures/compare_jeu_13_11/`).
 - Lissage de la route : `scripts/07b_regulariser_chaussee.py` (réglages et raisons en tête de fichier).
 - Parois rocheuses : `data/reference/parois_rocheuses.json`, recalées sur le relief par `scripts/22_recaler_parois.py`, fabriquées par `parois_rocheuses()` dans `scripts/16_paquet_unreal.py`. Aperçu des formes sans le jeu : `scripts/21_apercu_conducteur.py`.
+- Relief lointain : `vue_rasante()` et `RASANT` dans `scripts/16_paquet_unreal.py` (`--lointain-rasant 0` pour revenir à la photo éclaircie). Aperçu du paysage sans le jeu : `scripts/23_apercu_lointain.py` (images hors dépôt, `figures/apercu_lointain/`).
 - Matières du sol, de l'asphalte, des parapets et de la roche : `data/reference/matieres_du_jeu.json`. Couleur des textures du jeu : `pc/etape2_unreal/outils/couleur_texture.py`.
 - Répartition du sol : `scripts/15b_sols_du_jeu.py`. Herbes : `HERBES` dans `scripts/16_paquet_unreal.py`.
 - Dégagement des arbres, aires et pistes : `scripts/regles_arbres.py`, `data/reference/aires_et_pistes.json`.

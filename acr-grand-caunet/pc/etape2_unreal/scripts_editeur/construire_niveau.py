@@ -148,10 +148,16 @@ def v_affecter_materiau(sm, mi):
 
 def v_creer_variante(nom, dossier, parent):
     chemin = f"{dossier}/{nom}"
-    if not v_existe(chemin):
+    existait = v_existe(chemin)
+    if not existait:
         unreal.AssetToolsHelpers.get_asset_tools().create_asset(nom, dossier, unreal.MaterialInstanceConstant,
                                                                unreal.MaterialInstanceConstantFactoryNew())
     mi = v_charger(chemin)
+    if existait:
+        # variante gardée d'une construction précédente (Shared/Materials n'est pas vidé) : ses anciens réglages
+        # resteraient posés. Relu le 13/11/2026 : MI_GC_Marquage, passé au décalque du jeu, portait encore les trois
+        # textures de son ancien parent M_Simple (sans effet à l'écran, mais livrées pour rien).
+        unreal.MaterialEditingLibrary.clear_all_material_instance_parameters(mi)
     unreal.MaterialEditingLibrary.set_material_instance_parent(mi, parent)
     return mi
 

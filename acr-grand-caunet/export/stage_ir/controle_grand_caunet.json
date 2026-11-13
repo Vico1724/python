@@ -70,18 +70,18 @@
     "triangles_annonces_dans_stage_json": 760564
   },
   "obstacles": {
-    "instances": 3591,
+    "instances": 3504,
     "gabarits": 12,
     "formes": {
-      "box": 2166,
-      "cylinder": 1425
+      "box": 2076,
+      "cylinder": 1428
     },
     "parois": {
-      "PM_WallRock": 1085,
+      "PM_WallRock": 995,
       "PM_WallConcrete": 333,
       "PM_WallMetalGuardrail": 896,
       "PM_WallPlasticPole": 12,
-      "PM_WallWoodTreeTrunks": 1248,
+      "PM_WallWoodTreeTrunks": 1251,
       "PM_WallWoodPole": 17
     },
     "parois_absentes_du_catalogue": [],
@@ -89,7 +89,7 @@
     "intrusions_plus_de_30_cm": 0,
     "sommets_source_hors_paves_max_m": 0.001,
     "retires_sur_la_chaussee": 5,
-    "objects_collision_triangles": 65892
+    "objects_collision_triangles": 64896
   },
   "annexes": {
     "points_testes": 298,
@@ -130,7 +130,7 @@
   },
   "fichiers_mo": {
     "collision.glb": 14.11,
-    "objects_collision.glb": 1.28,
-    "stage.json": 1.84
+    "objects_collision.glb": 1.26,
+    "stage.json": 1.8
   }
 }

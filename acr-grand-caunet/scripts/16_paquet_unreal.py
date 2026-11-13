@@ -83,7 +83,7 @@ LOIN0 = (880000, 6210000)             # coin sud-ouest de la grille kilométriqu
 # vues de la route ce sont de longues barres de calcaire clair. Là où le relief est très raide, l'image prend une
 # teinte de calcaire. Pentes en degrés : début et fin de la transition, pour le relief à 5 m puis pour celui à 25 m
 # (qui écrase les falaises, d'où des seuils plus bas).
-FALAISE = {"pente_5m_deg": (40.0, 55.0), "couleur": (196, 186, 166), "taux": 0.70, "elargir_m": 8.0}
+FALAISE = {"pente_5m_deg": (46.0, 58.0), "couleur": (196, 186, 166), "taux": 0.70, "elargir_m": 4.0}
 # Vu en jeu le 13/11/2026 : massifs lointains blancs, d'aspect enneigé, et rayés de bandes horizontales. Les bancs
 # (strates) sont retirés, la teinte est moins claire et moins couvrante, et elle n'est plus posée au-delà du relief à
 # 5 m (6 km environ) : le relief à 25 m ne montre pas les falaises, les seuils abaissés teintaient des versants entiers.
@@ -997,6 +997,48 @@ def teinte_falaises(im, m, ref, pentes):
     return Image.fromarray(np.clip((1.0 - k) * a + k * roche + 0.5, 0, 255).astype(np.uint8), "RGB"), float((w > 0.5).mean())
 
 
+# Relief lointain « vu de la route » (--lointain-rasant). La photo aérienne montre le sol entre les arbres, les pistes,
+# les clairières ; ses forêts sont gris-bleu (43, 54, 56 à 72, 79, 72 en moyenne sur les 290 dalles). Depuis la route,
+# à l'horizontale, on ne voit d'un versant boisé que les houppiers : vert sombre, sans pistes ni trouées. Constat du
+# 13/11/2026 sur l'aperçu hors jeu (scripts/23_apercu_lointain.py, PK 3080) : massifs pâles et gris, rayés de pistes
+# blanches, là où la reconnaissance montre des versants vert sombre. Traitement, le même pour toutes les dalles :
+#   - végétation = pixels sombres ; couvert = part de végétation dans un rayon de 14 m ;
+#   - là où le couvert domine, l'image prend la teinte des houppiers (vert de pinède), modulée par la clarté locale
+#     de la végétation voisine : pistes et trouées disparaissent sous les arbres, les grandes ombres du relief restent ;
+#   - champs, villages, rocher nu et mer gardent la photo.
+RASANT = {"sombre": (0.50, 0.36), "couvert": (0.25, 0.60), "rayon_couvert_m": 14.0, "rayon_teinte_m": 7.0,
+          "foret": (62, 82, 52), "clarte_de_reference": 0.30, "contraste": 0.6, "part_de_la_photo": 0.3, "detail": 0.7}
+
+
+def vue_rasante(im, m_par_px):
+    from scipy import ndimage
+    a = np.asarray(im, np.float32) / 255.0
+    poids = np.array([0.30, 0.59, 0.11], np.float32)
+    lum = a @ poids
+    s0, s1 = RASANT["sombre"]
+    veg = np.clip((s0 - lum) / (s0 - s1), 0.0, 1.0)
+    veg *= np.clip(1.0 - (a[:, :, 2] - a[:, :, 1] - 0.03) / 0.05, 0.0, 1.0)          # l'eau (bleu franc) n'est pas de la forêt
+    sig_c, sig_t = RASANT["rayon_couvert_m"] / m_par_px / 2.0, RASANT["rayon_teinte_m"] / m_par_px / 2.0
+    couvert = ndimage.gaussian_filter(veg, sig_c, mode="nearest") if sig_c >= 0.5 else veg
+    if sig_t >= 0.5:
+        lum_veg = ndimage.gaussian_filter(lum * veg, sig_t, mode="nearest") / np.maximum(ndimage.gaussian_filter(veg, sig_t, mode="nearest"), 1e-3)
+        teinte_veg = np.stack([ndimage.gaussian_filter(a[:, :, c] * veg, sig_t, mode="nearest") for c in range(3)], 2) \
+            / np.maximum(ndimage.gaussian_filter(veg, sig_t, mode="nearest"), 1e-3)[:, :, None]
+        detail = lum - ndimage.gaussian_filter(lum, sig_t, mode="nearest")
+    else:
+        lum_veg, teinte_veg, detail = np.minimum(lum, s0), a, np.zeros_like(lum)
+    c0, c1 = RASANT["couvert"]
+    w = np.clip((couvert - c0) / (c1 - c0), 0.0, 1.0)
+    w = (w * w * (3 - 2 * w))[:, :, None]
+    foret = np.array(RASANT["foret"], np.float32) / 255.0
+    rel = np.clip(lum_veg / RASANT["clarte_de_reference"], 0.25, 2.2) ** RASANT["contraste"]
+    photo = teinte_veg / np.maximum(teinte_veg @ poids, 1e-3)[:, :, None] * float(foret @ poids)     # teinte de la photo, clarté de la pinède
+    canopee = ((1.0 - RASANT["part_de_la_photo"]) * foret[None, None, :] + RASANT["part_de_la_photo"] * photo) * rel[:, :, None]
+    canopee *= (1.0 + RASANT["detail"] * np.clip(detail, -0.12, 0.12) / np.maximum(lum_veg, 0.08))[:, :, None]
+    out = a * (1.0 - w) + canopee * w
+    return Image.fromarray(np.clip(255.0 * out + 0.5, 0, 255).astype(np.uint8), "RGB")
+
+
 def lointain(P, ref, args, pkf):
     """Anneau lointain : un maillage par dalle de 13 (1 km près, 5 km loin), ses images JPEG telles quelles.
 
@@ -1025,7 +1067,9 @@ def lointain(P, ref, args, pkf):
             continue
         nom_t, nom_mi, nom_sm = f"T_FarRing{L}_{suf}", f"MI_FarRing{L}_{suf}", f"SM_{NOM}FarRing{L}_{suf}"
         im = Image.open(io.BytesIO(m["mat"]["image"])).convert("RGB")
-        if not P.echantillon and args.lointain_clarte:
+        if not P.echantillon and args.lointain_rasant:
+            im = vue_rasante(im, float(np.ptp(g[:, 0])) / im.width)
+        elif not P.echantillon and args.lointain_clarte:
             # même courbe pour toutes les dalles, pour ne pas créer de marche entre voisines : les forêts vues du ciel
             # sont très sombres sur la photo (66 sur 255 pour le massif au sud), et bleu ardoise une fois dans le jeu
             a = np.asarray(im, np.float32) / 255.0
@@ -1804,6 +1848,15 @@ def parois_rocheuses(P, ref, sol):
         P.texture("T_GC_ORM_R230M000", "commun", f"{UE}/Shared/Textures", image_unie((255, 230, 0)), ["complet"])
     P.materiau("MI_GC_Roche", f"{UE}/Shared/Materials", {"couleur": "T_GC_Roche", "orm": "T_GC_ORM_R230M000"}, ["complet"],
                note="parois rocheuses : parent du jeu MI_BolleneRockfacesParent (factices.json), réglages dans matieres_du_jeu.json")
+    # parapets et murs du même côté : la roche, allongée de quelques mètres au-delà du relevé, ne doit pas mordre dessus
+    murs = []
+    ouvrages = json.loads((ROOT / "data" / "reference" / "ouvrages_parapets.json").read_text(encoding="utf-8"))
+    for o in ouvrages["parapets_hors_tablier"] + ouvrages["ouvrages"]:
+        for c in ("gauche", "droite"):
+            m = o.get(c)
+            if isinstance(m, dict) and m.get("type", "aucun") != "aucun" and m.get("rendu") != "roche":
+                centre = o.get("pk_centre_m", 0.0)
+                murs.append((float(m.get("pk_debut_m", o.get("pk_debut_m", centre - 10.0))), float(m.get("pk_fin_m", o.get("pk_fin_m", centre + 10.0))), c))
     do = ROCHE["pas_profil_m"]
     n_o = int(round(ROCHE["portee_m"] / do)) + 1
     t0, t1 = (math.tan(math.radians(a)) for a in ROCHE["pente_deg"])
@@ -1812,7 +1865,14 @@ def parois_rocheuses(P, ref, sol):
         g = ROCHE["genres"][e["genre"]]
         rec = float(e.get("recalage_pk_m", 0.0))
         pk0, pk1, cote = float(e["pk_debut_m"]) + rec, float(e["pk_fin_m"]) + rec + float(e.get("allonge_m", 0.0)), e["cote"]
-        S = np.arange(pk0 - ROCHE["allonge_m"], pk1 + ROCHE["allonge_m"] + 1e-6, ROCHE["pas_m"])
+        s_a, s_b = pk0 - ROCHE["allonge_m"], pk1 + ROCHE["allonge_m"]
+        for x0, x1, c in murs:
+            if c == cote and x0 < s_b and x1 > s_a:
+                if x1 <= pk0 + 3.0:
+                    s_a = max(s_a, x1 + 0.5)
+                elif x0 >= pk1 - 3.0:
+                    s_b = min(s_b, x0 - 0.5)
+        S = np.arange(s_a, s_b + 1e-6, ROCHE["pas_m"])
         ns = len(S)
         if ns < 3:
             continue
@@ -2086,6 +2146,9 @@ def main():
     ap.add_argument("--sol", choices=("jeu", "photo"), default="jeu",
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
+    ap.add_argument("--lointain-rasant", type=int, default=1,
+                    help="1 : images du paysage lointain traitées pour être vues de la route (versants boisés vert sombre, pistes "
+                         "et trouées effacées sous les arbres ; remplace --lointain-clarte) ; 0 : non")
     ap.add_argument("--lointain-clarte", type=int, default=1, help="1 : images du paysage lointain éclaircies ; 0 : telles quelles")
     ap.add_argument("--sous-bois", type=int, default=1,
                     help="1 : petits arbres le long des bords, là où le relevé laser montre de la végétation ; 0 : non")
