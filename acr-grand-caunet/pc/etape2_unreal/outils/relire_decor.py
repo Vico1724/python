@@ -259,6 +259,27 @@ def main():
     if mal_herite:
         erreurs.append(f"variantes qui devraient hériter d'un matériau du jeu sans rien régler : {mal_herite}")
     bilan["erreurs"] = erreurs
+    # réglages posés sur les matériaux du jeu (data/reference/matieres_du_jeu.json) : la variante cuite doit porter chaque
+    # texture du jeu désignée, chaque teinte et chaque nombre ; sinon le factice du parent ne connaissait pas le paramètre
+    regles = [e for e in man["elements"] if e["type"] == "MaterialInstance" and e.get("reglages_du_jeu")]
+    sols = [e for e in regles if e["nom"].startswith("MI_Sol_")]
+    a_voir = [e for e in regles if not e["nom"].startswith("MI_Sol_")] + sols[:3]
+    manques = []
+    for e in a_voir:
+        p = exporter("acr/Content/" + e["chemin_ue"][len("/Game/"):] + ".uasset")[0]["Properties"]
+        tex = {t["ParameterInfo"]["Name"]: (t["ParameterValue"] or {}).get("ObjectPath", "").split(".")[0] for t in p.get("TextureParameterValues", [])}
+        sc = {t["ParameterInfo"]["Name"]: t["ParameterValue"] for t in p.get("ScalarParameterValues", [])}
+        vec = {t["ParameterInfo"]["Name"]: [t["ParameterValue"][c] for c in "RGBA"] for t in p.get("VectorParameterValues", [])}
+        r = e["reglages_du_jeu"]
+        manques += [f"{e['nom']} : texture {k}" for k, v in r.get("textures", {}).items() if tex.get(k) != v]
+        manques += [f"{e['nom']} : nombre {k}" for k, v in r.get("scalaires", {}).items() if abs(sc.get(k, 1e30) - v) > 1e-3 * max(1.0, abs(v))]
+        manques += [f"{e['nom']} : teinte {k}" for k, v in r.get("vecteurs", {}).items()
+                    if k not in vec or max(abs(x - y) for x, y in zip(vec[k], list(v) + [1.0] * (4 - len(v)))) > 2e-3]
+    bilan["reglages_du_jeu"] = {"variantes": len(regles), "controlees": len(a_voir), "manques": manques[:10],
+                                "parents": sorted({exporter("acr/Content/" + e["chemin_ue"][len("/Game/"):] + ".uasset")[0]["Properties"]["Parent"]["ObjectPath"].split(".")[0].rsplit("/", 1)[-1] for e in a_voir})}
+    if manques:
+        erreurs.append(f"{len(manques)} réglages du jeu absents des variantes cuites, par exemple {manques[:3]}")
+
     (KIT / "releves" / "relecture_decor.json").write_text(json.dumps(bilan, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(bilan, ensure_ascii=False, indent=1))
     print("RELECTURE CONFORME" if not erreurs else f"RELECTURE : {len(erreurs)} ERREUR(S)")

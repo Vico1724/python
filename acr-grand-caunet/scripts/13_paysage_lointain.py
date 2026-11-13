@@ -71,6 +71,7 @@ VERSIONS = {   # (bandes (distance max à l'axe, pas)), (px texture près / moye
 }
 CANOPEE = (140.0, 220.0)   # m : introduction de la hauteur de végétation
 LIDAR = (220.0, 280.0)     # m : passage du MNT LiDAR au RGE ALTI
+TRES_PRES_M = 600.0        # m de l'axe : en deçà, image des dalles à 50 cm par point
 
 
 # --- téléchargements -----------------------------------------------------------------------------
@@ -308,6 +309,10 @@ def dalles_texture(P, T, dist_tri, axe_box, px_niveaux, version):
         px = px_niveaux[0] if dmin < 1500 else px_niveaux[1] if dmin < 10000 else px_niveaux[2]
         # pas plus fin que 1 m (près), 4 m (moyen), 10 m (loin) : petites dalles de bord -> petites images
         cible = 1.0 if dmin < 1500 else 4.0 if dmin < 10000 else 10.0
+        # Vu en jeu le 13/11/2026 : les versants juste au-delà du bord de route sont flous. Les dalles qui touchent le
+        # couloir (moins de TRES_PRES_M de l'axe) portent une image deux fois plus fine : 50 cm par point.
+        if dmin < TRES_PRES_M and px_niveaux[0] >= 1024:
+            px, cible = 2 * px_niveaux[0], 0.5
         px = int(min(px, max(64, 2 ** math.ceil(math.log2(max(cote / cible, 1))))))
         out.append({"nom": f"lointain_{t // 1000}km_{kx}_{ky}", "tri": g, "emprise": (e0[0], e0[1], e1[0], e1[1]),
                     "px": px, "m_par_px": round(cote / px, 2), "distance_min_axe_m": round(dmin)})

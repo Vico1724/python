@@ -28,6 +28,7 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 |---|---|---|
 | Ligne centrale en dents de scie | Une coordonnée de l'axe était écrite au décimètre au lieu du millimètre : 5 cm de zigzag à chaque mètre | Écriture au millimètre |
 | Bords et lignes qui serpentent | Sur les lignes droites, l'axe relevé ondule de 15 cm tous les 25 à 30 m ; l'ancien lissage ne retirait que les défauts plus courts | Lissage fort partout où la route ne tourne pas vraiment, léger dans les vrais virages. Sur la ligne droite du km 1,05 à 1,13, l'ondulation est divisée par six. Aucun point ne bouge de plus de 25 cm ; les contrôles sur les virages passent tous |
+| Bord d'asphalte en ligne nette | La chaussée s'arrêtait d'un trait | Une mince bande de sol mord inégalement sur chaque bord (3 à 42 cm), comme la terre et la pierraille sur la route réelle |
 | Rectangles et lignes parasites sur la chaussée | Bandes de couleur unie posées sur l'enrobé | Retirées entièrement |
 | Parois rocheuses en « parapets » ; talus lisses et sombres | 9 parois rendues par un mur de pierre ; les autres talus rocheux n'étaient que du terrain | 43 parois de forme naturelle (1,7 km) : front lité, éboulis ou blocs selon ce que montre la reconnaissance, habillées de la roche du jeu, éclaircie vers le calcaire |
 | Arbres sur la route | Les arbres du jeu sont plus larges que les houppiers relevés ; seule la position du tronc était contrôlée | Le houppier ne doit plus passer le bord. Un arbre trop grand pour sa place est réduit, pas retiré : les bords restent fermés par la végétation. Même règle dans la physique |
@@ -37,6 +38,9 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 | Parapets sombres | Pierre brute sombre | Pierre claire de Bollène, teintée beige |
 | Massifs blancs et rayés | Teinte de falaise trop claire, posée jusque sur le relief lointain à 25 m | Bandes retirées, teinte moins claire, limitée au relief fin (6 km) |
 | Relief proche plat et flou | Au-delà de 135 m, une surface peinte sans arbres | Arbres du jeu sur les versants jusqu'à 430 m : seules leurs cimes dépassent de la surface |
+| Bords de route ouverts et clairsemés | Le semis ne compte que les grands arbres ; la route réelle court entre deux murs de végétation de 2 à 5 m | Environ 9 000 petits arbres ajoutés le long des bords, là où le relevé laser montre de la végétation |
+| Lignes blanches en aplat pur | Blanc uni | Nos lignes héritent de la peinture de marquage du jeu : usée, bords rongés, fondue dans l'asphalte |
+| Béton des parapets gris sombre, dés d'un blanc pur | Teintes de Bollène | Béton éclairci vers le beige, blanc cassé |
 | Poteaux démesurés | Modèle de 9 m à large traverse | Modèle de 6,9 m, mince |
 | Rochers alignés | Espacement et taille réguliers | Espacement, taille et enfoncement variés |
 | Aires et pistes absentes | Non modélisées | 27 emprises en terre claire, sans herbe ni arbre |
@@ -45,9 +49,10 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 
 - **Rien de ceci n'a encore été vu en jeu.** Plusieurs réglages sont des choix de teinte faits d'après la couleur mesurée des textures du jeu : ils demanderont sans doute une retouche après essai.
 - **Trois paris techniques** dans cette version : nos matériaux désignent des textures du jeu par leur chemin (jamais copiées) ; ils règlent des teintes sur les matériaux du jeu ; la roche hérite d'un matériau de Bollène que le jeu n'emploie lui-même que comme modèle. Si l'un échoue, le sol ou la roche paraîtront gris uni ou d'une teinte inattendue : c'est le premier point à regarder.
+- **La largeur de la route n'a pas été touchée.** Sur les images, la chaussée du jeu paraît plus large que la réelle. J'ai vérifié : là où l'asphalte est visible sur la photo aérienne, il mesure 6,4 à 6,8 m, ce que donne aussi l'IGN (6,5 à 7 m) ; le modèle est à 6,2 à 6,5 m. L'impression vient de la caméra (capot dans le jeu, pare-brise sur la vidéo).
 - **La forme de chaque paroi rocheuse est inventée** (bosses, bancs, joints) ; sa position, sa hauteur et son genre viennent de la reconnaissance.
 - **Les pièces d'enrobé et les fissures ne sont plus rendues.** Le matériau d'asphalte du jeu sait en dessiner lui-même ; c'est une piste pour plus tard.
-- **Pas repris dans cette passe** : la forme des pins (troncs orangés et droits du jeu, contre des pins d'Alep gris et tortueux), les bords d'asphalte fondus dans l'accotement comme le fait le jeu, l'éclairage du relief lointain, les murets de pierre sèche du km 5,3 à 5,5, les panneaux directionnels.
+- **Pas repris dans cette passe** : la forme des pins (troncs orangés et droits du jeu, contre des pins d'Alep gris et tortueux), l'éclairage du relief lointain, les murets de pierre sèche du km 5,3 à 5,5, les panneaux directionnels.
 
 ## 4. Où c'est décrit
 

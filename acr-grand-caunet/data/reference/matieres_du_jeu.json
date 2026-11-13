@@ -202,6 +202,70 @@
      1.0
     ]
    }
+  },
+  "MI_GC_Marquage": {
+   "parent": "/Game/Environments/MonteCarloS1Bollene/MeshDecalsMaterialInstances/MI_RoadmarkingsTileableTrack0116",
+   "maitre": "/Game/Environments/AlsaceShared/DecalMaterial/M_MasterDecals",
+   "pourquoi": "lignes blanches : le jeu peint les siennes par un décalque (peinture usée, bords rongés, fondue dans l'asphalte) ; les nôtres étaient un aplat blanc uni. Variante employée sur la route de Bollène. Dépliage ramené à 1,5 m par unité et couleur de sommet blanche, comme les marquages du jeu.",
+   "vecteurs": {
+    "BaseColorMultiply": [
+     1.7,
+     1.7,
+     1.65,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Beton": {
+   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair",
+   "vecteurs": {
+    "Mat1_TintMult": [
+     1.0,
+     0.97,
+     0.9,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.97,
+     0.9,
+     1.0
+    ]
+   }
+  },
+  "MI_GC_Dalle": {
+   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair",
+   "vecteurs": {
+    "Mat1_TintMult": [
+     1.0,
+     0.97,
+     0.9,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.97,
+     0.9,
+     1.0
+    ]
+   }
+  },
+  "MI_GC_Chaperon": {
+   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair",
+   "vecteurs": {
+    "Mat1_TintMult": [
+     1.0,
+     0.97,
+     0.9,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.97,
+     0.9,
+     1.0
+    ]
+   }
   }
  },
  "parametres_des_maitres": {
@@ -237,6 +301,23 @@
     "ColorMult VPW"
    ],
    "pourquoi": "ce maître n'est pas dans releves/materiaux_maitres.json ; noms lus dans les variantes du jeu (murs et parois de Bollène)"
+  },
+  "/Game/Environments/AlsaceShared/DecalMaterial/M_MasterDecals": {
+   "textures": [
+    "ColorOpacity",
+    "ORM",
+    "Normal"
+   ],
+   "scalaires": [
+    "Tiling",
+    "OpacityPower",
+    "FaintRoadlinesPower",
+    "FaintRoadlinesTiling"
+   ],
+   "vecteurs": [
+    "BaseColorMultiply"
+   ],
+   "pourquoi": "maître des décalques du jeu, absent des relevés ; noms lus dans ses variantes"
   }
  }
 }

@@ -153,16 +153,17 @@ def main():
     # aires de terre et débouchés de pistes (data/reference/aires_et_pistes.json) : terre claire, ou le fond pierreux seul
     import regles_arbres
     emprises = regles_arbres.emprises_degagees(RACINE)
-    for matiere in ("terre", "pierre"):
+    for matiere in ("terre", "pierre", "sentier"):          # « sentier » : sentier étroit de l'IGN, en terre battue
         polys = [(g_, 1) for g_, m_ in emprises if m_ == matiere]
         if not polys:
             continue
-        aire = ndi.gaussian_filter(rasterize(polys, out_shape=forme, transform=tr, fill=0, dtype="uint8").astype(np.float32), 1.2)
+        aire = ndi.gaussian_filter(rasterize(polys, out_shape=forme, transform=tr, fill=0, all_touched=True, dtype="uint8").astype(np.float32),
+                                   0.7 if matiere == "sentier" else 1.2)
         aire[sur_route] = 0.0
         for k in COUCHES:
             p[k] *= (1.0 - aire)
-        if matiere == "terre":
-            p["terre"] += 0.8 * aire
+        if matiere != "pierre":
+            p["terre"] += (0.65 if matiere == "sentier" else 0.8) * aire
         del aire
 
     # hors des photos : le mélange de sous-bois, faute de mieux (peu de terrain s'y trouve)

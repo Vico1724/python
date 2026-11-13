@@ -876,7 +876,7 @@ def main():
                 "fissure": {"color": stats_a.get("couleurs", {}).get("fissure", [0.06, 0.06, 0.06]), "rough": 0.7},
                 "pierre": {"jpeg": tex_pierre(px // 2), "rough": 0.95}, "beton": {"jpeg": tex_beton(px // 2), "rough": 0.9},
                 "dalle": {"jpeg": tex_beton(px // 2, seed=3), "rough": 0.9},
-                "blanc": {"color": [0.88, 0.87, 0.84], "rough": 0.8}, "chaperon": {"color": [0.62, 0.61, 0.58], "rough": 0.9},
+                "blanc": {"color": [0.60, 0.585, 0.55], "rough": 0.85}, "chaperon": {"color": [0.62, 0.61, 0.58], "rough": 0.9},
                 "glissiere_lisse": {"color": [0.72, 0.74, 0.76], "rough": 0.45}, "glissiere_poteau": {"color": [0.55, 0.56, 0.58], "rough": 0.5}}
         ecrire_glb(dossier / "route_habillee.glb", [route, marq, *aspect], mats)
         ecrire_glb(dossier / "ouvrages.glb", meshes_ouv, mats)

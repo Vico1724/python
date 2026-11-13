@@ -141,7 +141,7 @@ def matieres_du_jeu():
     if not f.exists():
         return [], {}, []
     m = json.loads(f.read_text(encoding="utf-8"))
-    parents = [{"objet": v["parent"], "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+    parents = [{"objet": v["parent"], "parent": v.get("maitre", "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2"),
                 "pour": [nom], "pourquoi": v.get("pourquoi", "")} for nom, v in m.get("materiaux", {}).items() if v.get("parent")]
     textures = set()
     for bloc in list(m.get("sol", {}).get("couches", {}).values()) + list(m.get("materiaux", {}).values()):

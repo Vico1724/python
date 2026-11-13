@@ -865,6 +865,11 @@ def par_troncon(P, pkf, meshes, prefixe, famille, dest_mesh, nom_mat, args, grou
         if not P.echantillon:
             if mat == "enrobe":
                 couleur = (0, 0, 0, 0)
+            elif mat == "marquage" and "MI_GC_Marquage" in MATIERES.get("materiaux", {}):
+                # décalque de marquage du jeu : sa peinture est dépliée à 1,5 m par unité dans les deux sens (nos lignes
+                # l'étaient à leur largeur en travers, au mètre en long) ; couleur de sommet blanche = peinture pleine
+                uv = uv * np.array([0.12 / 1.5, 1.0 / 1.5])
+                couleur = (255, 255, 255, 255)
             elif mat in MURS_DU_JEU:
                 # dépliage ramené à celui des murs du jeu dont la matière est héritée, et leur couleur de sommet
                 uv = uv * MURS_DU_JEU[mat]["uv"]
@@ -1153,6 +1158,62 @@ def arbres_lointains(ref):
     return rows
 
 
+# Sous-bois de bord de route (--sous-bois) : vu sur les paires jeu / reconnaissance du 13/11/2026, la route réelle court
+# entre deux murs de végétation de 2 à 5 m (chênes verts, arbustes), alors que le semis relevé ne compte que les grands
+# arbres (1 800 à moins de 10 m de l'axe) et des buissons de moins de 2 m. De petits arbres sont donc ajoutés dans une
+# bande le long de chaque bord, là où le relevé laser (hauteur au-dessus du sol) montre de la végétation. La règle de
+# dégagement (scripts/regles_arbres.py) les tient hors de la chaussée. Positions tirées au sort ; aucune collision.
+SOUS_BOIS = {"de_m": 1.7, "a_m": 9.0, "pas_m": 1.1, "par_pas": 2, "mnh_min_m": 1.3, "garde": 0.6, "voisin_min_m": 1.3,
+             "hauteur_m": (1.6, 4.8), "famille": ("Foliage/Trees/Smoketree", "SM_Smoketree01", "chêne vert")}
+
+
+def sous_bois_de_bord(ref, arbres):
+    import rasterio
+    f_mns, f_mnt = ROOT / "data" / "raw" / "mns_lidarhd_50cm.tif", ROOT / "data" / "raw" / "mnt_lidarhd_50cm.tif"
+    if not (f_mns.exists() and f_mnt.exists()):
+        return []
+    with open(OUT / "chaussee_precise.csv", encoding="utf-8") as h_:
+        r_ = list(csv.DictReader(h_))
+    ch = {"pk": np.array([float(x["pk_m"]) for x in r_]),
+          "A": np.array([[float(x["x_axe"]), float(x["y_axe"])] for x in r_]),
+          "G": np.array([[float(x["x_gauche"]), float(x["y_gauche"])] for x in r_]),
+          "D": np.array([[float(x["x_droite"]), float(x["y_droite"])] for x in r_])}
+    rng = np.random.default_rng(SEED + 53)
+    pk = ch["pk"]
+    S = np.arange(pk[0] + 2.0, pk[-1] - 2.0, SOUS_BOIS["pas_m"])
+    A = np.column_stack([np.interp(S, pk, ch["A"][:, k]) for k in (0, 1)])
+    pts = []
+    for cle in ("G", "D"):
+        E = np.column_stack([np.interp(S, pk, ch[cle][:, k]) for k in (0, 1)])
+        n = E - A
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+        t = np.gradient(E, axis=0)
+        t /= np.maximum(np.linalg.norm(t, axis=1, keepdims=True), 1e-9)
+        for _ in range(SOUS_BOIS["par_pas"]):
+            d = SOUS_BOIS["de_m"] + (SOUS_BOIS["a_m"] - SOUS_BOIS["de_m"]) * rng.random(len(S)) ** 1.5      # plus dense près du bord
+            pts.append(np.column_stack([E + n * d[:, None] + t * rng.uniform(-0.5, 0.5, (len(S), 1)), np.repeat(S, 1)]))
+    Q = np.vstack(pts)
+    Q = Q[rng.random(len(Q)) < SOUS_BOIS["garde"]]
+    with rasterio.open(f_mns) as a_, rasterio.open(f_mnt) as b_:
+        zs = np.array([v[0] for v in a_.sample(Q[:, :2])], float)
+        zt = np.array([v[0] for v in b_.sample(Q[:, :2])], float)
+    mnh = zs - zt
+    ok = np.isfinite(mnh) & (zt > -1000) & (zs > -1000) & (mnh >= SOUS_BOIS["mnh_min_m"])
+    if arbres:                                                   # pas dans le pied d'un arbre du semis
+        tr = cKDTree(np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in arbres]))
+        ok &= tr.query(Q[:, :2])[0] >= SOUS_BOIS["voisin_min_m"]
+    Q, mnh, zt = Q[ok], mnh[ok], zt[ok]
+    h0, h1 = SOUS_BOIS["hauteur_m"]
+    haut = np.clip(np.minimum(mnh, h1 * 1.2) * rng.uniform(0.6, 1.0, len(Q)), h0, h1)
+    fam, elt, ess = SOUS_BOIS["famille"]
+    rows = [{"x_l93": f"{Q[i, 0]:.2f}", "y_l93": f"{Q[i, 1]:.2f}", "z_sol_m": f"{zt[i]:.2f}", "hauteur_m": f"{haut[i]:.1f}",
+             "diametre_houppier_m": f"{0.9 * haut[i]:.1f}", "essence": ess, "famille_jeu": fam, "element_jeu_propose": elt,
+             "regle_essence": "sous-bois de bord de route", "dist_axe_m": "", "pk_m": f"{Q[i, 2]:.0f}", "cote": "", "detection": "tirage"}
+            for i in range(len(Q))]
+    print(f"  sous-bois de bord de route : {len(rows)} petits arbres de {h0} à {h1} m, entre {SOUS_BOIS['de_m']} et {SOUS_BOIS['a_m']} m du bord")
+    return rows
+
+
 def instances(P, ref, sol, ruban, pkf, args):
     """Tables d'instances (cm, degrés, repère Unreal du projet), une par maillage du jeu."""
     cat = set()
@@ -1246,6 +1307,8 @@ def instances(P, ref, sol, ruban, pkf, args):
 
     with open(OUT / "arbres.csv", encoding="utf-8") as f:
         arbres = list(csv.DictReader(f))
+    if args.sous_bois and not P.echantillon and args.pk_min is None:
+        arbres += sous_bois_de_bord(ref, arbres)
     if args.arbres_lointains and not P.echantillon and args.pk_min is None:
         arbres += arbres_lointains(ref)
     table("arbres", arbres, lambda r: f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}",
@@ -1645,7 +1708,7 @@ def objets_en_long(P, ref, sol, liste):
 # --- parois rocheuses ------------------------------------------------------------------------------------
 # Parois et talus rocheux du bord de route (data/reference/parois_rocheuses.json) : une nappe de roche par paroi, de
 # forme irrégulière, habillée de la roche répétable de Bollène (MI_GC_Roche, matieres_du_jeu.json).
-ROCHE = {"pas_m": 0.6, "rang_m": 0.3, "biseau_m": 3.5, "enfoui_m": 0.4, "uv_m": 2.5, "marge_chaussee_m": 0.3,
+ROCHE = {"pas_m": 0.45, "rang_m": 0.25, "biseau_m": 3.5, "enfoui_m": 0.4, "uv_m": 2.5, "marge_chaussee_m": 0.3,
          "recul_arriere_m": 1.6, "couleur_secours": (188, 182, 168)}
 
 
@@ -1702,32 +1765,35 @@ def parois_rocheuses(P, ref, sol):
         dehors /= np.maximum(np.linalg.norm(dehors, axis=1, keepdims=True), 1e-9)
         fin = np.clip(np.minimum(S - pk0, pk1 - S) / ROCHE["biseau_m"], 0.0, 1.0)
         fin = fin * fin * (3 - 2 * fin)
-        h = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.12 + 0.88 * fin)       # la paroi meurt en sifflet à ses bouts
+        # hauteur : entre les deux bornes relevées, avec une crête déchiquetée (2 m) ; la paroi meurt en sifflet à ses bouts
+        h = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.78 + 0.44 * _bruit(S / 2.1, 7.0, k + 2)) * (0.12 + 0.88 * fin)
         recul = h / math.tan(pente)
         nv = int(np.clip(math.ceil(h1 / ROCHE["rang_m"]) + 1, 5, 16))
         T = np.linspace(0.0, 1.0, nv)
-        d0 = float(e["decalage_m"])
+        d0 = float(e["decalage_m"]) + 0.30 * (_bruit(S / 6.5, 3.0, k + 4) - 0.35) * fin      # le pied de la paroi serpente
         normale_face = -dehors * math.sin(pente) + haut[None, :] * math.cos(pente)
         rangs, zrel_rangs = [], []
         for t in T:
             zrel = (h + ROCHE["enfoui_m"]) * t - ROCHE["enfoui_m"]                # hauteur au-dessus du bord de chaussée
             base = B + dehors * (d0 + recul * t)[:, None] + haut[None, :] * zrel[:, None]
-            # relief de la roche : bosses à deux échelles, puis le dessin propre au genre
-            dep = 0.16 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 2.4, zrel / 1.2 + 3.1 * k, k)
+            # relief de la roche : grandes bosses, puis le dessin propre au genre (vu hors jeu le 13/11/2026 : la première
+            # version, deux fois moins accidentée, avait l'allure d'un ruban)
+            dep = 0.30 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 2.6, zrel / 1.3 + 3.1 * k, k)
+            dep += 0.22 * np.sqrt(np.maximum(h, 0.2)) * (_bruit(S / 5.5, 1.0, k + 6) - 0.5) * 2.0 * math.sin(math.pi * min(t + 0.15, 1.0))
             if e["genre"] == "lite":                                                # bancs horizontaux, joints en retrait
                 ep = 0.34
                 banc = np.floor((zrel + 5.0) / ep)
-                dep += 0.11 * (_bruit(S / 4.0, banc * 1.7, k + 5) - 0.5) * 2.0
+                dep += 0.20 * (_bruit(S / 3.2, banc * 1.7, k + 5) - 0.5) * 2.0
                 joint = np.abs(((zrel + 5.0) / ep) % 1.0 - 0.5) * 2.0
-                dep -= 0.07 * np.clip((joint - 0.8) / 0.2, 0.0, 1.0)
+                dep -= 0.10 * np.clip((joint - 0.8) / 0.2, 0.0, 1.0)
             elif e["genre"] == "blocs":                                             # blocs séparés par des joints verticaux
                 larg = 1.5
                 bloc = np.floor(S / larg + 0.35 * _bruit(zrel / 0.9, 0.0, k + 9))
-                dep += 0.20 * (_alea(bloc, np.floor((zrel + 5.0) / 0.8), k + 3) - 0.5) * 2.0
+                dep += 0.34 * (_alea(bloc, np.floor((zrel + 5.0) / 0.8), k + 3) - 0.5) * 2.0
                 jv = np.abs((S / larg) % 1.0 - 0.5) * 2.0
-                dep -= 0.10 * np.clip((jv - 0.82) / 0.18, 0.0, 1.0)
+                dep -= 0.16 * np.clip((jv - 0.82) / 0.18, 0.0, 1.0)
             else:                                                                   # éboulis : bosses rondes plus marquées
-                dep += 0.22 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 1.1, zrel / 0.55, k + 11, 3)
+                dep += 0.30 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 1.1, zrel / 0.55, k + 11, 3)
             p = base + normale_face * (dep * (0.25 + 0.75 * fin))[:, None]
             # jamais sur la chaussée : distance au bord, mesurée à l'horizontale, d'au moins la marge
             hors = np.einsum("ij,ij->i", (p - B) * np.array([1.0, 0.0, 1.0]), dehors)
@@ -1764,7 +1830,7 @@ def parois_rocheuses(P, ref, sol):
                                 np.full(len(pos), 255, np.uint8)])
         P.maillage(f"SM_{NOM}Rock_{int(pk0):04d}{'L' if cote == 'gauche' else 'R'}", "parois", f"{UE}/Bridges/Meshes", pos, nrm, uv, tri, "MI_GC_Roche",
                    ["complet"], pk=(pk0, pk1), couleurs=coul,
-                   extra={"genre": e["genre"], "hauteur_m": [h0, h1], "decalage_m": d0, "cote": cote})
+                   extra={"genre": e["genre"], "hauteur_m": [h0, h1], "decalage_m": float(e["decalage_m"]), "cote": cote})
         n_faits += 1
         longueur += pk1 - pk0
     print(f"  parois rocheuses : {n_faits} parois, {longueur:.0f} m")
@@ -1897,6 +1963,8 @@ def main():
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
     ap.add_argument("--lointain-clarte", type=int, default=1, help="1 : images du paysage lointain éclaircies ; 0 : telles quelles")
+    ap.add_argument("--sous-bois", type=int, default=1,
+                    help="1 : petits arbres le long des bords, là où le relevé laser montre de la végétation ; 0 : non")
     ap.add_argument("--bord-enrobe", type=int, default=1,
                     help="1 : bande de sol qui mord inégalement sur les bords de l'enrobé ; 0 : bord net")
     ap.add_argument("--arbres-lointains", type=int, default=1,

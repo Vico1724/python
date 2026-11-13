@@ -95,7 +95,7 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 264,
+ "duree_s": 419,
  "complet": {
   "bandes_m": [
    [
@@ -136,12 +136,12 @@
   "sommets_en_mer": 38597,
   "textures": {
    "px_min": 64,
-   "px_max": 1024,
-   "m_par_px_jusqu_a_1500m": 0.81,
+   "px_max": 2048,
+   "m_par_px_jusqu_a_1500m": 0.49,
    "m_par_px_max": 12.11
   },
   "relecture": {
-   "taille_mo": 56.75,
+   "taille_mo": 68.62,
    "maillages": 290,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,

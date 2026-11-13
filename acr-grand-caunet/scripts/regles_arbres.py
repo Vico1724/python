@@ -71,4 +71,31 @@ def emprises_degagees(racine):
         poly = shapely.Polygon(np.vstack([B + n * d0, (B + n * d1)[::-1]])).buffer(0)
         if not poly.is_empty:
             out.append((poly, e["matiere"]))
+    return out + pistes_ign(racine)
+
+
+# Pistes, chemins et sentiers de la BD TOPO de l'IGN dans le couloir de la route : largeur donnée à chaque nature (la
+# BD TOPO ne la donne pas), et matière du sol. Position à 2,5 à 5 m près : assez pour une piste en terre dans un bois.
+PISTES_IGN = {"Route empierrée": (3.6, "terre"), "Chemin": (2.6, "terre"), "Sentier": (1.1, "sentier")}
+
+
+def pistes_ign(racine):
+    """[(polygone Lambert-93, matière)] des pistes, chemins et sentiers de data/processed/couloir/troncon_de_route.geojson."""
+    import json
+    from pathlib import Path
+
+    import shapely
+    from pyproj import Transformer
+    f = Path(racine) / "data" / "processed" / "couloir" / "troncon_de_route.geojson"
+    if not f.exists():
+        return []
+    vers_l93 = Transformer.from_crs("EPSG:4326", "EPSG:2154", always_xy=True).transform
+    out = []
+    for ft in json.loads(f.read_text(encoding="utf-8"))["features"]:
+        regle = PISTES_IGN.get(ft["properties"].get("nature"))
+        if not regle or ft["geometry"]["type"] != "LineString":
+            continue
+        xy = [vers_l93(lon, lat) for lon, lat, *_ in ft["geometry"]["coordinates"]]
+        if len(xy) >= 2:
+            out.append((shapely.LineString(xy).buffer(regle[0] / 2.0, cap_style="flat"), regle[1]))
     return out

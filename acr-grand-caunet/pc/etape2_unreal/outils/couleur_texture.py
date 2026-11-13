@@ -62,7 +62,7 @@ def lire(objet, a, travail):
         return None, "pas de fichier .ubulk"
     d = ubulk.read_bytes()
     mips = [m for m in t["Mips"] if "PayloadInSeperateFile" in m["BulkData"]["BulkDataFlags"]]
-    m = min((m for m in mips if m["SizeX"] >= min(a.px, mips[-1]["SizeX"])), key=lambda m: m["SizeX"]) if mips else None
+    m = min((m for m in mips if m["SizeX"] >= min(a.px, mips[0]["SizeX"])), key=lambda m: m["SizeX"]) if mips else None
     if m is None:
         return None, "aucun niveau dans le .ubulk"
     off = int(m["BulkData"]["OffsetInFile"], 16)
