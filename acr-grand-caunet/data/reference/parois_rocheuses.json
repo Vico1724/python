@@ -358,7 +358,16 @@
    ],
    "genre": "lite",
    "recalage_pk_m": 28,
-   "note_recalage": "relief laser : sur place le terrain n'atteint que 32% de la hauteur relevée ; 85% une fois la paroi glissée de +28 m"
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 32% de la hauteur relevée ; 85% une fois la paroi glissée de +28 m",
+   "pk_corrige_m": [
+    3472.0,
+    3510.0
+   ],
+   "hauteur_corrigee_m": [
+    2.5,
+    3.2
+   ],
+   "note_correction": "essai du 13/11/2026 (quatrième version) : au PK 3520 le jeu montrait une paroi de 4 à 5 m là où la reconnaissance montre un talus de terre. Images de la reconnaissance du PK 3455 au PK 3530 relues : la roche commence au ponceau et finit une quarantaine de mètres plus loin, haute de 2,5 à 3 m. Le ponceau étant au PK 3473 (vide du relevé laser), le calage de la reconnaissance est en avance de 17 m ici : paroi du PK 3472 au PK 3510, au lieu du glissement automatique de 28 m"
   },
   {
    "pk_debut_m": 3835.0,

@@ -444,7 +444,7 @@
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "pk_debut_m": 6478,
-    "pk_fin_m": 6492
+    "pk_fin_m": 6498
    },
    "droite": {
     "type": "beton",
@@ -453,7 +453,8 @@
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "pk_debut_m": 6483,
-    "pk_fin_m": 6493
+    "pk_fin_m": 6499,
+    "note": "prolongé le 13/11/2026 jusqu'au bout du tablier (vide du relevé laser du PK 6488 au PK 6497) : en jeu le parapet paraissait réduit à un plot, le vrai fait plus de 10 m"
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {

@@ -52,6 +52,7 @@ DALLE_RETRAIT = 0.03  # m : dessus de la dalle sous la chaussée (évite le scin
 CORNICHE = 0.3        # m : débord de la dalle côté sans parapet
 DALLE_DEBORD = 2      # m (rangs) : la dalle entre dans le remblai à chaque bout
 CHAPERON = 0.08       # m : hauteur du chaperon (couronnement)
+RAYON_T3_M = 140.0    # m : sous ce rayon, l'axiale discontinue passe en traits rapprochés (T3)
 BISEAU_M, BISEAU_BAS = 1.0, 0.3   # extrémités des parapets : biseau d'un mètre, partant de 30 % de la hauteur
 DES_PAS, DES_LONG = 3.5, 0.35   # m : dés blancs (supposé : 3 à 4 m sur la vidéo)
 MUR_DIST_MAX = 15.0   # m : murs BD TOPO retenus à moins de cette distance de l'axe
@@ -310,6 +311,17 @@ def plan_marquage(ch, cfg, decks):
         sel = (grille >= t["pk_debut_m"]) & (grille < t["pk_fin_m"])
         for k in cles:
             plan[k][sel] = t["type"]
+    # Dans les virages, l'axiale discontinue est faite de traits rapprochés (T3 : 3 m de trait, 1,33 m d'intervalle), comme
+    # sur la route réelle. Relevé du quatrième essai (13/11/2026) : dans les virages, deux ou trois tirets visibles dans le
+    # jeu contre huit à dix sur la reconnaissance (PK 3800, 5960, 6240). Virage : rayon de l'axe, lissé sur 20 m, sous
+    # RAYON_T3_M ; la zone est étendue de 12 m de part et d'autre.
+    A = np.asarray(ch["A"], float)[:, :2]
+    cap = np.unwrap(np.arctan2(np.gradient(A[:, 1]), np.gradient(A[:, 0])))
+    noyau = np.ones(21) / 21.0
+    courbure = np.abs(np.gradient(np.convolve(cap, noyau, mode="same"), ch["pk"]))
+    virage = np.convolve((courbure > 1.0 / RAYON_T3_M).astype(float), np.ones(25), mode="same") > 0
+    en_virage = np.interp(grille, ch["pk"], virage.astype(float)) > 0.5
+    plan["axiale"][en_virage & (plan["axiale"] == "T1")] = "T3"
     reg = cfg["regle_ouvrages"]
     for d in decks:
         sel = (grille >= d["pk"][0] - reg["marge_m"]) & (grille <= d["pk"][1] + reg["marge_m"])
@@ -536,7 +548,11 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
         sous = lambda q: haut(q) - CHAPERON                                 # noqa: E731
         pieces["pierre"] = [boite(bloc(s, 0, t, base_, sous), ref)]
         blanc = p["type"] == "pierre_des_blancs"
-        pieces["blanc" if blanc else "chaperon"] = [boite(bloc(s, -0.02, t + 0.02, sous, haut), ref)]
+        if blanc:
+            pieces["blanc"] = []
+        # Couronnement toujours en béton gris. Vu en jeu le 13/11/2026 (quatrième version) : un couronnement blanc faisait
+        # des parapets « à lisse et poteaux blanc vif » ; sur la route réelle seuls les dés sont peints en blanc.
+        pieces["chaperon"] = [boite(bloc(s, -0.02, t + 0.02, sous, haut), ref)]
         if blanc:
             L = s1 - s0
             for c in s0 + (L - np.floor(L / DES_PAS) * DES_PAS) / 2 + np.arange(np.floor(L / DES_PAS) + 1) * DES_PAS:

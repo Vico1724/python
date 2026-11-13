@@ -22,7 +22,7 @@ import numpy as np
 
 KIT = Path(__file__).resolve().parents[1]
 FAMILLES = ["Foliage/Trees/AleppoPine", "Foliage/Trees/BlackpineMonteCarlo", "Foliage/Trees/Smoketree", "Foliage/Trees/Blackmaple",
-            "Foliage/Trees/BlackmapleMonteCarlo", "Foliage/Trees/Cypress", "Foliage/Trees/Olivetree"]
+            "Foliage/Trees/BlackmapleMonteCarlo", "Foliage/Trees/Cypress", "Foliage/Trees/Olivetree", "Foliage/Trees/Boxthorn"]
 
 
 def main():

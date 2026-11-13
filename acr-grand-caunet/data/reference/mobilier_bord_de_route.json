@@ -71,19 +71,19 @@
    }
   },
   "poteau_beton": {
-   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9",
-   "description": "poteau de 6,9 m à traverse de 1,9 m, mince (le poteau de 9 m à large traverse paraissait démesuré en jeu, vu le 13/11/2026)",
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
+   "description": "poteau simple de 6,9 m (relevé du quatrième essai, 13/11/2026 : les poteaux du jeu étaient jumelés en A, les vrais sont des poteaux simples et clairs ; SM_MonPylonC9 a un pied écarté de 1,8 m, SM_MonPylonC11 est un fût seul)",
    "lacet_relatif_deg": 0,
    "bornes_cm": {
     "min": [
-     -11,
-     -94,
-     -78
+     -10,
+     -30,
+     -40
     ],
     "max": [
-     15,
-     94,
-     688
+     10,
+     30,
+     690
     ]
    },
    "collision": {
@@ -96,13 +96,14 @@
    "cable": {
     "hauteur_m": 6.6,
     "ecarts_m": [
-     -0.85,
+     -0.25,
      0.0,
-     0.85
+     0.25
     ]
    },
    "maillage_jeu_avant_le_13_11": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
-   "enfoncement_m": 0.0
+   "enfoncement_m": 0.0,
+   "maillage_jeu_avant_le_13_11_soir": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9"
   },
   "poteau_bois": {
    "maillage_jeu": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",

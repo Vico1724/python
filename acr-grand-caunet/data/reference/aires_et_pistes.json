@@ -1,5 +1,5 @@
 {
- "note": "Aires de terre ou de gravier et débouchés de pistes au bord de la route, relevés sur la vidéo de reconnaissances (data/reference/releve_reco/, observations « aire » et « piste »). Vu en jeu le 13/11/2026 : ces dégagements manquaient, couverts d'herbe et d'arbres. Lu par scripts/15b_sols_du_jeu.py (matière du sol : terre claire, ou fond pierreux pour « pierre ») et, par scripts/regles_arbres.py, par 16_paquet_unreal.py et 09_export_stage_ir.py (ni arbre, ni buisson, ni touffe d'herbe, ni tronc dans la physique sur ces emprises). PK à ±10 m ; décalage = distance du bord de chaussée au début de l'aire ; profondeur estimée d'après la vidéo, ou prise à 14 m environ pour une piste dont on ne voit que l'embouchure. Les aires revêtues ou bétonnées (PK 2965, 3196, 3412, 4076, 4945, 6368) ne sont pas ici : elles demandent un vrai revêtement.",
+ "note": "Aires de terre ou de gravier et débouchés de pistes au bord de la route, relevés sur la vidéo de reconnaissances (data/reference/releve_reco/, observations « aire » et « piste »). Vu en jeu le 13/11/2026 : ces dégagements manquaient, couverts d'herbe et d'arbres. Lu par scripts/15b_sols_du_jeu.py (matière du sol : terre claire, ou fond pierreux pour « pierre ») et, par scripts/regles_arbres.py, par 16_paquet_unreal.py et 09_export_stage_ir.py (ni arbre, ni buisson, ni touffe d'herbe, ni tronc dans la physique sur ces emprises). PK à ±10 m ; décalage = distance du bord de chaussée au début de l'aire ; profondeur estimée d'après la vidéo, ou prise à 14 m environ pour une piste dont on ne voit que l'embouchure. Les aires revêtues ou bétonnées (PK 2965, 3196, 3412, 4076, 4945, 6368) ne sont pas ici : elles demandent un vrai revêtement. Le 13/11/2026 (relevé du quatrième essai : « aire plane de gravier clair » aux PK 1920, 3000, 5040, 6360), les aires passent de la terre au fond pierreux clair ; les débouchés de pistes restent en terre.",
  "emprises": [
   {
    "pk_debut_m": 195.0,
@@ -7,7 +7,7 @@
    "cote": "gauche",
    "decalage_m": 3.0,
    "profondeur_m": 5.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -16,7 +16,7 @@
    "cote": "gauche",
    "decalage_m": 0.5,
    "profondeur_m": 4.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -25,7 +25,7 @@
    "cote": "gauche",
    "decalage_m": 0.5,
    "profondeur_m": 5.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -43,7 +43,7 @@
    "cote": "droite",
    "decalage_m": 0.5,
    "profondeur_m": 4.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -61,7 +61,7 @@
    "cote": "gauche",
    "decalage_m": 0.5,
    "profondeur_m": 5.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -70,7 +70,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 5.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -88,7 +88,7 @@
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 8.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -97,7 +97,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 2.5,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -115,7 +115,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 7.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -124,7 +124,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 2.5,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -133,7 +133,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 9.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -152,7 +152,7 @@
    "cote": "droite",
    "decalage_m": 1.5,
    "profondeur_m": 8.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -170,7 +170,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 5.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -179,7 +179,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 3.5,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -188,7 +188,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 7.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -197,7 +197,7 @@
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 7.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -215,7 +215,7 @@
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 6.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {
@@ -233,7 +233,7 @@
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 7.0,
-   "matiere": "terre",
+   "matiere": "pierre",
    "genre": "aire"
   },
   {

@@ -44,8 +44,11 @@ COUCHES = ["aiguilles_de_pin", "herbe_haute", "herbe_seche", "terre", "cailloux"
 COULEURS_APERCU = {"paillis": (176, 160, 132), "aiguilles_de_pin": (150, 105, 60), "herbe_haute": (70, 140, 50),
                    "herbe_seche": (190, 175, 95), "terre": (120, 90, 70), "cailloux": (205, 200, 190)}
 ACCOTEMENT_M = 1.5                # (ancien réglage : largeur de l'accotement de cailloux, gardé pour le bilan)
-ACCOTEMENT_LISERE_DE_M = 0.10     # le liseré de pierraille est plein jusqu'à 10 cm du bord de l'enrobé...
-ACCOTEMENT_LISERE_M = 0.85        # ... et s'efface à 85 cm : fondu de plus d'un pixel (50 cm), sans marche d'escalier
+# Relevé du quatrième essai (13/11/2026) : sur une vingtaine de paires, l'accotement d'herbe verte rase de la route
+# réelle (1 à 3 m, souvent jusqu'au ras de l'enrobé) était rendu en gravier gris ou en terre. Le liseré de pierraille
+# est donc réduit à un filet, et l'herbe verte prend presque toute la bande.
+ACCOTEMENT_LISERE_DE_M = 0.02     # le liseré de pierraille est plein jusqu'à 2 cm du bord de l'enrobé...
+ACCOTEMENT_LISERE_M = 0.40        # ... et s'efface à 40 cm
 ACCOTEMENT_HERBE_M = (2.2, 3.6)   # la bande d'herbe verte est pleine jusqu'à 2,2 m du bord et s'efface à 3,6 m
 PENTE_ROCHE = (30.0, 48.0)       # degrés : en dessous, pas de roche ; au-dessus, roche à 85 %
 NDVI_NU, NDVI_VERT = 0.03, 0.15
@@ -125,9 +128,13 @@ def main():
     p["cailloux"] = 0.35 * ouvert * (1.0 - vert) * clair + garrigue * 0.10 * (1.0 - b1)
     del arbres, garrigue, ouvert, vert, vigoureux, clair, b2, melange
 
+    # Pentes raides : roche pour moitié seulement, terre et herbe sèche pour le reste. Relevé du quatrième essai
+    # (13/11/2026) : des talus de terre étaient rendus en surfaces grises lisses « d'aspect rocheux », à la texture
+    # étirée (la matière du sol est plaquée d'en haut : sur une pente, la roche s'étire).
     for k in COUCHES:
-        p[k] *= (1.0 - 0.85 * raide)
-    p["cailloux"] += 0.85 * raide
+        p[k] *= (1.0 - 0.70 * raide)
+    p["cailloux"] += 0.45 * raide
+    p["terre"] += 0.25 * raide
     part_raide = float(raide.mean())
 
     # chaussée et accotement
@@ -159,13 +166,13 @@ def main():
     # bande d'herbe rase verte jusqu'à 2 ou 3 m, irrégulière, qui laisse la place à la roche sur les talus raides.
     lisere = np.where(sur_route, 1.0, 1.0 - marche(dist, ACCOTEMENT_LISERE_DE_M, ACCOTEMENT_LISERE_M)).astype(np.float32)
     herbe = (marche(dist, ACCOTEMENT_LISERE_DE_M, ACCOTEMENT_LISERE_M) * (1.0 - marche(dist, ACCOTEMENT_HERBE_M[0], ACCOTEMENT_HERBE_M[1]))
-             * (0.55 + 0.45 * b1) * (1.0 - raide)).astype(np.float32)
+             * (0.85 + 0.15 * b1) * (1.0 - raide)).astype(np.float32)
     herbe[sur_route] = 0.0
     accot = np.maximum(lisere, herbe)
     del dist, b1, raide
     for k in COUCHES:
         p[k] *= (1.0 - accot)                   # sous la chaussée et dans le liseré : le fond pierreux seul
-    p["herbe_haute"] += herbe * 0.85
+    p["herbe_haute"] += herbe * 0.95
 
     # aires de terre et débouchés de pistes (data/reference/aires_et_pistes.json) : terre claire, ou le fond pierreux seul
     import regles_arbres
