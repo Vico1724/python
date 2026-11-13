@@ -181,7 +181,7 @@
   },
   "MI_GC_Roche": {
    "parent": "/Game/Props/MonteCarloProps/MonBolRockfaces/MI_BolleneRockfacesParent",
-   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc",
+   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc ; échelle réglée sur celle des parois du jeu (dépliage du jeu à 3,9 m par unité et Mat1_UVTiling de 0,7 à 0,95, soit un motif de 4 à 5,6 m ; le nôtre est à 2,5 m par unité : 0,45 et 0,5 donnent 5,6 et 5 m). Sans ce réglage, valeur par défaut du maître, inconnue",
    "vecteurs": {
     "Mat1_AlbedoControls": [
      1.9,
@@ -207,6 +207,10 @@
      0.95,
      1.0
     ]
+   },
+   "scalaires": {
+    "Mat1_UVTiling": 0.45,
+    "Mat2_UVTiling": 0.5
    }
   },
   "MI_GC_Marquage": {
