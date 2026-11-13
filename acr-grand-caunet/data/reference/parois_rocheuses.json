@@ -1,14 +1,9 @@
 {
- "note": "Parois et talus rocheux au bord de la route, relevés sur la vidéo de reconnaissances (data/reference/releve_reco/, observations « talus_rocheux »). Lu par scripts/16_paquet_unreal.py, qui en fait des parois de forme naturelle habillées de la roche du jeu. Vu en jeu le 13/11/2026 : les neuf parois rendues par un mur de pierre faisaient « d'immenses parapets », et les autres talus étaient un sol lisse et sombre. PK à ±10 m ; décalage = distance du pied de la paroi au bord de chaussée ; hauteur = fourchette vue. Les entrées marquées « collision » gardent, pour la physique, le mur de même emprise décrit dans ouvrages_parapets.json ; les autres n'ont pas de collision propre (le terrain porte la voiture).",
+ "note": "Parois et talus rocheux au bord de la route, relevés sur la vidéo de reconnaissances (data/reference/releve_reco/, observations « talus_rocheux »). Lu par scripts/16_paquet_unreal.py, qui en fait des affleurements habillés de la roche du jeu : la roche épouse le relief du relevé laser (pente et pied du talus), le relevé vidéo dit où elle est, de quel genre et jusqu'à quelle hauteur. Vu en jeu le 13/11/2026 : les neuf parois rendues par un mur de pierre faisaient « d'immenses parapets », et les autres talus étaient un sol lisse et sombre. PK à ±10 m ; décalage = distance du pied de la paroi au bord de chaussée ; hauteur = fourchette vue. Les entrées marquées « collision » gardent, pour la physique, le mur de même emprise décrit dans ouvrages_parapets.json ; les autres n'ont pas de collision propre (le terrain porte la voiture).",
  "genres": {
-  "lite": "front de calcaire lité, taillé, presque vertical (72 degrés)",
-  "eboulis": "talus de pierres et de terre, incliné (47 degrés)",
-  "blocs": "blocs dressés ou empilés (62 degrés)"
- },
- "pentes_deg": {
-  "lite": 72.0,
-  "eboulis": 47.0,
-  "blocs": 62.0
+  "lite": "calcaire lité : bancs à front raide et replats, débités en blocs",
+  "eboulis": "talus de pierres et de terre, en pente continue",
+  "blocs": "gros blocs dressés ou empilés, bancs épais"
  },
  "parois": [
   {
@@ -220,7 +215,9 @@
     0.5,
     1.0
    ],
-   "genre": "eboulis"
+   "genre": "eboulis",
+   "recalage_pk_m": -4,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 82% de la hauteur relevée ; 92% une fois la paroi glissée de -4 m"
   },
   {
    "pk_debut_m": 1962.0,
@@ -232,7 +229,8 @@
     1.3
    ],
    "genre": "blocs",
-   "collision": "mur de data/reference/ouvrages_parapets.json"
+   "recalage_pk_m": 10,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 65% de la hauteur relevée ; 100% une fois la paroi glissée de +10 m"
   },
   {
    "pk_debut_m": 2000.0,
@@ -243,8 +241,7 @@
     0.9,
     1.1
    ],
-   "genre": "blocs",
-   "collision": "mur de data/reference/ouvrages_parapets.json"
+   "genre": "blocs"
   },
   {
    "pk_debut_m": 2024.0,
@@ -324,7 +321,9 @@
     2.0
    ],
    "genre": "lite",
-   "collision": "mur de data/reference/ouvrages_parapets.json"
+   "recalage_pk_m": 24,
+   "allonge_m": 16.0,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 16% de la hauteur relevée ; 100% une fois la paroi glissée de +24 m et allongée de 16 m"
   },
   {
    "pk_debut_m": 3040.0,
@@ -358,7 +357,8 @@
     4.0
    ],
    "genre": "lite",
-   "collision": "mur de data/reference/ouvrages_parapets.json"
+   "recalage_pk_m": 28,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 32% de la hauteur relevée ; 85% une fois la paroi glissée de +28 m"
   },
   {
    "pk_debut_m": 3835.0,
@@ -436,7 +436,9 @@
     0.5,
     1.0
    ],
-   "genre": "eboulis"
+   "genre": "eboulis",
+   "recalage_pk_m": 10,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 71% de la hauteur relevée ; 100% une fois la paroi glissée de +10 m"
   },
   {
    "pk_debut_m": 4580.0,
@@ -447,7 +449,9 @@
     1.0,
     1.5
    ],
-   "genre": "eboulis"
+   "genre": "eboulis",
+   "recalage_pk_m": 10,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 75% de la hauteur relevée ; 87% une fois la paroi glissée de +10 m"
   },
   {
    "pk_debut_m": 4822.0,
@@ -458,7 +462,9 @@
     1.3,
     1.6
    ],
-   "genre": "eboulis"
+   "genre": "eboulis",
+   "recalage_pk_m": 14,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 83% de la hauteur relevée ; 100% une fois la paroi glissée de +14 m"
   },
   {
    "pk_debut_m": 4930.0,
@@ -480,7 +486,9 @@
     3.0,
     4.0
    ],
-   "genre": "lite"
+   "genre": "lite",
+   "recalage_pk_m": 8,
+   "note_recalage": "relief laser : sur place le terrain n'atteint que 83% de la hauteur relevée ; 100% une fois la paroi glissée de +8 m"
   },
   {
    "pk_debut_m": 6440.0,
@@ -493,5 +501,6 @@
    ],
    "genre": "eboulis"
   }
- ]
+ ],
+ "recalage": "recalage_pk_m, allonge_m et note_recalage sont calculés par scripts/22_recaler_parois.py d'après le relief laser ; les PK relevés (pk_debut_m, pk_fin_m) ne sont jamais modifiés"
 }

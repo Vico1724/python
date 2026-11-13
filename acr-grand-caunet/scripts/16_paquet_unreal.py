@@ -1741,10 +1741,19 @@ def objets_en_long(P, ref, sol, liste):
 
 
 # --- parois rocheuses ------------------------------------------------------------------------------------
-# Parois et talus rocheux du bord de route (data/reference/parois_rocheuses.json) : une nappe de roche par paroi, de
-# forme irrégulière, habillée de la roche répétable de Bollène (MI_GC_Roche, matieres_du_jeu.json).
-ROCHE = {"pas_m": 0.4, "rang_m": 0.2, "biseau_m": 3.5, "enfoui_m": 0.4, "uv_m": 2.5, "marge_chaussee_m": 0.3,
-         "recul_arriere_m": 1.6, "couleur_secours": (188, 182, 168)}
+# Parois et talus rocheux du bord de route (data/reference/parois_rocheuses.json), habillés de la roche répétable de
+# Bollène (MI_GC_Roche, matieres_du_jeu.json). La roche ÉPOUSE LE RELIEF du relevé laser : c'est le terrain, avancé
+# de quelques décimètres vers la route et débité en bancs et en blocs. Le relevé vidéo dit où il y a de la roche, de
+# quel genre et jusqu'à quelle hauteur ; le relief dit où le talus monte, et à quelle pente.
+# Par genre : avancée devant le terrain, épaisseur des bancs (min, max), part de la largeur d'un banc occupée par son
+# front (0,3 : front raide et replat ; 1 : pente continue), décrochement des blocs, longueur des blocs (min, max),
+# lacunes (plus la valeur est basse, plus la terre reparaît par plaques entre les roches).
+ROCHE = {"pas_m": 0.4, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
+         "epaisseur_m": 0.16, "pente_deg": (9.0, 24.0), "plat_m": (2.0, 0.35), "uv_m": 2.5, "marge_chaussee_m": 0.3,
+         "couleur_secours": (188, 182, 168),
+         "genres": {"lite": {"avance_m": 0.8, "banc_m": (0.28, 0.6), "front": 0.3, "decroche_m": 0.3, "bloc_m": (0.9, 2.5), "lacunes": 0.16},
+                    "blocs": {"avance_m": 1.0, "banc_m": (0.6, 1.1), "front": 0.25, "decroche_m": 0.45, "bloc_m": (1.2, 2.4), "lacunes": 0.2},
+                    "eboulis": {"avance_m": 0.45, "banc_m": (0.3, 0.45), "front": 1.0, "decroche_m": 0.22, "bloc_m": (0.6, 1.3), "lacunes": 0.08}}}
 
 
 def _alea(i, j, k):
@@ -1772,6 +1781,16 @@ def _fbm(u, v, k, octaves=4):
 
 
 def parois_rocheuses(P, ref, sol):
+    """Une nappe de roche par paroi relevée, posée sur le terrain.
+
+    Histoire de la forme (aperçus hors jeu du 13/11/2026, scripts/21_apercu_conducteur.py) : un front dressé à la pente
+    et à la hauteur relevées se tenait comme une dalle isolée devant un terrain plus bas, ou sur un sol plat quand le
+    relevé était décalé ; la vidéo de reconnaissance montre en fait des talus de roche brisée à la pente du terrain
+    (PK 2800, PK 3080), rarement des fronts verticaux. D'où la règle : la roche suit le terrain.
+      - profil lisse = terrain avancé de `avance_m` vers la route, plus une épaisseur ;
+      - ce profil est débité en bancs horizontaux (front raide, replat), chaque banc en blocs qui avancent ou reculent ;
+      - la roche s'efface là où le terrain est plat, s'arrête à la hauteur relevée ou là où le talus cesse de monter.
+    """
     f = ROOT / "data" / "reference" / "parois_rocheuses.json"
     if not f.exists():
         return 0
@@ -1785,79 +1804,130 @@ def parois_rocheuses(P, ref, sol):
         P.texture("T_GC_ORM_R230M000", "commun", f"{UE}/Shared/Textures", image_unie((255, 230, 0)), ["complet"])
     P.materiau("MI_GC_Roche", f"{UE}/Shared/Materials", {"couleur": "T_GC_Roche", "orm": "T_GC_ORM_R230M000"}, ["complet"],
                note="parois rocheuses : parent du jeu MI_BolleneRockfacesParent (factices.json), réglages dans matieres_du_jeu.json")
-    n_faits, longueur = 0, 0.0
+    do = ROCHE["pas_profil_m"]
+    n_o = int(round(ROCHE["portee_m"] / do)) + 1
+    t0, t1 = (math.tan(math.radians(a)) for a in ROCHE["pente_deg"])
+    n_faits, longueur, n_tri = 0, 0.0, 0
     for k, e in enumerate(cfg["parois"]):
-        pk0, pk1, cote = float(e["pk_debut_m"]), float(e["pk_fin_m"]), e["cote"]
-        S = np.arange(pk0, pk1 + 1e-6, ROCHE["pas_m"])
-        if len(S) < 3:
+        g = ROCHE["genres"][e["genre"]]
+        rec = float(e.get("recalage_pk_m", 0.0))
+        pk0, pk1, cote = float(e["pk_debut_m"]) + rec, float(e["pk_fin_m"]) + rec + float(e.get("allonge_m", 0.0)), e["cote"]
+        S = np.arange(pk0 - ROCHE["allonge_m"], pk1 + ROCHE["allonge_m"] + 1e-6, ROCHE["pas_m"])
+        ns = len(S)
+        if ns < 3:
             continue
-        pente = math.radians(cfg["pentes_deg"][e["genre"]])
         h0, h1 = e["hauteur_m"]
         # bord de chaussée, direction vers l'extérieur (horizontale), dans le repère glTF du projet
         B = np.array([m08.to_gltf(np.array([[*route.point(s, cote, 0.0)[:3]]]), ref).astype(float)[0] for s in S])
         B1 = np.array([m08.to_gltf(np.array([[*route.point(s, cote, 1.0)[:3]]]), ref).astype(float)[0] for s in S])
         dehors = (B1 - B) * np.array([1.0, 0.0, 1.0])
         dehors /= np.maximum(np.linalg.norm(dehors, axis=1, keepdims=True), 1e-9)
-        fin = np.clip(np.minimum(S - pk0, pk1 - S) / ROCHE["biseau_m"], 0.0, 1.0)
-        fin = fin * fin * (3 - 2 * fin)
-        # hauteur : entre les deux bornes relevées, avec une crête déchiquetée (2 m) ; la paroi meurt en sifflet à ses bouts
-        h = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.78 + 0.44 * _bruit(S / 2.1, 7.0, k + 2)) * (0.12 + 0.88 * fin)
-        recul = h / math.tan(pente)
-        nv = int(np.clip(math.ceil(h1 / ROCHE["rang_m"]) + 1, 5, 22))
-        T = np.linspace(0.0, 1.0, nv)
-        d0 = float(e["decalage_m"]) + 0.30 * (_bruit(S / 6.5, 3.0, k + 4) - 0.35) * fin      # le pied de la paroi serpente
-        normale_face = -dehors * math.sin(pente) + haut[None, :] * math.cos(pente)
-        rangs, zrel_rangs = [], []
-        for t in T:
-            zrel = (h + ROCHE["enfoui_m"]) * t - ROCHE["enfoui_m"]                # hauteur au-dessus du bord de chaussée
-            base = B + dehors * (d0 + recul * t)[:, None] + haut[None, :] * zrel[:, None]
-            # relief de la roche : grandes bosses, puis le dessin propre au genre (vu hors jeu le 13/11/2026 : la première
-            # version, deux fois moins accidentée, avait l'allure d'un ruban)
-            dep = 0.30 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 2.6, zrel / 1.3 + 3.1 * k, k)
-            dep += 0.22 * np.sqrt(np.maximum(h, 0.2)) * (_bruit(S / 5.5, 1.0, k + 6) - 0.5) * 2.0 * math.sin(math.pi * min(t + 0.15, 1.0))
-            if e["genre"] == "lite":
-                # Calcaire lité : des bancs horizontaux d'épaisseur inégale, chacun débité en blocs de longueur
-                # inégale ; chaque bloc avance ou recule d'un coup (décrochements francs), les joints sont en creux.
-                # Vu hors jeu le 13/11/2026 : des bosses continues donnaient une paroi molle, comme du sable.
-                ep = 0.42
-                banc = np.floor((zrel + 5.0) / ep + 0.35 * _bruit(S / 7.0, 0.0, k + 13))
-                long_bloc = 0.9 + 1.6 * _alea(banc, 0.0, k + 14)
-                bloc = np.floor(S / long_bloc + 3.7 * _alea(banc, 1.0, k + 15))
-                dep += 0.30 * (_alea(bloc, banc, k + 5) - 0.5) * 2.0
-                dep += 0.10 * (_alea(banc, 2.0, k + 16) - 0.5) * 2.0                 # un banc entier en saillie ou en retrait
-                joint_h = np.abs(((zrel + 5.0) / ep) % 1.0 - 0.5) * 2.0
-                joint_v = np.abs((S / long_bloc + 3.7 * _alea(banc, 1.0, k + 15)) % 1.0 - 0.5) * 2.0
-                dep -= 0.12 * np.clip((joint_h - 0.82) / 0.18, 0.0, 1.0)
-                dep -= 0.14 * np.clip((joint_v - 0.86) / 0.14, 0.0, 1.0)
-            elif e["genre"] == "blocs":                                             # gros blocs séparés par des joints verticaux
-                larg = 1.5
-                bloc = np.floor(S / larg + 0.35 * _bruit(zrel / 0.9, 0.0, k + 9))
-                dep += 0.38 * (_alea(bloc, np.floor((zrel + 5.0) / 0.8), k + 3) - 0.5) * 2.0
-                jv = np.abs((S / larg) % 1.0 - 0.5) * 2.0
-                dep -= 0.20 * np.clip((jv - 0.82) / 0.18, 0.0, 1.0)
-            else:                                                                   # éboulis : pierres rondes, à deux tailles
-                dep += 0.30 * np.sqrt(np.maximum(h, 0.2)) * _fbm(S / 1.1, zrel / 0.55, k + 11, 3)
-                pierre = np.floor(S / 0.9 + 2.3 * _alea(np.floor((zrel + 5.0) / 0.6), 0.0, k + 17))
-                dep += 0.16 * (_alea(pierre, np.floor((zrel + 5.0) / 0.6), k + 18) - 0.5) * 2.0
-            p = base + normale_face * (dep * (0.25 + 0.75 * fin))[:, None]
-            # jamais sur la chaussée : distance au bord, mesurée à l'horizontale, d'au moins la marge
-            hors = np.einsum("ij,ij->i", (p - B) * np.array([1.0, 0.0, 1.0]), dehors)
-            p += dehors * np.maximum(ROCHE["marge_chaussee_m"] - hors, 0.0)[:, None]
-            rangs.append(p); zrel_rangs.append(zrel)
-        # dessus et arrière : la roche rejoint le terrain derrière elle, pour ne pas montrer un dos creux
-        levre = rangs[-1] + dehors * 0.35 - haut[None, :] * 0.06
-        arr = B + dehors * (d0 + recul + ROCHE["recul_arriere_m"])[:, None]
-        z_arr = sol(arr[:, 0], arr[:, 2])
-        z_haut = B[:, 1] + h
-        arr[:, 1] = np.where(np.isfinite(z_arr), np.minimum(z_arr - 0.35, z_haut - 0.3), z_haut - 0.9)
-        rangs += [levre, arr]
-        zrel_rangs += [zrel_rangs[-1] + 0.35, zrel_rangs[-1] + 0.35 + ROCHE["recul_arriere_m"]]
+        fin = np.clip(np.minimum(S - S[0], S[-1] - S) / ROCHE["biseau_m"], 0.0, 1.0)
+        fin = fin * fin * (3 - 2 * fin)                                             # la paroi meurt en sifflet à ses bouts
+        H = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.85 + 0.35 * _bruit(S / 2.1, 7.0, k + 2)) * (0.1 + 0.9 * fin)
+        avance = g["avance_m"] * (0.65 + 0.7 * _bruit(S / 7.0, 3.0, k + 4)) * (0.15 + 0.85 * fin)
+        # profil du terrain en travers, tous les 10 cm, hauteurs comptées depuis le bord de chaussée
+        o0 = max(float(e["decalage_m"]) - 0.8, ROCHE["marge_chaussee_m"])
+        OO = o0 + np.arange(n_o + int(round(3.4 / do))) * do
+        pts = B[:, None, :] + dehors[:, None, :] * OO[None, :, None]
+        T = sol(pts[:, :, 0].ravel(), pts[:, :, 2].ravel()).reshape(ns, len(OO)) - B[:, 1][:, None]
+        for i in np.flatnonzero(~np.isfinite(T).all(1)):                            # trous du terrain : prolongés, ou supposés bas
+            ok = np.isfinite(T[i])
+            T[i] = np.interp(OO, OO[ok], T[i][ok]) if ok.sum() >= 2 else -1.0
+        cols = np.arange(n_o)[None, :]
+
+        def terrain(dec):
+            """Terrain à (décalage de la grille + dec), dec étant donné par station."""
+            x = cols + (np.asarray(dec, float) / do)[:, None]
+            i = np.clip(np.floor(x).astype(int), 0, T.shape[1] - 2)
+            r = np.clip(x - i, 0.0, 1.0)
+            return np.take_along_axis(T, i, 1) * (1 - r) + np.take_along_axis(T, i + 1, 1) * r
+
+        un = np.ones(ns)
+        zS = terrain(avance) + ROCHE["epaisseur_m"] * (0.2 + 0.8 * fin)[:, None]    # profil lisse de la roche
+        zM = np.maximum.accumulate(zS, axis=1)
+        pente = terrain(avance + 0.5) - terrain(np.maximum(avance - 0.5, 0.0))      # montée du terrain sur 1 m, sous la roche
+        W = np.clip((pente - t0) / (t1 - t0), 0.0, 1.0)
+        W = W * W * (3 - 2 * W)                                                     # 0 sur le plat, 1 sur un vrai talus
+        # la roche finit là où, le talus une fois commencé, le terrain ne monte plus (ROCHE["plat_m"])
+        commence = np.maximum.accumulate(W > 0.5, axis=1)
+        fini = commence & ((terrain(avance + ROCHE["plat_m"][0]) - terrain(avance)) < ROCHE["plat_m"][1])
+        i_fin = np.where(fini.any(1), fini.argmax(1), n_o - 1)
+        i_fin = np.where(commence.any(1), i_fin, 0)
+        r_ns = np.arange(ns)
+        z_top = np.minimum(H, zM[r_ns, i_fin])
+
+        def ou(niveau):
+            """Rang (fractionnaire) du premier point du profil qui atteint `niveau` (par station)."""
+            atteint = zM >= niveau[:, None]
+            j = np.where(atteint.any(1), atteint.argmax(1), n_o - 1)
+            jm = np.maximum(j - 1, 0)
+            za, zb_ = zM[r_ns, jm], zM[r_ns, j]
+            r = np.where(zb_ - za > 1e-6, np.clip((niveau - za) / np.maximum(zb_ - za, 1e-6), 0.0, 1.0), 1.0)
+            return np.where(j == 0, 0.0, jm + r)
+
+        def en(x, champ):
+            """Valeur de `champ` (stations x rangs) au rang fractionnaire x."""
+            i = np.clip(np.floor(x).astype(int), 0, n_o - 2)
+            r = np.clip(x - i, 0.0, 1.0)
+            return champ[r_ns, i] * (1 - r) + champ[r_ns, i + 1] * r
+
+        # bancs : épaisseurs inégales, léger pendage le long de la route, joints qui ondulent
+        bords = [-ROCHE["enfoui_m"]]
+        while bords[-1] < float(H.max()) + 0.2:
+            n = len(bords)
+            bords.append(bords[-1] + g["banc_m"][0] + (g["banc_m"][1] - g["banc_m"][0]) * float(_alea(n, 0.0, k + 13)))
+        pendage = (float(_alea(k, 5.0, 3.0)) - 0.5) * 0.04
+        penche = pendage * (S - S.mean())
+        T0 = T[:, :n_o]
+        x_top = ou(z_top)
+        rangs, rentres = [], []
+
+        def rang(niveau, z_sortie, dx):
+            rentre = niveau > z_top
+            x = np.where(rentre, x_top + 0.3 / do, ou(np.minimum(niveau, z_top)))
+            x = np.minimum(x, i_fin + 0.3 / do)
+            # présence : nulle sur le plat, et par plaques ailleurs (la roche affleure entre la terre et les touffes)
+            plaque = np.clip((_fbm(S / 4.5, niveau / 1.6 + 2.3 * k, k + 31, 3) + g["lacunes"]) / 0.2, 0.0, 1.0)
+            w = en(x, W) * plaque * plaque * (3 - 2 * plaque)
+            o = np.where(rentre, o0 + x * do, np.maximum(o0 + x * do - dx, ROCHE["marge_chaussee_m"]))
+            sous_terre = en((o - o0) / do, T0) - 0.35
+            z = np.where(rentre, sous_terre - 0.1, sous_terre + (z_sortie - sous_terre) * w)
+            rangs.append(B + dehors * o[:, None] + haut[None, :] * z[:, None])
+            rentres.append(rentre | (w < 0.02))
+
+        rang(bords[0] + penche, np.minimum(bords[0] + penche, T0[:, 0] - 0.4), 0.0)
+        ampl = np.clip(avance / 0.8, 0.15, 1.0)
+        for n in range(len(bords) - 1):
+            ep = bords[n + 1] - bords[n]
+            joint = lambda m: 0.10 * (_bruit(S / 8.0, 0.37 * m, k + 12) - 0.5) * 2.0 + 0.07 * (_bruit(S / 1.9, 0.61 * m, k + 29) - 0.5) * 2.0  # noqa: E731
+            bas, hautb = bords[n] + penche + joint(n), bords[n + 1] + penche + joint(n + 1)
+            long_bloc = g["bloc_m"][0] + (g["bloc_m"][1] - g["bloc_m"][0]) * float(_alea(n, 0.0, k + 14))
+            u = S / long_bloc + 3.7 * float(_alea(n, 1.0, k + 15)) + 0.45 * (_bruit(S / 3.3, 1.7 * n, k + 28) - 0.5) * 2.0   # blocs de longueur inégale
+            bloc = np.floor(u)
+            dx = g["decroche_m"] * (_alea(bloc, float(n), k + 5) - 0.5) * 2.0                 # chaque bloc avance ou recule d'un coup
+            dx += g["decroche_m"] * 0.8 * (_alea(bloc, float(n), k + 27) - 0.5) * 2.0 * (u % 1.0 - 0.5)   # et se présente de biais
+            oblique = (S + 1.6 * bords[n] + 0.8 * n) / 6.1 + float(_alea(k, 9.0, 4.0))
+            dx -= 0.22 * np.clip((np.abs(oblique % 1.0 - 0.5) * 2.0 - 0.9) / 0.1, 0.0, 1.0)   # grandes cassures obliques
+            de_niveau = 0.07 * (_alea(bloc, n + 0.5, k + 19) - 0.5) * 2.0                     # dessus des blocs à des hauteurs inégales
+            dx += 0.10 * (float(_alea(n, 2.0, k + 16)) - 0.5) * 2.0                          # un banc entier en saillie ou en retrait
+            dx += 0.25 * _fbm(S / 2.6, 0.6 * n + 3.1 * k, k)                                 # grandes bosses
+            dx -= 0.14 * np.clip((np.abs(u % 1.0 - 0.5) * 2.0 - 0.86) / 0.14, 0.0, 1.0)      # joints verticaux en creux
+            dx *= ampl
+            fb, ft = 0.5 - g["front"] / 2, 0.5 + g["front"] / 2
+            rang(bas + fb * ep, bas - de_niveau, dx)
+            rang(bas + ft * ep, hautb + de_niveau, dx - 0.05 * ampl)
         G = np.stack(rangs, 1)                                    # (stations, rangs, 3)
-        ns, nr = G.shape[:2]
+        nr = G.shape[1]
         pos = G.reshape(-1, 3)
         i, j = np.meshgrid(np.arange(ns - 1), np.arange(nr - 1), indexing="ij")
         a0 = (i * nr + j).ravel(); a1 = a0 + 1; b0 = a0 + nr; b1 = b0 + 1
         tri = np.concatenate([np.column_stack([a0, b0, a1]), np.column_stack([a1, b0, b1])])
+        fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
+        enfoui = np.stack(rentres, 1).ravel()
+        tri = tri[(np.linalg.norm(fn, axis=1) > 2e-5) & ~enfoui[tri].all(1)]       # ni triangles écrasés, ni triangles sous terre
+        if not len(tri):
+            continue
         attendu = np.repeat(-dehors + haut[None, :], nr, axis=0)
         fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
         envers = np.einsum("ij,ij->i", fn, attendu[tri[:, 0]]) < 0
@@ -1868,25 +1938,26 @@ def parois_rocheuses(P, ref, sol):
             np.add.at(nrm, tri[:, c], fn)
         nrm /= np.maximum(np.linalg.norm(nrm, axis=1, keepdims=True), 1e-9)
         long_s = np.r_[0.0, np.cumsum(np.linalg.norm(np.diff(B, axis=0), axis=1))]
-        Z = np.stack(zrel_rangs, 1)
-        uv = np.column_stack([np.repeat(long_s, nr) / ROCHE["uv_m"], -Z.ravel() / ROCHE["uv_m"]])
-        usure = np.clip(0.28 + 0.45 * _fbm(np.repeat(S, nr) / 3.0, Z.ravel() / 1.5, k + 23, 3), 0.0, 0.62)
+        dev = np.concatenate([np.zeros((ns, 1)), np.cumsum(np.linalg.norm(np.diff(G, axis=1), axis=2), axis=1)], axis=1)   # développé en travers
+        uv = np.column_stack([np.repeat(long_s, nr) / ROCHE["uv_m"], -dev.ravel() / ROCHE["uv_m"]])
+        usure = np.clip(0.28 + 0.45 * _fbm(np.repeat(S, nr) / 3.0, dev.ravel() / 1.5, k + 23, 3), 0.0, 0.62)
         coul = np.column_stack([(255 * usure).astype(np.uint8), np.zeros(len(pos), np.uint8), np.full(len(pos), 255, np.uint8),
                                 np.full(len(pos), 255, np.uint8)])
         # facettes franches : chaque triangle porte sa propre normale, à peine adoucie vers celle de ses voisins ; une
         # roche fracturée a des arêtes vives, des normales moyennées la faisaient fondre
-        fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
         fn /= np.maximum(np.linalg.norm(fn, axis=1, keepdims=True), 1e-9)
         nrm = 0.72 * np.repeat(fn, 3, axis=0) + 0.28 * nrm[tri].reshape(-1, 3)
         nrm /= np.maximum(np.linalg.norm(nrm, axis=1, keepdims=True), 1e-9)
         pos, uv, coul = pos[tri].reshape(-1, 3), uv[tri].reshape(-1, 2), coul[tri].reshape(-1, 4)
         tri = np.arange(len(pos)).reshape(-1, 3)
         P.maillage(f"SM_{NOM}Rock_{int(pk0):04d}{'L' if cote == 'gauche' else 'R'}", "parois", f"{UE}/Bridges/Meshes", pos, nrm, uv, tri, "MI_GC_Roche",
-                   ["complet"], pk=(pk0, pk1), couleurs=coul,
-                   extra={"genre": e["genre"], "hauteur_m": [h0, h1], "decalage_m": float(e["decalage_m"]), "cote": cote})
+                   ["complet"], pk=(float(S[0]), float(S[-1])), couleurs=coul,
+                   extra={"genre": e["genre"], "hauteur_m": [h0, h1], "decalage_m": float(e["decalage_m"]), "cote": cote,
+                          "recalage_pk_m": rec})
         n_faits += 1
         longueur += pk1 - pk0
-    print(f"  parois rocheuses : {n_faits} parois, {longueur:.0f} m")
+        n_tri += len(tri)
+    print(f"  parois rocheuses : {n_faits} parois, {longueur:.0f} m, {n_tri} triangles")
     return n_faits
 
 

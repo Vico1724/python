@@ -609,15 +609,9 @@
    "pk_fin_m": 1985,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 1.1,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.7,
-    "biseau_m": 1.5,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse (data/reference/parois_rocheuses.json) sans collision de mur depuis le 13/11/2026 : le relief laser ne monte pas derrière l'emprise relevée, le mur aurait été invisible sur un sol plat ; le terrain porte la voiture"
    },
    "droite": {
     "type": "aucun",
@@ -631,15 +625,9 @@
    "pk_fin_m": 2012,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 1.0,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.7,
-    "biseau_m": 1.5,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse (data/reference/parois_rocheuses.json) sans collision de mur depuis le 13/11/2026 : le relief laser ne monte pas derrière l'emprise relevée, le mur aurait été invisible sur un sol plat ; le terrain porte la voiture"
    },
    "droite": {
     "type": "aucun",
@@ -772,15 +760,9 @@
    "pk_fin_m": 2935,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 1.7,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.5,
-    "biseau_m": 1.5,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse (data/reference/parois_rocheuses.json) sans collision de mur depuis le 13/11/2026 : le relief laser ne monte pas derrière l'emprise relevée, le mur aurait été invisible sur un sol plat ; le terrain porte la voiture"
    },
    "droite": {
     "type": "aucun",
@@ -849,15 +831,9 @@
    "pk_fin_m": 3495,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 2.5,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.5,
-    "biseau_m": 2.0,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse (data/reference/parois_rocheuses.json) sans collision de mur depuis le 13/11/2026 : le relief laser ne monte pas derrière l'emprise relevée, le mur aurait été invisible sur un sol plat ; le terrain porte la voiture"
    },
    "droite": {
     "type": "aucun",

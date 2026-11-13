@@ -137,13 +137,14 @@
    "genre": "aire"
   },
   {
-   "pk_debut_m": 2985.0,
-   "pk_fin_m": 2995.0,
+   "pk_debut_m": 2999.0,
+   "pk_fin_m": 3009.0,
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 12.0,
    "matiere": "terre",
-   "genre": "piste"
+   "genre": "piste",
+   "note": "relevée du PK 2985 au PK 2995 ; glissée de 14 m sur le débouché de la route empierrée de l'IGN (PK 3005), que le sol trace déjà : une seule embouchure au lieu de deux"
   },
   {
    "pk_debut_m": 3372.0,
