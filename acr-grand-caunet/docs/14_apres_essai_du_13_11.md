@@ -1,0 +1,60 @@
+# Après l'essai en jeu du 13 novembre : route lissée, roche, sol, herbe, végétation
+
+*13 novembre 2026. Document destiné au directeur de projet et à la session qui reprendra le travail.*
+
+**Constat du directeur après son essai** (vidéo de 4 min 30 fournie). La surface de la route, les obstacles ajoutés et le profil de la route sont en progrès. Mais :
+
+- la qualité du relief, proche comme lointain, laisse à désirer ;
+- des parois rocheuses naturelles sont devenues d'immenses parapets ;
+- les bords de l'asphalte et les lignes blanches sont saccadés, alors que la route réelle est lisse ;
+- des arbres dépassent sur la route ;
+- l'herbe est jaune et haute, alors que sur les vidéos elle est courte et verte.
+
+**Consigne.** Carte blanche pour obtenir le rendu le plus réaliste possible, en prenant la vidéo de reconnaissance comme modèle de qualité ; travailler sans arrêt, il dira quand faire un essai.
+
+## 1. Comment les écarts ont été relevés
+
+La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont été tirées, une tous les 40 m : le jeu à gauche, la reconnaissance à droite, au même endroit. Deux relevés systématiques de ces paires donnent environ 200 écarts localisés (`data/reference/releve_essai_13_11/`). Ils confirment les cinq constats et en ajoutent :
+
+- des rectangles gris clair et des faisceaux de lignes grises sur la chaussée : c'étaient mes « pièces d'enrobé » et mes « fissures » de la veille ;
+- un sol gris anthracite et nu, là où la réalité montre de la pierraille claire, de la terre ocre et de la litière rousse ;
+- des massifs lointains blancs, d'aspect enneigé, rayés de bandes : ma teinte de falaise de la veille, trop forte ;
+- un asphalte trop sombre et bleuté ; des parapets trop sombres ; des poteaux électriques démesurés ; des rochers ronds, identiques, alignés ;
+- des aires de terre et des débouchés de pistes absents.
+
+## 2. Ce qui est corrigé
+
+| Défaut | Cause trouvée | Correction |
+|---|---|---|
+| Ligne centrale en dents de scie | Une coordonnée de l'axe était écrite au décimètre au lieu du millimètre : 5 cm de zigzag à chaque mètre | Écriture au millimètre |
+| Bords et lignes qui serpentent | Sur les lignes droites, l'axe relevé ondule de 15 cm tous les 25 à 30 m ; l'ancien lissage ne retirait que les défauts plus courts | Lissage fort partout où la route ne tourne pas vraiment, léger dans les vrais virages. Sur la ligne droite du km 1,05 à 1,13, l'ondulation est divisée par six. Aucun point ne bouge de plus de 25 cm ; les contrôles sur les virages passent tous |
+| Rectangles et lignes parasites sur la chaussée | Bandes de couleur unie posées sur l'enrobé | Retirées entièrement |
+| Parois rocheuses en « parapets » ; talus lisses et sombres | 9 parois rendues par un mur de pierre ; les autres talus rocheux n'étaient que du terrain | 43 parois de forme naturelle (1,7 km) : front lité, éboulis ou blocs selon ce que montre la reconnaissance, habillées de la roche du jeu, éclaircie vers le calcaire |
+| Arbres sur la route | Les arbres du jeu sont plus larges que les houppiers relevés ; seule la position du tronc était contrôlée | Le houppier ne doit plus passer le bord. Un arbre trop grand pour sa place est réduit, pas retiré : les bords restent fermés par la végétation. Même règle dans la physique |
+| Herbe haute et jaune | Touffes sèches de 0,6 à 1,5 m | Herbes vertes de 15 à 35 cm sur les accotements, feuilles mortes ; touffes sèches basses ailleurs |
+| Sol anthracite | La matière de fond du jeu (« paillis ») est presque noire | Fond pierreux clair, aiguilles dorées, herbe rase verte en bande le long de la route, roche sur les pentes : textures du jeu (Grèce, Alsace, Bollène) désignées par nos matériaux, teintes réglées |
+| Asphalte sombre et bleuté | Réglage de Bollène | Teinte éclaircie et réchauffée, grandes fissures atténuées |
+| Parapets sombres | Pierre brute sombre | Pierre claire de Bollène, teintée beige |
+| Massifs blancs et rayés | Teinte de falaise trop claire, posée jusque sur le relief lointain à 25 m | Bandes retirées, teinte moins claire, limitée au relief fin (6 km) |
+| Relief proche plat et flou | Au-delà de 135 m, une surface peinte sans arbres | Arbres du jeu sur les versants jusqu'à 430 m : seules leurs cimes dépassent de la surface |
+| Poteaux démesurés | Modèle de 9 m à large traverse | Modèle de 6,9 m, mince |
+| Rochers alignés | Espacement et taille réguliers | Espacement, taille et enfoncement variés |
+| Aires et pistes absentes | Non modélisées | 27 emprises en terre claire, sans herbe ni arbre |
+
+## 3. Ce qu'il faut savoir
+
+- **Rien de ceci n'a encore été vu en jeu.** Plusieurs réglages sont des choix de teinte faits d'après la couleur mesurée des textures du jeu : ils demanderont sans doute une retouche après essai.
+- **Trois paris techniques** dans cette version : nos matériaux désignent des textures du jeu par leur chemin (jamais copiées) ; ils règlent des teintes sur les matériaux du jeu ; la roche hérite d'un matériau de Bollène que le jeu n'emploie lui-même que comme modèle. Si l'un échoue, le sol ou la roche paraîtront gris uni ou d'une teinte inattendue : c'est le premier point à regarder.
+- **La forme de chaque paroi rocheuse est inventée** (bosses, bancs, joints) ; sa position, sa hauteur et son genre viennent de la reconnaissance.
+- **Les pièces d'enrobé et les fissures ne sont plus rendues.** Le matériau d'asphalte du jeu sait en dessiner lui-même ; c'est une piste pour plus tard.
+- **Pas repris dans cette passe** : la forme des pins (troncs orangés et droits du jeu, contre des pins d'Alep gris et tortueux), les bords d'asphalte fondus dans l'accotement comme le fait le jeu, l'éclairage du relief lointain, les murets de pierre sèche du km 5,3 à 5,5, les panneaux directionnels.
+
+## 4. Où c'est décrit
+
+- Écarts relevés : `data/reference/releve_essai_13_11/partie_1.json` et `partie_2.json`. Paires d'images : `scripts/20_planches_comparees.py` (images hors dépôt, `figures/compare_jeu_13_11/`).
+- Lissage de la route : `scripts/07b_regulariser_chaussee.py` (réglages et raisons en tête de fichier).
+- Parois rocheuses : `data/reference/parois_rocheuses.json`, fabriquées par `parois_rocheuses()` dans `scripts/16_paquet_unreal.py`.
+- Matières du sol, de l'asphalte, des parapets et de la roche : `data/reference/matieres_du_jeu.json`. Couleur des textures du jeu : `pc/etape2_unreal/outils/couleur_texture.py`.
+- Répartition du sol : `scripts/15b_sols_du_jeu.py`. Herbes : `HERBES` dans `scripts/16_paquet_unreal.py`.
+- Dégagement des arbres, aires et pistes : `scripts/regles_arbres.py`, `data/reference/aires_et_pistes.json`.
+- La version vue en jeu le 13 novembre est gardée sur le PC sous `sol_jeu_vu_le_13_11`, avec sa route physique.

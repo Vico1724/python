@@ -40,3 +40,35 @@ def ajuste(hauteur_m, distance_au_bord_m, famille):
     if not pin and famille not in LARGEUR_SUR_HAUTEUR and famille != FAMILLE_DES_PETITS_FEUILLUS[0] and h < 11.0:
         return True, h, FAMILLE_DES_PETITS_FEUILLUS[0], FAMILLE_DES_PETITS_FEUILLUS[1]
     return True, h, famille, None
+
+
+def emprises_degagees(racine):
+    """Polygones Lambert-93 (shapely) des aires et débouchés de pistes de data/reference/aires_et_pistes.json, avec leur
+    matière : [(polygone, matière)]. Chaque emprise suit le bord de la chaussée, du décalage à décalage + profondeur."""
+    import csv
+    import json
+    from pathlib import Path
+
+    import numpy as np
+    import shapely
+    f = Path(racine) / "data" / "reference" / "aires_et_pistes.json"
+    if not f.exists():
+        return []
+    with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:
+        r = list(csv.DictReader(h))
+    pk = np.array([float(x["pk_m"]) for x in r])
+    A = np.array([[float(x["x_axe"]), float(x["y_axe"])] for x in r])
+    bords = {"gauche": np.array([[float(x["x_gauche"]), float(x["y_gauche"])] for x in r]),
+             "droite": np.array([[float(x["x_droite"]), float(x["y_droite"])] for x in r])}
+    out = []
+    for e in json.loads(f.read_text(encoding="utf-8"))["emprises"]:
+        s = np.arange(e["pk_debut_m"], e["pk_fin_m"] + 0.5, 1.0)
+        B = np.column_stack([np.interp(s, pk, bords[e["cote"]][:, k]) for k in (0, 1)])
+        C = np.column_stack([np.interp(s, pk, A[:, k]) for k in (0, 1)])
+        n = B - C
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+        d0, d1 = e["decalage_m"], e["decalage_m"] + e["profondeur_m"]
+        poly = shapely.Polygon(np.vstack([B + n * d0, (B + n * d1)[::-1]])).buffer(0)
+        if not poly.is_empty:
+            out.append((poly, e["matiere"]))
+    return out

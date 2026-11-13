@@ -651,6 +651,63 @@ def decouper_par_cellule(pos, nrm, tri, xy, pas):
     return out, int((~simple).sum())
 
 
+# Bord d'asphalte irrégulier (--bord-enrobe) : vu en jeu le 13/11/2026, le bord de la chaussée est une ligne nette, alors
+# que sur la route réelle la pierraille, la terre et l'herbe mordent inégalement sur l'enrobé. Une mince bande de sol
+# suit donc chaque bord : elle recouvre l'enrobé sur BORD["mord_m"] (variable d'un pas à l'autre), 2 cm au-dessus de
+# lui, et descend dans l'accotement. Elle fait partie du terrain : même matériau, mêmes masques, même découpage.
+BORD = {"pas_m": 0.25, "mord_m": (0.03, 0.42), "dehors_m": 0.6, "au_dessus_m": 0.02, "enfoui_m": 0.12}
+
+
+def bande_de_bord(ch, ref):
+    """(pos glTF, normales, triangles) de la bande de sol qui mord sur chaque bord de l'enrobé."""
+    f = REF / "ouvrages_parapets.json"
+    murs = {"gauche": [], "droite": []}
+    if f.exists():                      # contre un parapet ou un mur au ras du bord, la bande s'arrête au pied du mur
+        cfg = json.loads(f.read_text(encoding="utf-8"))
+        for e in cfg.get("ouvrages", []) + cfg.get("parapets_hors_tablier", []):
+            for cote in murs:
+                p = e.get(cote) or {}
+                if p.get("type", "aucun") != "aucun" and float(p.get("decalage_m", 0.0)) <= 0.3:
+                    a_, b_ = p.get("pk_debut_m", e.get("pk_debut_m")), p.get("pk_fin_m", e.get("pk_fin_m"))
+                    if a_ is not None and b_ is not None:
+                        murs[cote].append((float(a_) - 1.0, float(b_) + 1.0))
+    pk = ch["pk"]
+    S = np.arange(pk[0] + 1.0, pk[-1] - 1.0, BORD["pas_m"])
+    A = np.column_stack([np.interp(S, pk, ch["A"][:, k]) for k in range(3)])
+    P_, N_, T_ = [], [], []
+    k0 = 0
+    for cote, cle, graine in (("gauche", "G", 3), ("droite", "D", 8)):
+        E = np.column_stack([np.interp(S, pk, ch[cle][:, k]) for k in range(3)])
+        n = E[:, :2] - A[:, :2]
+        demi = np.maximum(np.linalg.norm(n, axis=1), 0.5)
+        n /= demi[:, None]
+        # largeur mordue : deux bruits (1,3 m et 6 m), avec des passages où le bord reste net
+        w = _bruit(S / 1.3, 0.0, graine) * 0.6 + _bruit(S / 6.0, 0.0, graine + 1) * 0.4
+        w = BORD["mord_m"][0] + (BORD["mord_m"][1] - BORD["mord_m"][0]) * np.clip((w - 0.25) / 0.55, 0.0, 1.0) ** 1.4
+        mur = np.zeros(len(S), bool)
+        for a_, b_ in murs[cote]:
+            mur |= (S >= a_) & (S <= b_)
+        dehors = np.where(mur, 0.04, BORD["dehors_m"])
+        dedans = np.column_stack([E[:, :2] - n * w[:, None], E[:, 2] + (A[:, 2] - E[:, 2]) * (w / demi) + BORD["au_dessus_m"]])
+        bord = np.column_stack([E[:, :2], E[:, 2] + BORD["au_dessus_m"]])
+        ext = np.column_stack([E[:, :2] + n * dehors[:, None], E[:, 2] + np.where(mur, BORD["au_dessus_m"], -BORD["enfoui_m"])])
+        L = np.stack([dedans, bord, ext], 1).reshape(-1, 3)
+        g = m08.to_gltf(L, ref).astype(np.float64)
+        i = np.arange(len(S) - 1)
+        for c in (0, 1):
+            a0, a1, b0, b1 = 3 * i + c, 3 * i + c + 1, 3 * (i + 1) + c, 3 * (i + 1) + c + 1
+            t = np.concatenate([np.column_stack([a0, b0, a1]), np.column_stack([a1, b0, b1])]) + k0
+            T_.append(t)
+        P_.append(g)
+        N_.append(np.tile([0.0, 1.0, 0.0], (len(g), 1)))
+        k0 += len(g)
+    pos, nrm, tri = np.vstack(P_), np.vstack(N_), np.vstack(T_)
+    fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
+    bas = fn[:, 1] < 0
+    tri[bas] = tri[bas][:, [0, 2, 1]]
+    return pos.astype(np.float32), nrm.astype(np.float32), tri
+
+
 def terrain_jeu(P, ref, args, ch, ruban):
     """Terrain habillé par le matériau de terrain du jeu (variante de Bollène) au lieu de la photo aérienne.
 
@@ -680,6 +737,13 @@ def terrain_jeu(P, ref, args, ch, ruban):
         haut = pos[sous, 1] > z_route - 0.08
         pos[sous[haut], 1] = z_route[haut] - 0.15
         n_abaisses = int(haut.sum())
+    n_bord = 0
+    if args.bord_enrobe:
+        bp, bn, bt = bande_de_bord(ch, ref)
+        tri = np.vstack([tri, bt + len(pos)])
+        pos, nrm = np.vstack([pos, bp]), np.vstack([nrm, bn])
+        n_bord = len(bt)
+        print(f"  bord d'enrobé irrégulier : {n_bord} triangles ajoutés au terrain")
     xy = pl.monde(pos)
     cellules, n_coupes = decouper_par_cellule(pos, nrm, tri, xy, SOL_CELLULE_M)
     i0, j0 = min(c[0] for c in cellules), min(c[1] for c in cellules)
@@ -1099,6 +1163,10 @@ def instances(P, ref, sol, ruban, pkf, args):
                 cat.add("/Game/" + line[len("acr/Content/"):-len(".uasset")])
     bilan = {}
     rng = np.random.default_rng(SEED)
+    emprises = regles_arbres.emprises_degagees(ROOT)
+    degagee = shapely.union_all([g_ for g_, _ in emprises]) if emprises else None
+    if degagee is not None:
+        shapely.prepare(degagee)
 
     def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None, reglages=None, ajuster=None):
         x = np.array([float(r["x_l93"]) for r in rows])
@@ -1112,6 +1180,8 @@ def instances(P, ref, sol, ruban, pkf, args):
         lacet = rng.uniform(-180.0, 180.0, len(rows))
         pk = pkf(g)
         sur_chaussee = shapely.contains_xy(ruban, x, y)
+        if degagee is not None:                              # aires et débouchés de pistes : ni arbre ni buisson
+            sur_chaussee |= shapely.contains_xy(degagee, x, y)
         if degagement is not None:
             # Dégagement : une plante trop près du bord de chaussée est retirée, pas seulement celle qui est dessus.
             # Vu en jeu le 12/11/2026 (km 0,1) : des branches basses barraient la route jusqu'au pare-brise.
@@ -1316,6 +1386,7 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
         for ft in json.loads(f_ann.read_text(encoding="utf-8"))["features"]:
             g = shapely.geometry.shape(ft["geometry"])
             interdit.append(g.buffer(0.5) if g.geom_type == "Polygon" else g.buffer(2.5))
+    interdit += [g_ for g_, _ in regles_arbres.emprises_degagees(ROOT)]         # aires de terre : pas de touffes
     zone = shapely.union_all(interdit)
     shapely.prepare(zone)
     dist = shapely.distance(zone, shapely.points(xy[:, 0], xy[:, 1]))
@@ -1826,6 +1897,8 @@ def main():
                     help="jeu : matériau de terrain du jeu, masques et carte de couleur (scripts/15b_sols_du_jeu.py) ; "
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
     ap.add_argument("--lointain-clarte", type=int, default=1, help="1 : images du paysage lointain éclaircies ; 0 : telles quelles")
+    ap.add_argument("--bord-enrobe", type=int, default=1,
+                    help="1 : bande de sol qui mord inégalement sur les bords de l'enrobé ; 0 : bord net")
     ap.add_argument("--arbres-lointains", type=int, default=1,
                     help="1 : arbres du jeu sur les versants entre 135 et 430 m de l'axe (cimes au-dessus du relief lointain) ; 0 : non")
     ap.add_argument("--falaises", type=int, default=1,

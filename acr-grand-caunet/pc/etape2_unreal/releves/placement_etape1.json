@@ -1,19 +1,19 @@
 {
- "source": "rubrique placement de Z:\\acrxs\\construction\\stage-grandcaunet.report.json (acr-ref stage-build, étape 1), relevée le 12/11/2026 21:34 par pc/etape2_unreal/outils/relever_placement.py",
+ "source": "rubrique placement de Z:\\acrxs\\construction\\stage-grandcaunet.report.json (acr-ref stage-build, étape 1), relevée le 13/11/2026 03:29 par pc/etape2_unreal/outils/relever_placement.py",
  "lecture": "à passer à construire_niveau.py --placement : pose le décor dans le repère physique du mod de l'étape 1. À relever après CHAQUE construction de l'étape 1 : le placement suit l'emprise de la route.",
  "placement": {
   "formula": "physics = R_y(theta) * (dr2 - (cx, 0, cz)) + (tx, dy, tz); UE cm = (px, pz, py) * 100; R_y: x' = cos*x + sin*z, z' = -sin*x + cos*z",
   "ground_offset_m": 0,
   "theta_deg": 35,
-  "cx": -1513.665,
-  "cz": -1271.07,
-  "tx": -813.9605084777419,
+  "cx": -1513.6525,
+  "cz": -1271.094,
+  "tx": -814.0101564018557,
   "dy": 117.631,
-  "tz": 1234.4675411914363,
+  "tz": 1234.4351039605199,
   "slack_m": 400,
   "world": {
-   "min_x": -2951.4461919352398,
-   "max_x": 1705.4461919352398,
+   "min_x": -2951.415388758278,
+   "max_x": 1705.415388758278,
    "min_z": -964,
    "max_z": 2048,
    "min_y": 305,
@@ -21,10 +21,10 @@
   }
  },
  "origine_ir": {
-  "lambert93_x_m": 917008.5,
-  "lambert93_y_m": 6241030.6,
-  "lon": 5.67032136,
-  "lat": 43.2354466,
+  "lambert93_x_m": 917008.482,
+  "lambert93_y_m": 6241030.601,
+  "lon": 5.67032114,
+  "lat": 43.23544662,
   "description": "axe de la chaussée au PK 0 (ligne de départ)"
  },
  "options": {
@@ -50,9 +50,9 @@
   "sky_section": "france"
  },
  "points_de_controle_ue_cm": {
-  "depart_pk0_l93_917008.50_6241030.60_398.55": [
-   115501.7,
-   140746.5,
+  "depart_pk0_l93_917008.48_6241030.60_398.55": [
+   115497.1,
+   140745.9,
    51618.1
   ]
  }

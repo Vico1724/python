@@ -658,6 +658,91 @@
    "essai": "maillages du jeu posés tels quels"
   },
   {
+   "objet": "/Game/Foliage/GroundCover/GreenGrass03/SM_Greengrass03",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -75,
+     -75,
+     -2
+    ],
+    "max": [
+     75,
+     75,
+     18
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/GreenGrassLong02/SM_GreengrassLong02",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -47,
+     -47,
+     -2
+    ],
+    "max": [
+     47,
+     47,
+     29
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/Ribwort/SM_Ribwort_01",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -49,
+     -49,
+     -2
+    ],
+    "max": [
+     49,
+     49,
+     16
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass01",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -50,
+     -50,
+     -2
+    ],
+    "max": [
+     50,
+     50,
+     29
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/DeadLeaves/SM_Dead_Leaves_01",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -21,
+     -21,
+     -1
+    ],
+    "max": [
+     21,
+     21,
+     3
+    ]
+   }
+  },
+  {
    "objet": "/Game/Foliage/GroundCover/Willow/SM_Willow_01",
    "type": "StaticMesh",
    "essai": "maillages du jeu posés tels quels"
@@ -746,19 +831,19 @@
    }
   },
   {
-   "objet": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
+   "objet": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",
    "bornes_cm": {
     "min": [
-     -20,
-     -110,
-     -40
+     -11,
+     -94,
+     -78
     ],
     "max": [
-     30,
-     110,
-     900
+     15,
+     94,
+     688
     ]
    }
   },

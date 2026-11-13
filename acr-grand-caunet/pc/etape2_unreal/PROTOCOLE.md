@@ -293,6 +293,27 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 
 **État.** Mod de l'étape 1 reconstruit (tous contrôles passés, 3 407 obstacles, placement inchangé). Décor reconstruit (dossiers `Road`, `Bridges`, `Props`, `FarRing` réimportés : 46 minutes en tout) et relu le 12/11/2026 à 22 h 24 : RELECTURE CONFORME (525 maillages, 246 111 instances en 85 composants). Les deux conteneurs sont installés ensemble. La version précédente est gardée sous `sol_jeu_releve_reco`. *Pas encore vu en jeu.*
 
+## 0 undecies. Après l'essai en jeu du 13/11/2026 : matières du jeu, roche, route lissée
+
+**Consigne du directeur (à garder) :** carte blanche pour le rendu le plus réaliste possible, vidéo de reconnaissance comme modèle de qualité ; travailler sans arrêt jusqu'à nouvel ordre ; il dit quand tester. Détail pour lui : `docs/14_apres_essai_du_13_11.md`.
+
+**Ce qui a été appris sur les matériaux du jeu** (lu dans les archives, rien de modifié) :
+
+- **Terrain** (`M_TerrainMaster_light`) : neuf couches `MaterialNColor / Normal / Packed`, chacune avec `MaterialNSize` (m), `MaterialNTint` et `MaterialNAlbedoControls` = [clarté, saturation, contraste] (déduit des valeurs du jeu : paillis sombre × 5, neige × 0,45). Bollène active les couches 1 à 6. Couleur moyenne de chaque texture : `outils/couleur_texture.py` (décode DXT1 / DXT5). Le paillis de Bollène vaut (52, 43, 27) : c'est lui qui donnait le sol anthracite.
+- **Asphalte** (`M_AsphaltMaster_Adv`) : `Base_Tint` (2,4 à Bollène), `ColorContrastMacro` (grandes fissures). Le maître sait dessiner des pièces (`Patches_Enabled`) et des fissures (`BaseVariation_Enabled`) : static switch, donc seulement par héritage d'une variante qui les a (`MI_MunsterAsphalt1patches`, `MI_BolleneAsphalt1Track1412`). **Les bords des routes du jeu** sont des bandes à part, matériau `MI_BolleneAsphalt1SideFirstChildOuter` / `Inner` (`IsTrim`, masque de bord `Mask`, mélange avec les couches du terrain par les masques de la cellule de 350 m, variantes `MI_BolleneAsphaltRoadside<cellule>`) : c'est la piste pour des bords d'asphalte fondus.
+- **Murs et parois** (`M_TwoTileableMaterialsBlend2`) : `Mat1_/Mat2_` `BaseColor(B)`, `AlbedoControls`, `TintMult`, `UVTiling`. Parois de Bollène : dépliage à 3,9 m par unité, couleur de sommet bleu = 255 (roche), rouge variable (usure), vert = 0 ; `MI_BolleneRockfacesParent` est le parent de toutes leurs variantes.
+- **Lointain du jeu** : `M_TerrainMaterialBackground` (image satellite, `ColorTint`, relief de détail) ; non utilisé chez nous pour l'instant.
+
+**Chaîne étendue :**
+
+- `data/reference/matieres_du_jeu.json` → rubrique `reglages_du_jeu` de chaque matériau du manifeste : `textures` (chemin `/Game/...` d'une texture du jeu), `scalaires`, `vecteurs`. `construire_niveau.py` les pose sur la variante (`v_parametre_vecteur`). `liste_factices.py` déclare un factice `Texture2D` par texture du jeu nommée (copie de la texture par défaut du moteur, jamais livrée), les nouveaux parents (`MI_MonBolStoneWallsA` pour `MI_GC_Pierre`, `MI_BolleneRockfacesParent` pour `MI_GC_Roche`) et les paramètres du maître `M_TwoTileableMaterialsBlend2`, absent des relevés. `creer_factices.py` complète un matériau factice déjà créé.
+- `Paquet.maillage(..., couleurs=tableau)` : une couleur par sommet.
+- Parois : `ROCHE`, `parois_rocheuses()` ; les 9 anciens murs gardent leur collision (`"rendu": "roche"` dans `ouvrages_parapets.json`, `11_route_ouvrages.py` ne les dessine plus).
+- Arbres : `scripts/regles_arbres.py` (`ajuste`, `emprises_degagees`), lu par 09 et 16. Arbres des versants : `ARBRES_LOIN`, `--arbres-lointains 0` pour les retirer.
+- Route : `07b_regulariser_chaussee.py`, lissage modulé par le changement de cap sur 40 m (`CAP_DROIT_DEG`, `CAP_VIRAGE_DEG`) ; les contrôles de rayon ne portent plus que sur les virages qui tournent d'au moins 12°.
+
+**Paris à vérifier au premier essai** : textures du jeu désignées par chemin ; teintes par paramètres ; parent `MI_BolleneRockfacesParent` (jamais porté directement par un maillage du jeu). Signe d'échec : sol ou roche gris uni, damier, ou teinte sans rapport.
+
 ## 1. L'idée générale
 
 Le jeu affiche du contenu « cuit » : des fichiers déjà convertis pour Windows, dans des archives IoStore (`.utoc`, `.ucas`, `.pak`). L'éditeur Unreal sait cuire nos maillages, nos textures et nos variantes de matériaux. La difficulté est de faire désigner par nos éléments ceux du jeu, que nous ne possédons pas : pins d'Alep, matériaux maîtres, classes du jeu. La méthode courante **[UE courant]** est la suivante :

@@ -348,6 +348,9 @@ def troncs_proches():
     res = [regles_arbres.ajuste(float(ht[i]), float(dist[i]), a[i]["famille_jeu"]) if dist[i] <= TRONCS["distance_max_m"] else (False, 0.0, "", None)
            for i in range(len(a))]
     garde = np.array([r[0] for r in res])
+    emprises = regles_arbres.emprises_degagees(OUT.parents[1])            # aires et débouchés de pistes : pas d'arbre
+    if emprises:
+        garde &= ~shapely.contains_xy(shapely.union_all([g_ for g_, _ in emprises]), x, y)
     ht = np.array([r[1] if r[0] else ht[i] for i, r in enumerate(res)])
     tronc = np.clip(0.035 * ht, 0.12, 0.60)                     # diamètre du tronc d'après la hauteur de l'arbre
     return [(float(x[i]), float(y[i]), float(z[i]), float(tronc[i])) for i in np.where(garde)[0]]
@@ -672,7 +675,10 @@ def retirer_sur_chaussee(stage, prims):
             c, zc = couloir.clearance(q[0], q[2])
             if c < 0 and zc - 1.0 < q[1] < zc + 2.5 and sol.code(q[0], q[2]) == "TSD+":
                 pen = max(pen, -c)
-        if pen > 0.3:
+        # 0,45 m depuis le 13/11/2026 (0,3 avant) : après le lissage de la route, trois tronçons du parapet du pont du
+        # km 4,46 mordaient de 33 cm sur le bord ; mieux vaut un parapet dont la collision déborde un peu qu'un parapet
+        # que la voiture traverse
+        if pen > 0.45:
             retires.append({"id": inst["id"], "pk_m": float(pk[tree.query(o[[0, 2]])[1]]), "penetration_m": round(pen, 2),
                             "centre": r3(o), "demi_diagonale_m": round(float(np.linalg.norm(L) / 2), 3)})
         else:
@@ -1298,8 +1304,8 @@ def controle_obstacles(dossier, st, sol, need):
                         continue
                     pen = max(pen, -c)
                 max_pen = max(max_pen, pen)
-                intrus += pen > 0.3
-    need(intrus == 0, f"{intrus} obstacles entrent de plus de 0,3 m dans la chaussée")
+                intrus += pen > 0.45                             # même seuil que le retrait des obstacles sur la chaussée
+    need(intrus == 0, f"{intrus} obstacles entrent de plus de 0,45 m dans la chaussée")
     need(not hors_cat, f"parois absentes du catalogue du jeu : {sorted(hors_cat)}")
     # forme reconstruite contre volume écrit (objects_collision.glb) : même enveloppe à 1 cm près
     gl, vol = lire_glb(dossier / "objects_collision.glb")

@@ -24,6 +24,7 @@ Usage : python scripts/15b_sols_du_jeu.py
 """
 import csv
 import json
+import sys
 import time
 from pathlib import Path
 
@@ -37,6 +38,7 @@ from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
 RACINE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 RAW, OUT = RACINE / "data" / "raw", RACINE / "modele" / "sols_jeu"
 COUCHES = ["aiguilles_de_pin", "herbe_haute", "herbe_seche", "terre", "cailloux"]      # matières 2 à 6 du jeu
 COULEURS_APERCU = {"paillis": (176, 160, 132), "aiguilles_de_pin": (150, 105, 60), "herbe_haute": (70, 140, 50),
@@ -147,6 +149,21 @@ def main():
     for k in COUCHES:
         p[k] *= (1.0 - accot)                   # sous la chaussée et dans le liseré : le fond pierreux seul
     p["herbe_haute"] += herbe * 0.85
+
+    # aires de terre et débouchés de pistes (data/reference/aires_et_pistes.json) : terre claire, ou le fond pierreux seul
+    import regles_arbres
+    emprises = regles_arbres.emprises_degagees(RACINE)
+    for matiere in ("terre", "pierre"):
+        polys = [(g_, 1) for g_, m_ in emprises if m_ == matiere]
+        if not polys:
+            continue
+        aire = ndi.gaussian_filter(rasterize(polys, out_shape=forme, transform=tr, fill=0, dtype="uint8").astype(np.float32), 1.2)
+        aire[sur_route] = 0.0
+        for k in COUCHES:
+            p[k] *= (1.0 - aire)
+        if matiere == "terre":
+            p["terre"] += 0.8 * aire
+        del aire
 
     # hors des photos : le mélange de sous-bois, faute de mieux (peu de terrain s'y trouve)
     for k in COUCHES:
