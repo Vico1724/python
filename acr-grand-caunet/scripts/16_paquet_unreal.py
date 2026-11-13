@@ -1333,7 +1333,15 @@ def instances(P, ref, sol, ruban, pkf, args):
         arbres += sous_bois_de_bord(ref, arbres)
     if args.arbres_lointains and not P.echantillon and args.pk_min is None:
         arbres += arbres_lointains(ref)
-    table("arbres", arbres, lambda r: f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}",
+    def chemin_arbre(r):
+        """Les grands chênes verts étaient rendus par un érable du jeu (BlackmapleMonteCarlo, 13 à 20 m, grandes feuilles) :
+        vu en jeu le 13/11/2026, « feuillus tempérés » au lieu de chênes verts. Le Smoketree du jeu, à petites feuilles
+        vertes et à houppier rond, en est plus proche ; il rend désormais tous les chênes verts."""
+        if r["essence"] == "chêne vert" and r["famille_jeu"] == "Foliage/Trees/BlackmapleMonteCarlo":
+            return "/Game/Foliage/Trees/Smoketree/SM_Smoketree06"
+        return f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}"
+
+    table("arbres", arbres, chemin_arbre,
           lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"],
           ajuster=lambda r, d: regles_arbres.ajuste(float(r["hauteur_m"]), d, r["famille_jeu"]))
     with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:

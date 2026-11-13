@@ -41,6 +41,9 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 | Bords de route ouverts et clairsemés | Le semis ne compte que les grands arbres ; la route réelle court entre deux murs de végétation de 2 à 5 m | Environ 9 000 petits arbres ajoutés le long des bords, là où le relevé laser montre de la végétation |
 | Lignes blanches en aplat pur | Blanc uni | Nos lignes héritent de la peinture de marquage du jeu : usée, bords rongés, fondue dans l'asphalte |
 | Béton des parapets gris sombre, dés d'un blanc pur | Teintes de Bollène | Béton éclairci vers le beige, blanc cassé |
+| Pierraille claire absente des accotements | Non rendue | Petites pierres calcaires du jeu semées avec l'herbe |
+| Grands chênes verts rendus en érables | Essence du jeu mal choisie | Tous les chênes verts prennent l'arbre du jeu à petites feuilles et houppier rond |
+| Pistes et sentiers absents | Non rendus | Les pistes, chemins et sentiers de l'IGN sont tracés en terre, dégagés de végétation |
 | Poteaux démesurés | Modèle de 9 m à large traverse | Modèle de 6,9 m, mince |
 | Rochers alignés | Espacement et taille réguliers | Espacement, taille et enfoncement variés |
 | Aires et pistes absentes | Non modélisées | 27 emprises en terre claire, sans herbe ni arbre |

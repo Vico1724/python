@@ -49,11 +49,12 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Sept versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
+Huit versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | version courante : la suivante, plus les falaises, les rochers, les panneaux routiers, l'aspect de la chaussée et les objets du rallye replacés (`docs/13_decor_fixe_et_objets_du_rallye.md`) ; jamais vue en jeu |
+| `sol_jeu` (installée) | version courante, après l'essai du 13 novembre (`docs/14_apres_essai_du_13_11.md`) ; jamais vue en jeu |
+| `sol_jeu_vu_le_13_11` | celle que vous avez vue en jeu le 13 novembre : falaises, rochers, panneaux routiers, objets du rallye replacés (`docs/13_decor_fixe_et_objets_du_rallye.md`) |
 | `sol_jeu_releve_reco` | bords repris d'après la vidéo des reconnaissances (`docs/12_releve_reconnaissances.md`) ; jamais vue en jeu |
 | `sol_jeu_avant_releve_reco` | la suivante, plus les poteaux estimés, panneaux, barrières, haie et murs de l'ancien relevé (`docs/11_mobilier_bord_de_route.md`) ; jamais vue en jeu |
 | `sol_jeu_sans_mobilier` | chaussée corrigée aux ponts, parapets bas en pierre et en béton, sol et lointain éclaircis ; jamais vue en jeu |
