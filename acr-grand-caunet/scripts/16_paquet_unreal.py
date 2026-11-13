@@ -154,6 +154,7 @@ GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_M
 SOL_PARENT = "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild"
 SOL_CELLULE_M = 350.0
 SOL_MASQUE_PX = 1024
+SOL_LISERE_M = (0.10, 0.85)           # liseré de pierraille : plein jusqu'à 10 cm du bord de l'enrobé, effacé à 85 cm
 SOL_CARTE_PX = 4096
 SOL_CARTE_UNITE_M = 70.0              # côté de la carte = UVDivideWP x 70 m (relevé sur Hafren South et Bollène)
 SOL_CARTE_CIBLE = {"moyenne": 118.0}   # clarté moyenne visée sur le terrain, sur 255 (celle de Bollène est de 86,5)
@@ -816,12 +817,39 @@ def terrain_jeu(P, ref, args, ch, ruban):
     f = (np.arange(n) + 0.5) / n
     v, u = np.meshgrid(f, f, indexing="ij")
     parts = np.zeros(6)
+    # Liseré de pierraille au ras de l'enrobé, recalculé ici pour chaque pixel de masque (34 cm) d'après sa distance
+    # EXACTE au bord de la chaussée. Vu en jeu le 13/11/2026 (troisième version) : bords d'asphalte en zigzag. La
+    # répartition de 15b_sols_du_jeu.py est sur une grille de 50 cm, rééchantillonnée ici sur une grille tournée :
+    # la limite entre pierraille et herbe, à quelques décimètres du bord, y dessinait des marches d'escalier.
+    lis0, lis1 = SOL_LISERE_M
+    bords = []
+    for cle in ("G", "D"):
+        b = ch[cle][:, :2]
+        nb = np.maximum(np.ceil(np.linalg.norm(np.diff(b, axis=0), axis=1) / 0.04).astype(int), 1)
+        bords.append(np.vstack([b[k] + (b[k + 1] - b[k]) * (np.arange(nb[k]) / nb[k])[:, None] for k in range(len(b) - 1)]))
+    bords = np.vstack(bords)
+    arbre_bords = cKDTree(bords)
+    n_lisere = 0
     for (i, j), (p_c, n_c, xy_c, t_c) in cellules.items():
         suf = f"{i - i0:02d}{j - j0:02d}"
         X, Y = (i + 1.0 - u) * SOL_CELLULE_M, (j + 1.0 - v) * SOL_CELLULE_M
         x93, y93 = pl.l93(X, Y)
         coord = [(e[3] - y93) / pas - 0.5, (x93 - e[0]) / pas - 0.5]
         pr = [ndi.map_coordinates(c, coord, order=1, mode="nearest").astype(np.float32) / 255.0 for c in couches]
+        q = np.column_stack([x93.ravel(), y93.ravel()])
+        dd, ii = arbre_bords.query(q, distance_upper_bound=lis1 + 0.3)
+        pres = np.flatnonzero(np.isfinite(dd))
+        if len(pres):
+            q, d = q[pres], dd[pres]
+            dedans = shapely.contains_xy(ruban, q[:, 0], q[:, 1])
+            dehors = (q - bords[ii[pres]]) / np.maximum(d, 1e-3)[:, None]
+            cible = q + dehors * np.maximum(lis1 + 0.15 - d, 0.0)[:, None]          # un point juste au-delà du liseré
+            cc = [(e[3] - cible[:, 1]) / pas - 0.5, (cible[:, 0] - e[0]) / pas - 0.5]
+            r_ = np.clip((d - lis0) / (lis1 - lis0), 0.0, 1.0)
+            poids = np.where(dedans, 0.0, r_ * r_ * (3.0 - 2.0 * r_))
+            for k_, c in enumerate(couches):
+                pr[k_].reshape(-1)[pres] = ndi.map_coordinates(c, cc, order=1, mode="nearest").astype(np.float32) / 255.0 * poids
+            n_lisere += len(pres)
         # le jeu superpose ses matières dans l'ordre 2 à 6 : la part voulue de chacune devient une opacité
         reste = np.ones_like(pr[0])
         m = [None] * 5
@@ -843,6 +871,7 @@ def terrain_jeu(P, ref, args, ch, ruban):
                                                                         (i + 1) * SOL_CELLULE_M, (j + 1) * SOL_CELLULE_M]},
                    couleur_nulle=True)
     parts /= len(cellules)
+    print(f"  liseré d'accotement : {n_lisere} pixels de masque recalculés d'après la distance exacte au bord")
     P.sol = {"mode": "jeu", "parent": SOL_PARENT, "cellule_m": SOL_CELLULE_M, "masque_px": SOL_MASQUE_PX,
              "placement": {k: pl.p[k] for k in ("theta_deg", "cx", "cz", "tx", "dy", "tz")},
              "carte": {"px": SOL_CARTE_PX, "cote_m": S, "centre_monde_m": centre.tolist(), **scal,
