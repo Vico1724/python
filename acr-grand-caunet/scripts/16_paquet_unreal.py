@@ -1317,20 +1317,27 @@ def instances(P, ref, sol, ruban, pkf, args):
             sur_chaussee |= shapely.distance(ruban, shapely.points(x, y)) < marge
         h_voulue = np.array([hauteur(r) for r in rows])
         chemins = [chemin_de(r) for r in rows]
-        reduits = 0
+        reduits = choisis = 0
+        echelles = {}
         if ajuster is not None:
             # arbres : houppier du maillage du jeu tenu hors de la chaussée (scripts/regles_arbres.py) ; trop grand
             # pour sa place, l'arbre est réduit, et prend au besoin un maillage d'une famille à petits sujets
+            # Près de la route, le maillage est choisi ici d'après sa forme mesurée (regles_arbres.choisir) et posé à
+            # l'échelle écrite dans la table : l'import ne le rechoisit pas.
             dist = shapely.distance(ruban, shapely.points(x, y))
-            for i in np.flatnonzero(dist < 12.0):
-                garde, h_i, fam, elt = ajuster(rows[i], float(dist[i]))
+            for i in np.flatnonzero(dist < regles_arbres.BANDE_M):
+                garde, h_i, fam, elt, ech = ajuster(rows[i], float(dist[i]), chemins[i])
                 if not garde:
                     sur_chaussee[i] = True
-                elif h_i < h_voulue[i] - 1e-6:
+                    continue
+                if h_i < h_voulue[i] - 1e-6:
                     h_voulue[i] = h_i
                     reduits += 1
-                    if elt:
-                        chemins[i] = f"/Game/{fam}/{elt}"
+                if elt:
+                    chemins[i] = f"/Game/{fam}/{elt}"
+                if ech:
+                    echelles[i] = ech
+                    choisis += 1
         groupes = {}
         for i, r in enumerate(rows):
             groupes.setdefault(chemins[i], []).append(i)
@@ -1352,11 +1359,14 @@ def instances(P, ref, sol, ruban, pkf, args):
             out.parent.mkdir(parents=True, exist_ok=True)
             with open(out, "w", newline="", encoding="utf-8") as f:
                 w = csv.writer(f, lineterminator="\n")
-                w.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m"] + extra_cols)
+                avec_echelle = any(i in echelles for i in ids)
+                w.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m"] + extra_cols
+                           + (["echelle"] if avec_echelle else []))
                 for i in ids:
                     r = rows[i]
                     w.writerow([i, f"{ue[i, 0]:.1f}", f"{ue[i, 1]:.1f}", f"{ue[i, 2]:.1f}", f"{lacet[i]:.1f}",
-                                f"{h_voulue[i]:.2f}", f"{pk[i]:.0f}"] + [r.get(c, "") for c in extra_cols])
+                                f"{h_voulue[i]:.2f}", f"{pk[i]:.0f}"] + [r.get(c, "") for c in extra_cols]
+                               + ([f"{echelles[i]:.3f}" if i in echelles else ""] if avec_echelle else []))
             e = P.ajoute({"type": "InstanceGroup", "nom": f"GC_{famille.capitalize()}_{nom}", "maillage_jeu": chemin,
                           "present_au_catalogue": chemin in cat, "fichier": fichier.as_posix(), "nombre": int(len(ids)),
                           "composant": "HierarchicalInstancedStaticMeshComponent", "collision": "NoCollision",
@@ -1370,7 +1380,8 @@ def instances(P, ref, sol, ruban, pkf, args):
                 e.update(reglages(chemin))
             bilan[e["nom"]] = e["nombre"]
         if ajuster is not None:
-            print(f"  {famille} : {int(sur_chaussee.sum())} retirés (sur la chaussée ou trop près), {reduits} réduits pour ne pas déborder")
+            print(f"  {famille} : {int(sur_chaussee.sum())} retirés (sur la chaussée ou trop près), {reduits} réduits pour ne pas déborder, "
+                  f"{choisis} posés avec un maillage choisi d'après sa forme")
 
     with open(OUT / "arbres.csv", encoding="utf-8") as f:
         arbres = list(csv.DictReader(f))
@@ -1387,7 +1398,8 @@ def instances(P, ref, sol, ruban, pkf, args):
 
     table("arbres", arbres, chemin_arbre,
           lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"],
-          ajuster=lambda r, d: regles_arbres.ajuste(float(r["hauteur_m"]), d, r["famille_jeu"]))
+          ajuster=lambda r, d, chemin: regles_arbres.choisir(float(r["hauteur_m"]), d, chemin[len("/Game/"):].rsplit("/", 1)[0],
+                                                             f"{r['x_l93']}:{r['y_l93']}"))
     if loin:
         # Arbres des versants : un groupe à part, sans ombre portée et masqué au-delà d'un kilomètre environ. Ils sont
         # 29 000 de plus ; avec les ombres et sans limite de distance, ils pèseraient sur la fluidité pour rien.
@@ -2152,7 +2164,8 @@ def main():
     ap.add_argument("--lointain-clarte", type=int, default=1, help="1 : images du paysage lointain éclaircies ; 0 : telles quelles")
     ap.add_argument("--sous-bois", type=int, default=1,
                     help="1 : petits arbres le long des bords, là où le relevé laser montre de la végétation ; 0 : non")
-    ap.add_argument("--bord-enrobe", type=int, default=1,
+    ap.add_argument("--bord-enrobe", type=int, default=0,   # 0 depuis l'essai du 13/11/2026 (cycle 3) : la bande donnait des bords en zigzag
+                    
                     help="1 : bande de sol qui mord inégalement sur les bords de l'enrobé ; 0 : bord net")
     ap.add_argument("--arbres-lointains", type=int, default=1,
                     help="1 : arbres du jeu sur les versants entre 135 et 430 m de l'axe (cimes au-dessus du relief lointain) ; 0 : non")

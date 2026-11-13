@@ -6,14 +6,17 @@
  "niveau": {
   "maillages_poses": 524,
   "attendus": 524,
-  "instances": 351869,
-  "attendues": 351869,
-  "composants_d_instances": 87,
+  "instances": 352156,
+  "attendues": 352156,
+  "composants_d_instances": 101,
   "instances_hors_vegetation": {
    "SM_PlasticTapePoleA": 17,
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 214,
    "SM_MetalGuardrailASimpleEnd": 6,
+   "SM_GreElaSmallLimestoneA": 5592,
+   "SM_GreElaSmallLimestoneB": 7421,
+   "SM_GreElaSmallLimestoneD": 6378,
    "SM_ForestRockWgqrfdi": 24,
    "SM_ForestRockWjxqcct": 23,
    "SM_FraMunPylonA": 17,
@@ -37,7 +40,7 @@
    "SM_TrafficSignFraRightTurnA1": 1,
    "SM_TrafficSignFraSlipperyRoadA": 1
   },
-  "composants_a_disparition_reglee": 12,
+  "composants_a_disparition_reglee": 29,
   "herbes_mal_reglees": []
  },
  "sol": {
@@ -67,24 +70,13 @@
   "masques_de_format_different": [],
   "ecart_moyen_au_fichier_source_sur_255": 2.4,
   "maillages": 138,
-  "maillages_a_mauvaise_couleur_de_sommet": [
-   "SM_GrandCaunetRoadMarking_01",
-   "SM_GrandCaunetRoadMarking_06",
-   "SM_GrandCaunetRoadMarking_11",
-   "SM_GrandCaunetRoadMarking_16",
-   "SM_GrandCaunetRoadMarking_21"
-  ]
+  "maillages_a_mauvaise_couleur_de_sommet": []
  },
  "variantes_heritees_du_jeu": {
   "controlees": 8,
-  "non_conformes": [
-   "MI_GC_Marquage"
-  ]
+  "non_conformes": []
  },
- "erreurs": [
-  "maillages dont la couleur de sommet n'est pas celle prévue : ['SM_GrandCaunetRoadMarking_01', 'SM_GrandCaunetRoadMarking_06', 'SM_GrandCaunetRoadMarking_11']",
-  "variantes qui devraient hériter d'un matériau du jeu sans rien régler : ['MI_GC_Marquage']"
- ],
+ "erreurs": [],
  "reglages_du_jeu": {
   "variantes": 48,
   "controlees": 10,

@@ -61,7 +61,19 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 - **Les pièces d'enrobé et les fissures ne sont plus rendues.** Le matériau d'asphalte du jeu sait en dessiner lui-même ; c'est une piste pour plus tard.
 - **Pas repris dans cette passe** : la forme des pins (troncs orangés et droits du jeu, contre des pins d'Alep gris et tortueux), l'éclairage du relief lointain, les murets de pierre sèche du km 5,3 à 5,5, les panneaux directionnels.
 
-## 4. Où c'est décrit
+## 4. Second essai du directeur, le 13 novembre (troisième version)
+
+**Son constat.** Net progrès du décor ; l'herbe courte et verte convient. Restent trois défauts :
+
+| Défaut | Cause | Correction (quatrième version) |
+|---|---|---|
+| Les lignes blanches ont totalement disparu | J'avais fait hériter nos lignes de la peinture de marquage du jeu : elle ne s'affiche pas sur nos maillages | Retour aux lignes blanches de la première version. L'essai est consigné comme abandonné dans `data/reference/matieres_du_jeu.json` |
+| Les bords de l'asphalte zigzaguent (« petit droite, petit gauche ») | Les bords de la chaussée sont lisses dans le modèle (flèche médiane de 3 mm d'un mètre au suivant). Le zigzag venait de ma bande de terre, qui mordait de 3 à 42 cm sur l'asphalte en changeant tous les 25 cm | Bande retirée : le bord de l'asphalte redevient une ligne nette |
+| Des arbres débordent encore sur la route | À l'import, chaque arbre recevait au hasard l'un des modèles de sa famille. Or les quinze pins du jeu vont du pin parasol à tronc nu au pin bas, plus large que haut et feuillu jusqu'au sol ; ma règle supposait une largeur unique | La forme de chaque arbre du jeu est mesurée (rayon du feuillage à chaque hauteur). À moins de 14 m de la route, le modèle est choisi pour que rien ne dépasse le bord de la chaussée sous 4,5 m ; au-dessus, le houppier peut surplomber la route de 3 m au plus, comme les pins réels. 11 287 arbres sont posés ainsi ; les grands pins du bord gardent leur taille |
+
+Dans la même version : l'échelle de la texture de roche est réglée sur celle des parois du jeu.
+
+## 5. Où c'est décrit
 
 - Écarts relevés : `data/reference/releve_essai_13_11/partie_1.json` et `partie_2.json`. Paires d'images : `scripts/20_planches_comparees.py` (images hors dépôt, `figures/compare_jeu_13_11/`).
 - Lissage de la route : `scripts/07b_regulariser_chaussee.py` (réglages et raisons en tête de fichier).
@@ -69,5 +81,5 @@ La vidéo de l'essai a été calée sur la route, puis 167 paires d'images ont �
 - Relief lointain : `vue_rasante()` et `RASANT` dans `scripts/16_paquet_unreal.py` (`--lointain-rasant 0` pour revenir à la photo éclaircie). Aperçu du paysage sans le jeu : `scripts/23_apercu_lointain.py` (images hors dépôt, `figures/apercu_lointain/`).
 - Matières du sol, de l'asphalte, des parapets et de la roche : `data/reference/matieres_du_jeu.json`. Couleur des textures du jeu : `pc/etape2_unreal/outils/couleur_texture.py`.
 - Répartition du sol : `scripts/15b_sols_du_jeu.py`. Herbes : `HERBES` dans `scripts/16_paquet_unreal.py`.
-- Dégagement des arbres, aires et pistes : `scripts/regles_arbres.py`, `data/reference/aires_et_pistes.json`.
+- Dégagement des arbres, aires et pistes : `scripts/regles_arbres.py` (`choisir`), `data/reference/aires_et_pistes.json`. Forme des arbres du jeu : `pc/etape2_unreal/outils/profils_arbres.py`, `pc/etape2_unreal/releves/profils_arbres.json`.
 - La version vue en jeu le 13 novembre est gardée sur le PC sous `sol_jeu_vu_le_13_11`, avec sa route physique.

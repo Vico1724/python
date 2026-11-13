@@ -164,17 +164,28 @@ def main():
         erreurs.append(f"{sum(par.values())} instances pour {attendu_i} attendues")
     # herbes : distances de disparition et ombre, comme dans le jeu
     # (par dossier : pour les buissons, l'import choisit le maillage dans le dossier d'après la taille de l'arbuste)
-    voulu = {e["maillage_jeu"].rsplit("/", 1)[0]: e for e in man["elements"]
-             if e["type"] == "InstanceGroup" and e.get("distances_de_disparition_cm")}
-    mal = []
+    # Un même dossier du jeu peut servir à deux groupes réglés différemment (pins du bord de route, avec ombre et sans
+    # limite ; pins des versants, sans ombre et masqués au loin) : chaque composant doit porter l'un des réglages
+    # prévus pour son dossier, et chaque réglage prévu doit être porté par un composant au moins.
+    voulu = {}
+    for e in man["elements"]:
+        if e["type"] == "InstanceGroup":
+            voulu.setdefault(e["maillage_jeu"].rsplit("/", 1)[0], set()).add(tuple(e.get("distances_de_disparition_cm") or ()))
+    voulu = {k: v for k, v in voulu.items() if any(v)}
+    mal, vus = [], {k: set() for k in voulu}
     bilan["niveau"]["composants_a_disparition_reglee"] = 0
     for o in hism:
         chemin = o["Properties"]["StaticMesh"]["ObjectPath"].split(".")[0]
-        if chemin.rsplit("/", 1)[0] in voulu:
-            bilan["niveau"]["composants_a_disparition_reglee"] += 1
-            p, d = o["Properties"], voulu[chemin.rsplit("/", 1)[0]]["distances_de_disparition_cm"]
-            if [p.get("InstanceStartCullDistance"), p.get("InstanceEndCullDistance")] != d or p.get("bCastDynamicShadow", True):
+        dossier = chemin.rsplit("/", 1)[0]
+        if dossier in voulu:
+            p = o["Properties"]
+            d = tuple(x for x in (p.get("InstanceStartCullDistance"), p.get("InstanceEndCullDistance")) if x)
+            if d:
+                bilan["niveau"]["composants_a_disparition_reglee"] += 1
+            if d not in voulu[dossier] or (d and p.get("bCastDynamicShadow", True)):
                 mal.append(chemin.rsplit("/", 1)[1])
+            vus[dossier].add(d)
+    mal += [f"{k.rsplit('/', 1)[1]} : aucun composant avec {list(d)}" for k, v in voulu.items() for d in v if d and d not in vus[k]]
     bilan["niveau"]["herbes_mal_reglees"] = mal
     if mal:
         erreurs.append(f"herbes sans distance de disparition ou avec ombre : {mal}")

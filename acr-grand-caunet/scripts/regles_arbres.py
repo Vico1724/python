@@ -42,6 +42,86 @@ def ajuste(hauteur_m, distance_au_bord_m, famille):
     return True, h, famille, None
 
 
+# --- choix du maillage d'après sa forme -------------------------------------------------------------------
+# Constat du 13/11/2026 (pc/etape2_unreal/outils/profils_arbres.py) : la largeur supposée ci-dessus (0,8 fois la hauteur
+# pour un pin) est fausse pour plusieurs maillages. À l'import, un pin reçoit au hasard l'un des quinze pins d'Alep du
+# jeu : SM_AleppoPine06 fait 9 m de haut pour 13 m de large, feuillu jusqu'au sol ; SM_AleppoPine11 est un pin parasol
+# sans rien sous 5 m. Près de la route, le maillage est donc choisi ICI, d'après sa forme mesurée :
+#   - sous DEGAGE_M (hauteur d'une voiture et de son champ de vision), rien ne dépasse le bord de chaussée ;
+#   - au-dessus, le houppier peut surplomber la route de SURPLOMB_MAX_M au plus, comme les pins de la route réelle ;
+#   - l'arbre garde sa hauteur si un maillage tient ; sinon il est réduit pas à pas jusqu'à ce qu'un maillage tienne.
+DEGAGE_M = 4.5
+SURPLOMB_MAX_M = 3.0
+ECHELLES = (0.6, 1.5)                           # échelles admises, comme scripts_editeur/attribution.py
+BANDE_M = 14.0                                  # au-delà de cette distance au bord, aucun maillage n'atteint la route
+_PROFILS = None
+
+
+def profils():
+    """{famille : {maillage : {haut_m, rayons_m}}} de pc/etape2_unreal/releves/profils_arbres.json, ou {} s'il manque."""
+    global _PROFILS
+    if _PROFILS is None:
+        import json
+        from pathlib import Path
+        f = Path(__file__).resolve().parents[1] / "pc" / "etape2_unreal" / "releves" / "profils_arbres.json"
+        _PROFILS = {}
+        if f.exists():
+            for fam, ms in json.loads(f.read_text(encoding="utf-8"))["familles"].items():
+                _PROFILS[fam] = {n: p for n, p in ms.items() if p["haut_m"] >= 1.5}
+    return _PROFILS
+
+
+def famille_rendue(essence, famille):
+    """Famille du jeu qui rend vraiment l'arbre : les chênes verts proposés en érable sont rendus en Smoketree."""
+    if essence == "chêne vert" and famille == "Foliage/Trees/BlackmapleMonteCarlo":
+        return FAMILLE_DES_PETITS_FEUILLUS[0]
+    return famille
+
+
+def tient(profil, echelle, distance_au_bord_m):
+    """Vrai si le maillage, à cette échelle, ne dépasse pas le bord sous DEGAGE_M ni de plus de SURPLOMB_MAX_M au-dessus."""
+    h = profil["haut_m"] * echelle
+    for i, r in enumerate(profil["rayons_m"]):
+        depasse = r * echelle - (distance_au_bord_m - MARGE_M)
+        if depasse > 0 and (0.1 * i * h < DEGAGE_M or depasse > SURPLOMB_MAX_M):
+            return False
+    return True
+
+
+def choisir(hauteur_m, distance_au_bord_m, famille, cle):
+    """(gardé, hauteur, famille du jeu, maillage, échelle). Maillage et échelle valent None quand le choix est laissé à
+    l'import (formes non relevées) ; `cle` rend le tirage reproductible."""
+    import math
+    import random
+    import zlib
+    if distance_au_bord_m < TRONC_MIN_M:
+        return False, hauteur_m, famille, None, None
+    if famille not in profils():
+        g, h, fam, elt = ajuste(hauteur_m, distance_au_bord_m, famille)
+        return g, h, fam, elt, None
+    rng = random.Random(zlib.crc32(str(cle).encode("utf-8")))
+    pin = famille in PINS
+    essais = [(famille, hauteur_m)]
+    if not pin and famille != FAMILLE_DES_PETITS_FEUILLUS[0]:
+        essais.append((FAMILLE_DES_PETITS_FEUILLUS[0], min(hauteur_m, 11.0)))      # grand feuillu sans place : petit feuillu
+    for fam, h0 in essais:
+        h = h0
+        while h >= HAUT_MIN_M["pin" if pin else "feuillu"]:
+            tous = [(n, h / p["haut_m"], p) for n, p in sorted(profils()[fam].items())]
+            admis = [x for x in tous if ECHELLES[0] <= x[1] <= ECHELLES[1]]
+            if not admis and not pin and fam != FAMILLE_DES_PETITS_FEUILLUS[0]:
+                break                                       # érable ou olivier trop petit ou trop grand : petit feuillu à la place
+            if not admis:                                   # aucune taille du jeu ne convient : les plus proches, comme à l'import
+                mieux = min(abs(math.log(x[1])) for x in tous)
+                admis = [x for x in tous if abs(math.log(x[1])) <= mieux + math.log(1.25)]
+            bons = [(n, e) for n, e, p in admis if tient(p, e, distance_au_bord_m)]
+            if bons:
+                n, e = rng.choice(bons)
+                return True, h, fam, n, e
+            h *= 0.93
+    return False, hauteur_m, famille, None, None
+
+
 def emprises_degagees(racine):
     """Polygones Lambert-93 (shapely) des aires et débouchés de pistes de data/reference/aires_et_pistes.json, avec leur
     matière : [(polygone, matière)]. Chaque emprise suit le bord de la chaussée, du décalage à décalage + profondeur."""
