@@ -17,6 +17,9 @@
 .PARAMETER Textures   sol et route avec les matériaux texturés de Hafren (gravier gallois) au lieu des couleurs unies
 .PARAMETER Noms       renomme la variante en « Le Grand Caunet » (table de textes ST_Track, livrée en entier)
 .PARAMETER Longueur   écrit 6,74 km dans le menu (livre DT_TracksVariants : INCOMPATIBLE avec BioBio installé)
+.PARAMETER Asphalte   classe la spéciale en asphalte (pneus asphalte proposés au lieu des pneus terre) : livre
+                      DT_TracksVariants comme -Longueur (donc 6,74 km au menu, et INCOMPATIBLE avec un autre mod qui livre
+                      cette table), puis y passe notre ligne de Gravel / GravelOnly à Tarmac / TarmacSnow (pneus_asphalte.py)
 .PARAMETER Ciel       ciel réglé sur la latitude de Monte-Carlo (section [france] de leur config\sky.toml)
 .PARAMETER GarderDecor  ne cache pas le décor gallois
 .PARAMETER SansObstacles  n'ajoute pas les parapets / balisage
@@ -28,7 +31,7 @@ param(
     [string]$Jeu, [string]$Travail, [string]$Ir,
     [string[]]$CellulesDecor = @(),
     [string]$ExclureVisuels,
-    [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles
+    [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Asphalte, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles
 )
 . "$PSScriptRoot\commun.ps1"
 $ErrorActionPreference = 'Stop'
@@ -110,7 +113,7 @@ $a = @('stage-build', '--ir', $irTravail, '--legacy', $legacy, '--out', $mod, '-
        '--respawn', 'relay',                                                        # build.ps1 l.165 (v1.3+)
        '--visuals', (Join-Path $cfg 'visuals.toml'), '--visuals-host', 'start', '--visuals-retarget', '1',
        '--visuals-vegetation', 'none', '--visuals-canopies', 'apex')               # build.ps1 l.173-181
-if (-not $Longueur) { $a += @('--keep-variants', '1') }
+if (-not ($Longueur -or $Asphalte)) { $a += @('--keep-variants', '1') }
 # Voie hybride : zones où notre décor cuit par Unreal remplace les visuels d'essai (retouche 0004 ;
 # fichier écrit par pc\etape2_unreal\outils\zones_decor.py)
 if ($ExclureVisuels) { $a += @('--visuals-exclude', $ExclureVisuels) }
@@ -137,6 +140,10 @@ if ($Ciel) { $a += @('--sky', (Join-Path $cfg 'sky.toml'), '--sky-section', 'fra
 Push-Location $src
 try { Lancer $acrRef $a "construction (stage-build) ; ses contrôles hors jeu sont dans le journal" } finally { Pop-Location }
 Ok "construction terminée : rapport $rapport"
+if ($Asphalte) {
+    # demande du directeur (13/11/2026) : la spéciale est en asphalte, le jeu n'y proposait que des pneus terre
+    Lancer 'python' @((Join-Path $PSScriptRoot 'pneus_asphalte.py'), $mod) "classement de la spéciale en asphalte (table des variantes du mod)"
+}
 
 Etape "Empaquetage (retoc to-zen)"
 # build.ps1 l.197-199
@@ -160,7 +167,7 @@ Get-ChildItem $paks -File | ForEach-Object { New-Item -ItemType HardLink -Path (
 Copy-Item (Join-Path $dist "$($script:NomConteneur).*") $full
 $v = @('stage-verify', '--game', (Join-Path $check 'full'), '--ir', $irTravail, '--usmap', $usmap, '--out', (Join-Path $check 'verify-cue4parse.txt'))
 if (-not $GarderDecor) { $v += @('--hidden-actors', '1') }
-if (-not $Longueur) { $v += @('--keep-variants', '1') }
+if (-not ($Longueur -or $Asphalte)) { $v += @('--keep-variants', '1') }
 # pas de --sky ici : leur stage-verify compare le ciel à la section [nz] de sky.toml (StageVerify.cs, cfg.Num("nz", ...)),
 # il signalerait FAIL pour notre section [france] ; le ciel n'est donc contrôlé que par le rapport de stage-build.
 & $acrRef @v 2>&1 | Out-Host
@@ -172,6 +179,18 @@ Lancer $retoc @('to-legacy', '--version', 'UE5_6', '--no-shaders', $checkPaks, $
 $codeCheck = $LASTEXITCODE
 if (Test-Path (Join-Path $check 'verify-roundtrip.txt')) { Get-Content (Join-Path $check 'verify-roundtrip.txt') | Out-Host }
 $fails = @(Select-String -Path (Join-Path $check 'verify-*.txt') -Pattern '^FAIL').Count
+if ($Asphalte) {
+    # relecture, dans le mod empaqueté, de notre ligne de la table des variantes
+    $tv = Join-Path $check 'DT_TracksVariants.json'
+    & $acrRef export 'acr/Content/Data/Database/Main/TrackSelection/DT_TracksVariants.uasset' --game (Join-Path $check 'full') --usmap $usmap --out $tv 2>&1 | Out-Null
+    $ligne = (Get-Content $tv -Raw | ConvertFrom-Json)[0].Rows.WelesS4HafrenSouthFullForward
+    $surf = @($ligne.SurfaceTypes | ForEach-Object { $_.Key.Row }) -join ','
+    $sect = @($ligne.Sectors | ForEach-Object { $_.SurfaceType.Row }) -join ','
+    $etat = "surface $surf ; réglages $($ligne.CarSetupDefaultSurfaceType.Row) ; pneus $($ligne.TireCompounds.Row) ; secteurs $sect ; longueur $($ligne.Length) km"
+    if ($surf -eq 'Tarmac' -and $ligne.CarSetupDefaultSurfaceType.Row -eq 'Tarmac' -and $ligne.TireCompounds.Row -eq 'TarmacSnow' -and $sect -eq 'Tarmac,Tarmac,Tarmac') {
+        Ok "spéciale classée en asphalte dans le mod : $etat"
+    } else { $fails++; Attention "classement en asphalte NON relu dans le mod : $etat" }
+}
 if ($codeVerif -ne 0 -or $codeCheck -ne 0 -or $fails -gt 0) {
     Attention "contrôles : $fails ligne(s) FAIL (codes $codeVerif / $codeCheck). Ne pas installer avant d'avoir lu ces lignes ; les transmettre."
 } else { Ok "contrôles hors jeu : aucune ligne FAIL. Étape suivante : 5_installer.ps1" }

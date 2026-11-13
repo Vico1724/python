@@ -489,15 +489,9 @@
    "pk_fin_m": 878,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 1.3,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.5,
-    "biseau_m": 1.5,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse sans collision de mur depuis le 13/11/2026 : son emprise a été relue (parois_rocheuses.json), le mur ne lui correspondait plus"
    },
    "droite": {
     "type": "aucun",
@@ -569,15 +563,9 @@
    "pk_fin_m": 1760,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 1.2,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.7,
-    "biseau_m": 1.5,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse sans collision de mur depuis le 13/11/2026 : son emprise a été relue (parois_rocheuses.json), le mur ne lui correspondait plus"
    },
    "droite": {
     "type": "aucun",
@@ -642,15 +630,9 @@
    "pk_fin_m": 2035,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 1.0,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.7,
-    "biseau_m": 1.5,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse sans collision de mur depuis le 13/11/2026 : son emprise a été relue (parois_rocheuses.json), le mur ne lui correspondait plus"
    },
    "droite": {
     "type": "aucun",
@@ -663,15 +645,9 @@
    "pk_fin_m": 2140,
    "route": "D3D",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 2.2,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.4,
-    "biseau_m": 2.0,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse sans collision de mur depuis le 13/11/2026 : son emprise a été relue (parois_rocheuses.json), le mur ne lui correspondait plus"
    },
    "droite": {
     "type": "aucun",
@@ -871,15 +847,9 @@
    "pk_fin_m": 3880,
    "route": "D1",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 1.5,
-    "epaisseur_m": 0.8,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.7,
-    "biseau_m": 1.5,
-    "nature": "paroi rocheuse : collision de mur ici, forme et matière dans data/reference/parois_rocheuses.json",
-    "rendu": "roche"
+    "nature": "paroi rocheuse sans collision de mur depuis le 13/11/2026 : son emprise a été relue (parois_rocheuses.json), le mur ne lui correspondait plus"
    },
    "droite": {
     "type": "aucun",

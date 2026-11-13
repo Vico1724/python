@@ -1,11 +1,1627 @@
 {
- "note": "Parois et talus rocheux au bord de la route, relevés sur la vidéo de reconnaissances (data/reference/releve_reco/, observations « talus_rocheux »). Lu par scripts/16_paquet_unreal.py, qui en fait des affleurements habillés de la roche du jeu : la roche épouse le relief du relevé laser (pente et pied du talus), le relevé vidéo dit où elle est, de quel genre et jusqu'à quelle hauteur. Vu en jeu le 13/11/2026 : les neuf parois rendues par un mur de pierre faisaient « d'immenses parapets », et les autres talus étaient un sol lisse et sombre. PK à ±10 m ; décalage = distance du pied de la paroi au bord de chaussée ; hauteur = fourchette vue. Les entrées marquées « collision » gardent, pour la physique, le mur de même emprise décrit dans ouvrages_parapets.json ; les autres n'ont pas de collision propre (le terrain porte la voiture).",
+ "note": "Parois et talus rocheux du bord de route, RELUS le 13/11/2026 sur des planches de la vidéo de reconnaissance (une vue tous les 6 m, scripts/24_planches_parois.py ; relevé brut dans data/reference/releve_parois_v2/). Chaque emprise est lue au PK où la roche arrive à hauteur de la voiture, puis ramenée au PK réel par scripts/calage_reco.py. Pourquoi cette relecture : en jeu (quatrième version), des parois étaient décalées de 20 à 40 m, deux fois trop hautes, ou posées là où il n'y a qu'un talus de terre ou de rocaille. L'ancienne liste est gardée sous parois_avant_la_relecture. decalage_m = distance du bord de chaussée au pied ; hauteur_m = au-dessus de la chaussée.",
  "genres": {
-  "lite": "calcaire lité : bancs à front raide et replats, débités en blocs",
-  "eboulis": "talus de pierres et de terre, en pente continue",
-  "blocs": "gros blocs dressés ou empilés, bancs épais"
+  "lite": "roche en place, front continu et raide : maillage de roche (16_paquet_unreal.py)",
+  "eboulis": "rocaille : talus incliné de pierres, de roche brisée et de terre ; pas de maillage, le sol y est peint en pierraille (15b_sols_du_jeu.py) et semé de pierres calcaires (16_paquet_unreal.py)"
  },
  "parois": [
+  {
+   "pk_debut_m": 262.0,
+   "pk_fin_m": 292.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.5,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    262,
+    292
+   ],
+   "zone_relue": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 333.0,
+   "pk_fin_m": 350.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris clair, lits de calcaire",
+   "pk_reconnaissance_m": [
+    333,
+    350
+   ],
+   "zone_relue": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 350.0,
+   "pk_fin_m": 372.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    350,
+    372
+   ],
+   "zone_relue": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 372.0,
+   "pk_fin_m": 396.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.4,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris et brun (feuilles)",
+   "pk_reconnaissance_m": [
+    372,
+    396
+   ],
+   "zone_relue": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 516.0,
+   "pk_fin_m": 535.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun et gris",
+   "pk_reconnaissance_m": [
+    516,
+    535
+   ],
+   "zone_relue": 3,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 535.0,
+   "pk_fin_m": 575.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.4,
+    0.8
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun (feuilles) avec pierres grises",
+   "pk_reconnaissance_m": [
+    535,
+    575
+   ],
+   "zone_relue": 3,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 575.0,
+   "pk_fin_m": 583.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.8,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris-beige",
+   "pk_reconnaissance_m": [
+    575,
+    583
+   ],
+   "zone_relue": 4,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 583.0,
+   "pk_fin_m": 612.0,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris-beige, lits minces de calcaire (aspect de mur en pierre sèche)",
+   "pk_reconnaissance_m": [
+    583,
+    612
+   ],
+   "zone_relue": 4,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 658.0,
+   "pk_fin_m": 668.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.8,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun et gris",
+   "pk_reconnaissance_m": [
+    658,
+    668
+   ],
+   "zone_relue": 5,
+   "confiance": "faible"
+  },
+  {
+   "pk_debut_m": 668.0,
+   "pk_fin_m": 731.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris, calcaire lité puis en gros blocs",
+   "pk_reconnaissance_m": [
+    668,
+    731
+   ],
+   "zone_relue": 5,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 731.0,
+   "pk_fin_m": 755.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.8
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris et brun",
+   "pk_reconnaissance_m": [
+    731,
+    755
+   ],
+   "zone_relue": 5,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 755.0,
+   "pk_fin_m": 795.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, blocs épars et dalles",
+   "pk_reconnaissance_m": [
+    755,
+    795
+   ],
+   "zone_relue": 6,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 795.0,
+   "pk_fin_m": 808.0,
+   "cote": "gauche",
+   "decalage_m": 2.5,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    795,
+    808
+   ],
+   "zone_relue": 6,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 808.0,
+   "pk_fin_m": 847.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.2,
+    2.0
+   ],
+   "genre": "eboulis",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    808,
+    847
+   ],
+   "zone_relue": 7,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 847.0,
+   "pk_fin_m": 874.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris, blocs massifs",
+   "pk_reconnaissance_m": [
+    847,
+    874
+   ],
+   "zone_relue": 8,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 944.0,
+   "pk_fin_m": 962.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    944,
+    962
+   ],
+   "zone_relue": 9,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 962.0,
+   "pk_fin_m": 972.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    962,
+    972
+   ],
+   "zone_relue": 10,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 972.0,
+   "pk_fin_m": 1034.0,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris-beige, lits minces de calcaire, teinte rousse vers 1026-1032",
+   "pk_reconnaissance_m": [
+    972,
+    1034
+   ],
+   "zone_relue": 10,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1034.0,
+   "pk_fin_m": 1075.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris et vert",
+   "pk_reconnaissance_m": [
+    1034,
+    1075
+   ],
+   "zone_relue": 10,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1075.0,
+   "pk_fin_m": 1088.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.8,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris et ocre",
+   "pk_reconnaissance_m": [
+    1075,
+    1088
+   ],
+   "zone_relue": 11,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1088.0,
+   "pk_fin_m": 1122.0,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris et ocre, roche fracturée verticalement",
+   "pk_reconnaissance_m": [
+    1088,
+    1122
+   ],
+   "zone_relue": 11,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1122.0,
+   "pk_fin_m": 1162.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.8,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, banc rocheux bas et blocs",
+   "pk_reconnaissance_m": [
+    1122,
+    1162
+   ],
+   "zone_relue": 12,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1162.0,
+   "pk_fin_m": 1186.0,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.5,
+    2.2
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris-beige, calcaire lité",
+   "pk_reconnaissance_m": [
+    1162,
+    1186
+   ],
+   "zone_relue": 13,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1186.0,
+   "pk_fin_m": 1196.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.6,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris",
+   "pk_reconnaissance_m": [
+    1186,
+    1196
+   ],
+   "zone_relue": 13,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1258.0,
+   "pk_fin_m": 1306.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.8,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "beige-ocre et blanc",
+   "pk_reconnaissance_m": [
+    1258,
+    1306
+   ],
+   "zone_relue": 14,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1306.0,
+   "pk_fin_m": 1318.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, gros affleurements",
+   "pk_reconnaissance_m": [
+    1306,
+    1318
+   ],
+   "zone_relue": 14,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1318.0,
+   "pk_fin_m": 1338.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris et ocre, banc rocheux",
+   "pk_reconnaissance_m": [
+    1318,
+    1338
+   ],
+   "zone_relue": 15,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1338.0,
+   "pk_fin_m": 1366.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.8,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris-beige, blocs",
+   "pk_reconnaissance_m": [
+    1338,
+    1366
+   ],
+   "zone_relue": 16,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1366.0,
+   "pk_fin_m": 1396.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun-rouge (terre et feuilles) avec pierres",
+   "pk_reconnaissance_m": [
+    1366,
+    1396
+   ],
+   "zone_relue": 16,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1570.1,
+   "pk_fin_m": 1605.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.8,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris et ocre",
+   "pk_reconnaissance_m": [
+    1572,
+    1608
+   ],
+   "zone_relue": 17,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1605.3,
+   "pk_fin_m": 1634.6,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris-beige, roche litée très fracturée",
+   "pk_reconnaissance_m": [
+    1608,
+    1638
+   ],
+   "zone_relue": 17,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1661.0,
+   "pk_fin_m": 1697.2,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris, roche massive en place, un bloc ocre vers 1692",
+   "pk_reconnaissance_m": [
+    1665,
+    1700
+   ],
+   "zone_relue": 18,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1697.2,
+   "pk_fin_m": 1723.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris et vert",
+   "pk_reconnaissance_m": [
+    1700,
+    1725
+   ],
+   "zone_relue": 18,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1723.0,
+   "pk_fin_m": 1754.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": true,
+   "couleur": "ocre et beige, blocs empilés",
+   "pk_reconnaissance_m": [
+    1725,
+    1755
+   ],
+   "zone_relue": 19,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1794.3,
+   "pk_fin_m": 1827.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "ocre et brun",
+   "pk_reconnaissance_m": [
+    1794,
+    1826
+   ],
+   "zone_relue": 20,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1827.3,
+   "pk_fin_m": 1853.1,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun-rouge, terre et pierres",
+   "pk_reconnaissance_m": [
+    1826,
+    1851
+   ],
+   "zone_relue": 20,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1853.1,
+   "pk_fin_m": 1865.5,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.8,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun et gris",
+   "pk_reconnaissance_m": [
+    1851,
+    1863
+   ],
+   "zone_relue": 20,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1880.0,
+   "pk_fin_m": 1897.1,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    0.8
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun et gris",
+   "pk_reconnaissance_m": [
+    1877,
+    1894
+   ],
+   "zone_relue": 21,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1897.1,
+   "pk_fin_m": 1916.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "brun et ocre, affleurement ocre en fin",
+   "pk_reconnaissance_m": [
+    1894,
+    1913
+   ],
+   "zone_relue": 21,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1933.4,
+   "pk_fin_m": 1959.6,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris-beige et vert",
+   "pk_reconnaissance_m": [
+    1930,
+    1956
+   ],
+   "zone_relue": 22,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 1959.6,
+   "pk_fin_m": 1971.6,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "ocre-rose et blanc",
+   "pk_reconnaissance_m": [
+    1956,
+    1968
+   ],
+   "zone_relue": 23,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 1971.6,
+   "pk_fin_m": 1983.7,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.3,
+    1.6
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blancs (blocs dressés) sur fond ocre-rouge",
+   "pk_reconnaissance_m": [
+    1968,
+    1980
+   ],
+   "zone_relue": 23,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2001.8,
+   "pk_fin_m": 2020.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.8,
+    1.3
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris-blanc, blocs sur terre brune",
+   "pk_reconnaissance_m": [
+    1998,
+    2016
+   ],
+   "zone_relue": 24,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2020.0,
+   "pk_fin_m": 2040.1,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.2,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": true,
+   "couleur": "blanc-gris, gros blocs",
+   "pk_reconnaissance_m": [
+    2016,
+    2036
+   ],
+   "zone_relue": 25,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 2059.2,
+   "pk_fin_m": 2112.6,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    0.6,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    2055,
+    2108
+   ],
+   "zone_relue": 26,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 2112.6,
+   "pk_fin_m": 2129.7,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    2108,
+    2125
+   ],
+   "zone_relue": 27,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2129.7,
+   "pk_fin_m": 2149.9,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris, taches grises",
+   "pk_reconnaissance_m": [
+    2125,
+    2145
+   ],
+   "zone_relue": 27,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 2149.9,
+   "pk_fin_m": 2170.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris, blanc-gris",
+   "pk_reconnaissance_m": [
+    2145,
+    2165
+   ],
+   "zone_relue": 28,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 2170.0,
+   "pk_fin_m": 2196.2,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris-beige, terre brun-rouge au pied",
+   "pk_reconnaissance_m": [
+    2165,
+    2191
+   ],
+   "zone_relue": 28,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2352.3,
+   "pk_fin_m": 2446.9,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    3.0,
+    5.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "beige, ocre clair",
+   "pk_reconnaissance_m": [
+    2346,
+    2440
+   ],
+   "zone_relue": 30,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2446.9,
+   "pk_fin_m": 2467.1,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    2.5,
+    3.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "beige clair, blanc-gris",
+   "pk_reconnaissance_m": [
+    2440,
+    2460
+   ],
+   "zone_relue": 30,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 2750.0,
+   "pk_fin_m": 2779.6,
+   "cote": "gauche",
+   "decalage_m": 2.5,
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "beige, ocre clair",
+   "pk_reconnaissance_m": [
+    2745,
+    2775
+   ],
+   "zone_relue": 31,
+   "confiance": "faible"
+  },
+  {
+   "pk_debut_m": 2779.6,
+   "pk_fin_m": 2805.8,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "beige, blanc-gris, lits horizontaux visibles",
+   "pk_reconnaissance_m": [
+    2775,
+    2800
+   ],
+   "zone_relue": 31,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2805.8,
+   "pk_fin_m": 2842.5,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "beige, blanc-gris",
+   "pk_reconnaissance_m": [
+    2800,
+    2835
+   ],
+   "zone_relue": 31,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2842.5,
+   "pk_fin_m": 2866.6,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    2.0,
+    2.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "beige clair, blanc-gris",
+   "pk_reconnaissance_m": [
+    2835,
+    2858
+   ],
+   "zone_relue": 31,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 2866.6,
+   "pk_fin_m": 2881.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    2858,
+    2872
+   ],
+   "zone_relue": 31,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 2885.5,
+   "pk_fin_m": 2910.6,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, beige",
+   "pk_reconnaissance_m": [
+    2876,
+    2900
+   ],
+   "zone_relue": 32,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 2910.6,
+   "pk_fin_m": 2959.9,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "beige, gris",
+   "pk_reconnaissance_m": [
+    2900,
+    2947
+   ],
+   "zone_relue": 32,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 3036.9,
+   "pk_fin_m": 3069.7,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    1.5,
+    3.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "beige, blanc-gris",
+   "pk_reconnaissance_m": [
+    3022,
+    3055
+   ],
+   "zone_relue": 33,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 3089.6,
+   "pk_fin_m": 3114.5,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, beige",
+   "pk_reconnaissance_m": [
+    3075,
+    3100
+   ],
+   "zone_relue": 34,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 3114.5,
+   "pk_fin_m": 3141.4,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    2.5,
+    3.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris, beige clair",
+   "pk_reconnaissance_m": [
+    3100,
+    3127
+   ],
+   "zone_relue": 34,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 3141.4,
+   "pk_fin_m": 3184.2,
+   "cote": "droite",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.8,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, ocre",
+   "pk_reconnaissance_m": [
+    3127,
+    3170
+   ],
+   "zone_relue": 34,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 3475.3,
+   "pk_fin_m": 3501.8,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    2.0,
+    3.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "brun-rouge, ocre, gris",
+   "pk_reconnaissance_m": [
+    3452,
+    3482
+   ],
+   "zone_relue": 35,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 3501.8,
+   "pk_fin_m": 3522.2,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.8,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris, beige",
+   "pk_reconnaissance_m": [
+    3482,
+    3505
+   ],
+   "zone_relue": 35,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 3818.0,
+   "pk_fin_m": 3859.1,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    0.6,
+    1.3
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    3815,
+    3855
+   ],
+   "zone_relue": 36,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 3859.1,
+   "pk_fin_m": 3890.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris, gris",
+   "pk_reconnaissance_m": [
+    3855,
+    3885
+   ],
+   "zone_relue": 36,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 3890.0,
+   "pk_fin_m": 3905.4,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    3885,
+    3900
+   ],
+   "zone_relue": 36,
+   "confiance": "faible"
+  },
+  {
+   "pk_debut_m": 3938.3,
+   "pk_fin_m": 4005.1,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    3932,
+    3997
+   ],
+   "zone_relue": 37,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 4005.1,
+   "pk_fin_m": 4039.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, pierres dans l'herbe",
+   "pk_reconnaissance_m": [
+    3997,
+    4030
+   ],
+   "zone_relue": 37,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 4008.2,
+   "pk_fin_m": 4049.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.8,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, pierres dans l'herbe",
+   "pk_reconnaissance_m": [
+    4000,
+    4040
+   ],
+   "zone_relue": 38,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 4079.9,
+   "pk_fin_m": 4106.7,
+   "cote": "gauche",
+   "decalage_m": 4.0,
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris-brun, beige, lits minces horizontaux",
+   "pk_reconnaissance_m": [
+    4070,
+    4097
+   ],
+   "zone_relue": 38,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 4200.9,
+   "pk_fin_m": 4258.4,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    0.8,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris, blanc-gris",
+   "pk_reconnaissance_m": [
+    4192,
+    4250
+   ],
+   "zone_relue": 39,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 4258.4,
+   "pk_fin_m": 4303.0,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    0.3,
+    0.6
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    4250,
+    4295
+   ],
+   "zone_relue": 40,
+   "confiance": "faible"
+  },
+  {
+   "pk_debut_m": 4303.0,
+   "pk_fin_m": 4332.7,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "eboulis",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    4295,
+    4325
+   ],
+   "zone_relue": 41,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 4394.2,
+   "pk_fin_m": 4425.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.5,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    4390,
+    4424
+   ],
+   "zone_relue": 42,
+   "confiance": "faible"
+  },
+  {
+   "pk_debut_m": 4425.3,
+   "pk_fin_m": 4446.4,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    2.0,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    4424,
+    4447
+   ],
+   "zone_relue": 42,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 4460.1,
+   "pk_fin_m": 4513.2,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.5,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris-blanc, terre brun-rouge",
+   "pk_reconnaissance_m": [
+    4462,
+    4515
+   ],
+   "zone_relue": 43,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 4581.4,
+   "pk_fin_m": 4630.6,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    0.8,
+    1.2
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "gris-brun, terre brune",
+   "pk_reconnaissance_m": [
+    4583,
+    4632
+   ],
+   "zone_relue": 44,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 4779.2,
+   "pk_fin_m": 4819.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.3,
+    0.6
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris, herbe",
+   "pk_reconnaissance_m": [
+    4780,
+    4820
+   ],
+   "zone_relue": 45,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 4819.3,
+   "pk_fin_m": 4865.5,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "ocre, blanc-gris",
+   "pk_reconnaissance_m": [
+    4820,
+    4866
+   ],
+   "zone_relue": 45,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 5569.7,
+   "pk_fin_m": 5613.0,
+   "cote": "gauche",
+   "decalage_m": 2.0,
+   "hauteur_m": [
+    2.5,
+    4.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    5568,
+    5612
+   ],
+   "zone_relue": 47,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 5613.0,
+   "pk_fin_m": 5627.8,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    5612,
+    5627
+   ],
+   "zone_relue": 47,
+   "confiance": "bonne"
+  },
+  {
+   "pk_debut_m": 5627.8,
+   "pk_fin_m": 5654.3,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.3,
+    0.8
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc-gris",
+   "pk_reconnaissance_m": [
+    5627,
+    5654
+   ],
+   "zone_relue": 47,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 6128.0,
+   "pk_fin_m": 6190.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    0.6,
+    1.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc, herbe verte",
+   "pk_reconnaissance_m": [
+    6128,
+    6190
+   ],
+   "zone_relue": 48,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_debut_m": 6438.9,
+   "pk_fin_m": 6464.1,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.4,
+    0.8
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "blanc, herbe verte",
+   "pk_reconnaissance_m": [
+    6436,
+    6460
+   ],
+   "zone_relue": 49,
+   "confiance": "moyenne"
+  }
+ ],
+ "parois_avant_la_relecture": [
   {
    "pk_debut_m": 345.0,
    "pk_fin_m": 400.0,
@@ -510,6 +2126,5 @@
    ],
    "genre": "eboulis"
   }
- ],
- "recalage": "recalage_pk_m, allonge_m et note_recalage sont calculés par scripts/22_recaler_parois.py d'après le relief laser ; les PK relevés (pk_debut_m, pk_fin_m) ne sont jamais modifiés"
+ ]
 }

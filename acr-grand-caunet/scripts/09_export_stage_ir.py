@@ -345,7 +345,7 @@ def troncs_proches():
     # même règle que le décor (scripts/regles_arbres.py) : un arbre trop grand pour sa place est réduit, pas retiré ;
     # il n'est retiré que trop près du bord ou trop petit une fois réduit
     import regles_arbres
-    res = [regles_arbres.choisir(float(ht[i]), float(dist[i]), regles_arbres.famille_rendue(a[i]["essence"], a[i]["famille_jeu"]),
+    res = [regles_arbres.choisir(float(ht[i]), float(dist[i]), regles_arbres.famille_rendue(a[i]["essence"], a[i]["famille_jeu"], float(ht[i]), f"{a[i]['x_l93']}:{a[i]['y_l93']}"),
                                  f"{a[i]['x_l93']}:{a[i]['y_l93']}") if dist[i] <= TRONCS["distance_max_m"] else (False, 0.0, "", None, None)
            for i in range(len(a))]
     garde = np.array([r[0] for r in res])

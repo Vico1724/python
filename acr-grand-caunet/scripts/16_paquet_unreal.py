@@ -115,19 +115,19 @@ A_CONFIRMER = ("noms de paramètres confirmés dans le jeu ; M_Simple nommé ici
 # touffes sèches restent, mais basses. Tailles natives lues dans le jeu (largeur, hauteur) ; l'échelle donne la hauteur.
 HERBES = {"dossier": "/Game/Foliage/GroundCover", "bande_m": 14.0, "debut_m": 0.35, "portee_m": 4.5,
           "candidats_par_metre": 44, "disparition_cm": [9000, 14000], "petit": "GreenGrassLong02/SM_GreengrassLong02",
-          "maillages": {"GreenGrass03/SM_Greengrass03": {"vert": 0.44, "sec": 0.10, "echelle": [0.8, 1.5], "largeur_m": 1.49},       # 14 à 27 cm
-                        "GreenGrassLong02/SM_GreengrassLong02": {"vert": 0.24, "sec": 0.06, "echelle": [0.6, 1.1], "largeur_m": 0.93},  # 17 à 32 cm
+          "maillages": {"GreenGrass03/SM_Greengrass03": {"vert": 0.52, "sec": 0.10, "echelle": [0.8, 1.5], "largeur_m": 1.49},       # 14 à 27 cm
+                        "GreenGrassLong02/SM_GreengrassLong02": {"vert": 0.28, "sec": 0.06, "echelle": [0.6, 1.1], "largeur_m": 0.93},  # 17 à 32 cm
                         "Ribwort/SM_Ribwort_01": {"vert": 0.10, "sec": 0.0, "echelle": [0.8, 1.3], "largeur_m": 0.97},                # plantain, 13 à 21 cm
                         "WildGrass/SM_WildGrass01": {"vert": 0.10, "sec": 0.12, "echelle": [0.7, 1.2], "largeur_m": 0.99},            # 20 à 35 cm
-                        "DeadLeaves/SM_Dead_Leaves_01": {"vert": 0.06, "sec": 0.06, "echelle": [1.4, 2.6], "largeur_m": 0.42},        # feuilles mortes, à plat
-                        "DryGrass05/SM_Drygrass05": {"vert": 0.06, "sec": 0.38, "echelle": [0.55, 0.95], "largeur_m": 1.47},          # 18 à 31 cm
+                        # feuilles mortes (SM_Dead_Leaves_01) retirées le 13/11/2026 : rendues en taches d'un noir pur en jeu
+                        "DryGrass05/SM_Drygrass05": {"vert": 0.0, "sec": 0.38, "echelle": [0.55, 0.95], "largeur_m": 1.47},          # 18 à 31 cm
                         "DryGrass06/SM_Drygrass06": {"vert": 0.0, "sec": 0.18, "echelle": [0.42, 0.72], "largeur_m": 1.53},           # 34 à 59 cm
                         "WildGrass/SM_WildGrass03": {"vert": 0.0, "sec": 0.10, "echelle": [1.5, 2.6], "largeur_m": 0.62},             # 21 à 36 cm
                         # pierraille calcaire claire, omniprésente sur les accotements et les talus de la reconnaissance :
                         # trois pierres calcaires du jeu (Grèce), de 15 à 70 cm une fois mises à l'échelle
-                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneD": {"vert": 0.035, "sec": 0.07, "echelle": [0.6, 1.5], "largeur_m": 0.68},
-                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneB": {"vert": 0.04, "sec": 0.08, "echelle": [0.8, 2.2], "largeur_m": 0.33},
-                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneA": {"vert": 0.03, "sec": 0.06, "echelle": [1.0, 2.6], "largeur_m": 0.24}}}
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneD": {"vert": 0.01, "sec": 0.07, "echelle": [0.6, 1.5], "largeur_m": 0.68},
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneB": {"vert": 0.015, "sec": 0.08, "echelle": [0.8, 2.2], "largeur_m": 0.33},
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneA": {"vert": 0.015, "sec": 0.06, "echelle": [1.0, 2.6], "largeur_m": 0.24}}}
 # Buissons (--buissons jeu) : à l'import, attribution.py choisit dans ce dossier le maillage à la taille de chaque
 # arbuste (Willow_01, 03a, 03b, 04a : 0,5 à 1,4 m de haut). À Bollène ils disparaissent entre 100 et 150 m et ne
 # portent pas d'ombre ; ici entre 150 et 220 m, parce qu'ils tiennent lieu de garrigue.
@@ -155,7 +155,7 @@ GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_M
 SOL_PARENT = "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild"
 SOL_CELLULE_M = 350.0
 SOL_MASQUE_PX = 1024
-SOL_LISERE_M = (0.10, 0.85)           # liseré de pierraille : plein jusqu'à 10 cm du bord de l'enrobé, effacé à 85 cm
+SOL_LISERE_M = (0.02, 0.40)           # liseré de pierraille : plein jusqu'à 10 cm du bord de l'enrobé, effacé à 85 cm
 SOL_CARTE_PX = 4096
 SOL_CARTE_UNITE_M = 70.0              # côté de la carte = UVDivideWP x 70 m (relevé sur Hafren South et Bollène)
 SOL_CARTE_CIBLE = {"moyenne": 118.0}   # clarté moyenne visée sur le terrain, sur 255 (celle de Bollène est de 86,5)
@@ -1250,7 +1250,7 @@ class Sol:
 ARBRES_LOIN = {"de_m": 135.0, "a_m": 650.0, "bandes": [(300.0, 4.8), (450.0, 6.0), (650.0, 8.0)], "mnh_min_m": 3.0, "part_pin": 0.65,
                "hauteur_m": (4.0, 20.0), "disparition_cm": [95000, 130000],
                "pin": ("Foliage/Trees/AleppoPine", "SM_AleppoPine04", "pin d'Alep"),
-               "feuillu": ("Foliage/Trees/Smoketree", "SM_Smoketree01", "chêne vert"),
+               "feuillu": ("Foliage/Trees/Boxthorn", "SM_Boxthorn02", "chêne vert"),
                "buissons": {"a_m": 380.0, "pas_m": 3.6, "mnh_m": (0.5, 3.0), "hauteur_m": (0.6, 2.4), "disparition_cm": [36000, 46000]}}
 
 
@@ -1318,7 +1318,11 @@ def arbres_lointains(ref):
 # dégagement (scripts/regles_arbres.py) les tient hors de la chaussée. Positions tirées au sort ; aucune collision.
 SOUS_BOIS = {"de_m": 1.7, "a_m": 9.0, "pas_m": 1.1, "par_pas": 2, "mnh_min_m": 1.3, "garde": 0.6, "voisin_min_m": 1.3,
              "haie_m": (1.6, 2.3), "haie_pas_m": 1.4, "haie_mnh_m": 2.2,
-             "hauteur_m": (1.6, 4.8), "famille": ("Foliage/Trees/Smoketree", "SM_Smoketree01", "chêne vert")}
+             "hauteur_m": (1.6, 4.8), "famille": ("Foliage/Trees/Boxthorn", "SM_Boxthorn01", "chêne vert"),
+             # sous un couvert haut (pinède), le relevé laser mesure les cimes, pas le sous-bois : on n'en garde qu'une part
+             "couvert_haut_m": 7.0, "part_sous_couvert": 0.25,
+             # pins de bord : là où le couvert dépasse pin_mnh_m au ras de la route et que le semis n'y a pas d'arbre
+             "pin_m": (2.2, 4.2), "pin_pas_m": 6.0, "pin_mnh_m": 8.0, "pin_voisin_m": 4.5, "pin_hauteur_m": (8.0, 18.0)}
 
 
 def sous_bois_de_bord(ref, arbres):
@@ -1367,6 +1371,11 @@ def sous_bois_de_bord(ref, arbres):
         zt = np.array([v[0] for v in b_.sample(Q[:, :2])], float)
     mnh = zs - zt
     ok = np.isfinite(mnh) & (zt > -1000) & (zs > -1000) & (mnh >= np.where(Q[:, 3] > 0, SOUS_BOIS["haie_mnh_m"], SOUS_BOIS["mnh_min_m"]))
+    # Relevé du quatrième essai (13/11/2026, PK 4480 à 4920) : « feuillus touffus » là où la route réelle traverse une
+    # pinède à hauts troncs nus. Sous un couvert haut, pas de rang de haie et peu de sous-bois.
+    haut_couvert = mnh >= SOUS_BOIS["couvert_haut_m"]
+    ok &= ~(haut_couvert & (Q[:, 3] > 0))
+    ok &= ~haut_couvert | (rng.random(len(Q)) < SOUS_BOIS["part_sous_couvert"])
     if arbres:                                                   # pas dans le pied d'un arbre du semis
         tr = cKDTree(np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in arbres]))
         ok &= tr.query(Q[:, :2])[0] >= SOUS_BOIS["voisin_min_m"]
@@ -1378,7 +1387,37 @@ def sous_bois_de_bord(ref, arbres):
              "diametre_houppier_m": f"{0.9 * haut[i]:.1f}", "essence": ess, "famille_jeu": fam, "element_jeu_propose": elt,
              "regle_essence": "sous-bois de bord de route", "dist_axe_m": "", "pk_m": f"{Q[i, 2]:.0f}", "cote": "", "detection": "tirage"}
             for i in range(len(Q))]
-    print(f"  sous-bois de bord de route : {len(rows)} petits arbres de {h0} à {h1} m, entre {SOUS_BOIS['de_m']} et {SOUS_BOIS['a_m']} m du bord")
+    # pins de bord : de grands pins à tronc dégagé au ras de la route, là où le relevé laser montre un couvert haut et
+    # où le semis (une cime par arbre, il en manque sous un couvert fermé) n'a rien à moins de pin_voisin_m
+    pins = []
+    if arbres:
+        ess = np.array(["pin" in r["essence"] for r in arbres])
+        S_p = np.arange(pk[0] + 3.0, pk[-1] - 3.0, SOUS_BOIS["pin_pas_m"])
+        A_p = np.column_stack([np.interp(S_p, pk, ch["A"][:, k]) for k in (0, 1)])
+        for cle in ("G", "D"):
+            E = np.column_stack([np.interp(S_p, pk, ch[cle][:, k]) for k in (0, 1)])
+            n = E - A_p
+            n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+            t_ = np.gradient(E, axis=0)
+            t_ /= np.maximum(np.linalg.norm(t_, axis=1, keepdims=True), 1e-9)
+            d = rng.uniform(*SOUS_BOIS["pin_m"], len(S_p))
+            pins.append(np.column_stack([E + n * d[:, None] + t_ * rng.uniform(-2.0, 2.0, (len(S_p), 1)), S_p]))
+        Pp = np.vstack(pins)
+        with rasterio.open(f_mns) as a_, rasterio.open(f_mnt) as b_:
+            zs_p = np.array([v[0] for v in a_.sample(Pp[:, :2])], float)
+            zt_p = np.array([v[0] for v in b_.sample(Pp[:, :2])], float)
+        h_p = zs_p - zt_p
+        dv, iv = tr.query(Pp[:, :2])
+        _, i8 = tr.query(Pp[:, :2], k=8)
+        ok_p = (zt_p > -1000) & (zs_p > -1000) & (h_p >= SOUS_BOIS["pin_mnh_m"]) & (dv >= SOUS_BOIS["pin_voisin_m"]) & (ess[i8].mean(1) >= 0.6)
+        Pp, h_p, zt_p = Pp[ok_p], h_p[ok_p], zt_p[ok_p]
+        hp = np.clip(h_p * rng.uniform(0.85, 1.0, len(Pp)), *SOUS_BOIS["pin_hauteur_m"])
+        rows += [{"x_l93": f"{Pp[i, 0]:.2f}", "y_l93": f"{Pp[i, 1]:.2f}", "z_sol_m": f"{zt_p[i]:.2f}", "hauteur_m": f"{hp[i]:.1f}",
+                  "diametre_houppier_m": f"{0.4 * hp[i]:.1f}", "essence": "pin d'Alep", "famille_jeu": "Foliage/Trees/AleppoPine",
+                  "element_jeu_propose": "SM_AleppoPine11", "regle_essence": "pin de bord de route (couvert laser)", "dist_axe_m": "",
+                  "pk_m": f"{Pp[i, 2]:.0f}", "cote": "", "detection": "tirage"} for i in range(len(Pp))]
+        print(f"  pins de bord de route : {len(Pp)} grands pins à tronc dégagé, entre {SOUS_BOIS['pin_m'][0]} et {SOUS_BOIS['pin_m'][1]} m du bord")
+    print(f"  sous-bois de bord de route : {len(rows)} arbres ajoutés en tout")
     return rows
 
 
@@ -1493,11 +1532,11 @@ def instances(P, ref, sol, ruban, pkf, args):
         arbres += sous_bois_de_bord(ref, arbres)
     loin, loin_buissons = arbres_lointains(ref) if args.arbres_lointains and not P.echantillon and args.pk_min is None else ([], [])
     def chemin_arbre(r):
-        """Les grands chênes verts étaient rendus par un érable du jeu (BlackmapleMonteCarlo, 13 à 20 m, grandes feuilles) :
-        vu en jeu le 13/11/2026, « feuillus tempérés » au lieu de chênes verts. Le Smoketree du jeu, à petites feuilles
-        vertes et à houppier rond, en est plus proche ; il rend désormais tous les chênes verts."""
-        if r["essence"] == "chêne vert" and r["famille_jeu"] == "Foliage/Trees/BlackmapleMonteCarlo":
-            return "/Game/Foliage/Trees/Smoketree/SM_Smoketree06"
+        """Chênes verts : Boxthorn du jeu (arbuste dense, vert sombre), et feuillu d'automne pour une part des grands
+        (regles_arbres.famille_rendue). Avant : érable (12/11), puis Smoketree (13/11), dont le feuillage est mauve."""
+        fam = regles_arbres.famille_rendue(r["essence"], r["famille_jeu"], float(r["hauteur_m"]), f"{r['x_l93']}:{r['y_l93']}")
+        if fam != r["famille_jeu"]:
+            return f"/Game/{fam}/" + ("SM_BlackmapleMonteCarlo02" if fam == regles_arbres.FAMILLE_D_AUTOMNE else "SM_Boxthorn02")
         return f"/Game/{r['famille_jeu']}/{r['element_jeu_propose']}"
 
     table("arbres", arbres, chemin_arbre,
@@ -1519,6 +1558,10 @@ def instances(P, ref, sol, ruban, pkf, args):
     with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
         arbustes = list(csv.DictReader(f))
     buissons_jeu = args.buissons == "jeu" and not P.echantillon
+    if buissons_jeu:
+        # arbustes de moins de 0,55 m : le script 10 leur donne une plante rampante (BroomCreeper), rendue en touffes
+        # noires en jeu (relevé du quatrième essai, 13/11/2026) ; l'herbe et les buissons suffisent à ce niveau
+        arbustes = [r for r in arbustes if float(r["hauteur_m"]) >= BUISSONS["hauteur_min_m"]]
 
     def chemin_arbuste(r):
         """Le script 10 propose une plante rampante plate (BroomCreeper) pour les arbustes de 0,4 à 1 m et un arbre
@@ -1918,7 +1961,7 @@ def objets_en_long(P, ref, sol, liste):
 ROCHE = {"pas_m": 0.4, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
          "epaisseur_m": 0.16, "pente_deg": (9.0, 24.0), "plat_m": (2.0, 0.35), "uv_m": 2.5, "marge_chaussee_m": 0.3,
          "couleur_secours": (188, 182, 168),
-         "genres": {"lite": {"avance_m": 0.8, "banc_m": (0.28, 0.6), "front": 0.3, "decroche_m": 0.3, "bloc_m": (0.9, 2.5), "lacunes": 0.16},
+         "genres": {"lite": {"avance_m": 0.8, "banc_m": (0.28, 0.6), "front": 0.3, "decroche_m": 0.3, "bloc_m": (0.9, 2.5), "lacunes": 0.36},
                     "blocs": {"avance_m": 1.0, "banc_m": (0.6, 1.1), "front": 0.25, "decroche_m": 0.45, "bloc_m": (1.2, 2.4), "lacunes": 0.2},
                     "eboulis": {"avance_m": 0.45, "banc_m": (0.3, 0.45), "front": 1.0, "decroche_m": 0.22, "bloc_m": (0.6, 1.3), "lacunes": 0.08}}}
 
@@ -1993,9 +2036,13 @@ def parois_rocheuses(P, ref, sol):
     t0, t1 = (math.tan(math.radians(a)) for a in ROCHE["pente_deg"])
     n_faits, longueur, n_tri = 0, 0.0, 0
     for k, e in enumerate(cfg["parois"]):
+        if e["genre"] == "eboulis":            # rocaille : pas de maillage, sol peint et pierres semées (pierraille_des_talus)
+            continue
         g = ROCHE["genres"][e["genre"]]
         rec = float(e.get("recalage_pk_m", 0.0))
         pk0, pk1, cote = float(e["pk_debut_m"]) + rec, float(e["pk_fin_m"]) + rec + float(e.get("allonge_m", 0.0)), e["cote"]
+        if e.get("pk_corrige_m"):                                 # emprise relue sur la reconnaissance : elle l'emporte
+            pk0, pk1 = (float(x) for x in e["pk_corrige_m"])
         s_a, s_b = pk0 - ROCHE["allonge_m"], pk1 + ROCHE["allonge_m"]
         for x0, x1, c in murs:
             if c == cote and x0 < s_b and x1 > s_a:
@@ -2007,7 +2054,7 @@ def parois_rocheuses(P, ref, sol):
         ns = len(S)
         if ns < 3:
             continue
-        h0, h1 = e["hauteur_m"]
+        h0, h1 = e.get("hauteur_corrigee_m") or e["hauteur_m"]
         # bord de chaussée, direction vers l'extérieur (horizontale), dans le repère glTF du projet
         B = np.array([m08.to_gltf(np.array([[*route.point(s, cote, 0.0)[:3]]]), ref).astype(float)[0] for s in S])
         B1 = np.array([m08.to_gltf(np.array([[*route.point(s, cote, 1.0)[:3]]]), ref).astype(float)[0] for s in S])
@@ -2015,7 +2062,7 @@ def parois_rocheuses(P, ref, sol):
         dehors /= np.maximum(np.linalg.norm(dehors, axis=1, keepdims=True), 1e-9)
         fin = np.clip(np.minimum(S - S[0], S[-1] - S) / ROCHE["biseau_m"], 0.0, 1.0)
         fin = fin * fin * (3 - 2 * fin)                                             # la paroi meurt en sifflet à ses bouts
-        H = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.85 + 0.35 * _bruit(S / 2.1, 7.0, k + 2)) * (0.1 + 0.9 * fin)
+        H = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.8 + 0.25 * _bruit(S / 2.1, 7.0, k + 2)) * (0.1 + 0.9 * fin)
         avance = g["avance_m"] * (0.65 + 0.7 * _bruit(S / 7.0, 3.0, k + 4)) * (0.15 + 0.85 * fin)
         # profil du terrain en travers, tous les 10 cm, hauteurs comptées depuis le bord de chaussée
         o0 = max(float(e["decalage_m"]) - 0.8, ROCHE["marge_chaussee_m"])
@@ -2159,6 +2206,62 @@ def parois_rocheuses(P, ref, sol):
         n_tri += len(tri)
     print(f"  parois rocheuses : {n_faits} parois, {longueur:.0f} m, {n_tri} triangles")
     return n_faits
+
+
+# Pierres des talus de rocaille : les trois pierres calcaires claires du jeu (Grèce), de 0,3 à 1,5 m une fois agrandies.
+ROCAILLE = {"par_m2": 0.9, "disparition_cm": [16000, 24000],
+            "pierres": {"/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneD": (0.45, (0.8, 2.3)),
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneB": (0.35, (1.4, 3.6)),
+                        "/Game/Props/GreeceProps/GreElaSmallStones/SM_GreElaSmallLimestoneA": (0.20, (2.0, 4.5))}}
+
+
+def pierraille_des_talus(P, ref, sol, pkf, ruban):
+    """Pierres calcaires semées sur les talus de rocaille (regles_arbres.rocailles). Relus sur la reconnaissance le
+    13/11/2026 : la plupart des talus pris pour des parois sont des pentes de pierres et de roche brisée ; rendus en
+    maillage de roche, ils faisaient des dalles grises ou des murailles. Positions tirées au sort (graine fixe)."""
+    polys = regles_arbres.rocailles(ROOT)
+    if not polys:
+        return {}
+    rng = np.random.default_rng(SEED + 91)
+    pts = []
+    for poly, _ in polys:
+        x0, y0, x1, y1 = poly.bounds
+        n = int(poly.area * ROCAILLE["par_m2"] * (x1 - x0) * (y1 - y0) / max(poly.area, 1e-6)) + 1
+        q = np.column_stack([rng.uniform(x0, x1, n), rng.uniform(y0, y1, n)])
+        pts.append(q[shapely.contains_xy(poly, q[:, 0], q[:, 1])])
+    xy = np.vstack(pts)
+    xy = xy[shapely.distance(ruban, shapely.points(xy[:, 0], xy[:, 1])) > 0.45]
+    g = m08.to_gltf(np.column_stack([xy, np.zeros(len(xy))]), ref).astype(float)
+    zs = sol(g[:, 0], g[:, 2])
+    g = g[np.isfinite(zs)]
+    g[:, 1] = zs[np.isfinite(zs)]
+    noms = list(ROCAILLE["pierres"])
+    choix = rng.choice(len(noms), len(g), p=[ROCAILLE["pierres"][n][0] for n in noms])
+    ue, pk, lacet = Axes.ue(g), pkf(g), rng.uniform(-180.0, 180.0, len(g))
+    cat = catalogue_du_jeu()
+    bilan = {}
+    for i, chemin in enumerate(noms):
+        sel = np.flatnonzero(choix == i)
+        if not len(sel):
+            continue
+        e0, e1 = ROCAILLE["pierres"][chemin][1]
+        ech = rng.uniform(e0, e1, len(sel)) ** 1.0
+        nom = chemin.rsplit("/", 1)[1]
+        fichier = Path("instances") / "rocaille" / f"{nom}.csv"
+        (P.sortie / fichier).parent.mkdir(parents=True, exist_ok=True)
+        with open(P.sortie / fichier, "w", newline="", encoding="utf-8") as fh:
+            wr = csv.writer(fh, lineterminator="\n")
+            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle"])
+            for j, s_ in zip(sel, ech):
+                wr.writerow([j, f"{ue[j, 0]:.1f}", f"{ue[j, 1]:.1f}", f"{ue[j, 2] - 4.0 * s_:.1f}", f"{lacet[j]:.1f}", "1.00", f"{pk[j]:.0f}", f"{s_:.3f}"])
+        el = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Rocaille_{nom}", "maillage_jeu": chemin, "present_au_catalogue": chemin in cat,
+                       "fichier": fichier.as_posix(), "nombre": int(len(sel)), "composant": "HierarchicalInstancedStaticMeshComponent",
+                       "collision": "NoCollision", "hauteur_native_cm": None, "echelle": "colonne « echelle » de la table, maillage posé tel quel",
+                       "distances_de_disparition_cm": ROCAILLE["disparition_cm"], "ombre_dynamique": False, "retirees_sur_chaussee": 0,
+                       "essais": ["complet"]})
+        bilan[el["nom"]] = el["nombre"]
+    print(f"  rocaille : {sum(bilan.values())} pierres sur {len(polys)} talus")
+    return bilan
 
 
 def catalogue_du_jeu():

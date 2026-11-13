@@ -99,7 +99,31 @@ La vidéo a été calée sur la route d'après la barre de progression du jeu (7
 - **Pont du km 5,5** (59 m). Le tablier réel est en creux ; la ligne droite du modèle passait jusqu'à 1,04 m trop haut en son milieu. Le profil suit maintenant le tablier mesuré au laser, à 3 cm près.
 - **Ponceau du km 3,45.** L'IGN le place au PK 3443-3450, mais le relevé laser ne montre un vide sous la chaussée qu'au PK 3472-3474. Ses deux parapets sont déplacés de 26 m. La paroi rocheuse qui le suit avait déjà été recalée de 28 m dans le même sens.
 
-## 6. Où c'est décrit
+## 6. Pneus, et relevé complet de la quatrième version (13 novembre au soir)
+
+**Pneus (demande du directeur).** Le jeu rangeait la spéciale en « terre » et ne proposait que des pneus terre. Cause : elle remplace une spéciale galloise, dont la ligne dans la table des spéciales du jeu dit « Gravel » et « GravelOnly ». Le mod de la route physique livre maintenant cette table avec notre ligne passée à « Tarmac » et « TarmacSnow », comme les spéciales sur asphalte du jeu. Relu dans le mod : surface, réglages par défaut, pneus et les trois secteurs sont en asphalte, et le menu affiche 6,74 km. La matière physique de la chaussée était déjà de l'asphalte. Limite : un autre mod qui livrerait la même table entrerait en conflit avec le nôtre ; il n'y en a pas d'installé.
+
+**Relevé systématique.** Les 167 paires d'images (jeu à gauche, reconnaissance à droite, tous les 40 m) ont été lues une à une : 161 écarts notés (`data/reference/releve_essai_13_11_v4/`). Les défauts qui reviennent tout le long, et leur correction dans la sixième version :
+
+| Défaut récurrent | Cause | Correction |
+|---|---|---|
+| Feuillages teintés de mauve et de rose | L'arbre du jeu pris pour les chênes verts et le sous-bois est un arbre à perruque | Remplacé par un arbuste dense vert sombre du jeu ; un tiers des grands chênes prend un feuillu jaune, comme les chênes roussis de novembre |
+| Touffes et taches d'un noir pur | Feuilles mortes et plantes rampantes du jeu, rendues en noir | Retirées |
+| Accotement d'herbe verte absent (une vingtaine de paires) | Un liseré de pierraille grise de 85 cm bordait l'asphalte | Liseré réduit à un filet de 40 cm, herbe verte plus dense et plus vive jusqu'au bord |
+| Parois trop hautes, décalées de 20 à 40 m, ou posées sur un simple talus | Premier relevé fait au PK où la roche s'apercevait, pas où elle se trouve | Toutes les parois relues sur la reconnaissance, une image tous les 6 m (voir ci-dessous) |
+| Talus de rocaille rendus en dalles grises ou en murailles | Tout était rendu par un maillage de roche | La rocaille n'a plus de maillage : le sol y est peint en pierraille et semé de pierres calcaires |
+| Rochers ronds isolés le long des rives | Rochers sombres du jeu | À reprendre (non fait) |
+| Poteaux jumelés en A | Modèle du jeu mal choisi | Poteau simple |
+| Tirets de l'axe trop espacés dans les virages | Même trait partout | Traits rapprochés dans les virages (rayon sous 140 m) |
+| Parapets « à lisse blanche » | Couronnement peint en blanc | Couronnement en béton gris, seuls les dés restent blancs |
+| Pinède du km 4,5 au km 4,9 rendue en feuillus touffus | Le sous-bois était planté partout où le laser mesure de la végétation, y compris sous les pins | Peu de sous-bois sous un couvert haut ; de grands pins à tronc dégagé au ras de la route là où le laser montre la pinède |
+| Aires de stationnement en terre brune | Matière | Gravier clair |
+
+**Relecture des parois rocheuses.** Pour chacune des 43 parois et de 6 talus signalés, une planche d'images de la reconnaissance, une vue tous les 6 m, a été lue en notant le PK où la roche arrive à hauteur de la voiture. Résultat : 24 parois de roche en place (738 m) et 61 talus de rocaille (1 843 m), au lieu de 43 parois (1 729 m) ; hauteurs revues, le plus souvent à la baisse. Le calage de la reconnaissance, en avance de 0 à 24 m selon l'endroit, est corrigé d'après vingt repères connus par ailleurs (ponts du relevé laser, débouchés de pistes de l'IGN). Les cinq derniers murs de collision cachés sous des parois sont retirés : les emprises ayant changé, ils ne correspondaient plus à rien.
+
+**Non traité, relevé pour la suite** : glissières réelles fermées par un écran bas (celles du jeu sont à jour dessous) ; murs de pierre sèche des km 3,72, 4,08 et 5,3 à 5,5, trop sombres ou en retrait ; quelques arbres trop près dans les zones ouvertes du km 6 ; rochers ronds isolés.
+
+## 7. Où c'est décrit
 
 - Écarts relevés : `data/reference/releve_essai_13_11/partie_1.json` et `partie_2.json`. Paires d'images : `scripts/20_planches_comparees.py` (images hors dépôt, `figures/compare_jeu_13_11/`).
 - Lissage de la route : `scripts/07b_regulariser_chaussee.py` (réglages et raisons en tête de fichier).
@@ -108,4 +132,7 @@ La vidéo a été calée sur la route d'après la barre de progression du jeu (7
 - Matières du sol, de l'asphalte, des parapets et de la roche : `data/reference/matieres_du_jeu.json`. Couleur des textures du jeu : `pc/etape2_unreal/outils/couleur_texture.py`.
 - Répartition du sol : `scripts/15b_sols_du_jeu.py`. Herbes : `HERBES` dans `scripts/16_paquet_unreal.py`.
 - Dégagement des arbres, aires et pistes : `scripts/regles_arbres.py` (`choisir`), `data/reference/aires_et_pistes.json`. Forme des arbres du jeu : `pc/etape2_unreal/outils/profils_arbres.py`, `pc/etape2_unreal/releves/profils_arbres.json`.
-- La version vue en jeu le 13 novembre est gardée sur le PC sous `sol_jeu_vu_le_13_11`, avec sa route physique.
+- Pneus : `pc/scripts/pneus_asphalte.py`, option `-Asphalte` de `pc/scripts/4_construire.ps1`.
+- Relevés du quatrième essai : `data/reference/releve_essai_13_11_v4/`. Relecture des parois : `scripts/24_planches_parois.py`, `data/reference/releve_parois_v2/`, `data/reference/parois_rocheuses.json`. Calage corrigé de la reconnaissance : `scripts/calage_reco.py`, `data/reference/calage_reco_reperes.json`.
+- Rocaille : `regles_arbres.rocailles()`, `pierraille_des_talus()` dans `scripts/16_paquet_unreal.py`.
+- Les versions vues en jeu sont gardées sur le PC (`sol_jeu_vu_le_13_11`, `_bis`, `_ter`), chacune avec sa route physique.

@@ -22,7 +22,11 @@ HAUT_PIN_M = 9.0
 HAUT_MIN_M = {"pin": 3.0, "feuillu": 1.8}
 # Un feuillu réduit prend un maillage de cette famille, qui a de petits sujets (1,9 à 10 m) ; les érables du jeu ne
 # descendent pas sous 13 m et seraient réduits au tiers, feuilles comprises.
-FAMILLE_DES_PETITS_FEUILLUS = ("Foliage/Trees/Smoketree", "SM_Smoketree01")
+# Jusqu'au 13/11/2026 : Smoketree. Relevé du quatrième essai : ses feuillages sont teintés de mauve et de rose (c'est un
+# arbre à perruque), ce qui ne ressemble à rien sur cette route. Le Boxthorn du jeu est un arbuste dense, vert sombre.
+FAMILLE_DES_PETITS_FEUILLUS = ("Foliage/Trees/Boxthorn", "SM_Boxthorn01")
+FAMILLE_D_AUTOMNE = "Foliage/Trees/BlackmapleMonteCarlo"      # feuillage jaune en jeu : tient lieu de chêne pubescent en novembre
+PART_D_AUTOMNE, HAUT_AUTOMNE_M = 0.30, 8.0
 
 
 def ajuste(hauteur_m, distance_au_bord_m, famille):
@@ -71,9 +75,13 @@ def profils():
     return _PROFILS
 
 
-def famille_rendue(essence, famille):
-    """Famille du jeu qui rend vraiment l'arbre : les chênes verts proposés en érable sont rendus en Smoketree."""
-    if essence == "chêne vert" and famille == "Foliage/Trees/BlackmapleMonteCarlo":
+def famille_rendue(essence, famille, hauteur_m=None, cle=None):
+    """Famille du jeu qui rend vraiment l'arbre. Les chênes verts sont rendus en Boxthorn ; une part des grands (la
+    reconnaissance montre beaucoup de chênes jaunis ou roux au bord de la route) prend un feuillu d'automne."""
+    import zlib
+    if essence == "chêne vert" and famille in ("Foliage/Trees/BlackmapleMonteCarlo", "Foliage/Trees/Smoketree", FAMILLE_DES_PETITS_FEUILLUS[0]):
+        if hauteur_m is not None and hauteur_m >= HAUT_AUTOMNE_M and zlib.crc32(f"automne:{cle}".encode("utf-8")) % 100 < 100 * PART_D_AUTOMNE:
+            return FAMILLE_D_AUTOMNE
         return FAMILLE_DES_PETITS_FEUILLUS[0]
     return famille
 
@@ -120,6 +128,44 @@ def choisir(hauteur_m, distance_au_bord_m, famille, cle):
                 return True, h, fam, n, e
             h *= 0.93
     return False, hauteur_m, famille, None, None
+
+
+def rocailles(racine):
+    """[(polygone Lambert-93, hauteur maxi)] des talus de rocaille de data/reference/parois_rocheuses.json (genre « eboulis ») :
+    bande le long du bord de chaussée, du pied du talus jusqu'où sa hauteur le porte sur une pente de 40 degrés."""
+    import csv
+    import json
+    import math
+    from pathlib import Path
+
+    import numpy as np
+    import shapely
+    f = Path(racine) / "data" / "reference" / "parois_rocheuses.json"
+    if not f.exists():
+        return []
+    with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:
+        r = list(csv.DictReader(h))
+    pk = np.array([float(x["pk_m"]) for x in r])
+    A = np.array([[float(x["x_axe"]), float(x["y_axe"])] for x in r])
+    bords = {"gauche": np.array([[float(x["x_gauche"]), float(x["y_gauche"])] for x in r]),
+             "droite": np.array([[float(x["x_droite"]), float(x["y_droite"])] for x in r])}
+    out = []
+    for e in json.loads(f.read_text(encoding="utf-8"))["parois"]:
+        if e["genre"] != "eboulis":
+            continue
+        s = np.arange(e["pk_debut_m"], e["pk_fin_m"] + 0.5, 1.0)
+        if len(s) < 2:
+            continue
+        B = np.column_stack([np.interp(s, pk, bords[e["cote"]][:, k]) for k in (0, 1)])
+        C = np.column_stack([np.interp(s, pk, A[:, k]) for k in (0, 1)])
+        n = B - C
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+        d0 = max(float(e["decalage_m"]) - 0.3, 0.3)
+        d1 = d0 + max(1.5, max(e["hauteur_m"]) / math.tan(math.radians(40.0)) + 0.8)
+        poly = shapely.Polygon(np.vstack([B + n * d0, (B + n * d1)[::-1]])).buffer(0)
+        if not poly.is_empty:
+            out.append((poly, float(max(e["hauteur_m"]))))
+    return out
 
 
 def emprises_degagees(racine):

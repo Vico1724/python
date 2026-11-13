@@ -1,22 +1,22 @@
 {
  "conteneur": {
-  "fichiers": 2178,
+  "fichiers": 2208,
   "hors_de_notre_dossier": 0
  },
  "niveau": {
-  "maillages_poses": 524,
-  "attendus": 524,
-  "instances": 351539,
-  "attendues": 351539,
-  "composants_d_instances": 102,
+  "maillages_poses": 539,
+  "attendus": 539,
+  "instances": 516581,
+  "attendues": 516581,
+  "composants_d_instances": 109,
   "instances_hors_vegetation": {
    "SM_PlasticTapePoleA": 17,
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 214,
    "SM_MetalGuardrailASimpleEnd": 6,
-   "SM_GreElaSmallLimestoneA": 5592,
-   "SM_GreElaSmallLimestoneB": 7421,
-   "SM_GreElaSmallLimestoneD": 6378,
+   "SM_GreElaSmallLimestoneA": 5599,
+   "SM_GreElaSmallLimestoneB": 7321,
+   "SM_GreElaSmallLimestoneD": 6276,
    "SM_ForestRockWgqrfdi": 24,
    "SM_ForestRockWjxqcct": 23,
    "SM_FraMunPylonA": 17,
@@ -40,7 +40,7 @@
    "SM_TrafficSignFraRightTurnA1": 1,
    "SM_TrafficSignFraSlipperyRoadA": 1
   },
-  "composants_a_disparition_reglee": 29,
+  "composants_a_disparition_reglee": 36,
   "herbes_mal_reglees": []
  },
  "sol": {

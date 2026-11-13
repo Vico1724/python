@@ -190,6 +190,19 @@ def main():
             p["terre"] += (0.65 if matiere == "sentier" else 0.8) * aire
         del aire
 
+    # Talus de rocaille (parois_rocheuses.json, genre « eboulis », relus le 13/11/2026) : pierres, roche brisée et terre
+    # claire. Le sol y est peint en pierraille mêlée de terre ; 16_paquet_unreal.py y sème des pierres calcaires.
+    roc = regles_arbres.rocailles(RACINE)
+    if roc:
+        m_roc = ndi.gaussian_filter(rasterize([(g_, 1) for g_, _ in roc], out_shape=forme, transform=tr, fill=0, all_touched=True,
+                                              dtype="uint8").astype(np.float32), 1.0)
+        m_roc[sur_route] = 0.0
+        for k in COUCHES:
+            p[k] *= (1.0 - 0.8 * m_roc)
+        p["cailloux"] += 0.55 * m_roc
+        p["terre"] += 0.12 * m_roc
+        del m_roc
+
     # hors des photos : le mélange de sous-bois, faute de mieux (peu de terrain s'y trouve)
     for k in COUCHES:
         p[k] = np.where(valide, p[k], (herbe * 0.85 if k == "herbe_haute" else 0.0)

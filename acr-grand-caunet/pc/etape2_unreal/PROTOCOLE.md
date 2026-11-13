@@ -330,6 +330,13 @@ Unreal Engine 5.6.1 (changelist 44394996) est installé dans `C:\Program Files\E
 - **Roche** : `MI_GC_Roche` à 2,4 de clarté ; au soleil elle est beige clair, à l'ombre du matin elle vire à l'ardoise (éclairage du jeu, pas la matière).
 - **Carrefour** : lignes dans `marquage_route.json` (`rive_gauche` / `rive_droite` séparées, `zones_hachurees`), terre-plein non livré (le terrain le remplace).
 
+**Sixième version (13/11/2026 au soir), à retenir :**
+
+- **Pneus** : `4_construire.ps1 -Asphalte` (à passer à chaque construction de la route physique désormais) livre `DT_TracksVariants` et y corrige notre ligne (`pneus_asphalte.py` : renvois de nom Gravel -> Tarmac x 5, GravelOnly -> TarmacSnow x 1, taille du fichier inchangée) ; relu dans le mod empaqueté par le script lui-même.
+- **Arbres du jeu** : chaque famille a une image d'ensemble par maillage (`T_<Arbre>NNBillboard_B`), à extraire avec `couleur_texture.py --apercus` pour voir à quoi il ressemble avant de le choisir. Smoketree = mauve ; Boxthorn = vert sombre dense ; Olivetree = pâle ; Blackmaple = jaune en jeu. `SM_Dead_Leaves_01` et BroomCreeper rendent noir.
+- **Parois** : `parois_rocheuses.json` est maintenant issu de la relecture (`24_planches_parois.py`, `releve_parois_v2/`), PK corrigés par `calage_reco.py`. Ne plus lancer `22_recaler_parois.py` dessus. Genre « lite » = maillage ; « eboulis » = sol peint + pierres (`rocailles`, `pierraille_des_talus`).
+- **Lire une vidéo embarquée** : un objet est au PK de l'image où il sort du champ par le côté, pas à celui où on l'aperçoit (20 à 60 m d'écart).
+
 **Paris à vérifier au premier essai** : le marquage en décalque (s'il échoue, les lignes blanches disparaissent : repasser `MI_GC_Marquage` sans parent dans `matieres_du_jeu.json`) ; textures du jeu désignées par chemin ; teintes par paramètres ; parent `MI_BolleneRockfacesParent` (jamais porté directement par un maillage du jeu). Signe d'échec : sol ou roche gris uni, damier, ou teinte sans rapport.
 
 ## 1. L'idée générale
