@@ -1,27 +1,27 @@
 {
  "conteneur": {
-  "fichiers": 2208,
+  "fichiers": 2178,
   "hors_de_notre_dossier": 0
  },
  "niveau": {
-  "maillages_poses": 539,
-  "attendus": 539,
-  "instances": 516581,
-  "attendues": 516581,
-  "composants_d_instances": 109,
+  "maillages_poses": 524,
+  "attendus": 524,
+  "instances": 515254,
+  "attendues": 515254,
+  "composants_d_instances": 112,
   "instances_hors_vegetation": {
    "SM_PlasticTapePoleA": 17,
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 214,
    "SM_MetalGuardrailASimpleEnd": 6,
-   "SM_GreElaSmallLimestoneA": 5599,
-   "SM_GreElaSmallLimestoneB": 7321,
-   "SM_GreElaSmallLimestoneD": 6276,
+   "SM_GreElaSmallLimestoneA": 5682,
+   "SM_GreElaSmallLimestoneB": 7461,
+   "SM_GreElaSmallLimestoneD": 6754,
    "SM_ForestRockWgqrfdi": 24,
    "SM_ForestRockWjxqcct": 23,
    "SM_FraMunPylonA": 17,
    "SM_MileMarkerA": 1,
-   "SM_MonPylonC9": 79,
+   "SM_MonPylonC11": 79,
    "SM_NopublicSign": 10,
    "SM_RaceControlZoneEnd": 1,
    "SM_RaceFlyingFinish": 1,
@@ -40,7 +40,7 @@
    "SM_TrafficSignFraRightTurnA1": 1,
    "SM_TrafficSignFraSlipperyRoadA": 1
   },
-  "composants_a_disparition_reglee": 36,
+  "composants_a_disparition_reglee": 41,
   "herbes_mal_reglees": []
  },
  "sol": {
@@ -68,7 +68,7 @@
    ]
   },
   "masques_de_format_different": [],
-  "ecart_moyen_au_fichier_source_sur_255": 2.4,
+  "ecart_moyen_au_fichier_source_sur_255": 2.41,
   "maillages": 100,
   "maillages_a_mauvaise_couleur_de_sommet": []
  },

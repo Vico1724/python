@@ -125,6 +125,8 @@ La vidéo a été calée sur la route d'après la barre de progression du jeu (7
 
 **Relecture des parois rocheuses.** Pour chacune des 43 parois et de 6 talus signalés, une planche d'images de la reconnaissance, une vue tous les 6 m, a été lue en notant le PK où la roche arrive à hauteur de la voiture. Résultat : 24 parois de roche en place (738 m) et 61 talus de rocaille (1 843 m), au lieu de 43 parois (1 729 m) ; hauteurs revues, le plus souvent à la baisse. Le calage de la reconnaissance, en avance de 0 à 24 m selon l'endroit, est corrigé d'après vingt repères connus par ailleurs (ponts du relevé laser, débouchés de pistes de l'IGN). Les cinq derniers murs de collision cachés sous des parois sont retirés : les emprises ayant changé, ils ne correspondaient plus à rien.
 
+**Sixième version : construite, relue, installée le 13 novembre à 21 h 10.** Relecture du décor cuit conforme (aucune erreur, aucune alerte) : 24 parois de roche (42 207 triangles), 4 545 pierres calcaires sur les 61 talus de rocaille, 103 grands pins de bord de route, 515 254 objets en tout. Route physique reconstruite avec la table asphalte ; décalage entre la route et le décor : 0,0 cm. Rien de tout cela n'a encore été vu en jeu. La cinquième version est gardée (`sol_jeu_cycle5_du_13_11`).
+
 **Non traité, relevé pour la suite** : glissières réelles fermées par un écran bas (celles du jeu sont à jour dessous) ; murs de pierre sèche des km 3,72, 4,08 et 5,3 à 5,5, trop sombres ou en retrait ; quelques arbres trop près dans les zones ouvertes du km 6 ; rochers ronds isolés.
 
 ## 7. Où c'est décrit

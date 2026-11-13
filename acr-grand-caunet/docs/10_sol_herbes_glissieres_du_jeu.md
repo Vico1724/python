@@ -49,11 +49,12 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Onze versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
+Douze versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | cinquième version du 13 novembre : carrefour du Lion d'Or repris, versants boisés, roche sur les falaises, spéciale classée en asphalte (`docs/14_apres_essai_du_13_11.md`, sections 5 et 6) ; jamais vue en jeu |
+| `sol_jeu` (installée) | sixième version du 13 novembre : parois rocheuses relues sur la reconnaissance, rocaille en pierres calcaires, feuillages verts, accotement d'herbe, pins de bord de route (`docs/14_apres_essai_du_13_11.md`, section 6) ; jamais vue en jeu |
+| `sol_jeu_cycle5_du_13_11` | cinquième version du 13 novembre : carrefour du Lion d'Or repris, versants boisés, roche sur les falaises, spéciale classée en asphalte (`docs/14_apres_essai_du_13_11.md`, sections 5 et 6) ; seul le menu (pneus asphalte) en a été vu en jeu |
 | `sol_jeu_vu_le_13_11_ter` | quatrième version, vue en jeu le 13 novembre au soir : lignes blanches rétablies, bords nets, arbres du bord choisis d'après leur forme |
 | `sol_jeu_vu_le_13_11_bis` | troisième version, vue en jeu le 13 novembre après-midi : parois rocheuses sur le relief, versants lointains verts, herbe verte ; lignes blanches absentes, bords en zigzag, arbres qui débordent |
 | `sol_jeu_cycle1_du_13_11` | première version faite après l'essai du 13 novembre au matin ; jamais vue en jeu |

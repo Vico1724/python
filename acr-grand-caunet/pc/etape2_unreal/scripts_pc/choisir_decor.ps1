@@ -2,8 +2,13 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (quatrième du 13/11/2026) : lignes blanches rétablies, bords d'enrobé nets,
-                         arbres du bord choisis d'après leur forme mesurée, roche à l'échelle du jeu ; jamais vue en jeu
+    sol_jeu              version courante (sixième du 13/11/2026) : parois rocheuses relues sur la reconnaissance,
+                         rocaille en pierres calcaires, feuillages verts, accotement d'herbe, pins de bord de route ;
+                         jamais vue en jeu
+    sol_jeu_cycle5_du_13_11  cinquième version : carrefour du Lion d'Or repris, versants boisés, roche sur les
+                         falaises, spéciale classée en asphalte ; seul le menu (pneus asphalte) en a été vu en jeu
+    sol_jeu_vu_le_13_11_ter  quatrième version, vue en jeu le 13/11/2026 au soir : lignes blanches rétablies, bords
+                         d'enrobé nets, arbres du bord choisis d'après leur forme mesurée, roche à l'échelle du jeu
     sol_jeu_vu_le_13_11_bis  troisième version, vue en jeu le 13/11/2026 après-midi : parois rocheuses sur le relief,
                          versants lointains verts ; lignes blanches absentes, bords en zigzag, arbres qui débordent
     sol_jeu_cycle1_du_13_11  première version faite après l'essai du 13/11/2026 au matin ; jamais vue en jeu

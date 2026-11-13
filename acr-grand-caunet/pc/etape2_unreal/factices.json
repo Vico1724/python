@@ -882,19 +882,19 @@
    }
   },
   {
-   "objet": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9",
+   "objet": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",
    "bornes_cm": {
     "min": [
-     -11,
-     -94,
-     -78
+     -10,
+     -30,
+     -40
     ],
     "max": [
-     15,
-     94,
-     688
+     10,
+     30,
+     690
     ]
    }
   },
