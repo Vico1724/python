@@ -2,9 +2,11 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante, après l'essai du 13/11/2026 : route lissée, parois rocheuses naturelles,
-                         sol clair et herbe verte, végétation dégagée de la route et sous-bois de bord, arbres sur
-                         les versants, bords d'enrobé irréguliers, peinture de marquage du jeu ; jamais vue en jeu
+    sol_jeu              version courante (quatrième du 13/11/2026) : lignes blanches rétablies, bords d'enrobé nets,
+                         arbres du bord choisis d'après leur forme mesurée, roche à l'échelle du jeu ; jamais vue en jeu
+    sol_jeu_vu_le_13_11_bis  troisième version, vue en jeu le 13/11/2026 après-midi : parois rocheuses sur le relief,
+                         versants lointains verts ; lignes blanches absentes, bords en zigzag, arbres qui débordent
+    sol_jeu_cycle1_du_13_11  première version faite après l'essai du 13/11/2026 au matin ; jamais vue en jeu
     sol_jeu_vu_le_13_11  celle que le directeur a vue en jeu le 13/11/2026 : falaises du massif, rochers de bord de
                          route, panneaux routiers, lisses en bois, rubalises et panneaux du rallye (12/11/2026, nuit)
     sol_jeu_releve_reco  bords repris d'après la vidéo des reconnaissances (glissières, parapets, murs, parois

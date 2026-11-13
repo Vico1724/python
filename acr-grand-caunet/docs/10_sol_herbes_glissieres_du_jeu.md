@@ -49,11 +49,13 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Huit versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
+Dix versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | version courante, après l'essai du 13 novembre (`docs/14_apres_essai_du_13_11.md`) ; jamais vue en jeu |
+| `sol_jeu` (installée) | quatrième version du 13 novembre : lignes blanches rétablies, bords d'asphalte nets, arbres du bord choisis d'après leur forme (`docs/14_apres_essai_du_13_11.md`, section 4) ; jamais vue en jeu |
+| `sol_jeu_vu_le_13_11_bis` | troisième version, vue en jeu le 13 novembre après-midi : parois rocheuses sur le relief, versants lointains verts, herbe verte ; lignes blanches absentes, bords en zigzag, arbres qui débordent |
+| `sol_jeu_cycle1_du_13_11` | première version faite après l'essai du 13 novembre au matin ; jamais vue en jeu |
 | `sol_jeu_vu_le_13_11` | celle que vous avez vue en jeu le 13 novembre : falaises, rochers, panneaux routiers, objets du rallye replacés (`docs/13_decor_fixe_et_objets_du_rallye.md`) |
 | `sol_jeu_releve_reco` | bords repris d'après la vidéo des reconnaissances (`docs/12_releve_reconnaissances.md`) ; jamais vue en jeu |
 | `sol_jeu_avant_releve_reco` | la suivante, plus les poteaux estimés, panneaux, barrières, haie et murs de l'ancien relevé (`docs/11_mobilier_bord_de_route.md`) ; jamais vue en jeu |
