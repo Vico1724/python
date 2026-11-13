@@ -2482,6 +2482,7 @@ def main():
     if args.mobilier == "jeu" and not args.echantillon and args.pk_min is None:
         bilan_inst.update(mobilier_du_bord(P, ref, pkf, Sol(), args))
         parois_rocheuses(P, ref, Sol())
+        bilan_inst.update(pierraille_des_talus(P, ref, Sol(), pkf, ruban))
     if args.herbes == "jeu" and not args.echantillon and args.pk_min is None and (MOD / "sols_jeu" / "sols_jeu.json").exists():
         bilan_inst.update(herbes_du_bord(P, ref, ch, pkf, Sol(), ruban, args))
     manifeste = {

@@ -101,7 +101,11 @@ La vidéo a été calée sur la route d'après la barre de progression du jeu (7
 
 ## 6. Pneus, et relevé complet de la quatrième version (13 novembre au soir)
 
-**Pneus (demande du directeur).** Le jeu rangeait la spéciale en « terre » et ne proposait que des pneus terre. Cause : elle remplace une spéciale galloise, dont la ligne dans la table des spéciales du jeu dit « Gravel » et « GravelOnly ». Le mod de la route physique livre maintenant cette table avec notre ligne passée à « Tarmac » et « TarmacSnow », comme les spéciales sur asphalte du jeu. Relu dans le mod : surface, réglages par défaut, pneus et les trois secteurs sont en asphalte, et le menu affiche 6,74 km. La matière physique de la chaussée était déjà de l'asphalte. Limite : un autre mod qui livrerait la même table entrerait en conflit avec le nôtre ; il n'y en a pas d'installé.
+**Pneus (demande du directeur).** Le jeu rangeait la spéciale en « terre » et ne proposait que des pneus terre. Cause : elle remplace une spéciale galloise, dont la ligne dans la table des spéciales du jeu dit « Gravel » et « GravelOnly ». Les spéciales sur asphalte du jeu disent « Tarmac » et « TarmacSnow ».
+
+- **Premier essai, sans effet en jeu.** J'ai livré la table corrigée dans le mod de la route physique, après avoir vérifié qu'aucun autre mod n'était installé. Je n'avais regardé que le dossier `~mods`. Or deux mods sont installés directement dans le dossier `Paks` du jeu : la spéciale BioBio et un « registre » (`pakchunk99-SandoRegistry_2_P`) qui livre la même table. Le jeu ne garde qu'une table, celle du mod le mieux classé : c'était la sienne.
+- **Solution retenue par le directeur.** Notre table part de celle du registre, et seule notre ligne y change (asphalte, pneus asphalte, 6,74 km au menu). Elle est livrée dans un petit fichier à part, `zz_acrxs_grandcaunet_table_9_P`, dont le nom le classe devant le registre. Relu dans les conditions réelles (jeu, registre, BioBio et notre fichier) : notre ligne est en asphalte, les 47 autres sont identiques à celles du registre. C'est une exception, autorisée pour cette seule table, à la règle « aucun fichier BioBio réutilisé ».
+- **À savoir.** Si le registre est mis à jour ou retiré, il faut refaire notre fichier (`pc/scripts/6_table_asphalte.ps1`), sinon il figerait l'ancienne table. La matière physique de la chaussée était déjà de l'asphalte. Pas encore confirmé en jeu.
 
 **Relevé systématique.** Les 167 paires d'images (jeu à gauche, reconnaissance à droite, tous les 40 m) ont été lues une à une : 161 écarts notés (`data/reference/releve_essai_13_11_v4/`). Les défauts qui reviennent tout le long, et leur correction dans la sixième version :
 
@@ -132,7 +136,7 @@ La vidéo a été calée sur la route d'après la barre de progression du jeu (7
 - Matières du sol, de l'asphalte, des parapets et de la roche : `data/reference/matieres_du_jeu.json`. Couleur des textures du jeu : `pc/etape2_unreal/outils/couleur_texture.py`.
 - Répartition du sol : `scripts/15b_sols_du_jeu.py`. Herbes : `HERBES` dans `scripts/16_paquet_unreal.py`.
 - Dégagement des arbres, aires et pistes : `scripts/regles_arbres.py` (`choisir`), `data/reference/aires_et_pistes.json`. Forme des arbres du jeu : `pc/etape2_unreal/outils/profils_arbres.py`, `pc/etape2_unreal/releves/profils_arbres.json`.
-- Pneus : `pc/scripts/pneus_asphalte.py`, option `-Asphalte` de `pc/scripts/4_construire.ps1`.
+- Pneus : `pc/scripts/6_table_asphalte.ps1` (lancé par l'option `-Asphalte` de `pc/scripts/4_construire.ps1`), `pc/scripts/pneus_asphalte.py`.
 - Relevés du quatrième essai : `data/reference/releve_essai_13_11_v4/`. Relecture des parois : `scripts/24_planches_parois.py`, `data/reference/releve_parois_v2/`, `data/reference/parois_rocheuses.json`. Calage corrigé de la reconnaissance : `scripts/calage_reco.py`, `data/reference/calage_reco_reperes.json`.
 - Rocaille : `regles_arbres.rocailles()`, `pierraille_des_talus()` dans `scripts/16_paquet_unreal.py`.
 - Les versions vues en jeu sont gardées sur le PC (`sol_jeu_vu_le_13_11`, `_bis`, `_ter`), chacune avec sa route physique.
