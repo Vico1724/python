@@ -1,0 +1,497 @@
+{
+ "note": "Parois et talus rocheux au bord de la route, relevés sur la vidéo de reconnaissances (data/reference/releve_reco/, observations « talus_rocheux »). Lu par scripts/16_paquet_unreal.py, qui en fait des parois de forme naturelle habillées de la roche du jeu. Vu en jeu le 13/11/2026 : les neuf parois rendues par un mur de pierre faisaient « d'immenses parapets », et les autres talus étaient un sol lisse et sombre. PK à ±10 m ; décalage = distance du pied de la paroi au bord de chaussée ; hauteur = fourchette vue. Les entrées marquées « collision » gardent, pour la physique, le mur de même emprise décrit dans ouvrages_parapets.json ; les autres n'ont pas de collision propre (le terrain porte la voiture).",
+ "genres": {
+  "lite": "front de calcaire lité, taillé, presque vertical (72 degrés)",
+  "eboulis": "talus de pierres et de terre, incliné (47 degrés)",
+  "blocs": "blocs dressés ou empilés (62 degrés)"
+ },
+ "pentes_deg": {
+  "lite": 72.0,
+  "eboulis": 47.0,
+  "blocs": 62.0
+ },
+ "parois": [
+  {
+   "pk_debut_m": 345.0,
+   "pk_fin_m": 400.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 520.0,
+   "pk_fin_m": 555.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 555.0,
+   "pk_fin_m": 622.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 680.0,
+   "pk_fin_m": 745.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 745.0,
+   "pk_fin_m": 800.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 820.0,
+   "pk_fin_m": 855.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 855.0,
+   "pk_fin_m": 878.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.2,
+    1.5
+   ],
+   "genre": "lite",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 960.0,
+   "pk_fin_m": 1040.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 1095.0,
+   "pk_fin_m": 1135.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.8,
+    2.2
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 1135.0,
+   "pk_fin_m": 1175.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 1180.0,
+   "pk_fin_m": 1205.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 1262.0,
+   "pk_fin_m": 1310.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.3,
+    0.6
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 1322.0,
+   "pk_fin_m": 1345.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    1.0,
+    1.2
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 1345.0,
+   "pk_fin_m": 1400.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    0.8,
+    1.0
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 1575.0,
+   "pk_fin_m": 1625.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.2
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 1728.0,
+   "pk_fin_m": 1760.0,
+   "cote": "gauche",
+   "decalage_m": 0.7,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "lite",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 1800.0,
+   "pk_fin_m": 1865.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 1885.0,
+   "pk_fin_m": 1915.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    0.8
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 1935.0,
+   "pk_fin_m": 1962.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 1962.0,
+   "pk_fin_m": 1985.0,
+   "cote": "gauche",
+   "decalage_m": 0.7,
+   "hauteur_m": [
+    1.0,
+    1.3
+   ],
+   "genre": "blocs",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 2000.0,
+   "pk_fin_m": 2012.0,
+   "cote": "gauche",
+   "decalage_m": 0.7,
+   "hauteur_m": [
+    0.9,
+    1.1
+   ],
+   "genre": "blocs",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 2024.0,
+   "pk_fin_m": 2035.0,
+   "cote": "gauche",
+   "decalage_m": 0.7,
+   "hauteur_m": [
+    0.9,
+    1.1
+   ],
+   "genre": "blocs",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 2075.0,
+   "pk_fin_m": 2100.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.9,
+    1.1
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 2100.0,
+   "pk_fin_m": 2140.0,
+   "cote": "gauche",
+   "decalage_m": 0.4,
+   "hauteur_m": [
+    2.0,
+    2.5
+   ],
+   "genre": "lite",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 2155.0,
+   "pk_fin_m": 2188.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 2352.0,
+   "pk_fin_m": 2435.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    3.0,
+    4.0
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 2780.0,
+   "pk_fin_m": 2845.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.8,
+    3.5
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 2920.0,
+   "pk_fin_m": 2935.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 3040.0,
+   "pk_fin_m": 3075.0,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 3085.0,
+   "pk_fin_m": 3140.0,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 3455.0,
+   "pk_fin_m": 3495.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    3.0,
+    4.0
+   ],
+   "genre": "lite",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 3835.0,
+   "pk_fin_m": 3880.0,
+   "cote": "gauche",
+   "decalage_m": 0.7,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "lite",
+   "collision": "mur de data/reference/ouvrages_parapets.json"
+  },
+  {
+   "pk_debut_m": 3945.0,
+   "pk_fin_m": 4000.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "genre": "blocs"
+  },
+  {
+   "pk_debut_m": 4206.0,
+   "pk_fin_m": 4235.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 4250.0,
+   "pk_fin_m": 4275.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    0.9,
+    1.1
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 4315.0,
+   "pk_fin_m": 4330.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.3,
+    1.6
+   ],
+   "genre": "blocs"
+  },
+  {
+   "pk_debut_m": 4430.0,
+   "pk_fin_m": 4447.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": [
+    1.8,
+    2.2
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 4470.0,
+   "pk_fin_m": 4520.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 4580.0,
+   "pk_fin_m": 4660.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 4822.0,
+   "pk_fin_m": 4850.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.3,
+    1.6
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 4930.0,
+   "pk_fin_m": 4960.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.3,
+    1.6
+   ],
+   "genre": "eboulis"
+  },
+  {
+   "pk_debut_m": 5588.0,
+   "pk_fin_m": 5628.0,
+   "cote": "gauche",
+   "decalage_m": 2.0,
+   "hauteur_m": [
+    3.0,
+    4.0
+   ],
+   "genre": "lite"
+  },
+  {
+   "pk_debut_m": 6440.0,
+   "pk_fin_m": 6468.0,
+   "cote": "gauche",
+   "decalage_m": 2.5,
+   "hauteur_m": [
+    0.5,
+    1.0
+   ],
+   "genre": "eboulis"
+  }
+ ]
+}

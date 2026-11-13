@@ -164,6 +164,11 @@ def v_parametre_scalaire(mi, nom, valeur):
     unreal.MaterialEditingLibrary.set_material_instance_scalar_parameter_value(mi, nom, float(valeur))
 
 
+def v_parametre_vecteur(mi, nom, valeur):
+    v = [float(x) for x in valeur] + [1.0] * (4 - len(valeur))
+    unreal.MaterialEditingLibrary.set_material_instance_vector_parameter_value(mi, nom, unreal.LinearColor(v[0], v[1], v[2], v[3]))
+
+
 def v_creer_materiau_secours(chemin, params):
     """Matériau simple : Couleur -> BaseColor, ORM (R occlusion, G rugosité, B métal), Relief -> Normal."""
     if v_existe(chemin):
@@ -499,6 +504,21 @@ class Construction:
         if self.a.parent == "jeu" and e.get("parent_du_jeu") and v_existe(e["parent_du_jeu"]):
             for p, valeur in e.get("parametres_scalaires", {}).items():
                 v_parametre_scalaire(mi, p, valeur)
+        if self.a.parent == "jeu":
+            # réglages posés sur un parent du jeu (matieres_du_jeu.json) : teintes, nombres, textures du jeu désignées
+            # par leur chemin (/Game/..., un factice de texture doit exister à ce chemin : il n'est jamais livré)
+            r = e.get("reglages_du_jeu") or {}
+            for p, valeur in r.get("scalaires", {}).items():
+                v_parametre_scalaire(mi, p, valeur)
+            for p, valeur in r.get("vecteurs", {}).items():
+                v_parametre_vecteur(mi, p, valeur)
+            for p, chemin in r.get("textures", {}).items():
+                if v_existe(chemin):
+                    v_parametre_texture(mi, p, v_charger(chemin))
+                else:
+                    self.alerte(f"{e['nom']} : texture du jeu {chemin} absente (liste_factices.py puis creer_factices.py)")
+            if r:
+                self.rapport["variantes_reglees_sur_le_jeu"] = self.rapport.get("variantes_reglees_sur_le_jeu", 0) + 1
         if sur_modele:
             self.rapport["variantes_sur_le_modele_du_jeu"] += 1
             if PARAM_RELIEF not in params:

@@ -52,7 +52,21 @@ TOLERANCE_M = {"lidar+ortho": 0.20, "lidar": 0.25, "ortho": 0.40, "video": 0.50,
 LAMBDA_AXE = 8.0          # lissage d'ordre 3 de l'axe : coupe sous 2 pi lambda^(1/6), soit environ 9 m de longueur d'onde.
                           # Essais du 12/11/2026 : 3e4 aplatissait les virages (refusé par les contrôles) ; 25 agrandissait leur
                           # rayon de 2,5 % en médiane ; 8 le laisse à moins de 1 % près, en retirant un tiers du bruit de cap.
-LAMBDA_BORD = 60.0        # lissage d'ordre 2 des demi-largeurs : raccord d'une quinzaine de mètres
+# Vu en jeu le 13/11/2026 : bords d'asphalte et lignes blanches saccadés, alors que la route réelle est lisse. Mesuré :
+# sur les lignes droites (PK 1050 à 1130 par exemple), l'axe relevé serpente de 15 cm environ avec une période de 25 à
+# 30 m : une suite de petits « virages » de sens alternés, de 100 m de rayon, qui n'existent pas. Ce qui distingue un
+# vrai virage de ce serpentement est le CHANGEMENT DE CAP : un vrai virage tourne la route d'au moins une douzaine de
+# degrés, le serpentement oscille de quelques degrés sans la tourner. Le lissage est donc modulé par le changement de
+# cap sur 40 m, lu sur un axe très lissé : léger (LAMBDA_AXE) dans les vrais virages, fort (LAMBDA_AXE_FORT, coupe sous
+# 35 m environ) ailleurs. La tolérance de déplacement de chaque point reste celle d'avant : c'est elle qui garantit
+# que la route ne bouge pas de plus de 20 à 25 cm.
+LAMBDA_AXE_FORT = 30000.0
+LAMBDA_PRE = 30000.0                         # pré-lissage qui sert seulement à lire le changement de cap
+FENETRE_CAP = 20                             # demi-fenêtre, en mètres, du changement de cap
+CAP_DROIT_DEG, CAP_VIRAGE_DEG = 5.0, 12.0    # changement de cap sur 40 m : en dessous lissage fort, au-dessus léger
+MARGE_VIRAGE = 8                             # mètres avant et après un virage où le lissage reste celui du virage
+CAP_VIRAGE_FRANC_DEG = 12.0                  # contrôles : un « virage » qui tourne moins que cela est une ondulation
+LAMBDA_BORD = 3000.0      # lissage d'ordre 2 des demi-largeurs : raccord d'une quarantaine de mètres (60 jusqu'au 12/11/2026)
 SEUIL_CASSURE_AXE_DEG = 5.0
 SEUIL_CASSURE_BORD_DEG = 9.0
 DEMI_RACCORD = 8          # points de part et d'autre d'une cassure où le poids est abaissé
@@ -66,10 +80,15 @@ ELARGIR_PROFIL = 3                # points repris de part et d'autre d'un profil
 
 
 def whittaker(y, poids, lam, ordre):
+    """lam : un nombre, ou un tableau de len(y) valeurs (lissage modulé le long de la route)."""
     n = len(y)
     d = sparse.eye(n, format="csc")
     for _ in range(ordre):
         d = d[1:] - d[:-1]
+    if np.ndim(lam):
+        lam = np.asarray(lam, float)
+        k = ordre // 2
+        return spsolve((sparse.diags(poids) + d.T @ sparse.diags(lam[k:k + n - ordre]) @ d).tocsc(), poids * y)
     return spsolve((sparse.diags(poids) + lam * (d.T @ d)).tocsc(), poids * y)
 
 
@@ -157,9 +176,18 @@ def main():
         else:
             groupes.append([i, i])
 
-    # 1. axe
-    ax = np.c_[lisser_borne(axe[:, 0], tol / np.sqrt(2), LAMBDA_AXE, 3, fixe, poids0),
-               lisser_borne(axe[:, 1], tol / np.sqrt(2), LAMBDA_AXE, 3, fixe, poids0)]
+    # 1. axe : lissage léger dans les vrais virages, fort ailleurs
+    un = np.ones(n)
+    pre = np.c_[whittaker(axe[:, 0], un, LAMBDA_PRE, 3), whittaker(axe[:, 1], un, LAMBDA_PRE, 3)]
+    _, cap_pre = courbure(pre, 15)
+    w = FENETRE_CAP
+    tourne = np.abs(np.degrees(cap_pre[np.minimum(np.arange(n) + w, n - 1)] - cap_pre[np.maximum(np.arange(n) - w, 0)]))
+    u = np.clip((tourne - CAP_DROIT_DEG) / (CAP_VIRAGE_DEG - CAP_DROIT_DEG), 0.0, 1.0)                    # 1 : vrai virage
+    u = np.maximum.reduce([np.roll(u, j) for j in range(-MARGE_VIRAGE, MARGE_VIRAGE + 1)])
+    u = savgol_filter(u, 21, 1)
+    lam_axe = np.exp(np.log(LAMBDA_AXE_FORT) + u * u * (3 - 2 * u) * (np.log(LAMBDA_AXE) - np.log(LAMBDA_AXE_FORT)))
+    ax = np.c_[lisser_borne(axe[:, 0], tol / np.sqrt(2), lam_axe, 3, fixe, poids0),
+               lisser_borne(axe[:, 1], tol / np.sqrt(2), lam_axe, 3, fixe, poids0)]
     t0, n0 = reperes(axe)
     t1, n1 = reperes(ax)
 
@@ -231,16 +259,21 @@ def main():
     # Enchaînement : tout virage net (moins de 80 m de rayon à l'échelle de 25 m) doit se retrouver de l'autre côté,
     # de même sens, à moins de 10 m. Les courbes très ouvertes, au seuil de détection, ne sont pas comptées : elles
     # apparaissent ou disparaissent pour un écart de courbure infime.
-    def nets(v):
-        return [c for c in v if c[3] < 80.0]
+    def tourne_de(c, capl):
+        return abs(float(np.degrees(capl[min(n - 1, c[1] + 6)] - capl[max(0, c[0] - 6)])))
+
+    def nets(v, capl):
+        # depuis le 13/11/2026 : un virage net tourne aussi la route d'au moins CAP_VIRAGE_FRANC_DEG ; en dessous,
+        # c'est une ondulation de l'axe relevé, que le lissage a justement pour but de retirer
+        return [c for c in v if c[3] < 80.0 and tourne_de(c, capl) >= CAP_VIRAGE_FRANC_DEG]
 
     def retrouve(c, autres):
         # même sens, et les deux intervalles se recouvrent à 10 m près : deux virages de même sens qui se rejoignent
         # en un seul, ou l'inverse, ne sont pas un changement d'enchaînement
         return any(s == c[2] and i <= c[1] + 10 and j >= c[0] - 10 for i, j, s, r in autres)
 
-    perdus = [round(float(pk[(c[0] + c[1]) // 2])) for c in nets(va) if not retrouve(c, vb)]
-    nouveaux = [round(float(pk[(c[0] + c[1]) // 2])) for c in nets(vb) if not retrouve(c, va)]
+    perdus = [round(float(pk[(c[0] + c[1]) // 2])) for c in nets(va, capl0) if not retrouve(c, vb)]
+    nouveaux = [round(float(pk[(c[0] + c[1]) // 2])) for c in nets(vb, capl1) if not retrouve(c, va)]
     if perdus or nouveaux:
         echecs.append(f"enchaînement des virages changé : virages nets perdus aux PK {perdus}, apparus aux PK {nouveaux}")
     for (i0, j0, s0, _) in vb:
@@ -256,7 +289,9 @@ def main():
                         "ecart_rayon_pct": round(float((r1 - r0) / r0 * 100), 1), "pres_d_une_cassure": artefact})
         if abs(dcap1 - dcap0) > ECART_CAP_MAX_DEG and not artefact:
             echecs.append(f"virage du PK {tableau[-1]['pk']} : cap changé de {dcap1 - dcap0:+.1f} deg")
-        if artefact:
+        franc = abs(dcap0) >= CAP_VIRAGE_FRANC_DEG
+        tableau[-1]["franc"] = bool(franc)
+        if artefact or not franc:
             hors_controle += 1
         elif abs(r1 - r0) / r0 > ECART_RAYON_MAX:
             echecs.append(f"virage du PK {tableau[-1]['pk']} : rayon {r0:.1f} -> {r1:.1f} m")
@@ -269,14 +304,14 @@ def main():
     if abs(long1 - long0) > ECART_LONGUEUR_MAX_M:
         echecs.append(f"longueur de l'ES changée de {long1 - long0:+.2f} m")
     largeur1 = np.hypot(*(g1 - d1).T)
-    ecarts = [abs(t["ecart_rayon_pct"]) for t in tableau if not t["pres_d_une_cassure"]]
+    ecarts = [abs(t["ecart_rayon_pct"]) for t in tableau if not t["pres_d_une_cassure"] and t["franc"]]
     bilan = {
         "source": source.name, "points": n, "tolerances_m": TOLERANCE_M, "lambda_axe": LAMBDA_AXE, "lambda_bord": LAMBDA_BORD,
         "cassures_artificielles": [{"pk_debut": round(float(pk[i])), "pk_fin": round(float(pk[j])), "source": src[i]} for i, j in groupes],
         "deplacement_par_source": par_source, "deplacement_max_m": {k: round(float(v.max()), 3) for k, v in dep.items()},
         "cap_avant_hors_manuel": {k: cap_stats(p) for k, p in (("axe", axe), ("gauche", g), ("droite", d))},
         "cap_apres_hors_manuel": {k: cap_stats(p) for k, p in (("axe", ax), ("gauche", g1), ("droite", d1))},
-        "virages": {"nombre_avant": len(va), "nombre_apres": len(vb), "nets_avant": len(nets(va)), "nets_apres": len(nets(vb)),
+        "virages": {"nombre_avant": len(va), "nombre_apres": len(vb), "nets_avant": len(nets(va, capl0)), "nets_apres": len(nets(vb, capl1)),
                     "controles_sur_le_rayon": len(ecarts), "pres_d_une_cassure": hors_controle,
                     "ecart_de_rayon_median_pct": round(float(np.median(ecarts)), 2) if ecarts else None,
                     "ecart_de_rayon_max_pct": round(float(max(ecarts)), 2) if ecarts else None, "detail": tableau},
@@ -304,7 +339,10 @@ def main():
         raise SystemExit("contrôles en échec : chaussee_precise.csv n'est pas modifié")
     if a.neuf or not BRUT.exists():
         shutil.copyfile(SORTIE, BRUT)
-    deci = {k: len(lignes[0][k].split(".")[1]) if "." in lignes[0][k] else 0 for k in champs}
+    # Décimales écrites : fixées ici. Jusqu'au 13/11/2026 elles étaient lues sur la première ligne du fichier, dont
+    # l'abscisse finissait par hasard à une décimale : tout l'axe était écrit au décimètre, d'où une ligne centrale en
+    # dents de scie de 5 cm (vu en jeu).
+    deci = {k: 3 if k[:2] in ("x_", "y_", "z_") else 2 if k == "largeur_m" else 1 for k in champs}
     brut_dev = np.where(np.abs(zd - zg) > 1e-3, (zd - zg) / np.maximum(col("largeur_m"), 0.1) * 100, np.nan)
     signe = np.sign(np.nanmedian(col("devers_pct") / brut_dev))
     for i, x in enumerate(lignes):

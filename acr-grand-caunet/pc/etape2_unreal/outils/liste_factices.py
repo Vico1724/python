@@ -65,6 +65,12 @@ MAILLAGES_POSES = {
     "/Game/Foliage/GroundCover/DryGrass04/SM_Drygrass04": None, "/Game/Foliage/GroundCover/DryGrass05/SM_Drygrass05": None,
     "/Game/Foliage/GroundCover/DryGrass06/SM_Drygrass06": None, "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass05": None,
     "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass03": None,
+    # herbes vertes et rases, feuilles mortes (13/11/2026) : bornes lues dans le jeu
+    "/Game/Foliage/GroundCover/GreenGrass03/SM_Greengrass03": {"min": [-75, -75, -2], "max": [75, 75, 18]},
+    "/Game/Foliage/GroundCover/GreenGrassLong02/SM_GreengrassLong02": {"min": [-47, -47, -2], "max": [47, 47, 29]},
+    "/Game/Foliage/GroundCover/Ribwort/SM_Ribwort_01": {"min": [-49, -49, -2], "max": [49, 49, 16]},
+    "/Game/Foliage/GroundCover/WildGrass/SM_WildGrass01": {"min": [-50, -50, -2], "max": [50, 50, 29]},
+    "/Game/Foliage/GroundCover/DeadLeaves/SM_Dead_Leaves_01": {"min": [-21, -21, -1], "max": [21, 21, 3]},
     # buissons : attribution.py choisit parmi les quatre d'après la taille de chaque arbuste
     "/Game/Foliage/GroundCover/Willow/SM_Willow_01": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_03a": None,
     "/Game/Foliage/GroundCover/Willow/SM_Willow_03b": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_04a": None,
@@ -128,6 +134,21 @@ def materiau(objet, maitres, essai):
     return x
 
 
+def matieres_du_jeu():
+    """data/reference/matieres_du_jeu.json : (parents du jeu à ajouter ou à réattribuer, paramètres connus des maîtres sans
+    relevé, textures du jeu désignées par nos variantes)."""
+    f = RACINE / "data" / "reference" / "matieres_du_jeu.json"
+    if not f.exists():
+        return [], {}, []
+    m = json.loads(f.read_text(encoding="utf-8"))
+    parents = [{"objet": v["parent"], "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+                "pour": [nom], "pourquoi": v.get("pourquoi", "")} for nom, v in m.get("materiaux", {}).items() if v.get("parent")]
+    textures = set()
+    for bloc in list(m.get("sol", {}).get("couches", {}).values()) + list(m.get("materiaux", {}).values()):
+        textures |= {t for t in bloc.get("textures", {}).values() if t.startswith("/Game/") and "/GrandCaunet/" not in t}
+    return parents, m.get("parametres_des_maitres", {}), sorted(textures)
+
+
 def main():
     cat = {l.strip() for l in gzip.open(CATALOGUE, "rt", encoding="utf-8")}
     maitres = (releve("materiaux_maitres.json") or {}).get("maitres")
@@ -156,14 +177,22 @@ def main():
                               **({"bornes_cm": t["bornes_cm"]} if t.get("bornes_cm") else {})})
                 deja.add(t["maillage_jeu"])
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
-    # parents sans relevé : un matériau factice vide suffit, puisque nos variantes n'y règlent rien
+    # matières choisies le 13/11/2026 (data/reference/matieres_du_jeu.json) : un matériau réattribué quitte son ancien parent
+    en_plus, params_maitres, textures_jeu = matieres_du_jeu()
+    repris = {n for p in en_plus for n in p["pour"]}
+    parents = [dict(p, pour=[n for n in p["pour"] if n not in repris]) for p in PARENTS_DU_JEU] + en_plus
+    # parents sans relevé : matériau factice portant les paramètres que nos variantes y règlent (ou vide)
     connus = {x["objet"] for x in liste if not x.get("a_completer")}
-    for parent in sorted({p["parent"] for p in PARENTS_DU_JEU} - connus):
+    for parent in sorted({p["parent"] for p in parents} - connus):
         liste = [x for x in liste if x["objet"] != parent]
-        liste.append({"objet": parent, "type": "Material", "parametres_texture": [], "parametres_scalaires": [],
-                      "essai": "parent vide d'une variante du jeu dont nos variantes héritent sans rien régler"})
+        pm = params_maitres.get(parent, {})
+        liste.append({"objet": parent, "type": "Material", "parametres_texture": sorted(pm.get("textures", [])),
+                      "parametres_scalaires": sorted(pm.get("scalaires", [])), "parametres_vecteur": sorted(pm.get("vecteurs", [])),
+                      "essai": "parent d'une variante du jeu dont nos variantes héritent ; paramètres : matieres_du_jeu.json"})
     liste += [{"objet": p["objet"], "type": "MaterialInstanceConstant", "parent": p["parent"], "role": "parent_du_jeu",
-               "pour": p["pour"], "static_switch": {}, "essai": "E3b", "pourquoi": p["pourquoi"]} for p in PARENTS_DU_JEU]
+               "pour": p["pour"], "static_switch": {}, "essai": "E3b", "pourquoi": p["pourquoi"]} for p in parents]
+    liste += [{"objet": t, "type": "Texture2D", "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"}
+              for t in textures_jeu]
     for o in BLUEPRINTS:
         a = (acteurs or {}).get(o)
         x = {"objet": o, "type": "Blueprint", "parent": a["classe_native"] if a else None, "essai": "E2"}

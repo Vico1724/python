@@ -1,0 +1,242 @@
+{
+ "note": "Réglages posés sur les matériaux du jeu dont nos variantes héritent : textures du jeu désignées par leur chemin (jamais copiées ni livrées), teintes et nombres. Lu par scripts/16_paquet_unreal.py (qui les met dans le manifeste, rubrique reglages_du_jeu) et par pc/etape2_unreal/outils/liste_factices.py (qui déclare un factice pour chaque texture du jeu nommée ici). Décidé le 13/11/2026 après l'essai en jeu (sol anthracite, herbe absente, asphalte sombre et bleuté, parapets sombres), d'après la couleur moyenne de chaque texture mesurée par pc/etape2_unreal/outils/couleur_texture.py. AlbedoControls = [clarté, saturation, contraste] : lu dans les réglages du jeu (paillis très sombre x 5, neige x 0,45), non vérifié autrement.",
+ "sol": {
+  "parent": "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild",
+  "couches": {
+   "1": {
+    "role": "fond : sol pierreux clair (remplace le paillis de Bollène, presque noir)",
+    "textures": {
+     "Material1Color": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_BC",
+     "Material1Normal": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_N",
+     "Material1Packed": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_L"
+    },
+    "scalaires": {
+     "Material1Size": 3.0
+    },
+    "vecteurs": {
+     "Material1AlbedoControls": [
+      1.45,
+      0.62,
+      1.0,
+      0.0
+     ],
+     "Material1Tint": [
+      1.0,
+      1.0,
+      0.98,
+      1.0
+     ]
+    }
+   },
+   "2": {
+    "role": "aiguilles de pin et litière rousse",
+    "textures": {
+     "Material2Color": "/Game/Environments/GreeceShared/TerrainTextures/T_PineNeedles_BC",
+     "Material2Normal": "/Game/Environments/GreeceShared/TerrainTextures/T_PineNeedles_N",
+     "Material2Packed": "/Game/Environments/GreeceShared/TerrainTextures/T_PineNeedles_L"
+    },
+    "scalaires": {
+     "Material2Size": 2.0
+    },
+    "vecteurs": {
+     "Material2AlbedoControls": [
+      1.7,
+      0.85,
+      1.0,
+      0.0
+     ],
+     "Material2Tint": [
+      1.0,
+      0.97,
+      0.92,
+      1.0
+     ]
+    }
+   },
+   "3": {
+    "role": "herbe rase verte des accotements",
+    "textures": {
+     "Material3Color": "/Game/Environments/AlsaceShared/TerrainTextures/T_AlsaceGreenGrass1_C",
+     "Material3Normal": "/Game/Environments/AlsaceShared/TerrainTextures/T_AlsaceGreenGrass1_N",
+     "Material3Packed": "/Game/Environments/AlsaceShared/TerrainTextures/T_AlsaceGreenGrass1_L"
+    },
+    "scalaires": {
+     "Material3Size": 3.0
+    },
+    "vecteurs": {
+     "Material3AlbedoControls": [
+      2.3,
+      0.9,
+      1.0,
+      0.0
+     ],
+     "Material3Tint": [
+      1.0,
+      1.04,
+      0.9,
+      1.0
+     ]
+    }
+   },
+   "4": {
+    "role": "herbe sèche de garrigue",
+    "textures": {
+     "Material4Color": "/Game/Environments/GreeceShared/TerrainTextures/T_GrassDried_01_BC",
+     "Material4Normal": "/Game/Environments/GreeceShared/TerrainTextures/T_GrassDried_01_N",
+     "Material4Packed": "/Game/Environments/GreeceShared/TerrainTextures/T_GrassDried_01_L"
+    },
+    "scalaires": {
+     "Material4Size": 4.0
+    },
+    "vecteurs": {
+     "Material4AlbedoControls": [
+      1.35,
+      0.8,
+      1.0,
+      0.0
+     ],
+     "Material4Tint": [
+      1.0,
+      1.0,
+      0.95,
+      1.0
+     ]
+    }
+   },
+   "5": {
+    "role": "terre ocre (texture de Bollène inchangée, éclaircie)",
+    "textures": {},
+    "scalaires": {},
+    "vecteurs": {
+     "Material5AlbedoControls": [
+      1.3,
+      0.85,
+      1.0,
+      0.0
+     ]
+    }
+   },
+   "6": {
+    "role": "roche et pierraille calcaire sur les pentes raides",
+    "textures": {
+     "Material6Color": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_B",
+     "Material6Normal": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_N",
+     "Material6Packed": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_L"
+    },
+    "scalaires": {
+     "Material6Size": 4.0
+    },
+    "vecteurs": {
+     "Material6AlbedoControls": [
+      2.0,
+      0.35,
+      1.0,
+      0.0
+     ],
+     "Material6Tint": [
+      1.0,
+      0.99,
+      0.95,
+      1.0
+     ]
+    }
+   }
+  }
+ },
+ "materiaux": {
+  "MI_GC_Enrobe": {
+   "pourquoi": "asphalte vu trop sombre et bleuté, grandes fissures noires trop marquées ; la route réelle est gris clair un peu beige",
+   "vecteurs": {
+    "Base_Tint": [
+     3.35,
+     3.2,
+     2.95,
+     1.0
+    ]
+   },
+   "scalaires": {
+    "ColorContrastMacro": 0.4
+   }
+  },
+  "MI_GC_Pierre": {
+   "parent": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA",
+   "pourquoi": "parapets vus trop sombres : la variante A de Bollène a une pierre claire (T_StoneWallVmghfd3o) teintée beige, au lieu de la pierre brute sombre de la variante A2",
+   "scalaires": {
+    "Mat1_UVTiling": 2.9
+   },
+   "vecteurs": {
+    "Mat1_AlbedoControls": [
+     1.55,
+     0.9,
+     1.05,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Roche": {
+   "parent": "/Game/Props/MonteCarloProps/MonBolRockfaces/MI_BolleneRockfacesParent",
+   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc",
+   "vecteurs": {
+    "Mat1_AlbedoControls": [
+     1.9,
+     0.3,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.9,
+     0.3,
+     1.0,
+     0.0
+    ],
+    "Mat1_TintMult": [
+     1.0,
+     0.99,
+     0.95,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.99,
+     0.95,
+     1.0
+    ]
+   }
+  }
+ },
+ "parametres_des_maitres": {
+  "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2": {
+   "textures": [
+    "Mat1_BaseColor(B)",
+    "Mat1_Packed(L)",
+    "Mat1_Normal(N)",
+    "Mat2_BaseColor(B)",
+    "Mat2_Packed(L)",
+    "Mat2_Normal(N)",
+    "Global_Normal(N)",
+    "MasksA (T2d)",
+    "MasksB (T2d)",
+    "Normal (T2d)"
+   ],
+   "scalaires": [
+    "Mat1_UVTiling",
+    "Mat2_UVTiling",
+    "Mat1_NormalStrength",
+    "Mat2_NormalStrength",
+    "Tiling VPW",
+    "BlendContrast",
+    "TileSize(meters) (S)"
+   ],
+   "vecteurs": [
+    "Mat1_TintMult",
+    "Mat2_TintMult",
+    "Mat1_AlbedoControls",
+    "Mat2_AlbedoControls",
+    "Mat1_ColorVariationTintMult",
+    "Mat2_ColorVariationTintMult",
+    "ColorMult VPW"
+   ],
+   "pourquoi": "ce maître n'est pas dans releves/materiaux_maitres.json ; noms lus dans les variantes du jeu (murs et parois de Bollène)"
+  }
+ }
+}

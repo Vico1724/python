@@ -404,9 +404,13 @@ def aspect_chaussee(ch, ref, rg, ruban):
             continue
         S = np.unique(np.concatenate([[a], np.arange(np.floor(a) + 1, b), [b]]))
         _, _, _, hG, hD = rg(S)
+        if e["genre"] != "piece" and not geo.get("fissures_rendues", True):     # refusées en jeu le 13/11/2026
+            continue
         if e["genre"] == "raccord":
             bande(S, (hD - hG) / 2, hG + hD, geo["hauteur_fissure_m"], "fissure")
         elif e["genre"] == "piece":
+            if not geo.get("pieces_rendues", True):          # aplats refusés en jeu le 13/11/2026 : voir la note du fichier
+                continue
             larg = e.get("largeur_m") or geo["part_de_voie_d_une_piece"] * (hG if e["voie"] == "gauche" else hD)
             bande(S, centre(S, e["voie"]) + e.get("decalage_m", 0.0), larg, geo["hauteur_piece_m"], "reprise")
         else:
@@ -842,6 +846,9 @@ def main():
             pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p, mnt=mnt)
             corps = "beton" if p["type"] == "beton" else "pierre"
             coll[corps].append(cb)
+            if p.get("rendu") == "roche":            # paroi rocheuse : la collision reste, la forme vient de 16_paquet_unreal.py
+                hors.append(f"{s0:.0f}-{s1:.0f} {cote} paroi rocheuse (collision seule)")
+                continue
             nom = f"PK{s0:.0f}"
             meshes_ouv.append(fusion(pcs[corps], f"parapet_hors_tablier_{nom}_{cote}", corps))
             if "blanc" in pcs:

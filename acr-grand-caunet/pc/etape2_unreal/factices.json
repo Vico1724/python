@@ -2847,9 +2847,37 @@
   {
    "objet": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
    "type": "Material",
-   "parametres_texture": [],
-   "parametres_scalaires": [],
-   "essai": "parent vide d'une variante du jeu dont nos variantes héritent sans rien régler"
+   "parametres_texture": [
+    "Global_Normal(N)",
+    "MasksA (T2d)",
+    "MasksB (T2d)",
+    "Mat1_BaseColor(B)",
+    "Mat1_Normal(N)",
+    "Mat1_Packed(L)",
+    "Mat2_BaseColor(B)",
+    "Mat2_Normal(N)",
+    "Mat2_Packed(L)",
+    "Normal (T2d)"
+   ],
+   "parametres_scalaires": [
+    "BlendContrast",
+    "Mat1_NormalStrength",
+    "Mat1_UVTiling",
+    "Mat2_NormalStrength",
+    "Mat2_UVTiling",
+    "TileSize(meters) (S)",
+    "Tiling VPW"
+   ],
+   "parametres_vecteur": [
+    "ColorMult VPW",
+    "Mat1_AlbedoControls",
+    "Mat1_ColorVariationTintMult",
+    "Mat1_TintMult",
+    "Mat2_AlbedoControls",
+    "Mat2_ColorVariationTintMult",
+    "Mat2_TintMult"
+   ],
+   "essai": "parent d'une variante du jeu dont nos variantes héritent ; paramètres : matieres_du_jeu.json"
   },
   {
    "objet": "/Game/Environments/MonteCarloS1Bollene/AsphaltMaterial/MI_BolleneAsphalt1",
@@ -2869,7 +2897,6 @@
    "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
    "role": "parent_du_jeu",
    "pour": [
-    "MI_GC_Pierre",
     "MI_GC_Pierre_sombre"
    ],
    "static_switch": {},
@@ -2899,6 +2926,105 @@
    "static_switch": {},
    "essai": "E3b",
    "pourquoi": "terrain de Bollène : paillis, aiguilles de pin, herbe haute, herbe sèche, terre et cailloux déjà actifs. Parent des variantes MI_Sol_* du paquet (scripts/16_paquet_unreal.py --sol jeu), qui le désignent elles-mêmes (\"parent_du_jeu\") et n'y règlent que leurs deux masques, la carte de couleur et son cadrage"
+  },
+  {
+   "objet": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+   "role": "parent_du_jeu",
+   "pour": [
+    "MI_GC_Pierre"
+   ],
+   "static_switch": {},
+   "essai": "E3b",
+   "pourquoi": "parapets vus trop sombres : la variante A de Bollène a une pierre claire (T_StoneWallVmghfd3o) teintée beige, au lieu de la pierre brute sombre de la variante A2"
+  },
+  {
+   "objet": "/Game/Props/MonteCarloProps/MonBolRockfaces/MI_BolleneRockfacesParent",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/AlsaceShared/TileableMaterial/M_TwoTileableMaterialsBlend2",
+   "role": "parent_du_jeu",
+   "pour": [
+    "MI_GC_Roche"
+   ],
+   "static_switch": {},
+   "essai": "E3b",
+   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/TerrainTextures/T_AlsaceGreenGrass1_C",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/TerrainTextures/T_AlsaceGreenGrass1_L",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/TerrainTextures/T_AlsaceGreenGrass1_N",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_BC",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_L",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_N",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/TerrainTextures/T_GrassDried_01_BC",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/TerrainTextures/T_GrassDried_01_L",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/TerrainTextures/T_GrassDried_01_N",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/TerrainTextures/T_PineNeedles_BC",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/TerrainTextures/T_PineNeedles_L",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/GreeceShared/TerrainTextures/T_PineNeedles_N",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_B",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_L",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_N",
+   "type": "Texture2D",
+   "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
   },
   {
    "objet": "/Game/Data/Environments/Common/BC_TrackAvatar",

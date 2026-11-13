@@ -3,7 +3,7 @@
  "geometrie": {
   "hauteur_piece_m": 0.008,
   "hauteur_fissure_m": 0.011,
-  "largeur_fissure_m": 0.055,
+  "largeur_fissure_m": 0.045,
   "ondulation_m": 0.22,
   "part_de_voie_d_une_piece": 0.78,
   "marge_au_bord_m": 0.2,
@@ -13,10 +13,13 @@
    0.205
   ],
   "couleur_fissure_rgb": [
-   0.06,
-   0.06,
-   0.065
-  ]
+   0.012,
+   0.012,
+   0.013
+  ],
+  "pieces_rendues": false,
+  "note_du_13_11": "Vu en jeu le 13/11/2026 : les pièces d'enrobé apparaissaient en grands rectangles gris clair et unis, les fissures en faisceaux de lignes grises courbes et le joint d'axe en ligne continue qui serpente : rien de tel dans la réalité. Cause : des bandes de couleur unie posées sur l'enrobé ne peuvent pas passer pour de l'enrobé ou du bitume (la couleur donnée était de plus linéaire, donc bien plus claire à l'écran que prévu). Plus rien de ce fichier n'est rendu ; il reste comme relevé. Piste pour plus tard : le matériau d'asphalte du jeu sait dessiner lui-même des pièces et des fissures (Patches_Enabled, BaseVariation_Enabled) ; deux variantes du jeu les ont activées (AlsaceS2Munster/AsphaltMaterial/MI_MunsterAsphalt1patches, MonteCarloS1Bollene/AsphaltMaterial/MI_BolleneAsphalt1Track1412).",
+  "fissures_rendues": false
  },
  "non_rendu": [
   "PK 4540 : large reprise plus claire que la chaussée (une seule teinte de pièce, sombre).",

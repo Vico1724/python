@@ -179,7 +179,13 @@ def objets(route=None):
         n = max(1, int(round(L / r.get("pas_m", 2.4)))) if L > 0 else int(r.get("nombre", 1))
         for k in range(n):
             pk = r["pk_debut_m"] + ((k + 0.5) * L / n if L > 0 else 0.9 * k)
-            h = h0 + (h1 - h0) * alea(pk, 1)
+            # vu en jeu le 13/11/2026 : « rochers ronds identiques alignés ». L'espacement, la taille et l'enfoncement
+            # varient donc d'un bloc à l'autre, et un bloc sur quatre est petit, calé contre son voisin.
+            if L > 0:
+                pk += (alea(pk, 7) - 0.5) * 0.8 * L / n
+            h = h0 + (h1 - h0) * alea(pk, 1) ** 1.6
+            if alea(pk, 8) < 0.25:
+                h *= 0.45
             # un bloc du jeu n'est pas grossi ni réduit de plus du double : choix parmi ceux dont la taille convient
             ok = [k for k in blocs if 0.55 <= h / types[k]["hauteur_native_m"] <= 1.9] or \
                 [min(blocs, key=lambda k: abs(math.log(h / types[k]["hauteur_native_m"])))]
@@ -189,6 +195,7 @@ def objets(route=None):
             demi = 0.5 * t["largeur_native_m"] * ech
             dec = max(r["decalage_m"] + (alea(pk, 3) - 0.3) * r.get("profondeur_m", 0.8), demi + 0.15)
             o = ajoute(typ, pk, r["cote"], dec, r.get("source", ""), echelle=ech)
+            o["enfoncement_m"] = (0.12 + 0.28 * alea(pk, 9)) * h          # un rocher sort du sol, il n'est pas posé dessus
             o["collision"] = ({"forme": "cylinder", "paroi": "PM_WallRock", "diametre_m": round(1.5 * demi, 2),
                                "hauteur_m": round(h + 0.3, 2), "enfoui_m": 0.3} if h >= 0.35 else None)
     # Piquets des rubalises : un piquet du jeu à chaque point d'appui (sauf rubalise tendue entre des arbres).

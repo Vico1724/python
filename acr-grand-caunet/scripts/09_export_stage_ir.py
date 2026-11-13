@@ -323,7 +323,7 @@ TRONCS = {"paroi": "PM_WallWoodTreeTrunks", "gabarit": "gc_tronc", "distance_max
 def troncs_proches():
     """[(x, y, z du sol, diamètre du tronc)] en Lambert-93 : arbres de data/processed/arbres.csv à moins de
     distance_max_m du bord de chaussée, MOINS ceux que le paquet Unreal retire parce qu'ils sont trop près
-    (même règle que scripts/16_paquet_unreal.py : tronc à moins de max(2,5 m ; un quart du houppier) du bord)."""
+    (même règle que scripts/16_paquet_unreal.py : scripts/regles_arbres.py)."""
     import shapely
     f = OUT / "arbres.csv"
     if not f.exists():
@@ -342,8 +342,14 @@ def troncs_proches():
     z = np.array([float(r["z_sol_m"]) for r in a]); ht = np.array([float(r["hauteur_m"]) for r in a])
     diam = np.array([float(r.get("diametre_houppier_m") or 0) for r in a])
     dist = shapely.distance(ruban, shapely.points(x, y))
-    garde = (dist >= np.maximum(2.5, 0.25 * diam)) & (dist <= TRONCS["distance_max_m"])
-    tronc = np.clip(0.035 * ht, 0.20, 0.60)                     # diamètre du tronc d'après la hauteur de l'arbre
+    # même règle que le décor (scripts/regles_arbres.py) : un arbre trop grand pour sa place est réduit, pas retiré ;
+    # il n'est retiré que trop près du bord ou trop petit une fois réduit
+    import regles_arbres
+    res = [regles_arbres.ajuste(float(ht[i]), float(dist[i]), a[i]["famille_jeu"]) if dist[i] <= TRONCS["distance_max_m"] else (False, 0.0, "", None)
+           for i in range(len(a))]
+    garde = np.array([r[0] for r in res])
+    ht = np.array([r[1] if r[0] else ht[i] for i, r in enumerate(res)])
+    tronc = np.clip(0.035 * ht, 0.12, 0.60)                     # diamètre du tronc d'après la hauteur de l'arbre
     return [(float(x[i]), float(y[i]), float(z[i]), float(tronc[i])) for i in np.where(garde)[0]]
 
 

@@ -71,36 +71,38 @@
    }
   },
   "poteau_beton": {
-   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
-   "description": "poteau de 9 m à traverse (béton, métal ou matière non lue sur la vidéo)",
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9",
+   "description": "poteau de 6,9 m à traverse de 1,9 m, mince (le poteau de 9 m à large traverse paraissait démesuré en jeu, vu le 13/11/2026)",
    "lacet_relatif_deg": 0,
    "bornes_cm": {
     "min": [
-     -20,
-     -110,
-     -40
+     -11,
+     -94,
+     -78
     ],
     "max": [
-     30,
-     110,
-     900
+     15,
+     94,
+     688
     ]
    },
    "collision": {
     "forme": "cylinder",
     "paroi": "PM_WallConcrete",
-    "diametre_m": 0.3,
+    "diametre_m": 0.25,
     "hauteur_m": 3.5,
     "enfoui_m": 0.4
    },
    "cable": {
-    "hauteur_m": 8.6,
+    "hauteur_m": 6.6,
     "ecarts_m": [
-     -1.0,
+     -0.85,
      0.0,
-     1.0
+     0.85
     ]
-   }
+   },
+   "maillage_jeu_avant_le_13_11": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
+   "enfoncement_m": 0.0
   },
   "poteau_bois": {
    "maillage_jeu": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",

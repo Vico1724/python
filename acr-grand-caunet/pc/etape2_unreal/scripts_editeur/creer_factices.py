@@ -72,9 +72,39 @@ def maillage(objet, bornes=None):
         EAL.save_asset(objet)
 
 
+def completer_materiau(x):
+    """Matériau factice déjà créé : lui ajoute les paramètres qui lui manquent (liste allongée depuis sa création)."""
+    m = EAL.load_asset(x["objet"])
+    ajouts = 0
+    for cle, lire, classe in (("parametres_texture", MEL.get_texture_parameter_names, unreal.MaterialExpressionTextureSampleParameter2D),
+                              ("parametres_scalaires", MEL.get_scalar_parameter_names, unreal.MaterialExpressionScalarParameter),
+                              ("parametres_vecteur", MEL.get_vector_parameter_names, unreal.MaterialExpressionVectorParameter)):
+        presents = {str(n) for n in lire(m)}
+        for i, p in enumerate(x.get(cle, [])):
+            if p in presents:
+                continue
+            e = MEL.create_material_expression(m, classe, -2400 - 400 * ajouts // 40, 120 * (ajouts % 40))
+            e.set_editor_property("parameter_name", p)
+            if classe is unreal.MaterialExpressionTextureSampleParameter2D:
+                e.set_editor_property("texture", unreal.load_asset(TEXTURE_PAR_DEFAUT))
+            ajouts += 1
+    if ajouts:
+        MEL.recompile_material(m)
+        EAL.save_asset(x["objet"])
+        unreal.log(f"{x['objet']} : {ajouts} paramètres ajoutés")
+
+
+def texture(objet):
+    """Texture factice à un chemin du jeu : copie de la texture par défaut du moteur. Nos variantes la désignent ; en jeu,
+    c'est la vraie texture du jeu, au même chemin, qui est chargée."""
+    if not EAL.does_asset_exist(objet):
+        EAL.duplicate_asset(TEXTURE_PAR_DEFAUT, objet)
+
+
 def materiau(x):
     objet = x["objet"]
     if EAL.does_asset_exist(objet):
+        completer_materiau(x)
         return
     d, n = dossier_et_nom(objet)
     m = outils.create_asset(n, d, unreal.Material, unreal.MaterialFactoryNew())
@@ -162,6 +192,8 @@ def main():
             variante(x)
         elif x["type"] == "Blueprint":
             blueprint(x["objet"], x.get("parent"))
+        elif x["type"] == "Texture2D":
+            texture(x["objet"])
     EAL.save_directory("/Game/")
     unreal.log(f"factices : {len(liste)} lus")
 

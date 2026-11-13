@@ -39,9 +39,11 @@ from shapely.ops import unary_union
 RACINE = Path(__file__).resolve().parents[1]
 RAW, OUT = RACINE / "data" / "raw", RACINE / "modele" / "sols_jeu"
 COUCHES = ["aiguilles_de_pin", "herbe_haute", "herbe_seche", "terre", "cailloux"]      # matières 2 à 6 du jeu
-COULEURS_APERCU = {"paillis": (92, 70, 48), "aiguilles_de_pin": (150, 105, 60), "herbe_haute": (70, 140, 50),
+COULEURS_APERCU = {"paillis": (176, 160, 132), "aiguilles_de_pin": (150, 105, 60), "herbe_haute": (70, 140, 50),
                    "herbe_seche": (190, 175, 95), "terre": (120, 90, 70), "cailloux": (205, 200, 190)}
-ACCOTEMENT_M = 1.5
+ACCOTEMENT_M = 1.5                # (ancien réglage : largeur de l'accotement de cailloux, gardé pour le bilan)
+ACCOTEMENT_LISERE_M = 0.55        # largeur du liseré de pierraille au ras de l'enrobé
+ACCOTEMENT_HERBE_M = (2.2, 3.6)   # la bande d'herbe verte est pleine jusqu'à 2,2 m du bord et s'efface à 3,6 m
 PENTE_ROCHE = (30.0, 48.0)       # degrés : en dessous, pas de roche ; au-dessus, roche à 85 %
 NDVI_NU, NDVI_VERT = 0.03, 0.15
 NDVI_VIGOUREUX = (0.30, 0.42)
@@ -107,19 +109,23 @@ def main():
     b1, b2 = bruit(forme, 12, rng), bruit(forme, 50, rng)                    # 6 m et 25 m
     melange = 0.6 * b1 + 0.4 * b2
 
+    # Depuis le 13/11/2026 (data/reference/matieres_du_jeu.json) les six matières ne sont plus celles de Bollène :
+    # le fond (« paillis ») est un sol pierreux clair, « herbe_haute » une herbe rase verte, « cailloux » de la roche
+    # calcaire. Vu en jeu : sol anthracite et nu, herbe absente, alors que la réalité montre de la pierraille claire,
+    # de la litière rousse et de l'herbe verte. Le calcaire nu passe donc surtout au fond pierreux, la roche est
+    # gardée pour les affleurements et les pentes raides, et l'herbe verte est plus présente.
     p = {}
     p["aiguilles_de_pin"] = arbres * (0.50 + 0.40 * melange) + garrigue * 0.20
-    p["herbe_haute"] = ouvert * vert * vigoureux * 0.8
-    p["herbe_seche"] = ouvert * vert * (1.0 - 0.8 * vigoureux) * (0.65 + 0.35 * b1) + garrigue * (0.30 + 0.15 * b2)
+    p["herbe_haute"] = ouvert * vert * (0.25 + 0.60 * vigoureux)
+    p["herbe_seche"] = ouvert * vert * (0.75 - 0.60 * vigoureux) * (0.65 + 0.35 * b1) + garrigue * (0.30 + 0.15 * b2)
     p["terre"] = ouvert * (1.0 - vert) * (1.0 - clair)
-    p["cailloux"] = ouvert * (1.0 - vert) * clair + garrigue * (0.15 + 0.25 * (1.0 - b1))
-    del arbres, garrigue, ouvert, vert, vigoureux, clair, b1, b2, melange
+    p["cailloux"] = 0.35 * ouvert * (1.0 - vert) * clair + garrigue * 0.10 * (1.0 - b1)
+    del arbres, garrigue, ouvert, vert, vigoureux, clair, b2, melange
 
     for k in COUCHES:
         p[k] *= (1.0 - 0.85 * raide)
     p["cailloux"] += 0.85 * raide
     part_raide = float(raide.mean())
-    del raide
 
     # chaussée et accotement
     with open(RACINE / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as f:
@@ -130,16 +136,21 @@ def main():
     ruban = unary_union([q for q in quads if q.is_valid and not q.is_empty])
     sur_route = rasterize([(ruban, 1)], out_shape=forme, transform=tr, fill=0, all_touched=True, dtype="uint8").astype(bool)
     dist = ndi.distance_transform_edt(~sur_route) * tr.a                     # mètres jusqu'à la chaussée
-    accot = np.where(sur_route, 1.0, 1.0 - marche(dist, 0.3, ACCOTEMENT_M)).astype(np.float32)
-    del dist
+    # Accotement (vidéo de reconnaissances) : un liseré de pierraille de 30 à 50 cm au ras de l'enrobé, puis une
+    # bande d'herbe rase verte jusqu'à 2 ou 3 m, irrégulière, qui laisse la place à la roche sur les talus raides.
+    lisere = np.where(sur_route, 1.0, 1.0 - marche(dist, 0.25, ACCOTEMENT_LISERE_M)).astype(np.float32)
+    herbe = (marche(dist, 0.25, ACCOTEMENT_LISERE_M) * (1.0 - marche(dist, ACCOTEMENT_HERBE_M[0], ACCOTEMENT_HERBE_M[1]))
+             * (0.55 + 0.45 * b1) * (1.0 - raide)).astype(np.float32)
+    herbe[sur_route] = 0.0
+    accot = np.maximum(lisere, herbe)
+    del dist, b1, raide
     for k in COUCHES:
-        p[k] *= (1.0 - accot)
-    p["cailloux"] += accot * 0.85
-    p["terre"] += accot * 0.15
+        p[k] *= (1.0 - accot)                   # sous la chaussée et dans le liseré : le fond pierreux seul
+    p["herbe_haute"] += herbe * 0.85
 
     # hors des photos : le mélange de sous-bois, faute de mieux (peu de terrain s'y trouve)
     for k in COUCHES:
-        p[k] = np.where(valide, p[k], accot * (0.85 if k == "cailloux" else 0.15 if k == "terre" else 0.0)
+        p[k] = np.where(valide, p[k], (herbe * 0.85 if k == "herbe_haute" else 0.0)
                         + (1.0 - accot) * (0.45 if k == "aiguilles_de_pin" else 0.0)).astype(np.float32)
     total = sum(p.values())
     trop = np.maximum(total, 1.0)

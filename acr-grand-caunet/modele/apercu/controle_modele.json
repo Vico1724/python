@@ -2,10 +2,10 @@
   "repere": {
     "origine": {
       "description": "axe de la chaussée au PK 0 (départ de l'ES)",
-      "lambert93_x_m": 917008.5,
-      "lambert93_y_m": 6241030.6,
-      "lon": 5.67032136,
-      "lat": 43.2354466,
+      "lambert93_x_m": 917008.482,
+      "lambert93_y_m": 6241030.601,
+      "lon": 5.67032114,
+      "lat": 43.23544662,
       "altitude_m": 398.55,
       "systeme_altimetrique": "NGF-IGN69 (altitudes du MNT LiDAR HD)"
     },
@@ -18,8 +18,8 @@
     },
     "passage_lambert93_vers_gltf": "X = x_L93 - x0 ; Y = z - z0 ; Z = -(y_L93 - y0)",
     "passage_gltf_vers_lambert93": "x_L93 = X + x0 ; y_L93 = y0 - Z ; z = Y + z0",
-    "x0": 917008.5,
-    "y0": 6241030.6,
+    "x0": 917008.482,
+    "y0": 6241030.601,
     "z0": 398.55,
     "nord": "nord Lambert-93 (convergence des méridiens d'environ -0,9° ici, non corrigée)"
   },
@@ -40,14 +40,14 @@
     ],
     "texture_px_par_dalle": 2048,
     "terrain": {
-      "sommets": 373127,
-      "triangles": 728895,
+      "sommets": 373077,
+      "triangles": 728787,
       "dalles": 26,
       "sommets_de_bord": 14752,
       "recalage_bords_mnt_m": {
-        "median_abs": 0.005,
-        "p95_abs": 0.066,
-        "max_abs": 2.58
+        "median_abs": 0.007,
+        "p95_abs": 0.07,
+        "max_abs": 2.63
       }
     },
     "relecture": {
@@ -58,9 +58,9 @@
         "triangles": 30192,
         "nan": false,
         "bornes_min": [
-          -3154.699951171875,
+          -3154.60009765625,
           -149.0,
-          -2629.10009765625
+          -2629.199951171875
         ],
         "bornes_max": [
           127.9000015258789,
@@ -72,8 +72,8 @@
       "terrain": {
         "taille_mo": 39.5,
         "maillages": 26,
-        "sommets": 376131,
-        "triangles": 728895,
+        "sommets": 376079,
+        "triangles": 728787,
         "nan": false,
         "bornes_min": [
           -3280.5,
@@ -88,8 +88,8 @@
       },
       "ecart_bords_route_terrain_hors_ponts": {
         "bords_testes": 14752,
-        "sommets_partages_pct": 99.986,
-        "ecart_vertical_max_m": 0.012,
+        "sommets_partages_pct": 99.98,
+        "ecart_vertical_max_m": 0.021,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -111,14 +111,14 @@
     ],
     "texture_px_par_dalle": 512,
     "terrain": {
-      "sommets": 104363,
-      "triangles": 192727,
+      "sommets": 104335,
+      "triangles": 192667,
       "dalles": 26,
       "sommets_de_bord": 14752,
       "recalage_bords_mnt_m": {
-        "median_abs": 0.005,
-        "p95_abs": 0.066,
-        "max_abs": 2.58
+        "median_abs": 0.007,
+        "p95_abs": 0.07,
+        "max_abs": 2.63
       }
     },
     "relecture": {
@@ -129,9 +129,9 @@
         "triangles": 30192,
         "nan": false,
         "bornes_min": [
-          -3154.699951171875,
+          -3154.60009765625,
           -149.0,
-          -2629.10009765625
+          -2629.199951171875
         ],
         "bornes_max": [
           127.9000015258789,
@@ -143,8 +143,8 @@
       "terrain": {
         "taille_mo": 7.51,
         "maillages": 26,
-        "sommets": 106069,
-        "triangles": 192727,
+        "sommets": 106036,
+        "triangles": 192667,
         "nan": false,
         "bornes_min": [
           -3280.5,
@@ -159,8 +159,8 @@
       },
       "ecart_bords_route_terrain_hors_ponts": {
         "bords_testes": 14752,
-        "sommets_partages_pct": 99.98,
-        "ecart_vertical_max_m": 0.012,
+        "sommets_partages_pct": 99.986,
+        "ecart_vertical_max_m": 0.02,
         "ecart_vertical_p99_m": 0.0
       }
     }
