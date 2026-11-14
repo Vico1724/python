@@ -1,0 +1,1141 @@
+{
+ "source": {
+  "jeu": "Assetto Corsa Rally",
+  "version_de_construction": "25170642",
+  "outil": "acr-ref export-many (ACR Extra Stages) sur la vue d'origine, sans mods ni BioBio"
+ },
+ "lecture": "acteurs_uniques = acteurs présents une ou deux fois dans Hafren South, avec les propriétés que le studio a réglées (valeurs longues coupées à 160 caractères)",
+ "niveau": "/Game/Levels/WalesS4HafrenSouth",
+ "fichiers": 164,
+ "acteurs_par_classe": {
+  "TapePoleActor": 666,
+  "BC_LargeTapeActor_C": 484,
+  "StaticMeshActor": 481,
+  "BC_PhysicsActor_C": 257,
+  "DecalActor": 224,
+  "Model": 164,
+  "WorldSettings": 164,
+  "BC_NarrowTapeActor_C": 152,
+  "PCGPartitionActor": 134,
+  "BC_CrowdManagedAmbientSound_C": 111,
+  "BoxReflectionCapture": 111,
+  "BC_CrowdSystemSpawnerBakedActor_C": 104,
+  "BC_Marshal_C": 96,
+  "TrackTile": 87,
+  "WorldPartitionHLOD": 87,
+  "SplineSpawnerRoot": 50,
+  "BC_JunctionDirectionSign_C": 40,
+  "InstancedFoliageActor": 38,
+  "PCGGrassContainer": 35,
+  "SplineEventTrigger": 19,
+  "BC_TapeHandleActor_C": 19,
+  "BC_InstancedMeshContainer_C": 18,
+  "BC_PCG_Exclusion_C": 18,
+  "BC_CrowdEscapeReaction_C": 13,
+  "Actor": 11,
+  "BC_SuvA_C": 9,
+  "BC_VanA_C": 9,
+  "BC_HatchbackA_C": 8,
+  "BC_GantryWales_C": 8,
+  "RaceSector": 8,
+  "SpotLight": 8,
+  "BC_ServiceTruck_C": 7,
+  "GeometryCollectionActor": 6,
+  "BC_CanopyTent_C": 6,
+  "BC_HighResCrowd_C": 6,
+  "BC_Mechanic_C": 6,
+  "BC_MyhTurbineA_C": 6,
+  "BC_ServiceParkTent_C": 6,
+  "RectLight": 5,
+  "BC_MarshalStartEndSequencePC_C": 3,
+  "BC_MotorhomeA_C": 3,
+  "BC_HighResCrowd_Spline_C": 3,
+  "EnvAudioVolume": 3,
+  "BC_StopMarshalEndSequence_C": 2,
+  "BC_BakedStaticCableActor_C": 2,
+  "BC_CompleStartTargetPoint_C": 2,
+  "BC_EndSequenceTrigger_C": 2,
+  "BC_PostRaceCamera_C": 2,
+  "BC_ReplayCamerasActor_C": 2,
+  "BC_StartSequenceTrigger_C": 2,
+  "PacenoteSetupActor": 2,
+  "RespawnPlanes": 2,
+  "SplinesActor": 2,
+  "BC_StopMarshalStartSequence_C": 2,
+  "BC_Ambulance_C": 2,
+  "BC_MediaVan_C": 2,
+  "BC_Mechanic_Spline_C": 2,
+  "PCGWorldActor": 2,
+  "WeatherOcclusionVolume": 2,
+  "BC_SecurityCarA_C": 1,
+  "BC_MarshalStartEndSequenceDoc_C": 1,
+  "AcrTargetPoint": 1,
+  "BC_CameraGraphicsSettings_C": 1,
+  "BC_CarDestructionManager_C": 1,
+  "BC_CockpitLighting_C": 1,
+  "BC_CoDriver_C": 1,
+  "BC_CrowdSystemManager_Wales_C": 1,
+  "BC_DMSky_Candidate_C": 1,
+  "BC_DynamicReflection_C": 1,
+  "BC_DynamicSurfaceManager_C": 1,
+  "BC_EnvAudioManager_C": 1,
+  "BC_EnvironmentLightsManager_C": 1,
+  "BC_InteractiveGrassManager_C": 1,
+  "BC_MeshArrayFuelMat_C": 1,
+  "BC_MusicTargetPoint_C": 1,
+  "BC_PerTrackGraphicsSettings_C": 1,
+  "BC_PhysicsActorsManager_C": 1,
+  "BC_PhysicsAvatar_C": 1,
+  "BC_PlayerStartsManager_C": 1,
+  "BC_RefuelZoneTargetPoint_C": 1,
+  "BC_ReplayController_C": 1,
+  "BC_ReplayManager_C": 1,
+  "BC_SkidManager_C": 1,
+  "BC_TapesManager_C": 1,
+  "BC_TiresRack_C": 1,
+  "BC_TrackAvatar_C": 1,
+  "BC_VehicleParticlesManager_C": 1,
+  "BC_WeatherActor_C": 1,
+  "BP_CollisionInspector_C": 1,
+  "BP_TreelinesContainer_C": 1,
+  "CustomGrassRegisterer": 1,
+  "GameConfigurator": 1,
+  "ManagedAmbientSound": 1,
+  "PhysicsWorldBounds": 1,
+  "RuntimeVirtualTextureVolume": 1,
+  "ServiceParkTargetPoint": 1,
+  "WalesS4HafrenSouth_C": 1,
+  "WorldDataLayers": 1
+ },
+ "acteurs_uniques": {
+  "AcrTargetPoint": [
+   {
+    "nom": "AcrTargetPoint_UAID_FC3497A5F1A3F9F701_e54bec5e7a2e6d37_1621791819",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.AcrTargetPoint_UAID_FC3497A5F1A3F9F701_e54bec5e7a2e6d37_1621791819.SceneComp'\", \"ObjectPath\": ",
+     "Tags": "[\"Limbo\"]"
+    }
+   }
+  ],
+  "BC_Ambulance_C": [
+   {
+    "nom": "BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839",
+    "dans": "cellule 9ISRB5S7D310DAMPCW73NJSIA",
+    "proprietes_reglees": {
+     "DecalAOPlane": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.DecalAOPlane'\", \"ObjectPath\": \"/Game/Levels/",
+     "FrontLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.FrontLightL'\", \"ObjectPath\": \"/Game/Leve",
+     "RearLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.RearLightR'\", \"ObjectPath\": \"/Game/Level",
+     "RearLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.RearLightL'\", \"ObjectPath\": \"/Game/Level",
+     "FrontLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.FrontLightR'\", \"ObjectPath\": \"/Game/Leve",
+     "RearTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.RearTurnLightR'\", \"ObjectPath\": \"/Game/L",
+     "FrontTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.FrontTurnLightL'\", \"ObjectPath\": \"/Game/",
+     "FrontTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.FrontTurnLightR'\", \"ObjectPath\": \"/Game/",
+     "RearTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.RearTurnLightL'\", \"ObjectPath\": \"/Game/L",
+     "SM_AmbulanceAccessories": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.SM_AmbulanceAccessories'\", \"ObjectPath\"",
+     "Country": "ENUM_AmbulanceCountry::NewEnumerator4",
+     "StaticMeshComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.StaticMeshComponent0'\", \"ObjectPath\": \"",
+     "bCanBeInCluster": false,
+     "RootComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.StaticMeshComponent0'\", \"ObjectPath\": \"",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D1C8102_1282391839.SM_AmbulanceAccessories'\", \"ObjectPath"
+    }
+   },
+   {
+    "nom": "BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DecalAOPlane": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.DecalAOPlane'\", \"ObjectPath",
+     "FrontLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.FrontLightL'\", \"ObjectP",
+     "RearLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.RearLightR'\", \"ObjectPa",
+     "RearLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.RearLightL'\", \"ObjectPa",
+     "FrontLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.FrontLightR'\", \"ObjectP",
+     "RearTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.RearTurnLightR'\", \"Obje",
+     "FrontTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.FrontTurnLightL'\", \"Obj",
+     "FrontTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.FrontTurnLightR'\", \"Obj",
+     "RearTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.RearTurnLightL'\", \"Obje",
+     "SM_AmbulanceAccessories": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.SM_AmbulanceAccessorie",
+     "Country": "ENUM_AmbulanceCountry::NewEnumerator4",
+     "StaticMeshComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.StaticMeshComponent0'\"",
+     "bCanBeInCluster": false,
+     "RootComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.StaticMeshComponent0'\"",
+     "Tags": "[\"ServicePark\"]",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Ambulance_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1756837612.SM_AmbulanceAccessori"
+    }
+   }
+  ],
+  "BC_BakedStaticCableActor_C": [
+   {
+    "nom": "BC_BakedStaticCableActor_C_UAID_AE6FB3552944A57C02_1371364892",
+    "dans": "cellule 1HVWF30A1X5DYNECNG6ROUHE2",
+    "proprietes_reglees": {
+     "ProceduralMeshComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_BakedStaticCableActor_C_UAID_AE6FB3552944A57C02_1371364892.ProceduralMeshComponent",
+     "RootComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_BakedStaticCableActor_C_UAID_AE6FB3552944A57C02_1371364892.ProceduralMeshComponent",
+     "Tags": "[\"SplineSpawnerPCG\", \"SplineSpawnerPCG_5B8TGRZRCSGPIHNYPD6NMA\"]"
+    }
+   },
+   {
+    "nom": "BC_BakedStaticCableActor_C_UAID_AE6FB3552944A57C02_1423800894",
+    "dans": "cellule 1HVWF30A1X5DYNECNG6ROUHE2",
+    "proprietes_reglees": {
+     "ProceduralMeshComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_BakedStaticCableActor_C_UAID_AE6FB3552944A57C02_1423800894.ProceduralMeshComponent",
+     "RootComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_BakedStaticCableActor_C_UAID_AE6FB3552944A57C02_1423800894.ProceduralMeshComponent",
+     "Tags": "[\"SplineSpawnerPCG\", \"SplineSpawnerPCG_5B8TGRZRCSGPIHNYPD6NMA\"]"
+    }
+   }
+  ],
+  "BC_CameraGraphicsSettings_C": [
+   {
+    "nom": "BC_CameraGraphicsSettings_C_UAID_F02F74CC49EFB8E902_2017595930",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CameraGraphicsSettings_C_UAID_F02F74CC49EFB8E902_2017595930.DefaultSceneRoot'\", \"ObjectPath",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CameraGraphicsSettings_C_UAID_F02F74CC49EFB8E902_2017595930.DefaultSceneRoot'\", \"ObjectPath",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CameraGraphicsSettings_C_UAID_F02F74CC49EFB8E902_2017595930.DefaultSceneRoot'\", \"ObjectPat"
+    }
+   }
+  ],
+  "BC_CarDestructionManager_C": [
+   {
+    "nom": "BC_CarDestructionManager_C_UAID_B42E99C03511624902_1128459877",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "CarDestructionReplay": "{\"ObjectName\": \"CarDestructionReplayComponent'WalesS4HafrenSouth:PersistentLevel.BC_CarDestructionManager_C_UAID_B42E99C03511624902_1128459877.CarDestructionRep",
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CarDestructionManager_C_UAID_B42E99C03511624902_1128459877.DefaultSceneRoot'\", \"ObjectPath\"",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CarDestructionManager_C_UAID_B42E99C03511624902_1128459877.DefaultSceneRoot'\", \"ObjectPath\"",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CarDestructionManager_C_UAID_B42E99C03511624902_1128459877.DefaultSceneRoot'\", \"ObjectPath"
+    }
+   }
+  ],
+  "BC_CoDriver_C": [
+   {
+    "nom": "BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "Eyebrows": "{\"ObjectName\": \"GroomComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.Eyebrows'\", \"ObjectPath\": \"/",
+     "Hair": "{\"ObjectName\": \"GroomComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.Hair'\", \"ObjectPath\": \"/Game",
+     "Shoes": "{\"ObjectName\": \"SkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.Shoes'\", \"ObjectPath\"",
+     "Hands": "{\"ObjectName\": \"SkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.Hands'\", \"ObjectPath\"",
+     "Suit": "{\"ObjectName\": \"SkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.Suit'\", \"ObjectPath\":",
+     "Head": "{\"ObjectName\": \"SkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.Head'\", \"ObjectPath\":",
+     "DriverCodriverLODSync": "{\"ObjectName\": \"DriverCodriverLODSyncComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.DriverCodriv",
+     "RootComponent": "{\"ObjectName\": \"SkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.Head'\", \"ObjectPath\":",
+     "Tags": "[\"ServicePark\"]",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"DriverCodriverLODSyncComponent'WalesS4HafrenSouth:PersistentLevel.BC_CoDriver_C_UAID_04421A0DCF0D119D02_3d3e525db80efa5b_2113224424.DriverCodri"
+    }
+   }
+  ],
+  "BC_CockpitLighting_C": [
+   {
+    "nom": "BC_CockpitLighting_C_UAID_F02F74CC49EE4F8E02_1797866390",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "CaptureCube": "{\"ObjectName\": \"SceneCaptureComponentCube'WalesS4HafrenSouth:PersistentLevel.BC_CockpitLighting_C_UAID_F02F74CC49EE4F8E02_1797866390.CaptureCube'\", \"ObjectPath\"",
+     "RootComponent": "{\"ObjectName\": \"SceneCaptureComponentCube'WalesS4HafrenSouth:PersistentLevel.BC_CockpitLighting_C_UAID_F02F74CC49EE4F8E02_1797866390.CaptureCube'\", \"ObjectPath\""
+    }
+   }
+  ],
+  "BC_CompleStartTargetPoint_C": [
+   {
+    "nom": "BC_CompleStartTargetPoint_C_UAID_F02F74CC4837645002_1389805591",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CompleStartTargetPoint_C_UAID_F02F74CC4837645002_1389805591.SceneComp'\", \"ObjectPath\": \"/Ga"
+    }
+   },
+   {
+    "nom": "BC_CompleStartTargetPoint_C_UAID_F02F74CC4837675002_1354899114",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CompleStartTargetPoint_C_UAID_F02F74CC4837675002_1354899114.SceneComp'\", \"ObjectPath\": \"/Ga"
+    }
+   }
+  ],
+  "BC_CrowdSystemManager_Wales_C": [
+   {
+    "nom": "BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "MarshalsManager": "{\"ObjectName\": \"MarshalsManager'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.MarshalsManager'\", \"ObjectPa",
+     "CrowdSystemMassSpawnExecutor": "{\"ObjectName\": \"CrowdSystemMassSpawnExecutorComponent'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.CrowdS",
+     "ChildActor": "{\"ObjectName\": \"ChildActorComponent'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.ChildActor'\", \"ObjectPat",
+     "CrowdSplineFollowersManager": "{\"ObjectName\": \"CrowdSplineFollowersManager'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.CrowdSplineFollo",
+     "CrowdReplay": "{\"ObjectName\": \"CrowdReplayComponent'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.CrowdReplay'\", \"ObjectP",
+     "CrowdReactionsManager": "{\"ObjectName\": \"CrowdReactionsManager'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.CrowdReactionsManager'",
+     "BC_CrowdSystemParticles": "{\"ObjectName\": \"BC_CrowdSystemParticles_C'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.BC_CrowdSystemPart",
+     "CrowdSystemCustomizationData": "{\"ObjectName\": \"CrowdSystemCustomizationDataComponent'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.CrowdS",
+     "SetupProvider": "{\"ObjectName\": \"CrowdSystemSetupProvider'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.SetupProvider'\", \"O",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.Root'\", \"ObjectPath\": \"/Game/",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CrowdSystemCustomizationDataComponent'WalesS4HafrenSouth:PersistentLevel.BC_CrowdSystemManager_Wales_C_UAID_F02F74CC47D173C802_1481023955.Crowd"
+    }
+   }
+  ],
+  "BC_DMSky_Candidate_C": [
+   {
+    "nom": "BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "Sky_Reflection_Proxy": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Sky_Reflection_Proxy'\", \"ObjectPa",
+     "PostProcess": "{\"ObjectName\": \"PostProcessComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.PostProcess'\", \"ObjectPath\": \"/G",
+     "Sun Icon": null,
+     "Moon Icon": null,
+     "Captured Scene Sky Light": "{\"ObjectName\": \"SkyLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Captured Scene Sky Light'\", \"Object",
+     "Root": "{\"ObjectName\": \"BillboardComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Root'\", \"ObjectPath\": \"/Game/Level",
+     "VolumetricCloud": "{\"ObjectName\": \"VolumetricCloudComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.VolumetricCloud'\", \"ObjectPa",
+     "Cubemap Sky Light": "{\"ObjectName\": \"SkyLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Cubemap Sky Light'\", \"ObjectPath\": ",
+     "HeightFog": "{\"ObjectName\": \"ExponentialHeightFogComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.HeightFog'\", \"ObjectPat",
+     "Moon": "{\"ObjectName\": \"DirectionalLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Moon'\", \"ObjectPath\": \"/Gam",
+     "Sun": "{\"ObjectName\": \"DirectionalLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Sun'\", \"ObjectPath\": \"/Game",
+     "SkyAtmosphere": "{\"ObjectName\": \"SkyAtmosphereComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.SkyAtmosphere'\", \"ObjectPath\":",
+     "Sky_Sphere_Mesh": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Sky_Sphere_Mesh'\", \"ObjectPath\": ",
+     "Sky Sphere MID": "{\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Sky_Sphere_Mesh.MID_UDS_K_0'\"",
+     "Time of Day": 1559.3609619140625,
+     "Cloud Coverage": 1.1099999785423278,
+     "Fog": 1.600000023841858,
+     "Snow Coverage": 0.0,
+     "Overall Intensity Internal": 2.0,
+     "Moon Phase": 28.143789291381836,
+     "Cloud Shadows MID": "{\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.MID_UDS_Basic_LightFunction_0",
+     "Sun_LightComponent": "{\"ObjectName\": \"DirectionalLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Sun'\", \"ObjectPath\": \"/Game",
+     "Moon_LightComponent": "{\"ObjectName\": \"DirectionalLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Moon'\", \"ObjectPath\": \"/Gam",
+     "SkyLightComponent": "{\"ObjectName\": \"SkyLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Captured Scene Sky Light'\", \"Object",
+     "Height Fog Component": "{\"ObjectName\": \"ExponentialHeightFogComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.HeightFog'\", \"ObjectPat",
+     "Sky Light Intensity Internal": 1.5,
+     "Vol Clouds MID Complex": "{\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.MID_Volumetric_Clouds_default",
+     "Vol Clouds MID Simple": "{\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.MID_Volumetric_Clouds_default",
+     "Latitude": 52.28,
+     "Longitude": -3.4,
+     "Time Zone": 0.0,
+     "Year": 2025,
+     "Month": 11,
+     "Day": 3,
+     "Fog Colors from Sky Atmosphere": true,
+     "Current Volumetric Clouds MID": 0,
+     "Cloud Phase Vector Multiplier": "{\"X\": -17275.768, \"Y\": -20940.512, \"Z\": -3664.7437}",
+     "Base Cloud Height": 0.7,
+     "Lens Flare MID": "{\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.MID_Zoom_Chromatic_0'\", \"Obje",
+     "Overcast Turbulence MID": "{\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.NODE_AddStaticMeshComponent-1",
+     "Volumetric Cloud MIDs": "[{\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.MID_Volumetric_Clouds_defaul",
+     "Height Fog Density": 0.00216384,
+     "Current Camera Location": "{\"X\": -1694.5492, \"Y\": 138123.31, \"Z\": 36346.74}",
+     "Ambient Fog Color": "{\"R\": 1.3268261, \"G\": 1.4222254, \"B\": 1.5427364, \"A\": 1.5481108, \"Hex\": \"FFFFFF\"}",
+     "Directional Base Fog Color": "{\"R\": 0.15021496, \"G\": 0.09876532, \"B\": 0.049403243, \"A\": 0.838, \"Hex\": \"D66C583F\"}",
+     "Scaled Directional Base Fog Color": "{\"R\": 1.6152146, \"G\": 1.0619928, \"B\": 0.5312177, \"A\": 0.838, \"Hex\": \"D6FFFFC1\"}",
+     "Cloud Bottom World Height": 179930.0,
+     "Cached Floats Old": "[0.4663999948501587, 0.0, 0.03316125578789226, 0.0, 0.6000000238418579, 0.773885559174627, 0.0, -1.5105623006820679, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 28.14378",
+     "Cached Floats New": "[0.4663999948501587, 0.0, 0.03316125578789226, 0.0, 0.6000000238418579, 0.773885559174627, 0.0, -1.5105623006820679, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 28.14378",
+     "Cached Colors Old": "[{\"R\": 0.0, \"G\": 0.0, \"B\": 0.0, \"A\": 0.0, \"Hex\": \"000000\"}, {\"R\": 0.0, \"G\": 0.0, \"B\": 0.0, \"A\": 0.0, \"Hex\": \"000000\"}, {\"R\": 0.0, \"G\": 0.0, \"B\": 0.0, \"A\": 0.0, ",
+     "Cached Colors New": "[{\"R\": 0.0, \"G\": 0.0, \"B\": 0.0, \"A\": 0.0, \"Hex\": \"000000\"}, {\"R\": 0.0, \"G\": 0.0, \"B\": 0.0, \"A\": 0.0, \"Hex\": \"000000\"}, {\"R\": 0.0, \"G\": 0.0, \"B\": 0.0, \"A\": 0.0, ",
+     "Cached Vectors Old": "[{\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0},",
+     "Cached Vectors New": "[{\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0}, {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.0},",
+     "Cached Sun Vector": "{\"X\": 0.60281, \"Y\": 0.7885973, \"Z\": -0.12138518}",
+     "Cached Moon Vector": "{\"X\": -0.36906746, \"Y\": -0.92939925, \"Z\": -0.0024970493}",
+     "Cached Value Changing": "[true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, false, false, false, false, fal",
+     "Support Sky Atmo Affecting Height Fog": true,
+     "UDS Version": "8.1C",
+     "Last Low Frequency Update Location": "{\"X\": -1694.5492, \"Y\": 138123.31, \"Z\": 36346.74}",
+     "Cached Sun Scale": 0.013962634015954637,
+     "Cached Moon Scale": 0.03316125578789226,
+     "Moon Fog Base Color": "{\"R\": 0.00018151145, \"G\": 0.00011068627, \"B\": 0.000111994595, \"A\": 1.0, \"Hex\": \"000000\"}",
+     "Sun Fog Base Color": "{\"R\": 5.652837, \"G\": 4.302058, \"B\": 2.9330356, \"A\": 1.0, \"Hex\": \"FFFFFF\"}",
+     "Cached Sky Atmosphere Absorption Color": "{\"R\": 0.6988471, \"G\": 0.99334717, \"B\": 0.10984714, \"A\": 0.00285, \"Hex\": \"DAFF5D\"}",
+     "Cloud Top World Height": 249930.0,
+     "Sun Target": "{\"X\": -48.2248, \"Y\": -63.087784, \"Z\": 9.710814}",
+     "Moon Target": "{\"X\": 29.525396, \"Y\": 74.351944, \"Z\": 0.19976394}",
+     "Cache Group Booleans": "[false, false, false, false, false, false, false, false, false, false]",
+     "Low Priority Update Step": 9,
+     "Non Cached Update Step": 1,
+     "Wind Speed Multiplier": 0.05000000074505806,
+     "Editor Camera Position": "{\"X\": -1694.5492, \"Y\": 138123.31, \"Z\": 36346.74}",
+     "Last Editor Tick Time": 23.423217438161373,
+     "Cache Sun Cast Shadows": true,
+     "Unmodified Floats": "[0.0, 2.0, 0.95, 1.0, 0.5, 1.0, 0.45, 1.0, 0.2, 0.5, 1.0, 1.0, 50.0, 0.0, 30.0, 0.0, 0.8, 50.0, 0.12, 15.0, 35.0, 0.03999999910593033, 0.0, 0.95, 28.13517951965",
+     "Unmodified Colors": "[{\"R\": 0.0, \"G\": 0.0, \"B\": 0.0, \"A\": 0.0, \"Hex\": \"000000\"}, {\"R\": 0.744792, \"G\": 0.744792, \"B\": 0.744792, \"A\": 1.0, \"Hex\": \"E0E0E0\"}, {\"R\": 0.32, \"G\": 0.333333,",
+     "Move Sky Light Location": true,
+     "Local Cloud Coverage": 1.1099999785423278,
+     "Sun World Rotation": "{\"Pitch\": -6.972052, \"Yaw\": 52.60542, \"Roll\": -30.34602}",
+     "Moon World Rotation": "{\"Pitch\": -0.14307053, \"Yaw\": -111.65819, \"Roll\": 35.729618}",
+     "Compass Mesh": null,
+     "2D Turbulence Disk": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.NODE_AddStaticMeshComponent-17'\",",
+     "Volumetric Cloud Shadow Altitude": 197430.0,
+     "Post Process Mats Toggle State": "[true, false]",
+     "Lens Flare WB": "{\"Weight\": 1.0, \"Object\": {\"ObjectName\": \"MaterialInstanceDynamic'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.MID",
+     "SunriseEnd": 17.833145,
+     "SunsetStart": 162.35013,
+     "CardinalHours": "{\"bValid\": true, \"Sunrise\": 735.0, \"Sunset\": 1649.0, \"Culmination\": 1191.8167, \"AntiCulmination\": 2392.663}",
+     "RootComponent": "{\"ObjectName\": \"BillboardComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Root'\", \"ObjectPath\": \"/Game/Level",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"BillboardComponent'WalesS4HafrenSouth:PersistentLevel.BC_DMSky_Candidate_C_UAID_F02F74CC49EE229202_1393290663.Root'\", \"ObjectPath\": \"/Game/Leve"
+    }
+   }
+  ],
+  "BC_DynamicReflection_C": [
+   {
+    "nom": "BC_DynamicReflection_C_UAID_F02F74CC49EE4F8E02_1797852389",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "CaptureCube": "{\"ObjectName\": \"SceneCaptureComponentCube'WalesS4HafrenSouth:PersistentLevel.BC_DynamicReflection_C_UAID_F02F74CC49EE4F8E02_1797852389.CaptureCube'\", \"ObjectPat",
+     "Capture2D": "{\"ObjectName\": \"SceneCaptureComponent2D'WalesS4HafrenSouth:PersistentLevel.BC_DynamicReflection_C_UAID_F02F74CC49EE4F8E02_1797852389.Capture2D'\", \"ObjectPath\": ",
+     "CaptureMirror": "{\"ObjectName\": \"SceneCaptureComponent2D'WalesS4HafrenSouth:PersistentLevel.BC_DynamicReflection_C_UAID_F02F74CC49EE4F8E02_1797852389.CaptureMirror'\", \"ObjectPat",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_DynamicReflection_C_UAID_F02F74CC49EE4F8E02_1797852389.DefaultSceneRoot'\", \"ObjectPath\": \"/"
+    }
+   }
+  ],
+  "BC_DynamicSurfaceManager_C": [
+   {
+    "nom": "BC_DynamicSurfaceManager_C_UAID_B42E99C03511624902_1128432867",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DynamicSurfaceReplay": "{\"ObjectName\": \"DynamicSurfaceReplayComponent'WalesS4HafrenSouth:PersistentLevel.BC_DynamicSurfaceManager_C_UAID_B42E99C03511624902_1128432867.DynamicSurfaceRep",
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_DynamicSurfaceManager_C_UAID_B42E99C03511624902_1128432867.DefaultSceneRoot'\", \"ObjectPath\"",
+     "SurfaceEvolution": "{\"ObjectName\": \"DynamicSurfaceEvolution'WalesS4HafrenSouth:PersistentLevel.BC_DynamicSurfaceManager_C_UAID_B42E99C03511624902_1128432867.SurfaceEvolution'\", \"Ob",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_DynamicSurfaceManager_C_UAID_B42E99C03511624902_1128432867.DefaultSceneRoot'\", \"ObjectPath\"",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_DynamicSurfaceManager_C_UAID_B42E99C03511624902_1128432867.DefaultSceneRoot'\", \"ObjectPath"
+    }
+   }
+  ],
+  "BC_EndSequenceTrigger_C": [
+   {
+    "nom": "BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1279779108",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "SplineLocationsComponent": "{\"ObjectName\": \"SplineLocationsComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1279779108.SplineLocations'\", \"Objec",
+     "BoxComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1279779108.BoxComponent'\", \"ObjectPath\": \"/Game/",
+     "MeshComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1279779108.MeshComponent'\", \"ObjectPa",
+     "RootComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1279779108.BoxComponent'\", \"ObjectPath\": \"/Game/"
+    }
+   },
+   {
+    "nom": "BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1327055111",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "SplineLocationsComponent": "{\"ObjectName\": \"SplineLocationsComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1327055111.SplineLocations'\", \"Objec",
+     "BoxComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1327055111.BoxComponent'\", \"ObjectPath\": \"/Game/",
+     "MeshComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1327055111.MeshComponent'\", \"ObjectPa",
+     "RootComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_EndSequenceTrigger_C_UAID_F02F74CC4837675002_1327055111.BoxComponent'\", \"ObjectPath\": \"/Game/"
+    }
+   }
+  ],
+  "BC_EnvAudioManager_C": [
+   {
+    "nom": "BC_EnvAudioManager_C_UAID_B42E99C03511624902_1128465880",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_EnvAudioManager_C_UAID_B42E99C03511624902_1128465880.DefaultSceneRoot'\", \"ObjectPath\": \"/Ga",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_EnvAudioManager_C_UAID_B42E99C03511624902_1128465880.DefaultSceneRoot'\", \"ObjectPath\": \"/Ga",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_EnvAudioManager_C_UAID_B42E99C03511624902_1128465880.DefaultSceneRoot'\", \"ObjectPath\": \"/G"
+    }
+   }
+  ],
+  "BC_EnvironmentLightsManager_C": [
+   {
+    "nom": "BC_EnvironmentLightsManager_C_UAID_B42E99C03511624902_1128488883",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_EnvironmentLightsManager_C_UAID_B42E99C03511624902_1128488883.DefaultSceneRoot'\", \"ObjectPa",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_EnvironmentLightsManager_C_UAID_B42E99C03511624902_1128488883.DefaultSceneRoot'\", \"ObjectPa",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_EnvironmentLightsManager_C_UAID_B42E99C03511624902_1128488883.DefaultSceneRoot'\", \"ObjectP"
+    }
+   }
+  ],
+  "BC_InteractiveGrassManager_C": [
+   {
+    "nom": "BC_InteractiveGrassManager_C_UAID_B42E99C03511624902_1128455875",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "ComputeRenderer": "{\"ObjectName\": \"NiagaraComponent'WalesS4HafrenSouth:PersistentLevel.BC_InteractiveGrassManager_C_UAID_B42E99C03511624902_1128455875.NiagaraComputeRenderer'\", \"O",
+     "Replacement": "[{\"Key\": \"StaticMesh'/Game/Foliage/Trees/Larch/SM_Larch03.SM_Larch03'\", \"Value\": {\"ReplacementClass\": {\"ObjectName\": \"BlueprintGeneratedClass'BP_Larch_03_Replac",
+     "ReplacementPool": "{\"ObjectName\": \"InteractiveGrassReplacementPool'WalesS4HafrenSouth:PersistentLevel.BC_InteractiveGrassManager_C_UAID_B42E99C03511624902_1128455875.ReplacementPo",
+     "ReplayCmp": "{\"ObjectName\": \"InteractiveGrassReplayComponent'WalesS4HafrenSouth:PersistentLevel.BC_InteractiveGrassManager_C_UAID_B42E99C03511624902_1128455875.ReplayCompone",
+     "RootComponent": "{\"ObjectName\": \"NiagaraComponent'WalesS4HafrenSouth:PersistentLevel.BC_InteractiveGrassManager_C_UAID_B42E99C03511624902_1128455875.NiagaraComputeRenderer'\", \"O"
+    }
+   }
+  ],
+  "BC_MarshalStartEndSequenceDoc_C": [
+   {
+    "nom": "BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714",
+    "dans": "cellule A0I1JHQ2458PSST2XD0UTWQ2I",
+    "proprietes_reglees": {
+     "Chair": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.Chair'\", \"ObjectPath\":",
+     "SM_ClipboardA1": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.SM_ClipboardA1'\", \"Obj",
+     "SM_ClipboardA": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.SM_ClipboardA'\", \"Obje",
+     "Table": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.Table'\", \"ObjectPath\":",
+     "GenericMarshalStartEndSequence": "{\"ObjectName\": \"GenericMarshalStartEndSequenceComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.Ge",
+     "CustomizableCrowdCharacterAnimation": "{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.Custom",
+     "Decal": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.Decal'\", \"ObjectPath\": \"/Ga",
+     "CrowdCharacterRespawnBox": "{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.CrowdCha",
+     "HeadType": "Head012",
+     "BodyType": "AutumnMale",
+     "HatType": "Hat",
+     "BodyCustomization": "MarshalYellow",
+     "ClothesCustomization": "Autumn_02",
+     "HatCustomization": "Green",
+     "HeadPoseAsset": "{\"ObjectName\": \"PoseAsset'AS_Marshal_Head_012_PoseAsset'\", \"ObjectPath\": \"/Game/Characters/Common/Marshal/CC/AS_Marshal_Head_012_PoseAsset.0\"}",
+     "MeshType": "Head012",
+     "Accessories": "[{\"ObjectName\": \"CustomizableCrowdCharacterAccessory'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.Custo",
+     "BodySkeletalMesh": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.BodySkeletalMes",
+     "RootComponent": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.BodySkeletalMes",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_MarshalStartEndSequenceDoc_C_UAID_04421A0DCF0D5E8202_1462210714.CrowdCh"
+    }
+   }
+  ],
+  "BC_Mechanic_Spline_C": [
+   {
+    "nom": "BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "CrowdSplineFollower": "{\"ObjectName\": \"CrowdSplineFollowerComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603.CrowdSp",
+     "DMSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603.DMSpline'\", \"Objec",
+     "CustomizableCrowdCharacterAnimation": "{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603.",
+     "HeadPoseAsset": "{\"ObjectName\": \"PoseAsset'AS_Marshal_Head_010_PoseAsset'\", \"ObjectPath\": \"/Game/Characters/Common/Marshal/CC/AS_Marshal_Head_010_PoseAsset.0\"}",
+     "Accessories": "[{\"ObjectName\": \"CustomizableCrowdCharacterAccessory'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603",
+     "AnimationSetConfig": "{\"Requirement\": {\"Requirements\": {\"Attributes\": [\"Talking\", \"Listening\"]}}, \"AnimationSet\": {\"ObjectName\": \"CrowdSystemAnimationSet'DA_MarshalsStandingAnimSet'\"",
+     "BodySkeletalMesh": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603.BodySkele",
+     "RootComponent": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603.BodySkele",
+     "Tags": "[\"ServicePark\"]",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1201484603"
+    }
+   },
+   {
+    "nom": "BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "CrowdSplineFollower": "{\"ObjectName\": \"CrowdSplineFollowerComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604.CrowdSp",
+     "DMSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604.DMSpline'\", \"Objec",
+     "CustomizableCrowdCharacterAnimation": "{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604.",
+     "HeadType": "Head012",
+     "HeadPoseAsset": "{\"ObjectName\": \"PoseAsset'AS_Marshal_Head_012_PoseAsset'\", \"ObjectPath\": \"/Game/Characters/Common/Marshal/CC/AS_Marshal_Head_012_PoseAsset.0\"}",
+     "MeshType": "Head012",
+     "Accessories": "[{\"ObjectName\": \"CustomizableCrowdCharacterAccessory'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604",
+     "AnimationSetConfig": "{\"Requirement\": {\"Requirements\": {\"Attributes\": [\"Talking\", \"Listening\"]}}, \"AnimationSet\": {\"ObjectName\": \"CrowdSystemAnimationSet'DA_MarshalsStandingAnimSet'\"",
+     "BodySkeletalMesh": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604.BodySkele",
+     "RootComponent": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604.BodySkele",
+     "Tags": "[\"ServicePark\"]",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_Mechanic_Spline_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1315678604"
+    }
+   }
+  ],
+  "BC_MediaVan_C": [
+   {
+    "nom": "BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241",
+    "dans": "cellule AGSP4DZUTBD8SA1BIFHMS26J9",
+    "proprietes_reglees": {
+     "DecalAOPlane": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.DecalAOPlane'\", \"ObjectPath\": \"/Game/Levels/W",
+     "FrontLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.FrontLightL'\", \"ObjectPath\": \"/Game/Level",
+     "RearLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.RearLightR'\", \"ObjectPath\": \"/Game/Levels",
+     "RearLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.RearLightL'\", \"ObjectPath\": \"/Game/Levels",
+     "FrontLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.FrontLightR'\", \"ObjectPath\": \"/Game/Level",
+     "RearTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.RearTurnLightR'\", \"ObjectPath\": \"/Game/Le",
+     "FrontTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.FrontTurnLightL'\", \"ObjectPath\": \"/Game/L",
+     "FrontTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.FrontTurnLightR'\", \"ObjectPath\": \"/Game/L",
+     "RearTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.RearTurnLightL'\", \"ObjectPath\": \"/Game/Le",
+     "SM_MediaVanAntennas": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.SM_MediaVanAntennas'\", \"ObjectPath\": \"/G",
+     "StaticMeshComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.StaticMeshComponent0'\", \"ObjectPath\": \"/",
+     "bCanBeInCluster": false,
+     "RootComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.StaticMeshComponent0'\", \"ObjectPath\": \"/",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0D198102_1782158241.SM_MediaVanAntennas'\", \"ObjectPath\": \"/"
+    }
+   },
+   {
+    "nom": "BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357",
+    "dans": "cellule BQ2UTCRIVISWTTVVK4G2EIOLJ",
+    "proprietes_reglees": {
+     "DecalAOPlane": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.DecalAOPlane'\", \"ObjectPath\": \"/Game/Levels/W",
+     "FrontLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.FrontLightL'\", \"ObjectPath\": \"/Game/Level",
+     "RearLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.RearLightR'\", \"ObjectPath\": \"/Game/Levels",
+     "RearLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.RearLightL'\", \"ObjectPath\": \"/Game/Levels",
+     "FrontLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.FrontLightR'\", \"ObjectPath\": \"/Game/Level",
+     "RearTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.RearTurnLightR'\", \"ObjectPath\": \"/Game/Le",
+     "FrontTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.FrontTurnLightL'\", \"ObjectPath\": \"/Game/L",
+     "FrontTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.FrontTurnLightR'\", \"ObjectPath\": \"/Game/L",
+     "RearTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.RearTurnLightL'\", \"ObjectPath\": \"/Game/Le",
+     "SM_MediaVanAntennas": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.SM_MediaVanAntennas'\", \"ObjectPath\": \"/G",
+     "StaticMeshComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.StaticMeshComponent0'\", \"ObjectPath\": \"/",
+     "bCanBeInCluster": false,
+     "RootComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.StaticMeshComponent0'\", \"ObjectPath\": \"/",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MediaVan_C_UAID_04421A0DCF0DFC8602_2104776357.SM_MediaVanAntennas'\", \"ObjectPath\": \"/"
+    }
+   }
+  ],
+  "BC_MeshArrayFuelMat_C": [
+   {
+    "nom": "BC_MeshArrayFuelMat_C_UAID_D8BBC1D9F004032602_3d3e525db80efa5b_1576943164",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "InstancedStaticMesh": "{\"ObjectName\": \"InstancedStaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_MeshArrayFuelMat_C_UAID_D8BBC1D9F004032602_3d3e525db80efa5b_1576943164.Instan",
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_MeshArrayFuelMat_C_UAID_D8BBC1D9F004032602_3d3e525db80efa5b_1576943164.DefaultSceneRoot'\", ",
+     "Columns": 5,
+     "Rows": 10,
+     "RandomStream": "{\"Seed\": -798928216}",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_MeshArrayFuelMat_C_UAID_D8BBC1D9F004032602_3d3e525db80efa5b_1576943164.DefaultSceneRoot'\", ",
+     "Tags": "[\"ServicePark\"]",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_MeshArrayFuelMat_C_UAID_D8BBC1D9F004032602_3d3e525db80efa5b_1576943164.DefaultSceneRoot'\","
+    }
+   }
+  ],
+  "BC_MusicTargetPoint_C": [
+   {
+    "nom": "BC_MusicTargetPoint_C_UAID_18C04D89471D947202_3d3e525db80efa5b_1165602927",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_MusicTargetPoint_C_UAID_18C04D89471D947202_3d3e525db80efa5b_1165602927.SceneComp'\", \"Object",
+     "Tags": "[\"Audio.Music.Main\", \"ServicePark\"]"
+    }
+   }
+  ],
+  "BC_PerTrackGraphicsSettings_C": [
+   {
+    "nom": "BC_PerTrackGraphicsSettings_C_UAID_F02F74CC48392EBC02_1867253201",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PerTrackGraphicsSettings_C_UAID_F02F74CC48392EBC02_1867253201.DefaultSceneRoot'\", \"ObjectPa",
+     "MPCs": "[{\"MPC\": {\"ObjectName\": \"MaterialParameterCollection'MPC_Gameplay'\", \"ObjectPath\": \"/dmrender/Data/Materials/Parameters/MPC_Gameplay.0\"}, \"FloatValues\": [{\"Key\"",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PerTrackGraphicsSettings_C_UAID_F02F74CC48392EBC02_1867253201.DefaultSceneRoot'\", \"ObjectPa",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PerTrackGraphicsSettings_C_UAID_F02F74CC48392EBC02_1867253201.DefaultSceneRoot'\", \"ObjectP"
+    }
+   }
+  ],
+  "BC_PhysicsActorsManager_C": [
+   {
+    "nom": "BC_PhysicsActorsManager_C_UAID_B42E99C03511624902_1128461878",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PhysicsActorsManager_C_UAID_B42E99C03511624902_1128461878.DefaultSceneRoot'\", \"ObjectPath\":",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PhysicsActorsManager_C_UAID_B42E99C03511624902_1128461878.DefaultSceneRoot'\", \"ObjectPath\":",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PhysicsActorsManager_C_UAID_B42E99C03511624902_1128461878.DefaultSceneRoot'\", \"ObjectPath\""
+    }
+   }
+  ],
+  "BC_PhysicsAvatar_C": [
+   {
+    "nom": "BC_PhysicsAvatar_C_UAID_B42E99C03511624902_1128434868",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PhysicsAvatar_C_UAID_B42E99C03511624902_1128434868.DefaultSceneRoot'\", \"ObjectPath\": \"/Game",
+     "PhysicsWorldBoundsActor": "{\"ObjectName\": \"PhysicsWorldBounds'WalesS4HafrenSouth:PersistentLevel.PhysicsWorldBounds_UAID_B42E99C03511624902_1128469881'\", \"ObjectPath\": \"/Game/Levels/Wales",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PhysicsAvatar_C_UAID_B42E99C03511624902_1128434868.DefaultSceneRoot'\", \"ObjectPath\": \"/Game",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PhysicsAvatar_C_UAID_B42E99C03511624902_1128434868.DefaultSceneRoot'\", \"ObjectPath\": \"/Gam"
+    }
+   }
+  ],
+  "BC_PlayerStartsManager_C": [
+   {
+    "nom": "BC_PlayerStartsManager_C_UAID_B42E99C03511624902_1128463879",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PlayerStartsManager_C_UAID_B42E99C03511624902_1128463879.DefaultSceneRoot'\", \"ObjectPath\": ",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PlayerStartsManager_C_UAID_B42E99C03511624902_1128463879.DefaultSceneRoot'\", \"ObjectPath\": ",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PlayerStartsManager_C_UAID_B42E99C03511624902_1128463879.DefaultSceneRoot'\", \"ObjectPath\":"
+    }
+   }
+  ],
+  "BC_PostRaceCamera_C": [
+   {
+    "nom": "BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1829552418",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "CameraComponent": "{\"ObjectName\": \"AcrCineCameraComponent'WalesS4HafrenSouth:PersistentLevel.BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1829552418.CameraComponent'\", \"ObjectPath\"",
+     "SceneComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1829552418.SceneComponent'\", \"ObjectPath\": \"/Game/",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1829552418.SceneComponent'\", \"ObjectPath\": \"/Game/"
+    }
+   },
+   {
+    "nom": "BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1973785419",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "CameraComponent": "{\"ObjectName\": \"AcrCineCameraComponent'WalesS4HafrenSouth:PersistentLevel.BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1973785419.CameraComponent'\", \"ObjectPath\"",
+     "SceneComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1973785419.SceneComponent'\", \"ObjectPath\": \"/Game/",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_PostRaceCamera_C_UAID_F02F74CC4837E35802_1973785419.SceneComponent'\", \"ObjectPath\": \"/Game/"
+    }
+   }
+  ],
+  "BC_RefuelZoneTargetPoint_C": [
+   {
+    "nom": "BC_RefuelZoneTargetPoint_C_UAID_B42E99C03511612402_3d3e525db80efa5b_1530061584",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_RefuelZoneTargetPoint_C_UAID_B42E99C03511612402_3d3e525db80efa5b_1530061584.SceneComp'\", \"O",
+     "Tags": "[\"RefuelZoneTarget\", \"ServicePark\"]"
+    }
+   }
+  ],
+  "BC_ReplayCamerasActor_C": [
+   {
+    "nom": "BC_ReplayCamerasActor_C_UAID_04421A0DCF0D4A8902_1600916203",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0D4A8902_1600916203.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0D4A8902_1600916203.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "InstanceComponents": "[{\"ObjectName\": \"TvCameraComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0D4A8902_1600916203.TvCamera'\", \"ObjectPath\": \"/Gam",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0D4A8902_1600916203.DefaultSceneRoot'\", \"ObjectPath\": "
+    }
+   },
+   {
+    "nom": "BC_ReplayCamerasActor_C_UAID_04421A0DCF0DC88A02_1711229426",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0DC88A02_1711229426.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0DC88A02_1711229426.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "InstanceComponents": "[{\"ObjectName\": \"TvCameraComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0DC88A02_1711229426.TvCamera'\", \"ObjectPath\": \"/Gam",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayCamerasActor_C_UAID_04421A0DCF0DC88A02_1711229426.DefaultSceneRoot'\", \"ObjectPath\": "
+    }
+   }
+  ],
+  "BC_ReplayController_C": [
+   {
+    "nom": "BC_ReplayController_C_UAID_F02F74CC4837695002_1249229455",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayController_C_UAID_F02F74CC4837695002_1249229455.DefaultSceneRoot'\", \"ObjectPath\": \"/G",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayController_C_UAID_F02F74CC4837695002_1249229455.DefaultSceneRoot'\", \"ObjectPath\": \"/G",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayController_C_UAID_F02F74CC4837695002_1249229455.DefaultSceneRoot'\", \"ObjectPath\": \"/"
+    }
+   }
+  ],
+  "BC_ReplayManager_C": [
+   {
+    "nom": "BC_ReplayManager_C_UAID_B42E99C03511624902_1128440870",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "ChaosReplay": "{\"ObjectName\": \"ChaosReplayComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayManager_C_UAID_B42E99C03511624902_1128440870.ChaosReplay'\", \"ObjectPath\": \"/Gam",
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayManager_C_UAID_B42E99C03511624902_1128440870.DefaultSceneRoot'\", \"ObjectPath\": \"/Game",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayManager_C_UAID_B42E99C03511624902_1128440870.DefaultSceneRoot'\", \"ObjectPath\": \"/Game",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_ReplayManager_C_UAID_B42E99C03511624902_1128440870.DefaultSceneRoot'\", \"ObjectPath\": \"/Gam"
+    }
+   }
+  ],
+  "BC_SecurityCarA_C": [
+   {
+    "nom": "BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836",
+    "dans": "cellule 74YOH5PQRWAT22G6L26F3YRSX",
+    "proprietes_reglees": {
+     "DecalAOPlane": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.DecalAOPlane'\", \"ObjectPath\": \"/Game/Leve",
+     "FrontLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.FrontLightL'\", \"ObjectPath\": \"/Game/L",
+     "RearLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.RearLightR'\", \"ObjectPath\": \"/Game/Le",
+     "RearLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.RearLightL'\", \"ObjectPath\": \"/Game/Le",
+     "FrontLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.FrontLightR'\", \"ObjectPath\": \"/Game/L",
+     "RearTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.RearTurnLightR'\", \"ObjectPath\": \"/Gam",
+     "FrontTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.FrontTurnLightL'\", \"ObjectPath\": \"/Ga",
+     "FrontTurnLightR": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.FrontTurnLightR'\", \"ObjectPath\": \"/Ga",
+     "RearTurnLightL": "{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.RearTurnLightL'\", \"ObjectPath\": \"/Gam",
+     "StaticMeshComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.StaticMeshComponent0'\", \"ObjectPath\"",
+     "bCanBeInCluster": false,
+     "RootComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.StaticMeshComponent0'\", \"ObjectPath\"",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SpotLightComponent'WalesS4HafrenSouth:PersistentLevel.BC_SecurityCarA_C_UAID_04421A0DCF0D1C8102_1091751836.RearTurnLightL'\", \"ObjectPath\": \"/Ga"
+    }
+   }
+  ],
+  "BC_SkidManager_C": [
+   {
+    "nom": "BC_SkidManager_C_UAID_B42E99C03511624902_1128442871",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "SkidMesh": "{\"ObjectName\": \"SkidProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_SkidManager_C_UAID_B42E99C03511624902_1128442871.SkidMesh'\", \"ObjectPath\": \"/G",
+     "ReplayComponent": "{\"ObjectName\": \"SkidReplayComponent'WalesS4HafrenSouth:PersistentLevel.BC_SkidManager_C_UAID_B42E99C03511624902_1128442871.ReplayComponent'\", \"ObjectPath\": \"/Ga",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_SkidManager_C_UAID_B42E99C03511624902_1128442871.Root'\", \"ObjectPath\": \"/Game/Levels/WalesS"
+    }
+   }
+  ],
+  "BC_StartSequenceTrigger_C": [
+   {
+    "nom": "BC_StartSequenceTrigger_C_UAID_F02F74CC4837645002_1372698590",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "SplineLocationsComponent": "{\"ObjectName\": \"SplineLocationsComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837645002_1372698590.SplineLocations'\", \"Obj",
+     "BoxComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837645002_1372698590.BoxComponent'\", \"ObjectPath\": \"/Gam",
+     "MeshComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837645002_1372698590.MeshComponent'\", \"Object",
+     "RootComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837645002_1372698590.BoxComponent'\", \"ObjectPath\": \"/Gam"
+    }
+   },
+   {
+    "nom": "BC_StartSequenceTrigger_C_UAID_F02F74CC4837675002_1354894112",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "SplineLocationsComponent": "{\"ObjectName\": \"SplineLocationsComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837675002_1354894112.SplineLocations'\", \"Obj",
+     "BoxComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837675002_1354894112.BoxComponent'\", \"ObjectPath\": \"/Gam",
+     "MeshComponent": "{\"ObjectName\": \"ProceduralMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837675002_1354894112.MeshComponent'\", \"Object",
+     "RootComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StartSequenceTrigger_C_UAID_F02F74CC4837675002_1354894112.BoxComponent'\", \"ObjectPath\": \"/Gam"
+    }
+   }
+  ],
+  "BC_StopMarshalEndSequence_C": [
+   {
+    "nom": "BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253",
+    "dans": "cellule 0QY7AIYF1F7BYQ1BH0V2NX22R",
+    "proprietes_reglees": {
+     "MarshalEndSequence": "{\"ObjectName\": \"MarshalEndSequenceComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.MarshalEndSequence",
+     "ComeCloser": "{\"ObjectName\": \"ChildActorComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.ComeCloser'\", \"ObjectPath\"",
+     "CustomizableCrowdCharacterAnimation": "{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.Customizab",
+     "Decal": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.Decal'\", \"ObjectPath\": \"/Game/L",
+     "CrowdCharacterRespawnBox": "{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.CrowdCharact",
+     "HeadType": "Head008",
+     "BodyType": "AutumnMale",
+     "HatType": "Hat",
+     "BodyCustomization": "MarshalYellow",
+     "ClothesCustomization": "Autumn_03",
+     "HatCustomization": "Green",
+     "HeadPoseAsset": "{\"ObjectName\": \"PoseAsset'AS_Marshal_Head_008_PoseAsset'\", \"ObjectPath\": \"/Game/Characters/Common/Marshal/CC/AS_Marshal_Head_008_PoseAsset.0\"}",
+     "MeshType": "Head008",
+     "Accessories": "[{\"ObjectName\": \"CustomizableCrowdCharacterAccessory'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.Customiza",
+     "BodySkeletalMesh": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.BodySkeletalMesh'\",",
+     "RootComponent": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.BodySkeletalMesh'\",",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D5D8202_1917927253.CrowdCharac"
+    }
+   },
+   {
+    "nom": "BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611",
+    "dans": "cellule 9XYWDVYVYCEUG004BCIGGGZ1X",
+    "proprietes_reglees": {
+     "MarshalEndSequence": "{\"ObjectName\": \"MarshalEndSequenceComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.MarshalEndSequence",
+     "ComeCloser": "{\"ObjectName\": \"ChildActorComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.ComeCloser'\", \"ObjectPath\"",
+     "CustomizableCrowdCharacterAnimation": "{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.Customizab",
+     "Decal": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.Decal'\", \"ObjectPath\": \"/Game/L",
+     "CrowdCharacterRespawnBox": "{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.CrowdCharact",
+     "HeadType": "Head008",
+     "BodyType": "AutumnMale",
+     "RainAccessoryType": "RainHat",
+     "BodyCustomization": "MarshalYellow",
+     "ClothesCustomization": "Autumn_03",
+     "HatCustomization": "Grey",
+     "HeadPoseAsset": "{\"ObjectName\": \"PoseAsset'AS_Marshal_Head_008_PoseAsset'\", \"ObjectPath\": \"/Game/Characters/Common/Marshal/CC/AS_Marshal_Head_008_PoseAsset.0\"}",
+     "MeshType": "Head008",
+     "Accessories": "[{\"ObjectName\": \"CustomizableCrowdCharacterAccessory'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.Customiza",
+     "BodySkeletalMesh": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.BodySkeletalMesh'\",",
+     "RootComponent": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.BodySkeletalMesh'\",",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalEndSequence_C_UAID_04421A0DCF0D608202_1551551611.CrowdCharac"
+    }
+   }
+  ],
+  "BC_StopMarshalStartSequence_C": [
+   {
+    "nom": "BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795",
+    "dans": "cellule 7LLKWTGYD5X6VZB6JE5NL0DE6",
+    "proprietes_reglees": {
+     "MarshalStartSequence": "{\"ObjectName\": \"MarshalStartSequenceComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.MarshalStartSe",
+     "ComeCloser": "{\"ObjectName\": \"ChildActorComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.ComeCloser'\", \"ObjectPat",
+     "Start": "{\"ObjectName\": \"ChildActorComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.Start'\", \"ObjectPath\": \"",
+     "CustomizableCrowdCharacterAnimation": "{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.Customiz",
+     "Decal": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.Decal'\", \"ObjectPath\": \"/Game",
+     "CrowdCharacterRespawnBox": "{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.CrowdChara",
+     "HeadType": "Head008",
+     "BodyType": "AutumnMale",
+     "HatType": "Hat",
+     "PropType": "Stick",
+     "BodyCustomization": "MarshalYellow",
+     "ClothesCustomization": "Autumn_04",
+     "HatCustomization": "Green",
+     "HeadPoseAsset": "{\"ObjectName\": \"PoseAsset'AS_Marshal_Head_008_PoseAsset'\", \"ObjectPath\": \"/Game/Characters/Common/Marshal/CC/AS_Marshal_Head_008_PoseAsset.0\"}",
+     "MeshType": "Head008",
+     "Accessories": "[{\"ObjectName\": \"CustomizableCrowdCharacterAccessory'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.Customi",
+     "BodySkeletalMesh": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.BodySkeletalMesh'",
+     "RootComponent": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.BodySkeletalMesh'",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D608202_1898998795.CrowdChar"
+    }
+   },
+   {
+    "nom": "BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717",
+    "dans": "cellule A0I1JHQ2458PSST2XD0UTWQ2I",
+    "proprietes_reglees": {
+     "MarshalStartSequence": "{\"ObjectName\": \"MarshalStartSequenceComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.MarshalStartSe",
+     "ComeCloser": "{\"ObjectName\": \"ChildActorComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.ComeCloser'\", \"ObjectPat",
+     "Start": "{\"ObjectName\": \"ChildActorComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.Start'\", \"ObjectPath\": \"",
+     "CustomizableCrowdCharacterAnimation": "{\"ObjectName\": \"CustomizableCrowdCharacterAnimation'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.Customiz",
+     "Decal": "{\"ObjectName\": \"DecalComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.Decal'\", \"ObjectPath\": \"/Game",
+     "CrowdCharacterRespawnBox": "{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.CrowdChara",
+     "HeadType": "Head008",
+     "BodyType": "AutumnMale",
+     "HatType": "Hat",
+     "PropType": "Stick",
+     "BodyCustomization": "MarshalYellow",
+     "ClothesCustomization": "Autumn_04",
+     "HatCustomization": "Green",
+     "HeadPoseAsset": "{\"ObjectName\": \"PoseAsset'AS_Marshal_Head_008_PoseAsset'\", \"ObjectPath\": \"/Game/Characters/Common/Marshal/CC/AS_Marshal_Head_008_PoseAsset.0\"}",
+     "MeshType": "Head008",
+     "Accessories": "[{\"ObjectName\": \"CustomizableCrowdCharacterAccessory'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.Customi",
+     "BodySkeletalMesh": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.BodySkeletalMesh'",
+     "RootComponent": "{\"ObjectName\": \"CrowdSkeletalMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.BodySkeletalMesh'",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"CrowdCharacterRespawnBoxComponent'WalesS4HafrenSouth:PersistentLevel.BC_StopMarshalStartSequence_C_UAID_04421A0DCF0D5E8202_1628053717.CrowdChar"
+    }
+   }
+  ],
+  "BC_TapesManager_C": [
+   {
+    "nom": "BC_TapesManager_C_UAID_B42E99C03511624902_1128444872",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "TapesReplay": "{\"ObjectName\": \"TapesReplayComponent'WalesS4HafrenSouth:PersistentLevel.BC_TapesManager_C_UAID_B42E99C03511624902_1128444872.TapesReplay'\", \"ObjectPath\": \"/Game",
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_TapesManager_C_UAID_B42E99C03511624902_1128444872.DefaultSceneRoot'\", \"ObjectPath\": \"/Game/",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_TapesManager_C_UAID_B42E99C03511624902_1128444872.DefaultSceneRoot'\", \"ObjectPath\": \"/Game/",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_TapesManager_C_UAID_B42E99C03511624902_1128444872.DefaultSceneRoot'\", \"ObjectPath\": \"/Game"
+    }
+   }
+  ],
+  "BC_TiresRack_C": [
+   {
+    "nom": "BC_TiresRack_C_UAID_B42E99C03511C09C02_3d3e525db80efa5b_1314066034",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "StaticMeshComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_TiresRack_C_UAID_B42E99C03511C09C02_3d3e525db80efa5b_1314066034.StaticMeshComponent0'\"",
+     "RootComponent": "{\"ObjectName\": \"StaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BC_TiresRack_C_UAID_B42E99C03511C09C02_3d3e525db80efa5b_1314066034.StaticMeshComponent0'\"",
+     "Tags": "[\"ServicePark\"]"
+    }
+   }
+  ],
+  "BC_TrackAvatar_C": [
+   {
+    "nom": "BC_TrackAvatar_C_UAID_B42E99C03511624902_1128458876",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_TrackAvatar_C_UAID_B42E99C03511624902_1128458876.DefaultSceneRoot'\", \"ObjectPath\": \"/Game/L",
+     "BakedData": "{\"AssetPathName\": \"/Game/Environments/WalesS4HafrenSouth/DataAssets/DA_WalesS4HafrenSouthBakedData.DA_WalesS4HafrenSouthBakedData\", \"SubPathString\": \"\"}",
+     "MaterialsForWorldAlignedPhysicalMatMaskUVs": "[{\"ObjectName\": \"Material'M_RoadSurface_Layered'\", \"ObjectPath\": \"/Game/Environments/RallyShared/Materials/M_RoadSurface_Layered.0\"}, {\"ObjectName\": \"Material'M",
+     "TileSizeParameterName": "TileSize(meters) (S)",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_TrackAvatar_C_UAID_B42E99C03511624902_1128458876.DefaultSceneRoot'\", \"ObjectPath\": \"/Game/L",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_TrackAvatar_C_UAID_B42E99C03511624902_1128458876.DefaultSceneRoot'\", \"ObjectPath\": \"/Game/"
+    }
+   }
+  ],
+  "BC_VehicleParticlesManager_C": [
+   {
+    "nom": "BC_VehicleParticlesManager_C_UAID_B42E99C03511624902_1128446873",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_VehicleParticlesManager_C_UAID_B42E99C03511624902_1128446873.DefaultSceneRoot'\", \"ObjectPat",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_VehicleParticlesManager_C_UAID_B42E99C03511624902_1128446873.DefaultSceneRoot'\", \"ObjectPat",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BC_VehicleParticlesManager_C_UAID_B42E99C03511624902_1128446873.DefaultSceneRoot'\", \"ObjectPa"
+    }
+   }
+  ],
+  "BC_WeatherActor_C": [
+   {
+    "nom": "BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "BC_WeatherActorReplayComponent": "{\"ObjectName\": \"BC_WeatherActorReplayComponent_C'WalesS4HafrenSouth:PersistentLevel.BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874.BC_WeatherActorReplayCo",
+     "weather_data": "{\"global_day_time\": 1559.361, \"global_wetness\": 0.1, \"global_gloominess\": 0.45, \"global_fogginess\": 0.2, \"global_gust\": 0.2}",
+     "p_niagara_component_lightning": "{\"ObjectName\": \"NiagaraComponent'WalesS4HafrenSouth:PersistentLevel.BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874.p_niagara_component_lightning'\", \"Objec",
+     "p_niagara_component_rain": "{\"ObjectName\": \"NiagaraComponent'WalesS4HafrenSouth:PersistentLevel.BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874.p_niagara_component_rain'\", \"ObjectPath",
+     "p_niagara_component_snow": "{\"ObjectName\": \"NiagaraComponent'WalesS4HafrenSouth:PersistentLevel.BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874.p_niagara_component_snow'\", \"ObjectPath",
+     "p_niagara_component_wind": "{\"ObjectName\": \"NiagaraComponent'WalesS4HafrenSouth:PersistentLevel.BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874.p_niagara_component_wind'\", \"ObjectPath",
+     "Timeline": "{\"StartTime\": 56136.996}",
+     "RootComponent": "{\"ObjectName\": \"NiagaraComponent'WalesS4HafrenSouth:PersistentLevel.BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874.p_niagara_component_lightning'\", \"Objec",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"BC_WeatherActorReplayComponent_C'WalesS4HafrenSouth:PersistentLevel.BC_WeatherActor_C_UAID_B42E99C03511624902_1128448874.BC_WeatherActorReplayC"
+    }
+   }
+  ],
+  "BP_CollisionInspector_C": [
+   {
+    "nom": "BP_CollisionInspector_C_UAID_B42E99C03511624902_1128425865",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BP_CollisionInspector_C_UAID_B42E99C03511624902_1128425865.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "ReplayCompo": "{\"ObjectName\": \"CollisionReplayComponent'WalesS4HafrenSouth:PersistentLevel.BP_CollisionInspector_C_UAID_B42E99C03511624902_1128425865.ReplayComponent'\", \"Objec",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BP_CollisionInspector_C_UAID_B42E99C03511624902_1128425865.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BP_CollisionInspector_C_UAID_B42E99C03511624902_1128425865.DefaultSceneRoot'\", \"ObjectPath\": "
+    }
+   }
+  ],
+  "BP_TreelinesContainer_C": [
+   {
+    "nom": "BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "ISM_Var5": "{\"ObjectName\": \"InstancedStaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.ISM_Var5'\", \"ObjectPa",
+     "ISM_Var4": "{\"ObjectName\": \"InstancedStaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.ISM_Var4'\", \"ObjectPa",
+     "ISM_Var3": "{\"ObjectName\": \"InstancedStaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.ISM_Var3'\", \"ObjectPa",
+     "ISM_Var2": "{\"ObjectName\": \"InstancedStaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.ISM_Var2'\", \"ObjectPa",
+     "ISM_Var1": "{\"ObjectName\": \"InstancedStaticMeshComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.ISM_Var1'\", \"ObjectPa",
+     "DefaultSceneRoot": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "TotalNumberOfInstances": 6237,
+     "ISMComponents": "[null, null, null]",
+     "Instances": "[{\"Key\": {\"Rotation\": {\"X\": 0.0, \"Y\": 0.0, \"Z\": 0.1686732, \"W\": 0.98567206, \"IsNormalized\": true, \"Size\": 1.0, \"SizeSquared\": 1.0}, \"Translation\": {\"X\": 69592.6",
+     "Materials": "[{\"ObjectName\": \"MaterialInstanceConstant'M_Treeline_Wales_SmallFar'\", \"ObjectPath\": \"/Game/Environments/RallyShared/MaterialInstances/M_Treeline_Wales_SmallFar",
+     "Mesh": "{\"ObjectName\": \"StaticMesh'SM_TreelineBasePlane_Centered'\", \"ObjectPath\": \"/Game/Environments/RallyShared/Meshes/SM_TreelineBasePlane_Centered.1\"}",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.DefaultSceneRoot'\", \"ObjectPath\": \"",
+     "BlueprintCreatedComponents": "[{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.BP_TreelinesContainer_C_UAID_988D465A1C10279002_2140582432.DefaultSceneRoot'\", \"ObjectPath\": "
+    }
+   }
+  ],
+  "CustomGrassRegisterer": [
+   {
+    "nom": "CustomGrassRegisterer_UAID_B42E99C03511624902_1128486882",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {}
+   }
+  ],
+  "GameConfigurator": [
+   {
+    "nom": "GameConfigurator_UAID_B42E99C03511624902_1128490884",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "Configurations": "[{\"Key\": \"FullForward\", \"Value\": {\"DataLayersToLoad\": [{\"AssetPathName\": \"/Game/Environments/WalesS4HafrenSouth/DataLayers/DL_HafrenSouthFullForwardGameplayActo"
+    }
+   }
+  ],
+  "ManagedAmbientSound": [
+   {
+    "nom": "ManagedAmbientSound_UAID_B42E99C03511B89C02_3d3e525db80efa5b_1408663636",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "AudioComponent": "{\"ObjectName\": \"ManagedAudioComponent'WalesS4HafrenSouth:PersistentLevel.ManagedAmbientSound_UAID_B42E99C03511B89C02_3d3e525db80efa5b_1408663636.AudioComponent'",
+     "RootComponent": "{\"ObjectName\": \"ManagedAudioComponent'WalesS4HafrenSouth:PersistentLevel.ManagedAmbientSound_UAID_B42E99C03511B89C02_3d3e525db80efa5b_1408663636.AudioComponent'",
+     "Tags": "[\"ServicePark\"]"
+    }
+   }
+  ],
+  "PCGWorldActor": [
+   {
+    "nom": "PCGWorldActor_UAID_D8BBC1D9F004679D02_3d3e525db80efa5b_1965877432",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "LandscapeCacheObject": "{\"ObjectName\": \"PCGLandscapeCache'WalesS4HafrenSouth:PersistentLevel.PCGWorldActor_UAID_D8BBC1D9F004679D02_3d3e525db80efa5b_1965877432.LandscapeCache'\", \"Object",
+     "Tags": "[\"ServicePark\"]"
+    }
+   },
+   {
+    "nom": "PCGWorldActor_UAID_D8BBC1D9F0047F4D02_2145865160",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "LandscapeCacheObject": "{\"ObjectName\": \"PCGLandscapeCache'WalesS4HafrenSouth:PersistentLevel.PCGWorldActor_UAID_D8BBC1D9F0047F4D02_2145865160.LandscapeCache'\", \"ObjectPath\": \"/Game/Lev"
+    }
+   }
+  ],
+  "PacenoteSetupActor": [
+   {
+    "nom": "PacenoteSetupActor_UAID_04421A0DCF0D7C5802_1875789247",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "PacenoteTable": "{\"ObjectName\": \"DataTable'DT_PacenoteHafrenSouthForward'\", \"ObjectPath\": \"/Game/Data/Pacenote/Tables/DT_PacenoteHafrenSouthForward.0\"}"
+    }
+   },
+   {
+    "nom": "PacenoteSetupActor_UAID_04421A0DCF0D8F5802_1896845591",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "PacenoteTable": "{\"ObjectName\": \"DataTable'DT_PacenoteHafrenSouthReverse'\", \"ObjectPath\": \"/Game/Data/Pacenote/Tables/DT_PacenoteHafrenSouthReverse.0\"}"
+    }
+   }
+  ],
+  "PhysicsWorldBounds": [
+   {
+    "nom": "PhysicsWorldBounds_UAID_B42E99C03511624902_1128469881",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "BrushType": "EBrushType::Brush_Add",
+     "Brush": "{\"ObjectName\": \"Model'WalesS4HafrenSouth:PersistentLevel.PhysicsWorldBounds_UAID_B42E99C03511624902_1128469881.Model_1'\", \"ObjectPath\": \"/Game/Levels/WalesS4Haf",
+     "BrushComponent": "{\"ObjectName\": \"BrushComponent'WalesS4HafrenSouth:PersistentLevel.PhysicsWorldBounds_UAID_B42E99C03511624902_1128469881.BrushComponent0'\", \"ObjectPath\": \"/Game/",
+     "bHidden": false,
+     "RootComponent": "{\"ObjectName\": \"BrushComponent'WalesS4HafrenSouth:PersistentLevel.PhysicsWorldBounds_UAID_B42E99C03511624902_1128469881.BrushComponent0'\", \"ObjectPath\": \"/Game/"
+    }
+   }
+  ],
+  "RespawnPlanes": [
+   {
+    "nom": "RespawnPlanes_UAID_04421A0DCF0D8F8402_1967317100",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "NumRespawnPlanes": 837,
+     "RespawnPlaneComponents": "[{\"ObjectName\": \"SplineMeshComponent'WalesS4HafrenSouth:PersistentLevel.RespawnPlanes_UAID_04421A0DCF0D8F8402_1967317100.SplineMeshComponent_837'\", \"ObjectPath\"",
+     "RespawnPlaneStaticMesh": "{\"ObjectName\": \"StaticMesh'SM_RespawnWallCube'\", \"ObjectPath\": \"/Game/Data/Gameplay/StaticMeshes/SM_RespawnWallCube.1\"}",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.RespawnPlanes_UAID_04421A0DCF0D8F8402_1967317100.Root Component'\", \"ObjectPath\": \"/Game/Levels"
+    }
+   },
+   {
+    "nom": "RespawnPlanes_UAID_04421A0DCF0D408402_2136748154",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "NumRespawnPlanes": 855,
+     "RespawnPlaneComponents": "[{\"ObjectName\": \"SplineMeshComponent'WalesS4HafrenSouth:PersistentLevel.RespawnPlanes_UAID_04421A0DCF0D408402_2136748154.SplineMeshComponent_0'\", \"ObjectPath\": ",
+     "RespawnPlaneStaticMesh": "{\"ObjectName\": \"StaticMesh'SM_RespawnWallCube'\", \"ObjectPath\": \"/Game/Data/Gameplay/StaticMeshes/SM_RespawnWallCube.1\"}",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.RespawnPlanes_UAID_04421A0DCF0D408402_2136748154.Root Component'\", \"ObjectPath\": \"/Game/Levels"
+    }
+   }
+  ],
+  "RuntimeVirtualTextureVolume": [
+   {
+    "nom": "RuntimeVirtualTextureVolume_UAID_F02F74CC4839957902_1538998495",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "VirtualTextureComponent": "{\"ObjectName\": \"RuntimeVirtualTextureComponent'WalesS4HafrenSouth:PersistentLevel.RuntimeVirtualTextureVolume_UAID_F02F74CC4839957902_1538998495.VirtualTextureC",
+     "RootComponent": "{\"ObjectName\": \"RuntimeVirtualTextureComponent'WalesS4HafrenSouth:PersistentLevel.RuntimeVirtualTextureVolume_UAID_F02F74CC4839957902_1538998495.VirtualTextureC"
+    }
+   }
+  ],
+  "ServiceParkTargetPoint": [
+   {
+    "nom": "ServiceParkTargetPoint_UAID_B42E99C035113CDF01_3d3e525db80efa5b_1821353212",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.ServiceParkTargetPoint_UAID_B42E99C035113CDF01_3d3e525db80efa5b_1821353212.SceneComp'\", \"Objec",
+     "Tags": "[\"ServiceParkTarget\", \"ServicePark\"]"
+    }
+   }
+  ],
+  "SplinesActor": [
+   {
+    "nom": "SplinesActor_UAID_B42E99C03511594B02_1703117359",
+    "dans": "cellule 22VG0QIP9ATUQI633K86KWPFP",
+    "proprietes_reglees": {
+     "bIsReverse": true,
+     "IdealSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.IdealSpline'\", \"ObjectPath\": \"/Game/Levels/",
+     "CenterSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.CenterSpline'\", \"ObjectPath\": \"/Game/Levels",
+     "LeftBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.LeftBorderSpline'\", \"ObjectPath\": \"/Game/Le",
+     "RightBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.RightBorderSpline'\", \"ObjectPath\": \"/Game/L",
+     "ContourSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.ContourSpline'\", \"ObjectPath\": \"/Game/Level",
+     "PitlaneCenterSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.PitlaneCenterSpline'\", \"ObjectPath\": \"/Game",
+     "PitlaneLeftBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.PitlaneLeftBorderSpline'\", \"ObjectPath\": \"/",
+     "PitlaneRightBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.PitlaneRightBorderSpline'\", \"ObjectPath\": \"",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1703117359.Root'\", \"ObjectPath\": \"/Game/Levels/WalesS4Haf"
+    }
+   },
+   {
+    "nom": "SplinesActor_UAID_B42E99C03511594B02_1704831360",
+    "dans": "cellule 7FF9A0XR2HIRJVFZU6AEAFHMU",
+    "proprietes_reglees": {
+     "IdealSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.IdealSpline'\", \"ObjectPath\": \"/Game/Levels/",
+     "CenterSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.CenterSpline'\", \"ObjectPath\": \"/Game/Levels",
+     "LeftBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.LeftBorderSpline'\", \"ObjectPath\": \"/Game/Le",
+     "RightBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.RightBorderSpline'\", \"ObjectPath\": \"/Game/L",
+     "ContourSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.ContourSpline'\", \"ObjectPath\": \"/Game/Level",
+     "PitlaneCenterSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.PitlaneCenterSpline'\", \"ObjectPath\": \"/Game",
+     "PitlaneLeftBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.PitlaneLeftBorderSpline'\", \"ObjectPath\": \"/",
+     "PitlaneRightBorderSpline": "{\"ObjectName\": \"DMSplineComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.PitlaneRightBorderSpline'\", \"ObjectPath\": \"",
+     "RootComponent": "{\"ObjectName\": \"SceneComponent'WalesS4HafrenSouth:PersistentLevel.SplinesActor_UAID_B42E99C03511594B02_1704831360.Root'\", \"ObjectPath\": \"/Game/Levels/WalesS4Haf"
+    }
+   }
+  ],
+  "WalesS4HafrenSouth_C": [
+   {
+    "nom": "WalesS4HafrenSouth_C_1",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {}
+   }
+  ],
+  "WeatherOcclusionVolume": [
+   {
+    "nom": "WeatherOcclusionVolume_UAID_F02F74CC4839307902_3d3e525db80efa5b_1336689721",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "CollisionComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.WeatherOcclusionVolume_UAID_F02F74CC4839307902_3d3e525db80efa5b_1336689721.CollisionComp'\", \"Obj",
+     "RootComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.WeatherOcclusionVolume_UAID_F02F74CC4839307902_3d3e525db80efa5b_1336689721.CollisionComp'\", \"Obj",
+     "Tags": "[\"ServicePark\"]"
+    }
+   },
+   {
+    "nom": "WeatherOcclusionVolume_UAID_F02F74CC4839F19E02_e54bec5e7a2e6d37_1444668762",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "CollisionComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.WeatherOcclusionVolume_UAID_F02F74CC4839F19E02_e54bec5e7a2e6d37_1444668762.CollisionComp'\", \"Obj",
+     "RootComponent": "{\"ObjectName\": \"BoxComponent'WalesS4HafrenSouth:PersistentLevel.WeatherOcclusionVolume_UAID_F02F74CC4839F19E02_e54bec5e7a2e6d37_1444668762.CollisionComp'\", \"Obj"
+    }
+   }
+  ],
+  "WorldDataLayers": [
+   {
+    "nom": "WorldDataLayers",
+    "dans": "niveau persistant",
+    "proprietes_reglees": {
+     "DataLayerInstances": "[{\"ObjectName\": \"DataLayerInstanceWithAsset'WalesS4HafrenSouth:PersistentLevel.WorldDataLayers.DataLayer_BE01CD964559FE7DF04AF19AE47AF47A'\", \"ObjectPath\": \"/Gam"
+    }
+   }
+  ]
+ }
+}

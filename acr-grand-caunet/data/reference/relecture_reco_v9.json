@@ -1,0 +1,1178 @@
+{
+ "note": "Relecture systématique de la vidéo de reconnaissance (14/11/2026), suite de relecture_reco_v8.json : parapets hors tablier, ponts, glissières, lisses et emprises non encore relus (PK ≥ 60). Images extraites tous les 2 à 4 m de PK RÉEL (inversion de data/processed/calage_reco.json corrigé par scripts/calage_reco.py), planches de 1600 px et recadrages gauche/droite. Objet placé au PK où il sort du champ par le côté (début et fin pour les objets longs). Limites : ±2-3 m en ligne droite, ±5 m dans les épingles et carrefours ; hauteurs et reculs à l'œil (±0,2 m, ±1 m). Écran bas sous le rail : aucun vu sur les glissières relues. Planches et scripts hors dépôt (scratchpad, dossier relecture_v9).",
+ "endroits": [
+  {
+   "numero": 1,
+   "pk_m": [
+    180,
+    230
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 194,
+     "pk_fin_m": 212,
+     "decalage_bord_m": 0.5,
+     "profondeur_m": 5,
+     "matiere": "herbe rase et gravier clair",
+     "details": "clairière plane au niveau de la chaussée sous les chênes, blocs calcaires épars au fond",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire gauche 195-215, décalage 3 m, profondeur 5 m, pierre.",
+   "correction_proposee": "aucune sur les PK (écart ≤ 3 m) ; sol plutôt herbe et gravier que pierre, et décalage 0,5 m au lieu de 3 m."
+  },
+  {
+   "numero": 2,
+   "pk_m": [
+    1465,
+    1530
+   ],
+   "objets": [
+    {
+     "genre": "tete_de_ponceau",
+     "cote": "droite",
+     "pk_debut_m": 1474,
+     "pk_fin_m": 1477,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.3,
+     "matiere": "béton",
+     "couleur": "blanc",
+     "details": "bloc bas biseauté, sort à 1476-1477",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "pont",
+     "cote": "les deux",
+     "pk_debut_m": 1480,
+     "pk_fin_m": 1488,
+     "details": "pont 1484 : aucun parapet visible d'un côté ni de l'autre",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 1488,
+     "pk_fin_m": 1514,
+     "decalage_bord_m": 0.5,
+     "profondeur_m": 4,
+     "matiere": "terre et gravier clairs, branchages",
+     "details": "large accotement plat à légèrement bombé",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 1521,
+     "pk_fin_m": null,
+     "hauteur_m": 0.65,
+     "matiere": "moellons gris, chaperon béton",
+     "couleur": "gris, dés et about blancs",
+     "details": "about de début biseauté blanc sorti du champ à 1521",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "tête de ponceau droite béton 1478,5-1481 (0,35 m) ; pont 1484 aucun/aucun ; aire droite 1490-1511,5 pierre ; parapet droite à dés blancs depuis 1524.",
+   "correction_proposee": "aucune : conforme (tête de ponceau 2-3 m plus tôt, début du long parapet 3 m plus tôt, dans la tolérance)."
+  },
+  {
+   "numero": 3,
+   "pk_m": [
+    1570,
+    1600
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 1588.5,
+     "hauteur_m": 0.65,
+     "matiere": "moellons gris, chaperon béton",
+     "couleur": "gris, dés blancs, about blanc biseauté",
+     "details": "fin du long parapet : about blanc sorti à 1588-1589",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "parapet droite à dés blancs 1524-1591,5.",
+   "correction_proposee": "aucune : conforme (−3 m)."
+  },
+  {
+   "numero": 4,
+   "pk_m": [
+    1860,
+    1890
+   ],
+   "objets": [
+    {
+     "genre": "piste",
+     "cote": "gauche",
+     "pk_debut_m": 1872,
+     "pk_fin_m": 1882,
+     "profondeur_m": 15,
+     "matiere": "terre claire",
+     "details": "chemin de terre en lacet qui monte, piquet au fond",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "piste gauche 1870,5-1883.",
+   "correction_proposee": "aucune : conforme."
+  },
+  {
+   "numero": 5,
+   "pk_m": [
+    1910,
+    1975
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 1917,
+     "pk_fin_m": 1932,
+     "decalage_bord_m": 0.3,
+     "profondeur_m": 5,
+     "matiere": "terre et gravier clairs",
+     "details": "voiture garée ; plane, adossée au talus rocheux",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 1928,
+     "pk_fin_m": 1955,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 5,
+     "matiere": "gravier clair",
+     "details": "surlargeur plane à l'intérieur du virage ; début mal visible",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "tete_de_ponceau",
+     "cote": "droite",
+     "pk_debut_m": 1959,
+     "pk_fin_m": 1962,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.45,
+     "matiere": "béton",
+     "couleur": "gris clair, about blanc",
+     "details": "bloc bas au bout de l'aire, la glissière s'y accroche",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": 1963,
+     "pk_fin_m": null,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.75,
+     "matiere": "acier",
+     "details": "début accolé au bloc béton, sans extrémité abaissée ; rail simple sur poteaux, pas d'écran bas",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "pont",
+     "cote": "les deux",
+     "pk_debut_m": 1958,
+     "pk_fin_m": 1968,
+     "details": "pont 1963 : pas de parapet maçonné ; à gauche blocs calcaires dressés",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire gauche 1921,5-1938,5 ; aire droite 1938,5-1961,5 ; tête de ponceau droite béton 1963-1965,5 ; glissière droite dès 1966,5 ; pont 1963 aucun/aucun.",
+   "correction_proposee": "Avancer l'aire gauche à 1917-1932 (−5/−6 m) et l'aire droite à 1928-1955 (−7/−10 m, à confirmer) ; tête de ponceau 1959-1962 (−4 m) ; glissière dès 1963 (−3,5 m), départ collé au bloc."
+  },
+  {
+   "numero": 6,
+   "pk_m": [
+    1978,
+    2010
+   ],
+   "objets": [
+    {
+     "genre": "piste",
+     "cote": "gauche",
+     "pk_debut_m": 1983,
+     "pk_fin_m": 1995,
+     "profondeur_m": 10,
+     "matiere": "terre et gravier clairs",
+     "details": "débouché de piste ; poteau indicateur et blocs calcaires dressés juste avant (1980-1983)",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "piste gauche 1989-2004.",
+   "correction_proposee": "Avancer la piste gauche à 1983-1995 (−6/−9 m)."
+  },
+  {
+   "numero": 7,
+   "pk_m": [
+    2120,
+    2230
+   ],
+   "objets": [
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 2130,
+     "details": "fin accolée au début du parapet maçonné (about béton blanc), sans extrémité abaissée",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 2130,
+     "pk_fin_m": 2189,
+     "hauteur_m": 0.65,
+     "matiere": "moellons gris, chaperon béton",
+     "couleur": "gris, dés blancs",
+     "details": "début sous la fin du rail, fin sortie vers 2188-2190",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 2196,
+     "pk_fin_m": 2226,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 8,
+     "matiere": "terre et feuilles mortes",
+     "details": "plate-forme plane sous les chênes, deux ou trois blocs calcaires au bord vers 2200-2204",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "glissière droite jusqu'à 2134 ; parapet droite à dés blancs 2135-2191 ; aire gauche 2195-2220,5 pierre.",
+   "correction_proposee": "Glissière : fin à 2130 (−4 m) ; parapet 2130-2189 (−5/−2 m) ; aire gauche : début juste, fin 2226 (+5,5 m), sol terre et feuilles au lieu de pierre."
+  },
+  {
+   "numero": 8,
+   "pk_m": [
+    2250,
+    2280
+   ],
+   "objets": [
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": 2261,
+     "pk_fin_m": null,
+     "hauteur_m": 0.75,
+     "matiere": "acier",
+     "details": "extrémité de début abaissée et enterrée ; rail simple, pas d'écran bas ; panneau « affaissement » derrière",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "glissière droite dès 2266,5.",
+   "correction_proposee": "Avancer le début de la glissière à 2261 (−5,5 m), extrémité abaissée."
+  },
+  {
+   "numero": 9,
+   "pk_m": [
+    2380,
+    2415
+   ],
+   "objets": [
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 2401,
+     "details": "fin descendante (abaissée probable) juste avant le muret",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "muret",
+     "cote": "droite",
+     "pk_debut_m": 2409,
+     "pk_fin_m": 2411,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.8,
+     "matiere": "moellons peints",
+     "couleur": "blanc",
+     "details": "bloc court de tête d'aqueduc",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "glissière droite jusqu'à 2394,5 ; muret pierre droite 2396,5-2399.",
+   "correction_proposee": "Prolonger la glissière jusqu'à 2401 (+6,5 m) et reculer le muret à 2409-2411 (+12 m), peint en blanc."
+  },
+  {
+   "numero": 10,
+   "pk_m": [
+    2420,
+    2490
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 2446,
+     "pk_fin_m": 2478,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 3.5,
+     "matiere": "gravier, terre et feuilles",
+     "details": "accotement élargi, légère pente vers le vallon",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire droite 2452-2482, 2,5 m, pierre.",
+   "correction_proposee": "Aire droite 2446-2478 (−6/−4 m), 3,5 m."
+  },
+  {
+   "numero": 11,
+   "pk_m": [
+    2600,
+    2685
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 2604,
+     "pk_fin_m": 2660,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 10,
+     "matiere": "dalles calcaires claires et gravier",
+     "details": "grande étendue rocheuse plane à légèrement bombée",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "lisse",
+     "cote": "gauche",
+     "pk_debut_m": 2630,
+     "pk_fin_m": 2640,
+     "decalage_bord_m": 10,
+     "hauteur_m": 0.9,
+     "matiere": "bois",
+     "details": "barrière basse à lisses au fond de l'aire gauche (sort ≈ 2640) ; absente des données",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 2630,
+     "pk_fin_m": 2678,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 8,
+     "matiere": "gravier clair et dalles",
+     "details": "aire de stationnement plane",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "lisse",
+     "cote": "droite",
+     "pk_debut_m": 2626,
+     "pk_fin_m": 2656,
+     "decalage_bord_m": 9,
+     "hauteur_m": 1.0,
+     "matiere": "bois",
+     "details": "clôture à deux lisses au fond de l'aire",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "barriere_basse",
+     "cote": "droite",
+     "pk_debut_m": 2660,
+     "pk_fin_m": 2674,
+     "decalage_bord_m": 5,
+     "hauteur_m": 0.6,
+     "matiere": "bois ou métal sombre",
+     "details": "barrière basse sombre, plus près du bord, après la clôture",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire gauche 2606-2657 ; aire droite 2635,5-2674,5 ; lisse bois droite 2637,5-2668,5 (7 m, 1 m) ; rien à gauche.",
+   "correction_proposee": "Aires : conformes (écarts ≤ 5 m). Lisse droite : 2626-2656 à 9 m (−11/−12 m) puis barrière basse 2660-2674 à 5 m. Ajouter une barrière à lisses bois à gauche 2630-2640, à 10 m."
+  },
+  {
+   "numero": 12,
+   "pk_m": [
+    2695,
+    2720
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 2703,
+     "pk_fin_m": 2707,
+     "hauteur_m": 0.5,
+     "matiere": "béton",
+     "couleur": "blanc",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 2708,
+     "pk_fin_m": 2711,
+     "hauteur_m": 0.8,
+     "matiere": "moellons gris, chaperon",
+     "couleur": "gris",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ponceau : gauche béton 2706-2709 ; droite pierre 2709-2711,5.",
+   "correction_proposee": "aucune : conforme (−2/−3 m)."
+  },
+  {
+   "numero": 13,
+   "pk_m": [
+    2790,
+    2870
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 2796,
+     "pk_fin_m": 2848,
+     "profondeur_m": 2.5,
+     "matiere": "gravier clair",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire droite 2800,5-2858.",
+   "correction_proposee": "Aire droite 2796-2848 (fin −10 m)."
+  },
+  {
+   "numero": 14,
+   "pk_m": [
+    2980,
+    3050
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 2989,
+     "pk_fin_m": 3034,
+     "profondeur_m": 9,
+     "matiere": "gravier et terre claire",
+     "details": "plane ; coffret vert vers 2993",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "piste",
+     "cote": "gauche",
+     "pk_m": 3004,
+     "details": "pas d'entrée de piste visible à gauche : talus rocheux continu 2993-3014",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire droite 3000-3045 ; piste gauche 2999-3009 (déplacée sur la route empierrée IGN).",
+   "correction_proposee": "Avancer l'aire droite à 2989-3034 (−11 m). Piste gauche : non vue sur la vidéo (non tranché : elle a été posée d'après l'IGN)."
+  },
+  {
+   "numero": 15,
+   "pk_m": [
+    3200,
+    3260
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 3212,
+     "pk_fin_m": 3236,
+     "hauteur_m": 0.65,
+     "matiere": "moellons gris",
+     "couleur": "gris, about béton blanc",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 3220,
+     "pk_fin_m": 3246,
+     "hauteur_m": 0.65,
+     "matiere": "moellons gris",
+     "couleur": "gris, abouts blancs",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "mur",
+     "cote": "droite",
+     "pk_m": 3214,
+     "decalage_bord_m": 3.5,
+     "hauteur_m": 1.8,
+     "matiere": "béton",
+     "couleur": "gris",
+     "details": "ouvrage hydraulique en retrait",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": 3245,
+     "pk_fin_m": null,
+     "details": "accolée au bout du parapet, sans extrémité abaissée",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "pont 3229 : gauche pierre 3211-3236, droite pierre 3225-3244 ; mur béton droite 3216-3218 ; glissière droite dès 3246.",
+   "correction_proposee": "Pont 3229 droite : début avancé à 3220 (−5 m), fin 3246 (+2) ; le reste conforme."
+  },
+  {
+   "numero": 16,
+   "pk_m": [
+    3370,
+    3490
+   ],
+   "objets": [
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 3386,
+     "details": "fin rabattue probable",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 3386,
+     "pk_fin_m": 3422,
+     "decalage_bord_m": 2,
+     "profondeur_m": 9,
+     "matiere": "terre et gravier",
+     "details": "parking",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "lisse",
+     "cote": "droite",
+     "pk_debut_m": 3380,
+     "pk_fin_m": 3410,
+     "decalage_bord_m": 9,
+     "hauteur_m": 0.45,
+     "matiere": "bois",
+     "details": "lisses basses au fond du parking",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "lisse",
+     "cote": "droite",
+     "pk_debut_m": 3420,
+     "pk_fin_m": 3426,
+     "decalage_bord_m": 4,
+     "hauteur_m": 1.0,
+     "matiere": "bois",
+     "details": "barrière près des conteneurs",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 3467,
+     "pk_fin_m": 3479,
+     "hauteur_m": 0.85,
+     "matiere": "moellons gris",
+     "couleur": "abouts béton blancs biseautés",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 3459,
+     "pk_fin_m": 3467,
+     "hauteur_m": 0.6,
+     "matiere": "moellons",
+     "couleur": "abouts blancs",
+     "details": "vu sortir 3459-3467 (virage à droite)",
+     "confiance": "faible"
+    }
+   ],
+   "ce_que_pose_le_jeu": "glissière droite fin 3381,5 ; aire droite 3387,5-3426 ; lisse 3393,5-3426 (4,5 m) ; ponceau droite 3468-3478, gauche 3469,5-3476,5 (calé sur le LiDAR).",
+   "correction_proposee": "Glissière : fin à 3386 (+4,5 m). Lisse : 3380-3410 à 9 m de recul (−13/−16 m) au lieu de 3393,5-3426 à 4,5 m, plus une barrière courte 3420-3426 à 4 m. Ponceau droite conforme ; gauche non tranché (la vidéo le met ≈ 10 m plus tôt que le LiDAR)."
+  },
+  {
+   "numero": 17,
+   "pk_m": [
+    3605,
+    3660
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_m": 3633,
+     "details": "aucun parapet à gauche à cet endroit",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "bloc",
+     "cote": "droite",
+     "pk_debut_m": 3637,
+     "pk_fin_m": 3643,
+     "hauteur_m": 0.5,
+     "matiere": "béton",
+     "couleur": "gris, abouts blancs",
+     "details": "",
+     "confiance": "faible"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 3620,
+     "hauteur_m": 0.6,
+     "matiere": "béton",
+     "couleur": "gris, about blanc, graffitis",
+     "details": "début avant 3610 ; absent des données",
+     "confiance": "faible"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ouvrage 3648 : gauche béton 3632-3634,5 ; droite aucun.",
+   "correction_proposee": "Non tranché (carrefour, rotation) : la vidéo montre du béton à droite (≈ 3637-3643 et un parapet finissant vers 3620), rien à gauche."
+  },
+  {
+   "numero": 18,
+   "pk_m": [
+    3696,
+    3760
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 3709,
+     "pk_fin_m": 3723,
+     "profondeur_m": 5,
+     "matiere": "terre rouge et gravier",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "piste",
+     "cote": "gauche",
+     "pk_debut_m": 3708,
+     "pk_fin_m": 3718,
+     "details": "débouché du Lion d'Or",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": 3745,
+     "pk_fin_m": null,
+     "details": "début, rail simple",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire droite 3716-3737 ; piste gauche 3705-3715 ; glissière droite dès 3747.",
+   "correction_proposee": "Aire droite 3709-3723 (−7/−14 m) ; le reste conforme."
+  },
+  {
+   "numero": 19,
+   "pk_m": [
+    3970,
+    4082
+   ],
+   "objets": [
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 3988,
+     "details": "fin accolée au début du mur",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "mur",
+     "cote": "droite",
+     "pk_debut_m": 3988,
+     "pk_fin_m": 4064,
+     "hauteur_m": 0.75,
+     "matiere": "moellons gris beige, chaperon de pierres plates",
+     "couleur": "gris beige",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 4066,
+     "details": "ouvrage 4074 droite : le mur ne se poursuit pas au-delà de ≈ 4066",
+     "confiance": "faible"
+    }
+   ],
+   "ce_que_pose_le_jeu": "glissière droite fin 3985,5 ; mur pierre droite 3979,5-4062,5 ; ouvrage 4074 droite pierre 4062,5-4076.",
+   "correction_proposee": "Mur droite : début à 3988 (+8,5 m), glissière fin 3988 (+2,5 m). Ouvrage 4074 droite : finir vers 4066 (−10 m, à confirmer, épingle)."
+  },
+  {
+   "numero": 20,
+   "pk_m": [
+    4215,
+    4240
+   ],
+   "objets": [
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": null,
+     "pk_fin_m": 4229,
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "glissière droite fin 4229,5.",
+   "correction_proposee": "aucune : conforme."
+  },
+  {
+   "numero": 21,
+   "pk_m": [
+    4300,
+    4380
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 4311,
+     "pk_fin_m": 4328,
+     "profondeur_m": 3,
+     "matiere": "gravier",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 4347,
+     "pk_fin_m": 4374,
+     "hauteur_m": 0.6,
+     "matiere": "moellons",
+     "couleur": "dés blancs",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 4340,
+     "pk_fin_m": 4377,
+     "hauteur_m": 0.65,
+     "matiere": "moellons",
+     "couleur": "dés blancs",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire droite 4308-4342,5 ; pont 4360 gauche 4348,5-4374, droite 4340,5-4374.",
+   "correction_proposee": "Raccourcir l'aire droite à 4311-4328 (fin −14 m) ; pont conforme."
+  },
+  {
+   "numero": 22,
+   "pk_m": [
+    4440,
+    4480
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 4449,
+     "pk_fin_m": 4464,
+     "hauteur_m": 0.6,
+     "matiere": "moellons",
+     "couleur": "dés blancs",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 4455,
+     "pk_fin_m": 4466,
+     "hauteur_m": 0.6,
+     "matiere": "moellons",
+     "couleur": "dés blancs",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "pont 4463 : gauche 4455,5-4473 ; droite 4448-4468.",
+   "correction_proposee": "Pont 4463 gauche : fin à 4466 (−7 m) ; droite conforme."
+  },
+  {
+   "numero": 23,
+   "pk_m": [
+    4545,
+    4690
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 4554,
+     "pk_fin_m": 4563,
+     "hauteur_m": 0.65,
+     "matiere": "béton",
+     "couleur": "gris clair, abouts blancs",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 4563,
+     "pk_fin_m": 4572,
+     "hauteur_m": 0.65,
+     "matiere": "béton",
+     "couleur": "gris clair, abouts blancs",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 4657,
+     "pk_fin_m": 4668,
+     "hauteur_m": 0.6,
+     "matiere": "béton",
+     "couleur": "gris clair, abouts blancs",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 4662,
+     "pk_fin_m": 4670,
+     "hauteur_m": 0.65,
+     "matiere": "béton",
+     "couleur": "gris clair, abouts blancs",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ponceau 4570 : gauche 4571-4583 (déplacé à la main sur le LiDAR), droite 4563,5-4575,5 ; ponceau 4670 : droite 4667-4679, gauche 4669-4681.",
+   "correction_proposee": "Gauche du premier ponceau : 4554-4563 (−17/−20 m, le déplacement LiDAR du 14/11 est à défaire) ; droite 4563-4572 (fin −3,5). Second ponceau : gauche 4657-4668 (−12/−13 m), droite 4662-4670 (−5/−9 m)."
+  },
+  {
+   "numero": 24,
+   "pk_m": [
+    4700,
+    4785
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 4712,
+     "pk_fin_m": 4767,
+     "profondeur_m": 8,
+     "matiere": "gravier et terre claire",
+     "details": "voiture garée, plane",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire droite 4714-4771.",
+   "correction_proposee": "aucune : conforme."
+  },
+  {
+   "numero": 25,
+   "pk_m": [
+    5448,
+    5475
+   ],
+   "objets": [
+    {
+     "genre": "mur",
+     "cote": "droite",
+     "pk_debut_m": 5459,
+     "pk_fin_m": 5469,
+     "decalage_bord_m": 3.5,
+     "hauteur_m": 1.6,
+     "matiere": "enduit",
+     "couleur": "beige, plaque verte",
+     "details": "mur d'entrée de propriété",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 5452,
+     "pk_fin_m": 5466,
+     "profondeur_m": 4,
+     "matiere": "gravier et terre claire",
+     "details": "entrée de propriété devant le mur ; absente des données",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "mur béton droite 5471,5-5494 (1,7 m) ; pas d'aire.",
+   "correction_proposee": "Ramener le mur enduit à 5459-5469 (−12/−25 m) ; ajouter une aire de gravier droite 5452-5466, 4 m."
+  },
+  {
+   "numero": 26,
+   "pk_m": [
+    5505,
+    5590
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 5526,
+     "pk_fin_m": 5546,
+     "hauteur_m": 0.6,
+     "matiere": "béton",
+     "couleur": "gris blanchi",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 5549,
+     "pk_fin_m": 5570,
+     "hauteur_m": 0.6,
+     "matiere": "béton",
+     "couleur": "gris blanchi, graffitis",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 5527,
+     "pk_fin_m": 5570,
+     "hauteur_m": 0.9,
+     "matiere": "moellons enduits",
+     "couleur": "gris, bandeaux blancs",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "muret",
+     "cote": "droite",
+     "pk_debut_m": 5508,
+     "pk_fin_m": 5518,
+     "hauteur_m": 0.8,
+     "matiere": "moellons",
+     "details": "sous la clôture bois avant le pont, vu au passage",
+     "confiance": "faible"
+    }
+   ],
+   "ce_que_pose_le_jeu": "pont 5554 : gauche béton 5532-5550 puis 5556-5583,5 ; droite pierre 5529-5569.",
+   "correction_proposee": "Gauche : 5526-5546 puis 5549-5570 (−6/−4 m et −7/−13,5 m, vide de 3 m) ; droite conforme."
+  },
+  {
+   "numero": 27,
+   "pk_m": [
+    5595,
+    5650
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 5601,
+     "pk_fin_m": 5634,
+     "hauteur_m": 0.65,
+     "matiere": "béton",
+     "couleur": "gris, éléments à joints blancs",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "parapet béton droite 5599-5642,5.",
+   "correction_proposee": "Finir à 5634 (−8,5 m)."
+  },
+  {
+   "numero": 28,
+   "pk_m": [
+    5648,
+    5690
+   ],
+   "objets": [
+    {
+     "genre": "piste",
+     "cote": "droite",
+     "pk_debut_m": 5650,
+     "pk_fin_m": 5663,
+     "profondeur_m": 12,
+     "matiere": "gravier",
+     "details": "entrée de piste DFCI ; merlon de terre 5658-5674",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "barriere_de_piste",
+     "cote": "droite",
+     "pk_debut_m": 5660,
+     "pk_fin_m": 5666,
+     "decalage_bord_m": 7,
+     "hauteur_m": 0.8,
+     "matiere": "bois sombre",
+     "details": "avec panneau rond d'interdiction",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "piste droite 5668-5680 ; lisse droite 5669-5675 à 5 m.",
+   "correction_proposee": "Avancer la piste à 5650-5663 (−18/−17 m) et la barrière à 5660-5666, recul 7 m (−9 m)."
+  },
+  {
+   "numero": 29,
+   "pk_m": [
+    6030,
+    6115
+   ],
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 6072,
+     "pk_fin_m": 6093,
+     "profondeur_m": 6,
+     "matiere": "gravier clair",
+     "details": "voiture garée",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 6095,
+     "pk_fin_m": 6105,
+     "hauteur_m": 0.55,
+     "matiere": "béton",
+     "couleur": "gris clair, about blanc",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 6091,
+     "pk_fin_m": 6111,
+     "hauteur_m": 0.6,
+     "matiere": "moellons gris (tête 6091-6093, 1,2 m) puis béton",
+     "couleur": "gris",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire gauche 6075-6105 ; ponceau gauche béton 6096-6112, droite béton 6100-6112.",
+   "correction_proposee": "Aire gauche 6072-6093 (fin −12 m) ; parapet gauche fin 6105 (−7 m) ; droite 6091-6111 (début −9 m) avec tête de moellons plus haute au début."
+  },
+  {
+   "numero": 30,
+   "pk_m": [
+    6305,
+    6355
+   ],
+   "objets": [
+    {
+     "genre": "piste",
+     "cote": "droite",
+     "pk_m": 6335,
+     "details": "pas d'entrée de piste nette : bande de gravier 6312-6326 puis merlons de terre 6320-6340",
+     "confiance": "faible"
+    }
+   ],
+   "ce_que_pose_le_jeu": "piste droite 6330-6345.",
+   "correction_proposee": "Non tranché : aucune entrée de piste visible ; au plus une bande de gravier 6312-6326."
+  },
+  {
+   "numero": 31,
+   "pk_m": [
+    6460,
+    6525
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 6483,
+     "pk_fin_m": 6495,
+     "hauteur_m": 0.55,
+     "matiere": "béton",
+     "couleur": "gris",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 6488,
+     "pk_fin_m": 6500,
+     "hauteur_m": 0.7,
+     "matiere": "béton",
+     "couleur": "gris, about pierre",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 6494,
+     "pk_fin_m": 6510,
+     "profondeur_m": 7,
+     "matiere": "gravier clair",
+     "details": "voitures garées",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "piste",
+     "cote": "droite",
+     "pk_debut_m": 6503,
+     "pk_fin_m": 6512,
+     "matiere": "gravier",
+     "details": "",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "pont 6492 : gauche 6483-6503,5, droite 6488,5-6504,5 ; aire gauche 6500,5-6515,5 ; piste droite 6508,5-6517,5.",
+   "correction_proposee": "Pont : gauche fin 6495 (−8,5 m), droite fin 6500 (−4,5) ; aire gauche 6494-6510 (−6 m) ; piste droite 6503-6512 (−5 m)."
+  },
+  {
+   "numero": 32,
+   "pk_m": [
+    6635,
+    6690
+   ],
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 6652,
+     "pk_fin_m": 6657,
+     "hauteur_m": 0.5,
+     "matiere": "béton",
+     "couleur": "gris clair",
+     "details": "",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 6647,
+     "pk_fin_m": 6651,
+     "hauteur_m": 0.4,
+     "matiere": "béton",
+     "couleur": "gris clair",
+     "details": "",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "rien",
+     "cote": "les deux",
+     "pk_debut_m": 6658,
+     "pk_fin_m": 6680,
+     "details": "aucun ouvrage visible après 6658 jusqu'à l'écran de fin",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ponceau final : droite béton 6665,5-6669 ; gauche béton 6676,5-6684,5.",
+   "correction_proposee": "Droite : 6652-6657 (−13 m) ; gauche : 6647-6651 (−30 m) ; rien au-delà de 6658."
+  }
+ ]
+}

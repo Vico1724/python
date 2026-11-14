@@ -1,0 +1,230 @@
+[
+  {"pk_m": 3400, "cote": "droite", "categorie": "vegetation", "jeu": "Pins à tronc rouge-orangé vif au bord de l'aire, feuillage vert franc partout.", "reel": "Pins d'Alep à tronc gris-noir, penchés ; chênes à feuillage roux et jaune (novembre).", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3400, "cote": "gauche", "categorie": "accotement", "jeu": "Talus d'herbe vert vif qui monte dès le bord, haie dense d'arbres verts à 4 m.", "reel": "Sol plat puis en léger contrebas, couvert de feuilles mortes brunes et de garrigue basse ; sous-bois clair.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 3400, "cote": "droite", "categorie": "poteau", "jeu": "Grand poteau métallique gris (environ 8 m) avec faisceau de câbles au bord de l'aire.", "reel": "Seulement un piquet fin (2 m) à l'entrée de l'aire ; pas de ligne électrique visible.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 3440, "cote": "les deux", "categorie": "vegetation", "jeu": "Pins et arbustes vert franc, en retrait de 6 à 10 m à gauche ; gros pin à tronc rouge à 3 m du bord droit.", "reel": "Chênes à feuillage roux-brun formant voûte, troncs à 2-3 m du bord des deux côtés.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3440, "cote": "droite", "categorie": "accotement", "jeu": "Bande de terre nue beige de 4 m avec touffes gris-vert.", "reel": "Accotement d'herbe verte rase semée de feuilles mortes.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3440, "cote": "gauche", "categorie": "accotement", "jeu": "Herbe vert vif avec quelques pierres.", "reel": "Tapis de feuilles mortes brunes, pas d'herbe.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 3480, "cote": "gauche", "categorie": "roche", "jeu": "Rocher gris bleuté à facettes anguleuses (3 m) puis colline grise lisse.", "reel": "Talus d'éboulis continu ocre-gris de 3-4 m, pente à 45°, pierraille et arbustes, au ras de la chaussée sur plus de 50 m.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3480, "cote": "les deux", "categorie": "mur", "jeu": "Deux parapets massifs trapézoïdaux (6-8 m de long, 1 m de haut), face brun sombre, dessus gris clair.", "reel": "Petits blocs béton clairs et bas (0,5 m, 2-3 m de long) aperçus 30-40 m plus tôt ; plus rien à ce PK.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 3480, "cote": "droite", "categorie": "vegetation", "jeu": "Pins à tronc rouge sur sol de terre nue.", "reel": "Chênes roux denses, accotement d'herbe et de feuilles.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 3520, "cote": "gauche", "categorie": "roche", "jeu": "Paroi grise lisse de 5 m (texture étirée) semée de gros blocs ronds rosâtres de 1 à 1,5 m.", "reel": "Talus bas (1-2 m) d'éboulis fins ocre-gris et de végétation.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 3520, "cote": "gauche", "categorie": "poteau", "jeu": "Ligne de poteaux bois avec nappe de câbles côté gauche.", "reel": "Aucun poteau ni câble visible.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 3560, "cote": "gauche", "categorie": "vegetation", "jeu": "Touffes noires sur un talus gris-vert lisse, blocs ronds rosés.", "reel": "Talus d'éboulis ocre de 1,5 m couvert de feuilles, aucune touffe sombre.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3560, "cote": "chaussée", "categorie": "chaussee", "jeu": "Ligne axiale continue simple.", "reel": "Tirets avec flèches de rabattement peintes à l'approche du carrefour.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 3600, "cote": "droite", "categorie": "poteau", "jeu": "Gros poteau bois (0,4 m de diamètre) à 2 m du bord droit, blocs ronds roses au pied.", "reel": "Pas de poteau à droite (un poteau fin côté gauche) ; accotement de terre et feuilles avec bornes basses.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 3600, "cote": "gauche", "categorie": "vegetation", "jeu": "Mur de buissons vert franc dense à 3 m du bord.", "reel": "Talus couvert de feuilles mortes brunes, chênes espacés, sous-bois clair.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 3640, "cote": "les deux", "categorie": "calage", "jeu": "Vue dans l'axe de la route, zone hachurée à 30 m, la route part à gauche.", "reel": "Voiture arrêtée au carrefour, caméra tournée face aux panneaux directionnels : même lieu mais la paire ne se compare pas terme à terme.", "gravite": 1, "confiance": "bonne"},
+  {"pk_m": 3640, "cote": "droite", "categorie": "panneau", "jeu": "Un seul panneau blanc vu de dos à droite.", "reel": "Deux mâts directionnels : D1 Roquefort-la-Bédoule / Cassis et D1 Cuges-les-Pins / Gémenos (flèches blanches, cartouches jaunes D1), plus un panneau d'information blanc.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 3640, "cote": "gauche", "categorie": "accotement", "jeu": "Talus d'herbe verte avec touffes noires et pierres.", "reel": "Sol de pinède couvert de feuilles mortes brunes, terre ocre, piste en terre ocre à l'arrière-plan.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 3680, "cote": "gauche", "categorie": "accotement", "jeu": "Talus de terre grise avec herbe verte et touffes noires.", "reel": "Talus de 2 m uniformément couvert de feuilles mortes brun-roux, sans herbe.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3680, "cote": "droite", "categorie": "chaussee", "jeu": "Intérieur du virage : simple ligne de rive puis herbe ; l'îlot du carrefour n'est qu'une zone hachurée peinte.", "reel": "Îlots bordurés en dur (bordure béton arrondie, balise blanche), couverts de feuilles.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 3680, "cote": "les deux", "categorie": "vegetation", "jeu": "Pins à tronc rouge-orangé.", "reel": "Pins d'Alep à tronc gris sombre et chênes, pinède claire.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 3720, "cote": "gauche", "categorie": "mur", "jeu": "Bloc trapézoïdal isolé de 12 m de long et 1,5 m de haut, face brun-noir, dessus gris clair, posé au pied d'un talus gris lisse.", "reel": "Mur de soutènement en pierre sèche calcaire gris clair, vertical, 2 à 2,5 m de haut sur 20 m, intégré au talus et surmonté de grands pins.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 3720, "cote": "droite", "categorie": "accotement", "jeu": "Aire de gravier gris.", "reel": "Aire de terre ocre-beige et de pierraille (départ de piste).", "gravite": 1, "confiance": "bonne"},
+  {"pk_m": 3720, "cote": "gauche", "categorie": "vegetation", "jeu": "Petits arbres au-dessus du talus.", "reel": "Grands pins d'Alep à houppier en parasol (10 m) au-dessus du mur.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 3760, "cote": "droite", "categorie": "glissiere", "jeu": "Glissière à 2-3 m de la ligne de rive, bande d'herbe verte entre les deux.", "reel": "Glissière collée à la chaussée (0,5 m), terre remuée au pied.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3760, "cote": "droite", "categorie": "poteau", "jeu": "Poteaux bois sombres.", "reel": "Poteaux béton gris clair.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 3800, "cote": "gauche", "categorie": "accotement", "jeu": "Herbes hautes gris-vert (0,8 m) jusqu'à la ligne de rive.", "reel": "Talus bas de pierraille et d'herbe rase.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 3840, "cote": "gauche", "categorie": "roche", "jeu": "Blocs ronds brun sombre de 0,5 à 1 m sur terre sombre.", "reel": "Talus de 1,5 m de pierraille calcaire blanc-gris, fine.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3840, "cote": "droite", "categorie": "poteau", "jeu": "Poteau très épais (0,4 m), sombre, derrière la glissière.", "reel": "Poteaux béton clairs et fins.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 3880, "cote": "gauche", "categorie": "roche", "jeu": "Deux gros rochers gris sombre à facettes (2 m).", "reel": "Talus bas (1 m) de pierraille calcaire claire et de garrigue.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3880, "cote": "droite", "categorie": "vegetation", "jeu": "Feuillu rond derrière la glissière.", "reel": "Grand pin d'Alep (8-10 m) à houppier large derrière la glissière.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 3920, "cote": "lointain", "categorie": "lointain", "jeu": "Colline boisée vert sombre avec un petit ressaut rocheux sombre au sommet.", "reel": "Longue barre de falaise calcaire blanche en crête, très visible.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 3920, "cote": "gauche", "categorie": "roche", "jeu": "Blocs ronds roses dans des herbes hautes.", "reel": "Herbe rase, pas de bloc.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 3960, "cote": "gauche", "categorie": "roche", "jeu": "Paroi massive en dalles lisses beige-ocre de 2-3 m.", "reel": "Talus de cailloutis calcaire blanc-gris (éboulis fins) à 45°, 3 m de haut, sans dalle.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 3960, "cote": "lointain", "categorie": "lointain", "jeu": "Colline boisée, bande rocheuse discrète et sombre.", "reel": "Deux barres de falaise blanche superposées en crête.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4000, "cote": "droite", "categorie": "mur", "jeu": "Muret gris-vert très sombre, presque noir, texture floue, 1 m de haut.", "reel": "Muret de pierres calcaires claires beige-gris appareillées, 0,8 m.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 4000, "cote": "droite", "categorie": "autre", "jeu": "Balise bleue cylindrique plantée devant le muret.", "reel": "Borne kilométrique à tête jaune (marquée 13) au pied du muret ; pas de balise bleue.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 4000, "cote": "gauche", "categorie": "roche", "jeu": "Paroi en dalles beige avec éboulis roux au pied.", "reel": "Blocs calcaires blanc-gris arrondis (2 m), herbe verte au pied.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4040, "cote": "droite", "categorie": "mur", "jeu": "Muret gris-vert sombre de 1,2 m, dessus gris clair.", "reel": "Muret de pierre calcaire claire, 0,7 m, en courbe.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 4040, "cote": "gauche", "categorie": "roche", "jeu": "Blocs ronds roses (0,8 à 1,5 m) sur talus brun, touffes noires.", "reel": "Talus de pierraille calcaire blanche en plaquettes, herbe et arbustes, pins au-dessus.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 4040, "cote": "les deux", "categorie": "vegetation", "jeu": "Feuillus vert pomme vif.", "reel": "Pins vert sombre et arbustes roux.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4080, "cote": "gauche", "categorie": "mur", "jeu": "À l'extérieur de l'épingle : mur de soutènement gris-vert sombre uniforme, 2 m de haut sur 40 m, buissons devant.", "reel": "Pas de mur : talus naturel de bancs calcaires délités blanc-gris à ocre, 2,5 à 3 m, avec des pins qui poussent dedans.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 4080, "cote": "gauche", "categorie": "accotement", "jeu": "Bande d'herbe verte derrière la ligne de rive, touffes noires.", "reel": "Surlargeur gravillonnée claire à l'extérieur de l'épingle et parapet béton clair bas (0,6 m) d'un ponceau.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 4120, "cote": "gauche", "categorie": "accotement", "jeu": "Herbes hautes gris-vert (0,6 m) et buissons.", "reel": "Terre et feuilles brunes, talus pierreux bas.", "gravite": 1, "confiance": "moyenne"},
+  {"pk_m": 4120, "cote": "les deux", "categorie": "vegetation", "jeu": "Pins à tronc rouge, feuillage vert vif.", "reel": "Chênes roux et pins à tronc noir (un gros pin penché derrière la glissière à droite).", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4160, "cote": "gauche", "categorie": "vegetation", "jeu": "Touffes noires dans les herbes du talus.", "reel": "Talus de pierraille, aucune touffe sombre.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 4160, "cote": "les deux", "categorie": "vegetation", "jeu": "Feuillus vert vif de 6-8 m.", "reel": "Grands pins à tronc sombre de 10-12 m des deux côtés, chênes roux.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 4200, "cote": "gauche", "categorie": "vegetation", "jeu": "Touffes noires et rochers gris sombre sur le talus.", "reel": "Talus de pierraille claire (peu visible, bord d'image).", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 4200, "cote": "droite", "categorie": "poteau", "jeu": "Poteaux bois sombres.", "reel": "Poteaux béton clairs.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 4240, "cote": "gauche", "categorie": "roche", "jeu": "Enrochement de blocs ronds gris sombre (0,5-1 m).", "reel": "Talus de 1,5 m en plaquettes calcaires claires.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4240, "cote": "droite", "categorie": "vegetation", "jeu": "Haie continue dense à 2 m du bord.", "reel": "Deux chênes au bord puis de l'herbe ; vue ouverte.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 4280, "cote": "gauche", "categorie": "roche", "jeu": "Gros blocs brun-gris (1 m) sur talus de terre.", "reel": "Bordure béton courbe basse et un peu de pierraille.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4280, "cote": "droite", "categorie": "vegetation", "jeu": "Haie d'arbres sombres de 4-5 m masquant la vue.", "reel": "Accotement d'herbe verte, garrigue ouverte, arbres épars, pierres blanches en rive.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4320, "cote": "lointain", "categorie": "lointain", "jeu": "Barres rocheuses gris-bleu morcelées sur la colline (présentes, bon emplacement).", "reel": "Barre de falaise blanche continue et plus haute en crête.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4320, "cote": "gauche", "categorie": "roche", "jeu": "Talus de terre ocre-beige avec blocs roses.", "reel": "Talus de pierraille calcaire blanche.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4320, "cote": "droite", "categorie": "accotement", "jeu": "Aire de gravier gris sombre.", "reel": "Aire de gravier clair beige.", "gravite": 1, "confiance": "bonne"},
+  {"pk_m": 4320, "cote": "droite", "categorie": "poteau", "jeu": "Pylône métallique en treillis.", "reel": "Poteau bois simple.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 4360, "cote": "les deux", "categorie": "mur", "jeu": "Parapets en pierre brun-vert sombre presque noire, 1,2 m de haut, 0,6 m d'épaisseur (bandes blanches présentes).", "reel": "Parapets en pierre calcaire maçonnée beige clair, 0,6-0,7 m, à panneaux blancs.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 4360, "cote": "chaussée", "categorie": "chaussee", "jeu": "Zébra blanc peint au sol à droite, avant le parapet.", "reel": "Aucun marquage hachuré.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 4400, "cote": "gauche", "categorie": "roche", "jeu": "Enrochement de blocs gris (0,5-1 m).", "reel": "Petit talus de plaquettes calcaires empilées (1,2 m) et herbe verte.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4400, "cote": "droite", "categorie": "vegetation", "jeu": "Gros pin à tronc rouge-orangé.", "reel": "Deux gros pins à tronc gris-brun.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 4440, "cote": "gauche", "categorie": "roche", "jeu": "Paroi gris moyen à sombre en blocs cubiques, 3-4 m, jusqu'à la ligne de rive.", "reel": "Talus de plaquettes calcaires délitées blanc-gris à ocre, 3 m, végétalisé, précédé d'un accotement d'herbe verte de 1,5 m.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4440, "cote": "les deux", "categorie": "mur", "jeu": "Parapets du pont sombres.", "reel": "Parapets de pierre claire à bandes blanches.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4480, "cote": "gauche", "categorie": "roche", "jeu": "Talus gris lisse (texture étirée) semé de nombreux blocs ronds gris-rose.", "reel": "Talus bas (1 m) de terre, d'herbe verte et de pierraille plate.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 4480, "cote": "les deux", "categorie": "vegetation", "jeu": "Arbres en retrait, espace ouvert.", "reel": "Pinède dense, troncs sombres à 1-2 m du bord des deux côtés, voûte.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4520, "cote": "les deux", "categorie": "accotement", "jeu": "Herbe gris-vert haute des deux côtés (5 m à droite), touffes noires.", "reel": "Terre nue ocre-rosé, aiguilles de pin et feuilles, très peu d'herbe.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4520, "cote": "les deux", "categorie": "vegetation", "jeu": "Pins à tronc rouge, droits, en retrait de 6-8 m.", "reel": "Gros pins penchés à tronc sombre à 2-3 m du bord.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4520, "cote": "gauche", "categorie": "roche", "jeu": "Talus gris lisse à texture étirée avec blocs roses.", "reel": "Sol de pinède en pente douce, terre et pierres éparses.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4560, "cote": "droite", "categorie": "mur", "jeu": "Parapet droit placé 30-40 m plus loin que le gauche.", "reel": "Deux parapets en vis-à-vis ; le droit commence à 10 m.", "gravite": 2, "confiance": "moyenne"},
+  {"pk_m": 4560, "cote": "les deux", "categorie": "mur", "jeu": "Parapets gris moyen (forme biseautée correcte).", "reel": "Béton blanc cassé, lisse.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 4600, "cote": "gauche", "categorie": "roche", "jeu": "Blocs ronds gris-rose sur talus gris.", "reel": "Talus de plaquettes calcaires ocre-gris, 1,5 m.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4600, "cote": "droite", "categorie": "poteau", "jeu": "Aucun poteau proche du bord droit.", "reel": "Poteau béton à 2 m du bord droit.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 4640, "cote": "gauche", "categorie": "accotement", "jeu": "Talus d'herbe haute vert-jaune avec touffes noires.", "reel": "Talus de terre nue ocre-rosé et de feuilles, sous des pins.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4640, "cote": "les deux", "categorie": "mur", "jeu": "Un seul petit parapet clair visible, à gauche, à 50 m.", "reel": "Deux blocs béton biseautés clairs (4-5 m) en vis-à-vis à 30 m.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 4680, "cote": "les deux", "categorie": "mur", "jeu": "Deux parapets gris massifs (12 m de long, 1 m de haut) au premier plan.", "reel": "Aucun parapet : le ponceau (blocs courts de 4-5 m, 0,6 m de haut) est déjà passé, environ 15-20 m plus tôt.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 4720, "cote": "droite", "categorie": "accotement", "jeu": "Aire de gravier gris sombre avec deux buissons sombres posés dessus.", "reel": "Aire de terre et de gravier beige clair, dégagée (voiture garée), poteau béton.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4720, "cote": "chaussée", "categorie": "chaussee", "jeu": "Enrobé gris moyen bleuté, marquage blanc vif.", "reel": "Enrobé gris-beige clair, marquage plus terne.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 4760, "cote": "gauche", "categorie": "vegetation", "jeu": "Haie continue de buissons ronds.", "reel": "Pins espacés, sous-bois ouvert, talus bas de terre et de pierraille.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 4800, "cote": "gauche", "categorie": "roche", "jeu": "Semis de blocs gris moyens.", "reel": "Deux gros blocs calcaires blancs isolés (1,2 m) sur talus de terre ocre.", "gravite": 1, "confiance": "bonne"},
+  {"pk_m": 4800, "cote": "droite", "categorie": "poteau", "jeu": "Pas de poteau au bord.", "reel": "Poteau béton blanc à 1,5 m du bord droit.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 4840, "cote": "gauche", "categorie": "roche", "jeu": "Blocs anguleux gris-rose (1 m) au bord.", "reel": "Talus de terre ocre-rosé et de cailloutis, 1,5 m.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 4880, "cote": "gauche", "categorie": "vegetation", "jeu": "Touffes noires dans une herbe gris-vert.", "reel": "Talus bas de terre et d'herbe verte, un bloc blanc isolé.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4880, "cote": "droite", "categorie": "vegetation", "jeu": "Nombreux pins à tronc rouge.", "reel": "Pins à tronc gris à 1 m du bord, accotement de terre ocre-rosé.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4880, "cote": "chaussée", "categorie": "calage", "jeu": "Virage à droite encore à 60 m (à 4800, route droite sur 80 m).", "reel": "Virage à droite à 20-30 m (à 4800, courbe à gauche à 40 m) : le jeu paraît 20-30 m en retard sur ce tronçon.", "gravite": 1, "confiance": "faible"},
+
+  {"pk_m": 4920, "cote": "gauche", "categorie": "accotement", "jeu": "Talus herbeux et buissons.", "reel": "Talus de terre et de pierraille ocre, 1,5 m, arbustes verts.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 4960, "cote": "gauche", "categorie": "roche", "jeu": "Talus gris lisse à texture étirée, touffes noires.", "reel": "Talus bas de terre et de feuilles.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4960, "cote": "les deux", "categorie": "vegetation", "jeu": "Pins à tronc rouge, ciel dégagé au-dessus de la route.", "reel": "Voûte de chênes (feuillage roux et vert) et de pins.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 4960, "cote": "droite", "categorie": "accotement", "jeu": "Herbe gris-vert avec touffes noires.", "reel": "Terre ocre-rouge nue, balise blanche, poteau béton.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5000, "cote": "droite", "categorie": "vegetation", "jeu": "Haie continue à feuillage brun-vert.", "reel": "Sous-bois ouvert, deux gros troncs sombres à 2 m du bord, chênes roux-jaunes.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5040, "cote": "droite", "categorie": "accotement", "jeu": "Terre-plein d'herbe verte et butte grise lisse.", "reel": "Aire en terre battue claire de 10 m (voitures garées), fermée par une barrière de piste rouge-brun, grands pins parasols au bord.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5080, "cote": "les deux", "categorie": "accotement", "jeu": "Bandes d'herbe de 3 à 5 m, arbres en retrait.", "reel": "Haie dense de chênes verts et de garrigue haute (3-5 m) à 0,5-1 m de la chaussée : couloir vert.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 5080, "cote": "chaussée", "categorie": "chaussee", "jeu": "Marquage blanc vif, chaussée large (7 m apparents).", "reel": "Marquage axial usé, chaussée étroite (5,5 m environ).", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 5120, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements d'herbe et de terre de 4-6 m, haie gauche en retrait.", "reel": "Végétation haute au ras de la chaussée des deux côtés.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 5120, "cote": "gauche", "categorie": "accotement", "jeu": "Bord d'herbe uniforme.", "reel": "Alignement de pierres blanches au pied de la haie.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5160, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements d'herbe de 3-5 m, arbres en retrait.", "reel": "Haies de 3-5 m à moins de 1 m de la chaussée.", "gravite": 3, "confiance": "bonne"},
+
+  {"pk_m": 5200, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements d'herbe de 3-5 m.", "reel": "Haies au ras de la chaussée.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 5200, "cote": "les deux", "categorie": "vegetation", "jeu": "Arbres ronds identiques alignés à intervalle régulier (aspect de verger).", "reel": "Haie continue et irrégulière de chênes verts et d'arbustes.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5200, "cote": "lointain", "categorie": "vegetation", "jeu": "Rien de particulier dans l'axe.", "reel": "Pin parasol isolé dans l'axe, au bout de la ligne droite.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 5240, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements d'herbe de 3-5 m.", "reel": "Haies au ras ; poteau béton pris dans la haie de droite.", "gravite": 3, "confiance": "bonne"},
+
+  {"pk_m": 5280, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements larges, arbres alignés et identiques.", "reel": "Haies denses irrégulières au ras de la chaussée.", "gravite": 3, "confiance": "bonne"},
+
+  {"pk_m": 5320, "cote": "droite", "categorie": "mur", "jeu": "Rien : herbe puis haie.", "reel": "Muret bas de pierre sèche (0,4 m), clôture bois à claire-voie et grand pin (entrée de propriété).", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5320, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements d'herbe de 3-4 m.", "reel": "Haie gauche au ras de la chaussée.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5360, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements d'herbe de 3-4 m, ciel ouvert.", "reel": "Haies hautes collées formant presque voûte, pierres en rive.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5400, "cote": "gauche", "categorie": "glissiere", "jeu": "Glissière métallique sombre sur 40 m.", "reel": "Muret de pierre sèche calcaire clair, 0,8 m de haut, 15 m de long, terminé par un bloc béton.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 5400, "cote": "lointain", "categorie": "lointain", "jeu": "Colline boisée sombre à gauche, sans roche.", "reel": "Barre de falaise calcaire grise proche dominant la route à gauche.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5440, "cote": "gauche", "categorie": "glissiere", "jeu": "La glissière se prolonge.", "reel": "Haie et talus pierreux, pas de glissière.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5440, "cote": "les deux", "categorie": "accotement", "jeu": "Accotements d'herbe de 3-4 m.", "reel": "Haies hautes au ras de la chaussée.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5480, "cote": "gauche", "categorie": "glissiere", "jeu": "Glissière métallique sur 60 m.", "reel": "Muret de pierre sèche moussu, 0,8 m, sur 30 m, surmonté d'herbe verte.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 5480, "cote": "droite", "categorie": "vegetation", "jeu": "Touffes noires dans l'accotement.", "reel": "Haie verte et feuilles jaunes, aucune touffe sombre.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 5520, "cote": "les deux", "categorie": "mur", "jeu": "Parapets gris sombre à dessus clair.", "reel": "Parapets béton blanc cassé, long à gauche avec extrémité biseautée.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5520, "cote": "gauche", "categorie": "panneau", "jeu": "Chevron bleu petit et bas, près du sol.", "reel": "Panneau à deux chevrons bleu et blanc sur mât de 2 m, 1 m de large.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5560, "cote": "droite", "categorie": "mur", "jeu": "Parapet brun-vert sombre, 1,2 m de haut, épais.", "reel": "Parapet de pierre maçonnée claire à bandes blanches, 0,6 m.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 5560, "cote": "gauche", "categorie": "roche", "jeu": "À l'extérieur du virage, au fond : talus terreux gris-brun avec buissons.", "reel": "Talus rocheux calcaire stratifié blanc-gris, 5 m de haut sur 30 m, avec des pins.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5560, "cote": "gauche", "categorie": "mur", "jeu": "Parapet béton gris moyen strié.", "reel": "Béton gris clair à panneaux blancs.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 5600, "cote": "gauche", "categorie": "roche", "jeu": "Paroi gris sombre à facettes de 4 m, éboulis gris au pied, touffes noires.", "reel": "Talus de plaquettes calcaires blanc-ocre de 3-4 m.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5600, "cote": "droite", "categorie": "mur", "jeu": "Mur béton gris strié de 1,2 m.", "reel": "Parapet béton clair bas (0,6 m) à extrémité biseautée.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5640, "cote": "gauche", "categorie": "roche", "jeu": "Talus gris lisse de 4 m (texture étirée), blocs gris-rose au pied.", "reel": "Talus bas (1 m) de pierraille claire et d'herbe.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5640, "cote": "les deux", "categorie": "vegetation", "jeu": "Feuillus et un arbre roux au sommet du virage.", "reel": "Quatre ou cinq grands pins d'Alep à houppier large au sommet du virage.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5680, "cote": "gauche", "categorie": "vegetation", "jeu": "Touffes noires sur le talus herbeux.", "reel": "Talus d'herbe verte et de pierraille, 1,5 m.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5680, "cote": "droite", "categorie": "vegetation", "jeu": "Gros poteau bois au bord, pas de pin.", "reel": "Grand pin parasol à 2 m du bord, poteaux béton en retrait.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5720, "cote": "droite", "categorie": "poteau", "jeu": "Poteau bois sombre épais.", "reel": "Poteau béton clair, haut, trois fils.", "gravite": 1, "confiance": "bonne"},
+  {"pk_m": 5720, "cote": "gauche", "categorie": "accotement", "jeu": "Chemin de terre qui part à gauche.", "reel": "Talus continu d'herbe et de pierraille, pas de chemin visible.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5760, "cote": "gauche", "categorie": "vegetation", "jeu": "Touffes noires sur le talus.", "reel": "Talus herbeux sans touffe sombre.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5800, "cote": "droite", "categorie": "vegetation", "jeu": "Haie haute, dense et sombre (8 m).", "reel": "Un chêne isolé et un pré ouvert, vue dégagée.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5800, "cote": "chaussée", "categorie": "calage", "jeu": "Route droite, virage à gauche encore loin.", "reel": "Courbe à gauche à 30-40 m : le jeu paraît 20-30 m en retard entre 5760 et 5840.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5840, "cote": "droite", "categorie": "vegetation", "jeu": "Haie d'arbres continue de 6-8 m.", "reel": "Garrigue basse ouverte, vue sur un massif lointain.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 5880, "cote": "les deux", "categorie": "vegetation", "jeu": "Couloir entre deux haies hautes d'arbres identiques (8 m).", "reel": "Plateau ouvert : chênes isolés, pré, talus à cailloutis blanc.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 5880, "cote": "droite", "categorie": "poteau", "jeu": "Poteaux bois lointains seulement.", "reel": "Poteau béton au premier plan et pylône plus loin.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 5920, "cote": "droite", "categorie": "roche", "jeu": "Blocs roses au bord de la chaussée.", "reel": "Herbe, aucun bloc.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 5920, "cote": "gauche", "categorie": "accotement", "jeu": "Herbe et haie basse.", "reel": "Talus de pierraille blanche et un chêne vert isolé, massif.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 5960, "cote": "gauche", "categorie": "accotement", "jeu": "Herbes hautes (0,6-0,8 m).", "reel": "Talus ras et caillouteux.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 6080, "cote": "gauche", "categorie": "accotement", "jeu": "Aire de terre brun-rouge sombre, texture répétitive.", "reel": "Aire de gravier clair gris-beige.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 6080, "cote": "les deux", "categorie": "mur", "jeu": "Parapets gris à stries verticales (texture étirée).", "reel": "Parapet de pierre maçonnée à droite, béton clair à gauche.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 6120, "cote": "droite", "categorie": "vegetation", "jeu": "Touffes noires et herbes hautes denses.", "reel": "Pierraille blanche et herbe rase, poteau bois penché, un pin.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 6120, "cote": "gauche", "categorie": "accotement", "jeu": "À l'extérieur du virage : talus gris sombre.", "reel": "Talus bas d'herbe verte, lit de pierres calcaires claires, chêne vert rond isolé.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 6160, "cote": "gauche", "categorie": "roche", "jeu": "Talus gris lisse à blocs gris sombre (1 m).", "reel": "Talus bas (1 m) d'herbe et de pierres calcaires claires.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 6160, "cote": "droite", "categorie": "vegetation", "jeu": "Buisson rond de 5 m, herbes hautes (0,8 m), pin à tronc rose.", "reel": "Pierraille blanche rase, un pin isolé, espace ouvert.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 6160, "cote": "chaussée", "categorie": "chaussee", "jeu": "Enrobé gris anthracite.", "reel": "Enrobé gris clair.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 6200, "cote": "droite", "categorie": "vegetation", "jeu": "Grand feuillu dense (10 m) au bord.", "reel": "Deux chênes bas (5 m) en retrait de 5 m, garrigue ouverte.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 6200, "cote": "droite", "categorie": "roche", "jeu": "Bloc rose de 1 m au bord de la chaussée.", "reel": "Aucun bloc.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 6200, "cote": "gauche", "categorie": "vegetation", "jeu": "Touffes noires.", "reel": "Herbe rase.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 6280, "cote": "droite", "categorie": "vegetation", "jeu": "Rideau de grands feuillus (10 m) au bord.", "reel": "Jeunes pins de 4-5 m en retrait de 8 m, accotement d'herbe verte.", "gravite": 2, "confiance": "moyenne"},
+
+  {"pk_m": 6320, "cote": "droite", "categorie": "accotement", "jeu": "Herbe.", "reel": "Cailloutis calcaire blanc et petits tas de gravier.", "gravite": 1, "confiance": "bonne"},
+
+  {"pk_m": 6360, "cote": "gauche", "categorie": "accotement", "jeu": "Talus de terre brune, un bloc anguleux brun-rose, herbes hautes.", "reel": "Aire plane de gravier clair, 6 m de large (surlargeur ou départ de piste).", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 6400, "cote": "gauche", "categorie": "vegetation", "jeu": "Masse de buissons hauts (6 m) au ras de la chaussée.", "reel": "Pré d'herbe verte ouvert, garrigue rase, arbustes isolés.", "gravite": 3, "confiance": "bonne"},
+
+  {"pk_m": 6440, "cote": "gauche", "categorie": "roche", "jeu": "Blocs ronds gris-rose (0,5-1 m) sur terre brune.", "reel": "Lit de plaquettes calcaires blanches et herbe.", "gravite": 3, "confiance": "bonne"},
+  {"pk_m": 6440, "cote": "droite", "categorie": "vegetation", "jeu": "Buissons denses de 4 m.", "reel": "Herbe rase, vue dégagée sur le pont et l'aire de stationnement.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 6480, "cote": "les deux", "categorie": "mur", "jeu": "Parapets gris moyen à stries verticales ; le gauche fait 25 m.", "reel": "Parapets à enduit blanc cassé écaillé, biseautés, 0,7 m ; le gauche fait environ 15 m.", "gravite": 2, "confiance": "bonne"},
+  {"pk_m": 6480, "cote": "gauche", "categorie": "accotement", "jeu": "Arbres sombres denses derrière le parapet.", "reel": "Aire de stationnement (deux voitures) et pré ouvert derrière le parapet.", "gravite": 2, "confiance": "bonne"},
+
+  {"pk_m": 6640, "cote": "droite", "categorie": "vegetation", "jeu": "Buissons denses jusqu'à la ligne de rive.", "reel": "Herbe rase et cailloutis, deux grands pins d'Alep (10 m), bloc béton à l'intérieur du virage.", "gravite": 1, "confiance": "moyenne"},
+
+  {"pk_m": 6680, "cote": "chaussée", "categorie": "calage", "jeu": "Virage à droite serré en cours.", "reel": "Ligne droite : la paire ne montre sans doute pas le même point (20-30 m d'écart).", "gravite": 1, "confiance": "moyenne"},
+  {"pk_m": 6680, "cote": "les deux", "categorie": "vegetation", "jeu": "Végétation dense et sombre des deux côtés.", "reel": "Garrigue ouverte, grand chêne isolé à gauche, muret éboulé de pierres blanches à gauche, tas de pierraille calcaire claire (2 m) à droite.", "gravite": 2, "confiance": "moyenne"}
+]

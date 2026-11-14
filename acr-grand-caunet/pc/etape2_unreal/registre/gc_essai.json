@@ -1,0 +1,15 @@
+{
+  "Id": "GcEssai",
+  "Level": "/Game/GrandCaunet/Levels/GC_Essai",
+  "Location": { "Row": "Wales" },
+  "Track": { "Template": "WalesS4HafrenSouth", "Name": "GC ESSAI" },
+  "Variants": [
+    {
+      "Row": "GcEssaiFullForward",
+      "Template": "WelesS4HafrenSouthFullForward",
+      "Name": "GC ESSAI",
+      "StageName": "GC ESSAI",
+      "Length": 0.2
+    }
+  ]
+}

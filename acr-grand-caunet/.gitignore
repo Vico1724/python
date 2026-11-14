@@ -1,0 +1,27 @@
+# Téléchargements bruts volumineux : régénérables avec scripts/tout_lancer.sh
+data/raw/
+__pycache__/
+*.pyc
+# Modèle 3D complet : régénérable avec scripts/08_modele_3d.py (seul modele/apercu/ est versionné)
+modele/terrain.glb
+# export/stage_ir/grand_caunet/collision.glb (14 Mo) est désormais VERSIONNÉ : le kit pc/ doit le trouver sur le PC
+# du directeur, où le régénérer demanderait toute la chaîne (données brutes, modèle 3D). export/ fait < 15 Mo.
+# Images de sol par dalle (script 14) : volumineuses et régénérables ; un jeu allégé est versionné dans modele/apercu/
+modele/textures_sol/
+# Phase 5 (décor) : régénérables avec scripts/13_paysage_lointain.py et 14_textures_sol.py ;
+# seules les versions légères de modele/apercu/ sont versionnées
+modele/lointain.glb
+modele/terrain_sol.glb
+modele/textures_sol/
+# Paquet d'import Unreal complet (~420 Mo) : régénérable avec scripts/16_paquet_unreal.py ; l'échantillon
+# versionné est pc/etape2_unreal/echantillon/
+paquet_unreal/
+# Sols « façon jeu » (script 15b) : rasters volumineux et régénérables ; le bilan et l'aperçu sont versionnés
+modele/sols_jeu/*.npz
+modele/sols_jeu/*.npy
+# Planches d'images tirées des vidéos (script 19) : volumineuses et régénérables
+figures/reco/
+paquet_unreal_*/
+figures/apercu_lointain/
+figures/compare_*/
+figures/reco_parois/

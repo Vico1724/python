@@ -1,0 +1,634 @@
+{
+ "note": "Relecture ciblée de la vidéo de reconnaissance (14/11/2026) sur douze endroits. Images extraites tous les 2 à 5 m de PK RÉEL (temps t tel que corrige(pk_lu(t)) = p : interpolation inverse de data/processed/calage_reco.json corrigé par scripts/calage_reco.py), avec recadrages des moitiés gauche et droite. Chaque objet est placé au PK où il SORT du champ par le côté (début et fin pour les murs). Limites : ±2 à 3 m en ligne droite, ±4 à 5 m dans les épingles (rotation rapide de la caméra : endroits 2 et 7) ; hauteurs et reculs estimés à l'œil (voie ≈ 3 m, capot ≈ 0,8 m), ±0,2 m et ±1 m ; matière des poteaux lue à la couleur (bois brun ou grisé, béton clair) ; un poteau masqué par la végétation peut manquer. hauteur_m en liste = [mini, maxi]. Planches et scripts hors dépôt (scratchpad, dossier relecture_v8).",
+ "endroits": [
+  {
+   "numero": 1,
+   "pk_m": [
+    2585,
+    2640
+   ],
+   "question": "Pont du PK 2602 : parapet à gauche ? Mur bas en moellons de droite : début, fin, hauteur, teinte, couronnement.",
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 2591.5,
+     "pk_fin_m": 2596.5,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.5,
+     "matiere": "moellons calcaires",
+     "couleur": "gris, abouts blancs",
+     "details": "parapet court (≈ 5 m) à deux abouts biseautés en béton peint en blanc ; début sorti du champ à 2592,5, fin à 2596 ; les troncs de pins sont derrière lui",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "mur",
+     "cote": "droite",
+     "pk_debut_m": 2596,
+     "pk_fin_m": 2606,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.6,
+     "matiere": "moellons calcaires maçonnés",
+     "couleur": "gris beige",
+     "details": "mur bas droit, couronnement arrondi clair, sans dés blancs ; ≈ 10 m ; après 2607 accotement d'herbe et de gravier sans mur jusqu'à 2625",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ouvrage 2602 : gauche « aucun » (muret retiré après les sixième et septième essais) ; droite pierre 0,65 m de 2598 à 2620 (allongé à la main le 14/11 depuis 2598-2608).",
+   "correction_proposee": "Rétablir à gauche un parapet court de moellons gris à abouts blancs, 0,5 m, de 2591,5 à 2596,5 (il existe : c'est un bloc de 5 m, pas un muret long). À droite, ramener le mur de 2598-2620 à 2596-2606 (10 m, 0,6 m, gris beige, couronnement arrondi clair) : l'allongement à 22 m du 14/11 est faux."
+  },
+  {
+   "numero": 2,
+   "pk_m": [
+    2740,
+    2810
+   ],
+   "question": "Parapet de droite (longueur, matière, blanc ?), balise de virage à chevrons (PK, côté).",
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 2770,
+     "pk_fin_m": 2781,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.65,
+     "matiere": "moellons maçonnés",
+     "couleur": "gris rosé, non blanc",
+     "details": "muret courbe à l'intérieur de l'épingle à droite, couronnement de pierre arrondi, sans dés blancs, about de début biseauté (tagué) ; ≈ 11 m en arc",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 2761,
+     "pk_fin_m": 2778,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.65,
+     "matiere": "moellons",
+     "couleur": "gris, dés blancs",
+     "details": "parapet à dés blancs à l'extérieur de l'épingle ; début sorti du champ à 2761-2762, fin à 2778",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "balise",
+     "cote": "gauche",
+     "pk_m": 2777.5,
+     "decalage_bord_m": 1.5,
+     "hauteur_m": 1.0,
+     "matiere": "balise de virage",
+     "couleur": "bleue à chevrons blancs",
+     "details": "juste derrière le bout aval du parapet gauche",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ouvrage 2777 : gauche pierre_des_blancs 2770,5-2785 ; droite pierre 0,6 m 2772,5-2782,5 ; balise_virage gauche au PK 2784.",
+   "correction_proposee": "Droite : garder la pierre (ni béton ni blanc), 0,65 m, calée 2770-2781 (début avancé de 2,5 m, fin reculée de 1,5 m). Gauche : avancer le parapet à dés blancs de 2770,5-2785 à 2761-2778. Balise : la déplacer de 2784 à 2777,5, côté gauche, 1,5 m derrière le bord."
+  },
+  {
+   "numero": 3,
+   "pk_m": [
+    3700,
+    3780
+   ],
+   "question": "Mur de soutènement en pierre sèche à gauche : début, fin, hauteur, recul, ce qu'il porte.",
+   "objets": [
+    {
+     "genre": "mur",
+     "cote": "gauche",
+     "pk_debut_m": 3722,
+     "pk_fin_m": 3756,
+     "decalage_bord_m": 0.8,
+     "hauteur_m": [
+      0.8,
+      2.3
+     ],
+     "matiere": "pierre sèche calcaire en assises",
+     "couleur": "gris clair",
+     "details": "2 à 2,3 m de 3724 à 3738, 1,2 à 1,5 m vers 3745, ≈ 0,8 m au bout ; fin en biseau de terre et de blocs ; verge d'herbe de 0,5 à 1 m au pied ; dessus : talus herbeux portant des pins penchés ; avant 3715 : talus de terre rouge avec les panneaux du carrefour",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "parapets_hors_tablier 3722,5-3756,5 gauche pierre 1,7 m constant, décalage 0,8 m, biseau 1,5 m.",
+   "correction_proposee": "Emprise juste (3722-3756) : garder. Rendre la hauteur dégressive : 2,2 m de 3722 à 3738, puis descente jusqu'à 0,8 m à 3756 (au lieu de 1,7 m partout) ; des pins sur le talus au-dessus du mur."
+  },
+  {
+   "numero": 4,
+   "pk_m": [
+    3380,
+    3630
+   ],
+   "question": "Poteaux de la ligne électrique : PK, côté, matière, simple ou double.",
+   "objets": [
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 3376,
+     "decalage_bord_m": 2.7,
+     "matiere": "bois",
+     "details": "poteau simple ; derrière la glissière, marque bleue",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 3418,
+     "decalage_bord_m": 1.5,
+     "matiere": "bois",
+     "details": "poteau simple ; fût fin, au bord de l'aire de Fontblanche",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 3439,
+     "decalage_bord_m": 5.0,
+     "matiere": "bois",
+     "details": "poteau simple ; en retrait, au débouché de la voie de Fontblanche",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 3468,
+     "decalage_bord_m": 2.0,
+     "matiere": "bois",
+     "details": "poteau simple ; marque bleue, derrière le parapet droit du ponceau",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 3507,
+     "decalage_bord_m": 2.0,
+     "matiere": "bois",
+     "details": "poteau simple ; marque bleue",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 3582,
+     "decalage_bord_m": 2.0,
+     "matiere": "bois",
+     "details": "poteau simple ; fût fin gris-beige à marque bleue (porte l'annonce de point radio en course)",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 3612,
+     "decalage_bord_m": 1.5,
+     "matiere": "bois",
+     "details": "poteau simple ; fût fin, avant le Lion d'Or",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "autre",
+     "cote": "gauche",
+     "pk_m": 3560,
+     "details": "les câbles traversent la route vers 3560 ; le poteau de l'autre côté n'est pas visible",
+     "confiance": "faible"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ligne_du_pk_2985 (droite) : 3390,5 bois, 3418 bois fin, 3509 bois, 3599 béton gris (confiance faible).",
+   "correction_proposee": "Ligne à droite, sept poteaux de bois simples : déplacer 3390,5 → 3376 (2,7 m) ; garder 3418 ; ajouter 3439 (5 m) et 3468 (2 m) ; 3509 → 3507 ; remplacer le béton de 3599 par un poteau fin en bois à 3582 ; ajouter 3612 (1,5 m). Aucun poteau double ni béton sur ce tronçon."
+  },
+  {
+   "numero": 5,
+   "pk_m": [
+    4560,
+    4830
+   ],
+   "question": "Poteaux de la ligne électrique : PK, côté, matière, simple ou double.",
+   "objets": [
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4552,
+     "decalage_bord_m": 2.0,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair ; juste après le parapet droit du ponceau 4560",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4582,
+     "decalage_bord_m": 2.5,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4625,
+     "decalage_bord_m": 2.5,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair ; coffret noir à mi-hauteur",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4656,
+     "decalage_bord_m": 2.0,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair ; juste avant le parapet droit du ponceau 4665",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4687,
+     "decalage_bord_m": 2.5,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair ; après le ponceau",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4726,
+     "decalage_bord_m": 5.0,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair ; en retrait derrière l'aire de stationnement",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4763,
+     "decalage_bord_m": 3.0,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair ; fin de l'aire",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4806,
+     "decalage_bord_m": 2.5,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair ; boîtier à mi-hauteur",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 4837,
+     "decalage_bord_m": 3.0,
+     "matiere": "béton",
+     "details": "poteau simple, béton clair",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ligne_du_pk_3708 (droite, béton) : 4553,5 ; 4595,5 ; 4638,5 ; 4665,5 ; 4696 ; 4769 (6 m) ; 4812,5.",
+   "correction_proposee": "Tous à droite, béton clair, simples, tous les 30 à 45 m. Garder 4553,5 ; avancer les suivants de 6 à 15 m : 4595,5 → 4582 ; 4638,5 → 4625 ; 4665,5 → 4656 ; 4696 → 4687 ; ajouter 4726 (5 m, derrière l'aire) ; 4769 → 4763 (3 m) ; 4812,5 → 4806 ; ajouter 4837."
+  },
+  {
+   "numero": 6,
+   "pk_m": [
+    5300,
+    5520
+   ],
+   "question": "Muret de pierre sèche à gauche au ras de la route ; entrée de propriété à droite vers 5320.",
+   "objets": [
+    {
+     "genre": "mur",
+     "cote": "gauche",
+     "pk_debut_m": 5358,
+     "pk_fin_m": 5407,
+     "decalage_bord_m": 0.4,
+     "hauteur_m": 0.7,
+     "matiere": "pierre sèche calcaire",
+     "couleur": "gris clair à beige",
+     "details": "muret continu au pied de la haie, terminé par une pierre de tête vers 5407 ; avant 5358 la haie descend au ras du bord sans muret visible",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "mur",
+     "cote": "gauche",
+     "pk_debut_m": 5420,
+     "pk_fin_m": 5508,
+     "decalage_bord_m": 0.4,
+     "hauteur_m": [
+      0.7,
+      1.0
+     ],
+     "matiere": "pierre sèche / moellons",
+     "couleur": "gris",
+     "details": "reprend après un passage d'herbe (5408-5419) ; continu jusqu'au portail en bois de 5498-5506 ; dessus en herbe de 5474 à 5494",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "mur",
+     "cote": "droite",
+     "pk_debut_m": 5320,
+     "pk_fin_m": 5360,
+     "decalage_bord_m": 0.5,
+     "hauteur_m": 0.45,
+     "matiere": "pierre sèche",
+     "couleur": "gris",
+     "details": "muret bas de la propriété, devant la haie",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "cloture",
+     "cote": "droite",
+     "pk_debut_m": 5324,
+     "pk_fin_m": 5331,
+     "decalage_bord_m": 1.5,
+     "hauteur_m": 1.2,
+     "matiere": "bois",
+     "couleur": "bois grisé",
+     "details": "clôture à lattes verticales en arc, derrière le muret ; ≈ 7 m seulement",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "poteau",
+     "cote": "droite",
+     "pk_m": 5344,
+     "decalage_bord_m": 1.5,
+     "matiere": "béton",
+     "details": "poteau gris clair contre le muret de la propriété",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "Gauche : pierre 5376,5-5407,5 (0,6 m), 5426,5-5441,5 (0,5 m), 5446,5-5517 (0,8 m). Droite : muret 5324-5359,5 (0,45 m), lisse bois 5329-5343 (1,2 m), poteau 5346.",
+   "correction_proposee": "Gauche : faire commencer le premier muret à 5358 au lieu de 5376,5 (fin 5407 inchangée, 0,7 m). Fusionner 5426,5-5441,5 et 5446,5-5517 en un seul mur 5420-5508 (0,7 à 1 m), fin avancée de 9 m. Droite : muret 5320-5360 (début avancé de 4 m) ; raccourcir la clôture bois à 5324-5331 ; poteau 5346 → 5344."
+  },
+  {
+   "numero": 7,
+   "pk_m": [
+    4060,
+    4115
+   ],
+   "question": "Extérieur de l'épingle à droite (côté gauche) : talus ou mur de plaquettes calcaires, surlargeur de gravier, parapet béton bas du ponceau.",
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 4067,
+     "pk_fin_m": 4080,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.55,
+     "matiere": "béton",
+     "couleur": "peint en blanc, tagué",
+     "details": "parapet bas du ponceau, about de début biseauté ; il est du côté GAUCHE",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "talus",
+     "cote": "gauche",
+     "pk_debut_m": 4079,
+     "pk_fin_m": 4105,
+     "decalage_bord_m": 3.0,
+     "hauteur_m": [
+      1.0,
+      2.5
+     ],
+     "matiere": "plaquettes calcaires empilées (pierre sèche) et rocher lité",
+     "couleur": "beige clair à gris",
+     "details": "2 à 2,5 m de 4082 à 4096, s'abaisse à ≈ 1 m vers 4100-4105 ; quelques chênes au sommet",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 4078,
+     "pk_fin_m": 4104,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 3.0,
+     "matiere": "gravier clair",
+     "details": "surlargeur plane entre la chaussée et le pied du talus",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "mur",
+     "cote": "droite",
+     "pk_debut_m": 4040,
+     "pk_fin_m": 4073,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.75,
+     "matiere": "moellons",
+     "details": "fin du mur courbe de l'intérieur de l'épingle, dernier morceau sorti du champ vers 4073",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": 4089,
+     "pk_fin_m": 4130,
+     "details": "commence dès la sortie de l'épingle (vue jusqu'au bout de la planche)",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "ouvrage 4074 : gauche béton peint blanc 4066-4082 ; droite pierre 4062,5-4076. Mur de pierres sèches gauche 4076-4109,5 (2,2 m, décalage 2,5) ; surlargeur gravier 4070-4112 (2,3 m) ; glissière droite à partir de 4100.",
+   "correction_proposee": "Parapet béton blanc du ponceau : juste (gauche, 4067-4080, 0,55 m), ne raccourcir que de 1-2 m. Talus de plaquettes : 4079-4105 au lieu de 4076-4109,5, recul 3 m au lieu de 2,5, hauteur 2,5 m dégressive à 1 m sur les 8 derniers mètres. Surlargeur : 4078-4104, largeur 3 m (au lieu de 2,3). Avancer le début de la glissière droite de 4100 à ≈ 4089."
+  },
+  {
+   "numero": 8,
+   "pk_m": [
+    1500,
+    1700
+   ],
+   "question": "Pont et parapets : chaque tronçon de chaque côté (début, fin, matière, dés blancs) ; glissière qui suit.",
+   "objets": [
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 1522,
+     "pk_fin_m": 1589,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.65,
+     "matiere": "moellons calcaires",
+     "couleur": "gris, dés et chaperon blancs",
+     "details": "long parapet à dés blancs, abouts biseautés blancs ; brèche fermée par des séparateurs plastique rouges et blancs vers 1566-1576 (vidéo de reconnaissance, postérieure à la course)",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "gauche",
+     "pk_debut_m": 1648,
+     "pk_fin_m": 1662,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.55,
+     "matiere": "moellons",
+     "couleur": "gris, dés blancs",
+     "details": "parapet gauche du pont 1661",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "parapet",
+     "cote": "droite",
+     "pk_debut_m": 1645,
+     "pk_fin_m": 1665,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.6,
+     "matiere": "moellons",
+     "couleur": "gris, chaperon gris clair, sans dés",
+     "details": "parapet courbe de la sortie de virage, bloc blanc au début",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "mur",
+     "cote": "droite",
+     "pk_debut_m": 1709,
+     "pk_fin_m": 1723,
+     "decalage_bord_m": 0.3,
+     "hauteur_m": 0.7,
+     "matiere": "moellons, gros chaperon de béton",
+     "couleur": "gris",
+     "details": "about de début biseauté blanc",
+     "confiance": "bonne"
+    },
+    {
+     "genre": "glissiere",
+     "cote": "droite",
+     "pk_debut_m": 1720,
+     "pk_fin_m": 1745,
+     "details": "enchaîne sur la fin du mur (continue au-delà de la planche)",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "Droite 1524-1591,5 pierre_des_blancs ; pont 1661 : gauche pierre_des_blancs 1654-1670,5, droite pierre 1652-1667 ; mur droite 1709,5-1728 ; glissière droite à partir de 1725.",
+   "correction_proposee": "Long parapet droit : garder (1522-1589, écart ≤ 2,5 m). Pont 1661 : avancer le parapet gauche à 1648-1662 (−6 à −8 m) et le droit à 1645-1665. Mur droite après le pont : 1709-1723 (fin avancée de 5 m), glissière à partir de 1720 au lieu de 1725."
+  },
+  {
+   "numero": 9,
+   "pk_m": [
+    6330,
+    6410
+   ],
+   "question": "Aire de gravier à gauche : début, fin, profondeur.",
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 6357,
+     "pk_fin_m": 6381,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 10.0,
+     "matiere": "gravier clair compacté",
+     "details": "grande plate-forme plane au niveau de la chaussée ; avant 6355 talus d'herbe plus haut, après 6382 herbe",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire gauche 6368-6398, profondeur 7 m, pierre.",
+   "correction_proposee": "Avancer l'aire gauche à 6357-6381 (−11 / −17 m) et la porter à 10 m de profondeur."
+  },
+  {
+   "numero": 10,
+   "pk_m": [
+    [
+     425,
+     475
+    ],
+    [
+     1465,
+     1505
+    ]
+   ],
+   "question": "Aires de stationnement à gauche : début, fin, profondeur, sol.",
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 419,
+     "pk_fin_m": 447,
+     "decalage_bord_m": 0.3,
+     "profondeur_m": 4.5,
+     "matiere": "terre claire et gravier, feuilles",
+     "details": "bande plane devant le sous-bois ; après 448 buissons et arbres au bord, puis affleurement rocheux 461-472",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 1471,
+     "pk_fin_m": 1496,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 7.0,
+     "matiere": "terre claire et gravier",
+     "details": "débouché de piste élargi sous les pins ; avant 1468 dalles rocheuses et herbe, après 1497 sous-bois et feuilles",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "PK 425-475 : aire gauche 436-468 (5,5 m, pierre). PK 1465-1505 : aire gauche 1474-1486 (6 m, pierre) + piste 1485-1500 (14 m, terre).",
+   "correction_proposee": "Aire du PK 440 : la reculer à 419-447 (au lieu de 436-468), profondeur 4,5 m, sol terre claire. Aire du PK 1480 : une seule emprise 1471-1496, profondeur 7 m, terre claire et gravier, la piste de 14 m gardée sur 1485-1495."
+  },
+  {
+   "numero": 11,
+   "pk_m": [
+    5025,
+    5065
+   ],
+   "question": "Aire avec barrière de piste à droite : étendue, sol, position de la barrière.",
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "droite",
+     "pk_debut_m": 5028,
+     "pk_fin_m": 5060,
+     "decalage_bord_m": 0.0,
+     "profondeur_m": 7.0,
+     "matiere": "terre et gravier clair, feuilles",
+     "details": "voitures garées de 5033 à 5054 ; à 5058-5061 tronc mort écorcé et poteau mince",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "autre",
+     "cote": "droite",
+     "pk_debut_m": 5038,
+     "pk_fin_m": 5043,
+     "decalage_bord_m": 6.0,
+     "hauteur_m": 0.9,
+     "matiere": "barrière métallique pivotante",
+     "couleur": "rouge et blanc, panneau sens interdit",
+     "details": "barrière de piste DFCI au fond de l'aire ; sortie du champ vers 5042-5044",
+     "confiance": "moyenne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire droite 5035-5058 (7 m, pierre) ; barrière de piste 5046-5054, décalage 6 m.",
+   "correction_proposee": "Allonger l'aire à 5028-5060 et avancer la barrière de piste de 5046-5054 à 5038-5043 (décalage 6 m gardé)."
+  },
+  {
+   "numero": 12,
+   "pk_m": [
+    1180,
+    1250
+   ],
+   "question": "À gauche : aire plane dégagée ou pente de feuilles mortes sous les pins ? Étendue.",
+   "objets": [
+    {
+     "genre": "aire",
+     "cote": "gauche",
+     "pk_debut_m": 1199,
+     "pk_fin_m": 1219,
+     "decalage_bord_m": 0.3,
+     "profondeur_m": 6.0,
+     "matiere": "terre claire battue",
+     "details": "clairière plane sous de gros chênes",
+     "confiance": "moyenne"
+    },
+    {
+     "genre": "talus",
+     "cote": "gauche",
+     "pk_debut_m": 1220,
+     "pk_fin_m": 1250,
+     "decalage_bord_m": 0.5,
+     "hauteur_m": [
+      0.5,
+      2.0
+     ],
+     "matiere": "pente de feuilles mortes sous chênes et pins",
+     "details": "pas d'aire : versant couvert de feuilles qui monte doucement",
+     "confiance": "bonne"
+    }
+   ],
+   "ce_que_pose_le_jeu": "aire gauche 1205-1240, profondeur 5 m, pierre.",
+   "correction_proposee": "Ramener l'aire à 1199-1219 (6 m, sol terre et non pierre) ; de 1220 à 1250, rendre une pente de feuilles mortes avec arbres (supprimer l'aire sur ce tronçon)."
+  }
+ ]
+}

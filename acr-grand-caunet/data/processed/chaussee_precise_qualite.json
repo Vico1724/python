@@ -1,0 +1,502 @@
+{
+  "longueur_depart_arrivee_m": 6735.8,
+  "longueur_officielle_m": 6702,
+  "largeur_m": {
+    "mediane": 6.42,
+    "p5": 5.24,
+    "p95": 7.82
+  },
+  "part_lineaire_par_source_pct": {
+    "lidar+ortho": 7.2,
+    "lidar": 57.1,
+    "ortho": 3.5,
+    "interpole": 13.3,
+    "manuel": 1.6,
+    "video": 17.3
+  },
+  "decalage_lateral_bdtopo_m": {
+    "mediane": 0.7,
+    "p95": 2.41,
+    "max": 4.37,
+    "pk_max": 851
+  },
+  "troncons_interpoles_sup_20m": {
+    "nombre": 5,
+    "troncons": [
+      {
+        "pk_debut": 451,
+        "pk_fin": 473,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 4097,
+        "pk_fin": 4117,
+        "motif": "surlargeur ou bord indécidable"
+      },
+      {
+        "pk_debut": 4417,
+        "pk_fin": 4446,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 5528,
+        "pk_fin": 5548,
+        "motif": "pont"
+      },
+      {
+        "pk_debut": 6450,
+        "pk_fin": 6470,
+        "motif": "surlargeur ou bord indécidable"
+      }
+    ]
+  },
+  "concordance_lidar_image": {
+    "part_des_bords_mesures_par_les_deux_pct": 34.2,
+    "ecart_median_m": 1.25,
+    "ecart_p90_m": 3.0
+  },
+  "devers_pct": {
+    "mediane_abs": 4.5,
+    "p95_abs": 8.4
+  },
+  "hors_es": {
+    "approche": {
+      "pk_debut_m": -170.0,
+      "pk_fin_m": -1.0,
+      "longueur_m": 170,
+      "part_interpolee_pct": 0.0,
+      "troncons_interpoles_sup_20m": []
+    },
+    "sortie": {
+      "pk_debut_m": 6736.0,
+      "pk_fin_m": 7377.0,
+      "longueur_m": 642,
+      "part_interpolee_pct": 15.1,
+      "troncons_interpoles_sup_20m": [
+        [
+          6802,
+          6832
+        ]
+      ]
+    },
+    "note": "statistiques ci-dessus calculées sur la seule zone es ; approche = début de l'axe BD TOPO (contrôle horaire) -> départ, sortie = arrivée -> point stop + 60 m (point stop au PK 7318 du nouvel axe)"
+  },
+  "sources": {
+    "lidar+ortho": "les deux bords mesurés, LiDAR et image concordent (< 1 m)",
+    "lidar": "au moins un bord pris sur la seule rupture LiDAR (sous les arbres, à l'ombre)",
+    "ortho": "au moins un bord pris sur la seule image (pont, plate-forme sans rupture)",
+    "interpole": "au moins un bord interpolé sur plus de 3 m (pont sans image, débouché, surlargeur rejetée, aucune source fiable)",
+    "manuel": "bords numérisés à la main sur l'ortho (data/reference/chaussee_corrections.json)",
+    "video": "largeur imposée d'après le relevé des vidéos embarquées (liste « largeurs » de chaussee_corrections.json), raccords de 10 m compris"
+  },
+  "methode": "profils en travers tous les mètres (±15 m, pas 0,25 m) sur l'axe courant ; bord LiDAR = fin de la plate-forme lisse du MNT ; bord image = fin de l'asphalte visible (NDVI bas, luminosité de la route) hors arbres et ombre ; l'image fait foi quand elle mesure ; filtrage le long du parcours, interpolation, lissage (milieu σ 4 m, bords σ 2 m) ; 2 recentrages de l'axe",
+  "precision_indicative": "bords : ±0,5 m là où l'asphalte est visible ; 1 à 2 m possibles sous les arbres (plate-forme LiDAR incluant un accotement plat) ; axe : bien meilleur que la BD TOPO",
+  "corrections_manuelles": [
+    {
+      "nom": "approche : carrefour D3 / D3D et ligne droite jusqu'au parking",
+      "pk_debut": -170,
+      "pk_fin": -58,
+      "largeur_m": {
+        "min": 5.26,
+        "mediane": 6.29,
+        "max": 8.56
+      },
+      "pas_des_stations_m": [
+        0.991,
+        0.991
+      ],
+      "sauts_aux_raccords": {
+        "debut": {
+          "bord_max_m": 0.041,
+          "axe_max_m": 0.023
+        },
+        "fin": {
+          "bord_max_m": 0.146,
+          "axe_max_m": 0.161
+        }
+      }
+    },
+    {
+      "nom": "carrefour du Lion d'Or : patte d'oie, branche de gauche ; bord droit fermant la branche de droite",
+      "pk_debut": 3596,
+      "pk_fin": 3702,
+      "largeur_m": {
+        "min": 4.86,
+        "mediane": 10.04,
+        "max": 16.72
+      },
+      "pas_des_stations_m": [
+        0.969,
+        0.969
+      ],
+      "sauts_aux_raccords": {
+        "debut": {
+          "bord_max_m": 0.044,
+          "axe_max_m": 0.011
+        },
+        "fin": {
+          "bord_max_m": 0.186,
+          "axe_max_m": 0.051
+        }
+      }
+    }
+  ],
+  "corrections_largeur_video": {
+    "entrees_appliquees": 24,
+    "stations_dans_les_entrees_par_confiance": {
+      "faible": 137,
+      "moyenne": 692
+    },
+    "stations_touchees_raccords_compris": 1225,
+    "entrees": [
+      {
+        "id_releve": "depart",
+        "pk_debut": -60,
+        "pk_fin": -5,
+        "cote": "gauche",
+        "largeur_m": 6.6,
+        "confiance": "faible",
+        "mode": "fixe",
+        "stations": 53,
+        "largeur_obtenue_m": [
+          6.52,
+          8.27
+        ]
+      },
+      {
+        "id_releve": "depart",
+        "pk_debut": -5,
+        "pk_fin": 10,
+        "cote": "gauche",
+        "largeur_m": 7.0,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 16,
+        "largeur_obtenue_m": [
+          6.8,
+          7.1
+        ]
+      },
+      {
+        "id_releve": "313-319",
+        "pk_debut": 313,
+        "pk_fin": 319,
+        "cote": "symetrique",
+        "largeur_m": 7.0,
+        "confiance": "faible",
+        "mode": "fixe",
+        "stations": 7,
+        "largeur_obtenue_m": [
+          7.0,
+          7.23
+        ]
+      },
+      {
+        "id_releve": "487-537",
+        "pk_debut": 487,
+        "pk_fin": 537,
+        "cote": "gauche",
+        "largeur_m": 7.3,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 51,
+        "largeur_obtenue_m": [
+          7.25,
+          7.44
+        ]
+      },
+      {
+        "id_releve": "675-739",
+        "pk_debut": 675,
+        "pk_fin": 739,
+        "cote": "droite",
+        "largeur_m": 7.0,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 65,
+        "largeur_obtenue_m": [
+          6.91,
+          7.19
+        ]
+      },
+      {
+        "id_releve": "1473-1499",
+        "pk_debut": 1470,
+        "pk_fin": 1500,
+        "cote": "symetrique",
+        "largeur_m": 6.2,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 31,
+        "largeur_obtenue_m": [
+          6.06,
+          6.41
+        ]
+      },
+      {
+        "id_releve": "1639-1693",
+        "pk_debut": 1645,
+        "pk_fin": 1675,
+        "cote": "symetrique",
+        "largeur_m": 7.0,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 31,
+        "largeur_obtenue_m": [
+          6.59,
+          7.22
+        ]
+      },
+      {
+        "id_releve": "1639-1693",
+        "pk_debut": 1675,
+        "pk_fin": 1693,
+        "cote": "symetrique",
+        "largeur_m": 6.5,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 19,
+        "largeur_obtenue_m": [
+          6.39,
+          6.66
+        ]
+      },
+      {
+        "id_releve": "1926-1980",
+        "pk_debut": 1926,
+        "pk_fin": 1980,
+        "cote": "gauche",
+        "largeur_m": 6.6,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 55,
+        "largeur_obtenue_m": [
+          6.54,
+          6.8
+        ]
+      },
+      {
+        "id_releve": "2092-2178",
+        "pk_debut": 2092,
+        "pk_fin": 2178,
+        "cote": "gauche",
+        "largeur_m": 4.9,
+        "confiance": "moyenne",
+        "mode": "minimum",
+        "stations": 74,
+        "largeur_obtenue_m": [
+          4.83,
+          5.15
+        ]
+      },
+      {
+        "id_releve": "2453-2464",
+        "pk_debut": 2453,
+        "pk_fin": 2464,
+        "cote": "droite",
+        "largeur_m": 6.0,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 12,
+        "largeur_obtenue_m": [
+          5.99,
+          6.26
+        ]
+      },
+      {
+        "id_releve": "2760-2789",
+        "pk_debut": 2760,
+        "pk_fin": 2789,
+        "cote": "symetrique",
+        "largeur_m": 6.8,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 30,
+        "largeur_obtenue_m": [
+          6.61,
+          6.93
+        ]
+      },
+      {
+        "id_releve": "3104-3109",
+        "pk_debut": 3104,
+        "pk_fin": 3109,
+        "cote": "gauche",
+        "largeur_m": 5.8,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 6,
+        "largeur_obtenue_m": [
+          5.8,
+          6.21
+        ]
+      },
+      {
+        "id_releve": "3356-3399",
+        "pk_debut": 3356,
+        "pk_fin": 3399,
+        "cote": "droite",
+        "largeur_m": 6.0,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 44,
+        "largeur_obtenue_m": [
+          5.9,
+          6.02
+        ]
+      },
+      {
+        "id_releve": "3424-3456",
+        "pk_debut": 3424,
+        "pk_fin": 3456,
+        "cote": "symetrique",
+        "largeur_m": 6.6,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 33,
+        "largeur_obtenue_m": [
+          6.4,
+          6.66
+        ]
+      },
+      {
+        "id_releve": "3907-3976",
+        "pk_debut": 3907,
+        "pk_fin": 3976,
+        "cote": "gauche",
+        "largeur_m": 7.3,
+        "confiance": "faible",
+        "mode": "fixe",
+        "stations": 70,
+        "largeur_obtenue_m": [
+          7.21,
+          7.46
+        ]
+      },
+      {
+        "id_releve": "4325-4375",
+        "pk_debut": 4325,
+        "pk_fin": 4375,
+        "cote": "symetrique",
+        "largeur_m": 6.5,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 51,
+        "largeur_obtenue_m": [
+          6.27,
+          6.66
+        ]
+      },
+      {
+        "id_releve": "4565-4585",
+        "pk_debut": 4565,
+        "pk_fin": 4585,
+        "cote": "symetrique",
+        "largeur_m": 5.8,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 21,
+        "largeur_obtenue_m": [
+          5.69,
+          5.88
+        ]
+      },
+      {
+        "id_releve": "4670-4690",
+        "pk_debut": 4670,
+        "pk_fin": 4690,
+        "cote": "symetrique",
+        "largeur_m": 6.0,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 21,
+        "largeur_obtenue_m": [
+          5.86,
+          6.12
+        ]
+      },
+      {
+        "id_releve": "4726-4780",
+        "pk_debut": 4726,
+        "pk_fin": 4780,
+        "cote": "droite",
+        "largeur_m": 6.8,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 55,
+        "largeur_obtenue_m": [
+          6.75,
+          6.92
+        ]
+      },
+      {
+        "id_releve": "4942-4983",
+        "pk_debut": 4942,
+        "pk_fin": 4983,
+        "cote": "droite",
+        "largeur_m": 6.8,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 42,
+        "largeur_obtenue_m": [
+          6.75,
+          6.94
+        ]
+      },
+      {
+        "id_releve": "5631-5637",
+        "pk_debut": 5631,
+        "pk_fin": 5637,
+        "cote": "droite",
+        "largeur_m": 7.0,
+        "confiance": "faible",
+        "mode": "fixe",
+        "stations": 7,
+        "largeur_obtenue_m": [
+          7.0,
+          7.19
+        ]
+      },
+      {
+        "id_releve": "6100-6125",
+        "pk_debut": 6100,
+        "pk_fin": 6125,
+        "cote": "symetrique",
+        "largeur_m": 6.3,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 26,
+        "largeur_obtenue_m": [
+          6.17,
+          6.43
+        ]
+      },
+      {
+        "id_releve": "6391-6399",
+        "pk_debut": 6391,
+        "pk_fin": 6399,
+        "cote": "symetrique",
+        "largeur_m": 6.5,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 9,
+        "largeur_obtenue_m": [
+          6.5,
+          6.72
+        ]
+      }
+    ],
+    "saut_max_aux_raccords_m": 0.218
+  },
+  "controles": {
+    "largeur_min_max_m": [
+      4.58,
+      16.72
+    ],
+    "quadrilateres_retournes": {
+      "nombre": 0,
+      "pk": []
+    },
+    "longueur_depart_arrivee_sur_axe_final_m": 6732.2
+  }
+}

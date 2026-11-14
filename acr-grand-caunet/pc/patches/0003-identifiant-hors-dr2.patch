@@ -1,0 +1,19 @@
+diff --git a/scripts/stages-lib.ps1 b/scripts/stages-lib.ps1
+index 55d8354..e15e59f 100644
+--- a/scripts/stages-lib.ps1
++++ b/scripts/stages-lib.ps1
+@@ -33,8 +33,13 @@ function Read-StagesToml([string]$path) {
+ }
+ 
+ # AcrXs<LocCode><Rally><Route> e.g. new_zealand_rally_01_route_5 + Nz -> AcrXsNz01r5
++# [Grand Caunet] a stage IR that does not come from DR2 may use any lower-case id (letters, digits, '_'):
++# grand_caunet + Fr -> AcrXsFrGrandCaunet. Only the additive batch (build-stages.ps1, gen-stage-specs.ps1) uses this.
+ function Get-AcrId([string]$dr2, [string]$code) {
+-    if ($dr2 -notmatch '^([a-z_]+)_rally_(\d+)_route_(\d+)$') { throw "bad dr2 id: $dr2" }
++    if ($dr2 -notmatch '^([a-z_]+)_rally_(\d+)_route_(\d+)$') {
++        if ($dr2 -notmatch '^[a-z][a-z0-9_]*$') { throw "bad stage id: $dr2" }
++        return "AcrXs${code}" + (($dr2 -split '_' | ? { $_ } | % { $_.Substring(0, 1).ToUpper() + $_.Substring(1) }) -join '')
++    }
+     $rally = [int]$Matches[2]
+     $route = [int]$Matches[3]
+     return "AcrXs${code}$('{0:D2}' -f $rally)r$route"

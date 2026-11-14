@@ -1,0 +1,92 @@
+{
+ "conteneur": {
+  "fichiers": 2252,
+  "hors_de_notre_dossier": 0
+ },
+ "niveau": {
+  "maillages_poses": 546,
+  "attendus": 546,
+  "instances": 585238,
+  "attendues": 585238,
+  "composants_d_instances": 110,
+  "instances_hors_vegetation": {
+   "SM_PlasticTapePoleA": 16,
+   "SM_MetalGuardrailASimpleBegin": 6,
+   "SM_MetalGuardrailASimpleCenter": 225,
+   "SM_MetalGuardrailASimpleEnd": 6,
+   "SM_GrandCaunetStoneA": 8297,
+   "SM_GrandCaunetStoneB": 8580,
+   "SM_GrandCaunetStoneC": 7456,
+   "SM_GrandCaunetBlocA": 33,
+   "SM_GrandCaunetBlocB": 34,
+   "SM_GrandCaunetBlocC": 23,
+   "SM_MileMarkerA": 1,
+   "SM_MonPylonB11": 80,
+   "SM_MonPylonC11": 24,
+   "SM_NopublicSign": 10,
+   "SM_RaceControlZoneEnd": 1,
+   "SM_RaceFlyingFinish": 1,
+   "SM_RacePreFlyingFinish": 1,
+   "SM_RaceRadioPointA": 9,
+   "SM_RaceRadioWarningA": 2,
+   "SM_RaceRadioWarningB": 6,
+   "SM_RaceTimer": 1,
+   "SM_TrafficConeA": 1,
+   "SM_TrafficSignFraCrossRoadsA": 1,
+   "SM_TrafficSignFraCurveMarkerD": 3,
+   "SM_TrafficSignFraDangerA": 6,
+   "SM_TrafficSignFraNarrowRoadA": 1,
+   "SM_TrafficSignFraRightTurnA1": 1,
+   "SM_TrafficSignFraSlipperyRoadA": 1,
+   "SM_GrandCaunetStoneD": 2092
+  },
+  "composants_a_disparition_reglee": 40,
+  "herbes_mal_reglees": []
+ },
+ "sol": {
+  "mode": "jeu",
+  "variantes": 41,
+  "variantes_non_conformes": [],
+  "masques": 82,
+  "format_des_masques_du_jeu": {
+   "format": "PF_DXT5",
+   "virtuelle": true,
+   "compression": "TC_Masks",
+   "srgb": false,
+   "adressage": "TA_Clamp",
+   "couches": 1,
+   "dalle": 128,
+   "bordure": 4,
+   "types_de_couche": [
+    "PF_DXT5"
+   ],
+   "codecs": [
+    "RawGPU"
+   ],
+   "octets_par_dalle": [
+    18496
+   ]
+  },
+  "masques_de_format_different": [],
+  "ecart_moyen_au_fichier_source_sur_255": 2.53,
+  "maillages": 101,
+  "maillages_a_mauvaise_couleur_de_sommet": []
+ },
+ "variantes_heritees_du_jeu": {
+  "controlees": 7,
+  "non_conformes": []
+ },
+ "erreurs": [],
+ "reglages_du_jeu": {
+  "variantes": 47,
+  "controlees": 9,
+  "manques": [],
+  "parents": [
+   "MI_BolleneAsphalt1",
+   "MI_BolleneRockfacesParent",
+   "MI_MonBolConcreteWallsA",
+   "MI_MonBolStoneWallsA",
+   "MI_MonteCarloS1BolleneTerrainFirstChild"
+  ]
+ }
+}

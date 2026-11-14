@@ -1,0 +1,213 @@
+{
+ "regle": {
+  "plaque_si_moins_de_cm": 30.0,
+  "hauteur_minimale_cm": 150.0,
+  "echelle_visee": [
+   0.6,
+   1.5
+  ],
+  "tolerance": 1.25
+ },
+ "arbres": {
+  "/Game/Foliage/Trees/AleppoPine": {
+   "nombre": 22921,
+   "echelle_avant": {
+    "mediane": 1.15,
+    "min": 0.13,
+    "max": 102.38,
+    "hors_de_0,5_a_2": 10224
+   },
+   "echelle_apres": {
+    "mediane": 0.98,
+    "min": 0.6,
+    "max": 2.1,
+    "hors_de_0,5_a_2": 3
+   },
+   "par_maillage": {
+    "SM_AleppoPine01": 1841,
+    "SM_AleppoPine02": 1835,
+    "SM_AleppoPine03": 1983,
+    "SM_AleppoPine04": 1803,
+    "SM_AleppoPine05": 1887,
+    "SM_AleppoPine06": 1938,
+    "SM_AleppoPine07": 1263,
+    "SM_AleppoPine08": 1015,
+    "SM_AleppoPine09": 2091,
+    "SM_AleppoPine10": 1747,
+    "SM_AleppoPine11": 1868,
+    "SM_AleppoPine14": 1815,
+    "SM_AleppoPine15": 1835
+   }
+  },
+  "/Game/Foliage/Trees/Blackmaple": {
+   "nombre": 2044,
+   "echelle_avant": {
+    "mediane": 0.38,
+    "min": 0.1,
+    "max": 23.62,
+    "hors_de_0,5_a_2": 1709
+   },
+   "echelle_apres": {
+    "mediane": 0.4,
+    "min": 0.16,
+    "max": 1.49,
+    "hors_de_0,5_a_2": 1393
+   },
+   "par_maillage": {
+    "SM_Blackmaple01": 39,
+    "SM_Blackmaple02": 996,
+    "SM_Blackmaple03": 984,
+    "SM_Blackmaple06": 25
+   }
+  },
+  "/Game/Foliage/Trees/BlackmapleMonteCarlo": {
+   "nombre": 5400,
+   "echelle_avant": {
+    "mediane": 0.55,
+    "min": 0.31,
+    "max": 2.01,
+    "hors_de_0,5_a_2": 2026
+   },
+   "echelle_apres": {
+    "mediane": 0.61,
+    "min": 0.46,
+    "max": 1.49,
+    "hors_de_0,5_a_2": 934
+   },
+   "par_maillage": {
+    "SM_BlackmapleMonteCarlo01": 295,
+    "SM_BlackmapleMonteCarlo02": 2636,
+    "SM_BlackmapleMonteCarlo03": 2469
+   }
+  },
+  "/Game/Foliage/Trees/BlackpineMonteCarlo": {
+   "nombre": 357,
+   "echelle_avant": {
+    "mediane": 0.52,
+    "min": 0.11,
+    "max": 5.07,
+    "hors_de_0,5_a_2": 217
+   },
+   "echelle_apres": {
+    "mediane": 0.97,
+    "min": 0.6,
+    "max": 1.5,
+    "hors_de_0,5_a_2": 0
+   },
+   "par_maillage": {
+    "SM_BlackpineMonteCarlo01": 4,
+    "SM_BlackpineMonteCarlo02": 1,
+    "SM_BlackpineMonteCarlo03": 12,
+    "SM_BlackpineMonteCarlo04": 58,
+    "SM_BlackpineMonteCarlo05": 67,
+    "SM_BlackpineMonteCarlo06": 6,
+    "SM_BlackpineMonteCarlo07": 14,
+    "SM_BlackpineMonteCarlo08": 83,
+    "SM_BlackpineMonteCarlo09": 4,
+    "SM_BlackpineMonteCarlo11": 98,
+    "SM_BlackpineMonteCarlo12": 10
+   }
+  },
+  "/Game/Foliage/Trees/Cypress": {
+   "nombre": 56,
+   "echelle_avant": {
+    "mediane": 1.46,
+    "min": 0.36,
+    "max": 3.6,
+    "hors_de_0,5_a_2": 17
+   },
+   "echelle_apres": {
+    "mediane": 1.29,
+    "min": 0.46,
+    "max": 2.65,
+    "hors_de_0,5_a_2": 6
+   },
+   "par_maillage": {
+    "SM_Cypress01": 8,
+    "SM_Cypress02": 36,
+    "SM_Cypress03": 5,
+    "SM_Cypress04": 7
+   }
+  },
+  "/Game/Foliage/Trees/Olivetree": {
+   "nombre": 28,
+   "echelle_avant": {
+    "mediane": 0.36,
+    "min": 0.17,
+    "max": 1.08,
+    "hors_de_0,5_a_2": 18
+   },
+   "echelle_apres": {
+    "mediane": 0.4,
+    "min": 0.22,
+    "max": 1.36,
+    "hors_de_0,5_a_2": 16
+   },
+   "par_maillage": {
+    "SM_Olivetree01": 2,
+    "SM_Olivetree02": 3,
+    "SM_Olivetree03": 23
+   }
+  },
+  "/Game/Foliage/Trees/Smoketree": {
+   "nombre": 10776,
+   "echelle_avant": {
+    "mediane": 0.58,
+    "min": 0.19,
+    "max": 3.24,
+    "hors_de_0,5_a_2": 5665
+   },
+   "echelle_apres": {
+    "mediane": 0.7,
+    "min": 0.45,
+    "max": 2.16,
+    "hors_de_0,5_a_2": 1296
+   },
+   "par_maillage": {
+    "SM_Smoketree01": 3756,
+    "SM_Smoketree02": 3165,
+    "SM_Smoketree04": 3855
+   }
+  }
+ },
+ "arbustes": {
+  "/Game/Foliage/GroundCover/BroomCreeper": {
+   "nombre": 51275,
+   "echelle_avant": {
+    "sans_objet": "maillage d'origine en plaque : pas d'échelle en hauteur"
+   },
+   "echelle_apres": {
+    "mediane": 0.99,
+    "min": 0.36,
+    "max": 2.0,
+    "hors_de_0,5_a_2": 655
+   },
+   "par_maillage": {
+    "SM_BroomCreeper01": 10347,
+    "SM_BroomCreeper02": 10308,
+    "SM_BroomCreeper03": 10406,
+    "SM_BroomCreeper04": 10097,
+    "SM_BroomCreeper05": 10117
+   }
+  },
+  "/Game/Foliage/Trees/Boxthorn": {
+   "nombre": 71467,
+   "echelle_avant": {
+    "mediane": 0.33,
+    "min": 0.08,
+    "max": 7.49,
+    "hors_de_0,5_a_2": 68360
+   },
+   "echelle_apres": {
+    "mediane": 0.38,
+    "min": 0.24,
+    "max": 0.57,
+    "hors_de_0,5_a_2": 63617
+   },
+   "par_maillage": {
+    "SM_Boxthorn01": 35845,
+    "SM_Boxthorn03": 35622
+   }
+  }
+ }
+}

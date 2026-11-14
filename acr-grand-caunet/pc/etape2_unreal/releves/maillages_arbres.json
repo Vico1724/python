@@ -1,0 +1,3758 @@
+{
+ "source": {
+  "jeu": "Assetto Corsa Rally",
+  "version_de_construction": "25170642",
+  "outil": "acr-ref export-many (ACR Extra Stages) sur la vue d'origine, sans mods ni BioBio"
+ },
+ "unite": "cm, repère du maillage (pivot au pied)",
+ "maillages": {
+  "SM_AleppoPine01": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine01",
+   "haut_cm": 1012.0,
+   "bas_cm": -18.2,
+   "demi_largeur_cm": 365.5,
+   "centre_xy_cm": [
+    -13.9,
+    42.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5164,
+    5172,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine01BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine01LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine01BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine01LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine01ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine01Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine01Billboard"
+   ]
+  },
+  "SM_AleppoPine02": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine02",
+   "haut_cm": 1588.6,
+   "bas_cm": -28.8,
+   "demi_largeur_cm": 552.4,
+   "centre_xy_cm": [
+    1.5,
+    -3.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    8266,
+    8274,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine02BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine02LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine02BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine02LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine02ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine02Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine02Billboard"
+   ]
+  },
+  "SM_AleppoPine03": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine03",
+   "haut_cm": 730.2,
+   "bas_cm": -26.8,
+   "demi_largeur_cm": 290.6,
+   "centre_xy_cm": [
+    8.3,
+    10.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4004,
+    4012,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine03BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine03LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine03BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine03LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine03ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine03Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine03Billboard"
+   ]
+  },
+  "SM_AleppoPine04": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine04",
+   "haut_cm": 1406.1,
+   "bas_cm": -38.0,
+   "demi_largeur_cm": 529.1,
+   "centre_xy_cm": [
+    1.3,
+    4.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5676,
+    5684,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine04BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine04LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine04BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine04LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine04ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine04Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine04Billboard"
+   ]
+  },
+  "SM_AleppoPine05": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine05",
+   "haut_cm": 900.1,
+   "bas_cm": -38.2,
+   "demi_largeur_cm": 587.5,
+   "centre_xy_cm": [
+    -46.1,
+    41.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4781,
+    4789,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine05BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine05LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine05BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine05LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine05ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine05Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine05Billboard"
+   ]
+  },
+  "SM_AleppoPine06": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine06",
+   "haut_cm": 880.1,
+   "bas_cm": -38.1,
+   "demi_largeur_cm": 619.0,
+   "centre_xy_cm": [
+    -33.0,
+    33.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4789,
+    4797,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine06BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine06LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine06BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine06LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine06ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine06Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine06Billboard"
+   ]
+  },
+  "SM_AleppoPine07": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine07",
+   "haut_cm": 330.7,
+   "bas_cm": -17.0,
+   "demi_largeur_cm": 154.2,
+   "centre_xy_cm": [
+    -7.5,
+    2.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    1121,
+    1129,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine07BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine07LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine07BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine07LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine07ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine07Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine07Billboard"
+   ]
+  },
+  "SM_AleppoPine08": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine08",
+   "haut_cm": 294.2,
+   "bas_cm": -17.0,
+   "demi_largeur_cm": 86.4,
+   "centre_xy_cm": [
+    -14.7,
+    8.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    602,
+    610,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine08BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine08LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine08BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine08LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine08ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine08Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine08Billboard"
+   ]
+  },
+  "SM_AleppoPine09": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine09",
+   "haut_cm": 664.0,
+   "bas_cm": -19.7,
+   "demi_largeur_cm": 358.3,
+   "centre_xy_cm": [
+    -41.4,
+    -15.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2412,
+    2420,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine09BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine09LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine09BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine09LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine09ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine09Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine09Billboard"
+   ]
+  },
+  "SM_AleppoPine10": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine10",
+   "haut_cm": 438.7,
+   "bas_cm": -202.3,
+   "demi_largeur_cm": 268.5,
+   "centre_xy_cm": [
+    1.9,
+    -25.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2916,
+    2924,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine10LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine10BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine10LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine10BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine10ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine10Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine10Billboard"
+   ]
+  },
+  "SM_AleppoPine11": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine11",
+   "haut_cm": 1316.4,
+   "bas_cm": -37.7,
+   "demi_largeur_cm": 300.9,
+   "centre_xy_cm": [
+    -9.1,
+    41.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5163,
+    5171,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine11BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine11LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine11BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine11LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine11ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine11Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine11Billboard"
+   ]
+  },
+  "SM_AleppoPine12": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine12",
+   "haut_cm": 25.2,
+   "bas_cm": -0.3,
+   "demi_largeur_cm": 17.3,
+   "centre_xy_cm": [
+    0.7,
+    2.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    25,
+    33,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine12LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine12LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine12ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine12Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine12Billboard"
+   ]
+  },
+  "SM_AleppoPine13": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine13",
+   "haut_cm": 55.2,
+   "bas_cm": -0.6,
+   "demi_largeur_cm": 34.3,
+   "centre_xy_cm": [
+    -0.2,
+    2.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    53,
+    61,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine13LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine13LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine13ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine13Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine13Billboard"
+   ]
+  },
+  "SM_AleppoPine14": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine14",
+   "haut_cm": 1041.4,
+   "bas_cm": -26.9,
+   "demi_largeur_cm": 292.7,
+   "centre_xy_cm": [
+    -20.4,
+    -9.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3844,
+    3852,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine14BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine14LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine14BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine14LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine14ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine14Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine14Billboard"
+   ]
+  },
+  "SM_AleppoPine15": {
+   "objet": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine15",
+   "haut_cm": 1316.4,
+   "bas_cm": -37.7,
+   "demi_largeur_cm": 339.4,
+   "centre_xy_cm": [
+    -9.1,
+    47.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5565,
+    5573,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine15BarkMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine15LeafMat",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine15BarkMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine15LeafMatTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine15ImpostorTransition",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine15Impostor",
+    "/Game/Foliage/Trees/AleppoPine/MI_AleppoPine15Billboard"
+   ]
+  },
+  "SM_BGBlackmaple_01": {
+   "objet": "/Game/Foliage/Trees/BackdropTrees/SM_BGBlackmaple_01",
+   "haut_cm": 2694.8,
+   "bas_cm": -147.0,
+   "demi_largeur_cm": 810.5,
+   "centre_xy_cm": [
+    -0.2,
+    -75.5
+   ],
+   "niveaux_de_detail": 1,
+   "triangles_par_niveau": [
+    2
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BackdropTrees/MM_Backdrop_Inst"
+   ]
+  },
+  "SM_Baretree01": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree01",
+   "haut_cm": 1759.2,
+   "bas_cm": -0.7,
+   "demi_largeur_cm": 638.5,
+   "centre_xy_cm": [
+    66.7,
+    -12.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6739,
+    6747,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree01BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree01LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree01BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree01LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree01ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree01Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree01Billboard"
+   ]
+  },
+  "SM_Baretree02": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree02",
+   "haut_cm": 2185.4,
+   "bas_cm": -3.1,
+   "demi_largeur_cm": 516.0,
+   "centre_xy_cm": [
+    -2.2,
+    8.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6724,
+    6732,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree02BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree02LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree02BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree02LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree02ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree02Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree02Billboard"
+   ]
+  },
+  "SM_Baretree03": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree03",
+   "haut_cm": 1740.4,
+   "bas_cm": -4.0,
+   "demi_largeur_cm": 671.5,
+   "centre_xy_cm": [
+    -5.3,
+    -8.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3342,
+    3350,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree03BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree03Leaf2Mat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree03BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree03Leaf2MatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree03ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree03Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree03Billboard"
+   ]
+  },
+  "SM_Baretree04": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree04",
+   "haut_cm": 1529.5,
+   "bas_cm": -4.7,
+   "demi_largeur_cm": 543.1,
+   "centre_xy_cm": [
+    133.1,
+    0.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2636,
+    2644,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree04BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree04LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree04BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree04LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree04ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree04Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree04Billboard"
+   ]
+  },
+  "SM_Baretree05": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree05",
+   "haut_cm": 1806.0,
+   "bas_cm": -41.8,
+   "demi_largeur_cm": 757.9,
+   "centre_xy_cm": [
+    -15.0,
+    44.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5010,
+    5018,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree05BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree05LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree05BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree05LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree05ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree05Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree05Billboard"
+   ]
+  },
+  "SM_Baretree06": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree06",
+   "haut_cm": 1945.2,
+   "bas_cm": -32.3,
+   "demi_largeur_cm": 502.2,
+   "centre_xy_cm": [
+    51.5,
+    76.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2164,
+    2172,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree06LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree06BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree06LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree06BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree06ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree06Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree06Billboard"
+   ]
+  },
+  "SM_Baretree07": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree07",
+   "haut_cm": 2353.1,
+   "bas_cm": -3.3,
+   "demi_largeur_cm": 810.0,
+   "centre_xy_cm": [
+    200.9,
+    -102.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4440,
+    4448,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree07BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree07LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree07BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree07LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree07ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree07Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree07Billboard"
+   ]
+  },
+  "SM_Baretree08": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree08",
+   "haut_cm": 2281.3,
+   "bas_cm": -2.3,
+   "demi_largeur_cm": 610.1,
+   "centre_xy_cm": [
+    26.6,
+    -28.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    9240,
+    9248,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree08LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree08BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree08LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree08BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree08ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree08Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree08Billboard"
+   ]
+  },
+  "SM_Baretree09": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree09",
+   "haut_cm": 2313.1,
+   "bas_cm": -3.1,
+   "demi_largeur_cm": 917.5,
+   "centre_xy_cm": [
+    -34.6,
+    -68.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6302,
+    6310,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree09LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree09BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree09LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree09BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree09ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree09Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree09Billboard"
+   ]
+  },
+  "SM_Baretree10": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree10",
+   "haut_cm": 673.3,
+   "bas_cm": -4.6,
+   "demi_largeur_cm": 528.4,
+   "centre_xy_cm": [
+    38.6,
+    9.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2290,
+    2298,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree10LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree10BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree10LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree10BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree10ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree10Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree10Billboard"
+   ]
+  },
+  "SM_Baretree11": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree11",
+   "haut_cm": 2676.2,
+   "bas_cm": -95.5,
+   "demi_largeur_cm": 411.0,
+   "centre_xy_cm": [
+    -17.8,
+    30.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    9987,
+    9995,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree11LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree11BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree11LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree11BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree11ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree11Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree11Billboard"
+   ]
+  },
+  "SM_Baretree13": {
+   "objet": "/Game/Foliage/Trees/Baretree/SM_Baretree13",
+   "haut_cm": 2147.2,
+   "bas_cm": -30.9,
+   "demi_largeur_cm": 953.6,
+   "centre_xy_cm": [
+    -132.1,
+    -55.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4626,
+    4634,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Baretree/MI_Baretree13LeafMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree13BarkMat",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree13LeafMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree13BarkMatTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree13ImpostorTransition",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree13Impostor",
+    "/Game/Foliage/Trees/Baretree/MI_Baretree13Billboard"
+   ]
+  },
+  "SM_BaretreeB01": {
+   "objet": "/Game/Foliage/Trees/BaretreeB/SM_BaretreeB01",
+   "haut_cm": 2370.5,
+   "bas_cm": -13.9,
+   "demi_largeur_cm": 671.7,
+   "centre_xy_cm": [
+    -71.2,
+    -22.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2930,
+    2938,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB01BarkMat",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB01LeafMat",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB01BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB01LeafMatTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB01ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB01Impostor",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB01Billboard"
+   ]
+  },
+  "SM_BaretreeB02": {
+   "objet": "/Game/Foliage/Trees/BaretreeB/SM_BaretreeB02",
+   "haut_cm": 1195.8,
+   "bas_cm": -13.8,
+   "demi_largeur_cm": 289.7,
+   "centre_xy_cm": [
+    -13.4,
+    13.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2420,
+    2428,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB02BarkMat",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB02LeafMat",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB02BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB02LeafMatTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB02ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB02Impostor",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB02Billboard"
+   ]
+  },
+  "SM_BaretreeB03": {
+   "objet": "/Game/Foliage/Trees/BaretreeB/SM_BaretreeB03",
+   "haut_cm": 1136.6,
+   "bas_cm": -14.1,
+   "demi_largeur_cm": 134.3,
+   "centre_xy_cm": [
+    -22.7,
+    15.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2336,
+    2344,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB03BarkMat",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB03LeafMat",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB03BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB03LeafMatTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB03ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB03Impostor",
+    "/Game/Foliage/Trees/BaretreeB/MI_BaretreeB03Billboard"
+   ]
+  },
+  "SM_BaretreeCreeper01": {
+   "objet": "/Game/Foliage/Trees/BaretreeCreeper/SM_BaretreeCreeper01",
+   "haut_cm": 2146.4,
+   "bas_cm": -81.2,
+   "demi_largeur_cm": 465.1,
+   "centre_xy_cm": [
+    -44.0,
+    -39.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    8564,
+    8572,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01BarkMat",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01CreeperMat",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01LeafMat",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01CreeperMatTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01LeafMatTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01Impostor",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper01Billboard"
+   ]
+  },
+  "SM_BaretreeCreeper02": {
+   "objet": "/Game/Foliage/Trees/BaretreeCreeper/SM_BaretreeCreeper02",
+   "haut_cm": 1945.2,
+   "bas_cm": -115.5,
+   "demi_largeur_cm": 502.2,
+   "centre_xy_cm": [
+    51.5,
+    76.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    8064,
+    8072,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02BarkMat",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02Creeper2Mat",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02Leaf2Mat",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02Creeper2MatTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02Leaf2MatTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02Impostor",
+    "/Game/Foliage/Trees/BaretreeCreeper/MI_BaretreeCreeper02Billboard"
+   ]
+  },
+  "SM_BaretreeCut01": {
+   "objet": "/Game/Foliage/Trees/BaretreeCut/SM_BaretreeCut01",
+   "haut_cm": 1456.1,
+   "bas_cm": -48.6,
+   "demi_largeur_cm": 406.6,
+   "centre_xy_cm": [
+    -111.9,
+    42.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6176,
+    6184,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut01BarkMat",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut01BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut01ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut01Impostor",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut01Billboard"
+   ]
+  },
+  "SM_BaretreeCut02": {
+   "objet": "/Game/Foliage/Trees/BaretreeCut/SM_BaretreeCut02",
+   "haut_cm": 1001.1,
+   "bas_cm": -48.6,
+   "demi_largeur_cm": 149.3,
+   "centre_xy_cm": [
+    -24.3,
+    -3.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4532,
+    4540,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut02BarkMat",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut02CapMat",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut02BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut02CapMatTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut02ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut02Impostor",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut02Billboard"
+   ]
+  },
+  "SM_BaretreeCut03": {
+   "objet": "/Game/Foliage/Trees/BaretreeCut/SM_BaretreeCut03",
+   "haut_cm": 883.4,
+   "bas_cm": -48.6,
+   "demi_largeur_cm": 122.5,
+   "centre_xy_cm": [
+    -6.2,
+    -30.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3580,
+    3588,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut03BarkMat",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut03CapMat",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut03BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut03CapMatTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut03ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut03Impostor",
+    "/Game/Foliage/Trees/BaretreeCut/MI_BaretreeCut03Billboard"
+   ]
+  },
+  "SM_BaretreeWhite01": {
+   "objet": "/Game/Foliage/Trees/BaretreeWhite/SM_BaretreeWhite01",
+   "haut_cm": 1759.2,
+   "bas_cm": -0.7,
+   "demi_largeur_cm": 638.5,
+   "centre_xy_cm": [
+    66.7,
+    -12.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6739,
+    6747,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite01BarkMat",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite01LeafMat",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite01BarkMatTransition",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite01LeafMatTransition",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite01ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite01Impostor",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite01Billboard"
+   ]
+  },
+  "SM_BaretreeWhite02": {
+   "objet": "/Game/Foliage/Trees/BaretreeWhite/SM_BaretreeWhite02",
+   "haut_cm": 2185.4,
+   "bas_cm": -3.1,
+   "demi_largeur_cm": 516.0,
+   "centre_xy_cm": [
+    -2.2,
+    8.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6724,
+    6732,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite02LeafMat",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite02Bark2Mat",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite02LeafMatTransition",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite02Bark2MatTransition",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite02ImpostorTransition",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite02Impostor",
+    "/Game/Foliage/Trees/BaretreeWhite/MI_BaretreeWhite02Billboard"
+   ]
+  },
+  "SM_BeechBare01": {
+   "objet": "/Game/Foliage/Trees/BeechBare/SM_BeechBare01",
+   "haut_cm": 1541.1,
+   "bas_cm": -23.4,
+   "demi_largeur_cm": 650.8,
+   "centre_xy_cm": [
+    16.6,
+    -3.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4887,
+    4895,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare01BarkMat",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare01LeafMat",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare01BarkMatTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare01LeafMatTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare01ImpostorTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare01Impostor",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare01Billboard"
+   ]
+  },
+  "SM_BeechBare02": {
+   "objet": "/Game/Foliage/Trees/BeechBare/SM_BeechBare02",
+   "haut_cm": 600.1,
+   "bas_cm": -25.0,
+   "demi_largeur_cm": 174.1,
+   "centre_xy_cm": [
+    -8.7,
+    -30.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3520,
+    3528,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare02BarkMat",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare02LeafMat",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare02BarkMatTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare02LeafMatTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare02ImpostorTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare02Impostor",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare02Billboard"
+   ]
+  },
+  "SM_BeechBare03": {
+   "objet": "/Game/Foliage/Trees/BeechBare/SM_BeechBare03",
+   "haut_cm": 600.1,
+   "bas_cm": -114.7,
+   "demi_largeur_cm": 239.0,
+   "centre_xy_cm": [
+    -16.8,
+    -95.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6576,
+    6584,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare03BarkMat",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare03LeafMat",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare03BarkMatTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare03LeafMatTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare03ImpostorTransition",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare03Impostor",
+    "/Game/Foliage/Trees/BeechBare/MI_BeechBare03Billboard"
+   ]
+  },
+  "SM_Blackmaple01": {
+   "objet": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple01",
+   "haut_cm": 1965.7,
+   "bas_cm": -1.8,
+   "demi_largeur_cm": 612.1,
+   "centre_xy_cm": [
+    95.9,
+    48.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4708,
+    4716,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple01BarkMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple01LeafMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple01BarkMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple01LeafMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple01ImpostorTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple01Impostor",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple01Billboard"
+   ]
+  },
+  "SM_Blackmaple02": {
+   "objet": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple02",
+   "haut_cm": 1286.0,
+   "bas_cm": -18.3,
+   "demi_largeur_cm": 597.1,
+   "centre_xy_cm": [
+    27.6,
+    72.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4528,
+    4536,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple02BarkMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple02LeafMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple02BarkMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple02LeafMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple02ImpostorTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple02Impostor",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple02Billboard"
+   ]
+  },
+  "SM_Blackmaple03": {
+   "objet": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple03",
+   "haut_cm": 1314.0,
+   "bas_cm": -18.5,
+   "demi_largeur_cm": 702.4,
+   "centre_xy_cm": [
+    -44.5,
+    -7.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4442,
+    4450,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple03BarkMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple03LeafMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple03BarkMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple03LeafMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple03ImpostorTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple03Impostor",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple03Billboard"
+   ]
+  },
+  "SM_Blackmaple04": {
+   "objet": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple04",
+   "haut_cm": 87.2,
+   "bas_cm": -1.2,
+   "demi_largeur_cm": 21.6,
+   "centre_xy_cm": [
+    -1.0,
+    -1.1
+   ],
+   "niveaux_de_detail": 3,
+   "triangles_par_niveau": [
+    277,
+    138,
+    70
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple04LeafMat"
+   ]
+  },
+  "SM_Blackmaple06": {
+   "objet": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple06",
+   "haut_cm": 2205.4,
+   "bas_cm": -0.1,
+   "demi_largeur_cm": 926.6,
+   "centre_xy_cm": [
+    55.8,
+    133.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5522,
+    5530,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple06BarkMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple06LeafMat",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple06BarkMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple06LeafMatTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple06ImpostorTransition",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple06Impostor",
+    "/Game/Foliage/Trees/Blackmaple/MI_Blackmaple06Billboard"
+   ]
+  },
+  "SM_BlackmapleMonteCarlo01": {
+   "objet": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo01",
+   "haut_cm": 1965.7,
+   "bas_cm": -1.8,
+   "demi_largeur_cm": 612.1,
+   "centre_xy_cm": [
+    95.9,
+    48.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4708,
+    4716,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo01BarkMat",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo01LeafMat",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo01BarkMatTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo01LeafMatTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo01ImpostorTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo01Impostor",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo01Billboard"
+   ]
+  },
+  "SM_BlackmapleMonteCarlo02": {
+   "objet": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo02",
+   "haut_cm": 1286.0,
+   "bas_cm": -18.3,
+   "demi_largeur_cm": 597.1,
+   "centre_xy_cm": [
+    27.6,
+    72.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4528,
+    4536,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo02BarkMat",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo02LeafMat",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo02BarkMatTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo02LeafMatTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo02ImpostorTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo02Impostor",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo02Billboard"
+   ]
+  },
+  "SM_BlackmapleMonteCarlo03": {
+   "objet": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo03",
+   "haut_cm": 1314.0,
+   "bas_cm": -18.5,
+   "demi_largeur_cm": 702.4,
+   "centre_xy_cm": [
+    -44.5,
+    -7.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4442,
+    4450,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo03BarkMat",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo03LeafMat",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo03BarkMatTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo03LeafMatTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo03ImpostorTransition",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo03Impostor",
+    "/Game/Foliage/Trees/BlackmapleMonteCarlo/MI_BlackmapleMonteCarlo03Billboard"
+   ]
+  },
+  "SM_Blackpine01": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine01",
+   "haut_cm": 1969.1,
+   "bas_cm": -14.3,
+   "demi_largeur_cm": 404.6,
+   "centre_xy_cm": [
+    -10.2,
+    33.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3416,
+    3424,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine01BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine01LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine01BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine01LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine01ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine01Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine01Billboard"
+   ]
+  },
+  "SM_Blackpine02": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine02",
+   "haut_cm": 1883.2,
+   "bas_cm": -14.2,
+   "demi_largeur_cm": 426.2,
+   "centre_xy_cm": [
+    25.9,
+    12.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3294,
+    3301,
+    7,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine02BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine02LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine02BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine02LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine02ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine02Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine02Billboard"
+   ]
+  },
+  "SM_Blackpine03": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine03",
+   "haut_cm": 1538.4,
+   "bas_cm": -9.3,
+   "demi_largeur_cm": 468.6,
+   "centre_xy_cm": [
+    -45.2,
+    4.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    1858,
+    1866,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine03BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine03LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine03BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine03LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine03ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine03Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine03Billboard"
+   ]
+  },
+  "SM_Blackpine04": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine04",
+   "haut_cm": 874.2,
+   "bas_cm": -29.6,
+   "demi_largeur_cm": 310.0,
+   "centre_xy_cm": [
+    46.3,
+    58.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2278,
+    2286,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine04BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine04LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine04BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine04LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine04ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine04Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine04Billboard"
+   ]
+  },
+  "SM_Blackpine05": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine05",
+   "haut_cm": 701.9,
+   "bas_cm": -24.1,
+   "demi_largeur_cm": 359.5,
+   "centre_xy_cm": [
+    -56.9,
+    42.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2736,
+    2744,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine05BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine05LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine05BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine05LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine05ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine05Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine05Billboard"
+   ]
+  },
+  "SM_Blackpine06": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine06",
+   "haut_cm": 1844.1,
+   "bas_cm": -14.3,
+   "demi_largeur_cm": 376.6,
+   "centre_xy_cm": [
+    -20.1,
+    30.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3366,
+    3374,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine06BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine06LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine06BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine06LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine06ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine06Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine06Billboard"
+   ]
+  },
+  "SM_Blackpine07": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine07",
+   "haut_cm": 201.8,
+   "bas_cm": -2.0,
+   "demi_largeur_cm": 105.9,
+   "centre_xy_cm": [
+    -17.6,
+    10.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    1332,
+    1340,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine07LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine07BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine07LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine07BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine07ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine07Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine07Billboard"
+   ]
+  },
+  "SM_Blackpine08": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine08",
+   "haut_cm": 286.1,
+   "bas_cm": -3.1,
+   "demi_largeur_cm": 124.9,
+   "centre_xy_cm": [
+    8.4,
+    -28.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    912,
+    920,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine08LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine08BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine08LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine08BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine08ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine08Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine08Billboard"
+   ]
+  },
+  "SM_Blackpine09": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine09",
+   "haut_cm": 1874.4,
+   "bas_cm": -14.3,
+   "demi_largeur_cm": 269.7,
+   "centre_xy_cm": [
+    -37.5,
+    27.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3516,
+    3524,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine09BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine09LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine09BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine09LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine09ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine09Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine09Billboard"
+   ]
+  },
+  "SM_Blackpine10": {
+   "objet": "/Game/Foliage/Trees/Blackpine/SM_Blackpine10",
+   "haut_cm": 2261.7,
+   "bas_cm": -14.3,
+   "demi_largeur_cm": 252.1,
+   "centre_xy_cm": [
+    -42.3,
+    17.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4838,
+    4846,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine10BarkMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine10LeafMat",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine10BarkMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine10LeafMatTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine10ImpostorTransition",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine10Impostor",
+    "/Game/Foliage/Trees/Blackpine/MI_Blackpine10Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo01": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo01",
+   "haut_cm": 1969.1,
+   "bas_cm": -14.3,
+   "demi_largeur_cm": 404.6,
+   "centre_xy_cm": [
+    -10.2,
+    33.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3428,
+    3436,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo01BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo01LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo01BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo01LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo01ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo01Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo01Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo02": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo02",
+   "haut_cm": 1883.2,
+   "bas_cm": -14.2,
+   "demi_largeur_cm": 419.3,
+   "centre_xy_cm": [
+    20.9,
+    15.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2698,
+    2706,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo02BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo02LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo02BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo02LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo02ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo02Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo02Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo03": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo03",
+   "haut_cm": 1538.4,
+   "bas_cm": -9.3,
+   "demi_largeur_cm": 468.6,
+   "centre_xy_cm": [
+    -45.2,
+    4.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    1858,
+    1866,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo03BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo03LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo03BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo03LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo03ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo03Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo03Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo04": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo04",
+   "haut_cm": 899.8,
+   "bas_cm": -4.1,
+   "demi_largeur_cm": 310.0,
+   "centre_xy_cm": [
+    79.1,
+    58.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2278,
+    2286,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo04BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo04LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo04BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo04LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo04ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo04Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo04Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo05": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo05",
+   "haut_cm": 722.0,
+   "bas_cm": -3.9,
+   "demi_largeur_cm": 359.5,
+   "centre_xy_cm": [
+    -56.9,
+    42.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2736,
+    2744,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo05BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo05LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo05BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo05LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo05ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo05Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo05Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo06": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo06",
+   "haut_cm": 1844.1,
+   "bas_cm": -14.3,
+   "demi_largeur_cm": 376.6,
+   "centre_xy_cm": [
+    -20.1,
+    30.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3366,
+    3374,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo06BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo06LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo06BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo06LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo06ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo06Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo06Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo07": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo07",
+   "haut_cm": 201.8,
+   "bas_cm": -2.0,
+   "demi_largeur_cm": 105.9,
+   "centre_xy_cm": [
+    -17.6,
+    10.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    1332,
+    1340,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo07BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo07LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo07BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo07LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo07ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo07Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo07Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo08": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo08",
+   "haut_cm": 286.1,
+   "bas_cm": -3.1,
+   "demi_largeur_cm": 124.9,
+   "centre_xy_cm": [
+    8.4,
+    -28.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    912,
+    920,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo08BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo08LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo08BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo08LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo08ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo08Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo08Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo09": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo09",
+   "haut_cm": 1874.4,
+   "bas_cm": -14.3,
+   "demi_largeur_cm": 269.7,
+   "centre_xy_cm": [
+    -37.5,
+    27.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3516,
+    3524,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo09BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo09LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo09BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo09LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo09ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo09Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo09Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo11": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo11",
+   "haut_cm": 392.3,
+   "bas_cm": -10.7,
+   "demi_largeur_cm": 118.8,
+   "centre_xy_cm": [
+    -0.9,
+    9.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    687,
+    695,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo11LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo11BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo11LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo11BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo11ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo11Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo11Billboard"
+   ]
+  },
+  "SM_BlackpineMonteCarlo12": {
+   "objet": "/Game/Foliage/Trees/BlackpineMonteCarlo/SM_BlackpineMonteCarlo12",
+   "haut_cm": 1533.2,
+   "bas_cm": -41.4,
+   "demi_largeur_cm": 489.7,
+   "centre_xy_cm": [
+    9.5,
+    -20.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3794,
+    3802,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo12BarkMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo12LeafMat",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo12BarkMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo12LeafMatTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo12ImpostorTransition",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo12Impostor",
+    "/Game/Foliage/Trees/BlackpineMonteCarlo/MI_BlackpineMonteCarlo12Billboard"
+   ]
+  },
+  "SM_Boxthorn01": {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn01",
+   "haut_cm": 348.1,
+   "bas_cm": -49.6,
+   "demi_largeur_cm": 192.9,
+   "centre_xy_cm": [
+    -3.4,
+    0.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3222,
+    3230,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn01BarkMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn01LeafMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn01BarkMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn01LeafMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn01ImpostorTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn01Impostor",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn01Billboard"
+   ]
+  },
+  "SM_Boxthorn02": {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn02",
+   "haut_cm": 541.1,
+   "bas_cm": -29.5,
+   "demi_largeur_cm": 265.5,
+   "centre_xy_cm": [
+    11.3,
+    34.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2026,
+    2034,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn02LeafMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn02BarkMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn02LeafMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn02BarkMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn02ImpostorTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn02Impostor",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn02Billboard"
+   ]
+  },
+  "SM_Boxthorn03": {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn03",
+   "haut_cm": 422.8,
+   "bas_cm": -57.6,
+   "demi_largeur_cm": 411.3,
+   "centre_xy_cm": [
+    -12.1,
+    22.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4838,
+    4846,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn03LeafMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn03BarkMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn03LeafMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn03BarkMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn03ImpostorTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn03Impostor",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn03Billboard"
+   ]
+  },
+  "SM_Boxthorn04": {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn04",
+   "haut_cm": 26.7,
+   "bas_cm": -2.4,
+   "demi_largeur_cm": 17.4,
+   "centre_xy_cm": [
+    -1.3,
+    -0.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    63,
+    71,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn04LeafMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn04LeafMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn04ImpostorTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn04Impostor",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn04Billboard"
+   ]
+  },
+  "SM_Boxthorn05": {
+   "objet": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn05",
+   "haut_cm": 1184.0,
+   "bas_cm": -38.0,
+   "demi_largeur_cm": 565.3,
+   "centre_xy_cm": [
+    7.0,
+    6.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4200,
+    4208,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn05BarkMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn05LeafMat",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn05BarkMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn05LeafMatTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn05ImpostorTransition",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn05Impostor",
+    "/Game/Foliage/Trees/Boxthorn/MI_Boxthorn05Billboard"
+   ]
+  },
+  "SM_Cypress01": {
+   "objet": "/Game/Foliage/Trees/Cypress/SM_Cypress01",
+   "haut_cm": 475.5,
+   "bas_cm": -0.3,
+   "demi_largeur_cm": 78.5,
+   "centre_xy_cm": [
+    2.1,
+    -1.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2386,
+    2394,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Cypress/MI_Cypress01TLarchBark01BCMat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress01LeafMat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress01TLarchBark01BCMatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress01LeafMatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress01ImpostorTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress01Impostor",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress01Billboard"
+   ]
+  },
+  "SM_Cypress02": {
+   "objet": "/Game/Foliage/Trees/Cypress/SM_Cypress02",
+   "haut_cm": 773.1,
+   "bas_cm": -0.2,
+   "demi_largeur_cm": 80.2,
+   "centre_xy_cm": [
+    3.6,
+    3.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3994,
+    4002,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Cypress/MI_Cypress02TLarchBark01BCMat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress02LeafMat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress02TLarchBark01BCMatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress02LeafMatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress02ImpostorTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress02Impostor",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress02Billboard"
+   ]
+  },
+  "SM_Cypress03": {
+   "objet": "/Game/Foliage/Trees/Cypress/SM_Cypress03",
+   "haut_cm": 526.2,
+   "bas_cm": -8.5,
+   "demi_largeur_cm": 198.7,
+   "centre_xy_cm": [
+    -10.0,
+    3.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2652,
+    2660,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Cypress/MI_Cypress03BarkMat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress03LeafMat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress03BarkMatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress03LeafMatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress03ImpostorTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress03Impostor",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress03Billboard"
+   ]
+  },
+  "SM_Cypress04": {
+   "objet": "/Game/Foliage/Trees/Cypress/SM_Cypress04",
+   "haut_cm": 607.6,
+   "bas_cm": -12.1,
+   "demi_largeur_cm": 240.6,
+   "centre_xy_cm": [
+    -19.6,
+    14.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3356,
+    3364,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Cypress/MI_Cypress04BarkMat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress04Leaf2Mat",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress04BarkMatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress04Leaf2MatTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress04ImpostorTransition",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress04Impostor",
+    "/Game/Foliage/Trees/Cypress/MI_Cypress04Billboard"
+   ]
+  },
+  "SM_CypressHedge01": {
+   "objet": "/Game/Foliage/Trees/CypressHedge/SM_CypressHedge01",
+   "haut_cm": 127.9,
+   "bas_cm": -20.6,
+   "demi_largeur_cm": 248.2,
+   "centre_xy_cm": [
+    125.6,
+    -10.2
+   ],
+   "niveaux_de_detail": 3,
+   "triangles_par_niveau": [
+    7624,
+    7632,
+    8
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/CypressHedge/MI_CypressHedge01THedge01BCMat",
+    "/Game/Foliage/Trees/CypressHedge/MI_CypressHedge01THedge01BCMatTransition",
+    "/Game/Foliage/Trees/CypressHedge/MI_CypressHedge01ImpostorTransition",
+    "/Game/Foliage/Trees/CypressHedge/MI_CypressHedge01Impostor"
+   ]
+  },
+  "SM_CypressWildMonteCarlo04": {
+   "objet": "/Game/Foliage/Trees/CypressWildMonteCarlo/SM_CypressWildMonteCarlo04",
+   "haut_cm": 1824.1,
+   "bas_cm": -8.3,
+   "demi_largeur_cm": 398.4,
+   "centre_xy_cm": [
+    4.7,
+    3.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5941,
+    5948,
+    7,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo04BarkMat",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo04LeafMat",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo04BarkMatTransition",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo04LeafMatTransition",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo04ImpostorTransition",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo04Impostor",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo04Billboard"
+   ]
+  },
+  "SM_CypressWildMonteCarlo05": {
+   "objet": "/Game/Foliage/Trees/CypressWildMonteCarlo/SM_CypressWildMonteCarlo05",
+   "haut_cm": 485.6,
+   "bas_cm": -46.3,
+   "demi_largeur_cm": 246.7,
+   "centre_xy_cm": [
+    7.0,
+    -35.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2148,
+    2156,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo05LeafMat",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo05BarkMat",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo05LeafMatTransition",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo05BarkMatTransition",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo05ImpostorTransition",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo05Impostor",
+    "/Game/Foliage/Trees/CypressWildMonteCarlo/MI_CypressWildMonteCarlo05Billboard"
+   ]
+  },
+  "SM_Fig01": {
+   "objet": "/Game/Foliage/Trees/Fig/SM_Fig01",
+   "haut_cm": 894.8,
+   "bas_cm": -9.1,
+   "demi_largeur_cm": 498.2,
+   "centre_xy_cm": [
+    -12.0,
+    -29.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5332,
+    5340,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Fig/MI_Fig01BarkMat",
+    "/Game/Foliage/Trees/Fig/MI_Fig01LeafMat",
+    "/Game/Foliage/Trees/Fig/MI_Fig01BarkMatTransition",
+    "/Game/Foliage/Trees/Fig/MI_Fig01LeafMatTransition",
+    "/Game/Foliage/Trees/Fig/MI_Fig01ImpostorTransition",
+    "/Game/Foliage/Trees/Fig/MI_Fig01Impostor",
+    "/Game/Foliage/Trees/Fig/MI_Fig01Billboard"
+   ]
+  },
+  "SM_Fig02": {
+   "objet": "/Game/Foliage/Trees/Fig/SM_Fig02",
+   "haut_cm": 854.4,
+   "bas_cm": -0.5,
+   "demi_largeur_cm": 451.7,
+   "centre_xy_cm": [
+    10.9,
+    9.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5751,
+    5759,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Fig/MI_Fig02BarkMat",
+    "/Game/Foliage/Trees/Fig/MI_Fig02LeafMat",
+    "/Game/Foliage/Trees/Fig/MI_Fig02BarkMatTransition",
+    "/Game/Foliage/Trees/Fig/MI_Fig02LeafMatTransition",
+    "/Game/Foliage/Trees/Fig/MI_Fig02ImpostorTransition",
+    "/Game/Foliage/Trees/Fig/MI_Fig02Impostor",
+    "/Game/Foliage/Trees/Fig/MI_Fig02Billboard"
+   ]
+  },
+  "SM_Hedge01": {
+   "objet": "/Game/Foliage/Trees/Hedge/SM_Hedge01",
+   "haut_cm": 82.8,
+   "bas_cm": -13.3,
+   "demi_largeur_cm": 271.7,
+   "centre_xy_cm": [
+    0.1,
+    0.1
+   ],
+   "niveaux_de_detail": 3,
+   "triangles_par_niveau": [
+    3250,
+    3258,
+    8
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Hedge/MI_Hedge01BarkMat",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge01LeafMat",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge01BarkMatTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge01LeafMatTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge01ImpostorTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge01Impostor"
+   ]
+  },
+  "SM_Hedge02": {
+   "objet": "/Game/Foliage/Trees/Hedge/SM_Hedge02",
+   "haut_cm": 206.1,
+   "bas_cm": -8.5,
+   "demi_largeur_cm": 339.3,
+   "centre_xy_cm": [
+    2.5,
+    -8.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5118,
+    5126,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Hedge/MI_Hedge02LeafMat",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge02LeafMatTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge02ImpostorTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge02Impostor",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge02Billboard"
+   ]
+  },
+  "SM_Hedge06": {
+   "objet": "/Game/Foliage/Trees/Hedge/SM_Hedge06",
+   "haut_cm": 110.0,
+   "bas_cm": -22.2,
+   "demi_largeur_cm": 272.7,
+   "centre_xy_cm": [
+    74.0,
+    -12.1
+   ],
+   "niveaux_de_detail": 3,
+   "triangles_par_niveau": [
+    15911,
+    15919,
+    8
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Hedge/MI_Hedge06T01BCMat",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge06T01BCMatTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge06ImpostorTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge06Impostor"
+   ]
+  },
+  "SM_Hedge07": {
+   "objet": "/Game/Foliage/Trees/Hedge/SM_Hedge07",
+   "haut_cm": 76.7,
+   "bas_cm": -105.0,
+   "demi_largeur_cm": 230.0,
+   "centre_xy_cm": [
+    -20.5,
+    -41.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5444,
+    5452,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Hedge/MI_Hedge07LeafMat",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge07LeafMatTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge07ImpostorTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge07Impostor",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge07Billboard"
+   ]
+  },
+  "SM_Hedge08": {
+   "objet": "/Game/Foliage/Trees/Hedge/SM_Hedge08",
+   "haut_cm": 107.5,
+   "bas_cm": -29.8,
+   "demi_largeur_cm": 280.5,
+   "centre_xy_cm": [
+    6.0,
+    60.1
+   ],
+   "niveaux_de_detail": 3,
+   "triangles_par_niveau": [
+    8550,
+    8558,
+    8
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Hedge/MI_Hedge08LeafMat",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge08LeafMatTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge08ImpostorTransition",
+    "/Game/Foliage/Trees/Hedge/MI_Hedge08Impostor"
+   ]
+  },
+  "SM_Larch01": {
+   "objet": "/Game/Foliage/Trees/Larch/SM_Larch01",
+   "haut_cm": 2043.4,
+   "bas_cm": -34.2,
+   "demi_largeur_cm": 611.0,
+   "centre_xy_cm": [
+    16.0,
+    5.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4847,
+    4855,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Larch/MI_Larch01BarkMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch01LeafMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch01BarkMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch01LeafMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch01ImpostorTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch01Impostor",
+    "/Game/Foliage/Trees/Larch/MI_Larch01Billboard"
+   ]
+  },
+  "SM_Larch02": {
+   "objet": "/Game/Foliage/Trees/Larch/SM_Larch02",
+   "haut_cm": 1884.4,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 377.9,
+   "centre_xy_cm": [
+    -2.5,
+    3.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6090,
+    6098,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Larch/MI_Larch02BarkMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch02LeafMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch02BarkMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch02LeafMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch02ImpostorTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch02Impostor",
+    "/Game/Foliage/Trees/Larch/MI_Larch02Billboard"
+   ]
+  },
+  "SM_Larch03": {
+   "objet": "/Game/Foliage/Trees/Larch/SM_Larch03",
+   "haut_cm": 214.1,
+   "bas_cm": -10.7,
+   "demi_largeur_cm": 88.0,
+   "centre_xy_cm": [
+    5.5,
+    -0.2
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    923,
+    931,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Larch/MI_Larch03BarkMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch03LeafMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch03BarkMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch03LeafMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch03ImpostorTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch03Impostor",
+    "/Game/Foliage/Trees/Larch/MI_Larch03Billboard"
+   ]
+  },
+  "SM_Larch04": {
+   "objet": "/Game/Foliage/Trees/Larch/SM_Larch04",
+   "haut_cm": 348.1,
+   "bas_cm": -0.1,
+   "demi_largeur_cm": 152.0,
+   "centre_xy_cm": [
+    -4.8,
+    -7.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    1218,
+    1226,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Larch/MI_Larch04BarkMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch04LeafMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch04BarkMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch04LeafMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch04ImpostorTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch04Impostor",
+    "/Game/Foliage/Trees/Larch/MI_Larch04Billboard"
+   ]
+  },
+  "SM_Larch05": {
+   "objet": "/Game/Foliage/Trees/Larch/SM_Larch05",
+   "haut_cm": 2087.4,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 417.6,
+   "centre_xy_cm": [
+    -18.3,
+    -9.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5737,
+    5745,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Larch/MI_Larch05BarkMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch05LeafMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch05BarkMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch05LeafMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch05ImpostorTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch05Impostor",
+    "/Game/Foliage/Trees/Larch/MI_Larch05Billboard"
+   ]
+  },
+  "SM_Larch06": {
+   "objet": "/Game/Foliage/Trees/Larch/SM_Larch06",
+   "haut_cm": 2054.5,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 448.7,
+   "centre_xy_cm": [
+    15.4,
+    8.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3441,
+    3449,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Larch/MI_Larch06BarkMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch06LeafMat",
+    "/Game/Foliage/Trees/Larch/MI_Larch06BarkMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch06LeafMatTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch06ImpostorTransition",
+    "/Game/Foliage/Trees/Larch/MI_Larch06Impostor",
+    "/Game/Foliage/Trees/Larch/MI_Larch06Billboard"
+   ]
+  },
+  "SM_LarchBare01": {
+   "objet": "/Game/Foliage/Trees/LarchBare/SM_LarchBare01",
+   "haut_cm": 2049.7,
+   "bas_cm": -8.8,
+   "demi_largeur_cm": 417.0,
+   "centre_xy_cm": [
+    22.0,
+    -6.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2771,
+    2779,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare01BarkMat",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare01LeafMat",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare01BarkMatTransition",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare01LeafMatTransition",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare01ImpostorTransition",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare01Impostor",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare01Billboard"
+   ]
+  },
+  "SM_LarchBare02": {
+   "objet": "/Game/Foliage/Trees/LarchBare/SM_LarchBare02",
+   "haut_cm": 2080.8,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 331.5,
+   "centre_xy_cm": [
+    18.0,
+    -7.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3822,
+    3830,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare02BarkMat",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare02LeafMat",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare02BarkMatTransition",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare02LeafMatTransition",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare02ImpostorTransition",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare02Impostor",
+    "/Game/Foliage/Trees/LarchBare/MI_LarchBare02Billboard"
+   ]
+  },
+  "SM_LarchWales01": {
+   "objet": "/Game/Foliage/Trees/LarchWales/SM_LarchWales01",
+   "haut_cm": 2043.4,
+   "bas_cm": -34.2,
+   "demi_largeur_cm": 611.0,
+   "centre_xy_cm": [
+    16.0,
+    5.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4847,
+    4855,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/LarchWales/MI_LarchWales01BarkMat",
+    "/Game/Foliage/Trees/LarchWales/MI_LarchWales01LeafMat",
+    "/Game/Foliage/Trees/LarchWales/MI_LarchWales01BarkMatTransition",
+    "/Game/Foliage/Trees/LarchWales/MI_LarchWales01LeafMatTransition",
+    "/Game/Foliage/Trees/LarchWales/MI_LarchWales01ImpostorTransition",
+    "/Game/Foliage/Trees/LarchWales/MI_LarchWales01Impostor",
+    "/Game/Foliage/Trees/LarchWales/MI_LarchWales01Billboard"
+   ]
+  },
+  "SM_Olivetree01": {
+   "objet": "/Game/Foliage/Trees/Olivetree/SM_Olivetree01",
+   "haut_cm": 1242.7,
+   "bas_cm": -40.9,
+   "demi_largeur_cm": 783.0,
+   "centre_xy_cm": [
+    -84.4,
+    35.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6693,
+    6701,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree01BarkMat",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree01OliveleafMat",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree01BarkMatTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree01OliveleafMatTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree01ImpostorTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree01Impostor",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree01Billboard"
+   ]
+  },
+  "SM_Olivetree02": {
+   "objet": "/Game/Foliage/Trees/Olivetree/SM_Olivetree02",
+   "haut_cm": 1220.1,
+   "bas_cm": -30.8,
+   "demi_largeur_cm": 891.2,
+   "centre_xy_cm": [
+    103.7,
+    -34.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    7107,
+    7115,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree02OliveleafMat",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree02BarkMat",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree02OliveleafMatTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree02BarkMatTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree02ImpostorTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree02Impostor",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree02Billboard"
+   ]
+  },
+  "SM_Olivetree03": {
+   "objet": "/Game/Foliage/Trees/Olivetree/SM_Olivetree03",
+   "haut_cm": 969.9,
+   "bas_cm": -40.4,
+   "demi_largeur_cm": 497.8,
+   "centre_xy_cm": [
+    44.1,
+    4.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6580,
+    6588,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree03OliveleafMat",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree03BarkMat",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree03OliveleafMatTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree03BarkMatTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree03ImpostorTransition",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree03Impostor",
+    "/Game/Foliage/Trees/Olivetree/MI_Olivetree03Billboard"
+   ]
+  },
+  "SM_Silverbirch01": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch01",
+   "haut_cm": 1815.4,
+   "bas_cm": -1.4,
+   "demi_largeur_cm": 531.4,
+   "centre_xy_cm": [
+    -39.4,
+    25.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5398,
+    5406,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch01BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch01LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch01BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch01LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch01ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch01Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch01Billboard"
+   ]
+  },
+  "SM_Silverbirch02": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch02",
+   "haut_cm": 1820.9,
+   "bas_cm": -38.4,
+   "demi_largeur_cm": 827.5,
+   "centre_xy_cm": [
+    -38.0,
+    34.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4827,
+    4835,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch02BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch02LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch02BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch02LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch02ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch02Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch02Billboard"
+   ]
+  },
+  "SM_Silverbirch03": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch03",
+   "haut_cm": 1702.0,
+   "bas_cm": -1.8,
+   "demi_largeur_cm": 555.0,
+   "centre_xy_cm": [
+    48.6,
+    43.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4195,
+    4203,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch03BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch03LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch03BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch03LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch03ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch03Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch03Billboard"
+   ]
+  },
+  "SM_Silverbirch04": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch04",
+   "haut_cm": 405.7,
+   "bas_cm": -85.6,
+   "demi_largeur_cm": 259.3,
+   "centre_xy_cm": [
+    11.6,
+    -16.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2154,
+    2162,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch04LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch04BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch04LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch04BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch04ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch04Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch04Billboard"
+   ]
+  },
+  "SM_Silverbirch06": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch06",
+   "haut_cm": 1812.9,
+   "bas_cm": -1.7,
+   "demi_largeur_cm": 817.4,
+   "centre_xy_cm": [
+    -106.0,
+    -45.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3508,
+    3516,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch06BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch06LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch06BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch06LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch06ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch06Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch06Billboard"
+   ]
+  },
+  "SM_Silverbirch07": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch07",
+   "haut_cm": 171.3,
+   "bas_cm": -1.0,
+   "demi_largeur_cm": 81.9,
+   "centre_xy_cm": [
+    0.4,
+    0.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    531,
+    539,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch07BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch07LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch07BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch07LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch07ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch07Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch07Billboard"
+   ]
+  },
+  "SM_Silverbirch08": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch08",
+   "haut_cm": 276.2,
+   "bas_cm": -1.0,
+   "demi_largeur_cm": 108.4,
+   "centre_xy_cm": [
+    0.8,
+    -2.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    579,
+    587,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch08BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch08LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch08BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch08LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch08ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch08Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch08Billboard"
+   ]
+  },
+  "SM_Silverbirch11": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch11",
+   "haut_cm": 1021.9,
+   "bas_cm": -0.2,
+   "demi_largeur_cm": 246.5,
+   "centre_xy_cm": [
+    27.5,
+    -16.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    1280,
+    1288,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch11BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch11LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch11BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch11LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch11ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch11Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch11Billboard"
+   ]
+  },
+  "SM_Silverbirch12": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch12",
+   "haut_cm": 1809.7,
+   "bas_cm": -0.2,
+   "demi_largeur_cm": 404.4,
+   "centre_xy_cm": [
+    -3.9,
+    9.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2716,
+    2724,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch12BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch12LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch12BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch12LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch12ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch12Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch12Billboard"
+   ]
+  },
+  "SM_Silverbirch13": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch13",
+   "haut_cm": 1882.4,
+   "bas_cm": -33.7,
+   "demi_largeur_cm": 605.1,
+   "centre_xy_cm": [
+    22.2,
+    -70.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3596,
+    3604,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch13BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch13LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch13BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch13LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch13ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch13Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch13Billboard"
+   ]
+  },
+  "SM_Silverbirch14": {
+   "objet": "/Game/Foliage/Trees/Silverbirch/SM_Silverbirch14",
+   "haut_cm": 1584.2,
+   "bas_cm": -33.7,
+   "demi_largeur_cm": 590.6,
+   "centre_xy_cm": [
+    65.2,
+    -96.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2364,
+    2372,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch14BarkMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch14LeafMat",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch14BarkMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch14LeafMatTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch14ImpostorTransition",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch14Impostor",
+    "/Game/Foliage/Trees/Silverbirch/MI_Silverbirch14Billboard"
+   ]
+  },
+  "SM_SilverbirchWales07": {
+   "objet": "/Game/Foliage/Trees/SilverbirchWales/SM_SilverbirchWales07",
+   "haut_cm": 171.3,
+   "bas_cm": -1.0,
+   "demi_largeur_cm": 81.9,
+   "centre_xy_cm": [
+    0.4,
+    0.5
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    531,
+    539,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales07BarkMat",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales07LeafMat",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales07BarkMatTransition",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales07LeafMatTransition",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales07ImpostorTransition",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales07Impostor",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales07Billboard"
+   ]
+  },
+  "SM_SilverbirchWales08": {
+   "objet": "/Game/Foliage/Trees/SilverbirchWales/SM_SilverbirchWales08",
+   "haut_cm": 276.2,
+   "bas_cm": -1.0,
+   "demi_largeur_cm": 108.4,
+   "centre_xy_cm": [
+    0.8,
+    -2.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    579,
+    587,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales08BarkMat",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales08LeafMat",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales08BarkMatTransition",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales08LeafMatTransition",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales08ImpostorTransition",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales08Impostor",
+    "/Game/Foliage/Trees/SilverbirchWales/MI_SilverbirchWales08Billboard"
+   ]
+  },
+  "SM_Smoketree01": {
+   "objet": "/Game/Foliage/Trees/Smoketree/SM_Smoketree01",
+   "haut_cm": 725.3,
+   "bas_cm": -38.4,
+   "demi_largeur_cm": 337.7,
+   "centre_xy_cm": [
+    7.7,
+    -28.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5425,
+    5433,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree01BarkMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree01LeafMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree01BarkMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree01LeafMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree01ImpostorTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree01Impostor",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree01Billboard"
+   ]
+  },
+  "SM_Smoketree02": {
+   "objet": "/Game/Foliage/Trees/Smoketree/SM_Smoketree02",
+   "haut_cm": 185.1,
+   "bas_cm": -7.9,
+   "demi_largeur_cm": 99.9,
+   "centre_xy_cm": [
+    -6.6,
+    -4.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5346,
+    5354,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree02BarkMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree02LeafMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree02BarkMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree02LeafMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree02ImpostorTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree02Impostor",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree02Billboard"
+   ]
+  },
+  "SM_Smoketree04": {
+   "objet": "/Game/Foliage/Trees/Smoketree/SM_Smoketree04",
+   "haut_cm": 725.3,
+   "bas_cm": -38.4,
+   "demi_largeur_cm": 335.4,
+   "centre_xy_cm": [
+    5.5,
+    -28.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3477,
+    3485,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree04BarkMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree04LeafMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree04BarkMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree04LeafMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree04ImpostorTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree04Impostor",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree04Billboard"
+   ]
+  },
+  "SM_Smoketree06": {
+   "objet": "/Game/Foliage/Trees/Smoketree/SM_Smoketree06",
+   "haut_cm": 1033.2,
+   "bas_cm": -66.5,
+   "demi_largeur_cm": 399.0,
+   "centre_xy_cm": [
+    -22.8,
+    -30.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5389,
+    5397,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree06BarkMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree06LeafMat",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree06BarkMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree06LeafMatTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree06ImpostorTransition",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree06Impostor",
+    "/Game/Foliage/Trees/Smoketree/MI_Smoketree06Billboard"
+   ]
+  },
+  "SM_Spruce01": {
+   "objet": "/Game/Foliage/Trees/Spruce/SM_Spruce01",
+   "haut_cm": 2246.8,
+   "bas_cm": -8.8,
+   "demi_largeur_cm": 450.5,
+   "centre_xy_cm": [
+    -13.1,
+    7.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5702,
+    5710,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Spruce/MI_Spruce01BarkMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce01LeafMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce01BarkMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce01LeafMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce01ImpostorTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce01Impostor",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce01Billboard"
+   ]
+  },
+  "SM_Spruce02": {
+   "objet": "/Game/Foliage/Trees/Spruce/SM_Spruce02",
+   "haut_cm": 1811.2,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 307.9,
+   "centre_xy_cm": [
+    -8.6,
+    2.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5555,
+    5563,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Spruce/MI_Spruce02BarkMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce02LeafMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce02BarkMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce02LeafMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce02ImpostorTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce02Impostor",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce02Billboard"
+   ]
+  },
+  "SM_Spruce04": {
+   "objet": "/Game/Foliage/Trees/Spruce/SM_Spruce04",
+   "haut_cm": 310.5,
+   "bas_cm": -33.4,
+   "demi_largeur_cm": 180.5,
+   "centre_xy_cm": [
+    5.3,
+    -11.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    723,
+    731,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Spruce/MI_Spruce04BarkMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce04LeafMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce04BarkMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce04LeafMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce04ImpostorTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce04Impostor",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce04Billboard"
+   ]
+  },
+  "SM_Spruce05": {
+   "objet": "/Game/Foliage/Trees/Spruce/SM_Spruce05",
+   "haut_cm": 1936.3,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 495.9,
+   "centre_xy_cm": [
+    18.3,
+    16.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5923,
+    5931,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Spruce/MI_Spruce05BarkMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce05LeafMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce05BarkMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce05LeafMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce05ImpostorTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce05Impostor",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce05Billboard"
+   ]
+  },
+  "SM_Spruce06": {
+   "objet": "/Game/Foliage/Trees/Spruce/SM_Spruce06",
+   "haut_cm": 1121.8,
+   "bas_cm": -30.5,
+   "demi_largeur_cm": 348.5,
+   "centre_xy_cm": [
+    6.5,
+    19.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3678,
+    3686,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Spruce/MI_Spruce06BarkMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce06LeafMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce06BarkMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce06LeafMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce06ImpostorTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce06Impostor",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce06Billboard"
+   ]
+  },
+  "SM_Spruce07": {
+   "objet": "/Game/Foliage/Trees/Spruce/SM_Spruce07",
+   "haut_cm": 324.8,
+   "bas_cm": -8.4,
+   "demi_largeur_cm": 123.0,
+   "centre_xy_cm": [
+    -7.3,
+    -14.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    275,
+    283,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Spruce/MI_Spruce07BarkMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce07LeafMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce07BarkMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce07LeafMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce07ImpostorTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce07Impostor",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce07Billboard"
+   ]
+  },
+  "SM_Spruce08": {
+   "objet": "/Game/Foliage/Trees/Spruce/SM_Spruce08",
+   "haut_cm": 646.6,
+   "bas_cm": -30.2,
+   "demi_largeur_cm": 221.0,
+   "centre_xy_cm": [
+    12.8,
+    -1.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2858,
+    2866,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/Spruce/MI_Spruce08LeafMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce08BarkMat",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce08LeafMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce08BarkMatTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce08ImpostorTransition",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce08Impostor",
+    "/Game/Foliage/Trees/Spruce/MI_Spruce08Billboard"
+   ]
+  },
+  "SM_SpruceHarvested01": {
+   "objet": "/Game/Foliage/Trees/SpruceHarvested/SM_SpruceHarvested01",
+   "haut_cm": 1733.9,
+   "bas_cm": -99.6,
+   "demi_largeur_cm": 99.6,
+   "centre_xy_cm": [
+    -7.1,
+    -3.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2148,
+    2154,
+    6,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested01BarkMat",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested01BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested01ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested01Impostor",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested01Billboard"
+   ]
+  },
+  "SM_SpruceHarvested02": {
+   "objet": "/Game/Foliage/Trees/SpruceHarvested/SM_SpruceHarvested02",
+   "haut_cm": 1092.8,
+   "bas_cm": -99.5,
+   "demi_largeur_cm": 62.9,
+   "centre_xy_cm": [
+    5.6,
+    -2.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    668,
+    674,
+    6,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested02BarkMat",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested02BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested02ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested02Impostor",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested02Billboard"
+   ]
+  },
+  "SM_SpruceHarvested03": {
+   "objet": "/Game/Foliage/Trees/SpruceHarvested/SM_SpruceHarvested03",
+   "haut_cm": 641.0,
+   "bas_cm": -99.2,
+   "demi_largeur_cm": 44.0,
+   "centre_xy_cm": [
+    6.5,
+    -7.9
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    517,
+    524,
+    7,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested03BarkMat",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested03BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested03ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested03Impostor",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested03Billboard"
+   ]
+  },
+  "SM_SpruceHarvested04": {
+   "objet": "/Game/Foliage/Trees/SpruceHarvested/SM_SpruceHarvested04",
+   "haut_cm": 171.3,
+   "bas_cm": -16.9,
+   "demi_largeur_cm": 344.5,
+   "centre_xy_cm": [
+    -3.7,
+    34.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5892,
+    5900,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested04BranchesMat",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested04BranchesMatTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested04ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested04Impostor",
+    "/Game/Foliage/Trees/SpruceHarvested/MI_SpruceHarvested04Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo01": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo01",
+   "haut_cm": 2246.8,
+   "bas_cm": -8.8,
+   "demi_largeur_cm": 450.5,
+   "centre_xy_cm": [
+    -13.1,
+    7.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5702,
+    5710,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo01BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo01LeafMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo01BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo01LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo01ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo01Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo01Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo02": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo02",
+   "haut_cm": 1811.2,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 307.9,
+   "centre_xy_cm": [
+    -8.6,
+    2.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5555,
+    5563,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo02LeafMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo02BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo02LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo02BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo02ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo02Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo02Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo03": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo03",
+   "haut_cm": 1824.8,
+   "bas_cm": -8.6,
+   "demi_largeur_cm": 263.2,
+   "centre_xy_cm": [
+    2.4,
+    -28.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4814,
+    4822,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo03BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo03BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo03ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo03Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo03Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo04": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo04",
+   "haut_cm": 310.5,
+   "bas_cm": -33.4,
+   "demi_largeur_cm": 180.5,
+   "centre_xy_cm": [
+    5.3,
+    -11.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    723,
+    731,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo04BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo04LeafMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo04BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo04LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo04ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo04Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo04Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo05": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo05",
+   "haut_cm": 1936.3,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 495.9,
+   "centre_xy_cm": [
+    18.3,
+    16.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5923,
+    5931,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo05LeafMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo05BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo05LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo05BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo05ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo05Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo05Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo06": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo06",
+   "haut_cm": 1121.8,
+   "bas_cm": -30.5,
+   "demi_largeur_cm": 348.5,
+   "centre_xy_cm": [
+    6.5,
+    19.0
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    3678,
+    3686,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo06LeafMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo06BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo06LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo06BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo06ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo06Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo06Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo07": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo07",
+   "haut_cm": 324.8,
+   "bas_cm": -8.4,
+   "demi_largeur_cm": 123.0,
+   "centre_xy_cm": [
+    -7.3,
+    -14.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    275,
+    282,
+    7,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo07LeafMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo07BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo07LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo07BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo07ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo07Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo07Billboard"
+   ]
+  },
+  "SM_SpruceMonteCarlo08": {
+   "objet": "/Game/Foliage/Trees/SpruceMonteCarlo/SM_SpruceMonteCarlo08",
+   "haut_cm": 646.6,
+   "bas_cm": -30.2,
+   "demi_largeur_cm": 221.0,
+   "centre_xy_cm": [
+    12.8,
+    -1.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2858,
+    2866,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo08LeafMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo08BarkMat",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo08LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo08BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo08ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo08Impostor",
+    "/Game/Foliage/Trees/SpruceMonteCarlo/MI_SpruceMonteCarlo08Billboard"
+   ]
+  },
+  "SM_SpruceWales01": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales01",
+   "haut_cm": 2246.8,
+   "bas_cm": -8.8,
+   "demi_largeur_cm": 450.5,
+   "centre_xy_cm": [
+    -13.1,
+    7.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5702,
+    5710,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales01BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales01LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales01BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales01LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales01ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales01Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales01Billboard"
+   ]
+  },
+  "SM_SpruceWales02": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales02",
+   "haut_cm": 1811.2,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 307.9,
+   "centre_xy_cm": [
+    -8.6,
+    2.8
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5555,
+    5563,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales02LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales02BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales02LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales02BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales02ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales02Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales02Billboard"
+   ]
+  },
+  "SM_SpruceWales03": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales03",
+   "haut_cm": 1824.8,
+   "bas_cm": -8.6,
+   "demi_largeur_cm": 319.1,
+   "centre_xy_cm": [
+    -4.6,
+    -40.1
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5180,
+    5188,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales03BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales03LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales03BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales03LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales03ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales03Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales03Billboard"
+   ]
+  },
+  "SM_SpruceWales04": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales04",
+   "haut_cm": 310.5,
+   "bas_cm": -33.4,
+   "demi_largeur_cm": 180.5,
+   "centre_xy_cm": [
+    5.3,
+    -11.4
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    723,
+    731,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales04BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales04LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales04BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales04LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales04ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales04Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales04Billboard"
+   ]
+  },
+  "SM_SpruceWales05": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales05",
+   "haut_cm": 1936.3,
+   "bas_cm": -8.7,
+   "demi_largeur_cm": 495.9,
+   "centre_xy_cm": [
+    18.3,
+    16.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    5923,
+    5931,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales05LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales05BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales05LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales05BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales05ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales05Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales05Billboard"
+   ]
+  },
+  "SM_SpruceWales06": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales06",
+   "haut_cm": 1121.8,
+   "bas_cm": -30.5,
+   "demi_largeur_cm": 341.3,
+   "centre_xy_cm": [
+    14.8,
+    26.6
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    4867,
+    4875,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales06LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales06BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales06LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales06BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales06ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales06Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales06Billboard"
+   ]
+  },
+  "SM_SpruceWales07": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales07",
+   "haut_cm": 324.8,
+   "bas_cm": -8.4,
+   "demi_largeur_cm": 123.0,
+   "centre_xy_cm": [
+    -7.3,
+    -14.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    275,
+    283,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales07BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales07LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales07BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales07LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales07ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales07Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales07Billboard"
+   ]
+  },
+  "SM_SpruceWales08": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales08",
+   "haut_cm": 646.6,
+   "bas_cm": -30.2,
+   "demi_largeur_cm": 221.0,
+   "centre_xy_cm": [
+    12.8,
+    -1.7
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    2858,
+    2866,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales08LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales08BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales08LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales08BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales08ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales08Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales08Billboard"
+   ]
+  },
+  "SM_SpruceWales09": {
+   "objet": "/Game/Foliage/Trees/SpruceWales/SM_SpruceWales09",
+   "haut_cm": 1817.4,
+   "bas_cm": -134.2,
+   "demi_largeur_cm": 294.6,
+   "centre_xy_cm": [
+    2.3,
+    6.3
+   ],
+   "niveaux_de_detail": 4,
+   "triangles_par_niveau": [
+    6539,
+    6547,
+    8,
+    10
+   ],
+   "materiaux": [
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales09LeafMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales09BarkMat",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales09LeafMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales09BarkMatTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales09ImpostorTransition",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales09Impostor",
+    "/Game/Foliage/Trees/SpruceWales/MI_SpruceWales09Billboard"
+   ]
+  }
+ }
+}

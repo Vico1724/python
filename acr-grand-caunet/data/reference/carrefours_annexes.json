@@ -1,0 +1,1356 @@
+{
+ "note": "Carrefours dont les voies non empruntées par la spéciale sont modélisées à part, lus par scripts/12_carrefours_annexes.py. Coordonnées Lambert-93 (EPSG:2154) en mètres, PK dans le repère courant (PK 0 = départ). Chaque élément porte sa source (« vu sur » : nuage LiDAR HD classé IGN, MNT, Street View d'octobre 2025, vue aérienne et plan Google fournis par le directeur, vidéo embarquée n° 2) ou « supposé ». Pour ajouter un carrefour : un objet de plus dans « carrefours » (actif = true). Les polygones de surface peuvent déborder sur la chaussée de la spéciale : le script la retranche, ce qui recolle exactement leur bord sur la ligne de fermeture.",
+ "balisage_par_defaut": {
+  "rubalise": {
+   "decalage_bord_m": 0.6,
+   "pas_poteaux_m": 3.0,
+   "hauteur_m": 1.0,
+   "famille_jeu": "rubalise sur piquets (RallyProps/TapePlasticPoleA + acteur de ruban)",
+   "maillage_jeu": "acr/Content/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
+   "acteur_ruban_jeu": "acr/Content/Data/Environments/Common/BC_NarrowTapeActor"
+  },
+  "distance_min_obstacle_m": 0.8,
+  "remarque": "Décision du directeur (12/11/2026) : piquets et rubalise seulement. Dimensions des maillages du jeu inconnues (catalogue de noms seulement). Sur la vidéo n° 2 (t ≈ 182-186 s), la fermeture réelle est un grillage avertisseur orange à panneaux à chevrons, tendu du pied du grand pin jusqu'au bloc blanc (panneau bleu) au bout du parapet de pierre ; des rubalises bordent les accotements de la D3D."
+ },
+ "carrefours": [
+  {
+   "nom": "Lion d'Or",
+   "actif": true,
+   "pk": [
+    3600,
+    3712
+   ],
+   "plan": "Sommet de l'épingle de la D1 ; la D3D arrive du sud-est à l'extérieur de l'épingle. Une zone hachurée peinte sépare la branche de gauche (D1 vers l'ouest, empruntée par la spéciale) de la branche de droite (D1 vers le nord). La branche de droite passe sur un ponceau au-dessus du ruisseau qui traverse le terre-plein (intérieur de l'épingle) ; elle est bordée à l'est par un parapet de pierre. Le parapet ouest du ponceau est le « parapet sombre » de Street View ; les panneaux directionnels sont dans le fossé du ruisseau, derrière lui. Pas d'îlot : la bosse du MNT vers x = 916745-916749,5 ; y = 6243556-6243561,5 est le départ du parapet de pierre et le poteau de panneaux qui le précède, au bord de la rupture de pente vers le fossé est.",
+   "fermetures": [
+    {
+     "nom": "branche de droite (grillage du pin au bout du parapet de pierre)",
+     "de": [
+      916749.0,
+      6243558.3
+     ],
+     "a": [
+      916735.3,
+      6243569.6
+     ],
+     "source": "vidéo n° 2 t ≈ 183-185 s (grillage orange) ; bout du parapet : LiDAR (points non classés) ; pin : LiDAR (cime de 24 m) et Street View"
+    },
+    {
+     "nom": "bord du terre-plein",
+     "de": [
+      916735.3,
+      6243569.6
+     ],
+     "a": [
+      916705.0,
+      6243569.4
+     ],
+     "source": "LiDAR : rupture de pente entre l'enrobé et le terre-plein (coupes nord-sud tous les 5 m)"
+    }
+   ],
+   "surfaces_revetues": [
+    {
+     "nom": "branche de droite et amorce de 40 m de la D1 vers le nord",
+     "polygone": [
+      [
+       916748.4,
+       6243557.4
+      ],
+      [
+       916749.0,
+       6243558.3
+      ],
+      [
+       916747.3,
+       6243562.0
+      ],
+      [
+       916746.4,
+       6243566.0
+      ],
+      [
+       916745.6,
+       6243570.0
+      ],
+      [
+       916744.9,
+       6243573.0
+      ],
+      [
+       916744.7,
+       6243579.5
+      ],
+      [
+       916747.3,
+       6243582.0
+      ],
+      [
+       916744.5,
+       6243585.0
+      ],
+      [
+       916744.2,
+       6243588.0
+      ],
+      [
+       916742.5,
+       6243592.0
+      ],
+      [
+       916740.2,
+       6243596.0
+      ],
+      [
+       916737.3,
+       6243600.0
+      ],
+      [
+       916736.2,
+       6243602.0
+      ],
+      [
+       916728.7,
+       6243601.5
+      ],
+      [
+       916732.7,
+       6243596.0
+      ],
+      [
+       916730.5,
+       6243592.0
+      ],
+      [
+       916733.5,
+       6243588.0
+      ],
+      [
+       916735.2,
+       6243585.0
+      ],
+      [
+       916736.0,
+       6243582.0
+      ],
+      [
+       916736.6,
+       6243579.5
+      ],
+      [
+       916736.6,
+       6243572.5
+      ],
+      [
+       916735.3,
+       6243569.6
+      ],
+      [
+       916734.6,
+       6243568.7
+      ]
+     ],
+     "source": "LiDAR HD : bord est = parapet de pierre puis pied du talus (coupes est-ouest tous les 4 m), bord ouest = parapet ouest du ponceau puis fossé du ruisseau ; tablier du ponceau (classe « pont ») de x = 916736,5 à 916745, y = 6243573 à 6243579 ; au-delà de y = 6243596, bord ouest supposé à 7,5 m du bord est (largeur BD TOPO 7 m)"
+    }
+   ],
+   "terre_plein": {
+    "nom": "terre-plein (intérieur de l'épingle, partie proche du carrefour)",
+    "polygone": [
+     [
+      916735.0,
+      6243568.0
+     ],
+     [
+      916730.0,
+      6243566.0
+     ],
+     [
+      916725.0,
+      6243563.7
+     ],
+     [
+      916720.0,
+      6243562.4
+     ],
+     [
+      916715.0,
+      6243563.1
+     ],
+     [
+      916710.0,
+      6243565.7
+     ],
+     [
+      916705.0,
+      6243567.9
+     ],
+     [
+      916703.5,
+      6243568.6
+     ],
+     [
+      916703.5,
+      6243578.0
+     ],
+     [
+      916712.0,
+      6243586.0
+     ],
+     [
+      916722.0,
+      6243592.0
+     ],
+     [
+      916730.5,
+      6243592.0
+     ],
+     [
+      916733.5,
+      6243588.0
+     ],
+     [
+      916735.2,
+      6243585.0
+     ],
+     [
+      916736.0,
+      6243582.0
+     ],
+     [
+      916736.2,
+      6243579.5
+     ],
+     [
+      916736.2,
+      6243572.5
+     ],
+     [
+      916735.3,
+      6243569.6
+     ]
+    ],
+    "source": "LiDAR (rupture de pente au bord de l'enrobé, fossé du ruisseau) ; plan Google (intérieur de l'épingle) ; limites nord et ouest arbitraires (périmètre du carrefour)",
+    "pin": {
+     "xy": [
+      916735.5,
+      6243569.5
+     ],
+     "hauteur_m": 24,
+     "source": "LiDAR : cime de 24 m ; Street View : grand pin à la pointe du terre-plein ; tronc supposé sous la cime, laissé au semis d'arbres (script 10)"
+    }
+   },
+   "parapets": [
+    {
+     "nom": "parapet de pierre bas le long de la D3D, avant la patte d'oie",
+     "le_long_du_bord": {
+      "cote": "droite",
+      "de": [
+       916756.3,
+       6243546.8
+      ],
+      "a": [
+       916749.0,
+       6243558.3
+      ]
+     },
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.4,
+     "type": "pierre",
+     "source": "Street View 3 (parapet bas à droite, au premier plan) et vidéo n° 2 t ≈ 184 s (bloc blanc et panneau bleu à son extrémité nord) ; début exact supposé (tête est du ponceau sous la D3D)"
+    },
+    {
+     "nom": "parapet ouest du ponceau (parapet sombre)",
+     "polyligne": [
+      [
+       916736.6,
+       6243572.5
+      ],
+      [
+       916736.6,
+       6243579.5
+      ]
+     ],
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.35,
+     "type": "pierre_sombre",
+     "source": "LiDAR : points non classés et « pont » alignés à x ≈ 916736,3 (y 6243572,5 à 6243579,5), sommet ≈ 249,8 m pour un tablier à ≈ 249,1 m ; Street View : parapet bas et sombre à droite des panneaux"
+    },
+    {
+     "nom": "parapet est du ponceau",
+     "polyligne": [
+      [
+       916744.9,
+       6243573.0
+      ],
+      [
+       916744.7,
+       6243579.5
+      ]
+     ],
+     "hauteur_m": 0.7,
+     "epaisseur_m": 0.35,
+     "type": "pierre",
+     "source": "LiDAR : points non classés à x ≈ 916744,5-916745 (y 6243573 à 6243579) ; hauteur supposée égale au parapet ouest"
+    },
+    {
+     "nom": "parapet de pierre de la branche de droite",
+     "polyligne": [
+      [
+       916749.0,
+       6243558.3
+      ],
+      [
+       916747.3,
+       6243562.0
+      ],
+      [
+       916746.4,
+       6243566.0
+      ],
+      [
+       916745.6,
+       6243570.0
+      ],
+      [
+       916744.9,
+       6243573.0
+      ]
+     ],
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.4,
+     "type": "pierre",
+     "source": "Street View 3 et 4 (long parapet de pierre bas à droite de la branche de droite) ; tracé : rupture de pente du LiDAR (marche de 0,7 m vers le fossé est) et points non classés à son extrémité sud ; hauteur estimée sur Street View"
+    }
+   ],
+   "panneaux": [
+    {
+     "nom": "panneaux directionnels et panneau blanc, dans le fossé derrière le parapet ouest",
+     "xy": [
+      916735.4,
+      6243574.6
+     ],
+     "haut_m_ngf": 249.97,
+     "nombre": 2,
+     "source": "LiDAR : grappe de points non classés (x 916735-916736, y 6243573-6243576) ; Street View et vidéo : panneaux à droite du pin"
+    },
+    {
+     "nom": "poteau de panneaux (dont un panneau rond rouge) au bout du parapet de pierre",
+     "xy": [
+      916748.2,
+      6243559.2
+     ],
+     "haut_m_ngf": 251.47,
+     "nombre": 2,
+     "source": "LiDAR : points non classés jusqu'à 251,5 m ; Street View 3 : panneaux à droite, au départ du parapet de pierre"
+    }
+   ],
+   "fosse": {
+    "polyligne": [
+     [
+      916717,
+      6243595
+     ],
+     [
+      916724,
+      6243589
+     ],
+     [
+      916729,
+      6243584
+     ],
+     [
+      916733,
+      6243578
+     ],
+     [
+      916736,
+      6243576
+     ],
+     [
+      916745.5,
+      6243575.5
+     ],
+     [
+      916751,
+      6243572
+     ],
+     [
+      916754,
+      6243568
+     ],
+     [
+      916756,
+      6243564
+     ],
+     [
+      916759.5,
+      6243560
+     ],
+     [
+      916758,
+      6243553
+     ],
+     [
+      916757,
+      6243547
+     ]
+    ],
+    "source": "LiDAR : fond du ruisseau (coupes) ; il passe sous le ponceau puis sous la D3D (ponceau du PK ≈ 3630-3645, tête ouest = muret de béton tagué)"
+   },
+   "source": "relevé laser IGN (nuage de points LiDAR HD classé, dalle LHD_FXX_0916_6244, et MNT 0,5 m), Street View oct. 2025 et vues Google (directeur), vidéo n° 2",
+   "ponceau": {
+    "nom": "ponceau de la D1 nord sur le ruisseau",
+    "polygone": [
+     [
+      916736.6,
+      6243572.5
+     ],
+     [
+      916744.9,
+      6243573.0
+     ],
+     [
+      916744.7,
+      6243579.5
+     ],
+     [
+      916736.6,
+      6243579.5
+     ]
+    ],
+    "axe": [
+     [
+      916740.7,
+      6243572.0
+     ],
+     [
+      916740.6,
+      6243580.0
+     ]
+    ],
+    "epaisseur_m": 0.5,
+    "source": "LiDAR HD : points de classe « pont » (tablier à 249,0-249,45 m, 2,5 à 3 m au-dessus du fond du ruisseau)"
+   },
+   "zone_hachuree": {
+    "polygone": [
+     [
+      916737.84,
+      6243560.28
+     ],
+     [
+      916737.6,
+      6243561.05
+     ],
+     [
+      916737.99,
+      6243561.88
+     ],
+     [
+      916738.85,
+      6243562.2
+     ],
+     [
+      916739.68,
+      6243561.81
+     ],
+     [
+      916748.52,
+      6243550.13
+     ],
+     [
+      916748.69,
+      6243549.34
+     ],
+     [
+      916748.31,
+      6243548.62
+     ],
+     [
+      916747.45,
+      6243548.3
+     ],
+     [
+      916746.62,
+      6243548.69
+     ]
+    ],
+    "source": "LiDAR HD : points sol de forte intensité (peinture), axe de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0, largeur jusqu'à 2,7 m ; Street View 3 et vidéo n° 2",
+    "remarque": "marquage peint dans la chaussée de la spéciale, non modélisé (figure seulement)"
+   },
+   "rendus": [
+    {
+     "nom": "plongeante",
+     "type": "plongeante",
+     "hauteur_m": 40,
+     "recul_m": 30,
+     "lateral_m": 6
+    },
+    {
+     "nom": "conducteur_d3d",
+     "type": "conducteur",
+     "pk": 3629,
+     "regard_pk": 3652,
+     "decalage_m": 1.8,
+     "regard_decalage_m": 3.0,
+     "fov": 80
+    }
+   ],
+   "cle": "lion_d_or"
+  },
+  {
+   "nom": "D3 / D3D (approche)",
+   "actif": true,
+   "pk": [
+    -170,
+    -120
+   ],
+   "plan": "Carrefour en Y de la D3 (axe sud-ouest - nord-est, ligne axiale) et de la D3D, qui part vers l'ouest. Un îlot en herbe en goutte d'eau (≈ 165 m²) sépare la D3D de la bretelle qui la relie à la D3 vers le sud-ouest. La chaussée de la spéciale commence au PK -170, au milieu du carrefour. Zone de liaison, avant le contrôle horaire : routes ouvertes, aucune fermeture modélisée.",
+   "fermetures": [],
+   "raccords": [
+    {
+     "cote": "debut"
+    },
+    {
+     "cote": "droite",
+     "pk": [
+      -170,
+      -120
+     ]
+    },
+    {
+     "cote": "gauche",
+     "pk": [
+      -170,
+      -120
+     ]
+    }
+   ],
+   "surfaces_revetues": [
+    {
+     "nom": "carrefour D3 / D3D : D3 dans les deux sens et bretelle autour de l'îlot (40 m autour du carrefour)",
+     "polygone": [
+      [
+       917101.54,
+       6240918.55
+      ],
+      [
+       917107.38,
+       6240922.34
+      ],
+      [
+       917108.21,
+       6240923.23
+      ],
+      [
+       917108.4,
+       6240924.6
+      ],
+      [
+       917110.29,
+       6240925.05
+      ],
+      [
+       917111.41,
+       6240926.14
+      ],
+      [
+       917111.52,
+       6240927.64
+      ],
+      [
+       917111.99,
+       6240928.18
+      ],
+      [
+       917116.63,
+       6240929.09
+      ],
+      [
+       917117.5,
+       6240930.34
+      ],
+      [
+       917116.56,
+       6240931.25
+      ],
+      [
+       917116.54,
+       6240932.21
+      ],
+      [
+       917117.15,
+       6240933.6
+      ],
+      [
+       917118.27,
+       6240933.83
+      ],
+      [
+       917118.91,
+       6240934.64
+      ],
+      [
+       917119.0,
+       6240935.8
+      ],
+      [
+       917118.43,
+       6240937.81
+      ],
+      [
+       917116.84,
+       6240939.95
+      ],
+      [
+       917116.3,
+       6240940.16
+      ],
+      [
+       917115.5,
+       6240939.52
+      ],
+      [
+       917114.51,
+       6240939.56
+      ],
+      [
+       917114.21,
+       6240941.02
+      ],
+      [
+       917113.37,
+       6240941.9
+      ],
+      [
+       917108.96,
+       6240943.98
+      ],
+      [
+       917101.66,
+       6240945.99
+      ],
+      [
+       917093.88,
+       6240947.26
+      ],
+      [
+       917093.68,
+       6240947.31
+      ],
+      [
+       917093.81,
+       6240948.19
+      ],
+      [
+       917094.81,
+       6240952.19
+      ],
+      [
+       917095.01,
+       6240952.75
+      ],
+      [
+       917096.12,
+       6240952.74
+      ],
+      [
+       917103.84,
+       6240951.01
+      ],
+      [
+       917110.6,
+       6240950.24
+      ],
+      [
+       917111.45,
+       6240949.25
+      ],
+      [
+       917116.31,
+       6240949.0
+      ],
+      [
+       917120.0,
+       6240949.5
+      ],
+      [
+       917120.84,
+       6240949.01
+      ],
+      [
+       917124.32,
+       6240949.0
+      ],
+      [
+       917126.81,
+       6240948.5
+      ],
+      [
+       917128.18,
+       6240949.0
+      ],
+      [
+       917130.96,
+       6240948.77
+      ],
+      [
+       917131.64,
+       6240949.19
+      ],
+      [
+       917132.53,
+       6240950.71
+      ],
+      [
+       917135.04,
+       6240950.86
+      ],
+      [
+       917137.03,
+       6240951.96
+      ],
+      [
+       917138.64,
+       6240952.02
+      ],
+      [
+       917139.53,
+       6240952.71
+      ],
+      [
+       917142.75,
+       6240953.54
+      ],
+      [
+       917144.63,
+       6240954.49
+      ],
+      [
+       917145.73,
+       6240954.44
+      ],
+      [
+       917146.63,
+       6240953.35
+      ],
+      [
+       917147.21,
+       6240953.27
+      ],
+      [
+       917148.83,
+       6240955.73
+      ],
+      [
+       917152.61,
+       6240955.5
+      ],
+      [
+       917154.08,
+       6240956.08
+      ],
+      [
+       917155.66,
+       6240957.55
+      ],
+      [
+       917155.52,
+       6240966.41
+      ],
+      [
+       917157.06,
+       6240967.71
+      ],
+      [
+       917158.42,
+       6240967.73
+      ],
+      [
+       917159.44,
+       6240967.08
+      ],
+      [
+       917159.34,
+       6240965.3
+      ],
+      [
+       917160.24,
+       6240962.62
+      ],
+      [
+       917160.27,
+       6240961.28
+      ],
+      [
+       917161.39,
+       6240960.0
+      ],
+      [
+       917162.91,
+       6240960.01
+      ],
+      [
+       917164.33,
+       6240960.58
+      ],
+      [
+       917165.7,
+       6240962.91
+      ],
+      [
+       917168.33,
+       6240963.83
+      ],
+      [
+       917168.99,
+       6240964.59
+      ],
+      [
+       917169.92,
+       6240963.33
+      ],
+      [
+       917172.04,
+       6240959.8
+      ],
+      [
+       917172.26,
+       6240959.34
+      ],
+      [
+       917171.63,
+       6240958.9
+      ],
+      [
+       917171.23,
+       6240956.61
+      ],
+      [
+       917170.76,
+       6240956.07
+      ],
+      [
+       917169.57,
+       6240955.5
+      ],
+      [
+       917167.79,
+       6240955.73
+      ],
+      [
+       917166.84,
+       6240955.12
+      ],
+      [
+       917166.27,
+       6240954.22
+      ],
+      [
+       917165.82,
+       6240951.36
+      ],
+      [
+       917162.34,
+       6240951.37
+      ],
+      [
+       917161.07,
+       6240950.06
+      ],
+      [
+       917160.7,
+       6240948.23
+      ],
+      [
+       917157.38,
+       6240946.9
+      ],
+      [
+       917156.92,
+       6240945.38
+      ],
+      [
+       917154.09,
+       6240942.61
+      ],
+      [
+       917152.32,
+       6240939.36
+      ],
+      [
+       917150.79,
+       6240939.23
+      ],
+      [
+       917148.59,
+       6240938.12
+      ],
+      [
+       917147.16,
+       6240935.96
+      ],
+      [
+       917144.59,
+       6240933.36
+      ],
+      [
+       917144.02,
+       6240932.05
+      ],
+      [
+       917141.62,
+       6240930.66
+      ],
+      [
+       917141.03,
+       6240929.33
+      ],
+      [
+       917137.41,
+       6240928.86
+      ],
+      [
+       917137.03,
+       6240925.83
+      ],
+      [
+       917135.58,
+       6240925.77
+      ],
+      [
+       917134.83,
+       6240926.74
+      ],
+      [
+       917134.31,
+       6240926.79
+      ],
+      [
+       917133.51,
+       6240925.92
+      ],
+      [
+       917134.0,
+       6240924.8
+      ],
+      [
+       917133.74,
+       6240923.81
+      ],
+      [
+       917132.71,
+       6240923.7
+      ],
+      [
+       917130.42,
+       6240922.27
+      ],
+      [
+       917128.46,
+       6240921.95
+      ],
+      [
+       917126.28,
+       6240919.83
+      ],
+      [
+       917124.47,
+       6240919.04
+      ],
+      [
+       917122.29,
+       6240918.98
+      ],
+      [
+       917119.22,
+       6240917.04
+      ],
+      [
+       917116.09,
+       6240916.74
+      ],
+      [
+       917114.88,
+       6240916.15
+      ],
+      [
+       917114.0,
+       6240914.7
+      ],
+      [
+       917115.17,
+       6240913.79
+      ],
+      [
+       917115.25,
+       6240912.93
+      ],
+      [
+       917114.22,
+       6240911.54
+      ],
+      [
+       917113.12,
+       6240911.01
+      ],
+      [
+       917108.54,
+       6240910.23
+      ],
+      [
+       917106.42,
+       6240909.29
+      ],
+      [
+       917105.3,
+       6240910.3
+      ],
+      [
+       917102.53,
+       6240913.36
+      ],
+      [
+       917100.08,
+       6240916.67
+      ],
+      [
+       917099.4,
+       6240917.79
+      ]
+     ],
+     "trous": [
+      [
+       [
+        917114.13,
+        6240944.85
+       ],
+       [
+        917115.92,
+        6240943.58
+       ],
+       [
+        917118.14,
+        6240943.48
+       ],
+       [
+        917119.24,
+        6240942.74
+       ],
+       [
+        917121.66,
+        6240940.29
+       ],
+       [
+        917125.88,
+        6240934.1
+       ],
+       [
+        917129.33,
+        6240931.47
+       ],
+       [
+        917130.21,
+        6240930.3
+       ],
+       [
+        917131.41,
+        6240930.26
+       ],
+       [
+        917132.58,
+        6240930.83
+       ],
+       [
+        917134.4,
+        6240933.6
+       ],
+       [
+        917135.54,
+        6240933.8
+       ],
+       [
+        917136.96,
+        6240934.98
+       ],
+       [
+        917136.97,
+        6240935.91
+       ],
+       [
+        917136.31,
+        6240936.49
+       ],
+       [
+        917135.98,
+        6240938.22
+       ],
+       [
+        917134.91,
+        6240940.36
+       ],
+       [
+        917133.33,
+        6240941.92
+       ],
+       [
+        917130.29,
+        6240943.45
+       ],
+       [
+        917119.83,
+        6240945.27
+       ],
+       [
+        917118.87,
+        6240945.59
+       ],
+       [
+        917116.91,
+        6240947.24
+       ],
+       [
+        917114.09,
+        6240947.24
+       ],
+       [
+        917113.5,
+        6240946.45
+       ]
+      ]
+     ],
+     "source": "nuage LiDAR HD classé IGN (dalles 0917_6241 et 0917_6242) : points sol d'intensité d'enrobé (600-2800) et homogène, ouverture de 1,25 m, petits trous (marquage) bouchés, limité à 42 m du carrefour ; l'îlot en herbe reste un trou ; ortho 20 cm"
+    }
+   ],
+   "ilots": [
+    {
+     "nom": "îlot en herbe",
+     "polygone": [
+      [
+       917114.13,
+       6240944.85
+      ],
+      [
+       917115.92,
+       6240943.58
+      ],
+      [
+       917118.14,
+       6240943.48
+      ],
+      [
+       917119.24,
+       6240942.74
+      ],
+      [
+       917121.66,
+       6240940.29
+      ],
+      [
+       917125.88,
+       6240934.1
+      ],
+      [
+       917129.33,
+       6240931.47
+      ],
+      [
+       917130.21,
+       6240930.3
+      ],
+      [
+       917131.41,
+       6240930.26
+      ],
+      [
+       917132.58,
+       6240930.83
+      ],
+      [
+       917134.4,
+       6240933.6
+      ],
+      [
+       917135.54,
+       6240933.8
+      ],
+      [
+       917136.96,
+       6240934.98
+      ],
+      [
+       917136.97,
+       6240935.91
+      ],
+      [
+       917136.31,
+       6240936.49
+      ],
+      [
+       917135.98,
+       6240938.22
+      ],
+      [
+       917134.91,
+       6240940.36
+      ],
+      [
+       917133.33,
+       6240941.92
+      ],
+      [
+       917130.29,
+       6240943.45
+      ],
+      [
+       917119.83,
+       6240945.27
+      ],
+      [
+       917118.87,
+       6240945.59
+      ],
+      [
+       917116.91,
+       6240947.24
+      ],
+      [
+       917114.09,
+       6240947.24
+      ],
+      [
+       917113.5,
+       6240946.45
+      ]
+     ],
+     "source": "LiDAR (intensité de l'herbe) et ortho"
+    }
+   ],
+   "rendus": [
+    {
+     "nom": "d3_plongeante",
+     "type": "plongeante",
+     "hauteur_m": 45,
+     "recul_m": 30
+    }
+   ],
+   "source": "nuage LiDAR HD classé IGN, ortho 20 cm ; vidéo n° 2 (commence à la cellule de départ, l'approche n'y est pas)",
+   "cle": "d3_d3d"
+  },
+  {
+   "nom": "Départ : dégagement des véhicules de secours",
+   "actif": false,
+   "pk": [
+    -66,
+    0
+   ],
+   "plan": "Sur la gauche, entre la chaussée (ramenée à 6,6-7 m par le relevé vidéo) et un fossé, une bande plate de 2 à 5 m où stationnent les véhicules de secours au départ ; vers le PK -35 elle s'ouvre sur la sortie du parking (à l'ouest).",
+   "fermetures": [],
+   "raccords": [
+    {
+     "cote": "gauche",
+     "pk": [
+      -66,
+      -1
+     ]
+    }
+   ],
+   "surfaces_revetues": [
+    {
+     "nom": "dégagement de gauche avant la ligne de départ",
+     "polygone": [
+      [
+       917029.2,
+       6240973.0
+      ],
+      [
+       917027.5,
+       6240975.0
+      ],
+      [
+       917021.0,
+       6240985.0
+      ],
+      [
+       917015.5,
+       6240994.5
+      ],
+      [
+       917010.5,
+       6240997.0
+      ],
+      [
+       917009.5,
+       6241003.0
+      ],
+      [
+       917012.0,
+       6241005.5
+      ],
+      [
+       917008.0,
+       6241016.0
+      ],
+      [
+       917004.6,
+       6241025.5
+      ],
+      [
+       917004.0,
+       6241028.5
+      ],
+      [
+       917009.31,
+       6241028.77
+      ],
+      [
+       917012.39,
+       6241021.37
+      ],
+      [
+       917016.68,
+       6241012.37
+      ],
+      [
+       917021.38,
+       6241003.5
+      ],
+      [
+       917025.27,
+       6240994.28
+      ],
+      [
+       917029.02,
+       6240985.1
+      ],
+      [
+       917034.07,
+       6240976.59
+      ],
+      [
+       917036.93,
+       6240973.85
+      ]
+     ],
+     "source": "LiDAR HD (relief du sol : plate-forme plane jusqu'au fossé, coupée vers le PK -35 par la sortie du parking) ; ortho ; relevé vidéo (data/reference/releve_video.json : véhicules de secours garés sur un dégagement à gauche). Revêtement supposé (enrobé ou grave : indiscernable sous les arbres) ; la limite côté parking, vers x = 917010, est arbitraire."
+    }
+   ],
+   "rendus": [
+    {
+     "nom": "depart",
+     "type": "conducteur",
+     "pk": -75,
+     "regard_pk": -20,
+     "decalage_m": 1.6,
+     "fov": 70
+    },
+    {
+     "nom": "depart_plongeante",
+     "type": "plongeante",
+     "hauteur_m": 35,
+     "recul_m": 20
+    }
+   ],
+   "source": "relevé vidéo, nuage LiDAR HD, ortho",
+   "cle": "depart",
+   "desactive": "le 14/11/2026 : cette surface d'enrobé de 2 à 5 m à gauche (PK -66 à -1) contredit les captures Street View du directeur (data/reference/zone_depart.json), qui montrent de l'herbe, un sentier et une lisse basse en bois"
+  }
+ ]
+}

@@ -1,0 +1,875 @@
+{
+ "pk_couverts": [
+  0,
+  3360
+ ],
+ "source": "figures/compare_jeu_13_11_v4/pk_XXXX.jpg (jeu à gauche, reconnaissance à droite), essai du 13/11/2026, version 4",
+ "images_lues": 84,
+ "note_couverture": "pk_0000.jpg n'existe pas dans le dossier : les paires vont de pk_0040 à pk_3360 (84 fichiers, tous lus).",
+ "paires_inexploitables": [
+  {
+   "pk_m": 40,
+   "raison": "la reconnaissance montre un carton de titre (logo), pas la route"
+  },
+  {
+   "pk_m": 80,
+   "raison": "la reconnaissance montre un carton de titre, pas la route"
+  },
+  {
+   "pk_m": 2800,
+   "raison": "voiture du jeu sortie de la route (vue dans les buissons) : paire non comparable"
+  }
+ ],
+ "defauts_recurrents": [
+  {
+   "defaut": "accotement d'herbe verte rase (1 à 3 m) présent en réalité, remplacé dans le jeu par des touffes sèches, de la terre nue, du gravier gris ou des blocs",
+   "pk_exemples": [
+    160,
+    520,
+    1320
+   ],
+   "nb_paires_environ": 20
+  },
+  {
+   "defaut": "rochers isolés arrondis (gris ou rosés) semés le long des rives dans le jeu, là où la réalité montre soit un talus continu de rocaille calcaire, soit un accotement net",
+   "pk_exemples": [
+    720,
+    1680,
+    2720
+   ],
+   "nb_paires_environ": 15
+  },
+  {
+   "defaut": "végétation : arbres et arbustes à feuillage teinté de mauve (aspect fleuri) et absence des feuillus jaunes ou orangés d'automne ; sous-bois de terre nue sous arbres espacés là où la réalité montre une haie dense de chênes verts ou de garrigue",
+   "pk_exemples": [
+    440,
+    840,
+    1920
+   ],
+   "nb_paires_environ": 20
+  },
+  {
+   "defaut": "sous le seuil de dix paires ou à sa limite : touffes noires (9 paires vues), aires planes de gravier clair absentes (9), lignes de rive continues au lieu de tirets (environ 10), glissières sans écran bas (environ 9)",
+   "pk_exemples": [
+    1400,
+    3000,
+    2600,
+    1800
+   ],
+   "nb_paires_environ": 9
+  }
+ ],
+ "reserve_calage": "Aux PK 1160-1200, 2640-2680 et 2920-2960, un même objet apparaît dans le jeu une image (20 à 40 m) après la reconnaissance. Non tranché : objets placés trop loin dans le jeu, ou calage des paires moins bon que 10 m dans ces zones.",
+ "observations": [
+  {
+   "pk_m": 120,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "talus de terre et de gravier d'environ 1,5 m qui monte dès la rive, semé de pierres et de touffes",
+   "reel": "accotement plat herbeux, petite borne blanche, chênes verts en retrait de 4 à 5 m",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 160,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "bande de gravier gris et de pierres, touffes sèches",
+   "reel": "large accotement d'herbe verte (3 à 4 m) jusqu'aux arbres",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 160,
+   "cote": "gauche",
+   "categorie": "autre",
+   "jeu": "aucun panneau",
+   "reel": "poteau portant deux panneaux directionnels sur l'accotement gauche",
+   "gravite": 1,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 200,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "talus herbeux raide de 2 à 3 m qui monte dès la rive, gros tronc de pin au premier plan",
+   "reel": "terrain plat : herbe verte, dalle calcaire blanche au ras du sol, deux pins à 5 m environ, garrigue ouverte derrière",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 280,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "pente d'herbe basse semée de pierres grises, pas de paroi",
+   "reel": "paroi de calcaire clair de 1,5 à 2 m à l'intérieur du virage à gauche, arbres au-dessus",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 320,
+   "cote": "axe",
+   "categorie": "marquage",
+   "jeu": "ligne axiale en tirets espacés, identique en virage et en ligne droite (aussi PK 520, 880, 920, 1560, 1760)",
+   "reel": "tirets serrés (ligne d'avertissement) sur l'axe dans les virages",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 320,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "extérieur du virage dégagé : terre nue sous des pins espacés, arbres à 8 m environ",
+   "reel": "bande d'herbe verte de 2 m puis mur continu de chênes verts et de buissons tout près de la route",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 360,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "buissons jaunâtres en bord de route, pas de gros tronc",
+   "reel": "gros pin penché au ras de la chaussée à droite (à 1,5 m environ)",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 400,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "gros rocher sombre d'environ 2 m posé au bord de la rive",
+   "reel": "accotement plat d'herbe et de feuilles mortes, chênes verts en retrait, aucune roche",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 440,
+   "cote": "gauche",
+   "categorie": "vegetation",
+   "jeu": "grande aire de terre brune nue, pins loin en retrait",
+   "reel": "accotement de pierraille calcaire claire de 2 m puis haie dense et continue de chênes verts",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 480,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "extérieur du virage : terre nue sous des pins espacés à gros troncs",
+   "reel": "extérieur du virage : butte d'herbe vert vif d'environ 1 m, bois dense juste derrière",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 520,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "pente de terre sèche et de touffes",
+   "reel": "large bande d'herbe verte (environ 3 m) puis buissons",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 640,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "grand versant raide (4 à 5 m) à dalle de roche inclinée qui monte dès la rive",
+   "reel": "accotement bas ; l'affleurement calcaire est de l'autre côté du virage, à distance",
+   "gravite": 2,
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 640,
+   "cote": "axe",
+   "categorie": "autre",
+   "jeu": "grande dalle gris sombre, lisse et verticale (3 à 4 m de haut), visible entre les arbres dans l'axe ; aspect d'objet sans texture",
+   "reel": "rien de tel : pins et garrigue",
+   "gravite": 2,
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 680,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "extérieur du virage : rangée de gros blocs séparés en forme de tente (1,5 à 2 m), versant de terre orangée derrière (formes et teintes déjà connues, très marquées ici)",
+   "reel": "extérieur du virage : paroi continue de calcaire stratifié blanc-gris de 2 à 3 m, garrigue au-dessus",
+   "gravite": 3,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 720,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "intérieur du virage : herbe haute semée de gros blocs gris-rosé",
+   "reel": "intérieur du virage : herbe verte rase, aucun bloc, arbre orangé d'automne",
+   "gravite": 1,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 760,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "un gros arbre rond puis versant de terre brun-orangé nu",
+   "reel": "bande d'herbe verte puis nappe continue de buissons bas (chêne kermès) de 1,5 à 2 m",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 800,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "intérieur du virage : butte de terre nue, grand arbre à tronc épais",
+   "reel": "intérieur du virage : herbe verte puis buissons bas roussis, pas de grand arbre",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 840,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "grand arbuste à feuillage mauve (aspect de lilas en fleurs) au ras de la rive, blocs dans l'herbe",
+   "reel": "accotement d'herbe et de feuilles, tronc de pin penché plus loin, aucune floraison",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 880,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "banc de roche sombre d'environ 1,5 m au ras de la rive, à l'intérieur du virage",
+   "reel": "intérieur du virage plat et herbeux, pas de roche",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 880,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "extérieur du virage : pins à gros troncs sur terre nue",
+   "reel": "extérieur du virage : pins à troncs fins sur sous-bois dense de garrigue verte, rocher calcaire clair",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 920,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "gros rocher isolé sur une butte d'herbe à l'intérieur du virage",
+   "reel": "pas de rocher ; petites bornes blanches en rive",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 960,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "premier plan : pente d'herbe semée de pierres isolées",
+   "reel": "talus continu de pierraille calcaire blanche de 1,5 à 2 m du premier plan jusqu'au virage",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1040,
+   "cote": "gauche",
+   "categorie": "vegetation",
+   "jeu": "versant de terre et d'éboulis gris, nu, quelques touffes",
+   "reel": "talus de pierraille de 1,5 m coiffé de garrigue verte dense",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1160,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "pente d'herbe à touffes, pas de roche",
+   "reel": "affleurement calcaire blanc de 1,5 m au ras de la rive sur une trentaine de mètres",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1200,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "gros affleurement sombre de 2 m au ras de la rive puis butte de terre brun-orangé (peut-être l'affleurement réel du PK 1160, vu ici 20 à 40 m plus loin : objet ou calage, à vérifier)",
+   "reel": "terrain plat : herbe verte, pierres éparses, amorce de chemin, grand pin, sous-bois ouvert",
+   "gravite": 3,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1280,
+   "cote": "gauche",
+   "categorie": "poteau",
+   "jeu": "poteau droit brun sombre dépassant les arbres à gauche (poteau bois sans fils visibles, ou tronc nu)",
+   "reel": "pas de poteau visible à gauche, pinède",
+   "gravite": 1,
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 1320,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "blocs rosés dans l'herbe et arbres serrés près de la rive",
+   "reel": "large accotement plat d'herbe verte, buissons bas, dégagé",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1360,
+   "cote": "les deux",
+   "categorie": "vegetation",
+   "jeu": "mélange de feuillus ronds et de pins espacés",
+   "reel": "pinède dense à troncs fins et hauts, tout près de la route des deux côtés (aussi PK 1400, 3280)",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1400,
+   "cote": "gauche",
+   "categorie": "autre",
+   "jeu": "touffes de plantes rendues en noir uni sur le talus (une quinzaine dans cette vue) ; même défaut vu aux PK 120, 280, 760, 1280, 2240, 2960, 3000, 3320",
+   "reel": "garrigue verte et feuilles mortes, rien de noir",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1440,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "talus d'éboulis gris d'environ 2 m",
+   "reel": "terrain plat et large (4 à 5 m) : dalles calcaires, feuilles mortes, pins",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1440,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "mur de buissons vert sombre de 2,5 m, continu, collé à l'asphalte",
+   "reel": "accotement de 1,5 m puis pinède claire à troncs penchés, sous-bois ouvert",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1480,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "accotement de terre étroit, arbres en retrait",
+   "reel": "large aire plane de gravier sous les pins, échappée sur le lointain entre les troncs",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1480,
+   "cote": "droite",
+   "categorie": "autre",
+   "jeu": "bloc gris d'environ 1 m de haut et 2 m de long, à texture striée verticalement, isolé au bord de la route",
+   "reel": "rien de tel : accotement de gravier et gros tronc de pin",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1480,
+   "cote": "les deux",
+   "categorie": "marquage",
+   "jeu": "lignes de rive continues des deux côtés (PK 1480 à 1680)",
+   "reel": "lignes de rive en tirets (continue seulement à l'intérieur du virage du PK 1640)",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1560,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "parapet à lisse supérieure et poteaux blanc vif très épais, panneaux brun foncé à texture de mousse ou de paille (teinte sombre déjà connue ; ici c'est la lisse blanche et la texture qui ne ressemblent pas)",
+   "reel": "parapet en moellons calcaires gris, poteaux peints en blanc, couronnement en béton gris-beige (PK 1520 à 1640, même écart au PK 2160)",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1560,
+   "cote": "droite",
+   "categorie": "relief_lointain",
+   "jeu": "colline qui s'élève juste derrière le parapet, nue à buissons épars",
+   "reel": "derrière le parapet : cimes d'arbres (feuillus orangés, pins) et vallée, crête bleue basse au loin",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1600,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "tronçon de parapet au premier plan à droite",
+   "reel": "accotement d'herbe et chênes verts au premier plan, le parapet ne reprend qu'au virage",
+   "gravite": 1,
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 1680,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "pente d'herbe semée de blocs rosés isolés",
+   "reel": "grand talus continu de rocaille calcaire blanche de 2 m, pins au-dessus",
+   "gravite": 3,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1720,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "mur brun foncé à texture de mousse, couronnement gris (teinte déjà connue, très marquée ici)",
+   "reel": "mur de moellons calcaires clairs à couronnement beige",
+   "gravite": 1,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1800,
+   "cote": "droite",
+   "categorie": "autre",
+   "jeu": "aucun panneau au début de la glissière",
+   "reel": "petit panneau rouge sur poteau à l'entrée du virage, côté glissière",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1800,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "glissière posée sur poteaux, jour visible sous la lisse, herbe dessous",
+   "reel": "glissière doublée d'un écran bas continu jusqu'au sol (aucun jour sous la lisse) ; même écart à toutes les glissières vues ensuite (PK 2000-2080, 2280-2360, 3240-3360)",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1840,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "affleurement massif de gros blocs anguleux (1,5 à 2 m) collé à la rive",
+   "reel": "talus d'environ 1,5 m fait de petites pierres sèches et d'éboulis, coiffé d'herbe et de garrigue (forme différente, en plus de la couleur déjà connue)",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1880,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "versant de terre nue lisse, arbres en retrait d'une dizaine de mètres, aucune pierre en pied",
+   "reel": "petit talus de pierres sèches en pied (0,5 à 1 m), pente couverte d'herbe et de garrigue basse, grands pins au-dessus",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1880,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "mur de végétation dense et touffes d'herbe haute dès le bord de l'asphalte",
+   "reel": "bande de gravier et de terre claire de 2 à 3 m avant les premiers chênes",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1920,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "pente de terre brune continue qui monte dès la rive",
+   "reel": "large aire plane de stationnement en gravier calcaire clair (une voiture y est garée), garrigue derrière",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1920,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "arbres à feuillage teinté de mauve (aspect d'arbre en fleurs) collés à la rive",
+   "reel": "chênes à feuillage jaune-orangé d'automne, aucune floraison, accotement de gravier clair",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1960,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "pente de terre nue avec quelques pointes de roche isolées",
+   "reel": "banc continu de rocaille calcaire d'environ 1 m, garrigue et pins au-dessus",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 1960,
+   "cote": "droite",
+   "categorie": "autre",
+   "jeu": "bloc gris isolé d'environ 1 m de haut, à texture étirée verticalement, posé juste après une courte extrémité de glissière",
+   "reel": "rien de tel : la glissière démarre par une extrémité abaissée, sur un accotement d'herbe verte",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 1960,
+   "cote": "droite",
+   "categorie": "marquage",
+   "jeu": "ligne de rive continue",
+   "reel": "ligne de rive en tirets",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2000,
+   "cote": "gauche",
+   "categorie": "vegetation",
+   "jeu": "talus de terre nue, aucun grand arbre à l'intérieur du virage",
+   "reel": "grand pin parasol au-dessus d'un petit mur d'éboulis calcaire, garrigue",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2000,
+   "cote": "droite",
+   "categorie": "relief_lointain",
+   "jeu": "colline à mi-distance pelée, grandes plaques claires (déjà connu, très marqué ici)",
+   "reel": "colline entièrement boisée de pins, vert sombre",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2040,
+   "cote": "axe",
+   "categorie": "relief_lointain",
+   "jeu": "massif à l'horizon marqué de larges taches blanches (aspect enneigé), aussi visible aux PK 1560, 2080, 3040",
+   "reel": "crête bleu-gris sans tache blanche à ce PK ; aux PK 3080-3120 la reconnaissance montre bien un massif à falaise claire, donc le massif existe, seules l'étendue et la blancheur des taches paraissent excessives",
+   "gravite": 1,
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 2120,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "falaise verticale d'au moins 5 m collée à la rive",
+   "reel": "paroi calcaire d'environ 2,5 à 3 m, en retrait vers le haut, coiffée de buissons",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2160,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "falaise de 4 à 5 m à grandes facettes planes (aspect polygonal, texture étirée) sur toute la longueur visible",
+   "reel": "rocher calcaire d'environ 2 m qui s'arrête avant le virage",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2160,
+   "cote": "axe",
+   "categorie": "vegetation",
+   "jeu": "pins dans l'axe du virage",
+   "reel": "grands feuillus jaunes d'automne dans l'axe",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2160,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "parapet à lisse et poteaux blanc vif, remplissage brun foncé dont la texture évoque de la mousse ou de la paille (teinte sombre déjà connue ; ici c'est la texture qui ne ressemble pas à de la pierre)",
+   "reel": "parapet en moellons calcaires gris clair, poteaux peints en blanc, couronnement en béton gris-beige",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2200,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "extérieur de l'épingle : talus de terre grise qui monte dès la rive, pins épars",
+   "reel": "extérieur de l'épingle : aire plane de terre et de feuilles mortes, deux gros blocs calcaires posés en bordure, bois dense de chênes verts à 8 m environ",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2240,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "talus bas herbeux semé de rochers ronds",
+   "reel": "talus de terre brun-rouge et de pierres d'environ 2 m, nu, garrigue et pins au-dessus",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2240,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "intérieur de l'épingle : gros pin et arbres touffus (dont un à feuillage mauve) qui masquent la sortie du virage (visible aussi au PK 2200)",
+   "reel": "intérieur de l'épingle : butte d'herbe verte rase, dégagée, on voit la sortie du virage et la glissière au-delà",
+   "gravite": 3,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2400,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "dalles de roche grise inclinées de 2 à 3 m (PK 2360 à 2440)",
+   "reel": "talus de terre ocre clair caillouteuse à arbustes épars, pas de roche en place (PK 2360 à 2440)",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2400,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "tronçon de mur sombre d'environ 1 m de haut, massif",
+   "reel": "petit parapet bas de ponceau en pierre claire, about biseauté peint en blanc",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2520,
+   "cote": "les deux",
+   "categorie": "vegetation",
+   "jeu": "pins à tronc rouge, ciel largement dégagé au-dessus de la route",
+   "reel": "voûte de chênes à feuilles caduques jaunissantes refermée au-dessus de la route, talus couvert de feuilles mortes",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2600,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "grand cône d'éboulis gris sombre, lisse, d'environ 4 m",
+   "reel": "dalle calcaire blanc-beige basse (environ 1,5 m), sablée, sous des pins",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2600,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "long mur de parapet (15 à 20 m, environ 1 m de haut) le long de la rive",
+   "reel": "court parapet de ponceau (3 à 4 m, environ 0,5 m de haut) à abouts blancs, puis accotement d'herbe",
+   "gravite": 3,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2600,
+   "cote": "les deux",
+   "categorie": "marquage",
+   "jeu": "lignes de rive continues des deux côtés (PK 2600 et 2640)",
+   "reel": "lignes de rive en tirets des deux côtés",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2640,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "accotement d'herbe, rochers et gros pin collés à la rive ; une aire plane en terre brune avec lisse en bois n'apparaît qu'environ 40 m plus loin (PK 2680)",
+   "reel": "large aire plane de gravier clair avec lisse en bois au fond, dès ce PK",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2680,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "pente de terre nue avec gros blocs et clôture en bois",
+   "reel": "petit talus de pierres couvert de garrigue, parapet bas à about blanc dans le virage",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2720,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "chapelet de gros blocs arrondis gris-rosé le long de la rive",
+   "reel": "dalles calcaires blanches plates au ras du sol et garrigue basse, aucun bloc",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2760,
+   "cote": "gauche",
+   "categorie": "autre",
+   "jeu": "pas de balise de virage derrière le parapet",
+   "reel": "panneau à chevrons bleu et blanc derrière le parapet",
+   "gravite": 1,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2840,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "pente de terre brune sous des chênes, roche seulement au tout premier plan",
+   "reel": "paroi calcaire claire de 2 à 2,5 m à l'intérieur du virage à gauche",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2840,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "végétation dense (dont arbustes à feuillage mauve) collée à la rive",
+   "reel": "accotement de gravier d'environ 2 m, puis chênes orangés et troncs de pins",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2880,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "touffes d'herbe haute dès la rive, pins à tronc épais",
+   "reel": "large accotement de gravier calcaire clair, puis pins d'Alep élancés à troncs clairs penchés",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 2920,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "pente d'herbe et arbustes ronds, aucune roche",
+   "reel": "paroi calcaire d'environ 2,5 m collée à la rive, à l'intérieur du virage à gauche ; la paroi existe dans le jeu mais apparaît une image plus loin (PK 2960) : décalage longitudinal de 20 à 40 m, de l'objet ou du calage des paires, à vérifier",
+   "gravite": 3,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 2960,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "paroi rocheuse d'environ 3 m collée à la rive (même paroi que celle vue dans la reconnaissance au PK 2920)",
+   "reel": "accotement plat herbeux, plus de roche à ce PK",
+   "gravite": 2,
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 2960,
+   "cote": "droite",
+   "categorie": "autre",
+   "jeu": "aire de terre brune et pins à l'extérieur du virage",
+   "reel": "aire de gravier clair avec un coffret béton et un poteau bois à l'extérieur du virage",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3000,
+   "cote": "gauche",
+   "categorie": "roche",
+   "jeu": "accotement d'herbe semé de blocs ronds",
+   "reel": "banc calcaire bas (1 à 1,5 m) sous des pins denses",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3000,
+   "cote": "droite",
+   "categorie": "accotement",
+   "jeu": "talus de terre brun-orangé qui monte dès la rive, pins dessus",
+   "reel": "large aire plane de gravier clair au niveau de la route, garrigue au fond",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 3000,
+   "cote": "droite",
+   "categorie": "poteau",
+   "jeu": "faisceau de 4 ou 5 câbles épais très visibles dans le ciel (PK 3000 à 3360)",
+   "reel": "poteau présent au même endroit mais fils fins, à peine visibles",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3040,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "talus gris en pente dès la rive, herbe",
+   "reel": "aire plane de gravier clair sous de grands pins, de plain-pied avec la route",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3080,
+   "cote": "droite",
+   "categorie": "roche",
+   "jeu": "accotement d'herbe, arbres en pied, affleurement massif isolé (PK 3040 à 3080)",
+   "reel": "talus continu d'éboulis calcaires clairs et de garrigue basse (2 à 3 m) dès le premier plan, sans grand arbre en pied",
+   "gravite": 2,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 3120,
+   "cote": "droite",
+   "categorie": "roche",
+   "jeu": "muraille verticale de gros blocs stratifiés, 4 à 5 m, collée à la rive (teinte beige, proche du réel pour une fois)",
+   "reel": "talus incliné d'éboulis et de terre claire à arbustes, environ 3 m, pas de paroi verticale",
+   "gravite": 3,
+   "confiance": "bonne"
+  },
+  {
+   "pk_m": 3160,
+   "cote": "droite",
+   "categorie": "vegetation",
+   "jeu": "grands arbres denses collés à la rive",
+   "reel": "talus bas dégagé d'éboulis clairs et d'arbustes bas (chêne kermès), pins en retrait au-dessus",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3200,
+   "cote": "droite",
+   "categorie": "autre",
+   "jeu": "butte sableuse portant un bloc beige à faces planes (aspect de terrain découpé), pas d'accès",
+   "reel": "débouché d'un chemin ou d'une entrée bétonnée de plain-pied, grand mur de béton moussu d'environ 2 m au premier plan",
+   "gravite": 3,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3200,
+   "cote": "droite",
+   "categorie": "poteau",
+   "jeu": "poteau blanc nettement penché",
+   "reel": "poteaux droits",
+   "gravite": 1,
+   "confiance": "faible"
+  },
+  {
+   "pk_m": 3240,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "bande de dalles grises le long de la rive (aspect de caniveau ou de trottoir) et ligne de rive continue",
+   "reel": "terre et feuilles mortes jusqu'à l'asphalte, ligne de rive en tirets",
+   "gravite": 2,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3280,
+   "cote": "gauche",
+   "categorie": "vegetation",
+   "jeu": "pente d'herbe dégagée avec gros arbustes",
+   "reel": "talus de feuilles mortes sous une pinède dense de troncs fins",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3320,
+   "cote": "droite",
+   "categorie": "autre",
+   "jeu": "pas de panneau au bout de la glissière",
+   "reel": "panneau directionnel blanc au bout de la glissière",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3360,
+   "cote": "gauche",
+   "categorie": "accotement",
+   "jeu": "talus de pierraille grise de 2 à 3 m",
+   "reel": "talus de terre moussu et herbeux, vert, couvert de feuilles",
+   "gravite": 1,
+   "confiance": "moyenne"
+  },
+  {
+   "pk_m": 3360,
+   "cote": "droite",
+   "categorie": "mur",
+   "jeu": "glissière continue sur environ 80 m",
+   "reel": "glissière qui s'arrête après une quinzaine de mètres, puis entrée d'une aire de stationnement (voitures, lisse en bois)",
+   "gravite": 2,
+   "confiance": "moyenne"
+  }
+ ]
+}

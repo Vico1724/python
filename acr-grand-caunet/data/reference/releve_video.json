@@ -1,0 +1,4102 @@
+{
+ "titre": "Relevé vidéo de l'ES Le Grand Caunet",
+ "date": "2026-11-11",
+ "sources": {
+  "videos": [
+   "v2_2025_vmrs.mp4 (référence)",
+   "v5_2023_m3.mp4",
+   "v1_2025_clio.mp4 (nuit)"
+  ],
+  "donnees_lues": [
+   "data/processed/chaussee_precise.csv (lu le 11/11/2026 au matin ; ce fichier est modifié en parallèle)",
+   "data/processed/chaussee_precise_qualite.json",
+   "data/reference/ouvrages_parapets.json",
+   "data/processed/carrefours_es.csv",
+   "export/stage_ir/grand_caunet/stage.json"
+  ],
+  "avertissement": "vidéos de tiers, consultées comme référence visuelle ; aucune image n'est stockée dans le dépôt"
+ },
+ "conventions": {
+  "pk": "mètres depuis la ligne de départ sur l'axe précis (arrivée 6736)",
+  "cotes": "gauche / droite dans le sens de la course",
+  "confiance": "élevée / moyenne / faible",
+  "vu_ou_deduit": "« Vu » = constaté à l'image ; « Déduit » = interprétation"
+ },
+ "table_temps_pk": {
+  "v2": {
+   "video": "v2_2025_vmrs.mp4 (2025, ES 1, régularité, de jour, 30 i/s)",
+   "methode": "1) Lacet de la caméra mesuré image par image (flux optique sur la partie extérieure de l'image, modèle rotation + expansion) et intégré ; 2) recalage de ce lacet sur le cap de l'axe précis (chaussee_precise.csv) par programmation dynamique (position et vitesse, accélération bornée) ; 3) contraintes dures sur des repères identifiés à l'image (départ, arrivée, ponts, croisements de pistes, mi-virage des épingles). PK de la caméra (≈ 1,5 m derrière l'avant de la voiture).",
+   "depart": {
+    "t_s": 10.8,
+    "pk_m": 0,
+    "constat": "voiture arrêtée à la cellule (capteur orange au sol à gauche), démarre à t = 10,8 s ; horloge/feux sur trépied à droite franchis vers t = 12,4 s (PK ≈ 4)"
+   },
+   "arrivee": {
+    "t_s": 334.8,
+    "pk_m": 6736,
+    "constat": "panneau rouge à damier à gauche et trépied de cellule à droite franchis à t = 334,8 s, sortie de courbe à droite, début de ligne droite"
+   },
+   "reperes": [
+    {
+     "t_s": 89.5,
+     "pk_m": 1661,
+     "repere": "pont 1661 (parapets des deux côtés)",
+     "ecart_validation_croisee_m": -14
+    },
+    {
+     "t_s": 117.6,
+     "pk_m": 2225,
+     "repere": "épingle droite (mi-virage, d'après le lacet de la caméra)",
+     "ecart_validation_croisee_m": -2
+    },
+    {
+     "t_s": 123.0,
+     "pk_m": 2319,
+     "repere": "gauche 2 long en épingle (mi-virage)",
+     "ecart_validation_croisee_m": -2
+    },
+    {
+     "t_s": 135.8,
+     "pk_m": 2602,
+     "repere": "pont 2602",
+     "ecart_validation_croisee_m": -17
+    },
+    {
+     "t_s": 138.3,
+     "pk_m": 2663,
+     "repere": "croisement de pistes 2660/2667",
+     "ecart_validation_croisee_m": 5
+    },
+    {
+     "t_s": 144.2,
+     "pk_m": 2777,
+     "repere": "pont 2777",
+     "ecart_validation_croisee_m": -1
+    },
+    {
+     "t_s": 155.3,
+     "pk_m": 2996,
+     "repere": "croisement de pistes 2996",
+     "ecart_validation_croisee_m": -8
+    },
+    {
+     "t_s": 165.4,
+     "pk_m": 3229,
+     "repere": "pont 3229",
+     "ecart_validation_croisee_m": -22
+    },
+    {
+     "t_s": 176.7,
+     "pk_m": 3446,
+     "repere": "pont 3440-3450 (petits parapets)",
+     "ecart_validation_croisee_m": 4
+    },
+    {
+     "t_s": 184.8,
+     "pk_m": 3646,
+     "repere": "Lion d'Or, mi-virage du gauche serré",
+     "ecart_validation_croisee_m": 2
+    },
+    {
+     "t_s": 206.9,
+     "pk_m": 4075,
+     "repere": "épingle droite de la D1 (mi-virage) / ouvrage 4074",
+     "ecart_validation_croisee_m": -10
+    },
+    {
+     "t_s": 221.3,
+     "pk_m": 4360,
+     "repere": "pont 4360",
+     "ecart_validation_croisee_m": -6
+    },
+    {
+     "t_s": 226.7,
+     "pk_m": 4463,
+     "repere": "pont 4463",
+     "ecart_validation_croisee_m": -4
+    },
+    {
+     "t_s": 254.6,
+     "pk_m": 5037,
+     "repere": "croisement de pistes 5037",
+     "ecart_validation_croisee_m": -25
+    },
+    {
+     "t_s": 279.3,
+     "pk_m": 5554,
+     "repere": "pont 5554 (béton)",
+     "ecart_validation_croisee_m": -9
+    },
+    {
+     "t_s": 284.8,
+     "pk_m": 5662,
+     "repere": "croisement de pistes 5662",
+     "ecart_validation_croisee_m": -21
+    },
+    {
+     "t_s": 323.6,
+     "pk_m": 6492,
+     "repere": "pont 6492 (béton)",
+     "ecart_validation_croisee_m": -19
+    }
+   ],
+   "controle": {
+    "validation_croisee": "chaque repère retiré à tour de rôle puis prédit par les autres : écart quadratique moyen 12,7 m, maximum 25 m (croisement 5037) ; ces écarts valent pour un intervalle entre repères doublé, donc majorent l'incertitude réelle",
+    "biais": "le lacet seul tend à placer la voiture 5 à 20 m trop tôt (valeurs négatives) : les repères corrigent ce biais",
+    "controles_independants": [
+     {
+      "objet": "ponceau à parapets de béton bas",
+      "t_s": 232.4,
+      "pk_table_m": 4569,
+      "pk_donnees_m": 4577,
+      "source_donnees": "rétrécissement lidar 4572-4582",
+      "ecart_m": -8
+     },
+     {
+      "objet": "ponceau à parapets de béton bas",
+      "t_s": 237.3,
+      "pk_table_m": 4664,
+      "pk_donnees_m": 4680,
+      "source_donnees": "rétrécissement 4675-4684",
+      "ecart_m": -16
+     },
+     {
+      "objet": "ponceau à parapets de béton dans le droite 3",
+      "t_s": 305.6,
+      "pk_table_m": 6105,
+      "pk_donnees_m": 6115,
+      "source_donnees": "rétrécissement 6106-6124",
+      "ecart_m": -10
+     },
+     {
+      "objet": "début du parapet à dés blancs du gauche 4 avant l'épingle",
+      "t_s": 110.8,
+      "pk_table_m": 2127,
+      "pk_donnees_m": 2133,
+      "source_donnees": "début du rétrécissement lidar 2133-2178",
+      "ecart_m": -6
+     },
+     {
+      "objet": "débouché de piste en terre à gauche (voiture garée)",
+      "t_s": 80.5,
+      "pk_table_m": 1500,
+      "pk_donnees_m": 1485,
+      "source_donnees": "carrefours_es.csv, chemin gauche 1485 (BD TOPO)",
+      "ecart_m": 15
+     }
+    ]
+   },
+   "incertitude_m": {
+    "au_droit_d_un_repere": 5,
+    "entre_repères_typique": 10,
+    "pire_cas_entre_repères": 20,
+    "PK_0_a_1661": 20,
+    "note": "le premier tiers (PK 0-1661) n'a que le départ comme repère sûr : la table y repose sur le lacet seul, contrôlé par le débouché de piste PK 1485 (écart 15 m)"
+   },
+   "vitesse_moyenne_kmh": 74.8,
+   "table_t_s_pk_m": [
+    [
+     10.8,
+     0
+    ],
+    [
+     11.0,
+     0
+    ],
+    [
+     12.0,
+     1
+    ],
+    [
+     13.0,
+     5
+    ],
+    [
+     14.0,
+     11
+    ],
+    [
+     15.0,
+     19
+    ],
+    [
+     16.0,
+     31
+    ],
+    [
+     17.0,
+     47
+    ],
+    [
+     18.0,
+     66
+    ],
+    [
+     19.0,
+     90
+    ],
+    [
+     20.0,
+     118
+    ],
+    [
+     21.0,
+     146
+    ],
+    [
+     22.0,
+     176
+    ],
+    [
+     23.0,
+     202
+    ],
+    [
+     24.0,
+     224
+    ],
+    [
+     25.0,
+     247
+    ],
+    [
+     26.0,
+     269
+    ],
+    [
+     27.0,
+     290
+    ],
+    [
+     28.0,
+     311
+    ],
+    [
+     29.0,
+     328
+    ],
+    [
+     30.0,
+     347
+    ],
+    [
+     31.0,
+     371
+    ],
+    [
+     32.0,
+     399
+    ],
+    [
+     33.0,
+     429
+    ],
+    [
+     34.0,
+     459
+    ],
+    [
+     35.0,
+     485
+    ],
+    [
+     36.0,
+     510
+    ],
+    [
+     37.0,
+     538
+    ],
+    [
+     38.0,
+     567
+    ],
+    [
+     39.0,
+     595
+    ],
+    [
+     40.0,
+     619
+    ],
+    [
+     41.0,
+     640
+    ],
+    [
+     42.0,
+     656
+    ],
+    [
+     43.0,
+     670
+    ],
+    [
+     44.0,
+     686
+    ],
+    [
+     45.0,
+     704
+    ],
+    [
+     46.0,
+     726
+    ],
+    [
+     47.0,
+     752
+    ],
+    [
+     48.0,
+     781
+    ],
+    [
+     49.0,
+     810
+    ],
+    [
+     50.0,
+     836
+    ],
+    [
+     51.0,
+     858
+    ],
+    [
+     52.0,
+     876
+    ],
+    [
+     53.0,
+     890
+    ],
+    [
+     54.0,
+     904
+    ],
+    [
+     55.0,
+     920
+    ],
+    [
+     56.0,
+     932
+    ],
+    [
+     57.0,
+     946
+    ],
+    [
+     58.0,
+     964
+    ],
+    [
+     59.0,
+     986
+    ],
+    [
+     60.0,
+     1008
+    ],
+    [
+     61.0,
+     1030
+    ],
+    [
+     62.0,
+     1055
+    ],
+    [
+     63.0,
+     1083
+    ],
+    [
+     64.0,
+     1112
+    ],
+    [
+     65.0,
+     1141
+    ],
+    [
+     66.0,
+     1167
+    ],
+    [
+     67.0,
+     1191
+    ],
+    [
+     68.0,
+     1219
+    ],
+    [
+     69.0,
+     1245
+    ],
+    [
+     70.0,
+     1270
+    ],
+    [
+     71.0,
+     1292
+    ],
+    [
+     72.0,
+     1312
+    ],
+    [
+     73.0,
+     1336
+    ],
+    [
+     74.0,
+     1360
+    ],
+    [
+     75.0,
+     1382
+    ],
+    [
+     76.0,
+     1402
+    ],
+    [
+     77.0,
+     1425
+    ],
+    [
+     78.0,
+     1446
+    ],
+    [
+     79.0,
+     1468
+    ],
+    [
+     80.0,
+     1490
+    ],
+    [
+     81.0,
+     1510
+    ],
+    [
+     82.0,
+     1526
+    ],
+    [
+     83.0,
+     1540
+    ],
+    [
+     84.0,
+     1555
+    ],
+    [
+     85.0,
+     1570
+    ],
+    [
+     86.0,
+     1588
+    ],
+    [
+     87.0,
+     1607
+    ],
+    [
+     88.0,
+     1629
+    ],
+    [
+     89.0,
+     1647
+    ],
+    [
+     90.0,
+     1662
+    ],
+    [
+     91.0,
+     1679
+    ],
+    [
+     92.0,
+     1698
+    ],
+    [
+     93.0,
+     1720
+    ],
+    [
+     94.0,
+     1745
+    ],
+    [
+     95.0,
+     1767
+    ],
+    [
+     96.0,
+     1785
+    ],
+    [
+     97.0,
+     1800
+    ],
+    [
+     98.0,
+     1816
+    ],
+    [
+     99.0,
+     1835
+    ],
+    [
+     100.0,
+     1851
+    ],
+    [
+     101.0,
+     1868
+    ],
+    [
+     102.0,
+     1887
+    ],
+    [
+     103.0,
+     1911
+    ],
+    [
+     104.0,
+     1938
+    ],
+    [
+     105.0,
+     1966
+    ],
+    [
+     106.0,
+     1996
+    ],
+    [
+     107.0,
+     2025
+    ],
+    [
+     108.0,
+     2053
+    ],
+    [
+     109.0,
+     2083
+    ],
+    [
+     110.0,
+     2109
+    ],
+    [
+     111.0,
+     2131
+    ],
+    [
+     112.0,
+     2149
+    ],
+    [
+     113.0,
+     2166
+    ],
+    [
+     114.0,
+     2182
+    ],
+    [
+     115.0,
+     2194
+    ],
+    [
+     116.0,
+     2205
+    ],
+    [
+     117.0,
+     2215
+    ],
+    [
+     118.0,
+     2229
+    ],
+    [
+     119.0,
+     2247
+    ],
+    [
+     120.0,
+     2267
+    ],
+    [
+     121.0,
+     2284
+    ],
+    [
+     122.0,
+     2302
+    ],
+    [
+     123.0,
+     2318
+    ],
+    [
+     124.0,
+     2330
+    ],
+    [
+     125.0,
+     2340
+    ],
+    [
+     126.0,
+     2354
+    ],
+    [
+     127.0,
+     2371
+    ],
+    [
+     128.0,
+     2390
+    ],
+    [
+     129.0,
+     2414
+    ],
+    [
+     130.0,
+     2442
+    ],
+    [
+     131.0,
+     2471
+    ],
+    [
+     132.0,
+     2500
+    ],
+    [
+     133.0,
+     2526
+    ],
+    [
+     134.0,
+     2551
+    ],
+    [
+     135.0,
+     2577
+    ],
+    [
+     136.0,
+     2606
+    ],
+    [
+     137.0,
+     2634
+    ],
+    [
+     138.0,
+     2660
+    ],
+    [
+     139.0,
+     2682
+    ],
+    [
+     140.0,
+     2702
+    ],
+    [
+     141.0,
+     2720
+    ],
+    [
+     142.0,
+     2741
+    ],
+    [
+     143.0,
+     2759
+    ],
+    [
+     144.0,
+     2773
+    ],
+    [
+     145.0,
+     2784
+    ],
+    [
+     146.0,
+     2798
+    ],
+    [
+     147.0,
+     2816
+    ],
+    [
+     148.0,
+     2837
+    ],
+    [
+     149.0,
+     2857
+    ],
+    [
+     150.0,
+     2879
+    ],
+    [
+     151.0,
+     2903
+    ],
+    [
+     152.0,
+     2930
+    ],
+    [
+     153.0,
+     2954
+    ],
+    [
+     154.0,
+     2975
+    ],
+    [
+     155.0,
+     2991
+    ],
+    [
+     156.0,
+     3007
+    ],
+    [
+     157.0,
+     3023
+    ],
+    [
+     158.0,
+     3042
+    ],
+    [
+     159.0,
+     3059
+    ],
+    [
+     160.0,
+     3077
+    ],
+    [
+     161.0,
+     3099
+    ],
+    [
+     162.0,
+     3125
+    ],
+    [
+     163.0,
+     3154
+    ],
+    [
+     164.0,
+     3183
+    ],
+    [
+     165.0,
+     3210
+    ],
+    [
+     166.0,
+     3236
+    ],
+    [
+     167.0,
+     3258
+    ],
+    [
+     168.0,
+     3279
+    ],
+    [
+     169.0,
+     3295
+    ],
+    [
+     170.0,
+     3307
+    ],
+    [
+     171.0,
+     3321
+    ],
+    [
+     172.0,
+     3339
+    ],
+    [
+     173.0,
+     3361
+    ],
+    [
+     174.0,
+     3387
+    ],
+    [
+     175.0,
+     3413
+    ],
+    [
+     176.0,
+     3435
+    ],
+    [
+     177.0,
+     3455
+    ],
+    [
+     178.0,
+     3478
+    ],
+    [
+     179.0,
+     3499
+    ],
+    [
+     180.0,
+     3523
+    ],
+    [
+     181.0,
+     3550
+    ],
+    [
+     182.0,
+     3579
+    ],
+    [
+     183.0,
+     3607
+    ],
+    [
+     184.0,
+     3631
+    ],
+    [
+     185.0,
+     3652
+    ],
+    [
+     186.0,
+     3668
+    ],
+    [
+     187.0,
+     3681
+    ],
+    [
+     188.0,
+     3697
+    ],
+    [
+     189.0,
+     3716
+    ],
+    [
+     190.0,
+     3740
+    ],
+    [
+     191.0,
+     3766
+    ],
+    [
+     192.0,
+     3790
+    ],
+    [
+     193.0,
+     3818
+    ],
+    [
+     194.0,
+     3848
+    ],
+    [
+     195.0,
+     3878
+    ],
+    [
+     196.0,
+     3907
+    ],
+    [
+     197.0,
+     3933
+    ],
+    [
+     198.0,
+     3958
+    ],
+    [
+     199.0,
+     3980
+    ],
+    [
+     200.0,
+     3998
+    ],
+    [
+     201.0,
+     4012
+    ],
+    [
+     202.0,
+     4023
+    ],
+    [
+     203.0,
+     4029
+    ],
+    [
+     204.0,
+     4037
+    ],
+    [
+     205.0,
+     4048
+    ],
+    [
+     206.0,
+     4060
+    ],
+    [
+     207.0,
+     4073
+    ],
+    [
+     208.0,
+     4089
+    ],
+    [
+     209.0,
+     4108
+    ],
+    [
+     210.0,
+     4126
+    ],
+    [
+     211.0,
+     4144
+    ],
+    [
+     212.0,
+     4163
+    ],
+    [
+     213.0,
+     4182
+    ],
+    [
+     214.0,
+     4204
+    ],
+    [
+     215.0,
+     4230
+    ],
+    [
+     216.0,
+     4259
+    ],
+    [
+     217.0,
+     4285
+    ],
+    [
+     218.0,
+     4307
+    ],
+    [
+     219.0,
+     4325
+    ],
+    [
+     220.0,
+     4339
+    ],
+    [
+     221.0,
+     4350
+    ],
+    [
+     222.0,
+     4364
+    ],
+    [
+     223.0,
+     4380
+    ],
+    [
+     224.0,
+     4398
+    ],
+    [
+     225.0,
+     4417
+    ],
+    [
+     226.0,
+     4441
+    ],
+    [
+     227.0,
+     4465
+    ],
+    [
+     228.0,
+     4486
+    ],
+    [
+     229.0,
+     4505
+    ],
+    [
+     230.0,
+     4526
+    ],
+    [
+     231.0,
+     4544
+    ],
+    [
+     232.0,
+     4562
+    ],
+    [
+     233.0,
+     4580
+    ],
+    [
+     234.0,
+     4601
+    ],
+    [
+     235.0,
+     4622
+    ],
+    [
+     236.0,
+     4641
+    ],
+    [
+     237.0,
+     4659
+    ],
+    [
+     238.0,
+     4674
+    ],
+    [
+     239.0,
+     4690
+    ],
+    [
+     240.0,
+     4709
+    ],
+    [
+     241.0,
+     4731
+    ],
+    [
+     242.0,
+     4757
+    ],
+    [
+     243.0,
+     4786
+    ],
+    [
+     244.0,
+     4812
+    ],
+    [
+     245.0,
+     4834
+    ],
+    [
+     246.0,
+     4854
+    ],
+    [
+     247.0,
+     4872
+    ],
+    [
+     248.0,
+     4890
+    ],
+    [
+     249.0,
+     4911
+    ],
+    [
+     250.0,
+     4929
+    ],
+    [
+     251.0,
+     4947
+    ],
+    [
+     252.0,
+     4966
+    ],
+    [
+     253.0,
+     4990
+    ],
+    [
+     254.0,
+     5014
+    ],
+    [
+     255.0,
+     5035
+    ],
+    [
+     256.0,
+     5051
+    ],
+    [
+     257.0,
+     5064
+    ],
+    [
+     258.0,
+     5076
+    ],
+    [
+     259.0,
+     5090
+    ],
+    [
+     260.0,
+     5107
+    ],
+    [
+     261.0,
+     5122
+    ],
+    [
+     262.0,
+     5140
+    ],
+    [
+     263.0,
+     5162
+    ],
+    [
+     264.0,
+     5187
+    ],
+    [
+     265.0,
+     5210
+    ],
+    [
+     266.0,
+     5234
+    ],
+    [
+     267.0,
+     5259
+    ],
+    [
+     268.0,
+     5287
+    ],
+    [
+     269.0,
+     5315
+    ],
+    [
+     270.0,
+     5342
+    ],
+    [
+     271.0,
+     5366
+    ],
+    [
+     272.0,
+     5389
+    ],
+    [
+     273.0,
+     5415
+    ],
+    [
+     274.0,
+     5444
+    ],
+    [
+     275.0,
+     5472
+    ],
+    [
+     276.0,
+     5496
+    ],
+    [
+     277.0,
+     5517
+    ],
+    [
+     278.0,
+     5533
+    ],
+    [
+     279.0,
+     5549
+    ],
+    [
+     280.0,
+     5568
+    ],
+    [
+     281.0,
+     5589
+    ],
+    [
+     282.0,
+     5605
+    ],
+    [
+     283.0,
+     5623
+    ],
+    [
+     284.0,
+     5642
+    ],
+    [
+     285.0,
+     5663
+    ],
+    [
+     286.0,
+     5686
+    ],
+    [
+     287.0,
+     5710
+    ],
+    [
+     288.0,
+     5735
+    ],
+    [
+     289.0,
+     5763
+    ],
+    [
+     290.0,
+     5791
+    ],
+    [
+     291.0,
+     5815
+    ],
+    [
+     292.0,
+     5836
+    ],
+    [
+     293.0,
+     5852
+    ],
+    [
+     294.0,
+     5865
+    ],
+    [
+     295.0,
+     5880
+    ],
+    [
+     296.0,
+     5896
+    ],
+    [
+     297.0,
+     5915
+    ],
+    [
+     298.0,
+     5939
+    ],
+    [
+     299.0,
+     5962
+    ],
+    [
+     300.0,
+     5988
+    ],
+    [
+     301.0,
+     6014
+    ],
+    [
+     302.0,
+     6036
+    ],
+    [
+     303.0,
+     6054
+    ],
+    [
+     304.0,
+     6072
+    ],
+    [
+     305.0,
+     6093
+    ],
+    [
+     306.0,
+     6113
+    ],
+    [
+     307.0,
+     6134
+    ],
+    [
+     308.0,
+     6153
+    ],
+    [
+     309.0,
+     6169
+    ],
+    [
+     310.0,
+     6186
+    ],
+    [
+     311.0,
+     6205
+    ],
+    [
+     312.0,
+     6226
+    ],
+    [
+     313.0,
+     6245
+    ],
+    [
+     314.0,
+     6267
+    ],
+    [
+     315.0,
+     6290
+    ],
+    [
+     316.0,
+     6311
+    ],
+    [
+     317.0,
+     6327
+    ],
+    [
+     318.0,
+     6343
+    ],
+    [
+     319.0,
+     6362
+    ],
+    [
+     320.0,
+     6386
+    ],
+    [
+     321.0,
+     6414
+    ],
+    [
+     322.0,
+     6442
+    ],
+    [
+     323.0,
+     6467
+    ],
+    [
+     324.0,
+     6489
+    ],
+    [
+     325.0,
+     6507
+    ],
+    [
+     326.0,
+     6525
+    ],
+    [
+     327.0,
+     6543
+    ],
+    [
+     328.0,
+     6561
+    ],
+    [
+     329.0,
+     6581
+    ],
+    [
+     330.0,
+     6600
+    ],
+    [
+     331.0,
+     6624
+    ],
+    [
+     332.0,
+     6652
+    ],
+    [
+     333.0,
+     6682
+    ],
+    [
+     334.0,
+     6712
+    ],
+    [
+     334.8,
+     6736
+    ]
+   ]
+  },
+  "v5": {
+   "video": "v5_2023_m3.mp4 (2023, BMW M3 E30, vitesse de course, version 6,89 km)",
+   "methode": "repères visuels seulement, interpolation linéaire entre eux ; le lacet mesuré dans le petit pare-brise de la M3 est trop bruité pour un recalage fin",
+   "reperes": [
+    {
+     "t_s": 19.6,
+     "pk_m": 0,
+     "repere": "départ arrêté (même site qu'en 2025 : courbe à gauche juste après, horloge à droite) ; position exacte de la ligne 2023 non établie, ±40 m"
+    },
+    {
+     "t_s": 65.5,
+     "pk_m": 1500,
+     "repere": "débouché de piste en terre à gauche, voiture garée, rubalise"
+    },
+    {
+     "t_s": 87.0,
+     "pk_m": 2140,
+     "repere": "parapet à dés blancs du gauche 4 avant l'épingle droite"
+    },
+    {
+     "t_s": 133.1,
+     "pk_m": 3646,
+     "repere": "Lion d'Or : mi-virage du gauche serré"
+    },
+    {
+     "t_s": 146.0,
+     "pk_m": 4075,
+     "repere": "épingle droite de la D1 à parapets de pierre"
+    },
+    {
+     "t_s": 163.7,
+     "pk_m": 4360,
+     "repere": "pont 4360 (parapets à dés blancs)"
+    },
+    {
+     "t_s": 168.0,
+     "pk_m": 4463,
+     "repere": "pont 4463"
+    },
+    {
+     "t_s": 192.6,
+     "pk_m": 5554,
+     "repere": "pont 5554 (béton, balise bleue à gauche)"
+    },
+    {
+     "t_s": 226.3,
+     "pk_m": 6495,
+     "repere": "croisement de pistes après un petit pont : appariement incertain, ±40 m"
+    }
+   ],
+   "incertitude_m": "±15 m aux repères, ±40 à 60 m entre eux ; la vidéo s'arrête à t = 230 s, vers PK 6550-6700, avant ou à peu près sur l'arrivée 2025 : l'écart de longueur 2023/2025 (≈ 190 m) ne peut pas être localisé avec elle",
+   "decalage_depart": "le départ 2023 est vu au même endroit que le départ 2025 (à une quarantaine de mètres près) ; la différence de longueur se trouve donc probablement à l'arrivée, non vérifiable sur cette vidéo",
+   "table_t_s_pk_m": [
+    [
+     20.0,
+     13
+    ],
+    [
+     25.0,
+     176
+    ],
+    [
+     30.0,
+     340
+    ],
+    [
+     35.0,
+     503
+    ],
+    [
+     40.0,
+     667
+    ],
+    [
+     45.0,
+     830
+    ],
+    [
+     50.0,
+     993
+    ],
+    [
+     55.0,
+     1157
+    ],
+    [
+     60.0,
+     1320
+    ],
+    [
+     65.0,
+     1484
+    ],
+    [
+     70.0,
+     1634
+    ],
+    [
+     75.0,
+     1783
+    ],
+    [
+     80.0,
+     1932
+    ],
+    [
+     85.0,
+     2080
+    ],
+    [
+     90.0,
+     2238
+    ],
+    [
+     95.0,
+     2401
+    ],
+    [
+     100.0,
+     2565
+    ],
+    [
+     105.0,
+     2728
+    ],
+    [
+     110.0,
+     2891
+    ],
+    [
+     115.0,
+     3055
+    ],
+    [
+     120.0,
+     3218
+    ],
+    [
+     125.0,
+     3381
+    ],
+    [
+     130.0,
+     3545
+    ],
+    [
+     135.0,
+     3709
+    ],
+    [
+     140.0,
+     3875
+    ],
+    [
+     145.0,
+     4042
+    ],
+    [
+     150.0,
+     4139
+    ],
+    [
+     155.0,
+     4220
+    ],
+    [
+     160.0,
+     4300
+    ],
+    [
+     165.0,
+     4391
+    ],
+    [
+     170.0,
+     4552
+    ],
+    [
+     175.0,
+     4773
+    ],
+    [
+     180.0,
+     4995
+    ],
+    [
+     185.0,
+     5217
+    ],
+    [
+     190.0,
+     5439
+    ],
+    [
+     195.0,
+     5621
+    ],
+    [
+     200.0,
+     5761
+    ],
+    [
+     205.0,
+     5900
+    ],
+    [
+     210.0,
+     6040
+    ],
+    [
+     215.0,
+     6179
+    ],
+    [
+     220.0,
+     6319
+    ],
+    [
+     225.0,
+     6459
+    ]
+   ]
+  },
+  "v1": {
+   "video": "v1_2025_clio.mp4 (2025, ES 4, de nuit)",
+   "usage": "non calée ; utilisée seulement pour l'approche du départ (t = 0-19 s : la voiture avance de ≈ PK -25 jusqu'à la ligne) : route à deux voies, véhicule garé à gauche, balise à chevrons à droite au début de la courbe à gauche, feux du chrono à droite"
+  }
+ },
+ "sections_douteuses": [
+  {
+   "id": "depart",
+   "pk_debut": -60,
+   "pk_fin": 60,
+   "motif": "zone du départ sous les arbres, largeur calculée 8 à 9,5 m",
+   "donnees": {
+    "largeur_m": "8,4 à 9,5 de -50 à -20 (interpolé/lidar) ; 8,3 au PK 0 ; 7,1 au PK 10 ; 5,8 à 6,9 de 20 à 60"
+   },
+   "temps_v2_s": "10,8-17,7 (PK 0 à 60) ; PK -60 à 0 non visible sur v2 (voiture déjà sur la ligne), seulement de nuit sur v1",
+   "constat": "Vu (v2) : deux voies, axiale discontinue, rives blanches. À la ligne, véhicules de secours garés sur la gauche, à cheval sur le bord de l'enrobé, sur un dégagement dont le revêtement ne se voit pas ; à droite trépied de cellule et entrée de piste barrée par une rubalise (GC 107). Largeur mesurée sur la rangée d'image calibrée : ≈ 6,9 m vers PK 5-8, ≈ 6,6 m au PK 40, ≈ 6,4 m au PK 55. Vu (v1, nuit) : de PK ≈ -25 à 0, route à deux voies ordinaire, voiture garée à gauche. Déduit : les 8 à 9,5 m viennent du dégagement de stationnement de gauche, pas de la chaussée.",
+   "proposition": {
+    "PK -60 à -5": {
+     "largeur_m": 6.6,
+     "cote_a_corriger": "gauche",
+     "decalage_bord_gauche_m": "-1,0 à -1,5 vers l'axe (ramener à 6,6 m en gardant le bord droit)",
+     "confiance": "faible"
+    },
+    "PK -5 à +10": {
+     "largeur_m": 7.0,
+     "cote_a_corriger": "gauche",
+     "note": "modéliser à part, à gauche de PK -30 à +5, un dégagement de 3 m environ (stationnement des secours), surface à choisir (terre ou enrobé)",
+     "confiance": "moyenne"
+    },
+    "PK +10 à +60": {
+     "largeur_m": "conserver le lidar (6,2 à 7,1)",
+     "confiance": "moyenne"
+    }
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "313-319",
+   "pk_debut": 313,
+   "pk_fin": 319,
+   "motif": "largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "8,3-8,6"
+   },
+   "temps_v2_s": "28-28,4",
+   "constat": "Vu : courbe à gauche, talus rocheux à gauche, deux voies sans surlargeur visible. Mesure peu fiable (courbe).",
+   "proposition": {
+    "largeur_m": 7.0,
+    "cote_a_corriger": "les deux, symétrique"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "451-473",
+   "pk_debut": 451,
+   "pk_fin": 473,
+   "motif": "interpolé (surlargeur ou bord indécidable)",
+   "donnees": {
+    "largeur_m": "7,1-7,7"
+   },
+   "temps_v2_s": "33,7-34,5",
+   "constat": "Vu : sortie de droite 5, deux voies normales, accotement herbeux à droite, talus à gauche ; pas de refuge.",
+   "proposition": {
+    "largeur_m": 6.8,
+    "cote_a_corriger": "symétrique (écart faible)"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "487-537",
+   "pk_debut": 487,
+   "pk_fin": 537,
+   "motif": "interpolé, largeur jusqu'à 9,5 m (plafond)",
+   "donnees": {
+    "largeur_m": "8,9-9,5"
+   },
+   "temps_v2_s": "35,0-37,0",
+   "constat": "Vu : gauche 4 en descente, deux voies marquées, voie intérieure (gauche) un peu plus large que l'autre, accotement herbeux puis talus rocheux à gauche, végétation à droite. Aucune troisième voie, aucun refuge. Déduit : surlargeur de virage modeste, au plus 1 m.",
+   "proposition": {
+    "largeur_m": 7.3,
+    "cote_a_corriger": "gauche (intérieur)",
+    "detail": "bord droit à 3,4 m de l'axe actuel, bord gauche ramené de 4,75 à 3,9 m"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "675-739",
+   "pk_debut": 675,
+   "pk_fin": 739,
+   "motif": "largeur ≥ 8,3 (interpolé 706-731)",
+   "donnees": {
+    "largeur_m": "8,3-9,4"
+   },
+   "temps_v2_s": "43-46",
+   "constat": "Vu : droite 3, deux voies, large accotement herbeux à droite (intérieur) au niveau du sol, rochers et talus à gauche. Déduit : l'accotement herbeux a été pris pour de la chaussée.",
+   "proposition": {
+    "largeur_m": 7.0,
+    "cote_a_corriger": "droite",
+    "decalage_bord_droit_m": "-1,3 vers l'axe au plus large"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "1473-1499",
+   "pk_debut": 1473,
+   "pk_fin": 1499,
+   "motif": "interpolé (pont + débouché)",
+   "donnees": {
+    "largeur_m": "5,3-7,9 (médiane 6,6)"
+   },
+   "temps_v2_s": "79,2-80,7",
+   "constat": "Vu : ligne droite, deux voies, ≈ 5,9 à 6,2 m mesurés ; à gauche débouché d'une piste en terre (voiture garée, panneau bleu, rubalise) au niveau de la chaussée ; aucun parapet ni ponceau visible ici.",
+   "proposition": {
+    "largeur_m": 6.2,
+    "cote_a_corriger": "symétrique",
+    "detail": "remplacer la rampe 5,3 → 7,9 m par 6,2 m constant de 1470 à 1500 ; débouché en terre à gauche 1490-1505"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "1584-1602",
+   "pk_debut": 1584,
+   "pk_fin": 1602,
+   "motif": "largeur ≤ 5,0 (lidar)",
+   "donnees": {
+    "largeur_m": "4,8-5,0"
+   },
+   "temps_v2_s": "85,8-86,6",
+   "constat": "Vu : fin du gauche 3 bordé à droite par le long parapet à dés blancs, rochers à gauche ; deux voies complètes avec rives. Mesure gênée par la courbe.",
+   "proposition": {
+    "largeur_m": 5.6,
+    "cote_a_corriger": "gauche (côté rocher)",
+    "decalage_bord_gauche_m": "+0,7 vers l'extérieur"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "1639-1693",
+   "pk_debut": 1639,
+   "pk_fin": 1693,
+   "motif": "largeur ≥ 8,3 (ortho/interpolé), pont 1661",
+   "donnees": {
+    "largeur_m": "8,3-9,5"
+   },
+   "temps_v2_s": "88,5-91,4",
+   "constat": "Vu : pont dans le droite 3, parapets des deux côtés (à dés blancs à gauche, pierre à droite), deux voies larges ; ≈ 7 m entre parapets (mesure en courbe, tendance à surestimer).",
+   "proposition": {
+    "PK 1645-1675": {
+     "largeur_m": 7.0,
+     "cote_a_corriger": "symétrique, bords sur le pied des parapets"
+    },
+    "PK 1675-1693": {
+     "largeur_m": 6.5
+    }
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "1742-1747",
+   "pk_debut": 1742,
+   "pk_fin": 1747,
+   "motif": "largeur ≤ 5,0",
+   "donnees": {
+    "largeur_m": "4,9"
+   },
+   "temps_v2_s": "93,8",
+   "constat": "Vu : gauche 3, glissière à droite, rocher à gauche, deux voies ; ≈ 5,5 à 6 m.",
+   "proposition": {
+    "largeur_m": 5.6,
+    "cote_a_corriger": "gauche"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "1926-1980",
+   "pk_debut": 1926,
+   "pk_fin": 1980,
+   "motif": "interpolé (pont + débouché), largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "7,5-9,2"
+   },
+   "temps_v2_s": "103,6-105,6",
+   "constat": "Vu : deux voies ≈ 6,4 à 6,8 m, glissière simple sur tout le côté droit au ras de la rive (vue sur la vallée), talus rocheux puis aire en terre à gauche vers PK 1960-1975. Aucun parapet de pont visible au droit de l'ouvrage BD TOPO 1955-1966.",
+   "proposition": {
+    "largeur_m": 6.6,
+    "cote_a_corriger": "gauche",
+    "detail": "bord droit = pied de la glissière ; ramener le bord gauche ; aire en terre gauche 1960-1975 à modéliser hors chaussée"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "2092-2178",
+   "pk_debut": 2092,
+   "pk_fin": 2178,
+   "motif": "largeur ≤ 5,0 (lidar)",
+   "donnees": {
+    "largeur_m": "4,3-5,0"
+   },
+   "temps_v2_s": "109,4-113,7",
+   "constat": "Vu : la route est réellement plus étroite ici : voies visiblement plus étroites qu'ailleurs, glissière à droite puis long parapet à dés blancs (2131-2174) à l'extérieur du gauche 4, rocher taillé à gauche. Mesuré ≈ 4,6 à 5,0 m de rive à rive + accotements, soit 5,0 à 5,3 m d'enrobé.",
+   "proposition": {
+    "largeur_m": "conserver, avec un minimum de 4,9 m (relever les points à 4,3-4,8)",
+    "cote_a_corriger": "gauche (rocher)"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "2453-2464",
+   "pk_debut": 2453,
+   "pk_fin": 2464,
+   "motif": "largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "8,3-8,4"
+   },
+   "temps_v2_s": "130,2-130,7",
+   "constat": "Vu : ligne droite en descente, deux voies ≈ 5,6 m d'enrobé, puis à droite large accotement de terre plat (2 à 3 m). Déduit : la terre a été comptée comme chaussée.",
+   "proposition": {
+    "largeur_m": 6.0,
+    "cote_a_corriger": "droite",
+    "decalage_bord_droit_m": -2.3
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "2735-2757",
+   "pk_debut": 2735,
+   "pk_fin": 2757,
+   "motif": "interpolé",
+   "donnees": {
+    "largeur_m": "6,6-8,1"
+   },
+   "temps_v2_s": "141,7-142,9",
+   "constat": "Vu : entrée du droite sur le pont 2777, chaussée large (≈ 7,5 m mesurés), aire en terre à droite, blocs de béton bas à gauche vers PK 2700.",
+   "proposition": {
+    "largeur_m": 7.5,
+    "cote_a_corriger": "aucun (cohérent)"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "2760-2789",
+   "pk_debut": 2760,
+   "pk_fin": 2789,
+   "motif": "interpolé (pont), largeur ≤ 5,0",
+   "donnees": {
+    "largeur_m": "4,7"
+   },
+   "temps_v2_s": "143,1-145,0",
+   "constat": "Vu : pont 2777 dans un droite serré, parapets à dés blancs des deux côtés, deux voies complètes avec axiale et rives entre les parapets. 4,7 m est impossible : estimé 6,5 à 7 m entre parapets.",
+   "proposition": {
+    "largeur_m": 6.8,
+    "cote_a_corriger": "les deux, symétrique (parapets des deux côtés)"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "3104-3109",
+   "pk_debut": 3104,
+   "pk_fin": 3109,
+   "motif": "largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "8,3-8,5"
+   },
+   "temps_v2_s": "161,1-161,3",
+   "constat": "Vu : ligne droite, deux voies ≈ 5,5 m, talus de terre à droite.",
+   "proposition": {
+    "largeur_m": 5.8,
+    "cote_a_corriger": "droite",
+    "decalage_bord_droit_m": -2.5
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "3331-3345",
+   "pk_debut": 3331,
+   "pk_fin": 3345,
+   "motif": "largeur ≤ 5,0 (lidar)",
+   "donnees": {
+    "largeur_m": "4,6-5,0"
+   },
+   "temps_v2_s": "171,6-172,2",
+   "constat": "Vu : deux voies, glissière à droite qui se termine, panneau directionnel bleu ; ≈ 5,2 m.",
+   "proposition": {
+    "largeur_m": 5.2,
+    "cote_a_corriger": "droite"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "3356-3399",
+   "pk_debut": 3356,
+   "pk_fin": 3399,
+   "motif": "largeur ≤ 5,0 (interpolé + lidar)",
+   "donnees": {
+    "largeur_m": "4,25-5,0"
+   },
+   "temps_v2_s": "172,8-174,4",
+   "constat": "Vu : deux voies normales, ≈ 5,9 à 6,4 m mesurés ; à droite aire de stationnement en terre au niveau de la route, barrières de bois, marches en bois, spectateurs. Déduit : bord droit indécidable pour le lidar.",
+   "proposition": {
+    "largeur_m": 6.0,
+    "cote_a_corriger": "droite",
+    "decalage_bord_droit_m": "+1,0 à +1,5 vers l'extérieur"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "3424-3456",
+   "pk_debut": 3424,
+   "pk_fin": 3456,
+   "motif": "interpolé (pont + débouché)",
+   "donnees": {
+    "largeur_m": "7,35 → 5,2"
+   },
+   "temps_v2_s": "175,5-177,0",
+   "constat": "Vu : petits parapets de pierre à extrémités de béton blanc des deux côtés vers PK 3446 (6-8 m de long), deux voies ≈ 6,5 m.",
+   "proposition": {
+    "largeur_m": 6.6,
+    "cote_a_corriger": "symétrique",
+    "detail": "remplacer la rampe par 6,6 m constant"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "3577-3600",
+   "pk_debut": 3577,
+   "pk_fin": 3600,
+   "motif": "largeur ≤ 5,0",
+   "donnees": {
+    "largeur_m": "4,75-4,97"
+   },
+   "temps_v2_s": "181,8-182,7",
+   "constat": "Vu : approche du Lion d'Or, axiale continue, rives, ≈ 5,5 m.",
+   "proposition": {
+    "largeur_m": 5.5,
+    "cote_a_corriger": "symétrique"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "3907-3976",
+   "pk_debut": 3907,
+   "pk_fin": 3976,
+   "motif": "largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "8,3-9,2"
+   },
+   "temps_v2_s": "195,9-198,6",
+   "constat": "Vu : long gauche de la D1 en montée, glissière à l'extérieur (droite), talus rocheux à gauche ; deux voies, plus larges que sur la D3D ; ≈ 7 m (mesure en courbe).",
+   "proposition": {
+    "largeur_m": 7.3,
+    "cote_a_corriger": "gauche (intérieur)"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4060-4117",
+   "pk_debut": 4060,
+   "pk_fin": 4117,
+   "motif": "largeur ≥ 8,3 et interpolé (épingle)",
+   "donnees": {
+    "largeur_m": "7,6-8,5"
+   },
+   "temps_v2_s": "205,8-209,0",
+   "constat": "Vu : épingle droite à parapets de pierre ; à la sortie, grande surface d'enrobé à gauche qui se fond dans la terre. Largeur de 7,5 à 8,5 m plausible.",
+   "proposition": {
+    "largeur_m": "conserver"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4188-4196",
+   "pk_debut": 4188,
+   "pk_fin": 4196,
+   "motif": "largeur ≤ 5,0",
+   "donnees": {
+    "largeur_m": "4,9-5,0"
+   },
+   "temps_v2_s": "213,1-213,5",
+   "constat": "Vu : gauche, glissière à droite, rocher à gauche ; ≈ 5,5 m (courbe).",
+   "proposition": {
+    "largeur_m": 5.5
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4325-4375",
+   "pk_debut": 4325,
+   "pk_fin": 4375,
+   "motif": "interpolé (pont 4360), largeurs 9,1 et 4,8",
+   "donnees": {
+    "largeur_m": "6,5-9,1 puis 4,8 à 4370-4375"
+   },
+   "temps_v2_s": "219,1-222,3",
+   "constat": "Vu : pas d'axiale sur l'approche ; pont à parapets à dés blancs (tagués) des deux côtés ; ≈ 6,3-6,6 m entre bord et parapet ; après le pont ≈ 6,5 à 7 m avec axiale revenue.",
+   "proposition": {
+    "largeur_m": 6.5,
+    "cote_a_corriger": "symétrique",
+    "detail": "6,5 m constant de 4325 à 4375 (supprime le pic à 9,1 et le creux à 4,8)"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4417-4446",
+   "pk_debut": 4417,
+   "pk_fin": 4446,
+   "motif": "interpolé (pont 4463)",
+   "donnees": {
+    "largeur_m": "6,3-7,6"
+   },
+   "temps_v2_s": "225,0-226,7",
+   "constat": "Vu : pont à parapets à dés blancs des deux côtés dans le gauche 4 ; ≈ 6,5 m entre parapets.",
+   "proposition": {
+    "largeur_m": 6.6
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4565-4585",
+   "pk_debut": 4565,
+   "pk_fin": 4585,
+   "motif": "largeur ≤ 5,0 (4572-4582)",
+   "donnees": {
+    "largeur_m": "4,3-4,9"
+   },
+   "temps_v2_s": "232,2-232,8",
+   "constat": "Vu : ponceau à parapets de béton bas des deux côtés (non modélisé), deux voies complètes ; ≈ 5,6 m.",
+   "proposition": {
+    "largeur_m": 5.8,
+    "cote_a_corriger": "symétrique",
+    "ajout": "parapets béton ≈ 0,6 m de haut, 8 à 10 m de long, des deux côtés, centrés PK ≈ 4572"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4670-4690",
+   "pk_debut": 4670,
+   "pk_fin": 4690,
+   "motif": "largeur ≤ 5,0 (4675-4684)",
+   "donnees": {
+    "largeur_m": "4,3-5,0"
+   },
+   "temps_v2_s": "237,0-237,8",
+   "constat": "Vu : second ponceau à parapets de béton bas des deux côtés ; ≈ 6 m.",
+   "proposition": {
+    "largeur_m": 6.0,
+    "cote_a_corriger": "symétrique",
+    "ajout": "parapets béton bas des deux côtés, centrés PK ≈ 4675"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4726-4780",
+   "pk_debut": 4726,
+   "pk_fin": 4780,
+   "motif": "interpolé, largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "7,0-8,9"
+   },
+   "temps_v2_s": "240,8-242,8",
+   "constat": "Vu : deux voies, ≈ 6,9 m d'enrobé ; à droite large accotement de terre nue au niveau de la route (≈ 2 m).",
+   "proposition": {
+    "largeur_m": 6.8,
+    "cote_a_corriger": "droite",
+    "decalage_bord_droit_m": "jusqu'à -1,5 au plus large"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "4942-4983",
+   "pk_debut": 4942,
+   "pk_fin": 4983,
+   "motif": "interpolé, largeur jusqu'à 9,5",
+   "donnees": {
+    "largeur_m": "8,1-9,5"
+   },
+   "temps_v2_s": "250,7-252,7",
+   "constat": "Vu : deux voies ≈ 6,5-6,9 m ; à droite aire de terre claire au niveau de la route ; borne/balise jaune à droite vers PK 4970.",
+   "proposition": {
+    "largeur_m": 6.8,
+    "cote_a_corriger": "droite",
+    "decalage_bord_droit_m": "jusqu'à -2,7"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "5528-5548",
+   "pk_debut": 5528,
+   "pk_fin": 5548,
+   "motif": "interpolé (pont 5554)",
+   "donnees": {
+    "largeur_m": "5,5-6,2"
+   },
+   "temps_v2_s": "277,7-279,3",
+   "constat": "Vu : pont à parapets de béton dans le droite 3, balise bleue à chevrons à gauche ; deux voies ; ≈ 6,5 m (mesure en courbe).",
+   "proposition": {
+    "largeur_m": 6.5,
+    "cote_a_corriger": "symétrique"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "5631-5637",
+   "pk_debut": 5631,
+   "pk_fin": 5637,
+   "motif": "largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "8,3-8,4"
+   },
+   "temps_v2_s": "283,3-283,6",
+   "constat": "Vu : approche du croisement de pistes 5662, terre à droite ; ≈ 6,9 m d'enrobé.",
+   "proposition": {
+    "largeur_m": 7.0,
+    "cote_a_corriger": "droite"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "5881-5890",
+   "pk_debut": 5881,
+   "pk_fin": 5890,
+   "motif": "largeur ≤ 5,0",
+   "donnees": {
+    "largeur_m": "4,6-5,0"
+   },
+   "temps_v2_s": "295,0-295,4",
+   "constat": "Vu : gauche 5, deux voies, ≈ 5,5 m.",
+   "proposition": {
+    "largeur_m": 5.6
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "6100-6125",
+   "pk_debut": 6100,
+   "pk_fin": 6125,
+   "motif": "largeur ≤ 5,0 (6106-6124)",
+   "donnees": {
+    "largeur_m": "4,25-4,9"
+   },
+   "temps_v2_s": "305,3-306,3",
+   "constat": "Vu : ponceau à parapets de béton des deux côtés au début du droite 3 ; deux voies complètes ; ≈ 6,5 m de rive à rive. Aucun ouvrage visible en revanche au droit de l'ouvrage BD TOPO 6222-6236 (t ≈ 311 s).",
+   "proposition": {
+    "largeur_m": 6.3,
+    "cote_a_corriger": "symétrique",
+    "ajout": "parapets béton ≈ 0,7 m des deux côtés, centrés PK ≈ 6110 ; l'ouvrage 6222-6236 n'a pas de parapet visible"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "6322-6334",
+   "pk_debut": 6322,
+   "pk_fin": 6334,
+   "motif": "largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "8,3-8,6"
+   },
+   "temps_v2_s": "316,5-317,1",
+   "constat": "Vu : légère crête et débouché de piste en terre à gauche vers PK 6343 ; surlargeur plausible au débouché.",
+   "proposition": {
+    "largeur_m": "7,0 hors débouché"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "6391-6399",
+   "pk_debut": 6391,
+   "pk_fin": 6399,
+   "motif": "largeur ≥ 8,3",
+   "donnees": {
+    "largeur_m": "8,3-8,5"
+   },
+   "temps_v2_s": "320,0-320,4",
+   "constat": "Vu : deux voies ≈ 6,3 m, herbe des deux côtés.",
+   "proposition": {
+    "largeur_m": 6.5,
+    "cote_a_corriger": "symétrique"
+   },
+   "confiance": "moyenne",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  },
+  {
+   "id": "6450-6470",
+   "pk_debut": 6450,
+   "pk_fin": 6470,
+   "motif": "interpolé",
+   "donnees": {
+    "largeur_m": "6,8-7,6"
+   },
+   "temps_v2_s": "322,3-323,1",
+   "constat": "Vu : approche du pont 6492 dans le droite 4 ; deux voies ≈ 6,5-7 m.",
+   "proposition": {
+    "largeur_m": "conserver (≈ 7,0)"
+   },
+   "confiance": "faible",
+   "methode_largeur": "rangée d'image fixe à ≈ 4 m devant la caméra, échelle 0,00575 m/pixel calibrée sur 37 images de lignes droites relevées au lidar (dispersion ±15 %) ; largeur d'enrobé = distance entre rives + 0,5 m ; en courbe la mesure surestime"
+  }
+ ],
+ "carrefour_lion_d_or": {
+  "pk_debut": 3600,
+  "pk_fin": 3720,
+  "temps_v2_s": "182,0-189,5",
+  "temps_v5_s": "130,5-134,5",
+  "constat_v2": [
+   "Approche D3D (PK ≈ 3580-3615) : axiale continue, rives, ≈ 5,5 m, sous-bois.",
+   "PK ≈ 3615-3625 (t ≈ 183,3) : la route se dédouble ; îlot triangulaire peint en blanc (zébras) au centre ; la branche de droite (tout droit vers l'est) est fermée par rubalise, barrières de chantier orange et un panneau bleu d'obligation sur l'îlot.",
+   "L'ES prend la branche de GAUCHE, qui tourne serré à gauche ; à l'intérieur gauche, muret de béton bas tagué (t ≈ 184,0, PK ≈ 3640), puis poteaux de signalisation.",
+   "PK ≈ 3645-3665 (t ≈ 184,6-185,2) : débouché sur la D1, grande surface d'enrobé ; en face, barrières orange, panneau rouge et blanc à chevrons (fermeture de la branche non empruntée) et panneau jaune fixé sur un arbre ; public massé derrière les barrières à droite, camping-car blanc et voitures garées au fond.",
+   "Puis droite 2-3 vers le nord-ouest (t ≈ 186-187), feuilles mortes sur la chaussée, public à gauche sur talus (t ≈ 187)."
+  ],
+  "constat_v5": "même dispositif en 2023 : branche de gauche, virage serré à gauche, public derrière rubalise rouge et blanche à droite à la sortie ; la M3 y passe à vitesse réduite, c'est le point le plus lent avec les deux épingles.",
+  "mi_virage_gauche": {
+   "t_v2_s": 184.8,
+   "pk_m": 3646
+  },
+  "remarque": "description seulement : la géométrie du carrefour est reprise par un autre agent"
+ },
+ "ouvrages_parapets_remarques": [
+  {
+   "objet": "parapet long « pont 1484 »",
+   "constat": "aucun parapet au PK 1484 (ligne droite, débouché de piste en terre à gauche). Le long parapet à dés blancs est à droite le long du gauche 3, de PK ≈ 1538 à ≈ 1584 (t 83,0-85,8), extrémités biseautées en béton blanc ; un mur de pierre bas lui fait suite à droite PK ≈ 1688-1720 après le pont 1661.",
+   "proposition": "déplacer le parapet droit de l'entrée 1484 vers 1535-1590 (droite) ; ne rien mettre au PK 1484",
+   "confiance": "élevée pour l'absence au PK 1484, moyenne pour les bornes"
+  },
+  {
+   "objet": "parapet long « pont 1963 »",
+   "constat": "au PK 1963 : glissière simple à droite, aire de terre à gauche, aucun parapet. Le parapet à dés blancs du relevé précédent (t 110-114) est celui du gauche 4 avant l'épingle, PK ≈ 2131-2174, à droite (extérieur).",
+   "proposition": "remplacer le parapet droit de 1963 par une glissière ; créer le parapet droit 2128-2178",
+   "confiance": "élevée"
+  },
+  {
+   "objet": "ouvrage BD TOPO 6222-6236",
+   "constat": "aucun parapet visible à t ≈ 311 s ; le ponceau à parapets de béton vu à t ≈ 305,6 s est au PK ≈ 6105-6115 (rétrécissement lidar 6106-6124)",
+   "proposition": "parapets béton des deux côtés à 6100-6120",
+   "confiance": "moyenne"
+  },
+  {
+   "objet": "ponceaux non modélisés",
+   "liste": [
+    {
+     "pk_m": 3446,
+     "t_v2_s": 176.7,
+     "cote": "les deux",
+     "type": "pierre, extrémités béton blanc, ≈ 0,5 m, ≈ 6-8 m de long"
+    },
+    {
+     "pk_m": 4572,
+     "t_v2_s": 232.4,
+     "cote": "les deux",
+     "type": "béton bas ≈ 0,6 m"
+    },
+    {
+     "pk_m": 4672,
+     "t_v2_s": 237.3,
+     "cote": "les deux",
+     "type": "béton bas ≈ 0,6 m"
+    },
+    {
+     "pk_m": 6110,
+     "t_v2_s": 305.6,
+     "cote": "les deux",
+     "type": "béton ≈ 0,7 m, dans le droite 3"
+    },
+    {
+     "pk_m": 6685,
+     "t_v2_s": 333.0,
+     "cote": "les deux",
+     "type": "béton bas, juste avant l'arrivée"
+    }
+   ]
+  },
+  {
+   "objet": "pont 4360",
+   "constat": "pas d'axiale sur l'ouvrage et son approche (≈ PK 4325-4375) ; parapets tagués",
+   "proposition": "marquage : axiale absente 4325-4375"
+  },
+  {
+   "objet": "pont 3229",
+   "constat": "parapets de pierre des deux côtés, longs (franchis de t 164,4 à 165,8, soit ≈ 30 m) ; piste et public à droite à l'entrée",
+   "proposition": "parapets 3210-3240"
+  }
+ ],
+ "notes_copilote": {
+  "source": "pacenotes de export/stage_ir/grand_caunet/stage.json lus le 11/11/2026 (55 virages ; le fichier évolue)",
+  "methode": "sens comparé au signe du lacet mesuré sur v2 sur la fenêtre de temps du virage ; sévérité jugée à l'image et sur la vitesse de la voiture de régularité (indicative seulement : allure modérée) ; les 20 plus serrés et tous les cas douteux regardés image par image",
+  "bilan": "sens : 53 sur 55 confirmés, 2 non concluants (6.1 et 15.1), aucun sens inversé ; sévérités cohérentes sauf 13.1 (sous-estimé) et 15.2 (sans doute surestimé) ; 6.1, 15.1, 17.1, 17.2, 20.1 sont de simples inflexions",
+  "virages": [
+   {
+    "appel": "1.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "5",
+    "pk_debut": 223,
+    "pk_fin": 284,
+    "angle_deg": 24.7,
+    "rayon_min_m": 75.3,
+    "t_v2_s": [
+     23.9,
+     26.7
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "1.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 296,
+    "pk_fin": 374,
+    "angle_deg": 58.8,
+    "rayon_min_m": 41.4,
+    "t_v2_s": [
+     27.3,
+     31.1
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "2.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "5",
+    "pk_debut": 407,
+    "pk_fin": 463,
+    "angle_deg": 29.6,
+    "rayon_min_m": 68.6,
+    "t_v2_s": [
+     32.3,
+     34.2
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "2.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 485,
+    "pk_fin": 546,
+    "angle_deg": 56.9,
+    "rayon_min_m": 44.5,
+    "t_v2_s": [
+     35.0,
+     37.3
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; surlargeur intérieure modeste"
+   },
+   {
+    "appel": "3.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "3",
+    "pk_debut": 619,
+    "pk_fin": 664,
+    "angle_deg": 44.7,
+    "rayon_min_m": 32.8,
+    "t_v2_s": [
+     40.0,
+     42.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "3.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "3",
+    "pk_debut": 669,
+    "pk_fin": 764,
+    "angle_deg": 81.3,
+    "rayon_min_m": 32.7,
+    "t_v2_s": [
+     42.9,
+     47.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; accotement herbeux à l'intérieur"
+   },
+   {
+    "appel": "4.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "4",
+    "pk_debut": 784,
+    "pk_fin": 866,
+    "angle_deg": 70.7,
+    "rayon_min_m": 37.2,
+    "t_v2_s": [
+     48.1,
+     51.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "4.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 873,
+    "pk_fin": 950,
+    "angle_deg": 68.7,
+    "rayon_min_m": 44.7,
+    "t_v2_s": [
+     51.8,
+     57.2
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "5.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "5",
+    "pk_debut": 980,
+    "pk_fin": 1030,
+    "angle_deg": 37.2,
+    "rayon_min_m": 55.9,
+    "t_v2_s": [
+     58.8,
+     61.0
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "6.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 1112,
+    "pk_fin": 1133,
+    "angle_deg": 11.5,
+    "rayon_min_m": 73.3,
+    "t_v2_s": [
+     64.0,
+     64.7
+    ],
+    "sens_confirme_par_lacet_video": "non concluant (lacet trop faible)",
+    "remarque": "FAUX VIRAGE probable : 11° seulement, lacet vidéo nul ; à supprimer ou réduire à « légère gauche »"
+   },
+   {
+    "appel": "7.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "5",
+    "pk_debut": 1304,
+    "pk_fin": 1391,
+    "angle_deg": 40.3,
+    "rayon_min_m": 55.9,
+    "t_v2_s": [
+     71.6,
+     75.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "8.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "3",
+    "pk_debut": 1527,
+    "pk_fin": 1596,
+    "angle_deg": 69.2,
+    "rayon_min_m": 24.1,
+    "t_v2_s": [
+     82.1,
+     86.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; ajouter « parapet extérieur » (long parapet à dés blancs à droite) et « rocher intérieur, ne pas couper »"
+   },
+   {
+    "appel": "8.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "3",
+    "pk_debut": 1632,
+    "pk_fin": 1696,
+    "angle_deg": 68.1,
+    "rayon_min_m": 32.1,
+    "t_v2_s": [
+     88.1,
+     91.9
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; ajouter « sur pont » (parapets des deux côtés, PK 1661)"
+   },
+   {
+    "appel": "9.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "3",
+    "pk_debut": 1773,
+    "pk_fin": 1820,
+    "angle_deg": 51.3,
+    "rayon_min_m": 29.2,
+    "t_v2_s": [
+     95.3,
+     98.2
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; glissière extérieure"
+   },
+   {
+    "appel": "9.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "5",
+    "pk_debut": 1852,
+    "pk_fin": 1929,
+    "angle_deg": 39.7,
+    "rayon_min_m": 58.5,
+    "t_v2_s": [
+     100.0,
+     103.7
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "10.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "4",
+    "pk_debut": 1948,
+    "pk_fin": 1983,
+    "angle_deg": 31.2,
+    "rayon_min_m": 44.7,
+    "t_v2_s": [
+     104.4,
+     105.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; glissière à droite"
+   },
+   {
+    "appel": "11.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 2029,
+    "pk_fin": 2070,
+    "angle_deg": 39.6,
+    "rayon_min_m": 43.8,
+    "t_v2_s": [
+     107.2,
+     108.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok, peu marqué à l'image"
+   },
+   {
+    "appel": "12.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 2119,
+    "pk_fin": 2177,
+    "angle_deg": 39.4,
+    "rayon_min_m": 52.3,
+    "t_v2_s": [
+     110.4,
+     113.7
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; ajouter « étroit » et « parapet extérieur » (route ≈ 5 m, parapet à dés blancs à droite) ; enchaîner « dans » l'épingle"
+   },
+   {
+    "appel": "12.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "hairpin",
+    "pk_debut": 2189,
+    "pk_fin": 2261,
+    "angle_deg": 147.5,
+    "rayon_min_m": 20.2,
+    "t_v2_s": [
+     114.6,
+     119.7
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; épingle droite, panneau triangle et panneau jaune à l'entrée"
+   },
+   {
+    "appel": "13.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "2",
+    "pk_debut": 2264,
+    "pk_fin": 2352,
+    "angle_deg": 122.0,
+    "rayon_min_m": 21.2,
+    "t_v2_s": [
+     119.9,
+     125.9
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "sens ok, sévérité sous-estimée : 122° et vitesse de la voiture de régularité aussi basse qu'à l'épingle ; annoncer « gauche 2 long » (ou épingle gauche ouverte), glissière extérieure"
+   },
+   {
+    "appel": "14.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "4",
+    "pk_debut": 2558,
+    "pk_fin": 2623,
+    "angle_deg": 34.5,
+    "rayon_min_m": 52.4,
+    "t_v2_s": [
+     134.3,
+     136.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; pont 2602 juste après la sortie"
+   },
+   {
+    "appel": "15.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 2688,
+    "pk_fin": 2754,
+    "angle_deg": 31.2,
+    "rayon_min_m": 57.8,
+    "t_v2_s": [
+     139.3,
+     142.7
+    ],
+    "sens_confirme_par_lacet_video": "non concluant (lacet trop faible)",
+    "remarque": "douteux : lacet vidéo quasi nul et virage calculé sur un tronçon interpolé ; plutôt « légère gauche » vers le pont"
+   },
+   {
+    "appel": "15.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "1",
+    "pk_debut": 2762,
+    "pk_fin": 2804,
+    "angle_deg": 77.8,
+    "rayon_min_m": 16.7,
+    "t_v2_s": [
+     143.2,
+     146.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "sens ok ; sévérité 1 probablement trop forte (rayon tiré d'un axe interpolé sur le pont) : « droite 2 sur pont, parapets »"
+   },
+   {
+    "appel": "16.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 2869,
+    "pk_fin": 2900,
+    "angle_deg": 23.0,
+    "rayon_min_m": 53.1,
+    "t_v2_s": [
+     149.5,
+     150.9
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "16.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 2922,
+    "pk_fin": 3011,
+    "angle_deg": 54.5,
+    "rayon_min_m": 52.3,
+    "t_v2_s": [
+     151.7,
+     156.3
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; croisement de pistes à la sortie (gravillons)"
+   },
+   {
+    "appel": "17.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "6",
+    "pk_debut": 3156,
+    "pk_fin": 3191,
+    "angle_deg": 10.2,
+    "rayon_min_m": 129.8,
+    "t_v2_s": [
+     163.1,
+     164.3
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "simple inflexion, « légère »"
+   },
+   {
+    "appel": "17.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "6",
+    "pk_debut": 3211,
+    "pk_fin": 3244,
+    "angle_deg": 15.3,
+    "rayon_min_m": 90.8,
+    "t_v2_s": [
+     165.0,
+     166.3
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "simple inflexion sur le pont 3229 ; annoncer « pont »"
+   },
+   {
+    "appel": "18.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 3291,
+    "pk_fin": 3336,
+    "angle_deg": 29.6,
+    "rayon_min_m": 55.0,
+    "t_v2_s": [
+     168.7,
+     171.9
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; glissière à droite"
+   },
+   {
+    "appel": "19.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "5",
+    "pk_debut": 3409,
+    "pk_fin": 3445,
+    "angle_deg": 21.9,
+    "rayon_min_m": 62.7,
+    "t_v2_s": [
+     174.8,
+     176.5
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; petit pont 3446 à la sortie"
+   },
+   {
+    "appel": "20.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "6",
+    "pk_debut": 3495,
+    "pk_fin": 3554,
+    "angle_deg": 23.3,
+    "rayon_min_m": 104.6,
+    "t_v2_s": [
+     178.8,
+     181.2
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "inflexion ; panneau danger et public à droite"
+   },
+   {
+    "appel": "21.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "1",
+    "pk_debut": 3619,
+    "pk_fin": 3662,
+    "angle_deg": 57.1,
+    "rayon_min_m": 13.1,
+    "t_v2_s": [
+     183.5,
+     185.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "sens ok ; c'est le virage du carrefour : « gauche 1 au carrefour, prendre la branche de gauche, îlot peint à droite, ne pas couper (muret tagué à l'intérieur) »"
+   },
+   {
+    "appel": "21.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "2",
+    "pk_debut": 3664,
+    "pk_fin": 3718,
+    "angle_deg": 56.1,
+    "rayon_min_m": 21.1,
+    "t_v2_s": [
+     185.7,
+     189.1
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; feuilles mortes"
+   },
+   {
+    "appel": "22.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 3755,
+    "pk_fin": 3957,
+    "angle_deg": 138.1,
+    "rayon_min_m": 48.9,
+    "t_v2_s": [
+     190.6,
+     198.0
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok mais très long (200 m, 138°) : « gauche 4 très long », glissière extérieure"
+   },
+   {
+    "appel": "22.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 3981,
+    "pk_fin": 4034,
+    "angle_deg": 30.3,
+    "rayon_min_m": 77.2,
+    "t_v2_s": [
+     199.0,
+     203.7
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; mur de pierre extérieur, enchaîne « dans » l'épingle"
+   },
+   {
+    "appel": "23.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "hairpin",
+    "pk_debut": 4038,
+    "pk_fin": 4125,
+    "angle_deg": 164.0,
+    "rayon_min_m": 14.2,
+    "t_v2_s": [
+     204.1,
+     209.9
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; épingle droite à parapets de pierre ; parapet aussi à l'intérieur : ne pas couper"
+   },
+   {
+    "appel": "23.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 4149,
+    "pk_fin": 4229,
+    "angle_deg": 66.7,
+    "rayon_min_m": 43.9,
+    "t_v2_s": [
+     211.3,
+     215.0
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; glissière extérieure"
+   },
+   {
+    "appel": "24.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 4245,
+    "pk_fin": 4324,
+    "angle_deg": 68.5,
+    "rayon_min_m": 38.3,
+    "t_v2_s": [
+     215.5,
+     218.9
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "24.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "3",
+    "pk_debut": 4330,
+    "pk_fin": 4390,
+    "angle_deg": 73.8,
+    "rayon_min_m": 31.1,
+    "t_v2_s": [
+     219.3,
+     223.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; « sur pont » (4360), pas d'axiale"
+   },
+   {
+    "appel": "25.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 4397,
+    "pk_fin": 4447,
+    "angle_deg": 46.3,
+    "rayon_min_m": 34.7,
+    "t_v2_s": [
+     224.0,
+     226.2
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; « sur pont » (4463)"
+   },
+   {
+    "appel": "25.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "2",
+    "pk_debut": 4452,
+    "pk_fin": 4503,
+    "angle_deg": 72.5,
+    "rayon_min_m": 20.3,
+    "t_v2_s": [
+     226.4,
+     228.9
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok, à la sortie du pont"
+   },
+   {
+    "appel": "26.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 4562,
+    "pk_fin": 4656,
+    "angle_deg": 45.0,
+    "rayon_min_m": 77.4,
+    "t_v2_s": [
+     232.0,
+     236.8
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; ponceau à parapets béton au milieu (PK ≈ 4572)"
+   },
+   {
+    "appel": "26.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "5",
+    "pk_debut": 4665,
+    "pk_fin": 4733,
+    "angle_deg": 39.0,
+    "rayon_min_m": 60.0,
+    "t_v2_s": [
+     237.4,
+     241.1
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; ponceau au début (PK ≈ 4672)"
+   },
+   {
+    "appel": "27.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 4823,
+    "pk_fin": 4879,
+    "angle_deg": 42.9,
+    "rayon_min_m": 51.0,
+    "t_v2_s": [
+     244.5,
+     247.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "27.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "3",
+    "pk_debut": 4914,
+    "pk_fin": 4957,
+    "angle_deg": 41.3,
+    "rayon_min_m": 33.8,
+    "t_v2_s": [
+     249.2,
+     251.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "28.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 5024,
+    "pk_fin": 5083,
+    "angle_deg": 33.0,
+    "rayon_min_m": 70.4,
+    "t_v2_s": [
+     254.4,
+     258.5
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; croisement de pistes juste avant (PK 5037, gravillons)"
+   },
+   {
+    "appel": "29.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "3",
+    "pk_debut": 5512,
+    "pk_fin": 5598,
+    "angle_deg": 99.8,
+    "rayon_min_m": 30.7,
+    "t_v2_s": [
+     276.8,
+     281.6
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; « droite 3 long sur pont » (5554, parapets béton) ; panneau « virage à droite » 150 m avant"
+   },
+   {
+    "appel": "29.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 5624,
+    "pk_fin": 5674,
+    "angle_deg": 31.0,
+    "rayon_min_m": 62.2,
+    "t_v2_s": [
+     283.1,
+     285.5
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; croisement de pistes 5662 (gravillons)"
+   },
+   {
+    "appel": "30.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 5841,
+    "pk_fin": 5876,
+    "angle_deg": 18.3,
+    "rayon_min_m": 80.5,
+    "t_v2_s": [
+     292.3,
+     294.7
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "31.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 5937,
+    "pk_fin": 6076,
+    "angle_deg": 82.8,
+    "rayon_min_m": 42.1,
+    "t_v2_s": [
+     297.9,
+     304.2
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok, long"
+   },
+   {
+    "appel": "31.2",
+    "sens_brouillon": "right",
+    "severite_brouillon": "3",
+    "pk_debut": 6081,
+    "pk_fin": 6159,
+    "angle_deg": 83.1,
+    "rayon_min_m": 29.7,
+    "t_v2_s": [
+     304.4,
+     308.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; ponceau à parapets béton dans le virage (PK ≈ 6110) : danger"
+   },
+   {
+    "appel": "32.1",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 6198,
+    "pk_fin": 6267,
+    "angle_deg": 46.3,
+    "rayon_min_m": 51.1,
+    "t_v2_s": [
+     310.7,
+     314.0
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok"
+   },
+   {
+    "appel": "32.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "5",
+    "pk_debut": 6285,
+    "pk_fin": 6365,
+    "angle_deg": 51.6,
+    "rayon_min_m": 61.3,
+    "t_v2_s": [
+     314.8,
+     319.1
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; légère crête et débouché à gauche vers PK 6340"
+   },
+   {
+    "appel": "33.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "4",
+    "pk_debut": 6417,
+    "pk_fin": 6516,
+    "angle_deg": 83.4,
+    "rayon_min_m": 44.7,
+    "t_v2_s": [
+     321.1,
+     325.5
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; pont 6492 et croisement de pistes (commissaires) au milieu"
+   },
+   {
+    "appel": "33.2",
+    "sens_brouillon": "left",
+    "severite_brouillon": "4",
+    "pk_debut": 6551,
+    "pk_fin": 6635,
+    "angle_deg": 61.0,
+    "rayon_min_m": 46.7,
+    "t_v2_s": [
+     327.5,
+     331.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; panneau jaune d'annonce d'arrivée"
+   },
+   {
+    "appel": "34.1",
+    "sens_brouillon": "right",
+    "severite_brouillon": "4",
+    "pk_debut": 6648,
+    "pk_fin": 6724,
+    "angle_deg": 49.9,
+    "rayon_min_m": 50.0,
+    "t_v2_s": [
+     331.9,
+     334.4
+    ],
+    "sens_confirme_par_lacet_video": true,
+    "remarque": "ok ; ponceau PK ≈ 6685 puis arrivée en sortie de virage"
+   }
+  ],
+  "virages_manquants": [
+   {
+    "pk_m": "0-25",
+    "constat": "légère gauche dès le départ (18°, balise à chevrons à droite), absente du brouillon dont la première note porte sur le PK 223",
+    "proposition": "« départ, légère gauche »"
+   }
+  ],
+  "dangers_a_annoncer": [
+   {
+    "pk_m": 1490,
+    "type": "débouché de piste en terre à gauche (gravillons)"
+   },
+   {
+    "pk_m": "1538-1590",
+    "type": "parapet de pierre extérieur sur tout le gauche 3"
+   },
+   {
+    "pk_m": 1661,
+    "type": "pont, parapets des deux côtés"
+   },
+   {
+    "pk_m": "2092-2178",
+    "type": "rétrécissement (≈ 5 m), glissière puis parapet à droite, rocher à gauche"
+   },
+   {
+    "pk_m": "2189-2261",
+    "type": "épingle droite"
+   },
+   {
+    "pk_m": 2602,
+    "type": "petit pont, parapets courts"
+   },
+   {
+    "pk_m": "2640-2670",
+    "type": "croisement de pistes, gravillons, voiture garée"
+   },
+   {
+    "pk_m": 2777,
+    "type": "pont étroit dans un droite serré"
+   },
+   {
+    "pk_m": "2975-3000",
+    "type": "croisement de pistes, public"
+   },
+   {
+    "pk_m": 3229,
+    "type": "pont, public à droite"
+   },
+   {
+    "pk_m": "3340-3390",
+    "type": "aire de stationnement à droite, public, barrières en bois"
+   },
+   {
+    "pk_m": "3615-3665",
+    "type": "Lion d'Or : branche de gauche, îlot peint, muret à l'intérieur, barrières, public massé, feuilles mortes après"
+   },
+   {
+    "pk_m": "4038-4125",
+    "type": "épingle droite, parapet à l'intérieur : ne pas couper"
+   },
+   {
+    "pk_m": "4325-4375",
+    "type": "pont 4360 sans axiale, revêtement fissuré"
+   },
+   {
+    "pk_m": 4463,
+    "type": "pont"
+   },
+   {
+    "pk_m": "4500-5300",
+    "type": "enrobé rapiécé et fissuré, axiale effacée par endroits (changement d'adhérence possible, non mesurable)"
+   },
+   {
+    "pk_m": [
+     4572,
+     4672,
+     6110,
+     6685
+    ],
+    "type": "ponceaux à parapets de béton bas"
+   },
+   {
+    "pk_m": [
+     5037,
+     5662,
+     6343,
+     6495
+    ],
+    "type": "croisements ou débouchés de pistes en terre (gravillons)"
+   },
+   {
+    "pk_m": 5554,
+    "type": "pont dans le droite 3"
+   },
+   {
+    "pk_m": 6330,
+    "type": "légère crête (seule crête notable du profil, peu marquée)"
+   }
+  ],
+  "cretes": "aucune crête franche ni saut vus sur les trois vidéos ; le profil en long ne montre que des changements de pente faibles (PK ≈ 2100, 3305, 6330)"
+ },
+ "inventaire_bord_de_route": [
+  {
+   "pk_m": 0,
+   "t_v2_s": 9.0,
+   "cote": "gauche",
+   "type": "zone_organisation",
+   "detail": "véhicules de secours garés sur un dégagement à la ligne de départ",
+   "pk_fin_m": 1,
+   "t_fin_v2_s": 11.5
+  },
+  {
+   "pk_m": 0,
+   "t_v2_s": 10.8,
+   "cote": "gauche",
+   "type": "chronometrage",
+   "detail": "cellule de départ (capteur orange sur pied bas)"
+  },
+  {
+   "pk_m": 0,
+   "t_v2_s": 10.8,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau « ATTENTION CELLULE PASSAGE INTERDIT » (rallye)"
+  },
+  {
+   "pk_m": 0,
+   "t_v2_s": 11.0,
+   "cote": "droite",
+   "type": "acces_piste_barre",
+   "detail": "entrée de piste barrée par rubalise rouge et blanche (GC 107)",
+   "pk_fin_m": 1,
+   "t_fin_v2_s": 12.0
+  },
+  {
+   "pk_m": 2,
+   "t_v2_s": 12.4,
+   "cote": "droite",
+   "type": "chronometrage",
+   "detail": "horloge et feux de départ sur trépied"
+  },
+  {
+   "pk_m": 5,
+   "t_v2_s": 13.0,
+   "cote": "droite",
+   "type": "balise_virage",
+   "detail": "balise à chevrons noir et blanc, extérieur de la légère gauche"
+  },
+  {
+   "pk_m": 19,
+   "t_v2_s": 15.0,
+   "cote": "droite",
+   "type": "public",
+   "detail": "spectateurs"
+  },
+  {
+   "pk_m": 118,
+   "t_v2_s": 20.0,
+   "cote": "gauche",
+   "type": "public",
+   "detail": "spectateurs et commissaire en chasuble rouge",
+   "pk_fin_m": 161,
+   "t_fin_v2_s": 21.5
+  },
+  {
+   "pk_m": 247,
+   "t_v2_s": 25.0,
+   "cote": "gauche",
+   "type": "talus_rocheux",
+   "detail": "talus rocheux taillé et murets de pierre sèche presque continus",
+   "pk_fin_m": 836,
+   "t_fin_v2_s": 50.0
+  },
+  {
+   "pk_m": 670,
+   "t_v2_s": 43.0,
+   "cote": "droite",
+   "type": "accotement",
+   "detail": "large accotement herbeux à l'intérieur du droite 3",
+   "pk_fin_m": 695,
+   "t_fin_v2_s": 44.5
+  },
+  {
+   "pk_m": 1191,
+   "t_v2_s": 67.0,
+   "cote": "gauche",
+   "type": "public",
+   "detail": "spectateurs",
+   "pk_fin_m": 1232,
+   "t_fin_v2_s": 68.5
+  },
+  {
+   "pk_m": 1490,
+   "t_v2_s": 80.0,
+   "cote": "gauche",
+   "type": "acces_piste",
+   "detail": "débouché de piste en terre, voiture garée, panneau bleu numéroté, rubalise",
+   "pk_fin_m": 1504,
+   "t_fin_v2_s": 80.7
+  },
+  {
+   "pk_m": 1540,
+   "t_v2_s": 83.0,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "parapet de pierre maçonnée à dés blancs le long du gauche 3, extrémités biseautées blanches",
+   "pk_fin_m": 1584,
+   "t_fin_v2_s": 85.8
+  },
+  {
+   "pk_m": 1540,
+   "t_v2_s": 83.0,
+   "cote": "gauche",
+   "type": "rochers_saillants",
+   "detail": "rochers calcaires au ras de la chaussée, intérieur du gauche 3",
+   "pk_fin_m": 1607,
+   "t_fin_v2_s": 87.0
+  },
+  {
+   "pk_m": 1647,
+   "t_v2_s": 89.0,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 1661 : parapet à dés blancs à gauche, pierre à droite",
+   "pk_fin_m": 1659,
+   "t_fin_v2_s": 89.8
+  },
+  {
+   "pk_m": 1688,
+   "t_v2_s": 91.5,
+   "cote": "droite",
+   "type": "mur",
+   "detail": "mur de pierre bas",
+   "pk_fin_m": 1711,
+   "t_fin_v2_s": 92.6
+  },
+  {
+   "pk_m": 1720,
+   "t_v2_s": 93.0,
+   "cote": "droite",
+   "type": "glissiere",
+   "detail": "glissière simple",
+   "pk_fin_m": 1793,
+   "t_fin_v2_s": 96.5
+  },
+  {
+   "pk_m": 1800,
+   "t_v2_s": 97.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "plaque à bord rouge sur poteau (non lue)"
+  },
+  {
+   "pk_m": 1800,
+   "t_v2_s": 97.0,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "petit panneau blanc et jaune sur piquet (non lu)"
+  },
+  {
+   "pk_m": 1899,
+   "t_v2_s": 102.5,
+   "cote": "droite",
+   "type": "accotement",
+   "detail": "dégagement en terre dans le virage"
+  },
+  {
+   "pk_m": 1924,
+   "t_v2_s": 103.5,
+   "cote": "droite",
+   "type": "glissiere",
+   "detail": "glissière simple, vue dégagée sur la vallée",
+   "pk_fin_m": 2120,
+   "t_fin_v2_s": 110.5
+  },
+  {
+   "pk_m": 1960,
+   "t_v2_s": 104.8,
+   "cote": "gauche",
+   "type": "acces_piste",
+   "detail": "aire en terre",
+   "pk_fin_m": 1978,
+   "t_fin_v2_s": 105.4
+  },
+  {
+   "pk_m": 2083,
+   "t_v2_s": 109.0,
+   "cote": "gauche",
+   "type": "talus_rocheux",
+   "detail": "rocher taillé vertical",
+   "pk_fin_m": 2176,
+   "t_fin_v2_s": 113.6
+  },
+  {
+   "pk_m": 2127,
+   "t_v2_s": 110.8,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "parapet de pierre à dés blancs, extérieur du gauche 4",
+   "pk_fin_m": 2176,
+   "t_fin_v2_s": 113.6
+  },
+  {
+   "pk_m": 2131,
+   "t_v2_s": 111.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau triangle de danger (virage)"
+  },
+  {
+   "pk_m": 2176,
+   "t_v2_s": 113.6,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau jaune à l'entrée de l'épingle (non lu)",
+   "pk_fin_m": 2185,
+   "t_fin_v2_s": 114.2
+  },
+  {
+   "pk_m": 2247,
+   "t_v2_s": 119.0,
+   "cote": "droite",
+   "type": "glissiere",
+   "detail": "glissière à l'extérieur du gauche 2 long",
+   "pk_fin_m": 2336,
+   "t_fin_v2_s": 124.6
+  },
+  {
+   "pk_m": 2275,
+   "t_v2_s": 120.5,
+   "cote": "droite",
+   "type": "balise_virage",
+   "detail": "balise à chevrons bleue et blanche sur la glissière"
+  },
+  {
+   "pk_m": 2340,
+   "t_v2_s": 125.0,
+   "cote": "droite",
+   "type": "bloc_beton",
+   "detail": "bloc de béton blanc en fin de glissière"
+  },
+  {
+   "pk_m": 2585,
+   "t_v2_s": 135.3,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 2602 : parapets courts et bas",
+   "pk_fin_m": 2606,
+   "t_fin_v2_s": 136.0
+  },
+  {
+   "pk_m": 2606,
+   "t_v2_s": 136.0,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "panneau jaune (non lu)"
+  },
+  {
+   "pk_m": 2647,
+   "t_v2_s": 137.5,
+   "cote": "droite",
+   "type": "acces_piste_barre",
+   "detail": "piste barrée par barrière à piquets rouges et blancs, aire en terre",
+   "pk_fin_m": 2674,
+   "t_fin_v2_s": 138.6
+  },
+  {
+   "pk_m": 2647,
+   "t_v2_s": 137.5,
+   "cote": "gauche",
+   "type": "acces_piste",
+   "detail": "piste, voiture garée, panneau bleu",
+   "pk_fin_m": 2674,
+   "t_fin_v2_s": 138.6
+  },
+  {
+   "pk_m": 2702,
+   "t_v2_s": 140.0,
+   "cote": "gauche",
+   "type": "bloc_beton",
+   "detail": "blocs de béton bas"
+  },
+  {
+   "pk_m": 2768,
+   "t_v2_s": 143.6,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 2777 : parapets à dés blancs",
+   "pk_fin_m": 2779,
+   "t_fin_v2_s": 144.5
+  },
+  {
+   "pk_m": 2857,
+   "t_v2_s": 149.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau jaune (non lu)"
+  },
+  {
+   "pk_m": 2971,
+   "t_v2_s": 153.8,
+   "cote": "droite",
+   "type": "acces_piste",
+   "detail": "piste, aire en terre, panneau rond bleu",
+   "pk_fin_m": 2999,
+   "t_fin_v2_s": 155.5
+  },
+  {
+   "pk_m": 2971,
+   "t_v2_s": 153.8,
+   "cote": "gauche",
+   "type": "acces_piste",
+   "detail": "piste, spectateurs",
+   "pk_fin_m": 2999,
+   "t_fin_v2_s": 155.5
+  },
+  {
+   "pk_m": 3077,
+   "t_v2_s": 160.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau carré jaune à pictogramme rouge (non lu)"
+  },
+  {
+   "pk_m": 3154,
+   "t_v2_s": 163.0,
+   "cote": "droite",
+   "type": "divers",
+   "detail": "caisson bleu"
+  },
+  {
+   "pk_m": 3188,
+   "t_v2_s": 164.2,
+   "cote": "droite",
+   "type": "acces_piste",
+   "detail": "piste, commissaire en gilet orange, panneau bleu, fût"
+  },
+  {
+   "pk_m": 3194,
+   "t_v2_s": 164.4,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 3229 : parapets de pierre longs",
+   "pk_fin_m": 3231,
+   "t_fin_v2_s": 165.8
+  },
+  {
+   "pk_m": 3236,
+   "t_v2_s": 166.0,
+   "cote": "droite",
+   "type": "glissiere",
+   "detail": "glissière simple",
+   "pk_fin_m": 3321,
+   "t_fin_v2_s": 171.0
+  },
+  {
+   "pk_m": 3321,
+   "t_v2_s": 171.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau directionnel blanc sur bleu et petit panneau rond"
+  },
+  {
+   "pk_m": 3339,
+   "t_v2_s": 172.0,
+   "cote": "droite",
+   "type": "zone_public",
+   "detail": "aire de stationnement en terre, barrières en bois, marches, spectateurs",
+   "pk_fin_m": 3398,
+   "t_fin_v2_s": 174.4
+  },
+  {
+   "pk_m": 3439,
+   "t_v2_s": 176.2,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "petit pont 3446 : parapets de pierre courts à têtes béton blanc",
+   "pk_fin_m": 3451,
+   "t_fin_v2_s": 176.8
+  },
+  {
+   "pk_m": 3499,
+   "t_v2_s": 179.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau triangle de danger, commissaires"
+  },
+  {
+   "pk_m": 3550,
+   "t_v2_s": 181.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "petit panneau jaune"
+  },
+  {
+   "pk_m": 3594,
+   "t_v2_s": 182.5,
+   "cote": "les_deux",
+   "type": "zone_public",
+   "detail": "carrefour du Lion d'Or : rubalise, barrières de chantier orange, panneau à chevrons rouge et blanc, panneau jaune sur arbre, public massé, camping-car",
+   "pk_fin_m": 3668,
+   "t_fin_v2_s": 186.0
+  },
+  {
+   "pk_m": 3631,
+   "t_v2_s": 184.0,
+   "cote": "gauche",
+   "type": "mur",
+   "detail": "muret de béton bas tagué à l'intérieur du virage"
+  },
+  {
+   "pk_m": 3681,
+   "t_v2_s": 187.0,
+   "cote": "gauche",
+   "type": "public",
+   "detail": "spectateurs et motos sur talus"
+  },
+  {
+   "pk_m": 3716,
+   "t_v2_s": 189.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau triangle de danger et panonceau rouge et blanc (non lus)"
+  },
+  {
+   "pk_m": 3716,
+   "t_v2_s": 189.0,
+   "cote": "droite",
+   "type": "glissiere",
+   "detail": "glissière simple le long du long gauche, poteaux électriques béton ou bois à droite",
+   "pk_fin_m": 4006,
+   "t_fin_v2_s": 200.5
+  },
+  {
+   "pk_m": 4012,
+   "t_v2_s": 201.0,
+   "cote": "droite",
+   "type": "mur",
+   "detail": "mur de pierre bas, extérieur",
+   "pk_fin_m": 4033,
+   "t_fin_v2_s": 203.6
+  },
+  {
+   "pk_m": 4037,
+   "t_v2_s": 204.0,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "épingle droite : parapets de pierre (ouvrage 4074), aussi à l'intérieur",
+   "pk_fin_m": 4073,
+   "t_fin_v2_s": 207.0
+  },
+  {
+   "pk_m": 4085,
+   "t_v2_s": 207.8,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "petit panneau rouge et blanc sur les rochers (non lu)"
+  },
+  {
+   "pk_m": 4108,
+   "t_v2_s": 209.0,
+   "cote": "droite",
+   "type": "glissiere",
+   "detail": "glissière simple",
+   "pk_fin_m": 4219,
+   "t_fin_v2_s": 214.6
+  },
+  {
+   "pk_m": 4204,
+   "t_v2_s": 214.0,
+   "cote": "droite",
+   "type": "ligne_electrique",
+   "detail": "poteau électrique"
+  },
+  {
+   "pk_m": 4339,
+   "t_v2_s": 220.0,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 4360 : parapets à dés blancs, tagués",
+   "pk_fin_m": 4358,
+   "t_fin_v2_s": 221.6
+  },
+  {
+   "pk_m": 4409,
+   "t_v2_s": 224.6,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 4463 : parapets à dés blancs",
+   "pk_fin_m": 4465,
+   "t_fin_v2_s": 227.0
+  },
+  {
+   "pk_m": 4562,
+   "t_v2_s": 232.0,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "ponceau : parapets de béton bas",
+   "pk_fin_m": 4572,
+   "t_fin_v2_s": 232.6
+  },
+  {
+   "pk_m": 4652,
+   "t_v2_s": 236.6,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "ponceau : parapets de béton bas",
+   "pk_fin_m": 4667,
+   "t_fin_v2_s": 237.5
+  },
+  {
+   "pk_m": 4709,
+   "t_v2_s": 240.0,
+   "cote": "droite",
+   "type": "accotement",
+   "detail": "large accotement de terre nue",
+   "pk_fin_m": 4762,
+   "t_fin_v2_s": 242.2
+  },
+  {
+   "pk_m": 4929,
+   "t_v2_s": 250.0,
+   "cote": "droite",
+   "type": "accotement",
+   "detail": "aire de terre claire",
+   "pk_fin_m": 4971,
+   "t_fin_v2_s": 252.2
+  },
+  {
+   "pk_m": 4947,
+   "t_v2_s": 251.0,
+   "cote": "gauche",
+   "type": "zone_public",
+   "detail": "rubalise",
+   "pk_fin_m": 5027,
+   "t_fin_v2_s": 254.6
+  },
+  {
+   "pk_m": 4966,
+   "t_v2_s": 252.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau jaune"
+  },
+  {
+   "pk_m": 5019,
+   "t_v2_s": 254.2,
+   "cote": "les_deux",
+   "type": "acces_piste",
+   "detail": "croisement de pistes, panneau bleu à droite",
+   "pk_fin_m": 5031,
+   "t_fin_v2_s": 254.8
+  },
+  {
+   "pk_m": 5035,
+   "t_v2_s": 255.0,
+   "cote": "droite",
+   "type": "haie",
+   "detail": "haie dense continue",
+   "pk_fin_m": 5234,
+   "t_fin_v2_s": 266.0
+  },
+  {
+   "pk_m": 5259,
+   "t_v2_s": 267.0,
+   "cote": "droite",
+   "type": "mur",
+   "detail": "clôture en bois sur muret de pierre sèche (propriété)",
+   "pk_fin_m": 5293,
+   "t_fin_v2_s": 268.2
+  },
+  {
+   "pk_m": 5287,
+   "t_v2_s": 268.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau triangle de danger (non lu)"
+  },
+  {
+   "pk_m": 5366,
+   "t_v2_s": 271.0,
+   "cote": "droite",
+   "type": "panneau",
+   "detail": "panneau triangle « virage à droite » et panneau jaune"
+  },
+  {
+   "pk_m": 5496,
+   "t_v2_s": 276.0,
+   "cote": "droite",
+   "type": "mur",
+   "detail": "garde-corps métallique sur muret de pierre"
+  },
+  {
+   "pk_m": 5496,
+   "t_v2_s": 276.0,
+   "cote": "gauche",
+   "type": "zone_public",
+   "detail": "rubalise"
+  },
+  {
+   "pk_m": 5517,
+   "t_v2_s": 277.0,
+   "cote": "gauche",
+   "type": "balise_virage",
+   "detail": "balise bleue à chevrons (flèche vers la droite)"
+  },
+  {
+   "pk_m": 5517,
+   "t_v2_s": 277.0,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 5554 : parapets de béton",
+   "pk_fin_m": 5558,
+   "t_fin_v2_s": 279.5
+  },
+  {
+   "pk_m": 5558,
+   "t_v2_s": 279.5,
+   "cote": "droite",
+   "type": "parapet",
+   "detail": "prolongement du parapet de béton",
+   "pk_fin_m": 5605,
+   "t_fin_v2_s": 282.0
+  },
+  {
+   "pk_m": 5568,
+   "t_v2_s": 280.0,
+   "cote": "gauche",
+   "type": "acces_piste",
+   "detail": "aire en terre, voiture garée, talus rocheux"
+  },
+  {
+   "pk_m": 5650,
+   "t_v2_s": 284.4,
+   "cote": "les_deux",
+   "type": "acces_piste",
+   "detail": "croisement de pistes, fourgon blanc et commissaires à droite",
+   "pk_fin_m": 5663,
+   "t_fin_v2_s": 285.0
+  },
+  {
+   "pk_m": 5663,
+   "t_v2_s": 285.0,
+   "cote": "droite",
+   "type": "ligne_electrique",
+   "detail": "ligne électrique sur poteaux bois ou béton, un poteau tous les 50 à 80 m environ, garrigue ouverte",
+   "pk_fin_m": 6712,
+   "t_fin_v2_s": 334.0
+  },
+  {
+   "pk_m": 6099,
+   "t_v2_s": 305.3,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "ponceau : parapets de béton",
+   "pk_fin_m": 6113,
+   "t_fin_v2_s": 306.0
+  },
+  {
+   "pk_m": 6343,
+   "t_v2_s": 318.0,
+   "cote": "gauche",
+   "type": "acces_piste",
+   "detail": "débouché de piste en terre large"
+  },
+  {
+   "pk_m": 6474,
+   "t_v2_s": 323.3,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "pont 6492 : parapets de béton",
+   "pk_fin_m": 6487,
+   "t_fin_v2_s": 323.9
+  },
+  {
+   "pk_m": 6489,
+   "t_v2_s": 324.0,
+   "cote": "les_deux",
+   "type": "acces_piste",
+   "detail": "croisement de pistes ; à gauche voiture, commissaires, panneau bleu",
+   "pk_fin_m": 6497,
+   "t_fin_v2_s": 324.4
+  },
+  {
+   "pk_m": 6543,
+   "t_v2_s": 327.0,
+   "cote": "gauche",
+   "type": "panneau",
+   "detail": "panneau jaune à damier (annonce d'arrivée)"
+  },
+  {
+   "pk_m": 6561,
+   "t_v2_s": 328.0,
+   "cote": "gauche",
+   "type": "public",
+   "detail": "spectateurs"
+  },
+  {
+   "pk_m": 6670,
+   "t_v2_s": 332.6,
+   "cote": "les_deux",
+   "type": "parapet",
+   "detail": "ponceau : parapets de béton bas",
+   "pk_fin_m": 6682,
+   "t_fin_v2_s": 333.0
+  },
+  {
+   "pk_m": 6736,
+   "t_v2_s": 334.8,
+   "cote": "gauche",
+   "type": "chronometrage",
+   "detail": "panneau rouge à damier d'arrivée, véhicule"
+  },
+  {
+   "pk_m": 6736,
+   "t_v2_s": 334.8,
+   "cote": "droite",
+   "type": "chronometrage",
+   "detail": "trépied de cellule d'arrivée"
+  }
+ ],
+ "non_verifiable": [
+  "PK -60 à 0 : la voiture de v2 et celle de v5 partent arrêtées sur la ligne ; seule v1, de nuit, montre les 25 derniers mètres",
+  "revêtement des dégagements (terre ou enrobé) sous les véhicules garés au départ",
+  "largeurs en courbe serrée (épingles, Lion d'Or) : la méthode de mesure n'y est pas valable",
+  "dévers : non mesurables sur ces images",
+  "adhérence réelle (rapiéçages, gravillons) : seulement signalée là où elle est visible",
+  "texte de plusieurs panneaux (trop petits ou flous à la vitesse de passage)",
+  "position de la ligne d'arrivée 2023 (v5 s'arrête vers PK 6550-6700)"
+ ]
+}

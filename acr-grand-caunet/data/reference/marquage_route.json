@@ -1,0 +1,215 @@
+{
+ "note": "Paramètres du marquage au sol lus par scripts/11_route_ouvrages.py. Chaque valeur porte sa provenance : « norme » (règle française, texte cité), « vidéo » (vu sur la vidéo embarquée n° 2, 2025, ES 1 ; t en secondes, PK ≈ (t - 11) / 323 x 6736 à ±150 m), « supposé » (choix par défaut, ni mesuré ni vu), « non vérifié » (la vidéo ne permet pas de trancher).",
+ "sources": {
+  "norme": "Instruction interministérielle sur la signalisation routière (IISR), 7e partie « Marques sur chaussées », arrêté du 16 février 1988 modifié. Valeurs reprises de mémoire et des guides Cerema qui la citent, texte consolidé non consulté depuis le serveur : à revérifier avant de les tenir pour sûres.",
+  "video": "Vidéo embarquée n° 2 (docs/references_videos.md), images extraites dans un dossier temporaire, hors dépôt."
+ },
+ "modulations": {
+  "T1": {
+   "trait_m": 3.0,
+   "intervalle_m": 10.0,
+   "usage": "ligne axiale discontinue hors agglomération (norme)"
+  },
+  "T3": {
+   "trait_m": 3.0,
+   "intervalle_m": 1.33,
+   "usage": "ligne d'annonce d'une ligne continue (norme) ; non placée : voir non_modelise"
+  },
+  "T2": {
+   "trait_m": 3.0,
+   "intervalle_m": 3.5,
+   "usage": "ligne de rive discontinue (norme)"
+  },
+  "continue": {
+   "usage": "ligne continue"
+  },
+  "aucune": {
+   "usage": "pas de marquage"
+  }
+ },
+ "geometrie": {
+  "largeur_unite_u_m": {
+   "valeur": 0.06,
+   "provenance": "norme (u = 6 cm sur les routes autres qu'autoroutes et voies rapides)"
+  },
+  "largeur_axiale_m": {
+   "valeur": 0.12,
+   "provenance": "supposé (2u) ; la vidéo montre une axiale de largeur comparable aux rives, sans mesure possible"
+  },
+  "largeur_rive_m": {
+   "valeur": 0.12,
+   "provenance": "supposé (2u)"
+  },
+  "rive_axe_depuis_bord_m": {
+   "valeur": 0.25,
+   "provenance": "supposé ; la vidéo montre les rives à quelques dizaines de centimètres du bord de l'enrobé"
+  },
+  "hauteur_au_dessus_chaussee_m": {
+   "valeur": 0.015,
+   "provenance": "choix de modélisation (évite le scintillement sans relief visible)"
+  },
+  "couleur_rgb": {
+   "valeur": [
+    0.86,
+    0.86,
+    0.84
+   ],
+   "provenance": "blanc légèrement usé (vidéo : lignes usées par endroits)"
+  }
+ },
+ "regle_ouvrages": {
+  "rives": "continue",
+  "marge_m": 15,
+  "provenance": "vidéo : rives continues vues au droit des ouvrages PK ≈ 1661 (t ≈ 88 s), 2602 (t ≈ 135 s), 2777 (t ≈ 143 s), 5554 (t ≈ 278 s) ; supposé pour les autres ; marge de 15 m supposée"
+ },
+ "troncons": [
+  {
+   "pk_debut_m": -170,
+   "pk_fin_m": 3560,
+   "ligne": "axiale",
+   "type": "T1",
+   "provenance": "norme (T1) ; vidéo : axiale discontinue présente partout (t ≈ 8-180 s) ; longueur des traits non mesurée ; plusieurs courbes montrent des traits plus serrés (T3 probable, t ≈ 83-86 s) non relevés PK par PK"
+  },
+  {
+   "pk_debut_m": -170,
+   "pk_fin_m": 3625,
+   "ligne": "rives",
+   "type": "T2",
+   "provenance": "norme (T2) ; vidéo : rives discontinues des deux côtés sur la D3D (t ≈ 12-180 s), continues par endroits en courbe"
+  },
+  {
+   "pk_debut_m": 3560,
+   "pk_fin_m": 3637,
+   "ligne": "axiale",
+   "type": "continue",
+   "provenance": "vidéo : axiale continue à l'approche du carrefour du Lion d'Or (t ≈ 181-183 s) ; début du tronçon estimé à ±40 m ; prolongée le 13/11/2026 jusqu'à la pointe de la zone hachurée (PK 3637)"
+  },
+  {
+   "pk_debut_m": 3637,
+   "pk_fin_m": 3700,
+   "ligne": "axiale",
+   "type": "aucune",
+   "provenance": "carrefour du Lion d'Or : l'axe du ruban n'y est pas l'axe d'une voie ; la zone hachurée est tracée à part (zones_hachurees)"
+  },
+  {
+   "pk_debut_m": 3625,
+   "pk_fin_m": 3700,
+   "ligne": "rive_gauche",
+   "type": "continue",
+   "provenance": "rive gauche continue le long de la branche de gauche, celle de la spéciale : vidéo de reconnaissance (images aux PK 3596 à 3686, 13/11/2026) et note de la zone 2 de chaussee_corrections.json ; demandé par le directeur après son essai du 13/11/2026 (« les marques n'y sont pas »)"
+  },
+  {
+   "pk_debut_m": 3625,
+   "pk_fin_m": 3655,
+   "ligne": "rive_droite",
+   "type": "aucune",
+   "provenance": "débouché de la branche de droite (fermée par les barrières du rallye) : pas de rive"
+  },
+  {
+   "pk_debut_m": 3655,
+   "pk_fin_m": 3700,
+   "ligne": "rive_droite",
+   "type": "continue",
+   "provenance": "rive droite continue le long du terre-plein : vidéo de reconnaissance (images aux PK 3596 à 3686, 13/11/2026) et note de la zone 2 de chaussee_corrections.json ; demandé par le directeur après son essai du 13/11/2026 (« les marques n'y sont pas »)"
+  },
+  {
+   "pk_debut_m": 3700,
+   "pk_fin_m": 6736,
+   "ligne": "axiale",
+   "type": "T1",
+   "provenance": "norme (T1) ; vidéo : axiale discontinue sur la D1, très effacée entre t ≈ 245 et 275 s (PK ≈ 4900-5500), longueur des traits non mesurée"
+  },
+  {
+   "pk_debut_m": 3700,
+   "pk_fin_m": 4300,
+   "ligne": "rives",
+   "type": "T2",
+   "provenance": "norme (T2) ; vidéo : rives discontinues vues (t ≈ 186-215 s)"
+  },
+  {
+   "pk_debut_m": 4300,
+   "pk_fin_m": 4520,
+   "ligne": "rives",
+   "type": "aucune",
+   "provenance": "vidéo : pas de rive visible aux deux ponts de pierre (t ≈ 216-227 s) ; effacée ou absente, non vérifié"
+  },
+  {
+   "pk_debut_m": 4520,
+   "pk_fin_m": 6736,
+   "ligne": "rives",
+   "type": "T2",
+   "provenance": "norme (T2) ; vidéo : rives discontinues, usées (t ≈ 245-334 s), continues dans quelques courbes (t ≈ 328 s) non relevées"
+  },
+  {
+   "pk_debut_m": 6736,
+   "pk_fin_m": 7377,
+   "ligne": "axiale",
+   "type": "T1",
+   "provenance": "supposé : la vidéo s'arrête à l'arrivée"
+  },
+  {
+   "pk_debut_m": 6736,
+   "pk_fin_m": 7377,
+   "ligne": "rives",
+   "type": "T2",
+   "provenance": "supposé : la vidéo s'arrête à l'arrivée"
+  },
+  {
+   "pk_debut_m": 3540,
+   "pk_fin_m": 3560,
+   "ligne": "axiale",
+   "type": "continue",
+   "provenance": "vidéo de reconnaissances (data/reference/releve_reco/, bords_par_troncon) : axe continu dès le PK 3540 à l'approche du carrefour"
+  },
+  {
+   "pk_debut_m": 3990,
+   "pk_fin_m": 4080,
+   "ligne": "rive_droite",
+   "type": "continue",
+   "provenance": "vidéo de reconnaissances (data/reference/releve_reco/, bords_par_troncon) : rive droite continue à l'intérieur de l'épingle"
+  },
+  {
+   "pk_debut_m": 4300,
+   "pk_fin_m": 4520,
+   "ligne": "rives",
+   "type": "T2",
+   "provenance": "vidéo de reconnaissances (data/reference/releve_reco/, bords_par_troncon) : rives discontinues bien visibles, continues sur les deux ponts de pierre (la vidéo de course ne les montrait pas)"
+  },
+  {
+   "pk_debut_m": 6440,
+   "pk_fin_m": 6520,
+   "ligne": "rive_droite",
+   "type": "continue",
+   "provenance": "vidéo de reconnaissances (data/reference/releve_reco/, bords_par_troncon) : rive droite continue et large à partir du pont"
+  },
+  {
+   "pk_debut_m": 6520,
+   "pk_fin_m": 6690,
+   "ligne": "rives",
+   "type": "continue",
+   "provenance": "vidéo de reconnaissances (data/reference/releve_reco/, bords_par_troncon) : rives continues des deux côtés jusqu'à l'arrivée"
+  }
+ ],
+ "non_modelise": [
+  "Lignes continues et lignes d'annonce T3 dans les courbes sans visibilité : vues à plusieurs endroits, pas relevées PK par PK (non vérifié).",
+  "Marquage du carrefour du Lion d'Or (îlot hachuré, ligne d'effet du cédez-le-passage) et des débouchés.",
+  "Usure et effacement partiel (rendu uniforme)."
+ ],
+ "zones_hachurees": [
+  {
+   "nom": "carrefour du Lion d'Or",
+   "pk_pointe_m": 3636.3,
+   "decalage_pointe_m": 0.3,
+   "pk_bout_m": 3651.6,
+   "decalage_bout_m": 3.8,
+   "largeur_max_m": 2.7,
+   "pleine_largeur_a_m": 9.0,
+   "contour_m": 0.15,
+   "bande_m": 0.45,
+   "pas_m": 1.4,
+   "biais_m": 1.2,
+   "lecture": "zone en fuseau allongé aux deux bouts arrondis, large de 2 à 2,7 m ; décalages comptés depuis l'axe du ruban, positifs à droite ; contour continu et bandes obliques",
+   "provenance": "pointe et bout repris de la note de la zone 2 de chaussee_corrections.json (nuage de points LiDAR, intensité du marquage : de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0, environ 14 x 2,7 m) ; largeur et écartement des bandes estimés sur la vidéo de reconnaissance (PK 3596 et 3608) ; forme reprise du polygone zone_hachuree de carrefours_annexes.json (points de forte intensité du nuage LiDAR)"
+  }
+ ]
+}

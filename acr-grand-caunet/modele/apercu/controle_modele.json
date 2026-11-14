@@ -1,0 +1,176 @@
+{
+  "repere": {
+    "origine": {
+      "description": "axe de la chaussée au PK 0 (départ de l'ES)",
+      "lambert93_x_m": 917008.482,
+      "lambert93_y_m": 6241030.601,
+      "lon": 5.67032114,
+      "lat": 43.23544662,
+      "altitude_m": 398.543,
+      "systeme_altimetrique": "NGF-IGN69 (altitudes du MNT LiDAR HD)"
+    },
+    "unites": "mètres",
+    "axes": {
+      "X": "est",
+      "Y": "haut (altitude - altitude d'origine)",
+      "Z": "sud (-Z = nord)",
+      "repere": "direct (main droite), convention glTF 2.0 +Y vers le haut"
+    },
+    "passage_lambert93_vers_gltf": "X = x_L93 - x0 ; Y = z - z0 ; Z = -(y_L93 - y0)",
+    "passage_gltf_vers_lambert93": "x_L93 = X + x0 ; y_L93 = y0 - Z ; z = Y + z0",
+    "x0": 917008.482,
+    "y0": 6241030.601,
+    "z0": 398.543,
+    "nord": "nord Lambert-93 (convergence des méridiens d'environ -0,9° ici, non corrigée)"
+  },
+  "complet": {
+    "bandes_m": [
+      [
+        15,
+        1
+      ],
+      [
+        40,
+        2
+      ],
+      [
+        130.0,
+        4
+      ]
+    ],
+    "texture_px_par_dalle": 2048,
+    "terrain": {
+      "sommets": 372860,
+      "triangles": 728297,
+      "dalles": 26,
+      "sommets_de_bord": 14826,
+      "recalage_bords_mnt_m": {
+        "median_abs": 0.008,
+        "p95_abs": 0.082,
+        "max_abs": 2.62
+      }
+    },
+    "relecture": {
+      "route": {
+        "taille_mo": 1.09,
+        "maillages": 1,
+        "sommets": 22647,
+        "triangles": 30192,
+        "nan": false,
+        "bornes_min": [
+          -3154.60009765625,
+          -149.0,
+          -2629.199951171875
+        ],
+        "bornes_max": [
+          127.9000015258789,
+          0.20000000298023224,
+          87.0
+        ],
+        "triangles_normale_vers_le_haut_pct": 100.0
+      },
+      "terrain": {
+        "taille_mo": 39.48,
+        "maillages": 26,
+        "sommets": 375865,
+        "triangles": 728297,
+        "nan": false,
+        "bornes_min": [
+          -3280.5,
+          -183.1999969482422,
+          -2753.39990234375
+        ],
+        "bornes_max": [
+          255.5,
+          18.399999618530273,
+          210.60000610351562
+        ]
+      },
+      "ecart_bords_route_terrain_hors_ponts": {
+        "bords_testes": 14826,
+        "sommets_partages_pct": 99.987,
+        "ecart_vertical_max_m": 0.004,
+        "ecart_vertical_p99_m": 0.0
+      }
+    }
+  },
+  "apercu": {
+    "bandes_m": [
+      [
+        15,
+        2
+      ],
+      [
+        40,
+        4
+      ],
+      [
+        130.0,
+        8
+      ]
+    ],
+    "texture_px_par_dalle": 512,
+    "terrain": {
+      "sommets": 104335,
+      "triangles": 192598,
+      "dalles": 26,
+      "sommets_de_bord": 14826,
+      "recalage_bords_mnt_m": {
+        "median_abs": 0.008,
+        "p95_abs": 0.082,
+        "max_abs": 2.62
+      }
+    },
+    "relecture": {
+      "route": {
+        "taille_mo": 1.09,
+        "maillages": 1,
+        "sommets": 22647,
+        "triangles": 30192,
+        "nan": false,
+        "bornes_min": [
+          -3154.60009765625,
+          -149.0,
+          -2629.199951171875
+        ],
+        "bornes_max": [
+          127.9000015258789,
+          0.20000000298023224,
+          87.0
+        ],
+        "triangles_normale_vers_le_haut_pct": 100.0
+      },
+      "terrain": {
+        "taille_mo": 7.51,
+        "maillages": 26,
+        "sommets": 106036,
+        "triangles": 192598,
+        "nan": false,
+        "bornes_min": [
+          -3280.5,
+          -183.0,
+          -2753.39990234375
+        ],
+        "bornes_max": [
+          255.5,
+          18.399999618530273,
+          206.60000610351562
+        ]
+      },
+      "ecart_bords_route_terrain_hors_ponts": {
+        "bords_testes": 14826,
+        "sommets_partages_pct": 99.987,
+        "ecart_vertical_max_m": 0.011,
+        "ecart_vertical_p99_m": 0.0
+      }
+    }
+  },
+  "rendus_webgl": false,
+  "vues_rapprochees_pk": {
+    "pont": [
+      5534,
+      5552
+    ],
+    "virage": 4079
+  }
+}

@@ -1,0 +1,4803 @@
+{
+ "description": "Paquet d'import Unreal Engine 5.6 de la spéciale GrandCaunet (scripts/16_paquet_unreal.py)",
+ "version": 1,
+ "genere_le": "2026-11-12 02:25",
+ "echantillon": true,
+ "chemins": {
+  "racine": "/Game/Environments/GrandCaunet",
+  "niveau": "/Game/Levels/GrandCaunet",
+  "niveau_e3": "/Game/Levels/GrandCaunet_E3",
+  "niveau_e4": "/Game/Levels/GrandCaunet_E4",
+  "materiau_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+  "editeur_seulement": "/Game/GC_EditeurSeulement"
+ },
+ "repere": {
+  "unreal": "X = est, Y = sud, Z = haut ; centimètres ; origine = axe de la chaussée au PK 0 (départ)",
+  "depuis_gltf_du_projet": "UE_cm = 100 * (gX, gZ, gY)  (modele/*.glb : X est, Y haut, Z sud, mètres)",
+  "depuis_lambert93": "UE_cm = 100 * (x - 917008.5, 6241030.6 - y, z - 398.55)",
+  "maillages": "chaque maillage est recentré sur son pivot ; l'acteur se pose à acteur.position_cm, sans rotation ni échelle",
+  "axes_import_glb": {
+   "valeur": "X,Z,Y",
+   "sens": "UE_cm = 100 * M . g_fichier, M lue ligne par ligne (« X,Z,Y » : UE.X = g.X, UE.Y = g.Z, UE.Z = g.Y)",
+   "verification": "construire_niveau.py --mire : importe SM_GC_MireAxeX/Y/Z et en déduit la valeur réelle ; si elle diffère, relancer 16_paquet_unreal.py --axes <valeur>"
+  },
+  "points_de_controle": [
+   {
+    "nom": "départ (PK 0)",
+    "pk_m": 0.0,
+    "lambert93_m": [
+     917008.5,
+     6241030.6,
+     398.55
+    ],
+    "gltf_m": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "unreal_cm": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "nom": "arrivée (PK 6736)",
+    "pk_m": 6736.0,
+    "lambert93_m": [
+     914282.4,
+     6243375.68,
+     344.71
+    ],
+    "gltf_m": [
+     -2726.1,
+     -53.84,
+     -2345.08
+    ],
+    "unreal_cm": [
+     -272610.0,
+     -234508.0,
+     -5384.0
+    ]
+   }
+  ],
+  "lacet": "degrés, autour de UE +Z, de +X (est) vers +Y (sud) ; arbres : tirage à graine fixe"
+ },
+ "essais": {
+  "E3": {
+   "description": "la dalle de 500 m qui contient le pont de pierre du PK 1653, avec sa photo et son relief, plus la mire d'axes",
+   "niveau": "/Game/Levels/GrandCaunet_E3"
+  },
+  "E4": {
+   "description": "PK 1600 à 1800 : route, marquage, pont et parapets, terrain fin et dalle, anneau proche, arbres, arbustes",
+   "niveau": "/Game/Levels/GrandCaunet_E4",
+   "pk_m": [
+    1600.0,
+    1800.0
+   ]
+  },
+  "complet": {
+   "description": "toute la spéciale",
+   "niveau": "/Game/Levels/GrandCaunet"
+  }
+ },
+ "materiau_secours": {
+  "chemin": "/Game/GC_EditeurSeulement/M_GC_Secours",
+  "parametres": {
+   "couleur": "Couleur",
+   "orm": "ORM",
+   "relief": "Relief"
+  },
+  "role": "matériau simple créé par le script d'import pour voir le décor dans l'éditeur tant que le parent du jeu n'est pas confirmé ; à NE PAS livrer"
+ },
+ "elements": [
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GC_MireAxeX",
+   "fichier": "maillages/mire/SM_GC_MireAxeX.glb",
+   "destination": "/Game/GC_EditeurSeulement/Mire",
+   "chemin_ue": "/Game/GC_EditeurSeulement/Mire/SM_GC_MireAxeX",
+   "section_materiau": "MI_GC_Mire",
+   "materiau": null,
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": null,
+   "mire": {
+    "axe_fichier": "X",
+    "longueur_m": 4.0
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GC_MireAxeY",
+   "fichier": "maillages/mire/SM_GC_MireAxeY.glb",
+   "destination": "/Game/GC_EditeurSeulement/Mire",
+   "chemin_ue": "/Game/GC_EditeurSeulement/Mire/SM_GC_MireAxeY",
+   "section_materiau": "MI_GC_Mire",
+   "materiau": null,
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": null,
+   "mire": {
+    "axe_fichier": "Y",
+    "longueur_m": 2.0
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GC_MireAxeZ",
+   "fichier": "maillages/mire/SM_GC_MireAxeZ.glb",
+   "destination": "/Game/GC_EditeurSeulement/Mire",
+   "chemin_ue": "/Game/GC_EditeurSeulement/Mire/SM_GC_MireAxeZ",
+   "section_materiau": "MI_GC_Mire",
+   "materiau": null,
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": null,
+   "mire": {
+    "axe_fichier": "Z",
+    "longueur_m": 1.0
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_MireRelief",
+   "fichier": "textures/mire/T_GC_MireRelief.png",
+   "destination": "/Game/GC_EditeurSeulement/Mire",
+   "chemin_ue": "/Game/GC_EditeurSeulement/Mire/T_GC_MireRelief",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_Sol",
+   "fichier": "textures/commun/T_GC_ORM_Sol.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_Sol",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_Terrain_5y2",
+   "fichier": "textures/terrain/T_Terrain_5y2.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_Terrain_5y2",
+   "dimensions": [
+    1024,
+    1024
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainN_5y2",
+   "fichier": "textures/terrain/T_TerrainN_5y2.png",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainN_5y2",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_Terrain_5y2",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Materials/MI_Terrain_5y2",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_Terrain_5y2",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Sol",
+    "Simple_Normal_Texture": "T_TerrainN_5y2"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_Terrain_5y2",
+    "ORM": "T_GC_ORM_Sol",
+    "Relief": "T_TerrainN_5y2"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetTerrain_5_2",
+   "fichier": "maillages/terrain/SM_GrandCaunetTerrain_5_2.glb",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Meshes/SM_GrandCaunetTerrain_5_2",
+   "section_materiau": "MI_Terrain_5y2",
+   "materiau": "MI_Terrain_5y2",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetTerrain_5_2",
+    "position_cm": [
+     -80050.0,
+     -71740.0,
+     -6005.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -19200.0,
+     -25200.0,
+     0.1
+    ],
+    "max": [
+     19200.0,
+     25200.0,
+     6443.6
+    ]
+   },
+   "sommets": 11958,
+   "triangles": 22924,
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ],
+   "emprise_texture_l93": [
+    915984.0,
+    6241484.0,
+    916516.0,
+    6242016.0
+   ],
+   "source": "modele/terrain_sol.glb#dalle_916000_6241500"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFin_27y14",
+   "fichier": "textures/terrain_fin/T_TerrainFin_27y14.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFin_27y14",
+   "dimensions": [
+    2048,
+    2048
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFinN_27y14",
+   "fichier": "textures/terrain_fin/T_TerrainFinN_27y14.png",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFinN_27y14",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_TerrainFin_27y14",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Materials/MI_TerrainFin_27y14",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_TerrainFin_27y14",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Sol",
+    "Simple_Normal_Texture": "T_TerrainFinN_27y14"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_TerrainFin_27y14",
+    "ORM": "T_GC_ORM_Sol",
+    "Relief": "T_TerrainFinN_27y14"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetTerrainFin_27_14",
+   "fichier": "maillages/terrain_fin/SM_GrandCaunetTerrainFin_27_14.glb",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Meshes/SM_GrandCaunetTerrainFin_27_14",
+   "section_materiau": "MI_TerrainFin_27y14",
+   "materiau": "MI_TerrainFin_27y14",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetTerrainFin_27_14",
+    "position_cm": [
+     -75950.0,
+     -91916.0,
+     -5863.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -3700.0,
+     -5024.0,
+     0.2
+    ],
+    "max": [
+     3700.0,
+     5024.0,
+     1288.7
+    ]
+   },
+   "sommets": 3239,
+   "triangles": 6061,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1533.0,
+    1661.0
+   ],
+   "emprise_texture_l93": [
+    916197.6,
+    6241897.6,
+    916302.4,
+    6242002.4
+   ],
+   "source": "modele/terrain_sol.glb#sous_916200_6241900"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_Terrain_5y3",
+   "fichier": "textures/terrain/T_Terrain_5y3.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_Terrain_5y3",
+   "dimensions": [
+    1024,
+    1024
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainN_5y3",
+   "fichier": "textures/terrain/T_TerrainN_5y3.png",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainN_5y3",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_Terrain_5y3",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Materials/MI_Terrain_5y3",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_Terrain_5y3",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Sol",
+    "Simple_Normal_Texture": "T_TerrainN_5y3"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_Terrain_5y3",
+    "ORM": "T_GC_ORM_Sol",
+    "Relief": "T_TerrainN_5y3"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetTerrain_5_3",
+   "fichier": "maillages/terrain/SM_GrandCaunetTerrain_5_3.glb",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Meshes/SM_GrandCaunetTerrain_5_3",
+   "section_materiau": "MI_Terrain_5y3",
+   "materiau": "MI_Terrain_5y3",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetTerrain_5_3",
+    "position_cm": [
+     -70450.0,
+     -121940.0,
+     -9136.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -19600.0,
+     -25000.0,
+     -0.0
+    ],
+    "max": [
+     19600.0,
+     25000.0,
+     8371.3
+    ]
+   },
+   "sommets": 11488,
+   "triangles": 21904,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "emprise_texture_l93": [
+    915984.0,
+    6241984.0,
+    916516.0,
+    6242516.0
+   ],
+   "source": "modele/terrain_sol.glb#dalle_916000_6242000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFin_27y15",
+   "fichier": "textures/terrain_fin/T_TerrainFin_27y15.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFin_27y15",
+   "dimensions": [
+    2048,
+    2048
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFinN_27y15",
+   "fichier": "textures/terrain_fin/T_TerrainFinN_27y15.png",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFinN_27y15",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_TerrainFin_27y15",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Materials/MI_TerrainFin_27y15",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_TerrainFin_27y15",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Sol",
+    "Simple_Normal_Texture": "T_TerrainFinN_27y15"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_TerrainFin_27y15",
+    "ORM": "T_GC_ORM_Sol",
+    "Relief": "T_TerrainFinN_27y15"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetTerrainFin_27_15",
+   "fichier": "maillages/terrain_fin/SM_GrandCaunetTerrainFin_27_15.glb",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Meshes/SM_GrandCaunetTerrainFin_27_15",
+   "section_materiau": "MI_TerrainFin_27y15",
+   "materiau": "MI_TerrainFin_27y15",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetTerrainFin_27_15",
+    "position_cm": [
+     -75232.0,
+     -101940.0,
+     -6073.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -4418.0,
+     -5000.0,
+     -0.3
+    ],
+    "max": [
+     4419.0,
+     5000.0,
+     1596.7
+    ]
+   },
+   "sommets": 3192,
+   "triangles": 5990,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1659.0,
+    1779.0
+   ],
+   "emprise_texture_l93": [
+    916197.6,
+    6241997.6,
+    916302.4,
+    6242102.4
+   ],
+   "source": "modele/terrain_sol.glb#sous_916200_6242000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFin_27y16",
+   "fichier": "textures/terrain_fin/T_TerrainFin_27y16.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFin_27y16",
+   "dimensions": [
+    2048,
+    2048
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFinN_27y16",
+   "fichier": "textures/terrain_fin/T_TerrainFinN_27y16.png",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFinN_27y16",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_TerrainFin_27y16",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Materials/MI_TerrainFin_27y16",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_TerrainFin_27y16",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Sol",
+    "Simple_Normal_Texture": "T_TerrainFinN_27y16"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_TerrainFin_27y16",
+    "ORM": "T_GC_ORM_Sol",
+    "Relief": "T_TerrainFinN_27y16"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetTerrainFin_27_16",
+   "fichier": "maillages/terrain_fin/SM_GrandCaunetTerrainFin_27_16.glb",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Meshes/SM_GrandCaunetTerrainFin_27_16",
+   "section_materiau": "MI_TerrainFin_27y16",
+   "materiau": "MI_TerrainFin_27y16",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetTerrainFin_27_16",
+    "position_cm": [
+     -71350.0,
+     -111940.0,
+     -5144.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -500.0,
+     -5000.0,
+     -0.1
+    ],
+    "max": [
+     500.0,
+     5000.0,
+     484.5
+    ]
+   },
+   "sommets": 209,
+   "triangles": 282,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1771.0,
+    1890.0
+   ],
+   "emprise_texture_l93": [
+    916197.6,
+    6242097.6,
+    916302.4,
+    6242202.4
+   ],
+   "source": "modele/terrain_sol.glb#sous_916200_6242100"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFin_28y15",
+   "fichier": "textures/terrain_fin/T_TerrainFin_28y15.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFin_28y15",
+   "dimensions": [
+    2048,
+    2048
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFinN_28y15",
+   "fichier": "textures/terrain_fin/T_TerrainFinN_28y15.png",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFinN_28y15",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_TerrainFin_28y15",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Materials/MI_TerrainFin_28y15",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_TerrainFin_28y15",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Sol",
+    "Simple_Normal_Texture": "T_TerrainFinN_28y15"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_TerrainFin_28y15",
+    "ORM": "T_GC_ORM_Sol",
+    "Relief": "T_TerrainFinN_28y15"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetTerrainFin_28_15",
+   "fichier": "maillages/terrain_fin/SM_GrandCaunetTerrainFin_28_15.glb",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Meshes/SM_GrandCaunetTerrainFin_28_15",
+   "section_materiau": "MI_TerrainFin_28y15",
+   "materiau": "MI_TerrainFin_28y15",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetTerrainFin_28_15",
+    "position_cm": [
+     -68858.0,
+     -104654.0,
+     -6128.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -2007.0,
+     -2314.0,
+     -0.4
+    ],
+    "max": [
+     2008.0,
+     2314.0,
+     1209.9
+    ]
+   },
+   "sommets": 804,
+   "triangles": 1449,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1748.0,
+    1797.0
+   ],
+   "emprise_texture_l93": [
+    916297.6,
+    6241997.6,
+    916402.4,
+    6242102.4
+   ],
+   "source": "modele/terrain_sol.glb#sous_916300_6242000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFin_28y16",
+   "fichier": "textures/terrain_fin/T_TerrainFin_28y16.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFin_28y16",
+   "dimensions": [
+    2048,
+    2048
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_TerrainFinN_28y16",
+   "fichier": "textures/terrain_fin/T_TerrainFinN_28y16.png",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Textures/T_TerrainFinN_28y16",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": false,
+    "compression": "TC_Normalmap",
+    "groupe_lod": "TEXTUREGROUP_WorldNormalMap",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": "DirectX (vert inversé) : ne PAS cocher Flip Green Channel"
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_TerrainFin_28y16",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Materials/MI_TerrainFin_28y16",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_TerrainFin_28y16",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Sol",
+    "Simple_Normal_Texture": "T_TerrainFinN_28y16"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_TerrainFin_28y16",
+    "ORM": "T_GC_ORM_Sol",
+    "Relief": "T_TerrainFinN_28y16"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetTerrainFin_28_16",
+   "fichier": "maillages/terrain_fin/SM_GrandCaunetTerrainFin_28_16.glb",
+   "destination": "/Game/Environments/GrandCaunet/Terrain/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Terrain/Meshes/SM_GrandCaunetTerrainFin_28_16",
+   "section_materiau": "MI_TerrainFin_28y16",
+   "materiau": "MI_TerrainFin_28y16",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetTerrainFin_28_16",
+    "position_cm": [
+     -68750.0,
+     -111940.0,
+     -6270.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -2100.0,
+     -5000.0,
+     0.4
+    ],
+    "max": [
+     2100.0,
+     5000.0,
+     1442.4
+    ]
+   },
+   "sommets": 2878,
+   "triangles": 5365,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1779.0,
+    1900.0
+   ],
+   "emprise_texture_l93": [
+    916297.6,
+    6242097.6,
+    916402.4,
+    6242202.4
+   ],
+   "source": "modele/terrain_sol.glb#sous_916300_6242100"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Enrobe",
+   "fichier": "textures/modele/T_GC_Enrobe.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Enrobe",
+   "dimensions": [
+    1024,
+    1024
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R235M000",
+   "fichier": "textures/commun/T_GC_ORM_R235M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R235M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Enrobe",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Enrobe",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Enrobe",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R235M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Enrobe",
+    "ORM": "T_GC_ORM_R235M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ],
+   "parent_jeu_alternatif_e3b": "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Marquage",
+   "fichier": "textures/modele/T_GC_Marquage.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Marquage",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R153M000",
+   "fichier": "textures/commun/T_GC_ORM_R153M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R153M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Marquage",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Marquage",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Marquage",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R153M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Marquage",
+    "ORM": "T_GC_ORM_R153M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Dalle",
+   "fichier": "textures/modele/T_GC_Dalle.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Dalle",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R230M000",
+   "fichier": "textures/commun/T_GC_ORM_R230M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R230M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Dalle",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Dalle",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Dalle",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R230M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Dalle",
+    "ORM": "T_GC_ORM_R230M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Pierre",
+   "fichier": "textures/modele/T_GC_Pierre.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Pierre",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R242M000",
+   "fichier": "textures/commun/T_GC_ORM_R242M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R242M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Pierre",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Pierre",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Pierre",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R242M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Pierre",
+    "ORM": "T_GC_ORM_R242M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Blanc",
+   "fichier": "textures/modele/T_GC_Blanc.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Blanc",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R204M000",
+   "fichier": "textures/commun/T_GC_ORM_R204M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R204M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Blanc",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Blanc",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Blanc",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R204M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Blanc",
+    "ORM": "T_GC_ORM_R204M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Chaperon",
+   "fichier": "textures/modele/T_GC_Chaperon.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Chaperon",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Chaperon",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Chaperon",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Chaperon",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R230M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Chaperon",
+    "ORM": "T_GC_ORM_R230M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Beton",
+   "fichier": "textures/modele/T_GC_Beton.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Beton",
+   "dimensions": [
+    512,
+    512
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Beton",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Beton",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Beton",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R230M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Beton",
+    "ORM": "T_GC_ORM_R230M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Glissiere_lisse",
+   "fichier": "textures/modele/T_GC_Glissiere_lisse.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Glissiere_lisse",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R115M000",
+   "fichier": "textures/commun/T_GC_ORM_R115M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R115M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Glissiere_lisse",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Glissiere_lisse",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Glissiere_lisse",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R115M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Glissiere_lisse",
+    "ORM": "T_GC_ORM_R115M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Glissiere_poteau",
+   "fichier": "textures/modele/T_GC_Glissiere_poteau.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Glissiere_poteau",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R128M000",
+   "fichier": "textures/commun/T_GC_ORM_R128M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R128M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Glissiere_poteau",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Glissiere_poteau",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Glissiere_poteau",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R128M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Glissiere_poteau",
+    "ORM": "T_GC_ORM_R128M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Terre",
+   "fichier": "textures/modele/T_GC_Terre.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Terre",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_R255M000",
+   "fichier": "textures/commun/T_GC_ORM_R255M000.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_R255M000",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Terre",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Terre",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Terre",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R255M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Terre",
+    "ORM": "T_GC_ORM_R255M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Pierre_sombre",
+   "fichier": "textures/modele/T_GC_Pierre_sombre.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Pierre_sombre",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Pierre_sombre",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Pierre_sombre",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Pierre_sombre",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R242M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Pierre_sombre",
+    "ORM": "T_GC_ORM_R242M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Panneau",
+   "fichier": "textures/modele/T_GC_Panneau.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Panneau",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Panneau",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Panneau",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Panneau",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R153M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Panneau",
+    "ORM": "T_GC_ORM_R153M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Piquet",
+   "fichier": "textures/modele/T_GC_Piquet.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Piquet",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Piquet",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Piquet",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Piquet",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R153M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Piquet",
+    "ORM": "T_GC_ORM_R153M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Piquet_tete",
+   "fichier": "textures/modele/T_GC_Piquet_tete.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Piquet_tete",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Piquet_tete",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Piquet_tete",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Piquet_tete",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R153M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Piquet_tete",
+    "ORM": "T_GC_ORM_R153M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_Rubalise",
+   "fichier": "textures/modele/T_GC_Rubalise.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_Rubalise",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_GC_Rubalise",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Materials/MI_GC_Rubalise",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_GC_Rubalise",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_R128M000"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_GC_Rubalise",
+    "ORM": "T_GC_ORM_R128M000"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E3",
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetRoad_09",
+   "fichier": "maillages/route/SM_GrandCaunetRoad_09.glb",
+   "destination": "/Game/Environments/GrandCaunet/Road/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Road/Meshes/SM_GrandCaunetRoad_09",
+   "section_materiau": "MI_GC_Enrobe",
+   "materiau": "MI_GC_Enrobe",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetRoad_09",
+    "position_cm": [
+     -73152.0,
+     -99580.0,
+     -5357.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -4583.0,
+     -8249.0,
+     0.0
+    ],
+    "max": [
+     4583.0,
+     8250.0,
+     228.0
+    ]
+   },
+   "sommets": 604,
+   "triangles": 800,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1600.0,
+    1800.0
+   ],
+   "troncon": 9
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetRoadMarking_09",
+   "fichier": "maillages/route/SM_GrandCaunetRoadMarking_09.glb",
+   "destination": "/Game/Environments/GrandCaunet/Road/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Road/Meshes/SM_GrandCaunetRoadMarking_09",
+   "section_materiau": "MI_GC_Marquage",
+   "materiau": "MI_GC_Marquage",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetRoadMarking_09",
+    "position_cm": [
+     -73171.0,
+     -99502.0,
+     -5353.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -4545.0,
+     -8162.6,
+     -0.4
+    ],
+    "max": [
+     4544.7,
+     8163.3,
+     225.6
+    ]
+   },
+   "sommets": 791,
+   "triangles": 663,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1600.0,
+    1800.0
+   ],
+   "troncon": 9
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetBridge_Blanc_09",
+   "fichier": "maillages/ouvrages/SM_GrandCaunetBridge_Blanc_09.glb",
+   "destination": "/Game/Environments/GrandCaunet/Bridges/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Bridges/Meshes/SM_GrandCaunetBridge_Blanc_09",
+   "section_materiau": "MI_GC_Blanc",
+   "materiau": "MI_GC_Blanc",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetBridge_Blanc_09",
+    "position_cm": [
+     -77299.0,
+     -97193.0,
+     -5219.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -483.0,
+     -1104.1,
+     0.0
+    ],
+    "max": [
+     483.5,
+     1104.7,
+     141.0
+    ]
+   },
+   "sommets": 592,
+   "triangles": 448,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1600.0,
+    1800.0
+   ],
+   "troncon": 9
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetBridge_Dalle_09",
+   "fichier": "maillages/ouvrages/SM_GrandCaunetBridge_Dalle_09.glb",
+   "destination": "/Game/Environments/GrandCaunet/Bridges/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Bridges/Meshes/SM_GrandCaunetBridge_Dalle_09",
+   "section_materiau": "MI_GC_Dalle",
+   "materiau": "MI_GC_Dalle",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetBridge_Dalle_09",
+    "position_cm": [
+     -77299.0,
+     -97193.0,
+     -5453.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -481.0,
+     -1103.4,
+     0.0
+    ],
+    "max": [
+     481.6,
+     1104.2,
+     297.0
+    ]
+   },
+   "sommets": 240,
+   "triangles": 204,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1600.0,
+    1800.0
+   ],
+   "troncon": 9
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetBridge_Glissiere_lisse_09",
+   "fichier": "maillages/ouvrages/SM_GrandCaunetBridge_Glissiere_lisse_09.glb",
+   "destination": "/Game/Environments/GrandCaunet/Bridges/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Bridges/Meshes/SM_GrandCaunetBridge_Glissiere_lisse_09",
+   "section_materiau": "MI_GC_Glissiere_lisse",
+   "materiau": "MI_GC_Glissiere_lisse",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetBridge_Glissiere_lisse_09",
+    "position_cm": [
+     -71263.0,
+     -104360.0,
+     -5245.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -2546.9,
+     -2660.8,
+     -0.0
+    ],
+    "max": [
+     2547.6,
+     2660.1,
+     94.0
+    ]
+   },
+   "sommets": 1800,
+   "triangles": 1764,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1600.0,
+    1800.0
+   ],
+   "troncon": 9
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetBridge_Glissiere_poteau_09",
+   "fichier": "maillages/ouvrages/SM_GrandCaunetBridge_Glissiere_poteau_09.glb",
+   "destination": "/Game/Environments/GrandCaunet/Bridges/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Bridges/Meshes/SM_GrandCaunetBridge_Glissiere_poteau_09",
+   "section_materiau": "MI_GC_Glissiere_poteau",
+   "materiau": "MI_GC_Glissiere_poteau",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetBridge_Glissiere_poteau_09",
+    "position_cm": [
+     -71253.0,
+     -104351.0,
+     -5362.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -2525.5,
+     -2621.6,
+     -0.5
+    ],
+    "max": [
+     2525.3,
+     2620.6,
+     208.5
+    ]
+   },
+   "sommets": 456,
+   "triangles": 228,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1600.0,
+    1800.0
+   ],
+   "troncon": 9
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetBridge_Pierre_09",
+   "fichier": "maillages/ouvrages/SM_GrandCaunetBridge_Pierre_09.glb",
+   "destination": "/Game/Environments/GrandCaunet/Bridges/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Bridges/Meshes/SM_GrandCaunetBridge_Pierre_09",
+   "section_materiau": "MI_GC_Pierre",
+   "materiau": "MI_GC_Pierre",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetBridge_Pierre_09",
+    "position_cm": [
+     -77299.0,
+     -97193.0,
+     -5220.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": true
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -481.0,
+     -1103.4,
+     -0.0
+    ],
+    "max": [
+     481.6,
+     1104.2,
+     134.0
+    ]
+   },
+   "sommets": 352,
+   "triangles": 328,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "pk_m": [
+    1600.0,
+    1800.0
+   ],
+   "troncon": 9
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_34_31",
+   "fichier": "textures/lointain/T_FarRing_34_31.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_34_31",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_GC_ORM_Lointain",
+   "fichier": "textures/commun/T_GC_ORM_Lointain.jpg",
+   "destination": "/Game/Environments/GrandCaunet/Shared/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/Shared/Textures/T_GC_ORM_Lointain",
+   "dimensions": [
+    8,
+    8
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Wrap",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_34_31",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_34_31",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_34_31",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_34_31",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_34_31",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_34_31.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_34_31",
+   "section_materiau": "MI_FarRing_34_31",
+   "materiau": "MI_FarRing_34_31",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_34_31",
+    "position_cm": [
+     -248850.0,
+     -44940.0,
+     -1645.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -52000.0,
+     -52000.0,
+     0.1
+    ],
+    "max": [
+     52000.0,
+     52000.0,
+     15772.3
+    ]
+   },
+   "sommets": 241,
+   "triangles": 404,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 1255,
+   "source": "modele/apercu/lointain.glb#lointain_1km_914000_6241000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_34_32",
+   "fichier": "textures/lointain/T_FarRing_34_32.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_34_32",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_34_32",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_34_32",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_34_32",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_34_32",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_34_32",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_34_32.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_34_32",
+   "section_materiau": "MI_FarRing_34_32",
+   "materiau": "MI_FarRing_34_32",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_34_32",
+    "position_cm": [
+     -250450.0,
+     -147340.0,
+     -6831.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     -0.4
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     22024.0
+    ]
+   },
+   "sommets": 1001,
+   "triangles": 1857,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 1254,
+   "source": "modele/apercu/lointain.glb#lointain_1km_914000_6242000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_35_30",
+   "fichier": "textures/lointain/T_FarRing_35_30.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_35_30",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_35_30",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_35_30",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_35_30",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_35_30",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_35_30",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_35_30.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_35_30",
+   "section_materiau": "MI_FarRing_35_30",
+   "materiau": "MI_FarRing_35_30",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_35_30",
+    "position_cm": [
+     -152850.0,
+     51060.0,
+     -18412.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -52000.0,
+     -52000.0,
+     -0.5
+    ],
+    "max": [
+     52000.0,
+     52000.0,
+     21508.7
+    ]
+   },
+   "sommets": 435,
+   "triangles": 794,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 1066,
+   "source": "modele/apercu/lointain.glb#lointain_1km_915000_6240000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_35_31",
+   "fichier": "textures/lointain/T_FarRing_35_31.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_35_31",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_35_31",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_35_31",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_35_31",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_35_31",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_35_31",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_35_31.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_35_31",
+   "section_materiau": "MI_FarRing_35_31",
+   "materiau": "MI_FarRing_35_31",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_35_31",
+    "position_cm": [
+     -152850.0,
+     -44940.0,
+     -2781.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -52000.0,
+     -52000.0,
+     0.1
+    ],
+    "max": [
+     52000.0,
+     52000.0,
+     18921.0
+    ]
+   },
+   "sommets": 1241,
+   "triangles": 2341,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 257,
+   "source": "modele/apercu/lointain.glb#lointain_1km_915000_6241000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_35_32",
+   "fichier": "textures/lointain/T_FarRing_35_32.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_35_32",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_35_32",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_35_32",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_35_32",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_35_32",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_35_32",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_35_32.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_35_32",
+   "section_materiau": "MI_FarRing_35_32",
+   "materiau": "MI_FarRing_35_32",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_35_32",
+    "position_cm": [
+     -151250.0,
+     -147340.0,
+     -7171.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     0.3
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     23777.4
+    ]
+   },
+   "sommets": 1022,
+   "triangles": 1875,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 254,
+   "source": "modele/apercu/lointain.glb#lointain_1km_915000_6242000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_35_33",
+   "fichier": "textures/lointain/T_FarRing_35_33.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_35_33",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_35_33",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_35_33",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_35_33",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_35_33",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_35_33",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_35_33.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_35_33",
+   "section_materiau": "MI_FarRing_35_33",
+   "materiau": "MI_FarRing_35_33",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_35_33",
+    "position_cm": [
+     -151250.0,
+     -246540.0,
+     -17399.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     0.4
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     26401.4
+    ]
+   },
+   "sommets": 2479,
+   "triangles": 4566,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 998,
+   "source": "modele/apercu/lointain.glb#lointain_1km_915000_6243000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_36_30",
+   "fichier": "textures/lointain/T_FarRing_36_30.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_36_30",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_36_30",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_36_30",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_36_30",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_36_30",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_36_30",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_36_30.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_36_30",
+   "section_materiau": "MI_FarRing_36_30",
+   "materiau": "MI_FarRing_36_30",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_36_30",
+    "position_cm": [
+     -50450.0,
+     52660.0,
+     -8943.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     -0.4
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     16012.9
+    ]
+   },
+   "sommets": 1326,
+   "triangles": 2474,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 1027,
+   "source": "modele/apercu/lointain.glb#lointain_1km_916000_6240000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_36_31",
+   "fichier": "textures/lointain/T_FarRing_36_31.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_36_31",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_36_31",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_36_31",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_36_31",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_36_31",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_36_31",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_36_31.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_36_31",
+   "section_materiau": "MI_FarRing_36_31",
+   "materiau": "MI_FarRing_36_31",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_36_31",
+    "position_cm": [
+     -50450.0,
+     -46540.0,
+     -4842.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     -0.3
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     8584.7
+    ]
+   },
+   "sommets": 2242,
+   "triangles": 4033,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 143,
+   "source": "modele/apercu/lointain.glb#lointain_1km_916000_6241000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_36_32",
+   "fichier": "textures/lointain/T_FarRing_36_32.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_36_32",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_36_32",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_36_32",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_36_32",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_36_32",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_36_32",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_36_32.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_36_32",
+   "section_materiau": "MI_FarRing_36_32",
+   "materiau": "MI_FarRing_36_32",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_36_32",
+    "position_cm": [
+     -50450.0,
+     -147340.0,
+     -12984.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     0.3
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     20635.0
+    ]
+   },
+   "sommets": 2350,
+   "triangles": 4324,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 127,
+   "source": "modele/apercu/lointain.glb#lointain_1km_916000_6242000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_36_33",
+   "fichier": "textures/lointain/T_FarRing_36_33.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_36_33",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_36_33",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_36_33",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_36_33",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_36_33",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_36_33",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_36_33.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_36_33",
+   "section_materiau": "MI_FarRing_36_33",
+   "materiau": "MI_FarRing_36_33",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_36_33",
+    "position_cm": [
+     -50450.0,
+     -246540.0,
+     -19625.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     -0.4
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     26529.3
+    ]
+   },
+   "sommets": 2459,
+   "triangles": 4528,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 957,
+   "source": "modele/apercu/lointain.glb#lointain_1km_916000_6243000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_37_30",
+   "fichier": "textures/lointain/T_FarRing_37_30.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_37_30",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_37_30",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_37_30",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_37_30",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_37_30",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_37_30",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_37_30.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_37_30",
+   "section_materiau": "MI_FarRing_37_30",
+   "materiau": "MI_FarRing_37_30",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_37_30",
+    "position_cm": [
+     48750.0,
+     52660.0,
+     -5175.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     -0.2
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     13224.7
+    ]
+   },
+   "sommets": 1229,
+   "triangles": 2293,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 1411,
+   "source": "modele/apercu/lointain.glb#lointain_1km_917000_6240000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_37_31",
+   "fichier": "textures/lointain/T_FarRing_37_31.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_37_31",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_37_31",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_37_31",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_37_31",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_37_31",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_37_31",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_37_31.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_37_31",
+   "section_materiau": "MI_FarRing_37_31",
+   "materiau": "MI_FarRing_37_31",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_37_31",
+    "position_cm": [
+     48750.0,
+     -46540.0,
+     -3187.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     0.1
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     9276.3
+    ]
+   },
+   "sommets": 1199,
+   "triangles": 2245,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 747,
+   "source": "modele/apercu/lointain.glb#lointain_1km_917000_6241000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_37_32",
+   "fichier": "textures/lointain/T_FarRing_37_32.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_37_32",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_37_32",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_37_32",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_37_32",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_37_32",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_37_32",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_37_32.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_37_32",
+   "section_materiau": "MI_FarRing_37_32",
+   "materiau": "MI_FarRing_37_32",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_37_32",
+    "position_cm": [
+     48750.0,
+     -147340.0,
+     -13116.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     -0.1
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     21286.3
+    ]
+   },
+   "sommets": 938,
+   "triangles": 1740,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 746,
+   "source": "modele/apercu/lointain.glb#lointain_1km_917000_6242000"
+  },
+  {
+   "type": "Texture2D",
+   "nom": "T_FarRing_37_33",
+   "fichier": "textures/lointain/T_FarRing_37_33.jpg",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Textures",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Textures/T_FarRing_37_33",
+   "dimensions": [
+    256,
+    256
+   ],
+   "import": {
+    "srgb": true,
+    "compression": "TC_Default",
+    "groupe_lod": "TEXTUREGROUP_World",
+    "adressage": "Clamp",
+    "mipmaps": "FromTextureGroup",
+    "virtual_texture_streaming": false,
+    "convention_relief": null
+   },
+   "essais": [
+    "E4",
+    "complet"
+   ]
+  },
+  {
+   "type": "MaterialInstance",
+   "nom": "MI_FarRing_37_33",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Materials",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Materials/MI_FarRing_37_33",
+   "parent_jeu_pressenti": "/Game/Materials/General/Masters/M_Simple",
+   "parametres_texture": {
+    "Simple_BaseColor_Texture": "T_FarRing_37_33",
+    "Simple_OcclRoughMet_Texture": "T_GC_ORM_Lointain"
+   },
+   "parent_secours": "/Game/GC_EditeurSeulement/M_GC_Secours",
+   "parametres_secours": {
+    "Couleur": "T_FarRing_37_33",
+    "ORM": "T_GC_ORM_Lointain"
+   },
+   "static_switch": "aucun ne doit être modifié",
+   "a_confirmer": "noms de paramètres confirmés dans le jeu ; M_Simple nommé ici est remplacé à l'import par la variante modèle du jeu (factices.json, role modele_m_simple), dont les static switch de texture sont actifs ; sans --parent jeu, le script d'import utilise le parent de secours M_GC_Secours",
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "note": "anneau lointain : sans ombre portée ; pas de relief"
+  },
+  {
+   "type": "StaticMesh",
+   "nom": "SM_GrandCaunetFarRing_37_33",
+   "fichier": "maillages/lointain/SM_GrandCaunetFarRing_37_33.glb",
+   "destination": "/Game/Environments/GrandCaunet/FarRing/Meshes",
+   "chemin_ue": "/Game/Environments/GrandCaunet/FarRing/Meshes/SM_GrandCaunetFarRing_37_33",
+   "section_materiau": "MI_FarRing_37_33",
+   "materiau": "MI_FarRing_37_33",
+   "import": {
+    "collision": "aucune",
+    "nanite": false,
+    "generer_lightmap_uv": false,
+    "importer_materiaux": false,
+    "importer_textures": false,
+    "recalculer_normales": false,
+    "recalculer_tangentes": true,
+    "combiner_maillages": true,
+    "echelle_import": 1.0
+   },
+   "acteur": {
+    "label": "SM_GrandCaunetFarRing_37_33",
+    "position_cm": [
+     48750.0,
+     -246540.0,
+     -23590.0
+    ],
+    "rotation_deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "echelle": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "collision": "NoCollision",
+    "mobilite": "Static",
+    "ombre_portee": false
+   },
+   "bornes_locales_cm": {
+    "min": [
+     -50400.0,
+     -50400.0,
+     -0.5
+    ],
+    "max": [
+     50400.0,
+     50400.0,
+     20042.2
+    ]
+   },
+   "sommets": 1309,
+   "triangles": 2449,
+   "essais": [
+    "E4",
+    "complet"
+   ],
+   "distance_min_e4_m": 1218,
+   "source": "modele/apercu/lointain.glb#lointain_1km_917000_6243000"
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine01",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine01",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine01.csv",
+   "nombre": 32,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 23,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine02",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine02",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine02.csv",
+   "nombre": 13,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine03",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine03",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine03.csv",
+   "nombre": 20,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 22,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine04",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine04",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine04.csv",
+   "nombre": 16,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine05",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine05",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine05.csv",
+   "nombre": 18,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 20,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine06",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine06",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine06.csv",
+   "nombre": 20,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 28,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine07",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine07",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine07.csv",
+   "nombre": 18,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 21,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine08",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine08",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine08.csv",
+   "nombre": 20,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 21,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine09",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine09",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine09.csv",
+   "nombre": 19,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 24,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine10",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine10",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine10.csv",
+   "nombre": 28,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 24,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine11",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine11",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine11.csv",
+   "nombre": 19,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 25,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine12",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine12",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine12.csv",
+   "nombre": 26,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 25,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine13",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine13",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine13.csv",
+   "nombre": 20,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 30,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine14",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine14",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine14.csv",
+   "nombre": 18,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 30,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_AleppoPine15",
+   "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine15",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_AleppoPine15.csv",
+   "nombre": 15,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Blackmaple01",
+   "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple01",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Blackmaple01.csv",
+   "nombre": 9,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 7,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Blackmaple02",
+   "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple02",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Blackmaple02.csv",
+   "nombre": 9,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 3,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Blackmaple03",
+   "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple03",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Blackmaple03.csv",
+   "nombre": 12,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 3,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Blackmaple04",
+   "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple04",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Blackmaple04.csv",
+   "nombre": 7,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 5,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Blackmaple06",
+   "maillage_jeu": "/Game/Foliage/Trees/Blackmaple/SM_Blackmaple06",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Blackmaple06.csv",
+   "nombre": 8,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 5,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_BlackmapleMonteCarlo01",
+   "maillage_jeu": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo01",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_BlackmapleMonteCarlo01.csv",
+   "nombre": 40,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 37,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_BlackmapleMonteCarlo02",
+   "maillage_jeu": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo02",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_BlackmapleMonteCarlo02.csv",
+   "nombre": 42,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 35,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_BlackmapleMonteCarlo03",
+   "maillage_jeu": "/Game/Foliage/Trees/BlackmapleMonteCarlo/SM_BlackmapleMonteCarlo03",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_BlackmapleMonteCarlo03.csv",
+   "nombre": 45,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Smoketree01",
+   "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree01",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Smoketree01.csv",
+   "nombre": 174,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 22,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Smoketree02",
+   "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree02",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Smoketree02.csv",
+   "nombre": 150,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 25,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Smoketree04",
+   "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree04",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Smoketree04.csv",
+   "nombre": 132,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 21,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbres_SM_Smoketree06",
+   "maillage_jeu": "/Game/Foliage/Trees/Smoketree/SM_Smoketree06",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbres/SM_Smoketree06.csv",
+   "nombre": 147,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 27,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_BroomCreeper01",
+   "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper01",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_BroomCreeper01.csv",
+   "nombre": 594,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 7,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_BroomCreeper02",
+   "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper02",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_BroomCreeper02.csv",
+   "nombre": 605,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 6,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_BroomCreeper03",
+   "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper03",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_BroomCreeper03.csv",
+   "nombre": 611,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 6,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_BroomCreeper04",
+   "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper04",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_BroomCreeper04.csv",
+   "nombre": 636,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 12,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_BroomCreeper05",
+   "maillage_jeu": "/Game/Foliage/GroundCover/BroomCreeper/SM_BroomCreeper05",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_BroomCreeper05.csv",
+   "nombre": 627,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 7,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_Boxthorn01",
+   "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn01",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_Boxthorn01.csv",
+   "nombre": 823,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 10,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_Boxthorn02",
+   "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn02",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_Boxthorn02.csv",
+   "nombre": 793,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 17,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_Boxthorn03",
+   "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn03",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_Boxthorn03.csv",
+   "nombre": 869,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 12,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_Boxthorn04",
+   "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn04",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_Boxthorn04.csv",
+   "nombre": 826,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 13,
+   "essais": [
+    "E4"
+   ]
+  },
+  {
+   "type": "InstanceGroup",
+   "nom": "GC_Arbustes_SM_Boxthorn05",
+   "maillage_jeu": "/Game/Foliage/Trees/Boxthorn/SM_Boxthorn05",
+   "present_au_catalogue": true,
+   "fichier": "instances/arbustes/SM_Boxthorn05.csv",
+   "nombre": 882,
+   "composant": "HierarchicalInstancedStaticMeshComponent",
+   "collision": "NoCollision",
+   "hauteur_native_cm": null,
+   "echelle": "à l'import, scripts_editeur/attribution.py rechoisit le maillage dans ce dossier d'après la taille de chaque plante (releves/maillages_vegetation.json) et en déduit l'échelle ; le maillage nommé ici est tiré sans connaître les tailles",
+   "retirees_sur_chaussee": 11,
+   "essais": [
+    "E4"
+   ]
+  }
+ ],
+ "controle": {
+  "maillages": 31,
+  "erreurs": [],
+  "terrain_ecart_au_modele_cm": {
+   "max": 0.0007,
+   "moyen": 0.00028
+  },
+  "terrain_sommets_partages_entre_dalles": 1323,
+  "terrain_ecart_max_sommets_partages_cm": 0.0008,
+  "glb_taille_max_mo": 0.52,
+  "taille_totale_mo": 11.9,
+  "fichier_le_plus_gros_mo": 1.14,
+  "elements_par_type": {
+   "StaticMesh": 31,
+   "Texture2D": 54,
+   "MaterialInstance": 36,
+   "InstanceGroup": 37
+  },
+  "instances_par_maillage": {
+   "SM_AleppoPine01": 32,
+   "SM_AleppoPine02": 13,
+   "SM_AleppoPine03": 20,
+   "SM_AleppoPine04": 16,
+   "SM_AleppoPine05": 18,
+   "SM_AleppoPine06": 20,
+   "SM_AleppoPine07": 18,
+   "SM_AleppoPine08": 20,
+   "SM_AleppoPine09": 19,
+   "SM_AleppoPine10": 28,
+   "SM_AleppoPine11": 19,
+   "SM_AleppoPine12": 26,
+   "SM_AleppoPine13": 20,
+   "SM_AleppoPine14": 18,
+   "SM_AleppoPine15": 15,
+   "SM_Blackmaple01": 9,
+   "SM_Blackmaple02": 9,
+   "SM_Blackmaple03": 12,
+   "SM_Blackmaple04": 7,
+   "SM_Blackmaple06": 8,
+   "SM_BlackmapleMonteCarlo01": 40,
+   "SM_BlackmapleMonteCarlo02": 42,
+   "SM_BlackmapleMonteCarlo03": 45,
+   "SM_Smoketree01": 174,
+   "SM_Smoketree02": 150,
+   "SM_Smoketree04": 132,
+   "SM_Smoketree06": 147,
+   "SM_BroomCreeper01": 594,
+   "SM_BroomCreeper02": 605,
+   "SM_BroomCreeper03": 611,
+   "SM_BroomCreeper04": 636,
+   "SM_BroomCreeper05": 627,
+   "SM_Boxthorn01": 823,
+   "SM_Boxthorn02": 793,
+   "SM_Boxthorn03": 869,
+   "SM_Boxthorn04": 826,
+   "SM_Boxthorn05": 882
+  },
+  "instances_retirees_sur_chaussee": 692,
+  "instances_absentes_du_catalogue": [],
+  "terrain": {
+   "dalles": 2,
+   "sous_dalles": 5
+  },
+  "lointain": 14,
+  "groupes": {
+   "route": 1,
+   "marquage": 1,
+   "ouvrages": 5,
+   "annexes": 0,
+   "balisage": 0
+  },
+  "instances": 8343,
+  "duree_s": 40
+ }
+}

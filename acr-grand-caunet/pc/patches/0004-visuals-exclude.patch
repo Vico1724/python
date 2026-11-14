@@ -1,0 +1,71 @@
+diff --git a/tools/acr-ref/Visuals.cs b/tools/acr-ref/Visuals.cs
+index cbe50fc..27ebdde 100644
+--- a/tools/acr-ref/Visuals.cs
++++ b/tools/acr-ref/Visuals.cs
+@@ -38,7 +38,8 @@ internal static class Visuals
+     ///        section, texture and MIC per tile, tile UVs (GroundLod.Split); null = one terrain section, box UVs
+     internal sealed record Options(string Host, bool Retarget, string? Owner, string Vegetation = "none", string? Canopies = null,
+                                    bool Vista = false, bool Textured = false, bool Dr2 = false, string Dr2Revert = "",
+-                                   string TerrainUv = "planar", string Ground = "collision", bool GroundLod = false, string? GroundBake = null)
++                                   string TerrainUv = "planar", string Ground = "collision", bool GroundLod = false, string? GroundBake = null,
++                                   string? Exclude = null)
+     {
+         public static Options From(IReadOnlyDictionary<string, string> named) => new(
+             named.GetValueOrDefault("visuals-host", "start"),
+@@ -53,7 +54,8 @@ internal static class Visuals
+             named.GetValueOrDefault("visuals-terrain-uv", "planar"),
+             named.GetValueOrDefault("visuals-ground", "collision"),
+             named.GetValueOrDefault("visuals-ground-lod", "0") != "0",
+-            named.GetValueOrDefault("visuals-ground-bake") is { Length: > 0 } gb ? gb : null);
++            named.GetValueOrDefault("visuals-ground-bake") is { Length: > 0 } gb ? gb : null,
++            named.GetValueOrDefault("visuals-exclude") is { Length: > 0 } xf ? xf : null);   // [Grand Caunet]
+ 
+         public static readonly string[] Dr2Sections = ["terrain", "road", "vista", "objects"];
+ 
+@@ -309,6 +311,46 @@ internal static class Visuals
+             dr2Rep["packages"] = dr2.Log.DeepClone();
+             r["dr2"] = dr2Rep;
+         }
++        if (opt.Exclude is { } exFile)
++        {
++            // [Grand Caunet] zones where another container already draws the scenery: triangles whose centre falls inside are
++            // not drawn. JSON: {"terrain": [polygon...], "autres": [polygon...]}, polygon = [[x, y]...] in UE cm (world).
++            // "terrain" applies to the terrain sections, "autres" to road, posts and objects; the gates are never touched.
++            var ex = JsonNode.Parse(File.ReadAllText(exFile))!;
++            List<(double x, double y)[]> Polys(string k) => ex[k] is JsonArray pa
++                ? pa.Select(p => p!.AsArray().Select(v => (v![0]!.GetValue<double>(), v[1]!.GetValue<double>())).ToArray()).ToList() : [];
++            var exGround = Polys("terrain");
++            var exOther = Polys("autres");
++            static bool Inside((double x, double y)[] p, double x, double y)
++            {
++                bool inside = false;
++                for (int i = 0, j = p.Length - 1; i < p.Length; j = i++)
++                    if ((p[i].y > y) != (p[j].y > y) && x < (p[j].x - p[i].x) * (y - p[i].y) / (p[j].y - p[i].y) + p[i].x) inside = !inside;
++                return inside;
++            }
++            var exRep = new JsonObject();
++            for (int si = 1; si < sections.Count; si++)
++            {
++                string name = sectionNames[si]!.GetValue<string>();
++                if (name == "gates") continue;
++                var polys = name.StartsWith("terrain") ? exGround : exOther;
++                if (polys.Count == 0) continue;
++                var s = sections[si];
++                var keep = new List<uint>(s.Idx.Count);
++                for (int t = 0; t < s.Idx.Count; t += 3)
++                {
++                    var a = s.Pos[(int)s.Idx[t]]; var b = s.Pos[(int)s.Idx[t + 1]]; var c3 = s.Pos[(int)s.Idx[t + 2]];
++                    double cx = (a.X + b.X + c3.X) / 3.0, cy = (a.Y + b.Y + c3.Y) / 3.0;
++                    if (!polys.Any(p => Inside(p, cx, cy))) { keep.Add(s.Idx[t]); keep.Add(s.Idx[t + 1]); keep.Add(s.Idx[t + 2]); }
++                }
++                if (keep.Count == s.Idx.Count) continue;
++                if (keep.Count == 0) { keep.Add(s.Idx[0]); keep.Add(s.Idx[0]); keep.Add(s.Idx[0]); }   // a section may not be empty: one zero-area triangle
++                exRep[name] = (s.Idx.Count - keep.Count) / 3;
++                s.Idx = keep;
++            }
++            r["excluded_triangles"] = exRep;
++            Console.WriteLine($"visuals: excluded triangles {exRep.ToJsonString()} ({exFile})");
++        }
+         r["sections"] = sectionNames;
+         r["triangles_total"] = sections.Sum(s => s.Idx.Count / 3);
+         var data = ProcMesh.BuildComponent(comp, sections, mats);

@@ -1,0 +1,1376 @@
+{
+ "seuil_deg": 12.0,
+ "trace": [
+  {
+   "pk_debut": 0,
+   "pk_fin": 191,
+   "angle_deg": 29.6
+  },
+  {
+   "pk_debut": 191,
+   "pk_fin": 290,
+   "angle_deg": -34.1
+  },
+  {
+   "pk_debut": 290,
+   "pk_fin": 400,
+   "angle_deg": 63.5
+  },
+  {
+   "pk_debut": 400,
+   "pk_fin": 486,
+   "angle_deg": -39.1
+  },
+  {
+   "pk_debut": 486,
+   "pk_fin": 542,
+   "angle_deg": 66.2
+  },
+  {
+   "pk_debut": 542,
+   "pk_fin": 620,
+   "angle_deg": -12.5
+  },
+  {
+   "pk_debut": 620,
+   "pk_fin": 668,
+   "angle_deg": 52.1
+  },
+  {
+   "pk_debut": 668,
+   "pk_fin": 871,
+   "angle_deg": -161.2
+  },
+  {
+   "pk_debut": 871,
+   "pk_fin": 958,
+   "angle_deg": 73.2
+  },
+  {
+   "pk_debut": 958,
+   "pk_fin": 1113,
+   "angle_deg": -51.0
+  },
+  {
+   "pk_debut": 1113,
+   "pk_fin": 1144,
+   "angle_deg": 19.9
+  },
+  {
+   "pk_debut": 1144,
+   "pk_fin": 1521,
+   "angle_deg": -80.0
+  },
+  {
+   "pk_debut": 1521,
+   "pk_fin": 1630,
+   "angle_deg": 75.7
+  },
+  {
+   "pk_debut": 1630,
+   "pk_fin": 1740,
+   "angle_deg": -79.2
+  },
+  {
+   "pk_debut": 1740,
+   "pk_fin": 1843,
+   "angle_deg": 60.5
+  },
+  {
+   "pk_debut": 1843,
+   "pk_fin": 1927,
+   "angle_deg": -47.5
+  },
+  {
+   "pk_debut": 1927,
+   "pk_fin": 1947,
+   "angle_deg": 15.1
+  },
+  {
+   "pk_debut": 1947,
+   "pk_fin": 1982,
+   "angle_deg": -36.3
+  },
+  {
+   "pk_debut": 1982,
+   "pk_fin": 2187,
+   "angle_deg": 84.7
+  },
+  {
+   "pk_debut": 2187,
+   "pk_fin": 2259,
+   "angle_deg": -153.6
+  },
+  {
+   "pk_debut": 2259,
+   "pk_fin": 2361,
+   "angle_deg": 127.0
+  },
+  {
+   "pk_debut": 2361,
+   "pk_fin": 2442,
+   "angle_deg": -16.9
+  },
+  {
+   "pk_debut": 2442,
+   "pk_fin": 2501,
+   "angle_deg": 14.1
+  },
+  {
+   "pk_debut": 2501,
+   "pk_fin": 2673,
+   "angle_deg": -45.6
+  },
+  {
+   "pk_debut": 2673,
+   "pk_fin": 2765,
+   "angle_deg": 35.8
+  },
+  {
+   "pk_debut": 2765,
+   "pk_fin": 2801,
+   "angle_deg": -81.2
+  },
+  {
+   "pk_debut": 2801,
+   "pk_fin": 3053,
+   "angle_deg": 89.8
+  },
+  {
+   "pk_debut": 3053,
+   "pk_fin": 3099,
+   "angle_deg": -14.2
+  },
+  {
+   "pk_debut": 3099,
+   "pk_fin": 3393,
+   "angle_deg": 58.1
+  },
+  {
+   "pk_debut": 3393,
+   "pk_fin": 3494,
+   "angle_deg": -32.0
+  },
+  {
+   "pk_debut": 3494,
+   "pk_fin": 3668,
+   "angle_deg": 80.1
+  },
+  {
+   "pk_debut": 3668,
+   "pk_fin": 3755,
+   "angle_deg": -57.5
+  },
+  {
+   "pk_debut": 3755,
+   "pk_fin": 3960,
+   "angle_deg": 147.0
+  },
+  {
+   "pk_debut": 3960,
+   "pk_fin": 3974,
+   "angle_deg": -13.9
+  },
+  {
+   "pk_debut": 3974,
+   "pk_fin": 4032,
+   "angle_deg": 32.9
+  },
+  {
+   "pk_debut": 4032,
+   "pk_fin": 4122,
+   "angle_deg": -167.3
+  },
+  {
+   "pk_debut": 4122,
+   "pk_fin": 4324,
+   "angle_deg": 143.1
+  },
+  {
+   "pk_debut": 4324,
+   "pk_fin": 4391,
+   "angle_deg": -78.8
+  },
+  {
+   "pk_debut": 4391,
+   "pk_fin": 4456,
+   "angle_deg": 56.7
+  },
+  {
+   "pk_debut": 4456,
+   "pk_fin": 4507,
+   "angle_deg": -85.0
+  },
+  {
+   "pk_debut": 4507,
+   "pk_fin": 4660,
+   "angle_deg": 55.2
+  },
+  {
+   "pk_debut": 4660,
+   "pk_fin": 4753,
+   "angle_deg": -42.6
+  },
+  {
+   "pk_debut": 4753,
+   "pk_fin": 4876,
+   "angle_deg": 48.2
+  },
+  {
+   "pk_debut": 4876,
+   "pk_fin": 5027,
+   "angle_deg": -52.0
+  },
+  {
+   "pk_debut": 5027,
+   "pk_fin": 5085,
+   "angle_deg": 37.9
+  },
+  {
+   "pk_debut": 5085,
+   "pk_fin": 5607,
+   "angle_deg": -105.2
+  },
+  {
+   "pk_debut": 5607,
+   "pk_fin": 6083,
+   "angle_deg": 139.3
+  },
+  {
+   "pk_debut": 6083,
+   "pk_fin": 6186,
+   "angle_deg": -87.5
+  },
+  {
+   "pk_debut": 6186,
+   "pk_fin": 6388,
+   "angle_deg": 106.4
+  },
+  {
+   "pk_debut": 6388,
+   "pk_fin": 6544,
+   "angle_deg": -91.5
+  },
+  {
+   "pk_debut": 6544,
+   "pk_fin": 6640,
+   "angle_deg": 68.8
+  },
+  {
+   "pk_debut": 6640,
+   "pk_fin": 6722,
+   "angle_deg": -57.3
+  }
+ ],
+ "videos": {
+  "ONBOARD M3 E30 - Tom Pieri  ES5 LE GRAND CAUNET  Rallye Sainte-Baume 2023 1.mp4": {
+   "duree_s": 229.9,
+   "echelle_deg_par_px": 0.3045,
+   "sens": "glissement vers la droite = virage à gauche",
+   "changements_vus": 44,
+   "apparies": 42,
+   "virages_du_trace_non_retrouves": [
+    {
+     "pk_debut": 542,
+     "pk_fin": 620,
+     "angle_deg": -12.5
+    },
+    {
+     "pk_debut": 620,
+     "pk_fin": 668,
+     "angle_deg": 52.1
+    },
+    {
+     "pk_debut": 958,
+     "pk_fin": 1113,
+     "angle_deg": -51.0
+    },
+    {
+     "pk_debut": 1113,
+     "pk_fin": 1144,
+     "angle_deg": 19.9
+    },
+    {
+     "pk_debut": 1927,
+     "pk_fin": 1947,
+     "angle_deg": 15.1
+    },
+    {
+     "pk_debut": 1947,
+     "pk_fin": 1982,
+     "angle_deg": -36.3
+    },
+    {
+     "pk_debut": 2361,
+     "pk_fin": 2442,
+     "angle_deg": -16.9
+    },
+    {
+     "pk_debut": 2442,
+     "pk_fin": 2501,
+     "angle_deg": 14.1
+    },
+    {
+     "pk_debut": 3960,
+     "pk_fin": 3974,
+     "angle_deg": -13.9
+    },
+    {
+     "pk_debut": 3974,
+     "pk_fin": 4032,
+     "angle_deg": 32.9
+    }
+   ],
+   "changements_video_sans_virage": [],
+   "sens_opposes": [],
+   "ecart_median_deg": 9.8,
+   "ecart_p90_deg": 34.2,
+   "virages": [
+    {
+     "pk_debut": 0,
+     "pk_fin": 191,
+     "trace_deg": 29.6,
+     "video_deg": 28.2,
+     "ecart_deg": -1.4
+    },
+    {
+     "pk_debut": 191,
+     "pk_fin": 290,
+     "trace_deg": -34.1,
+     "video_deg": -30.6,
+     "ecart_deg": 3.5
+    },
+    {
+     "pk_debut": 290,
+     "pk_fin": 400,
+     "trace_deg": 63.5,
+     "video_deg": 58.8,
+     "ecart_deg": -4.7
+    },
+    {
+     "pk_debut": 400,
+     "pk_fin": 486,
+     "trace_deg": -39.1,
+     "video_deg": -39.2,
+     "ecart_deg": -0.1
+    },
+    {
+     "pk_debut": 486,
+     "pk_fin": 542,
+     "trace_deg": 66.2,
+     "video_deg": 100.1,
+     "ecart_deg": 33.9
+    },
+    {
+     "pk_debut": 668,
+     "pk_fin": 871,
+     "trace_deg": -161.2,
+     "video_deg": -163.3,
+     "ecart_deg": -2.1
+    },
+    {
+     "pk_debut": 871,
+     "pk_fin": 958,
+     "trace_deg": 73.2,
+     "video_deg": 70.1,
+     "ecart_deg": -3.1
+    },
+    {
+     "pk_debut": 1144,
+     "pk_fin": 1521,
+     "trace_deg": -80.0,
+     "video_deg": -148.6,
+     "ecart_deg": -68.5
+    },
+    {
+     "pk_debut": 1521,
+     "pk_fin": 1630,
+     "trace_deg": 75.7,
+     "video_deg": 80.7,
+     "ecart_deg": 5.0
+    },
+    {
+     "pk_debut": 1630,
+     "pk_fin": 1740,
+     "trace_deg": -79.2,
+     "video_deg": -92.4,
+     "ecart_deg": -13.2
+    },
+    {
+     "pk_debut": 1740,
+     "pk_fin": 1843,
+     "trace_deg": 60.5,
+     "video_deg": 65.7,
+     "ecart_deg": 5.3
+    },
+    {
+     "pk_debut": 1843,
+     "pk_fin": 1927,
+     "trace_deg": -47.5,
+     "video_deg": -79.4,
+     "ecart_deg": -31.9
+    },
+    {
+     "pk_debut": 1982,
+     "pk_fin": 2187,
+     "trace_deg": 84.7,
+     "video_deg": 67.8,
+     "ecart_deg": -16.8
+    },
+    {
+     "pk_debut": 2187,
+     "pk_fin": 2259,
+     "trace_deg": -153.6,
+     "video_deg": -163.6,
+     "ecart_deg": -10.0
+    },
+    {
+     "pk_debut": 2259,
+     "pk_fin": 2361,
+     "trace_deg": 127.0,
+     "video_deg": 135.6,
+     "ecart_deg": 8.6
+    },
+    {
+     "pk_debut": 2501,
+     "pk_fin": 2673,
+     "trace_deg": -45.6,
+     "video_deg": -75.3,
+     "ecart_deg": -29.7
+    },
+    {
+     "pk_debut": 2673,
+     "pk_fin": 2765,
+     "trace_deg": 35.8,
+     "video_deg": 25.3,
+     "ecart_deg": -10.5
+    },
+    {
+     "pk_debut": 2765,
+     "pk_fin": 2801,
+     "trace_deg": -81.2,
+     "video_deg": -99.6,
+     "ecart_deg": -18.4
+    },
+    {
+     "pk_debut": 2801,
+     "pk_fin": 3053,
+     "trace_deg": 89.8,
+     "video_deg": 89.6,
+     "ecart_deg": -0.2
+    },
+    {
+     "pk_debut": 3053,
+     "pk_fin": 3099,
+     "trace_deg": -14.2,
+     "video_deg": -12.2,
+     "ecart_deg": 2.1
+    },
+    {
+     "pk_debut": 3099,
+     "pk_fin": 3393,
+     "trace_deg": 58.1,
+     "video_deg": 59.8,
+     "ecart_deg": 1.7
+    },
+    {
+     "pk_debut": 3393,
+     "pk_fin": 3494,
+     "trace_deg": -32.0,
+     "video_deg": -39.7,
+     "ecart_deg": -7.8
+    },
+    {
+     "pk_debut": 3494,
+     "pk_fin": 3668,
+     "trace_deg": 80.1,
+     "video_deg": 63.9,
+     "ecart_deg": -16.2
+    },
+    {
+     "pk_debut": 3668,
+     "pk_fin": 3755,
+     "trace_deg": -57.5,
+     "video_deg": -47.3,
+     "ecart_deg": 10.1
+    },
+    {
+     "pk_debut": 3755,
+     "pk_fin": 3960,
+     "trace_deg": 147.0,
+     "video_deg": 162.3,
+     "ecart_deg": 15.3
+    },
+    {
+     "pk_debut": 4032,
+     "pk_fin": 4122,
+     "trace_deg": -167.3,
+     "video_deg": -201.5,
+     "ecart_deg": -34.2
+    },
+    {
+     "pk_debut": 4122,
+     "pk_fin": 4324,
+     "trace_deg": 143.1,
+     "video_deg": 152.5,
+     "ecart_deg": 9.5
+    },
+    {
+     "pk_debut": 4324,
+     "pk_fin": 4391,
+     "trace_deg": -78.8,
+     "video_deg": -77.8,
+     "ecart_deg": 1.0
+    },
+    {
+     "pk_debut": 4391,
+     "pk_fin": 4456,
+     "trace_deg": 56.7,
+     "video_deg": 48.5,
+     "ecart_deg": -8.2
+    },
+    {
+     "pk_debut": 4456,
+     "pk_fin": 4507,
+     "trace_deg": -85.0,
+     "video_deg": -79.8,
+     "ecart_deg": 5.3
+    },
+    {
+     "pk_debut": 4507,
+     "pk_fin": 4660,
+     "trace_deg": 55.2,
+     "video_deg": 45.8,
+     "ecart_deg": -9.3
+    },
+    {
+     "pk_debut": 4660,
+     "pk_fin": 4753,
+     "trace_deg": -42.6,
+     "video_deg": -30.9,
+     "ecart_deg": 11.7
+    },
+    {
+     "pk_debut": 4753,
+     "pk_fin": 4876,
+     "trace_deg": 48.2,
+     "video_deg": 31.6,
+     "ecart_deg": -16.6
+    },
+    {
+     "pk_debut": 4876,
+     "pk_fin": 5027,
+     "trace_deg": -52.0,
+     "video_deg": -44.0,
+     "ecart_deg": 8.0
+    },
+    {
+     "pk_debut": 5027,
+     "pk_fin": 5085,
+     "trace_deg": 37.9,
+     "video_deg": 38.7,
+     "ecart_deg": 0.8
+    },
+    {
+     "pk_debut": 5085,
+     "pk_fin": 5607,
+     "trace_deg": -105.2,
+     "video_deg": -97.6,
+     "ecart_deg": 7.6
+    },
+    {
+     "pk_debut": 5607,
+     "pk_fin": 6083,
+     "trace_deg": 139.3,
+     "video_deg": 24.5,
+     "ecart_deg": -114.8
+    },
+    {
+     "pk_debut": 6083,
+     "pk_fin": 6186,
+     "trace_deg": -87.5,
+     "video_deg": -16.0,
+     "ecart_deg": 71.5
+    },
+    {
+     "pk_debut": 6186,
+     "pk_fin": 6388,
+     "trace_deg": 106.4,
+     "video_deg": 84.3,
+     "ecart_deg": -22.1
+    },
+    {
+     "pk_debut": 6388,
+     "pk_fin": 6544,
+     "trace_deg": -91.5,
+     "video_deg": -112.1,
+     "ecart_deg": -20.6
+    },
+    {
+     "pk_debut": 6544,
+     "pk_fin": 6640,
+     "trace_deg": 68.8,
+     "video_deg": 100.9,
+     "ecart_deg": 32.1
+    },
+    {
+     "pk_debut": 6640,
+     "pk_fin": 6722,
+     "trace_deg": -57.3,
+     "video_deg": -122.8,
+     "ecart_deg": -65.5
+    }
+   ]
+  },
+  "Rallye de St Baume 2025 - VMRS - ES1 - Le Grand Caunet.mp4": {
+   "duree_s": 341.2,
+   "echelle_deg_par_px": 0.6919,
+   "sens": "glissement vers la droite = virage à gauche",
+   "changements_vus": 45,
+   "apparies": 44,
+   "virages_du_trace_non_retrouves": [
+    {
+     "pk_debut": 1927,
+     "pk_fin": 1947,
+     "angle_deg": 15.1
+    },
+    {
+     "pk_debut": 1947,
+     "pk_fin": 1982,
+     "angle_deg": -36.3
+    },
+    {
+     "pk_debut": 2361,
+     "pk_fin": 2442,
+     "angle_deg": -16.9
+    },
+    {
+     "pk_debut": 2442,
+     "pk_fin": 2501,
+     "angle_deg": 14.1
+    },
+    {
+     "pk_debut": 3053,
+     "pk_fin": 3099,
+     "angle_deg": -14.2
+    },
+    {
+     "pk_debut": 3099,
+     "pk_fin": 3393,
+     "angle_deg": 58.1
+    },
+    {
+     "pk_debut": 3960,
+     "pk_fin": 3974,
+     "angle_deg": -13.9
+    },
+    {
+     "pk_debut": 3974,
+     "pk_fin": 4032,
+     "angle_deg": 32.9
+    }
+   ],
+   "changements_video_sans_virage": [],
+   "sens_opposes": [],
+   "ecart_median_deg": 21.4,
+   "ecart_p90_deg": 116.4,
+   "virages": [
+    {
+     "pk_debut": 0,
+     "pk_fin": 191,
+     "trace_deg": 29.6,
+     "video_deg": 154.0,
+     "ecart_deg": 124.4
+    },
+    {
+     "pk_debut": 191,
+     "pk_fin": 290,
+     "trace_deg": -34.1,
+     "video_deg": -79.7,
+     "ecart_deg": -45.6
+    },
+    {
+     "pk_debut": 290,
+     "pk_fin": 400,
+     "trace_deg": 63.5,
+     "video_deg": 45.1,
+     "ecart_deg": -18.4
+    },
+    {
+     "pk_debut": 400,
+     "pk_fin": 486,
+     "trace_deg": -39.1,
+     "video_deg": -20.9,
+     "ecart_deg": 18.2
+    },
+    {
+     "pk_debut": 486,
+     "pk_fin": 542,
+     "trace_deg": 66.2,
+     "video_deg": 54.5,
+     "ecart_deg": -11.7
+    },
+    {
+     "pk_debut": 542,
+     "pk_fin": 620,
+     "trace_deg": -12.5,
+     "video_deg": -10.4,
+     "ecart_deg": 2.1
+    },
+    {
+     "pk_debut": 620,
+     "pk_fin": 668,
+     "trace_deg": 52.1,
+     "video_deg": 94.6,
+     "ecart_deg": 42.4
+    },
+    {
+     "pk_debut": 668,
+     "pk_fin": 871,
+     "trace_deg": -161.2,
+     "video_deg": -158.0,
+     "ecart_deg": 3.2
+    },
+    {
+     "pk_debut": 871,
+     "pk_fin": 958,
+     "trace_deg": 73.2,
+     "video_deg": 66.5,
+     "ecart_deg": -6.6
+    },
+    {
+     "pk_debut": 958,
+     "pk_fin": 1113,
+     "trace_deg": -51.0,
+     "video_deg": -29.9,
+     "ecart_deg": 21.1
+    },
+    {
+     "pk_debut": 1113,
+     "pk_fin": 1144,
+     "trace_deg": 19.9,
+     "video_deg": 14.0,
+     "ecart_deg": -6.0
+    },
+    {
+     "pk_debut": 1144,
+     "pk_fin": 1521,
+     "trace_deg": -80.0,
+     "video_deg": -104.9,
+     "ecart_deg": -24.9
+    },
+    {
+     "pk_debut": 1521,
+     "pk_fin": 1630,
+     "trace_deg": 75.7,
+     "video_deg": 39.7,
+     "ecart_deg": -36.0
+    },
+    {
+     "pk_debut": 1630,
+     "pk_fin": 1740,
+     "trace_deg": -79.2,
+     "video_deg": -80.4,
+     "ecart_deg": -1.2
+    },
+    {
+     "pk_debut": 1740,
+     "pk_fin": 1843,
+     "trace_deg": 60.5,
+     "video_deg": 58.4,
+     "ecart_deg": -2.0
+    },
+    {
+     "pk_debut": 1843,
+     "pk_fin": 1927,
+     "trace_deg": -47.5,
+     "video_deg": -73.2,
+     "ecart_deg": -25.7
+    },
+    {
+     "pk_debut": 1982,
+     "pk_fin": 2187,
+     "trace_deg": 84.7,
+     "video_deg": 69.4,
+     "ecart_deg": -15.2
+    },
+    {
+     "pk_debut": 2187,
+     "pk_fin": 2259,
+     "trace_deg": -153.6,
+     "video_deg": -32.4,
+     "ecart_deg": 121.2
+    },
+    {
+     "pk_debut": 2259,
+     "pk_fin": 2361,
+     "trace_deg": 127.0,
+     "video_deg": 263.6,
+     "ecart_deg": 136.6
+    },
+    {
+     "pk_debut": 2501,
+     "pk_fin": 2673,
+     "trace_deg": -45.6,
+     "video_deg": -44.4,
+     "ecart_deg": 1.2
+    },
+    {
+     "pk_debut": 2673,
+     "pk_fin": 2765,
+     "trace_deg": 35.8,
+     "video_deg": 13.9,
+     "ecart_deg": -21.8
+    },
+    {
+     "pk_debut": 2765,
+     "pk_fin": 2801,
+     "trace_deg": -81.2,
+     "video_deg": -77.7,
+     "ecart_deg": 3.5
+    },
+    {
+     "pk_debut": 2801,
+     "pk_fin": 3053,
+     "trace_deg": 89.8,
+     "video_deg": 333.5,
+     "ecart_deg": 243.7
+    },
+    {
+     "pk_debut": 3393,
+     "pk_fin": 3494,
+     "trace_deg": -32.0,
+     "video_deg": -17.1,
+     "ecart_deg": 14.9
+    },
+    {
+     "pk_debut": 3494,
+     "pk_fin": 3668,
+     "trace_deg": 80.1,
+     "video_deg": 108.2,
+     "ecart_deg": 28.1
+    },
+    {
+     "pk_debut": 3668,
+     "pk_fin": 3755,
+     "trace_deg": -57.5,
+     "video_deg": -57.4,
+     "ecart_deg": 0.1
+    },
+    {
+     "pk_debut": 3755,
+     "pk_fin": 3960,
+     "trace_deg": 147.0,
+     "video_deg": 156.2,
+     "ecart_deg": 9.1
+    },
+    {
+     "pk_debut": 4032,
+     "pk_fin": 4122,
+     "trace_deg": -167.3,
+     "video_deg": -324.4,
+     "ecart_deg": -157.1
+    },
+    {
+     "pk_debut": 4122,
+     "pk_fin": 4324,
+     "trace_deg": 143.1,
+     "video_deg": 143.2,
+     "ecart_deg": 0.1
+    },
+    {
+     "pk_debut": 4324,
+     "pk_fin": 4391,
+     "trace_deg": -78.8,
+     "video_deg": -26.3,
+     "ecart_deg": 52.4
+    },
+    {
+     "pk_debut": 4391,
+     "pk_fin": 4456,
+     "trace_deg": 56.7,
+     "video_deg": 16.7,
+     "ecart_deg": -40.0
+    },
+    {
+     "pk_debut": 4456,
+     "pk_fin": 4507,
+     "trace_deg": -85.0,
+     "video_deg": -124.5,
+     "ecart_deg": -39.4
+    },
+    {
+     "pk_debut": 4507,
+     "pk_fin": 4660,
+     "trace_deg": 55.2,
+     "video_deg": 37.4,
+     "ecart_deg": -17.7
+    },
+    {
+     "pk_debut": 4660,
+     "pk_fin": 4753,
+     "trace_deg": -42.6,
+     "video_deg": -35.1,
+     "ecart_deg": 7.5
+    },
+    {
+     "pk_debut": 4753,
+     "pk_fin": 4876,
+     "trace_deg": 48.2,
+     "video_deg": 44.6,
+     "ecart_deg": -3.6
+    },
+    {
+     "pk_debut": 4876,
+     "pk_fin": 5027,
+     "trace_deg": -52.0,
+     "video_deg": -66.7,
+     "ecart_deg": -14.7
+    },
+    {
+     "pk_debut": 5027,
+     "pk_fin": 5085,
+     "trace_deg": 37.9,
+     "video_deg": 59.5,
+     "ecart_deg": 21.6
+    },
+    {
+     "pk_debut": 5085,
+     "pk_fin": 5607,
+     "trace_deg": -105.2,
+     "video_deg": -134.4,
+     "ecart_deg": -29.2
+    },
+    {
+     "pk_debut": 5607,
+     "pk_fin": 6083,
+     "trace_deg": 139.3,
+     "video_deg": 244.4,
+     "ecart_deg": 105.1
+    },
+    {
+     "pk_debut": 6083,
+     "pk_fin": 6186,
+     "trace_deg": -87.5,
+     "video_deg": -155.9,
+     "ecart_deg": -68.3
+    },
+    {
+     "pk_debut": 6186,
+     "pk_fin": 6388,
+     "trace_deg": 106.4,
+     "video_deg": 142.3,
+     "ecart_deg": 35.9
+    },
+    {
+     "pk_debut": 6388,
+     "pk_fin": 6544,
+     "trace_deg": -91.5,
+     "video_deg": -159.6,
+     "ecart_deg": -68.0
+    },
+    {
+     "pk_debut": 6544,
+     "pk_fin": 6640,
+     "trace_deg": 68.8,
+     "video_deg": 76.7,
+     "ecart_deg": 7.9
+    },
+    {
+     "pk_debut": 6640,
+     "pk_fin": 6722,
+     "trace_deg": -57.3,
+     "video_deg": -109.8,
+     "ecart_deg": -52.4
+    }
+   ]
+  },
+  "Rallye Sainte Baume 2025 - Grand Caunet - Clio RALLY5.mp4": {
+   "duree_s": 262.2,
+   "echelle_deg_par_px": 1.4455,
+   "sens": "glissement vers la droite = virage à gauche",
+   "changements_vus": 57,
+   "apparies": 52,
+   "virages_du_trace_non_retrouves": [],
+   "changements_video_sans_virage": [
+    15.1,
+    -13.4
+   ],
+   "sens_opposes": [],
+   "ecart_median_deg": 25.2,
+   "ecart_p90_deg": 107.2,
+   "virages": [
+    {
+     "pk_debut": 0,
+     "pk_fin": 191,
+     "trace_deg": 29.6,
+     "video_deg": 14.6,
+     "ecart_deg": -15.0
+    },
+    {
+     "pk_debut": 191,
+     "pk_fin": 290,
+     "trace_deg": -34.1,
+     "video_deg": -21.1,
+     "ecart_deg": 12.9
+    },
+    {
+     "pk_debut": 290,
+     "pk_fin": 400,
+     "trace_deg": 63.5,
+     "video_deg": 32.5,
+     "ecart_deg": -31.0
+    },
+    {
+     "pk_debut": 400,
+     "pk_fin": 486,
+     "trace_deg": -39.1,
+     "video_deg": -24.0,
+     "ecart_deg": 15.1
+    },
+    {
+     "pk_debut": 486,
+     "pk_fin": 542,
+     "trace_deg": 66.2,
+     "video_deg": 68.8,
+     "ecart_deg": 2.6
+    },
+    {
+     "pk_debut": 542,
+     "pk_fin": 620,
+     "trace_deg": -12.5,
+     "video_deg": -262.1,
+     "ecart_deg": -249.6
+    },
+    {
+     "pk_debut": 620,
+     "pk_fin": 668,
+     "trace_deg": 52.1,
+     "video_deg": 35.4,
+     "ecart_deg": -16.7
+    },
+    {
+     "pk_debut": 668,
+     "pk_fin": 871,
+     "trace_deg": -161.2,
+     "video_deg": -179.7,
+     "ecart_deg": -18.6
+    },
+    {
+     "pk_debut": 871,
+     "pk_fin": 958,
+     "trace_deg": 73.2,
+     "video_deg": 94.9,
+     "ecart_deg": 21.8
+    },
+    {
+     "pk_debut": 958,
+     "pk_fin": 1113,
+     "trace_deg": -51.0,
+     "video_deg": -111.7,
+     "ecart_deg": -60.6
+    },
+    {
+     "pk_debut": 1113,
+     "pk_fin": 1144,
+     "trace_deg": 19.9,
+     "video_deg": 54.4,
+     "ecart_deg": 34.4
+    },
+    {
+     "pk_debut": 1144,
+     "pk_fin": 1521,
+     "trace_deg": -80.0,
+     "video_deg": -12.4,
+     "ecart_deg": 67.7
+    },
+    {
+     "pk_debut": 1521,
+     "pk_fin": 1630,
+     "trace_deg": 75.7,
+     "video_deg": 64.1,
+     "ecart_deg": -11.6
+    },
+    {
+     "pk_debut": 1630,
+     "pk_fin": 1740,
+     "trace_deg": -79.2,
+     "video_deg": -118.5,
+     "ecart_deg": -39.3
+    },
+    {
+     "pk_debut": 1740,
+     "pk_fin": 1843,
+     "trace_deg": 60.5,
+     "video_deg": 82.7,
+     "ecart_deg": 22.3
+    },
+    {
+     "pk_debut": 1843,
+     "pk_fin": 1927,
+     "trace_deg": -47.5,
+     "video_deg": -22.6,
+     "ecart_deg": 24.9
+    },
+    {
+     "pk_debut": 1927,
+     "pk_fin": 1947,
+     "trace_deg": 15.1,
+     "video_deg": 15.1,
+     "ecart_deg": 0.0
+    },
+    {
+     "pk_debut": 1947,
+     "pk_fin": 1982,
+     "trace_deg": -36.3,
+     "video_deg": -52.9,
+     "ecart_deg": -16.6
+    },
+    {
+     "pk_debut": 1982,
+     "pk_fin": 2187,
+     "trace_deg": 84.7,
+     "video_deg": 186.0,
+     "ecart_deg": 101.4
+    },
+    {
+     "pk_debut": 2187,
+     "pk_fin": 2259,
+     "trace_deg": -153.6,
+     "video_deg": -108.2,
+     "ecart_deg": 45.4
+    },
+    {
+     "pk_debut": 2259,
+     "pk_fin": 2361,
+     "trace_deg": 127.0,
+     "video_deg": 15.7,
+     "ecart_deg": -111.3
+    },
+    {
+     "pk_debut": 2361,
+     "pk_fin": 2442,
+     "trace_deg": -16.9,
+     "video_deg": -17.5,
+     "ecart_deg": -0.6
+    },
+    {
+     "pk_debut": 2442,
+     "pk_fin": 2501,
+     "trace_deg": 14.1,
+     "video_deg": 14.9,
+     "ecart_deg": 0.8
+    },
+    {
+     "pk_debut": 2501,
+     "pk_fin": 2673,
+     "trace_deg": -45.6,
+     "video_deg": -42.5,
+     "ecart_deg": 3.1
+    },
+    {
+     "pk_debut": 2673,
+     "pk_fin": 2765,
+     "trace_deg": 35.8,
+     "video_deg": 17.2,
+     "ecart_deg": -18.6
+    },
+    {
+     "pk_debut": 2765,
+     "pk_fin": 2801,
+     "trace_deg": -81.2,
+     "video_deg": -81.0,
+     "ecart_deg": 0.2
+    },
+    {
+     "pk_debut": 2801,
+     "pk_fin": 3053,
+     "trace_deg": 89.8,
+     "video_deg": 432.4,
+     "ecart_deg": 342.6
+    },
+    {
+     "pk_debut": 3053,
+     "pk_fin": 3099,
+     "trace_deg": -14.2,
+     "video_deg": -21.0,
+     "ecart_deg": -6.8
+    },
+    {
+     "pk_debut": 3099,
+     "pk_fin": 3393,
+     "trace_deg": 58.1,
+     "video_deg": 88.8,
+     "ecart_deg": 30.7
+    },
+    {
+     "pk_debut": 3393,
+     "pk_fin": 3494,
+     "trace_deg": -32.0,
+     "video_deg": -31.2,
+     "ecart_deg": 0.7
+    },
+    {
+     "pk_debut": 3494,
+     "pk_fin": 3668,
+     "trace_deg": 80.1,
+     "video_deg": 163.7,
+     "ecart_deg": 83.5
+    },
+    {
+     "pk_debut": 3668,
+     "pk_fin": 3755,
+     "trace_deg": -57.5,
+     "video_deg": -89.1,
+     "ecart_deg": -31.6
+    },
+    {
+     "pk_debut": 3755,
+     "pk_fin": 3960,
+     "trace_deg": 147.0,
+     "video_deg": 254.9,
+     "ecart_deg": 107.9
+    },
+    {
+     "pk_debut": 3960,
+     "pk_fin": 3974,
+     "trace_deg": -13.9,
+     "video_deg": -300.8,
+     "ecart_deg": -286.9
+    },
+    {
+     "pk_debut": 3974,
+     "pk_fin": 4032,
+     "trace_deg": 32.9,
+     "video_deg": 18.7,
+     "ecart_deg": -14.2
+    },
+    {
+     "pk_debut": 4032,
+     "pk_fin": 4122,
+     "trace_deg": -167.3,
+     "video_deg": -142.3,
+     "ecart_deg": 25.1
+    },
+    {
+     "pk_debut": 4122,
+     "pk_fin": 4324,
+     "trace_deg": 143.1,
+     "video_deg": 171.9,
+     "ecart_deg": 28.9
+    },
+    {
+     "pk_debut": 4324,
+     "pk_fin": 4391,
+     "trace_deg": -78.8,
+     "video_deg": -12.4,
+     "ecart_deg": 66.4
+    },
+    {
+     "pk_debut": 4391,
+     "pk_fin": 4456,
+     "trace_deg": 56.7,
+     "video_deg": 82.6,
+     "ecart_deg": 25.9
+    },
+    {
+     "pk_debut": 4456,
+     "pk_fin": 4507,
+     "trace_deg": -85.0,
+     "video_deg": -17.5,
+     "ecart_deg": 67.6
+    },
+    {
+     "pk_debut": 4507,
+     "pk_fin": 4660,
+     "trace_deg": 55.2,
+     "video_deg": 29.7,
+     "ecart_deg": -25.4
+    },
+    {
+     "pk_debut": 4660,
+     "pk_fin": 4753,
+     "trace_deg": -42.6,
+     "video_deg": -19.1,
+     "ecart_deg": 23.6
+    },
+    {
+     "pk_debut": 4753,
+     "pk_fin": 4876,
+     "trace_deg": 48.2,
+     "video_deg": 139.6,
+     "ecart_deg": 91.4
+    },
+    {
+     "pk_debut": 4876,
+     "pk_fin": 5027,
+     "trace_deg": -52.0,
+     "video_deg": -34.8,
+     "ecart_deg": 17.3
+    },
+    {
+     "pk_debut": 5027,
+     "pk_fin": 5085,
+     "trace_deg": 37.9,
+     "video_deg": 21.4,
+     "ecart_deg": -16.5
+    },
+    {
+     "pk_debut": 5085,
+     "pk_fin": 5607,
+     "trace_deg": -105.2,
+     "video_deg": -70.1,
+     "ecart_deg": 35.1
+    },
+    {
+     "pk_debut": 5607,
+     "pk_fin": 6083,
+     "trace_deg": 139.3,
+     "video_deg": 543.6,
+     "ecart_deg": 404.3
+    },
+    {
+     "pk_debut": 6083,
+     "pk_fin": 6186,
+     "trace_deg": -87.5,
+     "video_deg": -98.3,
+     "ecart_deg": -10.8
+    },
+    {
+     "pk_debut": 6186,
+     "pk_fin": 6388,
+     "trace_deg": 106.4,
+     "video_deg": 196.2,
+     "ecart_deg": 89.8
+    },
+    {
+     "pk_debut": 6388,
+     "pk_fin": 6544,
+     "trace_deg": -91.5,
+     "video_deg": -58.8,
+     "ecart_deg": 32.7
+    },
+    {
+     "pk_debut": 6544,
+     "pk_fin": 6640,
+     "trace_deg": 68.8,
+     "video_deg": 66.5,
+     "ecart_deg": -2.3
+    },
+    {
+     "pk_debut": 6640,
+     "pk_fin": 6722,
+     "trace_deg": -57.3,
+     "video_deg": -20.0,
+     "ecart_deg": 37.3
+    }
+   ]
+  }
+ },
+ "virages_suspects": [],
+ "synthese": {
+  "virages_du_trace": 52,
+  "retrouves_dans_au_moins_une_video": 52,
+  "suspects": 0
+ }
+}

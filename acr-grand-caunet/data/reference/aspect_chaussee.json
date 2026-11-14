@@ -1,0 +1,651 @@
+{
+ "note": "Aspect de la chaussée relevé sur la vidéo de reconnaissances (data/reference/releve_reco/, rubrique chaussee) : pièces d'enrobé plus sombres, fissures pontées au bitume, raccords. Lu par scripts/11_route_ouvrages.py, qui les pose en bandes minces au-dessus de l'enrobé, sous le marquage. Aspect seulement : la physique n'en sait rien. Le PK et la voie viennent du relevé ; la taille exacte de chaque pièce et le dessin de chaque fissure sont inventés dans l'esprit de ce qui est vu. Le faïençage est rendu par deux ou trois fissures proches.",
+ "geometrie": {
+  "hauteur_piece_m": 0.008,
+  "hauteur_fissure_m": 0.011,
+  "largeur_fissure_m": 0.045,
+  "ondulation_m": 0.22,
+  "part_de_voie_d_une_piece": 0.78,
+  "marge_au_bord_m": 0.2,
+  "couleur_piece_rgb": [
+   0.2,
+   0.2,
+   0.205
+  ],
+  "couleur_fissure_rgb": [
+   0.012,
+   0.012,
+   0.013
+  ],
+  "pieces_rendues": false,
+  "note_du_13_11": "Vu en jeu le 13/11/2026 : les pièces d'enrobé apparaissaient en grands rectangles gris clair et unis, les fissures en faisceaux de lignes grises courbes et le joint d'axe en ligne continue qui serpente : rien de tel dans la réalité. Cause : des bandes de couleur unie posées sur l'enrobé ne peuvent pas passer pour de l'enrobé ou du bitume (la couleur donnée était de plus linéaire, donc bien plus claire à l'écran que prévu). Plus rien de ce fichier n'est rendu ; il reste comme relevé. Piste pour plus tard : le matériau d'asphalte du jeu sait dessiner lui-même des pièces et des fissures (Patches_Enabled, BaseVariation_Enabled) ; deux variantes du jeu les ont activées (AlsaceS2Munster/AsphaltMaterial/MI_MunsterAsphalt1patches, MonteCarloS1Bollene/AsphaltMaterial/MI_BolleneAsphalt1Track1412).",
+  "fissures_rendues": false
+ },
+ "non_rendu": [
+  "PK 4540 : large reprise plus claire que la chaussée (une seule teinte de pièce, sombre).",
+  "Usure du marquage, feuilles mortes, gravier répandu à la sortie de l'épingle du km 4."
+ ],
+ "elements": [
+  {
+   "genre": "piece",
+   "pk": [
+    119,
+    125
+   ],
+   "voie": "gauche",
+   "releve": "PK 125 : reprises de revêtement plus sombres sur la voie de gauche"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    127.5,
+    131
+   ],
+   "voie": "gauche",
+   "largeur_m": 1.6,
+   "releve": "PK 125 : reprises de revêtement plus sombres sur la voie de gauche"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    235,
+    255
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 245 : fissures longitudinales sur la voie de droite"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    416,
+    421
+   ],
+   "voie": "gauche",
+   "releve": "PK 415-445 : plaques de reprise et fissures sur les deux voies"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    430,
+    436
+   ],
+   "voie": "droite",
+   "releve": "PK 415-445 : plaques de reprise et fissures sur les deux voies"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    415,
+    445
+   ],
+   "voie": "gauche",
+   "nombre": 1,
+   "releve": "PK 415-445 : plaques de reprise et fissures sur les deux voies"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    415,
+    445
+   ],
+   "voie": "droite",
+   "nombre": 1,
+   "releve": "PK 415-445 : plaques de reprise et fissures sur les deux voies"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    520,
+    545
+   ],
+   "voie": "gauche",
+   "nombre": 3,
+   "releve": "PK 520-545 : faïençage et fissures pontées sur la voie de gauche"
+  },
+  {
+   "genre": "raccord",
+   "pk": [
+    790,
+    790.15
+   ],
+   "voie": "toute",
+   "releve": "PK 790 : raccord transversal de revêtement"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    885,
+    930
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 885-930 : fissures longitudinales et faïençage dans le virage à gauche"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    890,
+    925
+   ],
+   "voie": "droite",
+   "nombre": 1,
+   "releve": "PK 885-930 : fissures longitudinales et faïençage dans le virage à gauche"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    1565,
+    1600
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "releve": "PK 1565-1600 : fissure longitudinale près de l'axe"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    1642,
+    1658
+   ],
+   "voie": "axe",
+   "largeur_m": 0.6,
+   "releve": "PK 1640-1660 : reprise sombre le long de l'axe à l'entrée du pont"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2040,
+    2075
+   ],
+   "voie": "gauche",
+   "nombre": 1,
+   "releve": "PK 2040-2075 : fissures longitudinales sur les deux voies"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2040,
+    2075
+   ],
+   "voie": "droite",
+   "nombre": 1,
+   "releve": "PK 2040-2075 : fissures longitudinales sur les deux voies"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2208,
+    2235
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "de_a": [
+    -2.0,
+    2.0
+   ],
+   "ondulation_m": 0.1,
+   "releve": "PK 2208-2235 : longue fissure qui traverse la chaussée en biais dans l'épingle"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2275,
+    2330
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 2275 et au-delà : fissures sur la voie de gauche (zone « AFFAISSEMENT »)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2336,
+    2400
+   ],
+   "voie": "droite",
+   "nombre": 3,
+   "releve": "PK 2336-2400 : fissures puis faïençage de la voie de droite"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    2652,
+    2658
+   ],
+   "voie": "axe",
+   "largeur_m": 2.0,
+   "releve": "PK 2655 : pièce d'enrobé plus sombre au milieu de la chaussée"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2781,
+    2800
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 2780 : fissures dans la voie de droite en sortie du pont"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    3140,
+    3160
+   ],
+   "voie": "gauche",
+   "nombre": 3,
+   "releve": "PK 3140-3160 : faïençage de la voie de gauche"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    3449,
+    3455
+   ],
+   "voie": "droite",
+   "releve": "PK 3452 : reprise d'enrobé rectangulaire dans la voie de droite, au droit du ponceau"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    3620,
+    3640
+   ],
+   "voie": "droite",
+   "nombre": 3,
+   "releve": "PK 3630 : enrobé faïencé et fissuré dans la voie de droite à l'entrée du carrefour"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    3680,
+    3695
+   ],
+   "voie": "droite",
+   "releve": "PK 3680-3695 : grande pièce d'enrobé de teinte différente dans la voie de droite"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    3712,
+    3730
+   ],
+   "voie": "droite",
+   "largeur_m": 3.4,
+   "decalage_m": -0.5,
+   "releve": "PK 3712-3730 : reprise d'enrobé plus sombre au milieu et à droite"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    3850,
+    3920
+   ],
+   "voie": "droite",
+   "nombre": 3,
+   "releve": "PK 3850-3920 : faïençage étendu de la voie de droite dans le long gauche"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4068,
+    4074
+   ],
+   "voie": "gauche",
+   "releve": "PK 4066-4090 : épingle : pièces d'enrobé sombres et fissures dans la voie extérieure"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4080,
+    4085
+   ],
+   "voie": "gauche",
+   "largeur_m": 1.8,
+   "releve": "PK 4066-4090 : épingle : pièces d'enrobé sombres et fissures dans la voie extérieure"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    4066,
+    4090
+   ],
+   "voie": "gauche",
+   "nombre": 1,
+   "releve": "PK 4066-4090 : épingle : pièces d'enrobé sombres et fissures dans la voie extérieure"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    4270,
+    4300
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 4270-4300 : faïençage et fissures"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    4270,
+    4300
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 4270-4300 : faïençage et fissures"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    4328,
+    4366
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "releve": "PK 4328-4366 : longue fissure longitudinale près de l'axe sur le pont"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    4440,
+    4460
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "ondulation_m": 0.45,
+   "releve": "PK 4440-4460 : fissure longitudinale sinueuse près de l'axe sur le pont"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4473,
+    4473.9
+   ],
+   "voie": "droite",
+   "largeur_m": 0.9,
+   "releve": "PK 4472-4488 : plusieurs petites pièces rondes d'enrobé (nids-de-poule rebouchés)"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4476.5,
+    4477.4
+   ],
+   "voie": "gauche",
+   "largeur_m": 0.9,
+   "releve": "PK 4472-4488 : plusieurs petites pièces rondes d'enrobé (nids-de-poule rebouchés)"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4480,
+    4480.9
+   ],
+   "voie": "droite",
+   "largeur_m": 0.9,
+   "releve": "PK 4472-4488 : plusieurs petites pièces rondes d'enrobé (nids-de-poule rebouchés)"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4483,
+    4483.9
+   ],
+   "voie": "axe",
+   "largeur_m": 0.9,
+   "releve": "PK 4472-4488 : plusieurs petites pièces rondes d'enrobé (nids-de-poule rebouchés)"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4486.5,
+    4487.4
+   ],
+   "voie": "gauche",
+   "largeur_m": 0.9,
+   "releve": "PK 4472-4488 : plusieurs petites pièces rondes d'enrobé (nids-de-poule rebouchés)"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4672,
+    4679
+   ],
+   "voie": "droite",
+   "releve": "PK 4675 : reprise d'enrobé plus sombre sur la voie de droite au droit du ponceau"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    4760,
+    4785
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 4770 : fissures longitudinales dans la voie de droite"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4822,
+    4824.5
+   ],
+   "voie": "droite",
+   "largeur_m": 1.2,
+   "releve": "PK 4825 : taches sombres sur la voie de droite"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    4827,
+    4829
+   ],
+   "voie": "droite",
+   "largeur_m": 1.0,
+   "releve": "PK 4825 : taches sombres sur la voie de droite"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    5069,
+    5082
+   ],
+   "voie": "gauche",
+   "releve": "PK 5075 : grande reprise d'enrobé sombre sur la voie de gauche, sur 10 à 15 m"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    5100,
+    5300
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "ondulation_m": 0.0,
+   "largeur_m": 0.08,
+   "decalage_m": 0.22,
+   "releve": "PK 5100-5300 : joint longitudinal sombre le long de l'axe"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    5460,
+    5520
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "ondulation_m": 0.0,
+   "largeur_m": 0.08,
+   "decalage_m": 0.22,
+   "releve": "PK 5480 : joint d'axe refait au bitume"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    5601,
+    5605
+   ],
+   "voie": "gauche",
+   "releve": "PK 5612 : plusieurs reprises sombres sur la voie de gauche dans la montée après le pont"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    5610,
+    5616
+   ],
+   "voie": "gauche",
+   "largeur_m": 1.8,
+   "releve": "PK 5612 : plusieurs reprises sombres sur la voie de gauche dans la montée après le pont"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    5620,
+    5624
+   ],
+   "voie": "gauche",
+   "releve": "PK 5612 : plusieurs reprises sombres sur la voie de gauche dans la montée après le pont"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    5667,
+    5669
+   ],
+   "voie": "axe",
+   "largeur_m": 1.2,
+   "releve": "PK 5670 : taches de reprise au milieu de la chaussée"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    5673,
+    5675.5
+   ],
+   "voie": "axe",
+   "largeur_m": 1.4,
+   "releve": "PK 5670 : taches de reprise au milieu de la chaussée"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    5720,
+    5810
+   ],
+   "voie": "droite",
+   "largeur_m": 0.5,
+   "releve": "PK 5720-5810 : bande sombre longitudinale dans la voie de droite"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    6030,
+    6035
+   ],
+   "voie": "gauche",
+   "releve": "PK 6045 : voie de gauche très rapiécée, joint d'axe marqué"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    6038,
+    6044
+   ],
+   "voie": "gauche",
+   "releve": "PK 6045 : voie de gauche très rapiécée, joint d'axe marqué"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    6047,
+    6050
+   ],
+   "voie": "gauche",
+   "releve": "PK 6045 : voie de gauche très rapiécée, joint d'axe marqué"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    6054,
+    6060
+   ],
+   "voie": "gauche",
+   "releve": "PK 6045 : voie de gauche très rapiécée, joint d'axe marqué"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    6025,
+    6065
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "ondulation_m": 0.0,
+   "largeur_m": 0.08,
+   "decalage_m": 0.22,
+   "releve": "PK 6045 : voie de gauche très rapiécée, joint d'axe marqué"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    6260,
+    6360
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 6260-6360 : revêtement faïencé et fissuré sur les deux voies"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    6260,
+    6360
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 6260-6360 : revêtement faïencé et fissuré sur les deux voies"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    6497,
+    6530
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 6497-6530 : revêtement faïencé après le pont"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    6497,
+    6530
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 6497-6530 : revêtement faïencé après le pont"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    6635,
+    6670
+   ],
+   "voie": "gauche",
+   "nombre": 3,
+   "releve": "PK 6635-6670 : fissures et faïençage marqués"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    6635,
+    6670
+   ],
+   "voie": "droite",
+   "nombre": 3,
+   "releve": "PK 6635-6670 : fissures et faïençage marqués"
+  }
+ ]
+}

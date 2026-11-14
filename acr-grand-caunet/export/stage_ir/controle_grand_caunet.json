@@ -1,0 +1,136 @@
+{
+  "repere": {
+    "determinant": 1.0,
+    "y_axe_min_max_m": [
+      249.79,
+      398.64
+    ]
+  },
+  "distances": {
+    "croissantes": true,
+    "pas_min_m": 0.45,
+    "pas_median_m": 10.0,
+    "pas_max_m": 10.13
+  },
+  "longueur_competitive": {
+    "length_m": 6737.44,
+    "distance_finish_moins_start": 6737.44,
+    "polyligne_portes_3d_m": 6734.93,
+    "pk_arrivee_plan_m": 6735.8
+  },
+  "gauche_droite": {
+    "portes": 930,
+    "droite_du_cote_cross_f_Y": 930,
+    "gauche_du_cote_oppose": 930,
+    "demi_largeur_droite_min_m": 2.36,
+    "demi_largeur_gauche_min_m": 2.36,
+    "width_coherente": true
+  },
+  "notes_sens_vs_geometrie": {
+    "virages": 52,
+    "coherents": 52
+  },
+  "sol_sous_portes": {
+    "portes": 930,
+    "sans_sol": 0,
+    "max_abs_dy_m": 0.0,
+    "moyenne_abs_dy_m": 0.0,
+    "hors_ponts": {
+      "portes": 910,
+      "max_abs_dy_m": 0.0
+    }
+  },
+  "sol_le_long_de_l_axe_tous_les_m": {
+    "echantillons": 8124,
+    "sans_sol": 0,
+    "max_abs_dy_a_la_corde_m": 0.041
+  },
+  "sol_aux_bords_95pct": {
+    "points": 1860,
+    "sans_sol": 0,
+    "max_abs_dy_m": 0.0,
+    "p99_abs_dy_m": 0.0
+  },
+  "sol_5m_au_dela_des_bords": {
+    "points": 1860,
+    "sans_sol": 0
+  },
+  "sol_30cm_au_dela_des_bords": {
+    "points": 1860,
+    "sans_sol": 0
+  },
+  "collision": {
+    "triangles": 759740,
+    "par_code": {
+      "TSD+": 32409,
+      "DBK+": 92518,
+      "GRS+": 634813
+    },
+    "ccw_vu_du_dessus": 1.0,
+    "triangles_annonces_dans_stage_json": 759740
+  },
+  "obstacles": {
+    "instances": 5452,
+    "gabarits": 11,
+    "formes": {
+      "box": 4091,
+      "cylinder": 1361
+    },
+    "parois": {
+      "PM_WallRock": 928,
+      "PM_WallConcrete": 2363,
+      "PM_WallMetalGuardrail": 943,
+      "PM_WallPlasticPole": 12,
+      "PM_WallWoodTreeTrunks": 1182,
+      "PM_WallWoodPole": 24
+    },
+    "parois_absentes_du_catalogue": [],
+    "penetration_max_dans_la_chaussee_m": 0.342,
+    "intrusions_plus_de_30_cm": 0,
+    "sommets_source_hors_paves_max_m": 0.001,
+    "retires_sur_la_chaussee": 5,
+    "objects_collision_triangles": 87200
+  },
+  "annexes": {
+    "points_testes": 273,
+    "sans_sol": 0,
+    "code_du_sol_le_plus_haut": {
+      "TSD+": 122,
+      "DBK+": 151
+    },
+    "terrain_plus_de_2_cm_au_dessus": 0,
+    "terrain_au_dessus_max_m": 0.0
+  },
+  "erreurs": [],
+  "notes_brouillon": {
+    "virages_calcules": 55,
+    "virages_annonces": 52,
+    "retouches_appliquees": 15,
+    "retouches_non_appliquees": [
+      {
+        "action": "supprimer",
+        "pk_m": 3173,
+        "pourquoi": "aucun virage left à ± 30 m"
+      }
+    ],
+    "dangers_non_exprimables": 24,
+    "ne_pas_couper": 3,
+    "par_severite": {
+      "6": 1,
+      "5": 14,
+      "4": 22,
+      "3": 10,
+      "hairpin": 2,
+      "1": 1,
+      "2": 2
+    },
+    "appels": 34,
+    "jetons": 74,
+    "avance_lecture_m": 80.0
+  },
+  "fichiers_mo": {
+    "collision.glb": 14.1,
+    "objects_collision.glb": 1.7,
+    "stage.json": 2.58
+  }
+}
