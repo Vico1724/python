@@ -29660,8 +29660,8 @@
     "transform": {
      "position": [
       -338.731,
-      296.767,
-      -1848.091
+      296.697,
+      -1848.089
      ],
      "rotation": [
       0.004865,
@@ -29671,8 +29671,8 @@
      ],
      "scale": [
       0.4499,
-      0.7003,
-      0.903
+      0.7701,
+      0.9076
      ],
      "matrix": null
     }
@@ -29684,9 +29684,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -338.472,
-      296.712,
-      -1848.879
+      -338.473,
+      296.642,
+      -1848.877
      ],
      "rotation": [
       0.005619,
@@ -29696,8 +29696,8 @@
      ],
      "scale": [
       0.45,
-      0.7002,
-      0.884
+      0.77,
+      0.8885
      ],
      "matrix": null
     }
@@ -29710,8 +29710,8 @@
     "transform": {
      "position": [
       -338.178,
-      296.659,
-      -1849.633
+      296.589,
+      -1849.631
      ],
      "rotation": [
       0.006759,
@@ -29721,8 +29721,8 @@
      ],
      "scale": [
       0.45,
-      0.6999,
-      0.8615
+      0.7697,
+      0.8662
      ],
      "matrix": null
     }
@@ -29734,9 +29734,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -337.84,
-      296.603,
-      -1850.354
+      -337.842,
+      296.533,
+      -1850.352
      ],
      "rotation": [
       0.008478,
@@ -29746,8 +29746,8 @@
      ],
      "scale": [
       0.4499,
-      0.6991,
-      0.8665
+      0.7689,
+      0.8716
      ],
      "matrix": null
     }
@@ -29759,9 +29759,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -337.458,
-      296.542,
-      -1851.042
+      -337.459,
+      296.473,
+      -1851.04
      ],
      "rotation": [
       0.011079,
@@ -29771,8 +29771,8 @@
      ],
      "scale": [
       0.45,
-      0.6992,
-      0.8616
+      0.769,
+      0.8673
      ],
      "matrix": null
     }
@@ -29784,20 +29784,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -337.027,
-      296.475,
-      -1851.702
+      -337.028,
+      296.406,
+      -1851.699
      ],
      "rotation": [
-      0.013139,
+      0.01314,
       0.951755,
-      -0.041163,
+      -0.041165,
       0.303801
      ],
      "scale": [
       0.45,
-      0.6997,
-      0.8741
+      0.7694,
+      0.8801
      ],
      "matrix": null
     }
@@ -29809,20 +29809,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -336.548,
-      296.404,
-      -1852.332
+      -336.55,
+      296.335,
+      -1852.329
      ],
      "rotation": [
-      0.015494,
+      0.015493,
       0.940487,
-      -0.043277,
+      -0.043275,
       0.336706
      ],
      "scale": [
       0.45,
-      0.7001,
-      0.88
+      0.7698,
+      0.8864
      ],
      "matrix": null
     }
@@ -29834,9 +29834,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -336.033,
-      296.33,
-      -1852.924
+      -336.035,
+      296.26,
+      -1852.921
      ],
      "rotation": [
       0.017962,
@@ -29846,8 +29846,8 @@
      ],
      "scale": [
       0.4499,
-      0.7003,
-      0.8795
+      0.7699,
+      0.8863
      ],
      "matrix": null
     }
@@ -29859,9 +29859,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -335.483,
-      296.251,
-      -1853.481
+      -335.486,
+      296.182,
+      -1853.478
      ],
      "rotation": [
       0.020088,
@@ -29871,8 +29871,8 @@
      ],
      "scale": [
       0.4499,
-      0.7002,
-      0.8831
+      0.7698,
+      0.8902
      ],
      "matrix": null
     }
@@ -29884,9 +29884,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -334.904,
-      296.17,
-      -1854.001
+      -334.907,
+      296.101,
+      -1853.999
      ],
      "rotation": [
       0.022398,
@@ -29896,8 +29896,8 @@
      ],
      "scale": [
       0.4499,
-      0.6999,
-      0.8782
+      0.7695,
+      0.8856
      ],
      "matrix": null
     }
@@ -29909,9 +29909,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -334.3,
-      296.086,
-      -1854.486
+      -334.303,
+      296.017,
+      -1854.483
      ],
      "rotation": [
       0.024701,
@@ -29921,8 +29921,8 @@
      ],
      "scale": [
       0.4499,
-      0.6994,
-      0.8759
+      0.769,
+      0.8836
      ],
      "matrix": null
     }
@@ -33059,9 +33059,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -787.791,
-      283.234,
-      -2401.582
+      -787.792,
+      283.164,
+      -2401.58
      ],
      "rotation": [
       -0.031227,
@@ -33071,8 +33071,8 @@
      ],
      "scale": [
       0.4474,
-      0.652,
-      1.1313
+      0.7219,
+      1.1358
      ],
      "matrix": null
     }
@@ -33084,9 +33084,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -788.306,
-      283.298,
-      -2400.656
+      -788.307,
+      283.228,
+      -2400.654
      ],
      "rotation": [
       -0.027173,
@@ -33096,8 +33096,8 @@
      ],
      "scale": [
       0.4474,
-      0.6523,
-      1.177
+      0.7222,
+      1.1809
      ],
      "matrix": null
     }
@@ -33110,8 +33110,8 @@
     "transform": {
      "position": [
       -788.861,
-      283.356,
-      -2399.701
+      283.286,
+      -2399.7
      ],
      "rotation": [
       -0.023297,
@@ -33121,8 +33121,8 @@
      ],
      "scale": [
       0.4477,
-      0.6522,
-      1.2126
+      0.7221,
+      1.216
      ],
      "matrix": null
     }
@@ -33134,9 +33134,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -789.477,
-      283.413,
-      -2398.736
+      -789.478,
+      283.343,
+      -2398.735
      ],
      "rotation": [
       -0.024502,
@@ -33146,8 +33146,8 @@
      ],
      "scale": [
       0.4483,
-      0.6522,
-      1.2432
+      0.7221,
+      1.2468
      ],
      "matrix": null
     }
@@ -33159,9 +33159,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -790.168,
-      283.477,
-      -2397.792
+      -790.169,
+      283.407,
+      -2397.79
      ],
      "rotation": [
       -0.027087,
@@ -33171,8 +33171,8 @@
      ],
      "scale": [
       0.4492,
-      0.6519,
-      1.2553
+      0.7218,
+      1.2593
      ],
      "matrix": null
     }
@@ -33184,9 +33184,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -790.932,
-      283.545,
-      -2396.896
+      -790.933,
+      283.475,
+      -2396.894
      ],
      "rotation": [
       -0.0272,
@@ -33196,8 +33196,8 @@
      ],
      "scale": [
       0.4498,
-      0.6512,
-      1.2477
+      0.7211,
+      1.2518
      ],
      "matrix": null
     }
@@ -33209,9 +33209,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -791.776,
-      283.613,
-      -2396.059
+      -791.777,
+      283.543,
+      -2396.058
      ],
      "rotation": [
       -0.025336,
@@ -33221,8 +33221,8 @@
      ],
      "scale": [
       0.45,
-      0.6507,
-      1.2535
+      0.7205,
+      1.2574
      ],
      "matrix": null
     }
@@ -33234,9 +33234,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -792.697,
-      283.677,
-      -2395.284
+      -792.698,
+      283.608,
+      -2395.283
      ],
      "rotation": [
       -0.022863,
@@ -33246,8 +33246,8 @@
      ],
      "scale": [
       0.45,
-      0.6503,
-      1.2664
+      0.7203,
+      1.27
      ],
      "matrix": null
     }
@@ -33259,20 +33259,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -793.683,
-      283.737,
-      -2394.574
+      -793.684,
+      283.667,
+      -2394.573
      ],
      "rotation": [
-      -0.020758,
+      -0.020757,
       -0.471287,
-      -0.011096,
+      -0.011095,
       0.881666
      ],
      "scale": [
       0.4499,
-      0.6502,
-      1.267
+      0.7201,
+      1.2703
      ],
      "matrix": null
     }
@@ -33284,20 +33284,20 @@
     "tag": null,
     "transform": {
      "position": [
-      -794.717,
-      283.793,
-      -2393.929
+      -794.719,
+      283.723,
+      -2393.928
      ],
      "rotation": [
-      -0.019541,
+      -0.019542,
       -0.498283,
-      -0.011234,
+      -0.011235,
       0.866721
      ],
      "scale": [
       0.45,
-      0.6503,
-      1.2639
+      0.7202,
+      1.267
      ],
      "matrix": null
     }
@@ -33309,9 +33309,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -795.782,
-      283.849,
-      -2393.347
+      -795.783,
+      283.779,
+      -2393.346
      ],
      "rotation": [
       -0.019656,
@@ -33321,8 +33321,8 @@
      ],
      "scale": [
       0.4499,
-      0.6504,
-      1.2488
+      0.7203,
+      1.252
      ],
      "matrix": null
     }
@@ -33334,9 +33334,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -796.855,
-      283.904,
-      -2392.828
+      -796.856,
+      283.834,
+      -2392.827
      ],
      "rotation": [
       -0.019976,
@@ -33346,8 +33346,8 @@
      ],
      "scale": [
       0.4498,
-      0.6505,
-      1.2243
+      0.7204,
+      1.2277
      ],
      "matrix": null
     }
@@ -33359,9 +33359,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -797.923,
-      283.959,
-      -2392.372
+      -797.925,
+      283.889,
+      -2392.371
      ],
      "rotation": [
       -0.019264,
@@ -33371,8 +33371,8 @@
      ],
      "scale": [
       0.4501,
-      0.6504,
-      1.1941
+      0.7203,
+      1.1974
      ],
      "matrix": null
     }
@@ -33384,8 +33384,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -798.99,
-      284.01,
+      -798.991,
+      283.94,
       -2391.979
      ],
      "rotation": [
@@ -33396,8 +33396,8 @@
      ],
      "scale": [
       0.45,
-      0.6502,
-      1.1676
+      0.7201,
+      1.1706
      ],
      "matrix": null
     }
@@ -33409,8 +33409,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -800.056,
-      284.055,
+      -800.058,
+      283.985,
       -2391.649
      ],
      "rotation": [
@@ -33421,8 +33421,8 @@
      ],
      "scale": [
       0.45,
-      0.6499,
-      1.1474
+      0.7198,
+      1.1501
      ],
      "matrix": null
     }
@@ -33434,8 +33434,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -801.125,
-      284.097,
+      -801.127,
+      284.027,
       -2391.379
      ],
      "rotation": [
@@ -33446,8 +33446,8 @@
      ],
      "scale": [
       0.4501,
-      0.6501,
-      1.1337
+      0.72,
+      1.1362
      ],
      "matrix": null
     }
@@ -33459,8 +33459,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -802.205,
-      284.136,
+      -802.207,
+      284.066,
       -2391.164
      ],
      "rotation": [
@@ -33471,8 +33471,8 @@
      ],
      "scale": [
       0.4499,
-      0.6503,
-      1.1394
+      0.7203,
+      1.142
      ],
      "matrix": null
     }
@@ -33484,8 +33484,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -803.022,
-      284.166,
+      -803.024,
+      284.096,
       -2391.027
      ],
      "rotation": [
@@ -33496,8 +33496,8 @@
      ],
      "scale": [
       0.4498,
-      0.6502,
-      0.5893
+      0.7201,
+      0.5918
      ],
      "matrix": null
     }
@@ -50584,8 +50584,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2499.617,
-      338.707,
+      -2499.618,
+      338.637,
       -2387.78
      ],
      "rotation": [
@@ -50596,8 +50596,8 @@
      ],
      "scale": [
       0.3995,
-      0.7503,
-      0.9943
+      0.8203,
+      0.9964
      ],
      "matrix": null
     }
@@ -50609,8 +50609,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2500.548,
-      338.734,
+      -2500.549,
+      338.664,
       -2387.594
      ],
      "rotation": [
@@ -50621,8 +50621,8 @@
      ],
      "scale": [
       0.3997,
-      0.7503,
-      0.9855
+      0.8202,
+      0.9874
      ],
      "matrix": null
     }
@@ -50634,8 +50634,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2501.48,
-      338.758,
+      -2501.481,
+      338.688,
       -2387.432
      ],
      "rotation": [
@@ -50646,8 +50646,8 @@
      ],
      "scale": [
       0.3999,
-      0.7501,
-      0.9749
+      0.8201,
+      0.9766
      ],
      "matrix": null
     }
@@ -50659,9 +50659,9 @@
     "tag": null,
     "transform": {
      "position": [
-      -2502.414,
-      338.78,
-      -2387.302
+      -2502.415,
+      338.71,
+      -2387.301
      ],
      "rotation": [
       -0.008318,
@@ -50671,8 +50671,8 @@
      ],
      "scale": [
       0.4001,
-      0.75,
-      0.9647
+      0.8199,
+      0.9662
      ],
      "matrix": null
     }
@@ -50684,8 +50684,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2503.351,
-      338.801,
+      -2503.352,
+      338.731,
       -2387.206
      ],
      "rotation": [
@@ -50696,8 +50696,8 @@
      ],
      "scale": [
       0.4,
-      0.75,
-      0.9681
+      0.82,
+      0.9696
      ],
      "matrix": null
     }
@@ -50709,8 +50709,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2504.294,
-      338.821,
+      -2504.295,
+      338.751,
       -2387.144
      ],
      "rotation": [
@@ -50721,8 +50721,8 @@
      ],
      "scale": [
       0.3997,
-      0.7502,
-      0.974
+      0.8202,
+      0.9755
      ],
      "matrix": null
     }
@@ -50734,8 +50734,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2505.238,
-      338.841,
+      -2505.239,
+      338.771,
       -2387.11
      ],
      "rotation": [
@@ -50746,8 +50746,8 @@
      ],
      "scale": [
       0.3998,
-      0.7503,
-      0.9766
+      0.8202,
+      0.9781
      ],
      "matrix": null
     }
@@ -50759,8 +50759,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2506.181,
-      338.862,
+      -2506.182,
+      338.792,
       -2387.095
      ],
      "rotation": [
@@ -50771,8 +50771,8 @@
      ],
      "scale": [
       0.3998,
-      0.7503,
-      0.976
+      0.8202,
+      0.9776
      ],
      "matrix": null
     }
@@ -50784,8 +50784,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2507.123,
-      338.885,
+      -2507.124,
+      338.815,
       -2387.091
      ],
      "rotation": [
@@ -50796,8 +50796,8 @@
      ],
      "scale": [
       0.3999,
-      0.7502,
-      0.9724
+      0.8201,
+      0.9741
      ],
      "matrix": null
     }
@@ -50809,8 +50809,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2508.066,
-      338.91,
+      -2508.067,
+      338.84,
       -2387.091
      ],
      "rotation": [
@@ -50821,8 +50821,8 @@
      ],
      "scale": [
       0.3999,
-      0.75,
-      0.9684
+      0.82,
+      0.9703
      ],
      "matrix": null
     }
@@ -50834,8 +50834,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2509.007,
-      338.937,
+      -2509.008,
+      338.867,
       -2387.095
      ],
      "rotation": [
@@ -50846,8 +50846,8 @@
      ],
      "scale": [
       0.3999,
-      0.7498,
-      0.9624
+      0.8198,
+      0.9644
      ],
      "matrix": null
     }
@@ -50859,8 +50859,8 @@
     "tag": null,
     "transform": {
      "position": [
-      -2509.708,
-      338.957,
+      -2509.709,
+      338.887,
       -2387.099
      ],
      "rotation": [
@@ -50871,8 +50871,8 @@
      ],
      "scale": [
       0.4,
-      0.7499,
-      0.4906
+      0.8198,
+      0.4928
      ],
      "matrix": null
     }
@@ -164752,6 +164752,283 @@
    "validation.route_map_fit (pas de carte de menu DR2)",
    "respawn.resetlines",
    "collision.flags"
+  ]
+ },
+ "characters": {
+  "source": "data/reference/mobilier_bord_de_route.json, commissaires_et_public_non_poses (scripts/mobilier.py, personnages())",
+  "host": "WalesS4HafrenSouth persistent level (service park actors)",
+  "notes": "position = pied du personnage (m, repère de l'IR) ; forward = direction du regard, horizontale. L'étape 1 retrouve chaque acteur par son étiquette (table de la retouche 0005) et réécrit la position et le lacet de son composant racine BodySkeletalMesh.",
+  "items": [
+   {
+    "actor": "BC_Marshal113",
+    "class": "BC_Marshal_C",
+    "description": "commissaire en gilet orange, debout",
+    "role": "officiel du départ debout (veste sombre) derrière le chevalet « ATTENTION CELLULE », devant la rubalise",
+    "pk_m": 1.0,
+    "side": "droite",
+    "offset_m": 2.5,
+    "position": [
+     4.966,
+     398.275,
+     -3.418
+    ],
+    "forward": [
+     -0.61932,
+     0.0,
+     0.78514
+    ],
+    "ground": "collision.glb (DBK+)",
+    "lambert93": [
+     917013.45,
+     6241034.02
+    ],
+    "heading_deg_from_north": 218.3,
+    "clearance_to_road_m": 2.5,
+    "outside_corner_radius_m": 139
+   },
+   {
+    "actor": "BC_HighResCrowd",
+    "class": "BC_HighResCrowd_C",
+    "description": "spectateur (homme, tenue de printemps)",
+    "role": "2 spectateurs debout au bord de l'accotement",
+    "pk_m": 26.57,
+    "side": "droite",
+    "offset_m": 1.5,
+    "position": [
+     -12.85,
+     397.303,
+     -24.663
+    ],
+    "forward": [
+     0.45146,
+     0.0,
+     0.89229
+    ],
+    "ground": "collision.glb (DBK+)",
+    "lambert93": [
+     916995.63,
+     6241055.26
+    ],
+    "heading_deg_from_north": 153.2,
+    "clearance_to_road_m": 1.52,
+    "outside_corner_radius_m": 114
+   },
+   {
+    "actor": "BC_HighResCrowd3",
+    "class": "BC_HighResCrowd_C",
+    "description": "spectatrice (tenue de printemps)",
+    "role": "2 spectateurs debout au bord de l'accotement",
+    "pk_m": 27.43,
+    "side": "droite",
+    "offset_m": 1.5,
+    "position": [
+     -13.532,
+     397.263,
+     -25.234
+    ],
+    "forward": [
+     0.46215,
+     0.0,
+     0.8868
+    ],
+    "ground": "collision.glb (DBK+)",
+    "lambert93": [
+     916994.95,
+     6241055.83
+    ],
+    "heading_deg_from_north": 152.5,
+    "clearance_to_road_m": 1.51,
+    "outside_corner_radius_m": 119
+   },
+   {
+    "actor": "BC_HighResCrowd4",
+    "class": "BC_HighResCrowd_C",
+    "description": "spectateur (homme, tenue de printemps)",
+    "role": "commissaire en chasuble orange debout près de la table, 2 personnes en sombre",
+    "pk_m": 6508.48,
+    "side": "gauche",
+    "offset_m": 5.5,
+    "position": [
+     -2520.066,
+     339.548,
+     -2376.08
+    ],
+    "forward": [
+     0.90634,
+     0.0,
+     -0.42255
+    ],
+    "ground": "collision.glb (GRS+)",
+    "lambert93": [
+     914488.42,
+     6243406.68
+    ],
+    "heading_deg_from_north": 65.0,
+    "clearance_to_road_m": 5.5,
+    "outside_corner_radius_m": 115
+   },
+   {
+    "actor": "BC_HighResCrowd6",
+    "class": "BC_HighResCrowd_C",
+    "description": "spectateur (homme, tenue de printemps)",
+    "role": "commissaire en chasuble orange debout près de la table, 2 personnes en sombre",
+    "pk_m": 6509.52,
+    "side": "gauche",
+    "offset_m": 5.5,
+    "position": [
+     -2521.206,
+     339.59,
+     -2376.318
+    ],
+    "forward": [
+     0.91341,
+     0.0,
+     -0.40703
+    ],
+    "ground": "collision.glb (GRS+)",
+    "lambert93": [
+     914487.28,
+     6243406.92
+    ],
+    "heading_deg_from_north": 66.0,
+    "clearance_to_road_m": 5.51,
+    "outside_corner_radius_m": 114
+   },
+   {
+    "actor": "BC_HighResCrowd2",
+    "class": "BC_HighResCrowd_C",
+    "description": "spectateur avec un appareil photo",
+    "role": "4 spectateurs debout en haut du petit talus",
+    "pk_m": 6572.58,
+    "side": "gauche",
+    "offset_m": 3.0,
+    "position": [
+     -2581.687,
+     341.924,
+     -2392.759
+    ],
+    "forward": [
+     0.9706,
+     0.0,
+     -0.24072
+    ],
+    "ground": "collision.glb (GRS+)",
+    "lambert93": [
+     914426.8,
+     6243423.36
+    ],
+    "heading_deg_from_north": 76.1,
+    "clearance_to_road_m": 3.02,
+    "outside_corner_radius_m": null
+   },
+   {
+    "actor": "BC_HighResCrowd5",
+    "class": "BC_HighResCrowd_C",
+    "description": "spectatrice (tenue de printemps)",
+    "role": "4 spectateurs debout en haut du petit talus",
+    "pk_m": 6573.42,
+    "side": "gauche",
+    "offset_m": 3.0,
+    "position": [
+     -2582.485,
+     342.017,
+     -2392.875
+    ],
+    "forward": [
+     0.96976,
+     0.0,
+     -0.24406
+    ],
+    "ground": "collision.glb (DBK+)",
+    "lambert93": [
+     914426.0,
+     6243423.48
+    ],
+    "heading_deg_from_north": 75.9,
+    "clearance_to_road_m": 3.01,
+    "outside_corner_radius_m": null
+   },
+   {
+    "actor": "BC_Marshal111",
+    "class": "BC_Marshal_C",
+    "description": "commissaire en gilet jaune, radio",
+    "role": "Lion d'Or : 2 commissaires en gilet jaune derrière le muret gris, 1 en chasuble orange sur la branche fermée (≈ 12 m)",
+    "pk_m": 3649.14,
+    "side": "droite",
+    "offset_m": 9.0,
+    "position": [
+     -259.892,
+     247.968,
+     -2539.698
+    ],
+    "forward": [
+     0.01369,
+     0.0,
+     0.99991
+    ],
+    "ground": "collision.glb (GRS+)",
+    "lambert93": [
+     916748.59,
+     6243570.3
+    ],
+    "heading_deg_from_north": 179.2,
+    "clearance_to_road_m": 8.99,
+    "outside_corner_radius_m": 60
+   },
+   {
+    "actor": "BC_Marshal112",
+    "class": "BC_Marshal_C",
+    "description": "commissaire en gilet jaune, tablette",
+    "role": "Lion d'Or : 2 commissaires en gilet jaune derrière le muret gris, 1 en chasuble orange sur la branche fermée (≈ 12 m)",
+    "pk_m": 3650.04,
+    "side": "droite",
+    "offset_m": 9.0,
+    "position": [
+     -260.665,
+     247.928,
+     -2540.329
+    ],
+    "forward": [
+     0.02225,
+     0.0,
+     0.99975
+    ],
+    "ground": "collision.glb (GRS+)",
+    "lambert93": [
+     916747.82,
+     6243570.93
+    ],
+    "heading_deg_from_north": 178.7,
+    "clearance_to_road_m": 8.98,
+    "outside_corner_radius_m": 63
+   },
+   {
+    "actor": "BC_Marshal110",
+    "class": "BC_Marshal_C",
+    "description": "commissaire photographe en chasuble orange, qui parle",
+    "role": "Lion d'Or : 2 commissaires en gilet jaune derrière le muret gris, 1 en chasuble orange sur la branche fermée (≈ 12 m)",
+    "pk_m": 3650.86,
+    "side": "droite",
+    "offset_m": 12.0,
+    "position": [
+     -259.574,
+     247.076,
+     -2543.311
+    ],
+    "forward": [
+     -0.04443,
+     0.0,
+     0.99901
+    ],
+    "ground": "collision.glb (GRS+)",
+    "lambert93": [
+     916748.91,
+     6243573.91
+    ],
+    "heading_deg_from_north": 182.5,
+    "clearance_to_road_m": 11.97,
+    "outside_corner_radius_m": 65
+   }
   ]
  }
 }

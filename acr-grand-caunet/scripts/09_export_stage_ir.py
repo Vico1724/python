@@ -1011,6 +1011,35 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
     return stage, vir
 
 
+def personnages_ir(ref, sol):
+    """Rubrique `characters` : les commissaires et spectateurs du niveau persistant de Hafren South que l'étape 1
+    déplace sur la spéciale (acr-ref stage-build --characters 1, retouche pc/patches/0005-personnages.patch ;
+    docs/15_commissaires_et_public.md). Position au pied (sol physique de collision.glb, sinon MNT), regard
+    horizontal ; même repère que les triggers. Liste vide : rubrique null."""
+    import mobilier
+    items = []
+    for p in mobilier.personnages():
+        c = vers_ir(np.array([[p["x"], p["y"], p["z_sol"]]]), ref)[0]
+        h, code = sol.top(c[0], c[2])
+        if h is not None:
+            c[1] = h
+        items.append({"actor": p["actor"], "class": p["classe"], "description": p["description"], "role": p["role"],
+                      "pk_m": round(p["pk"], 2), "side": p["cote"], "offset_m": p["decalage_m"],
+                      "position": r3(c), "forward": r3([p["regard"][0], 0.0, -p["regard"][1]], 5),
+                      "ground": f"collision.glb ({code})" if h is not None else "MNT (hors du sol physique)",
+                      "lambert93": [round(p["x"], 2), round(p["y"], 2)], "heading_deg_from_north": round(p["cap_deg"], 1),
+                      "clearance_to_road_m": round(p["degagement_m"], 2), "outside_corner_radius_m": p["exterieur_virage"]})
+    if not items:
+        return None
+    print("personnages :", ", ".join(f"{i['actor']} PK {i['pk_m']:.0f} {i['side']} {i['offset_m']:g} m" for i in items))
+    return {"source": "data/reference/mobilier_bord_de_route.json, commissaires_et_public_non_poses (scripts/mobilier.py, personnages())",
+            "host": "WalesS4HafrenSouth persistent level (service park actors)",
+            "notes": "position = pied du personnage (m, repère de l'IR) ; forward = direction du regard, horizontale. "
+                     "L'étape 1 retrouve chaque acteur par son étiquette (table de la retouche 0005) et réécrit la "
+                     "position et le lacet de son composant racine BodySkeletalMesh.",
+            "items": items}
+
+
 # --- relecture (indépendante de l'écriture) -------------------------------------------
 def lire_glb(path):
     """Relecture brute : {matériau: (positions, triangles)}."""
@@ -1095,6 +1124,13 @@ def controle(dossier, deck_pk):
     for k, t in types.items():
         need(k in st and isinstance(st[k], t), f"clé {k} absente ou de type inattendu")
     need("objects" in st and (st["objects"] is None or isinstance(st["objects"], dict)), "objects : objet ou null")
+    if st.get("characters"):
+        ci = st["characters"]["items"]
+        need(len({c["actor"] for c in ci}) == len(ci), "characters : acteur posé deux fois")
+        for c in ci:
+            need(len(c["position"]) == 3 and abs(c["forward"][1]) < 1e-9 and abs(math.hypot(c["forward"][0], c["forward"][2]) - 1) < 1e-3,
+                 f"characters : {c['actor']} position ou regard invalide")
+            need(c["clearance_to_road_m"] >= 1.0, f"characters : {c['actor']} à moins d'un mètre de la chaussée")
     need(len(st["gates"]) == len(st["centreline"]), "une porte par point d'axe")
     for g in st["gates"]:
         need(set(g) >= {"id", "distance", "crossing", "left", "right", "width"}, "porte incomplète")
@@ -1416,6 +1452,7 @@ def main():
     if stage["objects"]:
         retirer_sur_chaussee(stage, prims)
         ecrire_glb(DOSSIER / "objects_collision.glb", volumes_retenus(stage, obst), nom="objects_collision")
+    stage["characters"] = personnages_ir(ref, Sol(prims))
     path = DOSSIER / "stage.json"
     path.write_text(json.dumps(stage, ensure_ascii=False, indent=1), encoding="utf-8")
     rapport, validation = controle(DOSSIER, np.round(ch["pk"][deck]))

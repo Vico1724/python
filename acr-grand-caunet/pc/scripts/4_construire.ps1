@@ -23,6 +23,9 @@
 .PARAMETER Ciel       ciel réglé sur la latitude de Monte-Carlo (section [france] de leur config\sky.toml)
 .PARAMETER GarderDecor  ne cache pas le décor gallois
 .PARAMETER SansObstacles  n'ajoute pas les parapets / balisage
+.PARAMETER Personnages  déplace sur la spéciale les 4 commissaires et 6 spectateurs du parc d'assistance de Hafren South
+                      (niveau persistant), aux places de stage.json → characters (retouche 0005, --characters 1 ;
+                      docs\15_commissaires_et_public.md)
 
 .EXAMPLE
   pwsh -ExecutionPolicy Bypass -File pc\scripts\4_construire.ps1
@@ -31,7 +34,8 @@ param(
     [string]$Jeu, [string]$Travail, [string]$Ir,
     [string[]]$CellulesDecor = @(),
     [string]$ExclureVisuels,
-    [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Asphalte, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles
+    [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Asphalte, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles,
+    [switch]$Personnages
 )
 . "$PSScriptRoot\commun.ps1"
 $ErrorActionPreference = 'Stop'
@@ -151,6 +155,13 @@ if (-not $GarderDecor) {
 if ($Textures) { $a += @('--visuals-textured', '1') }
 if ($Noms) { $a += @('--names', (Join-Path $script:Projet 'pc\config\noms-grand-caunet.toml')) }
 if ($Ciel) { $a += @('--sky', (Join-Path $cfg 'sky.toml'), '--sky-section', 'france') }
+if ($Personnages) {
+    # retouche 0005 : position et lacet des 10 personnages du niveau persistant réécrits sur place (Characters.cs)
+    if (-not $stage.characters) { Echec "-Personnages : stage.json n'a pas de rubrique characters (relancer scripts\tout_lancer.py --seulement 9)" }
+    if (-not (Test-Path (Join-Path $src 'tools\acr-ref\Characters.cs'))) { Echec "-Personnages : retouche 0005-personnages absente de $src : relancer 2_recuperer_acrxs.ps1" }
+    $a += @('--characters', '1')
+    Ok "personnages : $($stage.characters.items.Count) commissaires et spectateurs à déplacer"
+}
 Push-Location $src
 try { Lancer $acrRef $a "construction (stage-build) ; ses contrôles hors jeu sont dans le journal" } finally { Pop-Location }
 Ok "construction terminée : rapport $rapport"

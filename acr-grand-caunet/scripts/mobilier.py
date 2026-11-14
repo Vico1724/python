@@ -213,6 +213,89 @@ def objets(route=None):
     return out, lignes
 
 
+# Commissaires et spectateurs du jeu déplacés sur la spéciale (docs/15_commissaires_et_public.md, méthode A) : les
+# 10 personnages animés du niveau persistant de Hafren South (parc d'assistance). L'étape 1 (acr-ref stage-build
+# --characters 1, retouche pc/patches/0005-personnages.patch) réécrit leur position et leur lacet ; rien d'autre.
+PERSONNAGES_DU_JEU = {
+    "BC_Marshal110": ("BC_Marshal_C", "commissaire photographe en chasuble orange, qui parle"),
+    "BC_Marshal111": ("BC_Marshal_C", "commissaire en gilet jaune, radio"),
+    "BC_Marshal112": ("BC_Marshal_C", "commissaire en gilet jaune, tablette"),
+    "BC_Marshal113": ("BC_Marshal_C", "commissaire en gilet orange, debout"),
+    "BC_HighResCrowd": ("BC_HighResCrowd_C", "spectateur (homme, tenue de printemps)"),
+    "BC_HighResCrowd2": ("BC_HighResCrowd_C", "spectateur avec un appareil photo"),
+    "BC_HighResCrowd3": ("BC_HighResCrowd_C", "spectatrice (tenue de printemps)"),
+    "BC_HighResCrowd4": ("BC_HighResCrowd_C", "spectateur (homme, tenue de printemps)"),
+    "BC_HighResCrowd5": ("BC_HighResCrowd_C", "spectatrice (tenue de printemps)"),
+    "BC_HighResCrowd6": ("BC_HighResCrowd_C", "spectateur (homme, tenue de printemps)"),
+}
+DEGAGEMENT_MIN_M = 1.0      # un personnage n'est jamais à moins d'un mètre du bord d'une chaussée de la spéciale
+REGARD_AMONT_M = 15.0       # par défaut, il regarde l'axe 15 m en amont : la voiture qui arrive
+
+
+def personnages(route=None):
+    """Personnages du jeu posés aux places de `commissaires_et_public_non_poses` (champ « personnages » de chaque
+    entrée : étiquettes d'acteurs du jeu). Les personnes d'une même entrée sont écartées de 0,8 à 1,2 m le long de la
+    route autour de pk_m + glissement_m ; decalages_m donne au besoin un décalage par personne. Chacune regarde l'axe
+    de la chaussée regard_amont_m en amont (la voiture qui arrive, ou la ligne de départ).
+
+    Rend une liste de dictionnaires : actor, classe, description, role, pk, cote, decalage_m, x, y (Lambert-93), z_sol
+    (altitude NGF du terrain, jamais plus d'un mètre sous le bord), z_bord, regard (vecteur unitaire est / nord),
+    cap_deg (azimut du regard depuis le nord, sens horaire), degagement_m (distance au bord de chaussée le plus
+    proche, toute la spéciale comprise), exterieur_virage (rayon en m si la personne est à l'extérieur d'un virage
+    de 40 à 300 m de rayon, sinon None), source."""
+    cfg = charger()
+    if cfg is None:
+        return []
+    route = route or Route()
+    demi = np.maximum(np.linalg.norm(route.G[:, :2] - route.A[:, :2], axis=1), np.linalg.norm(route.D[:, :2] - route.A[:, :2], axis=1))
+    out, vus = [], set()
+    for e in (cfg.get("commissaires_et_public_non_poses") or {}).get("liste", []):
+        noms = e.get("personnages") or []
+        if not noms:
+            continue
+        decs = e.get("decalages_m") or [e["decalage_m"]] * len(noms)
+        if len(decs) != len(noms):
+            raise SystemExit(f"commissaires_et_public_non_poses, PK {e['pk_m']} : decalages_m et personnages de longueurs différentes")
+        le_long = [0.0]
+        for k in range(1, len(noms)):
+            le_long.append(le_long[-1] + 0.8 + 0.4 * alea(e["pk_m"], k))
+        milieu = 0.5 * (le_long[0] + le_long[-1])
+        for k, nom in enumerate(noms):
+            if nom not in PERSONNAGES_DU_JEU:
+                raise SystemExit(f"personnage inconnu : {nom} (connus : {', '.join(PERSONNAGES_DU_JEU)})")
+            if nom in vus:
+                raise SystemExit(f"personnage posé deux fois : {nom}")
+            vus.add(nom)
+            pk = float(e["pk_m"] + e.get("glissement_m", 0.0) + le_long[k] - milieu)
+            x, y, zb, t = route.point(pk, e["cote"], decs[k])
+            cible = route._interp(route.A, pk - float(e.get("regard_amont_m", REGARD_AMONT_M)))
+            r = np.array([cible[0] - x, cible[1] - y])
+            r /= max(np.linalg.norm(r), 1e-9)
+            # dégagement : distance à l'axe moins la demi-largeur, au point de la spéciale le plus défavorable
+            degag = float(np.min(np.hypot(route.A[:, 0] - x, route.A[:, 1] - y) - demi))
+            # virage : variation de cap sur ±25 m ; à gauche (> 0), l'extérieur est à droite
+            t0, t1 = route._interp(route.T, pk - 25.0), route._interp(route.T, pk + 25.0)
+            dcap = math.atan2(t0[0] * t1[1] - t0[1] * t1[0], t0[0] * t1[0] + t0[1] * t1[1])
+            rayon = 50.0 / max(abs(dcap), 1e-9)
+            dehors = (dcap > 0) == (e["cote"] == "droite")
+            out.append({"actor": nom, "classe": PERSONNAGES_DU_JEU[nom][0], "description": PERSONNAGES_DU_JEU[nom][1],
+                        "role": e.get("role", ""), "pk": pk, "cote": e["cote"], "decalage_m": float(decs[k]),
+                        # une personne se tient sur le sol réel (pas de plancher sous le bord comme pour les poteaux :
+                        # derrière un muret, le terrain peut être à 2 m sous la route) ; 09 prend le sol physique
+                        "x": x, "y": y, "z_sol": route.z_terrain(x, y, zb), "z_bord": zb,
+                        "regard": [float(r[0]), float(r[1])], "cap_deg": math.degrees(math.atan2(r[0], r[1])) % 360.0,
+                        "degagement_m": degag, "exterieur_virage": round(rayon) if dehors and 40.0 <= rayon <= 300.0 else None,
+                        "source": e.get("source", "")})
+            if degag < DEGAGEMENT_MIN_M:
+                raise SystemExit(f"{nom} (PK {pk:.1f}) à {degag:.2f} m d'une chaussée de la spéciale (minimum {DEGAGEMENT_MIN_M} m)")
+            # jamais à l'extérieur d'un virage rapide, à moins de 5 m du bord (hors des 100 premiers mètres, où la
+            # voiture sort de l'arrêt du départ et passe lentement)
+            if out[-1]["exterieur_virage"] and pk > 100.0 and decs[k] < 5.0:
+                raise SystemExit(f"{nom} (PK {pk:.1f}) à l'extérieur d'un virage de {out[-1]['exterieur_virage']} m de rayon, "
+                                 f"à {decs[k]} m du bord : l'écarter (decalages_m) ou le déplacer")
+    return out
+
+
 if __name__ == "__main__":
     import collections
     o, l = objets()

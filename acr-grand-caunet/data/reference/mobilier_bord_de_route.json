@@ -4166,56 +4166,90 @@
   }
  },
  "commissaires_et_public_non_poses": {
-  "note": "Commissaires, officiels et public relevés sur la vidéo de course, NON POSÉS : le catalogue du jeu n'a aucune personne en maillage statique utilisable. Commissaires (Characters/Common/Marshal : SK_MarshalMale_*, SK_MarshalFemale_*) et public haute définition (Characters/Crowd_HiRes) sont des maillages squelettiques animés, posés par le jeu lui-même (Data/Marshals : BC_Marshal, séquences de départ et d'arrivée BC_MarshalStartEndSequence*, BC_StopMarshal*). Le public lointain (Data/Crowd/CrowdMeshes/*/SM_*_Generated) est fait de StaticMesh, mais animés par leur matériau (texture d'os, AnimToTexture, interrupteur CrowdCustomData) avec des données par instance fournies par le système de foule du jeu (Mass, DA_CrowdSetup) ; posé seul, sans ces données ni la texture d'animation, son allure est imprévisible (pose de référence bras écartés, 1,06 m d'envergure lue dans ses bornes, ou sommets écrasés). Positions gardées ici pour le jour où l'on passera par les acteurs du jeu.",
+  "note": "Commissaires, officiels et public relevés sur la vidéo de course, NON POSÉS : le catalogue du jeu n'a aucune personne en maillage statique utilisable. Commissaires (Characters/Common/Marshal : SK_MarshalMale_*, SK_MarshalFemale_*) et public haute définition (Characters/Crowd_HiRes) sont des maillages squelettiques animés, posés par le jeu lui-même (Data/Marshals : BC_Marshal, séquences de départ et d'arrivée BC_MarshalStartEndSequence*, BC_StopMarshal*). Le public lointain (Data/Crowd/CrowdMeshes/*/SM_*_Generated) est fait de StaticMesh, mais animés par leur matériau (texture d'os, AnimToTexture, interrupteur CrowdCustomData) avec des données par instance fournies par le système de foule du jeu (Mass, DA_CrowdSetup) ; posé seul, sans ces données ni la texture d'animation, son allure est imprévisible (pose de référence bras écartés, 1,06 m d'envergure lue dans ses bornes, ou sommets écrasés). Depuis le 14/11/2026 (docs/15_commissaires_et_public.md, méthode A), les 10 personnages animés du niveau persistant de Hafren South (parc d'assistance : 4 commissaires BC_Marshal_C, 6 spectateurs BC_HighResCrowd_C) sont déplacés à ces places par l'étape 1 (acr-ref stage-build --characters 1, retouche pc/patches/0005-personnages.patch) : champ « personnages » de chaque entrée (étiquettes d'acteurs du jeu ; liste vide = place non pourvue), « decalages_m » (un décalage par personne), « glissement_m » (groupe décalé le long de la route), « regard_amont_m » (point de l'axe regardé, en amont ; 15 m par défaut). Positions calculées par scripts/mobilier.py, personnages().",
   "liste": [
    {
     "pk_m": 1.0,
     "cote": "droite",
     "decalage_m": 2.5,
     "role": "officiel du départ debout (veste sombre) derrière le chevalet « ATTENTION CELLULE », devant la rubalise",
-    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 10,5-12,6 s"
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 10,5-12,6 s",
+    "personnages": [
+     "BC_Marshal113"
+    ],
+    "regard_amont_m": 3.0
    },
    {
     "pk_m": -20.0,
     "cote": "droite",
     "decalage_m": 4.0,
     "role": "deux officiels assis sous la tonnelle (ajout plausible)",
-    "source": "ajout plausible"
+    "source": "ajout plausible",
+    "personnages": []
    },
    {
     "pk_m": 27.0,
     "cote": "droite",
     "decalage_m": 1.5,
     "role": "2 spectateurs debout au bord de l'accotement",
-    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 15,2 s"
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 15,2 s",
+    "personnages": [
+     "BC_HighResCrowd",
+     "BC_HighResCrowd3"
+    ],
+    "regard_amont_m": 20.0
    },
    {
     "pk_m": 6509.0,
     "cote": "gauche",
     "decalage_m": 3.0,
     "role": "commissaire en chasuble orange debout près de la table, 2 personnes en sombre",
-    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 324,0 s (PK corrigé de +5,5 m)"
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 324,0 s (PK corrigé de +5,5 m)",
+    "personnages": [
+     "BC_HighResCrowd4",
+     "BC_HighResCrowd6"
+    ],
+    "decalages_m": [
+     5.5,
+     5.5
+    ],
+    "placement_des_personnages": "les 2 personnes en sombre à 5,5 m, derrière la table et la chaise (2,8 et 3,6 m), à la place du poste relevé (PK 6502-6504 + 5,5, à 5,5 m) : à 3 m, elles seraient à l'extérieur du droite de 70 m de rayon qui finit au PK 6515"
    },
    {
     "pk_m": 6573.0,
     "cote": "gauche",
     "decalage_m": 3.0,
     "role": "4 spectateurs debout en haut du petit talus",
-    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 327,8 s (PK corrigé de +5 m)"
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 327,8 s (PK corrigé de +5 m)",
+    "personnages": [
+     "BC_HighResCrowd2",
+     "BC_HighResCrowd5"
+    ]
    },
    {
     "pk_m": 6736.0,
     "cote": "gauche",
     "decalage_m": 5.5,
     "role": "chronométreur près de sa voiture (non vu sur la vidéo : personne de visible)",
-    "source": "ajout plausible"
+    "source": "ajout plausible",
+    "personnages": []
    },
    {
     "pk_m": 3650.0,
     "cote": "droite",
     "decalage_m": 9.0,
     "role": "Lion d'Or : 2 commissaires en gilet jaune derrière le muret gris, 1 en chasuble orange sur la branche fermée (≈ 12 m)",
-    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 184,5 s"
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 184,5 s",
+    "personnages": [
+     "BC_Marshal111",
+     "BC_Marshal112",
+     "BC_Marshal110"
+    ],
+    "decalages_m": [
+     9.0,
+     9.0,
+     12.0
+    ]
    }
   ]
  }
