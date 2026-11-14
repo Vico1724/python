@@ -84,7 +84,7 @@
    ],
    "bornes_max": [
     29391.5,
-    700.4000244140625,
+    700.5,
     29830.599609375
    ],
    "raccord_08": {
@@ -95,7 +95,7 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 271,
+ "duree_s": 255,
  "complet": {
   "bandes_m": [
    [
@@ -141,7 +141,7 @@
    "m_par_px_max": 12.11
   },
   "relecture": {
-   "taille_mo": 73.2,
+   "taille_mo": 73.25,
    "maillages": 290,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,

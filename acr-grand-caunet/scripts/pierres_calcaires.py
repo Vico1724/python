@@ -63,6 +63,8 @@ def forme(nom):
     d = d / np.abs(d).max(1, keepdims=True) ** f["cube"]
     d *= rng.uniform(0.82, 1.0, (n, 1))
     p = d * (np.array(f["dim"]) / 2.0)
+    # assise : une pierre posée est plus large à la base qu'au sommet (sans cela, certaines semblaient en porte-à-faux)
+    p[:, :2] *= (1.0 - 0.30 * (p[:, 2] / f["dim"][2]))[:, None]
     hull = ConvexHull(p)
     p = p[hull.vertices]
     hull = ConvexHull(p)
