@@ -185,3 +185,28 @@ Retour du directeur : le jeu tourne sans souci ; « il y a encore du travail à 
 **Non traité, relevé pour la suite** : troncs des pins rouge-orangé (c'est le pin du jeu ; les vrais sont gris) ; pas de voûte de branches au-dessus de la route (elle s'oppose à la règle « rien ne déborde sur la chaussée ») ; îlots du Lion d'Or bordurés en dur ; panneaux directionnels (pas d'équivalent dans le jeu) ; aires manquantes ou étroites aux PK 440, 1480, 5040 et 6360 ; mur de pierre sèche du PK 3720 trop court ; écran bas sous les glissières ; enrobé un peu foncé, fissures trop marquées.
 
 **Où c'est décrit** : lissage en long, `scripts/07b_regulariser_chaussee.py` ; pierres, `scripts/pierres_calcaires.py`, `ROCAILLE` et `HERBES` dans `scripts/16_paquet_unreal.py` ; bords de route, `data/reference/bords_vegetation.json`, `scripts/regles_arbres.py`, `SOUS_BOIS` et `FOURRE` dans `16_paquet_unreal.py` ; matières, `data/reference/matieres_du_jeu.json` ; chaîne Unreal complète, `pc/etape2_unreal/scripts_pc/chaine_decor.ps1`.
+
+## 9. Après l'essai de la septième version (14 novembre, 2 h 35)
+
+Retour du directeur : reliefs lointains à retravailler « pour une impression moins géométrique » ; parois rocheuses et leur intégration au bord de la route ; touffes d'herbe à l'horizontale sur des talus à 45 degrés ; « n'as-tu pas trop lissé la route ? Garder un ressenti réel de route non parfaite, mais enlever les bosses non réelles et trop fortes » ; un panneau de rallye sur un piquet à l'extérieur d'un virage à droite est-il fidèle ? Il a aussi fourni 24 captures Street View de la zone avant le départ, à modéliser. Consignes de travail : installer chaque version dès qu'elle est prête, continuer sans test, confier les tâches simples à des agents sur un modèle moins gourmand.
+
+**Relevés faits (par des agents sur Opus).** Vidéo du test calée et comparée à la reconnaissance (`data/reference/releve_essai_14_11_v7/constats.json`, 42 constats) ; inventaire géolocalisé de la zone de départ (`data/reference/zone_depart.json`) ; relecture de la reconnaissance sur douze endroits (`data/reference/relecture_reco_v8.json`).
+
+**Huitième version : construite, relue conforme, installée le 14 novembre à 7 h 09.** 552 maillages, 585 693 objets (556 286 dans la septième). Route physique reconstruite, décalage route / décor de 0,0 cm. Rien n'en a encore été vu en jeu ; la fluidité avec 29 000 objets de plus n'est pas mesurable hors jeu.
+
+| Remarque | Cause trouvée | Correction |
+|---|---|---|
+| Route trop lissée | Le lissage retirait tout ce qui fait moins de 25 m de long : 0,04 g d'à-coups à 90 km/h, une chaussée parfaite | La route reprend les trois quarts de l'écart mesuré (ondulations de plus de 6 m), écrêté à 1,5 cm : 0,08 g en moyenne, 0,42 g au plus (0,17 et 1,1 à l'origine) |
+| Touffes d'herbe à plat sur les talus | Touffes posées droites, sans suivre la pente | Couchées sur la pente (133 833 touffes), raréfiées sur les pentes raides |
+| Panneau sur piquet à l'extérieur d'un virage à droite | PK 2614, à gauche : la vidéo de course le montre cloué sur un tronc de pin, que notre semis d'arbres n'avait pas | Un pin planté derrière lui. À l'épingle du km 4,08, le mur de pierres sèches qui porte deux autres panneaux est rétabli (je l'avais retiré à tort dans la septième version) |
+| Relief lointain géométrique | Un seul modèle de pin, semis régulier, arrêt net à 650 m ; versants beiges sous les arbres ; falaises en grands triangles plans ; teinte de falaise sur des versants boisés | Quinze pins différents, hauteurs et largeurs variées, frange qui se raréfie par plaques jusqu'à 880 m (157 629 arbres) ; images lointaines plus vertes, mouchetées de houppiers ; faces de roche recoupées en 16 et bosselées, jusqu'à 1 100 m (16 446 faces) ; teinte de calcaire seulement sur le rocher nu |
+| Parois proches en gradins, trop propres | Bancs épais, longs blocs, sommet régulier, pied sur un sol nu | Bancs de 18 à 42 cm, blocs de 0,5 à 1,5 m, sommet irrégulier, pierres au pied ; roche moins blanche au soleil et moins bleue à l'ombre |
+| Parapets « brun-vert, comme de la mousse » | La couleur de sommet dose la mousse dans le sens inverse de ce que j'avais cru : blanc = mousse | Couleur de sommet noire : pierre seule |
+| Zone avant le départ vide | Jamais modélisée | Parking du Grand Caunet et deux aires, long mur enduit, mur de pierres sèches, mur de soutènement, entrée de propriété (rampe, pilier, portail, monolithe), lisse basse, trois barrières, dix bâtiments en volumes simples (`scripts/12_carrefours_annexes.py`, section « constructions de la zone de départ ») |
+
+**Erreurs connues de la huitième version, corrigées dans les données pour la neuvième** : au pont du PK 2602, parapet gauche retiré et parapet droit allongé à 22 m, alors que la relecture montre un parapet gauche de 5 m et un droit de 10 m. Les douze corrections de la relecture (parapets des ponts 1661, 2602 et 2777, murs des PK 3722, 4079 et 5358 à 5508, treize poteaux déplacés et sept ajoutés, six aires) sont dans les données, pas encore construites.
+
+**Non traité** : cédez-le-passage, poteaux directionnels, miroir et panneau de la forêt de la zone de départ (pas d'équivalent dans le jeu) ; portique d'arrivée rendu vert uni ; poteaux qui paraissent bleu sombre à contre-jour ; une retouche des notes du copilote au PK 3173 qui ne s'applique plus.
+
+**Outils ajoutés** : `pc/scripts/7_tout_refaire.ps1` (données, route physique, chaîne Unreal et relecture d'un trait), `pc/etape2_unreal/scripts_pc/chaine_decor.ps1`, `scripts/19b_calage_barre.py`.
+

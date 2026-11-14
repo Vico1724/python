@@ -2,9 +2,11 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (septième, du 14/11/2026) : route lissée en long, touffes noires retirées,
-                         roche et murets éclaircis, pierres calcaires du projet, haie du km 5,1 à 5,4, bords dégagés,
-                         fourré des versants, poteaux béton, falaises lointaines ; jamais vue en jeu
+    sol_jeu              version courante (huitième, du 14/11/2026 au matin) : zone de départ modélisée, route moins
+                         lissée, touffes d'herbe couchées sur les talus, relief lointain et parois repris, parapets
+                         en pierre ; jamais vue en jeu
+    sol_jeu_vu_le_14_11  septième version, vue en jeu le 14/11/2026 à 2 h 35 : route trop lissée, touffes d'herbe à plat
+                         sur les talus, relief lointain trop géométrique, parapets moussus
     sol_jeu_vu_le_13_11_soir  sixième version, vue en jeu le 13/11/2026 au soir : parois relues sur la reconnaissance,
                          rocaille en pierres du jeu, touffes noires, route par moments bosselée
     sol_jeu_cycle5_du_13_11  cinquième version : carrefour du Lion d'Or repris, versants boisés, roche sur les

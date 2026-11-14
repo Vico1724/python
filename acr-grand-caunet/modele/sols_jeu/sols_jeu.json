@@ -21,8 +21,8 @@
  ],
  "matiere_de_fond": "paillis (matière 1 du jeu) = 1 - somme des couches",
  "parts_moyennes": {
-  "paillis": 0.342,
-  "aiguilles_de_pin": 0.263,
+  "paillis": 0.25,
+  "aiguilles_de_pin": 0.355,
   "herbe_haute": 0.083,
   "herbe_seche": 0.208,
   "terre": 0.066,

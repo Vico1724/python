@@ -1,28 +1,28 @@
 {
  "conteneur": {
-  "fichiers": 2192,
+  "fichiers": 2250,
   "hors_de_notre_dossier": 0
  },
  "niveau": {
-  "maillages_poses": 524,
-  "attendus": 524,
-  "instances": 556286,
-  "attendues": 556286,
+  "maillages_poses": 545,
+  "attendus": 545,
+  "instances": 585693,
+  "attendues": 585693,
   "composants_d_instances": 110,
   "instances_hors_vegetation": {
    "SM_PlasticTapePoleA": 16,
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 216,
    "SM_MetalGuardrailASimpleEnd": 6,
-   "SM_GrandCaunetStoneA": 8120,
-   "SM_GrandCaunetStoneB": 8576,
-   "SM_GrandCaunetStoneC": 7384,
+   "SM_GrandCaunetStoneA": 8327,
+   "SM_GrandCaunetStoneB": 8681,
+   "SM_GrandCaunetStoneC": 7357,
    "SM_GrandCaunetBlocA": 33,
-   "SM_GrandCaunetBlocB": 44,
-   "SM_GrandCaunetBlocC": 22,
+   "SM_GrandCaunetBlocB": 45,
+   "SM_GrandCaunetBlocC": 23,
    "SM_MileMarkerA": 1,
    "SM_MonPylonB11": 79,
-   "SM_MonPylonC11": 17,
+   "SM_MonPylonC11": 20,
    "SM_NopublicSign": 10,
    "SM_RaceControlZoneEnd": 1,
    "SM_RaceFlyingFinish": 1,
@@ -34,11 +34,11 @@
    "SM_TrafficConeA": 1,
    "SM_TrafficSignFraCrossRoadsA": 1,
    "SM_TrafficSignFraCurveMarkerD": 3,
-   "SM_TrafficSignFraDangerA": 5,
+   "SM_TrafficSignFraDangerA": 6,
    "SM_TrafficSignFraNarrowRoadA": 1,
    "SM_TrafficSignFraRightTurnA1": 1,
    "SM_TrafficSignFraSlipperyRoadA": 1,
-   "SM_GrandCaunetStoneD": 1880
+   "SM_GrandCaunetStoneD": 2092
   },
   "composants_a_disparition_reglee": 40,
   "herbes_mal_reglees": []
@@ -68,8 +68,8 @@
    ]
   },
   "masques_de_format_different": [],
-  "ecart_moyen_au_fichier_source_sur_255": 2.36,
-  "maillages": 100,
+  "ecart_moyen_au_fichier_source_sur_255": 2.53,
+  "maillages": 101,
   "maillages_a_mauvaise_couleur_de_sommet": []
  },
  "variantes_heritees_du_jeu": {

@@ -51,11 +51,16 @@
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 1654.0,
-    "pk_fin_m": 1670.5,
+    "pk_debut_m": 1648.0,
+    "pk_fin_m": 1662.0,
     "pk_releve_debut_m": 1658,
     "pk_releve_fin_m": 1674,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+    "avant_la_relecture": {
+     "pk_debut_m": 1654.0,
+     "pk_fin_m": 1670.5,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "droite": {
     "type": "pierre",
@@ -63,12 +68,17 @@
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 1652.0,
-    "pk_fin_m": 1667.0,
+    "pk_debut_m": 1645.0,
+    "pk_fin_m": 1665.0,
     "note": "mur de moellons courbe, chaperon gris, sans dés blancs",
     "pk_releve_debut_m": 1656,
     "pk_releve_fin_m": 1671,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+    "avant_la_relecture": {
+     "pk_debut_m": 1652.0,
+     "pk_fin_m": 1667.0,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -110,37 +120,54 @@
    "bdtopo_pk": "2599-2606",
    "temps_video_s": "134-136",
    "gauche": {
-    "type": "aucun",
+    "type": "pierre_des_blancs",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.4,
     "statut": "vu sur la vidéo de reconnaissances",
-    "nature": "relevés des sixième et septième essais (PK 2600) : le jeu montrait à gauche un muret sombre qui n'existe pas ; la reconnaissance n'y montre que des troncs de pins",
-    "ancien": {
-     "type": "pierre",
-     "hauteur_m": 0.5,
-     "epaisseur_m": 0.4,
+    "pk_debut_m": 2591.5,
+    "pk_fin_m": 2596.5,
+    "note": "parapet court (≈ 5 m) de moellons calcaires gris à deux abouts biseautés en béton peint en blanc, troncs de pins derrière ; c'est un bloc de 5 m, pas un muret long. Rendu en pierre à dés blancs : sur 5 m, les deux dés tombent à 0,75 m de chaque bout, à la place des abouts blancs",
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+    "avant_la_relecture": {
+     "type": "aucun",
      "statut": "vu sur la vidéo de reconnaissances",
-     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-     "pk_debut_m": 2595.0,
-     "pk_fin_m": 2600.0,
-     "pk_releve_debut_m": 2587,
-     "pk_releve_fin_m": 2592,
-     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "nature": "relevés des sixième et septième essais (PK 2600) : le jeu montrait à gauche un muret sombre qui n'existe pas ; la reconnaissance n'y montre que des troncs de pins",
+     "ancien": {
+      "type": "pierre",
+      "hauteur_m": 0.5,
+      "epaisseur_m": 0.4,
+      "statut": "vu sur la vidéo de reconnaissances",
+      "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+      "pk_debut_m": 2595.0,
+      "pk_fin_m": 2600.0,
+      "pk_releve_debut_m": 2587,
+      "pk_releve_fin_m": 2592,
+      "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     }
    },
    "droite": {
     "type": "pierre",
-    "hauteur_m": 0.65,
+    "hauteur_m": 0.6,
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 2598.0,
-    "pk_fin_m": 2620.0,
+    "pk_debut_m": 2596.0,
+    "pk_fin_m": 2606.0,
     "pk_releve_debut_m": 2590,
     "pk_releve_fin_m": 2600,
-    "calage": "allongé à la main le 14/11/2026 : les relevés des sixième et septième essais montrent à droite un mur bas continu en moellons d'une vingtaine de mètres, là où le jeu ne posait que deux blocs courts",
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
     "ancien_pk": [
      2598.0,
      2608.0
-    ]
+    ],
+    "note": "mur bas droit en moellons gris beige, couronnement arrondi clair, sans dés blancs (≈ 10 m) ; après 2607 accotement d'herbe et de gravier sans mur jusqu'à 2625 : l'allongement à 2598-2620 du 14/11/2026 était faux",
+    "avant_la_relecture": {
+     "pk_debut_m": 2598.0,
+     "pk_fin_m": 2620.0,
+     "hauteur_m": 0.65,
+     "calage": "allongé à la main le 14/11/2026 : les relevés des sixième et septième essais montrent à droite un mur bas continu en moellons d'une vingtaine de mètres, là où le jeu ne posait que deux blocs courts"
+    }
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -169,23 +196,35 @@
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 2770.5,
-    "pk_fin_m": 2785.0,
+    "pk_debut_m": 2761.0,
+    "pk_fin_m": 2778.0,
     "pk_releve_debut_m": 2766,
     "pk_releve_fin_m": 2780,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+    "avant_la_relecture": {
+     "pk_debut_m": 2770.5,
+     "pk_fin_m": 2785.0,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "droite": {
     "type": "pierre",
-    "hauteur_m": 0.6,
+    "hauteur_m": 0.65,
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 2772.5,
-    "pk_fin_m": 2782.5,
+    "pk_debut_m": 2770.0,
+    "pk_fin_m": 2781.0,
     "pk_releve_debut_m": 2768,
     "pk_releve_fin_m": 2778,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+    "note": "muret courbe de moellons gris rosé à l'intérieur de l'épingle, couronnement de pierre arrondi, sans dés blancs",
+    "avant_la_relecture": {
+     "pk_debut_m": 2772.5,
+     "pk_fin_m": 2782.5,
+     "hauteur_m": 0.6,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -299,16 +338,22 @@
    "temps_video_s": "202-205",
    "gauche": {
     "type": "beton",
-    "hauteur_m": 0.65,
+    "hauteur_m": 0.55,
     "epaisseur_m": 0.3,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 4066.0,
-    "pk_fin_m": 4082.0,
+    "pk_debut_m": 4067.0,
+    "pk_fin_m": 4080.0,
     "note": "béton peint en blanc, et non de la pierre",
     "pk_releve_debut_m": 4056,
     "pk_releve_fin_m": 4072,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+    "avant_la_relecture": {
+     "pk_debut_m": 4066.0,
+     "pk_fin_m": 4082.0,
+     "hauteur_m": 0.65,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "droite": {
     "type": "pierre",
@@ -611,8 +656,8 @@
    "calage": "PK corrigé de -1,0 m à -2,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 1709.5,
-   "pk_fin_m": 1728.0,
+   "pk_debut_m": 1709.0,
+   "pk_fin_m": 1723.0,
    "route": "D3D",
    "gauche": {
     "type": "aucun",
@@ -630,7 +675,12 @@
    "note": "mur de moellons à gros chaperon ; placé 20 m trop tôt dans l'ancien relevé",
    "pk_releve_debut_m": 1712,
    "pk_releve_fin_m": 1730,
-   "calage": "PK corrigé de -2,5 m à -2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1709.5,
+    "pk_fin_m": 1728.0,
+    "calage": "PK corrigé de -2,5 m à -2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 1726.0,
@@ -939,16 +989,17 @@
   },
   {
    "pk_debut_m": 3722.5,
-   "pk_fin_m": 3756.5,
+   "pk_fin_m": 3738.0,
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 1.7,
+    "hauteur_m": 2.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.8,
-    "biseau_m": 1.5
+    "biseau_m": 1.5,
+    "sans_biseau_fin": true
    },
    "droite": {
     "type": "aucun",
@@ -958,7 +1009,117 @@
    "note": "mur de soutènement en pierres sèches",
    "pk_releve_debut_m": 3722,
    "pk_releve_fin_m": 3755,
-   "calage": "PK corrigé de +0,5 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "troncon": "1/4 : hauteur rendue par tronçons successifs de hauteur constante",
+   "avant_la_relecture": {
+    "pk_debut_m": 3722.5,
+    "pk_fin_m": 3756.5,
+    "gauche": {
+     "hauteur_m": 1.7
+    },
+    "calage": "PK corrigé de +0,5 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 3738.0,
+   "pk_fin_m": 3743.0,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.8,
+    "epaisseur_m": 0.6,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.8,
+    "biseau_m": 1.5,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de soutènement en pierres sèches",
+   "pk_releve_debut_m": 3722,
+   "pk_releve_fin_m": 3755,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "troncon": "2/4 : hauteur rendue par tronçons successifs de hauteur constante",
+   "avant_la_relecture": {
+    "pk_debut_m": 3722.5,
+    "pk_fin_m": 3756.5,
+    "gauche": {
+     "hauteur_m": 1.7
+    },
+    "calage": "PK corrigé de +0,5 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 3743.0,
+   "pk_fin_m": 3749.0,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.4,
+    "epaisseur_m": 0.6,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.8,
+    "biseau_m": 1.5,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de soutènement en pierres sèches",
+   "pk_releve_debut_m": 3722,
+   "pk_releve_fin_m": 3755,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "troncon": "3/4 : hauteur rendue par tronçons successifs de hauteur constante",
+   "avant_la_relecture": {
+    "pk_debut_m": 3722.5,
+    "pk_fin_m": 3756.5,
+    "gauche": {
+     "hauteur_m": 1.7
+    },
+    "calage": "PK corrigé de +0,5 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 3749.0,
+   "pk_fin_m": 3756.5,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.0,
+    "epaisseur_m": 0.6,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.8,
+    "biseau_m": 1.5,
+    "sans_biseau_debut": true
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de soutènement en pierres sèches",
+   "pk_releve_debut_m": 3722,
+   "pk_releve_fin_m": 3755,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "troncon": "4/4 : hauteur rendue par tronçons successifs de hauteur constante",
+   "avant_la_relecture": {
+    "pk_debut_m": 3722.5,
+    "pk_fin_m": 3756.5,
+    "gauche": {
+     "hauteur_m": 1.7
+    },
+    "calage": "PK corrigé de +0,5 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 3838.5,
@@ -1002,18 +1163,19 @@
    "calage": "PK corrigé de +7,5 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 4076.0,
-   "pk_fin_m": 4109.5,
+   "pk_debut_m": 4079.0,
+   "pk_fin_m": 4097.0,
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 2.2,
+    "hauteur_m": 2.3,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 2.5,
+    "decalage_m": 3.0,
     "biseau_m": 2.0,
-    "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire."
+    "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
+    "sans_biseau_fin": true
    },
    "droite": {
     "type": "aucun",
@@ -1023,7 +1185,88 @@
    "note": "mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier",
    "pk_releve_debut_m": 4066,
    "pk_releve_fin_m": 4100,
-   "calage": "PK corrigé de +10,0 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "troncon": "1/3 : hauteur rendue par tronçons successifs de hauteur constante",
+   "avant_la_relecture": {
+    "pk_debut_m": 4076.0,
+    "pk_fin_m": 4109.5,
+    "gauche": {
+     "hauteur_m": 2.2,
+     "decalage_m": 2.5
+    },
+    "calage": "PK corrigé de +10,0 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 4097.0,
+   "pk_fin_m": 4101.0,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.6,
+    "epaisseur_m": 0.6,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 3.0,
+    "biseau_m": 2.0,
+    "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier",
+   "pk_releve_debut_m": 4066,
+   "pk_releve_fin_m": 4100,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "troncon": "2/3 : hauteur rendue par tronçons successifs de hauteur constante",
+   "avant_la_relecture": {
+    "pk_debut_m": 4076.0,
+    "pk_fin_m": 4109.5,
+    "gauche": {
+     "hauteur_m": 2.2,
+     "decalage_m": 2.5
+    },
+    "calage": "PK corrigé de +10,0 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 4101.0,
+   "pk_fin_m": 4105.0,
+   "route": "D1",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.0,
+    "epaisseur_m": 0.6,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 3.0,
+    "biseau_m": 2.0,
+    "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
+    "sans_biseau_debut": true
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "note": "mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier",
+   "pk_releve_debut_m": 4066,
+   "pk_releve_fin_m": 4100,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "troncon": "3/3 : hauteur rendue par tronçons successifs de hauteur constante",
+   "avant_la_relecture": {
+    "pk_debut_m": 4076.0,
+    "pk_fin_m": 4109.5,
+    "gauche": {
+     "hauteur_m": 2.2,
+     "decalage_m": 2.5
+    },
+    "calage": "PK corrigé de +10,0 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 4571.0,
@@ -1106,8 +1349,8 @@
    "calage": "PK corrigé de -1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 5324.0,
-   "pk_fin_m": 5359.5,
+   "pk_debut_m": 5320.0,
+   "pk_fin_m": 5360.0,
    "route": "D1",
    "gauche": {
     "type": "aucun",
@@ -1125,15 +1368,20 @@
    "note": "muret de pierre sèche d'une propriété ; placé 60 m trop tôt dans l'ancien relevé",
    "pk_releve_debut_m": 5323,
    "pk_releve_fin_m": 5358,
-   "calage": "PK corrigé de +1,0 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 5324.0,
+    "pk_fin_m": 5359.5,
+    "calage": "PK corrigé de +1,0 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 5376.5,
-   "pk_fin_m": 5407.5,
+   "pk_debut_m": 5358.0,
+   "pk_fin_m": 5407.0,
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 0.6,
+    "hauteur_m": 0.7,
     "epaisseur_m": 0.4,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
@@ -1146,36 +1394,23 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 5375,
    "pk_releve_fin_m": 5406,
-   "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 5376.5,
+    "pk_fin_m": 5407.5,
+    "gauche": {
+     "hauteur_m": 0.6
+    },
+    "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 5426.5,
-   "pk_fin_m": 5441.5,
+   "pk_debut_m": 5420.0,
+   "pk_fin_m": 5508.0,
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 0.5,
-    "epaisseur_m": 0.4,
-    "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 1.5
-   },
-   "droite": {
-    "type": "aucun",
-    "statut": "vu sur la vidéo de reconnaissances"
-   },
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-   "pk_releve_debut_m": 5425,
-   "pk_releve_fin_m": 5440,
-   "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
-  },
-  {
-   "pk_debut_m": 5446.5,
-   "pk_fin_m": 5517.0,
-   "route": "D1",
-   "gauche": {
-    "type": "pierre",
-    "hauteur_m": 0.8,
+    "hauteur_m": 0.85,
     "epaisseur_m": 0.5,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
@@ -1186,10 +1421,57 @@
     "statut": "vu sur la vidéo de reconnaissances"
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-   "note": "mur de soutènement en pierre sèche dans la descente vers le pont",
+   "note": "mur de soutènement en pierre sèche dans la descente vers le pont ; relecture du 14/11/2026 : muret continu de pierre sèche / moellons gris, 0,7 à 1 m (rendu à 0,85 m faute de savoir où il monte), reprend après un passage d'herbe (5408-5419) et va jusqu'au portail en bois de 5498-5506 ; dessus en herbe de 5474 à 5494",
    "pk_releve_debut_m": 5445,
    "pk_releve_fin_m": 5515,
-   "calage": "PK corrigé de +1,5 m à +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "fusion_de": [
+     {
+      "pk_debut_m": 5426.5,
+      "pk_fin_m": 5441.5,
+      "route": "D1",
+      "gauche": {
+       "type": "pierre",
+       "hauteur_m": 0.5,
+       "epaisseur_m": 0.4,
+       "statut": "vu sur la vidéo de reconnaissances",
+       "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+       "decalage_m": 1.5
+      },
+      "droite": {
+       "type": "aucun",
+       "statut": "vu sur la vidéo de reconnaissances"
+      },
+      "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+      "pk_releve_debut_m": 5425,
+      "pk_releve_fin_m": 5440,
+      "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     },
+     {
+      "pk_debut_m": 5446.5,
+      "pk_fin_m": 5517.0,
+      "route": "D1",
+      "gauche": {
+       "type": "pierre",
+       "hauteur_m": 0.8,
+       "epaisseur_m": 0.5,
+       "statut": "vu sur la vidéo de reconnaissances",
+       "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+       "decalage_m": 0.8
+      },
+      "droite": {
+       "type": "aucun",
+       "statut": "vu sur la vidéo de reconnaissances"
+      },
+      "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+      "note": "mur de soutènement en pierre sèche dans la descente vers le pont",
+      "pk_releve_debut_m": 5445,
+      "pk_releve_fin_m": 5515,
+      "calage": "PK corrigé de +1,5 m à +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
+    ]
+   }
   },
   {
    "pk_debut_m": 5471.5,

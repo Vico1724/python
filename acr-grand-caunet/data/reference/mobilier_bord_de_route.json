@@ -591,13 +591,18 @@
      "calage": "PK corrigé de +15,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
     },
     {
-     "pk_m": 3390.5,
-     "decalage_m": 3.0,
+     "pk_m": 3376.0,
+     "decalage_m": 2.7,
      "type": "poteau_bois",
      "confiance": "moyenne",
      "statut": "poteau en bois",
      "pk_releve_m": 3375,
-     "calage": "PK corrigé de +15,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 3390.5,
+      "decalage_m": 3.0,
+      "calage": "PK corrigé de +15,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
      "pk_m": 3418.0,
@@ -609,22 +614,57 @@
      "calage": "PK corrigé de +16,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
     },
     {
-     "pk_m": 3509.0,
+     "pk_m": 3439.0,
+     "decalage_m": 5.0,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois simple, en retrait, au débouché de la voie de Fontblanche",
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel"
+    },
+    {
+     "pk_m": 3468.0,
+     "decalage_m": 2.0,
+     "type": "poteau_bois",
+     "confiance": "élevée",
+     "statut": "poteau en bois simple, marque bleue, derrière le parapet droit du ponceau",
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel"
+    },
+    {
+     "pk_m": 3507.0,
      "decalage_m": 2.5,
      "type": "poteau_bois",
      "confiance": "moyenne",
      "statut": "poteau en bois",
      "pk_releve_m": 3490,
-     "calage": "PK corrigé de +19,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 3509.0,
+      "calage": "PK corrigé de +19,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
-     "pk_m": 3599.0,
+     "pk_m": 3582.0,
      "decalage_m": 1.5,
-     "type": "poteau_beton",
-     "confiance": "faible",
-     "statut": "poteau gris fin (PK corrigé de +14 m, voir calage)",
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois simple, fût fin gris-beige à marque bleue (porte l'annonce de point radio en course)",
      "pk_releve_m": 3592,
-     "calage": "PK corrigé de +7,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 3599.0,
+      "type": "poteau_beton",
+      "confiance": "faible",
+      "statut": "poteau gris fin (PK corrigé de +14 m, voir calage)",
+      "calage": "PK corrigé de +7,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
+    },
+    {
+     "pk_m": 3612.0,
+     "decalage_m": 1.5,
+     "type": "poteau_bois",
+     "confiance": "moyenne",
+     "statut": "poteau en bois simple, fût fin, avant le Lion d'Or",
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel"
     }
    ],
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m"
@@ -896,58 +936,99 @@
      "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
     },
     {
-     "pk_m": 4595.5,
+     "pk_m": 4582.0,
      "decalage_m": 3.0,
      "type": "poteau_beton",
      "confiance": "moyenne",
      "statut": "poteau électrique béton, câbles",
      "pk_releve_m": 4597,
-     "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 4595.5,
+      "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
-     "pk_m": 4638.5,
+     "pk_m": 4625.0,
      "decalage_m": 3.0,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau électrique béton avec coffret sombre à mi-hauteur",
      "pk_releve_m": 4640,
-     "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 4638.5,
+      "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
-     "pk_m": 4665.5,
+     "pk_m": 4656.0,
      "decalage_m": 2.0,
      "type": "poteau_beton",
      "confiance": "moyenne",
      "statut": "poteau électrique béton, juste avant le parapet droit du ponceau",
      "pk_releve_m": 4667,
-     "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 4665.5,
+      "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
-     "pk_m": 4696.0,
+     "pk_m": 4687.0,
      "decalage_m": 2.5,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau électrique béton avec petit boîtier, après le ponceau",
      "pk_releve_m": 4697,
-     "calage": "PK corrigé de -1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 4696.0,
+      "calage": "PK corrigé de -1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
-     "pk_m": 4769.0,
-     "decalage_m": 6.0,
+     "pk_m": 4726.0,
+     "decalage_m": 5.0,
+     "type": "poteau_beton",
+     "confiance": "élevée",
+     "statut": "poteau électrique béton clair, simple, en retrait derrière l'aire de stationnement",
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel"
+    },
+    {
+     "pk_m": 4763.0,
+     "decalage_m": 3.0,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau électrique béton, en retrait derrière l'aire de stationnement",
      "pk_releve_m": 4770,
-     "calage": "PK corrigé de -1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 4769.0,
+      "decalage_m": 6.0,
+      "calage": "PK corrigé de -1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
-     "pk_m": 4812.5,
+     "pk_m": 4806.0,
      "decalage_m": 2.0,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau électrique béton avec boîtier à mi-hauteur",
      "pk_releve_m": 4813,
-     "calage": "PK corrigé de -0,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 4812.5,
+      "calage": "PK corrigé de -0,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
+    },
+    {
+     "pk_m": 4837.0,
+     "decalage_m": 3.0,
+     "type": "poteau_beton",
+     "confiance": "moyenne",
+     "statut": "poteau électrique béton clair, simple",
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel"
     },
     {
      "pk_m": 4867.5,
@@ -1029,13 +1110,17 @@
      "calage": "PK corrigé de +1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
     },
     {
-     "pk_m": 5346.0,
+     "pk_m": 5344.0,
      "decalage_m": 2.5,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau métallique ou béton gris clair, contre le muret de pierre sèche de la propriété",
      "pk_releve_m": 5345,
-     "calage": "PK corrigé de +1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+     "avant_la_relecture": {
+      "pk_m": 5346.0,
+      "calage": "PK corrigé de +1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     }
     },
     {
      "pk_m": 5388.5,
@@ -1585,13 +1670,17 @@
   },
   {
    "type": "balise_virage",
-   "pk_m": 2784.0,
+   "pk_m": 2777.5,
    "cote": "gauche",
    "decalage_m": 1.5,
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : balise de virage à chevrons, derrière le bout du parapet gauche",
    "nature": "permanent",
    "pk_releve_m": 2779,
-   "calage": "PK corrigé de +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_m": 2784.0,
+    "calage": "PK corrigé de +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "type": "panneau_intersection",
@@ -1833,21 +1922,29 @@
    "type": "panneau_public_interdit",
    "pk_m": 4095.0,
    "cote": "gauche",
-   "decalage_m": 3.5,
+   "decalage_m": 2.6,
    "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : sur le mur de pierres sèches derrière la surlargeur de l'épingle",
    "nature": "rallye",
    "pk_releve_m": 4085,
-   "calage": "PK corrigé de +10,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "replacé le 14/11/2026 devant le mur de l'épingle relu sur la reconnaissance (4079 à 4105, en retrait de 3 m) : il est fixé sur ce mur",
+   "avant_le_14_11": {
+    "pk_m": 4095.0,
+    "decalage_m": 3.5
+   }
   },
   {
    "type": "panneau_public_interdit",
-   "pk_m": 4108.5,
+   "pk_m": 4102.0,
    "cote": "gauche",
-   "decalage_m": 3.5,
+   "decalage_m": 2.6,
    "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : second panneau, où le mur s'abaisse",
    "nature": "rallye",
    "pk_releve_m": 4099,
-   "calage": "PK corrigé de +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "replacé le 14/11/2026 devant le mur de l'épingle relu sur la reconnaissance (4079 à 4105, en retrait de 3 m) : il est fixé sur ce mur",
+   "avant_le_14_11": {
+    "pk_m": 4108.5,
+    "decalage_m": 3.5
+   }
   },
   {
    "type": "panneau_radio_annonce",
@@ -2543,8 +2640,8 @@
   },
   {
    "genre": "lisse_bois",
-   "pk_debut_m": 5329.0,
-   "pk_fin_m": 5343.0,
+   "pk_debut_m": 5324.0,
+   "pk_fin_m": 5331.0,
    "cote": "droite",
    "decalage_m": 2.0,
    "hauteur_m": 1.2,
@@ -2558,12 +2655,17 @@
    "nature": "permanent",
    "pk_releve_debut_m": 5328,
    "pk_releve_fin_m": 5342,
-   "calage": "PK corrigé de +1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 5329.0,
+    "pk_fin_m": 5343.0,
+    "calage": "PK corrigé de +1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "genre": "barriere_de_piste",
-   "pk_debut_m": 5046,
-   "pk_fin_m": 5054,
+   "pk_debut_m": 5038.0,
+   "pk_fin_m": 5043.0,
    "cote": "droite",
    "decalage_m": 6.0,
    "hauteur_m": 0.9,
@@ -2574,7 +2676,12 @@
    "hauteur_lisse_m": 0.08,
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : barrière métallique rouge de piste DFCI",
    "nature": "permanent",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 5046,
+    "pk_fin_m": 5054,
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
   },
   {
    "genre": "lisse_bois",

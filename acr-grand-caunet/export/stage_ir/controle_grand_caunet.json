@@ -13,15 +13,15 @@
     "pas_max_m": 10.13
   },
   "longueur_competitive": {
-    "length_m": 6737.42,
-    "distance_finish_moins_start": 6737.42,
-    "polyligne_portes_3d_m": 6734.91,
+    "length_m": 6737.44,
+    "distance_finish_moins_start": 6737.44,
+    "polyligne_portes_3d_m": 6734.93,
     "pk_arrivee_plan_m": 6735.8
   },
   "gauche_droite": {
-    "portes": 929,
-    "droite_du_cote_cross_f_Y": 929,
-    "gauche_du_cote_oppose": 929,
+    "portes": 930,
+    "droite_du_cote_cross_f_Y": 930,
+    "gauche_du_cote_oppose": 930,
     "demi_largeur_droite_min_m": 2.36,
     "demi_largeur_gauche_min_m": 2.36,
     "width_coherente": true
@@ -31,71 +31,71 @@
     "coherents": 52
   },
   "sol_sous_portes": {
-    "portes": 929,
+    "portes": 930,
     "sans_sol": 0,
     "max_abs_dy_m": 0.0,
     "moyenne_abs_dy_m": 0.0,
     "hors_ponts": {
-      "portes": 909,
+      "portes": 910,
       "max_abs_dy_m": 0.0
     }
   },
   "sol_le_long_de_l_axe_tous_les_m": {
-    "echantillons": 8125,
+    "echantillons": 8124,
     "sans_sol": 0,
-    "max_abs_dy_a_la_corde_m": 0.046
+    "max_abs_dy_a_la_corde_m": 0.041
   },
   "sol_aux_bords_95pct": {
-    "points": 1858,
+    "points": 1860,
     "sans_sol": 0,
     "max_abs_dy_m": 0.0,
     "p99_abs_dy_m": 0.0
   },
   "sol_5m_au_dela_des_bords": {
-    "points": 1858,
+    "points": 1860,
     "sans_sol": 0
   },
   "sol_30cm_au_dela_des_bords": {
-    "points": 1858,
+    "points": 1860,
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 760070,
+    "triangles": 759740,
     "par_code": {
-      "TSD+": 33081,
-      "DBK+": 92309,
-      "GRS+": 634680
+      "TSD+": 32409,
+      "DBK+": 92518,
+      "GRS+": 634813
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 760070
+    "triangles_annonces_dans_stage_json": 759740
   },
   "obstacles": {
-    "instances": 3351,
+    "instances": 5442,
     "gabarits": 11,
     "formes": {
-      "box": 1979,
-      "cylinder": 1372
+      "box": 4074,
+      "cylinder": 1368
     },
     "parois": {
-      "PM_WallRock": 854,
-      "PM_WallConcrete": 361,
-      "PM_WallMetalGuardrail": 911,
+      "PM_WallRock": 922,
+      "PM_WallConcrete": 2387,
+      "PM_WallMetalGuardrail": 914,
       "PM_WallPlasticPole": 12,
-      "PM_WallWoodTreeTrunks": 1196,
-      "PM_WallWoodPole": 17
+      "PM_WallWoodTreeTrunks": 1187,
+      "PM_WallWoodPole": 20
     },
     "parois_absentes_du_catalogue": [],
     "penetration_max_dans_la_chaussee_m": 0.342,
     "intrusions_plus_de_30_cm": 0,
     "sommets_source_hors_paves_max_m": 0.001,
     "retires_sur_la_chaussee": 5,
-    "objects_collision_triangles": 62164
+    "objects_collision_triangles": 87192
   },
   "annexes": {
-    "points_testes": 298,
+    "points_testes": 273,
     "sans_sol": 0,
     "code_du_sol_le_plus_haut": {
-      "TSD+": 147,
+      "TSD+": 122,
       "DBK+": 151
     },
     "terrain_plus_de_2_cm_au_dessus": 0,
@@ -130,7 +130,7 @@
   },
   "fichiers_mo": {
     "collision.glb": 14.1,
-    "objects_collision.glb": 1.2,
-    "stage.json": 1.74
+    "objects_collision.glb": 1.7,
+    "stage.json": 2.58
   }
 }

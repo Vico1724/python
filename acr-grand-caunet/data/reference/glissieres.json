@@ -41,7 +41,7 @@
  },
  "troncons": [
   {
-   "pk_debut_m": 1725.0,
+   "pk_debut_m": 1720.0,
    "pk_fin_m": 1834.5,
    "cote": "droite",
    "detail": "au-dessus du vallon ; 40 m de plus que l'ancien relevé",
@@ -50,7 +50,11 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 1727,
    "pk_releve_fin_m": 1833,
-   "calage": "PK corrigé de -2,0 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1725.0,
+    "calage": "PK corrigé de -2,0 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 1966.5,
@@ -101,7 +105,7 @@
    "calage": "PK corrigé de +1,0 m à +7,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 4100.0,
+   "pk_debut_m": 4089.0,
    "pk_fin_m": 4229.5,
    "cote": "droite",
    "detail": "dès la sortie de l'épingle",
@@ -110,7 +114,11 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 4090,
    "pk_releve_fin_m": 4221,
-   "calage": "PK corrigé de +10,0 m à +8,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 4100.0,
+    "calage": "PK corrigé de +10,0 m à +8,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   }
  ],
  "troncons_avant_le_releve_de_reconnaissances": [

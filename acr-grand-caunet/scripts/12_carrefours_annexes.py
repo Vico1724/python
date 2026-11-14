@@ -528,6 +528,8 @@ ZD_MATIERES = {          # couleurs linéaires (glTF), d'après les captures Str
 ZD_COLLISION = {"metal_glissiere": {"color": [0.72, 0.74, 0.76]}, "beton": {"color": [0.7, 0.7, 0.68]}}
 ZD_EP_TOIT = 0.15        # m : épaisseur de la dalle de toit (débord compris)
 ZD_ENFOUI = 0.3          # m : les murs descendent sous le terrain le plus bas de leur pied
+ZD_PAS_COLLISION = 1.0   # m : longueur maximale d'un tronçon de collision des faces de bâtiment (un pavé par tronçon dans 09)
+ZD_ASSISE_COLLISION = 1.25  # m : hauteur maximale d'une assise de collision des faces de bâtiment
 
 
 def _vers_gltf_n(n):
@@ -678,7 +680,12 @@ def _batiment(e, lot, mnt, mns, ref):
         lot.face(mt, [[*a, ta - ZD_EP_TOIT], [*b, tb - ZD_EP_TOIT], [*b, tb], [*a, ta]], n,
                  [[cum, 0], [cum + L, 0], [cum + L, ZD_EP_TOIT], [cum, ZD_EP_TOIT]])
         cum += L
-    # physique : un volume balayé de 0,3 m par face de mur, du pied jusqu'à l'égout (le pignon au-dessus n'arrête rien)
+    # physique : un volume balayé de 0,3 m par face de mur, du pied jusqu'à l'égout (le pignon au-dessus n'arrête rien).
+    # Chaque face est découpée en tronçons d'au plus ZD_PAS_COLLISION et en assises d'au plus ZD_ASSISE_COLLISION :
+    # 09_export_stage_ir.py en fait un pavé par tronçon, et son contrôle cherche le pavé qui couvre un sommet parmi les 8
+    # centres les plus proches ; une face d'un seul pavé de 10 à 18 m (centre à 5-9 m de ses coins), ou haute de 5 m
+    # (centre à 2,4 m de son pied), n'y figurait pas quand des pavés courts ou bas (mur voisin, bâtiment mitoyen plus
+    # bas) étaient plus près.
     coll = []
     R0 = _anneau(P)
     for a, b in zip(R0, np.roll(R0, -1, axis=0)):
@@ -687,9 +694,13 @@ def _batiment(e, lot, mnt, mns, ref):
             continue
         n = np.array([(b - a)[1], -(b - a)[0]]) / L
         zt = float(min(z_toit(np.array([a, b])).min() - ZD_EP_TOIT, z_ref + H - monte - ZD_EP_TOIT))
-        Pp = np.array([a, b])
-        coins = [np.column_stack([Pp + n * o, np.full(2, zz)]) for o, zz in ((-0.3, z_bas), (0.0, z_bas), (0.0, zt), (-0.3, zt))]
-        coll.append(m11.boite(coins, ref))
+        k_ = max(int(np.ceil(L / ZD_PAS_COLLISION)), 1)
+        Pp = a + (b - a) * np.linspace(0.0, 1.0, k_ + 1)[:, None]
+        zs = np.linspace(z_bas, zt, max(int(np.ceil((zt - z_bas) / ZD_ASSISE_COLLISION)), 1) + 1)
+        for z0_, z1_ in zip(zs[:-1], zs[1:]):
+            coins = [np.column_stack([Pp + n * o, np.full(len(Pp), zz)])
+                     for o, zz in ((-0.3, z0_), (0.0, z0_), (0.0, z1_), (-0.3, z1_))]
+            coll.append(m11.boite(coins, ref))
     return coll, {"hauteur_faitage_m": round(H, 2), "hauteur_methode": h_src, "egout_m": round(H - monte, 2),
                   "toit": "deux pans" if deux_pans else "plat", "z_terrain_m": round(z_ref, 2)}
 
