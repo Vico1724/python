@@ -2612,31 +2612,91 @@
  "lisses": [
   {
    "genre": "lisse_bois",
-   "pk_debut_m": 2637.5,
-   "pk_fin_m": 2668.5,
+   "pk_debut_m": 2626.0,
+   "pk_fin_m": 2656.0,
    "cote": "droite",
-   "decalage_m": 7.0,
+   "decalage_m": 9.0,
    "hauteur_m": 1.0,
    "pas_m": 2.0,
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : barrière en bois à lisses horizontales au fond de l'aire (c'est elle que l'ancien relevé prenait pour des barrières rouges et blanches)",
    "nature": "permanent",
    "pk_releve_debut_m": 2630,
    "pk_releve_fin_m": 2662,
-   "calage": "PK corrigé de +7,5 m à +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 2637.5,
+    "pk_fin_m": 2668.5,
+    "decalage_m": 7.0,
+    "calage": "PK corrigé de +7,5 m à +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "genre": "lisse_bois",
-   "pk_debut_m": 3393.5,
-   "pk_fin_m": 3426.0,
+   "pk_debut_m": 2630.0,
+   "pk_fin_m": 2640.0,
+   "cote": "gauche",
+   "decalage_m": 10.0,
+   "hauteur_m": 0.9,
+   "pas_m": 2.0,
+   "source": "relecture de la reconnaissance du 14/11/2026 : barrière basse à lisses de bois au fond de l'aire gauche",
+   "nature": "permanent",
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "absent_des_donnees": true
+   }
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 2660.0,
+   "pk_fin_m": 2674.0,
    "cote": "droite",
-   "decalage_m": 4.5,
+   "decalage_m": 5.0,
+   "hauteur_m": 0.6,
+   "pas_m": 2.5,
+   "lisses_a_m": [
+    0.54
+   ],
+   "source": "relecture de la reconnaissance du 14/11/2026 : barrière basse sombre (bois ou métal), plus près du bord, après la clôture du fond de l'aire",
+   "nature": "permanent",
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "absent_des_donnees": true
+   }
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 3380.0,
+   "pk_fin_m": 3410.0,
+   "cote": "droite",
+   "decalage_m": 9.0,
    "hauteur_m": 0.45,
    "pas_m": 2.5,
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : lisses basses en bois qui bordent l'aire de stationnement",
    "nature": "permanent",
    "pk_releve_debut_m": 3378,
    "pk_releve_fin_m": 3410,
-   "calage": "PK corrigé de +15,5 m à +16,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 3393.5,
+    "pk_fin_m": 3426.0,
+    "decalage_m": 4.5,
+    "calage": "PK corrigé de +15,5 m à +16,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 3420.0,
+   "pk_fin_m": 3426.0,
+   "cote": "droite",
+   "decalage_m": 4.0,
+   "hauteur_m": 1.0,
+   "pas_m": 2.0,
+   "source": "relecture de la reconnaissance du 14/11/2026 : barrière de bois courte près des conteneurs",
+   "nature": "permanent",
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "absent_des_donnees": true
+   }
   },
   {
    "genre": "lisse_bois",
@@ -2685,10 +2745,10 @@
   },
   {
    "genre": "lisse_bois",
-   "pk_debut_m": 5669,
-   "pk_fin_m": 5675,
+   "pk_debut_m": 5660.0,
+   "pk_fin_m": 5666.0,
    "cote": "droite",
-   "decalage_m": 5.0,
+   "decalage_m": 7.0,
    "hauteur_m": 0.8,
    "pas_m": 3.0,
    "lisses_a_m": [
@@ -2696,7 +2756,13 @@
    ],
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : barrière basse sombre à l'entrée de la piste DFCI",
    "nature": "permanent",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 5669,
+    "pk_fin_m": 5675,
+    "decalage_m": 5.0,
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
   },
   {
    "genre": "lisse_bois",

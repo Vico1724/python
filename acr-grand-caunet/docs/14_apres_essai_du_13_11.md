@@ -210,3 +210,7 @@ Retour du directeur : reliefs lointains à retravailler « pour une impression m
 
 **Outils ajoutés** : `pc/scripts/7_tout_refaire.ps1` (données, route physique, chaîne Unreal et relecture d'un trait), `pc/etape2_unreal/scripts_pc/chaine_decor.ps1`, `scripts/19b_calage_barre.py`.
 
+**Neuvième version : construite, relue conforme, installée le 14 novembre à 8 h 28.** C'est la huitième, plus les douze endroits de `data/reference/relecture_reco_v8.json` : 553 maillages, 585 907 objets, route physique reconstruite, décalage route / décor de 0,0 cm. Jamais vue en jeu. La huitième est gardée (`sol_jeu_cycle8_du_14_11`).
+
+**Préparé pour la dixième (données seulement).** Relecture systématique de la reconnaissance pour tous les murs, parapets, glissières, clôtures et aires pas encore relus (`data/reference/relecture_reco_v9.json`, 80 objets) : 39 entrées corrigées ou ajoutées (treize murs et parapets, quatre glissières, quinze aires et pistes, six clôtures et barrières). Règle suivie : là où le relevé laser montre le vide d'un pont ou d'un ponceau, il l'emporte sur la lecture vidéo, précise à 5 m au mieux ; cinq corrections de parapets de pont et celle du ponceau final (que la vidéo plaçait 20 à 30 m avant le creux du relief) ne sont donc pas appliquées. Mon déplacement à la main du parapet gauche du ponceau du PK 4571 est défait : deux lectures de la vidéo le replacent à 4554-4563.
+

@@ -49,11 +49,12 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Quatorze versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
+Quinze versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | huitième version, du 14 novembre au matin : zone de départ modélisée (parking, murs, lisse, barrières, bâtiments), route moins lissée, touffes d'herbe couchées sur les talus, relief lointain et parois repris, parapets en pierre (`docs/14_apres_essai_du_13_11.md`, section 9) ; jamais vue en jeu |
+| `sol_jeu` (installée) | neuvième version, du 14 novembre à 8 h 28 : la huitième, plus douze endroits corrigés d'après la relecture de la reconnaissance (parapets des ponts 1661, 2602 et 2777, murs des PK 3722, 4079 et 5358 à 5508, poteaux, aires) ; jamais vue en jeu |
+| `sol_jeu_cycle8_du_14_11` | huitième version, du 14 novembre à 7 h 09 : zone de départ modélisée (parking, murs, lisse, barrières, bâtiments), route moins lissée, touffes d'herbe couchées sur les talus, relief lointain et parois repris, parapets en pierre (`docs/14_apres_essai_du_13_11.md`, section 9) ; jamais vue en jeu |
 | `sol_jeu_vu_le_14_11` | septième version, vue en jeu le 14 novembre à 2 h 35 (vidéo du directeur) : route trop lissée, touffes d'herbe à plat sur les talus, relief lointain trop géométrique, parapets moussus |
 | `sol_jeu_vu_le_13_11_soir` | sixième version, vue en jeu le 13 novembre au soir (vidéo et captures du directeur) : parois relues sur la reconnaissance, rocaille en pierres du jeu (rondes, gris-rosé), touffes noires, route par moments bosselée |
 | `sol_jeu_cycle5_du_13_11` | cinquième version du 13 novembre : carrefour du Lion d'Or repris, versants boisés, roche sur les falaises, spéciale classée en asphalte (`docs/14_apres_essai_du_13_11.md`, sections 5 et 6) ; seul le menu (pneus asphalte) en a été vu en jeu |

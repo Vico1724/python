@@ -125,11 +125,15 @@
    "pk_debut_m": 195.0,
    "pk_fin_m": 215.0,
    "cote": "gauche",
-   "decalage_m": 3.0,
+   "decalage_m": 0.5,
    "profondeur_m": 5.0,
    "matiere": "pierre",
    "genre": "aire",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "decalage_m": 3.0,
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
   },
   {
    "pk_debut_m": 419.0,
@@ -223,8 +227,8 @@
    "calage": "PK corrigé de +2,5 m à +3,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 1921.5,
-   "pk_fin_m": 1938.5,
+   "pk_debut_m": 1917.0,
+   "pk_fin_m": 1932.0,
    "cote": "gauche",
    "decalage_m": 0.5,
    "profondeur_m": 5.0,
@@ -232,11 +236,16 @@
    "genre": "aire",
    "pk_releve_debut_m": 1918.0,
    "pk_releve_fin_m": 1935.0,
-   "calage": "PK corrigé de +3,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1921.5,
+    "pk_fin_m": 1938.5,
+    "calage": "PK corrigé de +3,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 1938.5,
-   "pk_fin_m": 1961.5,
+   "pk_debut_m": 1928.0,
+   "pk_fin_m": 1955.0,
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 5.0,
@@ -244,11 +253,16 @@
    "genre": "aire",
    "pk_releve_debut_m": 1935.0,
    "pk_releve_fin_m": 1958.0,
-   "calage": "PK corrigé de +3,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1938.5,
+    "pk_fin_m": 1961.5,
+    "calage": "PK corrigé de +3,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 1989.0,
-   "pk_fin_m": 2004.0,
+   "pk_debut_m": 1983.0,
+   "pk_fin_m": 1995.0,
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 10.0,
@@ -256,31 +270,47 @@
    "genre": "piste",
    "pk_releve_debut_m": 1985.0,
    "pk_releve_fin_m": 2000.0,
-   "calage": "PK corrigé de +4,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1989.0,
+    "pk_fin_m": 2004.0,
+    "calage": "PK corrigé de +4,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 2195.0,
-   "pk_fin_m": 2220.5,
+   "pk_fin_m": 2226.0,
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 8.0,
-   "matiere": "pierre",
+   "matiere": "terre",
    "genre": "aire",
    "pk_releve_debut_m": 2190.0,
    "pk_releve_fin_m": 2215.0,
-   "calage": "PK corrigé de +5,0 m à +5,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_fin_m": 2220.5,
+    "matiere": "pierre",
+    "calage": "PK corrigé de +5,0 m à +5,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 2452.0,
-   "pk_fin_m": 2482.0,
+   "pk_debut_m": 2446.0,
+   "pk_fin_m": 2478.0,
    "cote": "droite",
    "decalage_m": 0.0,
-   "profondeur_m": 2.5,
+   "profondeur_m": 3.5,
    "matiere": "pierre",
    "genre": "aire",
    "pk_releve_debut_m": 2445.0,
    "pk_releve_fin_m": 2475.0,
-   "calage": "PK corrigé de +7,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 2452.0,
+    "pk_fin_m": 2482.0,
+    "profondeur_m": 2.5,
+    "calage": "PK corrigé de +7,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 2606.0,
@@ -307,8 +337,8 @@
    "calage": "PK corrigé de +7,5 m à +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 2800.5,
-   "pk_fin_m": 2858.0,
+   "pk_debut_m": 2796.0,
+   "pk_fin_m": 2848.0,
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 2.5,
@@ -316,7 +346,29 @@
    "genre": "aire",
    "pk_releve_debut_m": 2795.0,
    "pk_releve_fin_m": 2850.0,
-   "calage": "PK corrigé de +5,5 m à +8,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 2800.5,
+    "pk_fin_m": 2858.0,
+    "calage": "PK corrigé de +5,5 m à +8,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 2989.0,
+   "pk_fin_m": 3034.0,
+   "cote": "droite",
+   "decalage_m": 0.0,
+   "profondeur_m": 9.0,
+   "matiere": "pierre",
+   "genre": "aire",
+   "pk_releve_debut_m": 2985.0,
+   "pk_releve_fin_m": 3030.0,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 3000.0,
+    "pk_fin_m": 3045.0,
+    "calage": "PK corrigé de +15,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 2999.0,
@@ -328,18 +380,6 @@
    "genre": "piste",
    "note": "relevée du PK 2985 au PK 2995 ; glissée de 14 m sur le débouché de la route empierrée de l'IGN (PK 3005), que le sol trace déjà : une seule embouchure au lieu de deux",
    "calage": "laissé en place : déjà déplacé à la main sur un repère connu"
-  },
-  {
-   "pk_debut_m": 3000.0,
-   "pk_fin_m": 3045.0,
-   "cote": "droite",
-   "decalage_m": 0.0,
-   "profondeur_m": 9.0,
-   "matiere": "pierre",
-   "genre": "aire",
-   "pk_releve_debut_m": 2985.0,
-   "pk_releve_fin_m": 3030.0,
-   "calage": "PK corrigé de +15,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
    "pk_debut_m": 3387.5,
@@ -364,8 +404,8 @@
    "calage": "laissé en place : carrefour du Lion d'Or, posé d'après le plan du carrefour"
   },
   {
-   "pk_debut_m": 3716.0,
-   "pk_fin_m": 3737.0,
+   "pk_debut_m": 3709.0,
+   "pk_fin_m": 3723.0,
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 5.0,
@@ -373,7 +413,12 @@
    "genre": "aire",
    "pk_releve_debut_m": 3716.0,
    "pk_releve_fin_m": 3736.0,
-   "calage": "PK corrigé de +0,0 m à +1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 3716.0,
+    "pk_fin_m": 3737.0,
+    "calage": "PK corrigé de +0,0 m à +1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 4078.0,
@@ -394,8 +439,8 @@
    }
   },
   {
-   "pk_debut_m": 4308.0,
-   "pk_fin_m": 4342.5,
+   "pk_debut_m": 4311.0,
+   "pk_fin_m": 4328.0,
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 3.5,
@@ -403,7 +448,12 @@
    "genre": "aire",
    "pk_releve_debut_m": 4300.0,
    "pk_releve_fin_m": 4335.0,
-   "calage": "PK corrigé de +8,0 m à +7,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 4308.0,
+    "pk_fin_m": 4342.5,
+    "calage": "PK corrigé de +8,0 m à +7,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 4714.0,
@@ -433,24 +483,48 @@
    }
   },
   {
-   "pk_debut_m": 5668.0,
-   "pk_fin_m": 5680.0,
+   "pk_debut_m": 5452.0,
+   "pk_fin_m": 5466.0,
+   "cote": "droite",
+   "decalage_m": 0.0,
+   "profondeur_m": 4.0,
+   "matiere": "pierre",
+   "genre": "aire",
+   "note": "entrée de propriété devant le mur enduit (gravier et terre claire)",
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "absent_des_donnees": true
+   }
+  },
+  {
+   "pk_debut_m": 5650.0,
+   "pk_fin_m": 5663.0,
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 12.0,
    "matiere": "terre",
    "genre": "piste",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 5668.0,
+    "pk_fin_m": 5680.0,
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
   },
   {
-   "pk_debut_m": 6075.0,
-   "pk_fin_m": 6105.0,
+   "pk_debut_m": 6072.0,
+   "pk_fin_m": 6093.0,
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 6.0,
    "matiere": "pierre",
    "genre": "aire",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 6075.0,
+    "pk_fin_m": 6105.0,
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
   },
   {
    "pk_debut_m": 6330.0,
@@ -480,8 +554,8 @@
    }
   },
   {
-   "pk_debut_m": 6500.5,
-   "pk_fin_m": 6515.5,
+   "pk_debut_m": 6497.0,
+   "pk_fin_m": 6510.0,
    "cote": "gauche",
    "decalage_m": 0.0,
    "profondeur_m": 7.0,
@@ -489,11 +563,16 @@
    "genre": "aire",
    "pk_releve_debut_m": 6495.0,
    "pk_releve_fin_m": 6510.0,
-   "calage": "PK corrigé de +5,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 6500.5,
+    "pk_fin_m": 6515.5,
+    "calage": "PK corrigé de +5,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 6508.5,
-   "pk_fin_m": 6517.5,
+   "pk_debut_m": 6503.0,
+   "pk_fin_m": 6512.0,
    "cote": "droite",
    "decalage_m": 0.0,
    "profondeur_m": 12.0,
@@ -501,7 +580,12 @@
    "genre": "piste",
    "pk_releve_debut_m": 6503.0,
    "pk_releve_fin_m": 6512.0,
-   "calage": "PK corrigé de +5,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 6508.5,
+    "pk_fin_m": 6517.5,
+    "calage": "PK corrigé de +5,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   }
  ]
 }

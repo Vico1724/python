@@ -265,11 +265,16 @@
     "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 3225.0,
-    "pk_fin_m": 3244.0,
+    "pk_debut_m": 3220.0,
+    "pk_fin_m": 3246.0,
     "pk_releve_debut_m": 3211,
     "pk_releve_fin_m": 3230,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+    "avant_la_relecture": {
+     "pk_debut_m": 3225.0,
+     "pk_fin_m": 3244.0,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -494,12 +499,16 @@
     "epaisseur_m": 0.3,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "pk_debut_m": 5532.0,
+    "pk_debut_m": 5526.0,
     "pk_fin_m": 5550.0,
     "note": "premier de deux tronçons ; le second est dans parapets_hors_tablier",
     "pk_releve_debut_m": 5530,
     "pk_releve_fin_m": 5548,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+    "avant_la_relecture": {
+     "pk_debut_m": 5532.0,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "droite": {
     "type": "pierre",
@@ -561,11 +570,15 @@
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "pk_debut_m": 6488.5,
-    "pk_fin_m": 6504.5,
+    "pk_fin_m": 6500.0,
     "note": "prolongé le 13/11/2026 jusqu'au bout du tablier (vide du relevé laser du PK 6488 au PK 6497) : en jeu le parapet paraissait réduit à un plot, le vrai fait plus de 10 m",
     "pk_releve_debut_m": 6483,
     "pk_releve_fin_m": 6499,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+    "avant_la_relecture": {
+     "pk_fin_m": 6504.5,
+     "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    }
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -701,8 +714,8 @@
    "calage": "PK corrigé de -2,0 m à -1,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 1963.0,
-   "pk_fin_m": 1965.5,
+   "pk_debut_m": 1959.0,
+   "pk_fin_m": 1962.0,
    "route": "D3D",
    "gauche": {
     "type": "aucun",
@@ -722,7 +735,12 @@
    "note": "tête de ponceau, juste avant la glissière",
    "pk_releve_debut_m": 1959.5,
    "pk_releve_fin_m": 1962,
-   "calage": "PK corrigé de +3,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1963.0,
+    "pk_fin_m": 1965.5,
+    "calage": "PK corrigé de +3,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 1965.5,
@@ -799,8 +817,8 @@
    "calage": "PK corrigé de +4,5 m à +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 2135.0,
-   "pk_fin_m": 2191.0,
+   "pk_debut_m": 2130.0,
+   "pk_fin_m": 2189.0,
    "route": "D3D",
    "gauche": {
     "type": "aucun",
@@ -816,11 +834,16 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 2130,
    "pk_releve_fin_m": 2186,
-   "calage": "PK corrigé de +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 2135.0,
+    "pk_fin_m": 2191.0,
+    "calage": "PK corrigé de +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 2396.5,
-   "pk_fin_m": 2399.0,
+   "pk_debut_m": 2409.0,
+   "pk_fin_m": 2411.0,
    "route": "D3D",
    "gauche": {
     "type": "aucun",
@@ -828,18 +851,30 @@
    },
    "droite": {
     "type": "pierre",
-    "hauteur_m": 0.6,
+    "hauteur_m": 0.8,
     "epaisseur_m": 0.4,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.6,
-    "sans_biseau_fin": true
+    "decalage_m": 0.3,
+    "sans_biseau_fin": true,
+    "peint_en_blanc": true
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-   "note": "muret maçonné court au bout de la glissière (tête d'aqueduc)",
+   "note": "bloc court de tête d'aqueduc en moellons peints en blanc, 8 m après la fin de la glissière",
    "pk_releve_debut_m": 2390,
    "pk_releve_fin_m": 2392.5,
-   "calage": "PK corrigé de +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 2396.5,
+    "pk_fin_m": 2399.0,
+    "note": "muret maçonné court au bout de la glissière (tête d'aqueduc)",
+    "droite": {
+     "hauteur_m": 0.6,
+     "decalage_m": 0.6,
+     "peint_en_blanc": null
+    },
+    "calage": "PK corrigé de +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 2706.0,
@@ -1140,7 +1175,7 @@
    "calage": "PK corrigé de +3,5 m à +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 3979.5,
+   "pk_debut_m": 3988.0,
    "pk_fin_m": 4062.5,
    "route": "D1",
    "gauche": {
@@ -1160,7 +1195,11 @@
    "note": "mur de moellons continu sur 95 m, à l'extérieur du long gauche puis de l'épingle ; se poursuit par le parapet droit de l'ouvrage 4074",
    "pk_releve_debut_m": 3972,
    "pk_releve_fin_m": 4053,
-   "calage": "PK corrigé de +7,5 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 3979.5,
+    "calage": "PK corrigé de +7,5 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 4079.0,
@@ -1269,8 +1308,8 @@
    }
   },
   {
-   "pk_debut_m": 4571.0,
-   "pk_fin_m": 4583.0,
+   "pk_debut_m": 4554.0,
+   "pk_fin_m": 4563.0,
    "route": "D1",
    "gauche": {
     "type": "beton",
@@ -1286,11 +1325,16 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 4556,
    "pk_releve_fin_m": 4568,
-   "calage": "déplacé à la main le 14/11/2026 sur le thalweg que le relief laser montre du côté gauche (PK 4572 à 4584, sol sous le niveau de la chaussée) ; le relevé le plaçait de 4554,5 à 4566,5, quinze mètres avant ; le parapet de droite du même ponceau (4563,5 à 4575,5) tombe déjà sur le creux de droite"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 4571.0,
+    "pk_fin_m": 4583.0,
+    "calage": "déplacé à la main le 14/11/2026 sur le thalweg que le relief laser montre du côté gauche (PK 4572 à 4584, sol sous le niveau de la chaussée) ; le relevé le plaçait de 4554,5 à 4566,5, quinze mètres avant ; le parapet de droite du même ponceau (4563,5 à 4575,5) tombe déjà sur le creux de droite"
+   }
   },
   {
-   "pk_debut_m": 4563.5,
-   "pk_fin_m": 4575.5,
+   "pk_debut_m": 4563.0,
+   "pk_fin_m": 4572.0,
    "route": "D1",
    "gauche": {
     "type": "aucun",
@@ -1306,7 +1350,12 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 4565,
    "pk_releve_fin_m": 4577,
-   "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 4563.5,
+    "pk_fin_m": 4575.5,
+    "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 4667.0,
@@ -1474,8 +1523,8 @@
    }
   },
   {
-   "pk_debut_m": 5471.5,
-   "pk_fin_m": 5494.0,
+   "pk_debut_m": 5459.0,
+   "pk_fin_m": 5469.0,
    "route": "D1",
    "gauche": {
     "type": "aucun",
@@ -1493,7 +1542,12 @@
    "note": "mur enduit d'une propriété, en retrait",
    "pk_releve_debut_m": 5470,
    "pk_releve_fin_m": 5492,
-   "calage": "PK corrigé de +1,5 m à +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 5471.5,
+    "pk_fin_m": 5494.0,
+    "calage": "PK corrigé de +1,5 m à +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 5556.0,
@@ -1518,7 +1572,7 @@
   },
   {
    "pk_debut_m": 5599.0,
-   "pk_fin_m": 5642.5,
+   "pk_fin_m": 5634.0,
    "route": "D1",
    "gauche": {
     "type": "aucun",
@@ -1536,11 +1590,84 @@
    "note": "parapet de béton en trois éléments à l'extérieur du gauche après le pont",
    "pk_releve_debut_m": 5598,
    "pk_releve_fin_m": 5642,
-   "calage": "PK corrigé de +1,0 m à +0,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_fin_m": 5642.5,
+    "calage": "PK corrigé de +1,0 m à +0,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 6091.0,
+   "pk_fin_m": 6093.0,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 1.2,
+    "epaisseur_m": 0.4,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.3,
+    "sans_biseau_fin": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "note": "tête de moellons gris, plus haute (≈ 1,2 m), au début du parapet béton droit du ponceau 6100",
+   "troncon": "1/2 : tête de moellons",
+   "avant_la_relecture": {
+    "pk_debut_m": 6100,
+    "pk_fin_m": 6112,
+    "droite": {
+     "type": "beton",
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.3,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.3
+    },
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
+  },
+  {
+   "pk_debut_m": 6093.0,
+   "pk_fin_m": 6111.0,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.3,
+    "sans_biseau_debut": true
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "troncon": "2/2 : parapet béton",
+   "avant_la_relecture": {
+    "pk_debut_m": 6100,
+    "pk_fin_m": 6112,
+    "droite": {
+     "type": "beton",
+     "hauteur_m": 0.6,
+     "epaisseur_m": 0.3,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.3
+    },
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
   },
   {
    "pk_debut_m": 6096,
-   "pk_fin_m": 6112,
+   "pk_fin_m": 6105.0,
    "route": "D1",
    "gauche": {
     "type": "beton",
@@ -1555,26 +1682,11 @@
     "statut": "vu sur la vidéo de reconnaissances"
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
-  },
-  {
-   "pk_debut_m": 6100,
-   "pk_fin_m": 6112,
-   "route": "D1",
-   "gauche": {
-    "type": "aucun",
-    "statut": "vu sur la vidéo de reconnaissances"
-   },
-   "droite": {
-    "type": "beton",
-    "hauteur_m": 0.6,
-    "epaisseur_m": 0.3,
-    "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.3
-   },
-   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_fin_m": 6112,
+    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   }
   },
   {
    "pk_debut_m": 6665.5,

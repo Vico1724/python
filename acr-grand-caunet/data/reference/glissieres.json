@@ -57,32 +57,44 @@
    }
   },
   {
-   "pk_debut_m": 1966.5,
-   "pk_fin_m": 2134.0,
+   "pk_debut_m": 1963.0,
+   "pk_fin_m": 2130.0,
    "cote": "droite",
-   "detail": "commence après l'aire de gravier, se termine contre le parapet",
+   "detail": "commence accolée à la tête de ponceau béton (sans extrémité abaissée), se termine contre le parapet",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 1963,
    "pk_releve_fin_m": 2129,
-   "calage": "PK corrigé de +3,5 m à +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1966.5,
+    "pk_fin_m": 2134.0,
+    "detail": "commence après l'aire de gravier, se termine contre le parapet",
+    "calage": "PK corrigé de +3,5 m à +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
-   "pk_debut_m": 2266.5,
-   "pk_fin_m": 2394.5,
+   "pk_debut_m": 2261.0,
+   "pk_fin_m": 2401.0,
    "cote": "droite",
-   "detail": "se prolonge de 50 m dans la ligne droite",
+   "detail": "extrémité de début abaissée et enterrée ; fin descendante juste avant le muret blanc ; se prolonge de 50 m dans la ligne droite",
    "statut": "vu sur la vidéo de reconnaissances",
    "confiance_bornes": "±10 m",
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 2261,
    "pk_releve_fin_m": 2388,
-   "calage": "PK corrigé de +5,5 m à +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 2266.5,
+    "pk_fin_m": 2394.5,
+    "detail": "se prolonge de 50 m dans la ligne droite",
+    "calage": "PK corrigé de +5,5 m à +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 3246.0,
-   "pk_fin_m": 3381.5,
+   "pk_fin_m": 3386.0,
    "cote": "droite",
    "detail": "collée au bout du parapet du pont 3229",
    "statut": "vu sur la vidéo de reconnaissances",
@@ -90,11 +102,15 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 3232,
    "pk_releve_fin_m": 3366,
-   "calage": "PK corrigé de +14,0 m à +15,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_fin_m": 3381.5,
+    "calage": "PK corrigé de +14,0 m à +15,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 3747.0,
-   "pk_fin_m": 3985.5,
+   "pk_fin_m": 3988.0,
    "cote": "droite",
    "detail": "long gauche ; se termine où commence le mur de moellons",
    "statut": "vu sur la vidéo de reconnaissances",
@@ -102,7 +118,11 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 3746,
    "pk_releve_fin_m": 3978,
-   "calage": "PK corrigé de +1,0 m à +7,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_fin_m": 3985.5,
+    "calage": "PK corrigé de +1,0 m à +7,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
   },
   {
    "pk_debut_m": 4089.0,
