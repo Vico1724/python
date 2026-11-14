@@ -217,3 +217,22 @@ Retour du directeur : reliefs lointains à retravailler « pour une impression m
 **Dixième version : construite, relue conforme, installée le 14 novembre à 9 h 46.** C'est la neuvième, plus les 39 corrections de position de `data/reference/relecture_reco_v9.json`. Route physique reconstruite, décalage route / décor de 0,0 cm. Jamais vue en jeu. La neuvième est gardée (`sol_jeu_cycle9_du_14_11`).
 
 **Onzième version : construite, relue conforme, installée le 14 novembre à 11 h 54.** Défaut trouvé dans les versions 8 à 10 : les arbustes semés d'après la seule hauteur du relevé laser (fourré des versants, sous-bois de bord) ignoraient les bâtiments et les murs ; 342 étaient plantés dans des bâtiments ou des constructions de la zone de départ, 280 à moins d'un mètre d'un mur. Ils sont écartés (`regles_arbres.emprises_interdites`, `hors_du_bati` dans `16_paquet_unreal.py`). Un contrôle hors jeu du placement des objets a relevé 36 anomalies ; les douze plus graves sont corrigées dans les données (champ « controle ») : quatre poteaux (au ras de la chaussée, dans un mur, dans une paroi, au-dessus du vide d'un pont), deux troncs suspendus au-dessus du pont du PK 5554 retirés, blocs pris dans une paroi ou un mur, borne dans un mur, glissière recouvrant un mur. Restent à juger : quatre poteaux posés dans des aires, cinq objets perchés ou enterrés de 1,5 à 1,9 m. Jamais vue en jeu. La dixième est gardée (`sol_jeu_cycle10_du_14_11`).
+
+## 10. Après l'essai de la onzième version (14 novembre, midi)
+
+Retour du directeur : « dans l'ensemble nous sommes sur la bonne voie », avec six captures de bugs graphiques (non exhaustives) et une remarque : « la barrière verte sur le chemin à droite du départ est mal axée ». Relevé de sa vidéo par un agent : `data/reference/releve_essai_14_11_v11/constats.json` (68 constats, aucun de gravité 3 ; les touffes d'herbe suivent bien les pentes).
+
+| Défaut | Cause trouvée | Correction (douzième version) |
+|---|---|---|
+| Grande dalle verte au départ, portique vert uni à l'arrivée | Portiques que dessine le constructeur de la route physique (deux poteaux de 5 m et une bannière, matière verte unie du jeu), même là où notre décor remplace le reste | Enterrés : `pc/scripts/4_construire.ps1` passe une copie de la configuration avec une hauteur négative |
+| Barrière de la piste GC 107 mal axée | Posée le long de la piste ; noire au lieu de verte | En travers de la piste, à l'endroit montré par Street View, vert sombre |
+| Long mur de l'approche en béton sombre, en deux morceaux ; volumes de la zone de départ sans matière | Murs de béton du jeu ; couleurs unies | Mur enduit clair continu du PK -140 au PK -86 ; crépi, tuiles, portail, pierre en textures ; dessus des murs réguliers ; monolithe refait |
+| Poteaux électriques en caissons bleu-noir | Aucun poteau du jeu ne convient | Poteau de béton du projet (`scripts/pierres_calcaires.py`) : fût effilé de 8,2 m, traverse, isolateurs |
+| Tête de ponceau en dalle penchée (PK 6091) | Les deux biseaux se rejoignaient | Biseau limité à 30 % de la longueur de l'ouvrage |
+| Falaises lointaines en dômes lisses, bord en dents de scie, arbres sur la roche ; colline tachetée | Relief à 5 m au-delà de 650 m ; texture dépliée à 2,5 m ; moucheté d'une seule taille | Relevé laser à 2 m jusqu'à 2 km ; texture dépliée à 17,5 m ; bord adouci ; arbres retirés au-delà de 40 degrés ; grain à trois échelles plus discret |
+| Roche, murs et talus gris bleuté | Teinte trop neutre | Teinte réchauffée, talus de rocaille plus terreux |
+
+**Douzième version : construite, relue conforme, installée le 14 novembre à 17 h 04.** Route physique reconstruite, décalage route / décor de 0,0 cm. Jamais vue en jeu. À surveiller : la roche lointaine compte deux fois plus de triangles qu'avant. La onzième est gardée (`sol_jeu_vu_le_14_11_midi`).
+
+**Non traité** : un « tas » clair près de l'entrée du parking, d'origine inconnue ; l'emprise réservée aux arbres le long du mur enduit suit un recul fixe (0,5 m d'écart vers le PK -86).
+

@@ -95,7 +95,7 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 297,
+ "duree_s": 293,
  "complet": {
   "bandes_m": [
    [
@@ -141,7 +141,7 @@
    "m_par_px_max": 12.11
   },
   "relecture": {
-   "taille_mo": 81.46,
+   "taille_mo": 81.47,
    "maillages": 290,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,

@@ -2,7 +2,9 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (onzième, du 14/11/2026 à 11 h 54) : la dixième, sans les arbustes plantés dans
+    sol_jeu              version courante (douzième, du 14/11/2026 à 17 h 04) : relief lointain d'après le relevé laser
+                         jusqu'à 2 km, falaises reprises, zone de départ texturée, portiques retirés ; jamais vue en jeu
+    sol_jeu_vu_le_14_11_midi  onzième version, vue en jeu le 14/11/2026 à midi (installée à 11 h 54) : la dixième, sans les arbustes plantés dans
                          les bâtiments et sur les murs, douze objets replacés ; jamais vue en jeu
     sol_jeu_cycle10_du_14_11  dixième version (14/11/2026 à 9 h 46) : la neuvième, plus 39 corrections de position
                          relues sur la reconnaissance (murs, parapets, glissières, aires, clôtures) ; jamais vue en jeu
