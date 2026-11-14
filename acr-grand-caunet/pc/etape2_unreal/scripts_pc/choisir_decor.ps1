@@ -2,7 +2,9 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (neuvième, du 14/11/2026 à 8 h 28) : la huitième, plus douze endroits corrigés
+    sol_jeu              version courante (dixième, du 14/11/2026 à 9 h 46) : la neuvième, plus 39 corrections de position
+                         relues sur la reconnaissance (murs, parapets, glissières, aires, clôtures) ; jamais vue en jeu
+    sol_jeu_cycle9_du_14_11  neuvième version (14/11/2026 à 8 h 28) : la huitième, plus douze endroits corrigés
                          d'après la relecture de la reconnaissance (parapets, murs, poteaux, aires) ; jamais vue en jeu
     sol_jeu_cycle8_du_14_11  huitième version (14/11/2026 à 7 h 09) : zone de départ modélisée, route moins lissée,
                          touffes d'herbe couchées sur les talus, relief lointain et parois repris, parapets en pierre ;

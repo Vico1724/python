@@ -133,7 +133,7 @@
      "part_reconstruite": 0.576
     }
    ],
-   "duree_s": 30.9
+   "duree_s": 29.9
   },
   {
    "nom": "dalle_913500_6243000",
@@ -231,7 +231,7 @@
      "part_reconstruite": 0.991
     }
    ],
-   "duree_s": 40.6
+   "duree_s": 39.9
   },
   {
    "nom": "dalle_914000_6242500",
@@ -587,7 +587,7 @@
      "part_reconstruite": 0.75
     }
    ],
-   "duree_s": 135.1
+   "duree_s": 132.2
   },
   {
    "nom": "dalle_914000_6243500",
@@ -615,7 +615,7 @@
    "part_reconstruite": 0.749,
    "triangles_hors_bande": 1710,
    "sous_dalles": [],
-   "duree_s": 8.9
+   "duree_s": 8.0
   },
   {
    "nom": "dalle_914500_6243000",
@@ -690,7 +690,7 @@
      "part_reconstruite": 0.691
     }
    ],
-   "duree_s": 27.3
+   "duree_s": 26.6
   },
   {
    "nom": "dalle_914500_6243500",
@@ -880,7 +880,7 @@
      "part_reconstruite": 0.876
     }
    ],
-   "duree_s": 78.5
+   "duree_s": 76.0
   },
   {
    "nom": "dalle_915000_6243000",
@@ -1139,7 +1139,7 @@
      "part_reconstruite": 0.389
     }
    ],
-   "duree_s": 109.3
+   "duree_s": 103.4
   },
   {
    "nom": "dalle_915000_6243500",
@@ -1191,7 +1191,7 @@
      "part_reconstruite": 0.83
     }
    ],
-   "duree_s": 17.7
+   "duree_s": 17.8
   },
   {
    "nom": "dalle_915500_6243000",
@@ -1427,7 +1427,7 @@
      "part_reconstruite": 0.97
     }
    ],
-   "duree_s": 99.6
+   "duree_s": 95.4
   },
   {
    "nom": "dalle_915500_6243500",
@@ -1668,7 +1668,7 @@
      "part_reconstruite": 0.919
     }
    ],
-   "duree_s": 86.5
+   "duree_s": 83.9
   },
   {
    "nom": "dalle_916000_6241500",
@@ -1858,7 +1858,7 @@
      "part_reconstruite": 0.976
     }
    ],
-   "duree_s": 79.7
+   "duree_s": 76.3
   },
   {
    "nom": "dalle_916000_6242000",
@@ -2117,7 +2117,7 @@
      "part_reconstruite": 0.99
     }
    ],
-   "duree_s": 103.5
+   "duree_s": 103.8
   },
   {
    "nom": "dalle_916000_6242500",
@@ -2169,7 +2169,7 @@
      "part_reconstruite": 0.994
     }
    ],
-   "duree_s": 16.2
+   "duree_s": 16.3
   },
   {
    "nom": "dalle_916000_6243000",
@@ -2313,7 +2313,7 @@
      "part_reconstruite": 0.991
     }
    ],
-   "duree_s": 57.1
+   "duree_s": 56.9
   },
   {
    "nom": "dalle_916000_6243500",
@@ -2744,7 +2744,7 @@
      "part_reconstruite": 0.962
     }
    ],
-   "duree_s": 113.1
+   "duree_s": 110.8
   },
   {
    "nom": "dalle_916500_6242000",
@@ -2796,7 +2796,7 @@
      "part_reconstruite": 0.993
     }
    ],
-   "duree_s": 17.9
+   "duree_s": 17.8
   },
   {
    "nom": "dalle_916500_6242500",
@@ -3078,7 +3078,7 @@
      "part_reconstruite": 0.873
     }
    ],
-   "duree_s": 114.5
+   "duree_s": 111.7
   },
   {
    "nom": "dalle_916500_6243000",
@@ -3360,7 +3360,7 @@
      "part_reconstruite": 0.964
     }
    ],
-   "duree_s": 113.4
+   "duree_s": 110.5
   },
   {
    "nom": "dalle_916500_6243500",
@@ -3550,7 +3550,7 @@
      "part_reconstruite": 0.997
     }
    ],
-   "duree_s": 74.7
+   "duree_s": 73.4
   },
   {
    "nom": "dalle_917000_6240500",
@@ -3625,7 +3625,7 @@
      "part_reconstruite": 0.622
     }
    ],
-   "duree_s": 28.5
+   "duree_s": 28.0
   },
   {
    "nom": "dalle_917000_6241000",
@@ -3677,7 +3677,7 @@
      "part_reconstruite": 0.817
     }
    ],
-   "duree_s": 18.3
+   "duree_s": 17.7
   },
   {
    "nom": "dalle_917000_6243000",
@@ -3705,7 +3705,7 @@
    "part_reconstruite": 0.995,
    "triangles_hors_bande": 909,
    "sous_dalles": [],
-   "duree_s": 7.4
+   "duree_s": 7.6
   }
  ],
  "controle": {
