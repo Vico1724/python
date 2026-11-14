@@ -65,7 +65,10 @@ class Route:
         if not np.isfinite(v).all() or (nd is not None and (v == nd).any()):
             return defaut
         fc, fl = c - c0, l - l0
-        return float(v[0, 0] * (1 - fc) * (1 - fl) + v[0, 1] * fc * (1 - fl) + v[1, 0] * (1 - fc) * fl + v[1, 1] * fc * fl)
+        z = float(v[0, 0] * (1 - fc) * (1 - fl) + v[0, 1] * fc * (1 - fl) + v[1, 0] * (1 - fc) * fl + v[1, 1] * fc * fl)
+        # parking aplani, comme le terrain de 08_modele_3d.py (scripts/aplanissements.py)
+        import aplanissements
+        return float(aplanissements.aplanir(x, y, z))
 
 
 def charger():

@@ -39,6 +39,7 @@ from scipy.interpolate import LinearNDInterpolator
 from scipy.spatial import Delaunay, cKDTree
 from shapely.geometry import LineString, Point, Polygon
 
+import aplanissements
 from acr_geo import FIG, OUT, RAW, ROOT, wgs
 
 MOD = ROOT / "modele"
@@ -71,7 +72,8 @@ class MNT:
         z = map_coordinates(self.a, [np.asarray(r) - 0.5, np.asarray(c) - 0.5], order=1, mode="nearest")
         if (z < -1000).any():
             raise SystemExit("terrain hors de l'emprise du MNT")
-        return z
+        # parking du Grand Caunet aplani (scripts/aplanissements.py ; essai de la treizième version, 14/11/2026)
+        return aplanissements.aplanir(x, y, z)
 
 
 def tablier(ch, mnt):

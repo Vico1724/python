@@ -46,7 +46,7 @@
       "sommets_de_bord": 14826,
       "recalage_bords_mnt_m": {
         "median_abs": 0.008,
-        "p95_abs": 0.082,
+        "p95_abs": 0.084,
         "max_abs": 2.62
       }
     },
@@ -117,7 +117,7 @@
       "sommets_de_bord": 14826,
       "recalage_bords_mnt_m": {
         "median_abs": 0.008,
-        "p95_abs": 0.082,
+        "p95_abs": 0.084,
         "max_abs": 2.62
       }
     },

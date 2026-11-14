@@ -110,31 +110,29 @@ $mod = Join-Path $work 'mod'
 $rapport = Join-Path $work 'stage-grandcaunet.report.json'
 Remove-Item -Recurse -Force $mod -ErrorAction SilentlyContinue
 $cfg = Join-Path $src 'config'
-# Portiques de départ et d'arrivée du constructeur : deux poteaux de 5 m et une bannière dans une matière verte unie
-# du jeu (visuals.toml, [markers] gate_height_m, [materials] gates). Essais en jeu des 13 et 14/11/2026 : « grande
-# dalle verte » au départ, « portique vert uni sans texture » à l'arrivée ; le directeur l'a prise pour une barrière
-# mal axée. Visuals.cs les dessine même quand nos zones de décor excluent tout le reste (ligne 335). Avec notre décor
-# (-ExclureVisuels), une copie de la configuration les enterre : hauteur négative, poteaux et bannière à plus de 30 cm
-# sous le sol. Le fichier d'origine du constructeur n'est pas modifié.
-$visuels = Join-Path $cfg 'visuals.toml'
-if ($ExclureVisuels) {
-    $visuels = Join-Path $work 'visuals_sans_portiques.toml'
-    $txt = Get-Content (Join-Path $cfg 'visuals.toml') -Raw
-    $neuf = [regex]::Replace($txt, '(?m)^(\s*gate_height_m\s*=\s*)[-0-9.]+', '${1}-0.4')
-    if ($neuf -eq $txt) { Echec "visuals.toml : réglage gate_height_m introuvable, portiques non retirés" }
-    Set-Content -Path $visuels -Value $neuf -Encoding utf8NoBOM -NoNewline
-}
+# Visuels d'essai du constructeur (terrain, route, piquets, portiques), logés dans la boîte du déclencheur de DÉPART
+# (Visuals.cs l. 95-98) ; avec --visuals-retarget, ce déclencheur est rebranché sur la boîte de la zone d'arrêt
+# (l. 359-367). Test de la treizième version (14/11/2026, directeur) : « rien ne matérialise la zone de départ : dans le
+# jeu, une zone rouge en transparence indique où s'arrêter ». C'est cette boîte (M_StartEndTriggerDefault, rouge
+# translucide, verte une fois la voiture dedans) que les visuels remplaçaient. Avec notre décor (-ExclureVisuels), ils
+# n'apportaient plus rien (59 triangles : portiques enterrés et un triangle factice) : on ne les passe plus du tout, et
+# les deux déclencheurs gardent leur boîte rouge. Sans notre décor, visuels d'essai comme avant.
+# (Jusqu'au 14/11/2026 : copie de visuals.toml aux portiques enterrés, « grande dalle verte » au départ sinon.)
+$visuels = if ($ExclureVisuels) { $null } else { Join-Path $cfg 'visuals.toml' }
 $a = @('stage-build', '--ir', $irTravail, '--legacy', $legacy, '--out', $mod, '--report', $rapport, '--surface-registry', $registre,
        '--game', $vanilla, '--usmap', $usmap,
        '--bounds', '1',                                                             # monde agrandi (Bounds.cs)
        '--pacenote-map', (Join-Path $cfg 'pacenote-map.toml'), '--pacenote-report', (Join-Path $work 'notes-grandcaunet.md'),
-       '--respawn', 'relay',                                                        # build.ps1 l.165 (v1.3+)
-       '--visuals', $visuels, '--visuals-host', 'start', '--visuals-retarget', '1',
-       '--visuals-vegetation', 'none', '--visuals-canopies', 'apex')               # build.ps1 l.173-181
+       '--respawn', 'relay')                                                        # build.ps1 l.165 (v1.3+)
+if ($visuels) {
+    $a += @('--visuals', $visuels, '--visuals-host', 'start', '--visuals-retarget', '1',
+            '--visuals-vegetation', 'none', '--visuals-canopies', 'apex')          # build.ps1 l.173-181
+} else {
+    Ok "voie hybride : pas de visuels d'essai ; zones rouges de départ et d'arrivée du jeu gardées"
+}
 if (-not $Longueur) { $a += @('--keep-variants', '1') }
-# Voie hybride : zones où notre décor cuit par Unreal remplace les visuels d'essai (retouche 0004 ;
-# fichier écrit par pc\etape2_unreal\outils\zones_decor.py)
-if ($ExclureVisuels) { $a += @('--visuals-exclude', $ExclureVisuels) }
+# Voie hybride : notre décor cuit par Unreal remplace entièrement les visuels d'essai (ci-dessus) ; la retouche 0004
+# (--visuals-exclude, zones de pc\etape2_unreal\outils\zones_decor.py) ne sert donc plus ici.
 if ($obstacles) { $a += @('--objects', (Join-Path $cfg 'object-collision.toml')) }
 if (-not $GarderDecor) {
     $scenery = Join-Path $cfg 'scenery.toml'
@@ -152,7 +150,7 @@ if (-not $GarderDecor) {
     }
     $a += @('--scenery', $scenery, '--scenery-actor-hidden', '1')                                                   # build.ps1 l.168-171
 }
-if ($Textures) { $a += @('--visuals-textured', '1') }
+if ($Textures -and $visuels) { $a += @('--visuals-textured', '1') }
 if ($Noms) { $a += @('--names', (Join-Path $script:Projet 'pc\config\noms-grand-caunet.toml')) }
 if ($Ciel) { $a += @('--sky', (Join-Path $cfg 'sky.toml'), '--sky-section', 'france') }
 if ($Personnages) {

@@ -865,6 +865,23 @@
    }
   },
   {
+   "objet": "/Game/Props/RallyProps/Signs/SM_RaceStart",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -38,
+     -15,
+     0
+    ],
+    "max": [
+     38,
+     15,
+     73
+    ]
+   }
+  },
+  {
    "objet": "/Game/Props/RallyProps/Signs/SM_RaceFlyingFinish",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",

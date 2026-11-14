@@ -354,6 +354,203 @@
      0.0
     ]
    }
+  },
+  "MI_GC_Enduit_ocre": {
+   "herite_de": "/Game/Props/MonteCarloProps/MonBolConcreteWalls/MI_MonBolConcreteWallsA",
+   "pourquoi": "mur de soutènement du parking, enduit ocre brun sali (Street View 87, 72, 44 à 86, 77, 55) — Test de la treizième version (14/11/2026, captures 1 et 2) : murs de l'approche et de l'entrée de propriété, long mur enduit et monolithe « en aplats lisses gris-bleu ou beige, sans aucune matière visible, comme une maquette ». Cause : ces matières passaient par M_Simple (variante modèle MI_SisteronConcrete01) avec notre image de crépi de 512 px dépliée à 2 m, presque unie (écart type 5 à 10 % de la clarté), sans relief ni rugosité variable : de loin les mipmaps la ramènent à un aplat. Depuis : la variante hérite directement (herite_de, posé par 16_paquet_unreal.py en parent_du_jeu, sans texture réglée) d'un matériau de mur du jeu, avec sa matière, son relief et ses salissures, teinté vers l'enduit lu sur Street View ; dépliage ramené à celui des murs du jeu (MURS_DU_JEU de 16). Clé « herite_de » et non « parent » : le parent est déjà un factice (role parent_du_jeu) ; liste_factices.py n'a rien à ajouter. Teintes : rapport des couleurs Street View en linéaire, adouci par la saturation 0,7 ; clarté relative à celle du béton (1,7, « blanc cassé ») ; non vérifié en jeu.",
+   "vecteurs": {
+    "Mat1_TintMult": [
+     1.0,
+     0.8,
+     0.56,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.8,
+     0.56,
+     1.0
+    ],
+    "Mat1_AlbedoControls": [
+     1.05,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.05,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Enduit_blanc": {
+   "herite_de": "/Game/Props/MonteCarloProps/MonBolConcreteWalls/MI_MonBolConcreteWallsA",
+   "pourquoi": "mur de la rampe et cabanon, enduit crème (Street View 151, 143, 125 au soleil) — Test de la treizième version (14/11/2026, captures 1 et 2) : murs de l'approche et de l'entrée de propriété, long mur enduit et monolithe « en aplats lisses gris-bleu ou beige, sans aucune matière visible, comme une maquette ». Cause : ces matières passaient par M_Simple (variante modèle MI_SisteronConcrete01) avec notre image de crépi de 512 px dépliée à 2 m, presque unie (écart type 5 à 10 % de la clarté), sans relief ni rugosité variable : de loin les mipmaps la ramènent à un aplat. Depuis : la variante hérite directement (herite_de, posé par 16_paquet_unreal.py en parent_du_jeu, sans texture réglée) d'un matériau de mur du jeu, avec sa matière, son relief et ses salissures, teinté vers l'enduit lu sur Street View ; dépliage ramené à celui des murs du jeu (MURS_DU_JEU de 16). Clé « herite_de » et non « parent » : le parent est déjà un factice (role parent_du_jeu) ; liste_factices.py n'a rien à ajouter. Teintes : rapport des couleurs Street View en linéaire, adouci par la saturation 0,7 ; clarté relative à celle du béton (1,7, « blanc cassé ») ; non vérifié en jeu.",
+   "vecteurs": {
+    "Mat1_TintMult": [
+     1.0,
+     0.92,
+     0.76,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.92,
+     0.76,
+     1.0
+    ],
+    "Mat1_AlbedoControls": [
+     1.7,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.7,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Enduit_maison": {
+   "herite_de": "/Game/Props/MonteCarloProps/MonBolConcreteWalls/MI_MonBolConcreteWallsA",
+   "pourquoi": "façades des maisons, enduit beige provençal supposé — Test de la treizième version (14/11/2026, captures 1 et 2) : murs de l'approche et de l'entrée de propriété, long mur enduit et monolithe « en aplats lisses gris-bleu ou beige, sans aucune matière visible, comme une maquette ». Cause : ces matières passaient par M_Simple (variante modèle MI_SisteronConcrete01) avec notre image de crépi de 512 px dépliée à 2 m, presque unie (écart type 5 à 10 % de la clarté), sans relief ni rugosité variable : de loin les mipmaps la ramènent à un aplat. Depuis : la variante hérite directement (herite_de, posé par 16_paquet_unreal.py en parent_du_jeu, sans texture réglée) d'un matériau de mur du jeu, avec sa matière, son relief et ses salissures, teinté vers l'enduit lu sur Street View ; dépliage ramené à celui des murs du jeu (MURS_DU_JEU de 16). Clé « herite_de » et non « parent » : le parent est déjà un factice (role parent_du_jeu) ; liste_factices.py n'a rien à ajouter. Teintes : rapport des couleurs Street View en linéaire, adouci par la saturation 0,7 ; clarté relative à celle du béton (1,7, « blanc cassé ») ; non vérifié en jeu.",
+   "vecteurs": {
+    "Mat1_TintMult": [
+     1.0,
+     0.86,
+     0.66,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.86,
+     0.66,
+     1.0
+    ],
+    "Mat1_AlbedoControls": [
+     1.45,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.45,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Enduit_clair": {
+   "herite_de": "/Game/Props/MonteCarloProps/MonBolConcreteWalls/MI_MonBolConcreteWallsA",
+   "pourquoi": "long mur enduit de gauche avant le départ, gris olive à l'ombre (Street View 57-70, 59-67, 52-58) — Test de la treizième version (14/11/2026, captures 1 et 2) : murs de l'approche et de l'entrée de propriété, long mur enduit et monolithe « en aplats lisses gris-bleu ou beige, sans aucune matière visible, comme une maquette ». Cause : ces matières passaient par M_Simple (variante modèle MI_SisteronConcrete01) avec notre image de crépi de 512 px dépliée à 2 m, presque unie (écart type 5 à 10 % de la clarté), sans relief ni rugosité variable : de loin les mipmaps la ramènent à un aplat. Depuis : la variante hérite directement (herite_de, posé par 16_paquet_unreal.py en parent_du_jeu, sans texture réglée) d'un matériau de mur du jeu, avec sa matière, son relief et ses salissures, teinté vers l'enduit lu sur Street View ; dépliage ramené à celui des murs du jeu (MURS_DU_JEU de 16). Clé « herite_de » et non « parent » : le parent est déjà un factice (role parent_du_jeu) ; liste_factices.py n'a rien à ajouter. Teintes : rapport des couleurs Street View en linéaire, adouci par la saturation 0,7 ; clarté relative à celle du béton (1,7, « blanc cassé ») ; non vérifié en jeu.",
+   "vecteurs": {
+    "Mat1_TintMult": [
+     1.0,
+     0.93,
+     0.74,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.93,
+     0.74,
+     1.0
+    ],
+    "Mat1_AlbedoControls": [
+     1.0,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     1.0,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Pierre_ocre": {
+   "herite_de": "/Game/Props/MonteCarloProps/MonBolRockfaces/MI_BolleneRockfacesParent",
+   "pourquoi": "monolithe de l'entrée de propriété, calcaire ocre : roche du jeu (celle des parois, MI_GC_Roche) réchauffée — Test de la treizième version (14/11/2026, captures 1 et 2) : murs de l'approche et de l'entrée de propriété, long mur enduit et monolithe « en aplats lisses gris-bleu ou beige, sans aucune matière visible, comme une maquette ». Cause : ces matières passaient par M_Simple (variante modèle MI_SisteronConcrete01) avec notre image de crépi de 512 px dépliée à 2 m, presque unie (écart type 5 à 10 % de la clarté), sans relief ni rugosité variable : de loin les mipmaps la ramènent à un aplat. Depuis : la variante hérite directement (herite_de, posé par 16_paquet_unreal.py en parent_du_jeu, sans texture réglée) d'un matériau de mur du jeu, avec sa matière, son relief et ses salissures, teinté vers l'enduit lu sur Street View ; dépliage ramené à celui des murs du jeu (MURS_DU_JEU de 16). Clé « herite_de » et non « parent » : le parent est déjà un factice (role parent_du_jeu) ; liste_factices.py n'a rien à ajouter. Teintes : rapport des couleurs Street View en linéaire, adouci par la saturation 0,7 ; clarté relative à celle du béton (1,7, « blanc cassé ») ; non vérifié en jeu.",
+   "scalaires": {
+    "Mat1_UVTiling": 0.8,
+    "Mat2_UVTiling": 0.9,
+    "Mat3_AdditionalBlendFromTop_Amount": 0.25
+   },
+   "vecteurs": {
+    "Mat1_AlbedoControls": [
+     2.2,
+     0.6,
+     1.0,
+     0.0
+    ],
+    "Mat2_AlbedoControls": [
+     2.2,
+     0.6,
+     1.0,
+     0.0
+    ],
+    "Mat1_TintMult": [
+     1.0,
+     0.86,
+     0.64,
+     1.0
+    ],
+    "Mat2_TintMult": [
+     1.0,
+     0.86,
+     0.64,
+     1.0
+    ],
+    "Mat1_ColorVariationTintMult": [
+     0.85,
+     0.85,
+     0.85,
+     1.0
+    ],
+    "Mat2_ColorVariationTintMult": [
+     0.85,
+     0.85,
+     0.85,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.85,
+     0.85,
+     0.85,
+     1.0
+    ]
+   }
   }
  },
  "parametres_des_maitres": {

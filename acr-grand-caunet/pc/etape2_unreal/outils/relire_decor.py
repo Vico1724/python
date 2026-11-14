@@ -153,8 +153,10 @@ def main():
         k = o["Properties"]["StaticMesh"]["ObjectPath"].split(".")[0]    # un même maillage peut avoir deux composants
         par[k] = par.get(k, 0) + len(o.get("PerInstanceSMData", []))    # (pin de la forêt et pin de bord de route)
     man = json.loads((Path(a.paquet) / "manifeste.json").read_text(encoding="utf-8"))
-    attendu_m = sum(1 for e in man["elements"] if e["type"] == "StaticMesh" and e.get("acteur"))
-    attendu_i = sum(e["nombre"] for e in man["elements"] if e["type"] == "InstanceGroup")
+    # groupes « acteurs » (véhicules du jeu) : un acteur de maillage par ligne, pas d'instances
+    attendu_m = (sum(1 for e in man["elements"] if e["type"] == "StaticMesh" and e.get("acteur"))
+                 + sum(e["nombre"] for e in man["elements"] if e["type"] == "InstanceGroup" and e.get("composant") == "acteurs"))
+    attendu_i = sum(e["nombre"] for e in man["elements"] if e["type"] == "InstanceGroup" and e.get("composant") != "acteurs")
     bilan["niveau"] = {"maillages_poses": len(smc), "attendus": attendu_m, "instances": sum(par.values()), "attendues": attendu_i,
                        "composants_d_instances": len(hism),
                        "instances_hors_vegetation": {k.rsplit("/", 1)[1]: v for k, v in par.items() if "/Foliage/" not in k}}

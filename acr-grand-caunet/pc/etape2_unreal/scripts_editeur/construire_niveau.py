@@ -579,6 +579,30 @@ class Construction:
             prefixe = e["nom"][:-len(nom_mesh) - 1] if e["nom"].endswith("_" + nom_mesh) else e["nom"]
             candidats = (vegetation or {}).get(dossier)
             h_nat = hauteurs.get(nom_mesh) or e.get("hauteur_native_cm")
+            if e.get("composant") == "acteurs":
+                # un acteur de maillage par ligne (véhicules du jeu : leurs matériaux n'ont pas l'usage « instanced static
+                # meshes », un composant d'instances les rendrait avec le matériau par défaut du moteur, noir mat en jeu)
+                if not v_existe(e["maillage_jeu"]):
+                    self.alerte(f"{e['maillage_jeu']} : factice absent (lancer creer_factices.py) ; {e['nom']} ignoré")
+                    continue
+                sm = v_charger(e["maillage_jeu"])
+                deja = {x.get_actor_label() for x in v_acteurs_du_niveau()}
+                with open(self.fichier(e), encoding="utf-8") as f:
+                    for r in csv.DictReader(f):
+                        if (pk and not (pk[0] <= float(r["pk_m"]) <= pk[1])) or reste <= 0:
+                            continue
+                        label = f"{e['nom']}_{int(r['id']):02d}"
+                        reste -= 1
+                        self.rapport["instances"] += 1          # compté avec les instances : une ligne de la table
+                        if label in deja:
+                            continue
+                        p, lacet = self.position((float(r["x_cm"]), float(r["y_cm"]), float(r["z_cm"])), float(r["lacet_deg"]))
+                        a = v_poser_maillage(sm, p, lacet, label, "GrandCaunet/Mobilier")
+                        s = float(r.get("echelle") or 1.0)
+                        if abs(s - 1.0) > 1e-3:
+                            a.set_actor_scale3d(unreal.Vector(s, s, s))
+                        self.rapport["acteurs_de_mobilier"] = self.rapport.get("acteurs_de_mobilier", 0) + 1
+                continue
             with open(self.fichier(e), encoding="utf-8") as f:
                 for r in csv.DictReader(f):
                     if pk and not (pk[0] <= float(r["pk_m"]) <= pk[1]):

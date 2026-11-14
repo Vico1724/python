@@ -202,7 +202,12 @@ def maillage_sur_terrain(P, sol, z_de, ref, mat, name, uv_s, lignes, tablier=Non
     tri = tri[aire_plan(XY, tri) > 1e-3]                 # pas de triangles dégénérés (normales indéfinies)
     pos = m08.to_gltf(np.column_stack([XY, Z]), ref).astype(np.float64)
     tri = m11.oriente(pos, tri, np.array([0.0, 1.0, 0.0])).astype(np.uint32)
-    parts.append({"pos": pos.astype(np.float32), "nrm": m08.normales(pos, tri), "uv": (XY / uv_s).astype(np.float32), "idx": tri})
+    # UV comptées depuis l'origine du repère (axe au PK 0), pas depuis le zéro Lambert-93. Jusqu'au 14/11/2026 : XY / uv_s,
+    # soit 230 000 à 1 560 000 ; le paquet (16) ne ramène les UV d'un maillage près de zéro que d'un bloc, et le tronçon
+    # 19 des annexes mêlait l'amorce du Lion d'Or (UV locales) à son prolongement (UV Lambert-93) : dans le moteur, UV en
+    # demi-flottants (65 504 au plus), le prolongement sortait en « grande surface noire » (test de la treizième version).
+    uv = ((XY - np.array([ref["x0"], ref["y0"]])) / uv_s).astype(np.float32)
+    parts.append({"pos": pos.astype(np.float32), "nrm": m08.normales(pos, tri), "uv": uv, "idx": tri})
     aire = float(aire_plan(XY, tri).sum())
     if tablier is not None and not P.intersection(tablier).is_empty:
         sd, a2 = maillage_surface(P.intersection(tablier), lambda XY: np.maximum(z_de(XY), sol.z(XY) + SURELEV), ref, mat, name, uv_s)
@@ -1303,8 +1308,14 @@ def main():
                 zp = z_de(P)
             zb = np.minimum(mnt.z(*(P + sortant * p["epaisseur_m"]).T), zp) - 0.3
             if ponceau:
+                # sur le ponceau : le parapet descend jusqu'au fond (tête de ponceau maçonnée), sauf au droit du
+                # ruisseau, où il s'arrête sous le tablier (ouverture de 1,8 m). Jusqu'au 14/11/2026 il s'arrêtait partout
+                # sous le tablier, 1,5 à 2 m au-dessus du fond : test de la treizième version, « le muret paraît décroché ».
                 dans = shapely.contains_xy(Polygon(ponceau["polygone"]).buffer(0.2), P[:, 0], P[:, 1])
-                zb = np.where(dans, zp - ponceau["epaisseur_m"], zb)
+                z_fond = np.minimum(mnt.z(*(P + sortant * p["epaisseur_m"]).T), mnt.z(*P.T)) - 0.3
+                pres_eau = (shapely.distance(shapely.LineString(c["fosse"]["polyligne"]), shapely.points(P)) < 0.9
+                            if c.get("fosse") else np.zeros(len(P), bool))
+                zb = np.where(dans, np.where(pres_eau, zp - ponceau["epaisseur_m"], np.minimum(z_fond, zp - ponceau["epaisseur_m"])), zb)
             v = mur(P, sortant, p["hauteur_m"], p["epaisseur_m"], zp - 0.02, zb, ref)
             (par_sombre if p["type"] == "pierre_sombre" else par_pierre).append(v)
             parapets_plan.append((p["nom"], P, p["type"]))

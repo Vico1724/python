@@ -172,7 +172,13 @@ BUISSONS = {"maillage": "/Game/Foliage/GroundCover/Willow/SM_Willow_03a", "haute
 MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
                "pierre_sombre": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
                "beton": {"uv": 2.0 / 3.144, "couleur": None}, "dalle": {"uv": 2.0 / 3.144, "couleur": None},
-               "chaperon": {"uv": 2.0 / 3.144, "couleur": None}}
+               "chaperon": {"uv": 2.0 / 3.144, "couleur": None},
+               # Depuis le test de la treizième version (14/11/2026) : enduits de la zone de départ et du long mur (11, 12) sur
+               # le béton du jeu, monolithe sur la roche du jeu (matieres_du_jeu.json, clé herite_de ; voir materiaux_modele).
+               # Couleur de sommet de la roche : celle du poteau de béton de pierres_calcaires.py (usure 90/255).
+               "enduit_clair": {"uv": 2.0 / 3.144, "couleur": None}, "enduit_ocre": {"uv": 2.0 / 3.144, "couleur": None},
+               "enduit_maison": {"uv": 2.0 / 3.144, "couleur": None}, "enduit_blanc": {"uv": 2.0 / 3.144, "couleur": None},
+               "pierre_ocre": {"uv": 2.0 / 2.5, "couleur": (90, 0, 255, 255)}}
 # Câbles électriques entre les poteaux (maillage à nous) : trois par portée, accrochés à la traverse du poteau du jeu
 # (bouts à ±1 m, milieu), à 8,6 m du sol ; flèche de 0,8 m pour 60 m de portée.
 # Rayon : 2 cm jusqu'au 13/11/2026 ; relevés des quatrième et sixième essais (PK 3000) : « faisceau de gros câbles noirs très
@@ -379,6 +385,10 @@ class Paquet:
         t = tri[:, [0, 2, 1]] if self.axes.retourner else tri
         if uv is not None and not famille.startswith("terrain") and not famille.startswith("lointain"):
             uv = uv - np.floor(uv.min(0))      # UV répétées : petites valeurs (précision), même aspect
+            # garde-fou : Unreal range les UV en demi-flottants (65 504 au plus, pas de 1 au-delà de 1 024) ; un maillage
+            # dont les UV s'étalent sur des milliers d'unités sort noir ou flou (prolongement du Lion d'Or, 14/11/2026)
+            if len(uv) and float(np.ptp(uv, axis=0).max()) > 1024.0:
+                raise SystemExit(f"{nom} : UV étalées sur {float(np.ptp(uv, axis=0).max()):.0f} unités (demi-flottants du moteur)")
         if couleurs is None:                                 # couleurs : une par sommet (n, 4), sommets gardés tels quels
             f, n_f, uv, t = dedoublonne(f, n_f, uv, t)
         fichier = Path("maillages") / famille / f"{nom}.glb"
@@ -974,6 +984,17 @@ def materiaux_modele(P, glbs, dest_tex, dest_mat, prefixe_mat):
             mat = m["mat"]
             if mat["nom"] in vus:
                 continue
+            nom_mi = f"MI_GC_{prefixe_mat}{mat['nom'].capitalize()}"
+            # matière héritée telle quelle d'un mur du jeu (matieres_du_jeu.json, clé herite_de) : ni image ni ORM à nous.
+            # Essai de la treizième version (14/11/2026) : nos images de crépi, presque unies et sans relief, sortaient en
+            # aplats « maquette » sur la variante modèle de M_Simple.
+            r = MATIERES.get("materiaux", {}).get(nom_mi, {})
+            if r.get("herite_de") and not P.echantillon:
+                P.materiau_du_jeu(nom_mi, dest_mat, r["herite_de"], {}, {}, ["E3", "E4", "complet"],
+                                  note="matière d'un mur du jeu, teintée (matieres_du_jeu.json)",
+                                  reglages={k: r[k] for k in ("textures", "scalaires", "vecteurs") if r.get(k)})
+                vus[mat["nom"]] = nom_mi
+                continue
             nom_t = f"T_GC_{prefixe_mat}{mat['nom'].capitalize()}"
             if mat["image"] is not None:
                 src = mat["image"]
@@ -986,7 +1007,6 @@ def materiaux_modele(P, glbs, dest_tex, dest_mat, prefixe_mat):
             nom_orm = f"T_GC_ORM_R{r:03d}M{mt:03d}"
             if nom_orm not in P.vus:
                 P.texture(nom_orm, "commun", f"{UE}/Shared/Textures", image_unie((255, r, mt)), ["E3", "E4", "complet"])
-            nom_mi = f"MI_GC_{prefixe_mat}{mat['nom'].capitalize()}"
             P.materiau(nom_mi, dest_mat, {"couleur": nom_t, "orm": nom_orm}, ["E3", "E4", "complet"],
                        alternatif="/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv"
                        if mat["nom"] == "enrobe" else None)
@@ -2155,8 +2175,15 @@ def mobilier_du_bord(P, ref, pkf, sol, args):
             for i, (g, lacet, o) in enumerate(lot):
                 w.writerow([i, f"{ue[i, 0]:.1f}", f"{ue[i, 1]:.1f}", f"{ue[i, 2] - 100.0 * o.get('enfoncement_m', 0.03):.1f}",
                             f"{(lacet + 180) % 360 - 180:.2f}", "1.00", f"{pk[i]:.0f}", f"{o.get('echelle', 1.0):.3f}", o["type"]])
+        # Véhicules du jeu (Props/NonDrivableVehicles) : un acteur par véhicule, jamais d'instances. Essai de la treizième
+        # version (14/11/2026) : voitures et fourgons « noir mat, sans couleur ni détail ». Lu dans le jeu : leurs
+        # matériaux (maîtres M_NonDriveableVehicleMain et M_NonDriveableVehicleGlass) n'ont pas l'usage « instanced static
+        # meshes », le jeu cuit n'a donc pas leur shader pour un composant d'instances et rend le matériau par défaut du
+        # moteur. Le studio les pose en acteurs (BC_* de Hafren South, composant de maillage ordinaire), avec la couleur de
+        # leurs propres variantes (blanc, gris, rouge, livrée).
+        composant = "acteurs" if "/NonDrivableVehicles/" in chemin else "HierarchicalInstancedStaticMeshComponent"
         e = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Mobilier_{nom}", "maillage_jeu": chemin, "present_au_catalogue": chemin in cat,
-                      "fichier": fichier.as_posix(), "nombre": len(lot), "composant": "HierarchicalInstancedStaticMeshComponent",
+                      "fichier": fichier.as_posix(), "nombre": len(lot), "composant": composant,
                       "collision": "NoCollision", "hauteur_native_cm": None,
                       "echelle": "colonne « echelle » de la table, maillage posé tel quel", "retirees_sur_chaussee": 0, "essais": ["complet"]})
         bilan[e["nom"]] = e["nombre"]
@@ -2335,11 +2362,14 @@ def objets_en_long(P, ref, sol, liste):
 # rendre ces blocs ; hauteur du sommet plus irrégulière ; pierres semées au pied (regles_arbres.pieds_de_paroi).
 # Test de la douzième version (14/11/2026) : « augmenter le nombre de polygones des parois pour les rendre plus réalistes ».
 # Pas de 15 cm le long de la route (25 cm avant) et grain de surface à l'échelle de la main (dx, 0,45 m de longueur d'onde).
-ROCHE = {"pas_m": 0.15, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
+# Test de la treizième version (14/11/2026) : « encore assez géométriques, augmente le nombre de polygones » et « parois en
+# suspension ». Cinq rangs par banc au lieu de deux (pied, mi-front, arête, replat en deux points), pas de 12,5 cm (10 cm
+# dépassait 500 000 triangles), roche portée par le terrain (avancée réduite : 0,35 m au lieu de 0,8 pour « lite »).
+ROCHE = {"pas_m": 0.125, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
          "epaisseur_m": 0.16, "pente_deg": (9.0, 24.0), "plat_m": (2.0, 0.35), "uv_m": 2.5, "marge_chaussee_m": 0.3,
          "couleur_secours": (188, 182, 168),
-         "genres": {"lite": {"avance_m": 0.8, "banc_m": (0.18, 0.42), "front": 0.5, "decroche_m": 0.38, "bloc_m": (0.5, 1.5), "lacunes": 0.30},
-                    "blocs": {"avance_m": 1.0, "banc_m": (0.6, 1.1), "front": 0.25, "decroche_m": 0.45, "bloc_m": (1.2, 2.4), "lacunes": 0.2},
+         "genres": {"lite": {"avance_m": 0.35, "banc_m": (0.18, 0.42), "front": 0.5, "decroche_m": 0.38, "bloc_m": (0.5, 1.5), "lacunes": 0.30},
+                    "blocs": {"avance_m": 0.5, "banc_m": (0.6, 1.1), "front": 0.25, "decroche_m": 0.45, "bloc_m": (1.2, 2.4), "lacunes": 0.2},
                     "eboulis": {"avance_m": 0.45, "banc_m": (0.3, 0.45), "front": 1.0, "decroche_m": 0.22, "bloc_m": (0.6, 1.3), "lacunes": 0.08}}}
 
 
@@ -2389,6 +2419,8 @@ def parois_rocheuses(P, ref, sol):
     (PK 2800, PK 3080), rarement des fronts verticaux. D'où la règle : la roche suit le terrain.
       - profil lisse = terrain avancé de `avance_m` vers la route, plus une épaisseur ;
       - ce profil est débité en bancs horizontaux (front raide, replat), chaque banc en blocs qui avancent ou reculent ;
+      - la roche est portée (depuis le 14/11/2026) : pied de chaque front sur le terrain, front à son aplomb, replat drapé
+        sur le terrain, jupe à 40 cm sous terre ; aucun sommet visible au-dessus du vide ;
       - la roche s'efface là où le terrain est plat, s'arrête à la hauteur relevée ou là où le talus cesse de monter.
     """
     f = ROOT / "data" / "reference" / "parois_rocheuses.json"
@@ -2461,7 +2493,7 @@ def parois_rocheuses(P, ref, sol):
         un = np.ones(ns)
         zS = terrain(avance) + ROCHE["epaisseur_m"] * (0.2 + 0.8 * fin)[:, None]    # profil lisse de la roche
         zM = np.maximum.accumulate(zS, axis=1)
-        pente = terrain(avance + 0.5) - terrain(np.maximum(avance - 0.5, 0.0))      # montée du terrain sur 1 m, sous la roche
+        pente = terrain(0.5 * un) - terrain(-0.5 * un)                              # montée du terrain sur 1 m, sous la roche
         W = np.clip((pente - t0) / (t1 - t0), 0.0, 1.0)
         W = W * W * (3 - 2 * W)                                                     # 0 sur le plat, 1 sur un vrai talus
         # la roche finit là où, le talus une fois commencé, le terrain ne monte plus (ROCHE["plat_m"])
@@ -2494,26 +2526,51 @@ def parois_rocheuses(P, ref, sol):
             bords.append(bords[-1] + g["banc_m"][0] + (g["banc_m"][1] - g["banc_m"][0]) * float(_alea(n, 0.0, k + 13)))
         pendage = (float(_alea(k, 5.0, 3.0)) - 0.5) * 0.04
         penche = pendage * (S - S.mean())
-        T0 = T[:, :n_o]
         x_top = ou(z_top)
         rangs, rentres, attente = [], [], []
 
-        def rang(niveau, z_sortie, dx):
-            rentre = niveau > z_top
-            x = np.where(rentre, x_top + 0.3 / do, ou(np.minimum(niveau, z_top)))
-            x = np.minimum(x, i_fin + 0.3 / do)
+        def sol_en(o):
+            """Terrain (hauteur depuis le bord de chaussée) au décalage `o` (par station)."""
+            x = (np.asarray(o, float) - o0) / do
+            i = np.clip(np.floor(x).astype(int), 0, T.shape[1] - 2)
+            r = np.clip(x - i, 0.0, 1.0)
+            return T[r_ns, i] * (1 - r) + T[r_ns, i + 1] * r
+
+        # Essai de la treizième version (14/11/2026) : « parois en suspension », « la roche est parfois trop à droite du
+        # sol ». La nappe était le terrain AVANCÉ de 0,8 m vers la route, chaque bloc décroché encore de ±0,38 m : une
+        # coque tenue en l'air devant le talus, dalles en surplomb au-dessus du vide (vidéo PK 1100, 3990 ; contrôle :
+        # 85 % des sommets visibles sans rien dessous, vide médian 0,58 m). Depuis, la roche est PORTÉE : chaque front de
+        # banc a son pied sur le terrain et monte à l'aplomb de ce pied, chaque replat est drapé sur le terrain à moins
+        # de 5 cm ; les décrochements ne font qu'avancer un pied sur un terrain plus bas (le front est plus haut) ou le
+        # reculer dans le talus, jamais en surplomb ; d'une colonne à l'autre les rangs ne reviennent jamais vers la route.
+        # Le banc est rendu en cinq rangs : pied, front cassé à mi-hauteur, arête, replat en deux points.
+        o_prec = [None]
+
+        def rang(o, z_roche, niveau, rentre, plein=1.0, sous=0.12, monte=False):
+            """Un rang de la nappe. `o` est poussé pour ne jamais revenir vers la route ; `plein` : présence propre au rang ;
+            `sous` : profondeur sous le terrain où le rang s'enfouit là où la roche est absente ; `monte` : le rang ne
+            descend pas sous le précédent (front d'un banc : une présence inégale ne doit pas le replier en surplomb)."""
+            o = np.maximum(o, ROCHE["marge_chaussee_m"])
+            if o_prec[0] is not None:
+                o = np.maximum(o, o_prec[0] + 0.005)
+            o_prec[0] = o
+            x = (o - o0) / do
             # présence : nulle sur le plat, et par plaques ailleurs (la roche affleure entre la terre et les touffes)
             plaque = np.clip((_fbm(S / 4.5, niveau / 1.6 + 2.3 * k, k + 31, 3) + g["lacunes"]) / 0.2, 0.0, 1.0)
-            w = en(x, W) * plaque * plaque * (3 - 2 * plaque)
-            o = np.where(rentre, o0 + x * do, np.maximum(o0 + x * do - dx, ROCHE["marge_chaussee_m"]))
-            sous_terre = en((o - o0) / do, T0) - 0.35
-            attente.append((o, np.where(rentre, sous_terre - 0.1, z_sortie), sous_terre, np.where(rentre, 0.0, w), rentre))
+            w = en(np.minimum(x, n_o - 1.0), W) * plaque * plaque * (3 - 2 * plaque) * plein * bout
+            t = sol_en(o)
+            attente.append((o, np.where(rentre, t - 0.15, z_roche), t - sous, np.where(rentre, 0.0, w), rentre, monte))
+            return o
 
-        rang(bords[0] + penche, np.minimum(bords[0] + penche, T0[:, 0] - 0.4), 0.0)
-        ampl = np.clip(avance / 0.8, 0.15, 1.0)
+        bout = np.clip((fin - 0.03) / 0.3, 0.0, 1.0)              # la roche s'enfouit aux deux bouts : pas de tranche en l'air
+        rang(np.full(ns, o0), 0.0, bords[0], np.zeros(ns, bool), 0.0, sous=0.40)   # jupe : 40 cm sous le terrain, sous chaque colonne
+        ampl = np.clip(avance / g["avance_m"], 0.15, 1.0)
+        o_rentre = o0 + (x_top + 0.3 / do) * do
         for n in range(len(bords) - 1):
             ep = bords[n + 1] - bords[n]
-            joint = lambda m: 0.10 * (_bruit(S / 8.0, 0.37 * m, k + 12) - 0.5) * 2.0 + 0.07 * (_bruit(S / 1.9, 0.61 * m, k + 29) - 0.5) * 2.0  # noqa: E731
+            # joints de banc qui ondulent : grande ondulation, ondulation moyenne, et un fin tremblé de l'arête
+            joint = lambda m: (0.14 * (_bruit(S / 8.0, 0.37 * m, k + 12) - 0.5) * 2.0 + 0.09 * (_bruit(S / 1.9, 0.61 * m, k + 29) - 0.5) * 2.0  # noqa: E731
+                               + 0.035 * _fbm(S / 0.55, 0.83 * m + k, k + 47, 2))
             bas, hautb = bords[n] + penche + joint(n), bords[n + 1] + penche + joint(n + 1)
             long_bloc = g["bloc_m"][0] + (g["bloc_m"][1] - g["bloc_m"][0]) * float(_alea(n, 0.0, k + 14))
             u = S / long_bloc + 3.7 * float(_alea(n, 1.0, k + 15)) + 0.45 * (_bruit(S / 3.3, 1.7 * n, k + 28) - 0.5) * 2.0   # blocs de longueur inégale
@@ -2528,18 +2585,47 @@ def parois_rocheuses(P, ref, sol):
             dx += 0.07 * _fbm(S / 0.45, 1.3 * n + 0.7 * k, k + 41, 2)                        # grain : arêtes et éclats
             dx -= 0.14 * np.clip((np.abs(u % 1.0 - 0.5) * 2.0 - 0.86) / 0.14, 0.0, 1.0)      # joints verticaux en creux
             dx *= ampl
-            fb, ft = 0.5 - g["front"] / 2, 0.5 + g["front"] / 2
-            rang(bas + fb * ep, bas - de_niveau, dx)
-            rang(bas + ft * ep, hautb + de_niveau, dx - 0.05 * ampl)
+            rentre = bas > z_top
+            niv = 0.5 * (bas + hautb)
+            # pied : là où le profil de la roche atteint le bas du banc, avancé ou reculé du décrochement, posé SUR le
+            # terrain à cet endroit (un bloc avancé descend plus bas, il ne flotte pas)
+            o_f = o0 + ou(np.minimum(bas, z_top)) * do - dx
+            o_f = np.where(rentre, np.maximum(o_rentre, o_f), o_f)
+            o_f = np.maximum(np.maximum(o_f, o_prec[0] + 0.005), ROCHE["marge_chaussee_m"])
+            z_pied = np.minimum(bas, sol_en(o_f)) - 0.03
+            rang(o_f, z_pied, niv, rentre)
+            # arête : hauteur du banc, au plus la hauteur relevée ; un front ne dépasse pas 1,3 fois son banc au-dessus de son pied (sinon lame mince)
+            z_ar = np.minimum(hautb + de_niveau, z_top + 0.04)
+            z_ar = np.clip(z_ar, z_pied, z_pied + 1.3 * ep + 0.05)
+            # front cassé : un point à mi-hauteur (hauteur et aplomb qui varient), chaque facette penchée de -2 à +4,5 cm
+            fr = 0.5 + 0.22 * _fbm(S / 0.7, 1.9 * n + 0.4 * k, k + 51, 2)
+            pen1 = 0.0125 + 0.0325 * _fbm(S / 0.5, 2.3 * n + k, k + 53, 2)
+            pen2 = 0.0125 + 0.0325 * _fbm(S / 0.4, 2.9 * n + k, k + 57, 2)
+            z_mi = z_pied + (z_ar - z_pied) * fr + 0.02 * _fbm(S / 0.3, 3.1 * n + k, k + 59, 2)
+            z_mi = np.clip(z_mi, z_pied, z_ar)
+            o_m = rang(o_f + pen1, z_mi, niv + 0.07, rentre, monte=True)
+            o_a = rang(o_m + pen2, z_ar, niv + 0.14, rentre, monte=True)
+            # replat : drapé sur le terrain (de 2 cm dessous à 1 cm dessus) jusqu'au pied du banc suivant, en deux points inégaux
+            o_fin = np.maximum(o0 + ou(np.minimum(z_ar, z_top)) * do, o_a + 0.04)
+            o_fin = np.where(rentre, o_a + 0.04, o_fin)
+            for q, kk in ((0.38, 61), (0.74, 67)):
+                qq = np.clip(q + 0.16 * _fbm(S / 0.6, 1.7 * n + 0.3 * kk, k + kk, 2), 0.1, 0.92)
+                o_q = o_a + (o_fin - o_a) * qq
+                z_q = np.minimum(sol_en(o_q) - 0.02 + 0.03 * _bruit(S / 0.35, 2.1 * n + kk, k + kk + 1), z_ar)
+                rang(o_q, z_q, niv + 0.2, rentre)
         # Présence adoucie d'un rang et d'une station à l'autre. Vu en jeu le 13/11/2026 (quatrième version, PK 2000) : une
         # pointe de roche isolée, dressée comme une tente. C'était un sommet visible seul au milieu de voisins enfouis ;
         # la présence d'un sommet ne peut plus dépasser nettement celle de son voisinage.
         from scipy import ndimage as ndi_r
         Wg = np.stack([x[3] for x in attente], 1)                 # (stations, rangs)
-        Wg = np.minimum(Wg, np.clip(1.8 * ndi_r.uniform_filter(Wg, size=(7, 3), mode="nearest") - 0.25, 0.0, 1.0))
-        for r_, (o_, zs_, st_, _, rentre_) in enumerate(attente):
+        Wg = np.minimum(Wg, np.clip(1.8 * ndi_r.uniform_filter(Wg, size=(11, 9), mode="nearest") - 0.25, 0.0, 1.0))
+        z_prec = None
+        for r_, (o_, zs_, st_, _, rentre_, monte_) in enumerate(attente):
             w_ = Wg[:, r_]
             z_ = np.where(rentre_, zs_, st_ + (zs_ - st_) * w_)
+            if monte_:
+                z_ = np.where(rentre_, z_, np.maximum(z_, z_prec))
+            z_prec = z_
             rangs.append(B + dehors * o_[:, None] + haut[None, :] * z_[:, None])
             rentres.append(rentre_ | (w_ < 0.02))
         G = np.stack(rangs, 1)                                    # (stations, rangs, 3)
@@ -2549,10 +2635,19 @@ def parois_rocheuses(P, ref, sol):
         a0 = (i * nr + j).ravel(); a1 = a0 + 1; b0 = a0 + nr; b1 = b0 + 1
         tri = np.concatenate([np.column_stack([a0, b0, a1]), np.column_stack([a1, b0, b1])])
         fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
-        enfoui = np.stack(rentres, 1).ravel()
+        enfoui = np.stack(rentres, 1)
+        # jupe : sous chaque colonne où la roche se montre, la nappe descend sans trou jusqu'au premier rang (40 cm sous terre)
+        premier = np.where((~enfoui).any(1), (~enfoui).argmax(1), -1)
+        enfoui[np.arange(nr)[None, :] <= premier[:, None]] = False
+        enfoui = enfoui.ravel()
         tri = tri[(np.linalg.norm(fn, axis=1) > 2e-5) & ~enfoui[tri].all(1)]       # ni triangles écrasés, ni triangles sous terre
         if not len(tri):
             continue
+        if hasattr(P, "controle_parois"):                         # contrôle des suspensions (paquet factice d'un script de contrôle)
+            garde = np.zeros(len(pos), bool)
+            garde[tri.ravel()] = True
+            P.controle_parois.append({"pk": (pk0, pk1), "cote": cote, "S": S.copy(), "G": G.copy(), "garde": garde.reshape(ns, nr),
+                                      "enfoui": enfoui.reshape(ns, nr), "o": np.einsum("srk,sk->sr", G - B[:, None, :], dehors)})
         attendu = np.repeat(-dehors + haut[None, :], nr, axis=0)
         fn = np.cross(pos[tri[:, 1]] - pos[tri[:, 0]], pos[tri[:, 2]] - pos[tri[:, 0]])
         envers = np.einsum("ij,ij->i", fn, attendu[tri[:, 0]]) < 0
