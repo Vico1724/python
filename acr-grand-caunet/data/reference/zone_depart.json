@@ -1,0 +1,1993 @@
+{
+ "note": "Inventaire fait le 14/11/2026 sur 24 captures Street View (oct. 2025) fournies par le directeur, lues en copies réduites. La position et le cap de chaque vue sont tirés de l'adresse Google visible en haut de chaque capture (latitude, longitude, cap, champ vertical), convertis en Lambert-93 et projetés sur chaussee_precise.csv (prolongé en ligne droite avant le PK -170). Les objets sont placés en croisant la direction de visée (champ horizontal déduit du champ vertical et du format de l'image), la distance au sol (caméra ≈ 2,5 m) et une vue de dessus fabriquée pour l'occasion (orthophoto IGN 20 cm, MNS − MNT LiDAR 50 cm, BD TOPO), à plat et dépliée le long de l'axe. Contrôle : la direction du cabanon tagué sur la capture 3 tombe à 0,5 m de son emprise BD TOPO. Limites : PK à ±3-5 m pour les objets vus sur deux vues, ±5-10 m sur une seule vue ; décalages latéraux à ±2-3 m ; hauteurs estimées d'après les voitures (1,5 m), les portes et portails (2 m) et la largeur de chaussée ; murs minces mal rendus par le LiDAR. Pour les murs et la lisse, emprise_l93 est une polyligne ; pour les points isolés, un seul point. Rien n'est modélisé ici ; aucune donnée existante n'a été modifiée. Côtés dans le sens de la course.",
+ "sens_des_captures": "Les numéros suivent le sens de la marche vers le départ : (3) au PK -162 juste après le carrefour avec la D3, (4) PK -143, (5) PK -111, (6) PK -90, (7) PK -70, (8) PK -60, puis plusieurs vues par panorama : (9)-(11) PK -40, (12)-(15) PK -30, (16)-(18) PK -19, (19)-(22) PK -9, (23)-(26) PK +2, au départ. Vérifié par les coordonnées de chaque vue, dont le PK croît strictement d'un panorama au suivant ; les vues d'un même panorama regardent dans plusieurs directions.",
+ "captures": [
+  {
+   "fichier": "Capture d’écran (3).png",
+   "position_pk_m": -162,
+   "regard": "vers le départ",
+   "montre": "Débouché de la D3D sur la D3 : îlot à gauche (caniveau à grille, panneau temporaire « ROUTE … FERMÉE de 9h30 à 11h30 »), bretelle vers la D3 au-delà, cabanon tagué au toit de tuiles ; à droite mur de pierres sèches surmonté d'un grillage et d'une haie ; lignes aériennes sur poteaux bois à gauche."
+  },
+  {
+   "fichier": "Capture d’écran (4).png",
+   "position_pk_m": -143,
+   "regard": "vers le départ",
+   "montre": "Long mur gris à gauche (≈ 2 m) avec arbustes derrière ; à droite poteau « ← P du Gd Caunet / P de Fontblanche ↑ », muret béton et garde-corps blanc, triangle « cavaliers » plus loin ; voitures garées au loin à gauche (PK ≈ -70)."
+  },
+  {
+   "fichier": "Capture d’écran (5).png",
+   "position_pk_m": -111,
+   "regard": "vers le départ",
+   "montre": "Mur enduit continu à gauche, talus boisé dense à droite ; au fond le portail blanc et le monolithe (PK ≈ -70)."
+  },
+  {
+   "fichier": "Capture d’écran (6).png",
+   "position_pk_m": -90,
+   "regard": "vers le départ",
+   "montre": "Fin du mur de gauche, pilier d'angle en pierre, rampe béton vers un portail coulissant blanc entre murs blancs, monolithe de pierre dressé, voiture garée devant le mur sombre du parking ; panneaux de l'entrée du parking au fond."
+  },
+  {
+   "fichier": "Capture d’écran (7).png",
+   "position_pk_m": -70,
+   "regard": "à gauche",
+   "montre": "Entrée principale du parking (gravier blanc) le long du mur enduit, poteau « P du Gd Caunet », petite barrière noire à poteaux rouge et blanc, cédez-le-passage et poteau directionnel à deux lames sur l'îlot herbeux ; la route tourne à droite."
+  },
+  {
+   "fichier": "Capture d’écran (8).png",
+   "position_pk_m": -60,
+   "regard": "vers le départ",
+   "montre": "Panneau en bois « Forêt départementale de Fontblanche – Roquefort-la-Bédoule » sur un pin à gauche, poteau directionnel, voitures du parking derrière les arbres ; flèche de rabattement dans la voie ; végétation dense à droite."
+  },
+  {
+   "fichier": "Capture d’écran (9).png",
+   "position_pk_m": -40,
+   "regard": "à gauche",
+   "montre": "Parking plein vu depuis l'accotement herbeux : une quinzaine de voitures, chêne vert au milieu, mur bas à poteaux blancs au fond ; barrière pivotante noire à disque « sens interdit » à droite de l'image (PK ≈ -30)."
+  },
+  {
+   "fichier": "Capture d’écran (10).png",
+   "position_pk_m": -40,
+   "regard": "vers le départ",
+   "montre": "Même point : barrière pivotante devant l'accès nord du parking, grands pins penchés au-dessus de la route, aire de gravier à droite avec fourgon blanc."
+  },
+  {
+   "fichier": "Capture d’écran (11).png",
+   "position_pk_m": -40,
+   "regard": "vers le départ",
+   "montre": "Route sous les pins ; miroir convexe sur un pin à gauche (PK ≈ -24) ; fourgon garé sur l'aire de droite (PK ≈ 0)."
+  },
+  {
+   "fichier": "Capture d’écran (12).png",
+   "position_pk_m": -30,
+   "regard": "vers l'arrière",
+   "montre": "Accès nord du parking fermé par la barrière pivotante (≈ 4,5 m, poteaux rouge et blanc, disque sens interdit) ; bloc de pierre au sol ; voitures garées sur le gravier."
+  },
+  {
+   "fichier": "Capture d’écran (13).png",
+   "position_pk_m": -30,
+   "regard": "à gauche",
+   "montre": "Barrière pivotante à gauche, gros blocs calcaires, miroir convexe sur le pin, lisse basse en bois qui part vers le départ, sous-bois herbeux."
+  },
+  {
+   "fichier": "Capture d’écran (14).png",
+   "position_pk_m": -30,
+   "regard": "vers le départ",
+   "montre": "Route vers le départ : lisse en bois à gauche, poteau bois, aire de gravier à droite avec fourgon blanc."
+  },
+  {
+   "fichier": "Capture d’écran (15).png",
+   "position_pk_m": -30,
+   "regard": "à droite",
+   "montre": "Large aire de gravier et de terre à droite (départ des chemins du centre équestre), autocar garé sous les arbres, plaque verte n° 5326."
+  },
+  {
+   "fichier": "Capture d’écran (16).png",
+   "position_pk_m": -19,
+   "regard": "à gauche",
+   "montre": "Arrière de l'accès nord : barrière pivotante, blocs, pins, parking ; lisse en bois et sentier herbeux le long de la route."
+  },
+  {
+   "fichier": "Capture d’écran (17).png",
+   "position_pk_m": -19,
+   "regard": "à droite",
+   "montre": "Chemin de gravier vers le centre équestre (autocar garé), plaque d'adresse verte « 5326 », bâtiment beige au fond ; fourgon sur l'aire du départ."
+  },
+  {
+   "fichier": "Capture d’écran (18).png",
+   "position_pk_m": -19,
+   "regard": "vers le départ",
+   "montre": "Poteau bois (avec câble) au ras du bord gauche, lisse en bois à gauche, aire du départ et fourgon à droite."
+  },
+  {
+   "fichier": "Capture d’écran (19).png",
+   "position_pk_m": -9,
+   "regard": "vers l'arrière",
+   "montre": "Côté gauche : lisse basse en bois, sentier de terre, poteau bois à bague jaune, parking au fond."
+  },
+  {
+   "fichier": "Capture d’écran (20).png",
+   "position_pk_m": -9,
+   "regard": "vers le départ",
+   "montre": "Lisse en bois à 1,5 m du bord gauche jusqu'au PK ≈ +3 ; pins penchés ; débouché de piste à droite."
+  },
+  {
+   "fichier": "Capture d’écran (21).png",
+   "position_pk_m": -9,
+   "regard": "à droite",
+   "montre": "Débouché d'un chemin vers un paddock clos de bois avec abri, panneau sombre sur poteau, fourgon garé ; à droite l'entrée de la piste GC 107."
+  },
+  {
+   "fichier": "Capture d’écran (22).png",
+   "position_pk_m": -9,
+   "regard": "vers le départ",
+   "montre": "Repère peint jaune-vert au bout de la ligne de rive droite, entouré à la main par le directeur (PK ≈ 0) ; au-delà, entrée de la piste GC 107 avec barrière noire à plaque jaune, poteau de bois et petit panneau rouge."
+  },
+  {
+   "fichier": "Capture d’écran (23).png",
+   "position_pk_m": 2,
+   "regard": "à droite",
+   "montre": "Aire de gravier du départ (fourgon garé, promeneur), pin au ras du bord avec le repère peint à son pied (entouré), barrière noire à plaque jaune de la piste GC 107, poteau de bois."
+  },
+  {
+   "fichier": "Capture d’écran (24).png",
+   "position_pk_m": 2,
+   "regard": "vers le départ",
+   "montre": "Ce que voit le pilote en s'élançant : route sous les pins, barrière de la GC 107 à droite, sous-bois à gauche."
+  },
+  {
+   "fichier": "Capture d’écran (25).png",
+   "position_pk_m": 2,
+   "regard": "à gauche",
+   "montre": "Lisse en bois en deux tronçons avec passage du sentier, sous-bois de chênes verts, parking au fond."
+  },
+  {
+   "fichier": "Capture d’écran (26).png",
+   "position_pk_m": 2,
+   "regard": "vers l'arrière",
+   "montre": "Route vers le carrefour : lisse en bois à droite de l'image (côté gauche de la course), aire de gravier et pin au ras de la route à gauche de l'image."
+  }
+ ],
+ "objets": [
+  {
+   "genre": "parking",
+   "description": "Parking du Grand Caunet (accès au massif), gravier calcaire, ombragé de chênes verts et de pins ; plein de voitures les jours de sortie",
+   "cote": "gauche",
+   "pk_debut_m": -68,
+   "pk_fin_m": -26,
+   "decalage_bord_m": 3.0,
+   "emprise_l93": [
+    [
+     917033,
+     6240969
+    ],
+    [
+     917028,
+     6240976
+    ],
+    [
+     917020,
+     6240990
+    ],
+    [
+     917013,
+     6241000
+    ],
+    [
+     917000,
+     6241002
+    ],
+    [
+     916989,
+     6240995
+    ],
+    [
+     916989,
+     6240968
+    ]
+   ],
+   "hauteur_m": null,
+   "longueur_m": 45,
+   "profondeur_m": 32,
+   "materiau": "gravier calcaire blanc compacté, terre par endroits",
+   "couleurs": "blanc cassé à beige",
+   "details": "≈ 1 000 m², 30 à 40 places sans marquage ; au niveau de la route (MNT 398,4 m contre 398,1 m sur l'axe au PK -50) ; arbres isolés dans l'emprise (un chêne vert au bord de la route vers le PK -40) ; deux accès : principal au PK -68…-52 (bouche de gravier ≈ 15 m) et accès nord au PK -33…-26 fermé par la barrière pivotante ; côté route, bande d'herbe et d'arbres de 2 à 4 m du PK -52 au PK -33. L'emprise s'étend jusqu'à ≈ 43 m à gauche de l'axe (PK -52…-21 en projection)",
+   "captures": [
+    "(4)",
+    "(6)",
+    "(7)",
+    "(8)",
+    "(9)",
+    "(10)",
+    "(12)",
+    "(16)",
+    "(19)",
+    "(25)"
+   ],
+   "confiance": "bonne"
+  },
+  {
+   "genre": "mur",
+   "description": "Long mur de clôture enduit le long du bord gauche, du carrefour jusqu'au pilier d'angle",
+   "cote": "gauche",
+   "pk_debut_m": -140,
+   "pk_fin_m": -86,
+   "decalage_bord_m": 2.5,
+   "emprise_l93": [
+    [
+     917105.3,
+     6240942.6
+    ],
+    [
+     917099.3,
+     6240943.8
+    ],
+    [
+     917093.5,
+     6240944.9
+    ],
+    [
+     917087.4,
+     6240946.1
+    ],
+    [
+     917081.8,
+     6240947.4
+    ],
+    [
+     917076.0,
+     6240948.6
+    ],
+    [
+     917070.1,
+     6240950.0
+    ],
+    [
+     917064.0,
+     6240951.7
+    ],
+    [
+     917058.1,
+     6240953.6
+    ],
+    [
+     917052.1,
+     6240956.3
+    ],
+    [
+     917052.1,
+     6240956.3
+    ]
+   ],
+   "hauteur_m": 2.0,
+   "longueur_m": 55,
+   "profondeur_m": 0.25,
+   "materiau": "maçonnerie enduite (parpaings ou béton banché), chaperon plat",
+   "couleurs": "gris-beige à brun clair, salissures sombres en pied",
+   "details": "Polyligne. Ligne continue relevée sur le MNS − MNT (h ≈ 1,8-2,3 m à 5,3-6,3 m de l'axe) ; arbustes, cyprès et pins dépassent derrière ; une petite niche carrée vers le PK -110 ; bande d'herbe de 1,5 à 2,5 m entre la rive et le mur",
+   "captures": [
+    "(3)",
+    "(4)",
+    "(5)",
+    "(6)"
+   ],
+   "confiance": "bonne"
+  },
+  {
+   "genre": "mur",
+   "description": "Mur de soutènement enduit qui borde le parking au sud, de la route vers l'ouest",
+   "cote": "gauche",
+   "pk_debut_m": -69,
+   "pk_fin_m": -52,
+   "decalage_bord_m": 1.5,
+   "emprise_l93": [
+    [
+     917036,
+     6240967
+    ],
+    [
+     917020,
+     6240966.5
+    ],
+    [
+     917005,
+     6240966
+    ],
+    [
+     916990,
+     6240966
+    ]
+   ],
+   "hauteur_m": 1.9,
+   "longueur_m": 46,
+   "profondeur_m": 0.3,
+   "materiau": "maçonnerie enduite",
+   "couleurs": "beige rosé, taches rouges (tags), plus sombre en pied",
+   "details": "Polyligne. Le parking est ≈ 1 m plus haut que la cour au sud (MNT 398,4 m contre 397,3-397,6 m) : ≈ 1,9 m vu de la rampe et de la route, ≈ 0,9 m (parapet) vu du parking, où des poteaux blancs le jalonnent ; poteau « P du Gd Caunet ← » et petite plaque bleue à flèche au pied, à son extrémité côté route (PK ≈ -67). Il part presque perpendiculairement à la route : en PK il ne couvre que la largeur de la bouche du parking ; tracé lu sur l'orthophoto à ±2 m",
+   "captures": [
+    "(6)",
+    "(7)",
+    "(9)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "portail",
+   "description": "Entrée d'une propriété (gardiennage de camping-cars au sud du parking) : rampe béton, pilier en pierre, portail coulissant blanc et monolithe dressé",
+   "cote": "gauche",
+   "pk_debut_m": -86,
+   "pk_fin_m": -69,
+   "decalage_bord_m": 1.0,
+   "emprise_l93": [
+    [
+     917052.7,
+     6240957.5
+    ],
+    [
+     917039.8,
+     6240964.7
+    ],
+    [
+     917033,
+     6240963
+    ],
+    [
+     917029,
+     6240956
+    ],
+    [
+     917036,
+     6240956
+    ]
+   ],
+   "hauteur_m": 2.0,
+   "longueur_m": 5.0,
+   "profondeur_m": null,
+   "materiau": "portail métallique plein ; murs enduits ; pilier et monolithe en pierre brute",
+   "couleurs": "portail et murs blanc cassé ; pierre beige-brun",
+   "details": "Pilier d'angle en moellons sombres (≈ 0,6 × 0,6 × 2,3 m) au bout du long mur (PK ≈ -86) ; rampe en béton gris (≈ 5 m de large) qui file vers l'ouest le long du mur du parking ; portail coulissant plein ≈ 5 × 2 m entre deux pans de mur blanc, au fond (≈ (917030 ; 6240959), à ≈ 15 m de l'axe) ; monolithe de pierre dressé ≈ 3,5 m × 1 m à droite du portail ; petites plaques (numéro, interphone) sur le pilier ; une voiture se gare souvent sur le gravier devant le mur du parking (PK -72…-68). Emprise : contour grossier de la rampe jusqu'au portail",
+   "captures": [
+    "(5)",
+    "(6)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "barriere",
+   "description": "Barrière pivotante qui ferme l'accès nord du parking",
+   "cote": "gauche",
+   "pk_debut_m": -33,
+   "pk_fin_m": -27,
+   "decalage_bord_m": 7.0,
+   "emprise_l93": [
+    [
+     917010,
+     6240996
+    ],
+    [
+     917011,
+     6241001
+    ]
+   ],
+   "hauteur_m": 1.1,
+   "longueur_m": 4.5,
+   "profondeur_m": 0.2,
+   "materiau": "tube d'acier",
+   "couleurs": "lisses et montants noirs, poteaux rayés rouge et blanc, disque rouge « sens interdit » au milieu",
+   "details": "Deux poteaux ≈ 1,2 m, lisse haute et lisse basse reliées par des montants, à peu près parallèle à la route ; bouche de gravier de ≈ 6 m entre la rive et la barrière ; gros blocs calcaires (≈ 1 m) posés au sol à côté. Position recoupée sur trois vues (captures 9, 10, 12)",
+   "captures": [
+    "(9)",
+    "(10)",
+    "(12)",
+    "(13)",
+    "(16)"
+   ],
+   "confiance": "bonne"
+  },
+  {
+   "genre": "barriere",
+   "description": "Petite barrière à l'entrée principale du parking",
+   "cote": "gauche",
+   "pk_debut_m": -57,
+   "pk_fin_m": -54,
+   "decalage_bord_m": 7.0,
+   "emprise_l93": null,
+   "hauteur_m": 1.0,
+   "longueur_m": 3.0,
+   "profondeur_m": 0.1,
+   "materiau": "acier",
+   "couleurs": "noir, poteaux rouge et blanc",
+   "details": "Même modèle que la barrière pivotante, plus courte, dans la moitié gauche de la bouche ; position lue sur une seule vue",
+   "captures": [
+    "(7)"
+   ],
+   "confiance": "faible"
+  },
+  {
+   "genre": "panneau",
+   "description": "Cédez-le-passage et poteau directionnel à deux lames sur l'îlot herbeux entre les deux voies de gravier du parking",
+   "cote": "gauche",
+   "pk_debut_m": -57,
+   "pk_fin_m": -42,
+   "decalage_bord_m": 2.0,
+   "emprise_l93": [
+    [
+     917027.2,
+     6240975.3
+    ],
+    [
+     917017.3,
+     6240988.8
+    ]
+   ],
+   "hauteur_m": 2.5,
+   "longueur_m": null,
+   "profondeur_m": null,
+   "materiau": "poteaux acier",
+   "couleurs": "triangle blanc à bord rouge ; lames claires (randonnée)",
+   "details": "Cédez-le-passage vers le PK -57 à ≈ 2 m de la rive ; poteau directionnel à deux lames vers le PK -42 à ≈ 6 m de l'axe (recoupé sur les captures 7 et 8) ; un second poteau nu à côté du triangle ; signalétique directionnelle sans équivalent dans le jeu",
+   "captures": [
+    "(7)",
+    "(8)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "panneau",
+   "description": "Panneau en bois « Forêt départementale de Fontblanche – Roquefort-la-Bédoule » cloué sur un pin",
+   "cote": "gauche",
+   "pk_debut_m": -58,
+   "pk_fin_m": -58,
+   "decalage_bord_m": 2.5,
+   "emprise_l93": null,
+   "hauteur_m": 2.0,
+   "longueur_m": 1.2,
+   "profondeur_m": null,
+   "materiau": "planche de bois gravée",
+   "couleurs": "brun, lettres claires",
+   "details": "Panneau rectangulaire ≈ 1,2 × 0,6 m sur le tronc ; signalétique forestière (non posée dans le jeu)",
+   "captures": [
+    "(8)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "autre",
+   "description": "Miroir convexe de sortie de parking fixé sur un pin",
+   "cote": "gauche",
+   "pk_debut_m": -24,
+   "pk_fin_m": -24,
+   "decalage_bord_m": 3.0,
+   "emprise_l93": [
+    [
+     917013.0,
+     6241005.8
+    ]
+   ],
+   "hauteur_m": 4.5,
+   "longueur_m": 0.7,
+   "profondeur_m": null,
+   "materiau": "miroir plastique",
+   "couleurs": "cadre rouge",
+   "details": "Rond ≈ 0,7 m, tourné vers la route ; hauteur estimée sur deux vues (4 à 5 m)",
+   "captures": [
+    "(11)",
+    "(13)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "cloture",
+   "description": "Lisse basse en bois qui borde le sentier le long de la route jusqu'au départ",
+   "cote": "gauche",
+   "pk_debut_m": -27,
+   "pk_fin_m": 3,
+   "decalage_bord_m": 1.5,
+   "emprise_l93": [
+    [
+     917013.0,
+     6241002.6
+    ],
+    [
+     917012.4,
+     6241009.9
+    ],
+    [
+     917009.9,
+     6241014.6
+    ],
+    [
+     917007.7,
+     6241019.5
+    ],
+    [
+     917005.9,
+     6241024.1
+    ],
+    [
+     917004.0,
+     6241028.5
+    ],
+    [
+     917002.7,
+     6241030.8
+    ]
+   ],
+   "hauteur_m": 0.6,
+   "longueur_m": 30,
+   "profondeur_m": 0.15,
+   "materiau": "bois rond (pin) grisé",
+   "couleurs": "gris-beige",
+   "details": "Polyligne. Une seule lisse demi-ronde sur poteaux ronds ≈ 0,6 m, espacés de ≈ 2,5 m ; à ≈ 1,5 m de la rive du PK -15 au PK +3, plus en retrait (≈ 5 m) vers le PK -25 ; ouverture pour le sentier vers le PK 0 ; deux tronçons en retrait dans le sous-bois vus depuis le PK +2",
+   "captures": [
+    "(13)",
+    "(14)",
+    "(16)",
+    "(18)",
+    "(19)",
+    "(20)",
+    "(25)",
+    "(26)"
+   ],
+   "confiance": "bonne"
+  },
+  {
+   "genre": "poteau",
+   "description": "Poteau bois (ligne téléphonique ou électrique basse) au ras du bord gauche",
+   "cote": "gauche",
+   "pk_debut_m": -15,
+   "pk_fin_m": -15,
+   "decalage_bord_m": 1.5,
+   "emprise_l93": [
+    [
+     917010.1,
+     6241014.7
+    ]
+   ],
+   "hauteur_m": 8,
+   "longueur_m": null,
+   "profondeur_m": null,
+   "materiau": "bois",
+   "couleurs": "gris, bague jaune",
+   "details": "Ø ≈ 0,25 m ; câble enroulé en pied ; pas de câbles aériens nets sur les vues ; position recoupée sur les captures 18 et 19",
+   "captures": [
+    "(14)",
+    "(18)",
+    "(19)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "aire",
+   "description": "Aire de gravier du départ et débouché de la piste GC 107 (fermé par la rubalise le jour de la course)",
+   "cote": "droite",
+   "pk_debut_m": -3,
+   "pk_fin_m": 12,
+   "decalage_bord_m": 0.0,
+   "emprise_l93": [
+    [
+     917012.8,
+     6241029.2
+    ],
+    [
+     917011.6,
+     6241032.1
+    ],
+    [
+     917010.0,
+     6241035.0
+    ],
+    [
+     917008.4,
+     6241037.7
+    ],
+    [
+     917006.7,
+     6241040.3
+    ],
+    [
+     917005.0,
+     6241042.8
+    ],
+    [
+     917010.5,
+     6241046.5
+    ],
+    [
+     917012.1,
+     6241044.0
+    ],
+    [
+     917013.9,
+     6241041.2
+    ],
+    [
+     917015.8,
+     6241038.2
+    ],
+    [
+     917017.5,
+     6241034.9
+    ],
+    [
+     917018.9,
+     6241031.7
+    ]
+   ],
+   "hauteur_m": null,
+   "longueur_m": 15,
+   "profondeur_m": 7,
+   "materiau": "gravier et terre battue, aiguilles de pin",
+   "couleurs": "beige gris",
+   "details": "Fourgons garés dessus sur Street View ; la ligne de rive droite s'arrête au PK ≈ 0 ; la piste GC 107 en part vers le nord-est (BD TOPO : débouché au PK 2,4) ; barrière de la piste à ≈ 10 m de la route",
+   "captures": [
+    "(10)",
+    "(11)",
+    "(14)",
+    "(17)",
+    "(18)",
+    "(21)",
+    "(22)",
+    "(23)",
+    "(26)"
+   ],
+   "confiance": "bonne"
+  },
+  {
+   "genre": "barriere",
+   "description": "Barrière de la piste DFCI GC 107, en retrait de la route",
+   "cote": "droite",
+   "pk_debut_m": 8,
+   "pk_fin_m": 13,
+   "decalage_bord_m": 6.0,
+   "emprise_l93": [
+    [
+     917011.5,
+     6241042.3
+    ],
+    [
+     917010.3,
+     6241047.6
+    ]
+   ],
+   "hauteur_m": 1.1,
+   "longueur_m": 4.5,
+   "profondeur_m": 0.2,
+   "materiau": "acier",
+   "couleurs": "noir, plaque jaune au milieu",
+   "details": "Barrière à lisses noires ; à sa gauche un poteau de bois ≈ 1,5 m avec plaque et un petit panneau rouge et blanc au sol (DFCI, sans équivalent dans le jeu)",
+   "captures": [
+    "(22)",
+    "(23)",
+    "(24)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "aire",
+   "description": "Large aire de gravier et départ des chemins du centre équestre",
+   "cote": "droite",
+   "pk_debut_m": -32,
+   "pk_fin_m": -12,
+   "decalage_bord_m": 0.0,
+   "emprise_l93": [
+    [
+     917025.2,
+     6241003.0
+    ],
+    [
+     917023.5,
+     6241006.8
+    ],
+    [
+     917021.6,
+     6241010.5
+    ],
+    [
+     917019.6,
+     6241014.0
+    ],
+    [
+     917017.7,
+     6241017.4
+    ],
+    [
+     917016.2,
+     6241020.8
+    ],
+    [
+     917024.2,
+     6241024.2
+    ],
+    [
+     917025.5,
+     6241021.4
+    ],
+    [
+     917027.2,
+     6241018.3
+    ],
+    [
+     917029.2,
+     6241014.7
+    ],
+    [
+     917031.3,
+     6241010.6
+    ],
+    [
+     917033.2,
+     6241006.4
+    ]
+   ],
+   "hauteur_m": null,
+   "longueur_m": 20,
+   "profondeur_m": 9,
+   "materiau": "gravier et terre",
+   "couleurs": "beige gris",
+   "details": "Deux chemins en partent vers l'arrière-droite (BD TOPO : débouchés aux PK -31 et -16) ; autocar et voitures garés sous les arbres ; plaque d'adresse verte « 5326 » sur poteau au PK ≈ -15, à ≈ 6 m de la rive ; petit poteau à chaîne près de l'autocar",
+   "captures": [
+    "(10)",
+    "(14)",
+    "(15)",
+    "(17)",
+    "(21)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "cloture",
+   "description": "Paddock clos de bois avec abri (centre équestre), en arrière-plan",
+   "cote": "droite",
+   "pk_debut_m": -25,
+   "pk_fin_m": -5,
+   "decalage_bord_m": 20,
+   "emprise_l93": null,
+   "hauteur_m": 1.3,
+   "longueur_m": null,
+   "profondeur_m": null,
+   "materiau": "poteaux et lisses bois ; abri en bois",
+   "couleurs": "bois clair, toit orangé",
+   "details": "Vu par l'ouverture d'un chemin ; panneau sombre sur poteau à l'angle (texte partiellement lisible) ; l'orthophoto montre une carrière de sable à 25-40 m de l'axe",
+   "captures": [
+    "(21)"
+   ],
+   "confiance": "faible"
+  },
+  {
+   "genre": "mur",
+   "description": "Mur de pierres sèches surmonté d'un grillage, côté droit au sortir du carrefour",
+   "cote": "droite",
+   "pk_debut_m": -163,
+   "pk_fin_m": -140,
+   "decalage_bord_m": 2.5,
+   "emprise_l93": [
+    [
+     917128.9,
+     6240952.7
+    ],
+    [
+     917123.0,
+     6240952.7
+    ],
+    [
+     917117.4,
+     6240952.8
+    ],
+    [
+     917111.9,
+     6240953.3
+    ],
+    [
+     917107.3,
+     6240954.0
+    ]
+   ],
+   "hauteur_m": 2.0,
+   "longueur_m": 23,
+   "profondeur_m": 0.5,
+   "materiau": "moellons calcaires à joints secs ; grillage vert sur poteaux métalliques ≈ 1 m",
+   "couleurs": "beige gris, grillage vert",
+   "details": "Polyligne. Haie et grands arbres derrière (MNS − MNT 3-8 m) ; bande d'herbe sèche entre rive et mur ; suivi, vers le PK -136…-128, d'un muret de béton bas portant un garde-corps métallique blanc (≈ 1 m)",
+   "captures": [
+    "(3)",
+    "(4)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "panneau",
+   "description": "Poteau de jalonnement « ← P du Gd Caunet / P de Fontblanche ↑ »",
+   "cote": "droite",
+   "pk_debut_m": -134,
+   "pk_fin_m": -134,
+   "decalage_bord_m": 1.3,
+   "emprise_l93": [
+    [
+     917101.3,
+     6240953.4
+    ]
+   ],
+   "hauteur_m": 2.6,
+   "longueur_m": 1.1,
+   "profondeur_m": null,
+   "materiau": "poteau acier, panneaux aluminium",
+   "couleurs": "panneaux blancs à bord noir, pictogramme P bleu, poteau blanc",
+   "details": "Deux panneaux directionnels superposés ≈ 1,1 × 0,25 m",
+   "captures": [
+    "(4)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "panneau",
+   "description": "Triangle de danger « cavaliers » avec panonceau blanc",
+   "cote": "droite",
+   "pk_debut_m": -123,
+   "pk_fin_m": -123,
+   "decalage_bord_m": 1.5,
+   "emprise_l93": [
+    [
+     917090.7,
+     6240955.6
+    ]
+   ],
+   "hauteur_m": 2.3,
+   "longueur_m": 0.7,
+   "profondeur_m": null,
+   "materiau": "acier",
+   "couleurs": "blanc à bord rouge ; panonceau blanc",
+   "details": "Lu sur une seule vue à grande distance (± 6 m en PK) ; seul le triangle « chaussée glissante » existe dans le jeu",
+   "captures": [
+    "(4)"
+   ],
+   "confiance": "faible"
+  },
+  {
+   "genre": "maison",
+   "description": "Cabanon maçonné couvert de tags, au-delà de l'îlot du carrefour",
+   "cote": "gauche",
+   "pk_debut_m": -146,
+   "pk_fin_m": -142,
+   "decalage_bord_m": 6,
+   "emprise_l93": [
+    [
+     917106.6,
+     6240940.6
+    ],
+    [
+     917110.6,
+     6240941.2
+    ],
+    [
+     917111.1,
+     6240937.3
+    ],
+    [
+     917107.1,
+     6240936.7
+    ]
+   ],
+   "hauteur_m": 4.2,
+   "longueur_m": 4,
+   "profondeur_m": 4,
+   "materiau": "maçonnerie enduite, toit de tuiles canal",
+   "couleurs": "murs blancs couverts de graffitis bleus, noirs et jaunes ; tuiles rouge orangé",
+   "details": "Emprise BD TOPO (h 4,2 m au faîtage), confirmée par la direction de visée de la capture 3 ; toit à deux pans, faîtage parallèle à la route, léger débord ; pas d'ouverture visible côté route ; derrière, deux poteaux bois de ligne aérienne et un panneau vert ; petit disque d'interdiction et bornes blanches sur l'herbe devant",
+   "captures": [
+    "(3)"
+   ],
+   "confiance": "bonne"
+  },
+  {
+   "genre": "maison",
+   "description": "Maison à étage derrière le long mur de gauche (arrière-plan, masquée par le mur et les arbres)",
+   "cote": "gauche",
+   "pk_debut_m": -87,
+   "pk_fin_m": -75,
+   "decalage_bord_m": 20,
+   "emprise_l93": [
+    [
+     917030.0,
+     6240930.5
+    ],
+    [
+     917029.8,
+     6240933.1
+    ],
+    [
+     917026.7,
+     6240932.8
+    ],
+    [
+     917026.0,
+     6240938.6
+    ],
+    [
+     917027.6,
+     6240938.8
+    ],
+    [
+     917027.3,
+     6240940.7
+    ],
+    [
+     917030.6,
+     6240941.2
+    ],
+    [
+     917030.8,
+     6240939.8
+    ],
+    [
+     917043.2,
+     6240941.6
+    ],
+    [
+     917044.0,
+     6240936.4
+    ],
+    [
+     917042.1,
+     6240931.7
+    ],
+    [
+     917033.5,
+     6240930.9
+    ]
+   ],
+   "hauteur_m": 6.5,
+   "longueur_m": 18,
+   "profondeur_m": 11,
+   "materiau": "inconnu (non vue)",
+   "couleurs": "toit de tuiles sur l'orthophoto",
+   "details": "Emprise et hauteur BD TOPO (résidentiel, 2 niveaux) ; piscine au sud ; non visible sur les captures, à n'ajouter que pour la silhouette au-dessus du mur",
+   "captures": [],
+   "confiance": "faible"
+  },
+  {
+   "genre": "arbre_remarquable",
+   "description": "Pin d'Alep au ras de la rive droite, au pied duquel est peint le repère du départ",
+   "cote": "droite",
+   "pk_debut_m": 2,
+   "pk_fin_m": 4,
+   "decalage_bord_m": 0.8,
+   "emprise_l93": [
+    [
+     917010.8,
+     6241035.4
+    ]
+   ],
+   "hauteur_m": 15,
+   "longueur_m": null,
+   "profondeur_m": null,
+   "materiau": "pin",
+   "couleurs": "écorce gris-brun",
+   "details": "Tronc Ø ≈ 0,5 m légèrement penché vers la route ; c'est le « pin penché » où passe la rubalise et où est fixé le panneau « public interdit » dans les données",
+   "captures": [
+    "(22)",
+    "(23)",
+    "(26)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "arbre_remarquable",
+   "description": "Grands pins penchés au-dessus de la chaussée entre le parking et le départ",
+   "cote": "gauche",
+   "pk_debut_m": -40,
+   "pk_fin_m": 20,
+   "decalage_bord_m": 1.5,
+   "emprise_l93": null,
+   "hauteur_m": 15,
+   "longueur_m": null,
+   "profondeur_m": null,
+   "materiau": "pins d'Alep, chênes verts",
+   "couleurs": "vert sombre",
+   "details": "Des deux côtés : voûte quasi fermée au-dessus de la route du PK -40 au PK +20 (MNS − MNT 10-17 m) ; plusieurs troncs inclinés vers la chaussée",
+   "captures": [
+    "(10)",
+    "(11)",
+    "(14)",
+    "(18)",
+    "(20)",
+    "(24)"
+   ],
+   "confiance": "bonne"
+  },
+  {
+   "genre": "autre",
+   "description": "Repère peint du départ sur la rive droite",
+   "cote": "droite",
+   "pk_debut_m": 0,
+   "pk_fin_m": 2,
+   "decalage_bord_m": 0.0,
+   "emprise_l93": [
+    [
+     917011.1,
+     6241033.0
+    ]
+   ],
+   "hauteur_m": 0,
+   "longueur_m": 0.3,
+   "profondeur_m": 0.2,
+   "materiau": "peinture routière",
+   "couleurs": "jaune-vert",
+   "details": "Petit rectangle peint au bout de la ligne de rive, entouré à la main par le directeur sur les captures 22 et 23 ; coïncide à ±2 m avec le PK 0 de la vidéo de course",
+   "captures": [
+    "(22)",
+    "(23)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "poteau",
+   "description": "Ligne aérienne sur poteaux bois côté gauche, du carrefour vers le PK -85",
+   "cote": "gauche",
+   "pk_debut_m": -140,
+   "pk_fin_m": -85,
+   "decalage_bord_m": 3,
+   "emprise_l93": null,
+   "hauteur_m": 8,
+   "longueur_m": null,
+   "profondeur_m": null,
+   "materiau": "bois",
+   "couleurs": "gris",
+   "details": "Deux poteaux à côté du cabanon (PK ≈ -138), puis poteaux derrière le long mur ; câbles visibles au-dessus de la route sur les captures 3 à 5 ; positions non relevées",
+   "captures": [
+    "(3)",
+    "(4)",
+    "(5)"
+   ],
+   "confiance": "faible"
+  },
+  {
+   "genre": "panneau",
+   "description": "Panneau temporaire « ROUTE D3D FERMÉE de 9h30 à 11h30 » sur l'îlot du carrefour",
+   "cote": "gauche",
+   "pk_debut_m": -158,
+   "pk_fin_m": -158,
+   "decalage_bord_m": 1.0,
+   "emprise_l93": null,
+   "hauteur_m": 0.9,
+   "longueur_m": 0.7,
+   "profondeur_m": null,
+   "materiau": "panneau sur piquet",
+   "couleurs": "blanc, bandeau jaune",
+   "details": "Présent sur Street View (oct. 2025), probablement lié à une épreuve ; à ne poser que pour l'ambiance du jour de course",
+   "captures": [
+    "(3)"
+   ],
+   "confiance": "moyenne"
+  },
+  {
+   "genre": "talus",
+   "description": "Talus boisé dense côté droit, du carrefour au virage du parking",
+   "cote": "droite",
+   "pk_debut_m": -125,
+   "pk_fin_m": -35,
+   "decalage_bord_m": 0.5,
+   "emprise_l93": null,
+   "hauteur_m": 1.0,
+   "longueur_m": 90,
+   "profondeur_m": null,
+   "materiau": "terre, litière, broussailles",
+   "couleurs": "vert sombre, terre ocre",
+   "details": "Légère butte (≈ 0,5-1 m) couverte de chênes verts, lentisques et pins de 8 à 15 m (MNS − MNT) ; aucune clôture visible",
+   "captures": [
+    "(5)",
+    "(6)",
+    "(8)"
+   ],
+   "confiance": "moyenne"
+  }
+ ],
+ "sol": [
+  {
+   "pk_debut_m": -165,
+   "pk_fin_m": -150,
+   "cote": "gauche",
+   "nature": "îlot de gravier bordé d'un caniveau à grille béton, puis bretelle enrobée vers la D3",
+   "largeur_m": 3.0
+  },
+  {
+   "pk_debut_m": -150,
+   "pk_fin_m": -86,
+   "cote": "gauche",
+   "nature": "herbe sèche jusqu'au pied du mur",
+   "largeur_m": 2.0
+  },
+  {
+   "pk_debut_m": -86,
+   "pk_fin_m": -72,
+   "cote": "gauche",
+   "nature": "béton (rampe vers le portail), puis enrobé usé",
+   "largeur_m": 5.0
+  },
+  {
+   "pk_debut_m": -72,
+   "pk_fin_m": -68,
+   "cote": "gauche",
+   "nature": "gravier blanc et herbe (voiture garée)",
+   "largeur_m": 3.0
+  },
+  {
+   "pk_debut_m": -68,
+   "pk_fin_m": -52,
+   "cote": "gauche",
+   "nature": "gravier calcaire blanc (bouche du parking)",
+   "largeur_m": 15.0
+  },
+  {
+   "pk_debut_m": -52,
+   "pk_fin_m": -33,
+   "cote": "gauche",
+   "nature": "herbe et terre sous les arbres, puis gravier du parking",
+   "largeur_m": 3.0
+  },
+  {
+   "pk_debut_m": -33,
+   "pk_fin_m": -26,
+   "cote": "gauche",
+   "nature": "gravier (accès nord jusqu'à la barrière)",
+   "largeur_m": 6.0
+  },
+  {
+   "pk_debut_m": -26,
+   "pk_fin_m": 5,
+   "cote": "gauche",
+   "nature": "herbe verte et sentier de terre derrière la lisse",
+   "largeur_m": 4.0
+  },
+  {
+   "pk_debut_m": -165,
+   "pk_fin_m": -125,
+   "cote": "droite",
+   "nature": "herbe sèche et terre",
+   "largeur_m": 2.5
+  },
+  {
+   "pk_debut_m": -125,
+   "pk_fin_m": -32,
+   "cote": "droite",
+   "nature": "terre et litière au pied du talus boisé",
+   "largeur_m": 1.0
+  },
+  {
+   "pk_debut_m": -32,
+   "pk_fin_m": -12,
+   "cote": "droite",
+   "nature": "gravier et terre (aire des chemins du centre équestre)",
+   "largeur_m": 9.0
+  },
+  {
+   "pk_debut_m": -12,
+   "pk_fin_m": -3,
+   "cote": "droite",
+   "nature": "herbe et terre",
+   "largeur_m": 2.0
+  },
+  {
+   "pk_debut_m": -3,
+   "pk_fin_m": 12,
+   "cote": "droite",
+   "nature": "gravier et terre battue, aiguilles de pin (aire du départ, débouché GC 107)",
+   "largeur_m": 7.0
+  }
+ ],
+ "chaussee": {
+  "largeur_m": 6.4,
+  "marquage": "Lignes de rive blanches continues des deux côtés, interrompues aux accès (bouche du parking PK -68…-52, aires de droite PK -32…-12 et -3…+12) ; ligne axiale continue du carrefour jusqu'au virage du parking (PK ≈ -65), puis discontinue à tirets longs ; flèche de rabattement dans la voie de droite vers le PK -55 ; petit repère jaune-vert peint au bout de la rive droite au PK ≈ 0 (départ). Le « D3D » posé sur la chaussée dans les captures est une étiquette de Google, pas une peinture.",
+  "remarques": "Largeur lue dans chaussee_precise.csv : 5,8-6,5 m du PK -170 au PK -80 (5,3 m au PK -120, valeur douteuse du tracé à la main), élargissement à 7,3-8,4 m dans le virage du parking (PK -70…-55), 6,4-6,9 m du PK -40 au départ. Enrobé gris clair usé, quelques reprises ; départ de la D3D en Y avec îlot et bretelle sur la D3 (PK -170…-145). Les positions de la caméra Google tombent à ≈ 2 m à gauche de l'axe dessiné du PK -40 au départ : soit la voiture roulait près de la rive gauche, soit l'axe de la zone d'approche est décalé ; les décalages latéraux de l'inventaire sont à ±2-3 m."
+ },
+ "a_verifier": [
+  "Hauteur des murs : estimée à ≈ 2 m (vues et MNS − MNT, qui sous-échantillonne les murs minces) ; le mur sud du parking est un soutènement dont la hauteur change selon le côté (≈ 1,9 m côté route et rampe, ≈ 0,9 m côté parking).",
+  "Tracé exact de la rampe béton et du portail blanc (gardiennage de camping-cars) : lu sur une seule vue rasante et sur l'orthophoto, ±3 m.",
+  "Position du cédez-le-passage, de la petite barrière noire de l'entrée principale et du triangle « cavaliers » : une seule vue chacun, ±5 m en PK.",
+  "Repère peint entouré par le directeur : lu comme le marquage de la ligne de départ (PK 0 ± 2 m, rive droite) ; à confirmer.",
+  "Ligne aérienne côté gauche (PK -140…-85) : poteaux non localisés précisément ; le poteau bois du PK -15 n'a pas de câbles visibles.",
+  "La BD TOPO place une « Aire d'accueil du Grand Caunet » à 34-40 m à gauche du PK -25 (non visible sur les captures) et un réservoir d'eau (5,2 m) à 70-90 m à gauche du PK -72.",
+  "Paddock et bâtiments du centre équestre à droite : vus de loin seulement ; l'emprise du centre équestre est dans la BD TOPO (zone d'activité) si l'on veut l'arrière-plan.",
+  "Street View date d'octobre 2025 : véhicules garés, autocar et panneau « route fermée » ne sont pas permanents ; la vidéo de course reste la référence pour les objets du rallye.",
+  "Orthophoto : une couture entre dalles passe à x = 917000 ; l'image à gauche de cette ligne est plus sombre et légèrement décalée."
+ ],
+ "constructions": [
+  {
+   "nom": "mas et dépendances (au nord du carrefour)",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917111.1,
+     6240973.6
+    ],
+    [
+     917109.2,
+     6240972.9
+    ],
+    [
+     917112.7,
+     6240962.2
+    ],
+    [
+     917129.5,
+     6240967.9
+    ],
+    [
+     917123.5,
+     6240986.2
+    ],
+    [
+     917138.0,
+     6240987.8
+    ],
+    [
+     917137.1,
+     6241000.2
+    ],
+    [
+     917127.2,
+     6240999.1
+    ],
+    [
+     917127.4,
+     6240996.6
+    ],
+    [
+     917116.7,
+     6240995.4
+    ],
+    [
+     917114.8,
+     6241000.6
+    ],
+    [
+     917130.9,
+     6241006.1
+    ],
+    [
+     917128.7,
+     6241009.2
+    ],
+    [
+     917112.4,
+     6241003.7
+    ],
+    [
+     917110.4,
+     6241003.1
+    ],
+    [
+     917111.3,
+     6241000.5
+    ],
+    [
+     917103.2,
+     6240997.8
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 6.4,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -151.7,
+   "distance_axe_m": 15.0,
+   "mns_moins_mnt_m": {
+    "25": 2.77,
+    "50": 4.01,
+    "75": 6.78,
+    "90": 7.71
+   },
+   "source": "BD TOPO batiment.30852865 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "cabanon tagué du carrefour",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917106.6,
+     6240940.6
+    ],
+    [
+     917107.1,
+     6240936.7
+    ],
+    [
+     917111.1,
+     6240937.3
+    ],
+    [
+     917110.6,
+     6240941.2
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 4.2,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_blanc",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -144.2,
+   "distance_axe_m": 6.1,
+   "mns_moins_mnt_m": {
+    "25": 2.2,
+    "50": 2.99,
+    "75": 3.65,
+    "90": 5.49
+   },
+   "source": "BD TOPO batiment.30852866 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs blancs couverts de graffitis (capture 3) ; toit de tuiles (orthophoto) ; faîtage parallèle à la route, léger débord, vus sur la capture 3",
+   "confiance": "bonne",
+   "faitage_direction": [
+    4.0,
+    0.6
+   ]
+  },
+  {
+   "nom": "bâtiment BD TOPO batiment.48031275",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917112.4,
+     6241003.7
+    ],
+    [
+     917128.7,
+     6241009.2
+    ],
+    [
+     917129.6,
+     6241007.9
+    ],
+    [
+     917129.1,
+     6241011.6
+    ],
+    [
+     917114.9,
+     6241008.1
+    ],
+    [
+     917114.3,
+     6241010.2
+    ],
+    [
+     917107.3,
+     6241008.5
+    ],
+    [
+     917108.0,
+     6241005.6
+    ],
+    [
+     917111.4,
+     6241006.4
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 3,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -141.0,
+   "distance_axe_m": 55.7,
+   "mns_moins_mnt_m": {
+    "25": 2.39,
+    "50": 2.51,
+    "75": 2.58,
+    "90": 2.65
+   },
+   "source": "BD TOPO batiment.48031275 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "faible"
+  },
+  {
+   "nom": "bâtiment BD TOPO batiment.48031276",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917100.6,
+     6240995.3
+    ],
+    [
+     917104.5,
+     6241002.8
+    ],
+    [
+     917086.3,
+     6240998.9
+    ],
+    [
+     917088.2,
+     6240992.1
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 3.7,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -119.1,
+   "distance_axe_m": 39.5,
+   "mns_moins_mnt_m": {
+    "25": 2.63,
+    "50": 2.86,
+    "75": 3.15,
+    "90": 9.21
+   },
+   "source": "BD TOPO batiment.48031276 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "faible"
+  },
+  {
+   "nom": "bâtiment BD TOPO batiment.30852862",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917033.5,
+     6240930.9
+    ],
+    [
+     917042.1,
+     6240931.7
+    ],
+    [
+     917041.8,
+     6240936.2
+    ],
+    [
+     917033.2,
+     6240935.4
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 3.9,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -84.3,
+   "distance_axe_m": 28.2,
+   "mns_moins_mnt_m": {
+    "25": 3.04,
+    "50": 3.11,
+    "75": 3.28,
+    "90": 4.14
+   },
+   "source": "BD TOPO batiment.30852862 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "maison à étage derrière le long mur",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917033.5,
+     6240930.9
+    ],
+    [
+     917033.2,
+     6240935.4
+    ],
+    [
+     917044.0,
+     6240936.4
+    ],
+    [
+     917043.2,
+     6240941.6
+    ],
+    [
+     917030.8,
+     6240939.8
+    ],
+    [
+     917030.6,
+     6240941.2
+    ],
+    [
+     917027.3,
+     6240940.7
+    ],
+    [
+     917027.6,
+     6240938.8
+    ],
+    [
+     917026.0,
+     6240938.6
+    ],
+    [
+     917026.7,
+     6240932.8
+    ],
+    [
+     917029.8,
+     6240933.1
+    ],
+    [
+     917030.0,
+     6240930.5
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 6.5,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -79.8,
+   "distance_axe_m": 22.7,
+   "mns_moins_mnt_m": {
+    "25": 3.41,
+    "50": 5.65,
+    "75": 6.09,
+    "90": 6.36
+   },
+   "source": "BD TOPO batiment.30852863 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "bâtiment BD TOPO batiment.30852861",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917014.7,
+     6240929.2
+    ],
+    [
+     917014.0,
+     6240929.0
+    ],
+    [
+     917013.5,
+     6240928.7
+    ],
+    [
+     917013.1,
+     6240928.2
+    ],
+    [
+     917012.9,
+     6240927.6
+    ],
+    [
+     917012.9,
+     6240927.0
+    ],
+    [
+     917013.2,
+     6240926.4
+    ],
+    [
+     917013.6,
+     6240926.0
+    ],
+    [
+     917014.7,
+     6240925.5
+    ],
+    [
+     917015.8,
+     6240925.8
+    ],
+    [
+     917016.2,
+     6240926.2
+    ],
+    [
+     917016.6,
+     6240927.2
+    ],
+    [
+     917016.5,
+     6240927.8
+    ],
+    [
+     917016.0,
+     6240928.6
+    ],
+    [
+     917015.6,
+     6240928.9
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 2.9,
+   "toit": "plat",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.0,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -75.1,
+   "distance_axe_m": 47.7,
+   "mns_moins_mnt_m": {
+    "25": 3.86,
+    "50": 4.03,
+    "75": 4.17,
+    "90": 4.3
+   },
+   "source": "BD TOPO batiment.30852861 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "faible"
+  },
+  {
+   "nom": "bâtiment BD TOPO batiment.30852800",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     916999.9,
+     6240934.3
+    ],
+    [
+     917001.8,
+     6240926.4
+    ],
+    [
+     917011.8,
+     6240928.7
+    ],
+    [
+     917009.6,
+     6240936.6
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 3.8,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -71.9,
+   "distance_axe_m": 45.7,
+   "mns_moins_mnt_m": {
+    "25": 2.59,
+    "50": 2.87,
+    "75": 3.13,
+    "90": 3.39
+   },
+   "source": "BD TOPO batiment.30852800 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "faible"
+  },
+  {
+   "nom": "bâtiment BD TOPO batiment.30852849",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     917001.8,
+     6240926.4
+    ],
+    [
+     916999.9,
+     6240934.3
+    ],
+    [
+     916997.2,
+     6240933.8
+    ],
+    [
+     916999.1,
+     6240925.9
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 2.2,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -71.9,
+   "distance_axe_m": 54.2,
+   "mns_moins_mnt_m": {
+    "25": 1.77,
+    "50": 1.99,
+    "75": 2.11,
+    "90": 2.23
+   },
+   "source": "BD TOPO batiment.30852849 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "faible"
+  },
+  {
+   "nom": "bâtiment BD TOPO batiment.48031273",
+   "type": "batiment",
+   "polygone_l93": [
+    [
+     916980.1,
+     6240946.7
+    ],
+    [
+     916989.2,
+     6240946.5
+    ],
+    [
+     916989.0,
+     6240953.7
+    ],
+    [
+     916980.3,
+     6240954.0
+    ]
+   ],
+   "hauteur_m": null,
+   "hauteur_bd_topo_m": 3,
+   "toit": "deux_pans",
+   "pente_toit": 0.3,
+   "debord_toit_m": 0.3,
+   "materiau_murs": "enduit_clair",
+   "materiau_toit": "tuile",
+   "materiau_collision": "beton",
+   "pk_m": -57.0,
+   "distance_axe_m": 49.8,
+   "mns_moins_mnt_m": {
+    "25": 2.43,
+    "50": 2.69,
+    "75": 4.28,
+    "90": 6.28
+   },
+   "source": "BD TOPO batiment.48031273 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "confiance": "faible"
+  },
+  {
+   "nom": "mur de soutènement sud du parking",
+   "type": "mur",
+   "polyligne_l93": [
+    [
+     917036.0,
+     6240967.0
+    ],
+    [
+     917020.0,
+     6240966.5
+    ],
+    [
+     917005.0,
+     6240966.0
+    ],
+    [
+     916990.0,
+     6240966.0
+    ]
+   ],
+   "epaisseur_m": 0.3,
+   "hauteur_m": 1.9,
+   "hauteur_depuis": "pied le plus bas",
+   "materiau": "enduit_clair",
+   "materiau_collision": "beton",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 6, 7, 9 ; tracé lu sur l'orthophoto (± 2 m)",
+   "note": "parking ≈ 1 m plus haut que la cour au sud : ≈ 1,9 m vu de la rampe et de la route, ≈ 0,9 m vu du parking",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "mur blanc le long de la rampe",
+   "type": "mur",
+   "polyligne_l93": [
+    [
+     917051.5,
+     6240956.3
+    ],
+    [
+     917043.0,
+     6240956.0
+    ],
+    [
+     917036.0,
+     6240955.9
+    ],
+    [
+     917029.4,
+     6240956.6
+    ]
+   ],
+   "epaisseur_m": 0.25,
+   "hauteur_m": 2.1,
+   "hauteur_depuis": "pied le plus bas",
+   "materiau": "enduit_blanc",
+   "materiau_collision": "beton",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 5 et 6 ; bord sud de l'emprise de la rampe (± 3 m)",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "rampe béton de l'entrée de la propriété",
+   "type": "rampe",
+   "polygone_l93": [
+    [
+     917053.3,
+     6240957.6
+    ],
+    [
+     917051.5,
+     6240956.6
+    ],
+    [
+     917036.0,
+     6240956.2
+    ],
+    [
+     917029.8,
+     6240956.9
+    ],
+    [
+     917031.3,
+     6240961.4
+    ],
+    [
+     917040.0,
+     6240961.8
+    ],
+    [
+     917047.0,
+     6240961.6
+    ]
+   ],
+   "materiau": "beton",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 6 ; contour lu sur une vue rasante et sur l'orthophoto (± 3 m)",
+   "note": "dalle posée sur le terrain (le MNT rend la pente vers le portail) ; décor seul, sans collision ; la bande de gravier du PK -72 est une aire",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "pilier d'angle en pierre",
+   "type": "bloc",
+   "centre_l93": [
+    917052.05,
+    6240956.32
+   ],
+   "direction": [
+    -2.0,
+    0.99
+   ],
+   "longueur_m": 0.6,
+   "largeur_m": 0.6,
+   "hauteur_m": 2.3,
+   "materiau": "pierre_sombre",
+   "materiau_collision": "pierre",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 5 et 6 ; au bout du long mur de gauche",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "portail coulissant blanc",
+   "type": "portail",
+   "segment_l93": [
+    [
+     917029.6,
+     6240957.0
+    ],
+    [
+     917031.4,
+     6240961.8
+    ]
+   ],
+   "epaisseur_m": 0.08,
+   "hauteur_m": 2.0,
+   "materiau": "portail_blanc",
+   "materiau_collision": "beton",
+   "piliers": {
+    "section_m": 0.4,
+    "hauteur_m": 2.2,
+    "materiau": "enduit_blanc"
+   },
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 6 ; au fond de la rampe, ≈ 15 m de l'axe (± 3 m)",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "monolithe de pierre dressé",
+   "type": "bloc",
+   "centre_l93": [
+    917031.86,
+    6240963.02
+   ],
+   "direction": [
+    0.351,
+    0.936
+   ],
+   "longueur_m": 1.0,
+   "largeur_m": 0.6,
+   "hauteur_m": 3.5,
+   "hauteur_fin_m": 3.0,
+   "materiau": "pierre",
+   "materiau_collision": "pierre",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 5 et 6 ; à droite du portail, devant le mur du parking",
+   "confiance": "moyenne"
+  },
+  {
+   "nom": "barrière pivotante de l'accès nord du parking",
+   "type": "barriere",
+   "segment_l93": [
+    [
+     917010.0,
+     6240996.0
+    ],
+    [
+     917011.0,
+     6241001.0
+    ]
+   ],
+   "longueur_m": 4.5,
+   "hauteur_m": 1.1,
+   "lisses_a_m": [
+    1.05,
+    0.45
+   ],
+   "pas_montants_m": 0.75,
+   "poteaux": "rouge_blanc",
+   "hauteur_poteaux_m": 1.2,
+   "plaque": "disque_sens_interdit",
+   "materiau": "barriere_noire",
+   "materiau_collision": "metal_glissiere",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 9, 10, 12, 13, 16 (position recoupée sur trois vues)",
+   "confiance": "bonne"
+  },
+  {
+   "nom": "petite barrière de l'entrée principale du parking",
+   "type": "barriere",
+   "segment_l93": [
+    [
+     917022.95,
+     6240972.12
+    ],
+    [
+     917021.12,
+     6240975.54
+    ]
+   ],
+   "longueur_m": 3.0,
+   "hauteur_m": 1.0,
+   "lisses_a_m": [
+    0.95,
+    0.45
+   ],
+   "pas_montants_m": 0.75,
+   "poteaux": "rouge_blanc",
+   "hauteur_poteaux_m": 1.1,
+   "plaque": null,
+   "materiau": "barriere_noire",
+   "materiau_collision": "metal_glissiere",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 7 (PK -57 à -54, à 7 m de la rive gauche ; une seule vue, ± 5 m)",
+   "confiance": "faible"
+  },
+  {
+   "nom": "barrière de la piste DFCI GC 107",
+   "type": "barriere",
+   "segment_l93": [
+    [
+     917011.5,
+     6241042.3
+    ],
+    [
+     917010.3,
+     6241047.6
+    ]
+   ],
+   "longueur_m": 4.5,
+   "hauteur_m": 1.1,
+   "lisses_a_m": [
+    1.05,
+    0.5
+   ],
+   "pas_montants_m": 0.75,
+   "poteaux": "noir",
+   "hauteur_poteaux_m": 1.2,
+   "plaque": "plaque_jaune",
+   "materiau": "barriere_noire",
+   "materiau_collision": "metal_glissiere",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 22 à 24",
+   "confiance": "moyenne"
+  }
+ ],
+ "constructions_note": "Volumes qui ne suivent pas la route, construits par scripts/12_carrefours_annexes.py (section « constructions de la zone de départ ») dans modele/annexes.glb (décor) et annexes_collision.glb (physique). Coordonnées Lambert-93. Types : batiment (polygone extrudé du pied au toit ; hauteur_m = faîtage au-dessus du terrain, calculée sur le MNS - MNT LiDAR quand elle vaut null), mur (polyligne extrudée, hauteur depuis le pied le plus bas), portail, bloc (pilier, monolithe), rampe (dalle drapée sur le terrain, sans collision), barriere. Les murs le long de la route sont dans ouvrages_parapets.json, la lisse et les petits objets dans mobilier_bord_de_route.json, les aires dans aires_et_pistes.json. Bâtiments BD TOPO écartés : batiment.21721022 (PK -188.7, 36.7 m) : hors des PK -170 à +20 (en projection sur l'axe prolongé); batiment.30852864 (PK -133.8, 24.9 m) : MNS - MNT nul sur l'emprise : pas de volume bâti dans le relevé LiDAR; batiment.48031274 (PK -183.5, 32.5 m) : hors des PK -170 à +20 (en projection sur l'axe prolongé)"
+}

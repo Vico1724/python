@@ -124,7 +124,9 @@ def main():
     # Relevé du sixième essai (13/11/2026 au soir) : « sol brun nu sous les pins », alors que la reconnaissance montre de
     # l'herbe, de la garrigue et de la pierraille claire entre les troncs. La litière d'aiguilles couvre donc moins, et
     # l'herbe se glisse sous les arbres ; le reste revient au fond pierreux clair.
-    p["aiguilles_de_pin"] = arbres * (0.34 + 0.30 * melange) + garrigue * 0.15
+    # (14/11/2026, test de la septième version : « versants beiges et nus » sous les arbres ; le fond pierreux, éclairci
+    # pour les aires, ne doit pas y dominer : la litière couvre de nouveau l'essentiel du sol boisé)
+    p["aiguilles_de_pin"] = arbres * (0.52 + 0.30 * melange) + garrigue * 0.18
     p["herbe_haute"] = ouvert * vert * (0.25 + 0.60 * vigoureux) + arbres * 0.10 * (1.0 - melange)
     p["herbe_seche"] = ouvert * vert * (0.75 - 0.60 * vigoureux) * (0.65 + 0.35 * b1) + garrigue * (0.30 + 0.15 * b2) + arbres * 0.14 * b1
     p["terre"] = ouvert * (1.0 - vert) * (1.0 - clair)

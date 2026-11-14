@@ -87,6 +87,9 @@ TOL_Z_M = 0.05                    # l'axe lissé reste à 5 cm au plus de l'alti
 LAMBDA_DEVERS = 1000.0            # ordre 2 : coupe sous 2 pi lambda^(1/4), soit 35 m environ (300 laissait des vrilles de 2 %/m)
 TOL_DEVERS = 0.02                 # le dévers lissé reste à 2 % au plus du dévers mesuré (6 cm au bord)
 FENETRE_DEVERS, ECART_DEVERS = 21, 0.03    # dévers aberrant : à plus de 3 % de la médiane sur 21 m
+# relief réel rendu à la route lissée (fonction grain) : part de l'écart mesuré, plafonds en altitude et en dévers
+GRAIN_PART, GRAIN_MAX_M, GRAIN_DEVERS_MAX = 0.75, 0.015, 0.006
+LAMBDA_GRAIN = 1.0                # ordre 2 : ne rend que les ondulations de plus de 6 m de long environ
 
 
 def whittaker(y, poids, lam, ordre):
@@ -273,13 +276,24 @@ def main():
         yl = lisser_borne(np.interp(grille, pk, y), tol_, lam, ordre, np.zeros(len(grille), bool), np.ones(len(grille)))
         return np.interp(pk, grille, yl)
 
+    def grain(mesure, lisse, plafond):
+        """Part du relief mesuré rendue à la valeur lissée. Essai en jeu du 14/11/2026 (septième version) : « n'as-tu pas
+        trop lissé la route ? Garder un ressenti réel de route non parfaite, mais enlever les bosses non réelles et trop
+        fortes ». Le lissage seul laissait une chaussée parfaite (0,04 g). On lui rend GRAIN_PART de l'écart mesuré
+        (ondulations de plus de 6 m de long : en dessous, c'est le bruit du relevé), écrêté en douceur à `plafond` : une
+        ondulation d'un centimètre revient à peu près entière, une bosse de 4 cm est ramenée à 1,5 cm."""
+        r = lisser_en_long(mesure - lisse, 1.0, LAMBDA_GRAIN, 2)
+        return lisse + plafond * np.tanh(GRAIN_PART * r / plafond)
+
     za_l = lisser_en_long(za1, TOL_Z_M, LAMBDA_Z, 3)
+    za_l = grain(za1, za_l, GRAIN_MAX_M)
     sg, sd = (zg1 - za1) / lg1, (zd1 - za1) / ld1
     faux = (np.abs(sg - mediane_glissante(sg, FENETRE_DEVERS)) > ECART_DEVERS) | (np.abs(sd - mediane_glissante(sd, FENETRE_DEVERS)) > ECART_DEVERS)
     faux = np.convolve(faux.astype(float), np.ones(5), "same") > 0
     bons = ~faux
-    sg_l = lisser_en_long(np.interp(rang, rang[bons], sg[bons]), TOL_DEVERS, LAMBDA_DEVERS, 2)
-    sd_l = lisser_en_long(np.interp(rang, rang[bons], sd[bons]), TOL_DEVERS, LAMBDA_DEVERS, 2)
+    sg_i, sd_i = np.interp(rang, rang[bons], sg[bons]), np.interp(rang, rang[bons], sd[bons])
+    sg_l = grain(sg_i, lisser_en_long(sg_i, TOL_DEVERS, LAMBDA_DEVERS, 2), GRAIN_DEVERS_MAX)
+    sd_l = grain(sd_i, lisser_en_long(sd_i, TOL_DEVERS, LAMBDA_DEVERS, 2), GRAIN_DEVERS_MAX)
     zg_l, zd_l = za_l + sg_l * lg1, za_l + sd_l * ld1
     i_f = np.flatnonzero(faux)
     en_long = {"lambda_axe": LAMBDA_Z, "tolerance_axe_m": TOL_Z_M, "lambda_devers": LAMBDA_DEVERS, "tolerance_devers_pct": TOL_DEVERS * 100,

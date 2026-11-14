@@ -1992,6 +1992,53 @@
    "nature": "rallye",
    "pk_releve_m": 6731,
    "calage": "PK corrigé de +4,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": -15.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 14, 18, 19 ; poteau bois gris à bague jaune, Ø ≈ 0,25 m, relevé à 1,4 m de la rive, posé à 1,2 m pour ne pas traverser la lisse",
+   "nature": "permanent",
+   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": -138.5,
+   "cote": "gauche",
+   "decalage_m": 3.6,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 3 ; l'un des deux poteaux de ligne aérienne derrière le cabanon, position estimée (± 3 m)",
+   "nature": "permanent",
+   "confiance": "faible",
+   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": -137.3,
+   "cote": "gauche",
+   "decalage_m": 3.6,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 3 ; second poteau de ligne aérienne derrière le cabanon, position estimée (± 3 m)",
+   "nature": "permanent",
+   "confiance": "faible",
+   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": -123.0,
+   "cote": "droite",
+   "decalage_m": 1.7,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 4 ; triangle « cavaliers » avec panonceau, rendu par le triangle « autre danger » du jeu ; une seule vue (± 6 m)",
+   "nature": "permanent",
+   "confiance": "faible",
+   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 2614.0,
+   "cote": "gauche",
+   "decalage_m": 2.9,
+   "calage": "posé avec le panneau qu'il porte (PK déjà corrigé)",
+   "source": "ajouté le 14/11/2026 (remarque du directeur : panneau de rallye seul sur un piquet à l'extérieur d'un virage à droite). La vidéo de course montre cette annonce de point radio « clouée sur un tronc de pin à 1,6 m » ; nos arbres n'étant pas à la place des vrais, le panneau se retrouvait seul sur son mât au bord de l'aire. Ce pin est le sien."
   }
  ],
  "non_poses": [
@@ -2448,6 +2495,21 @@
    "pk_releve_debut_m": 6672,
    "pk_releve_fin_m": 6678,
    "calage": "PK corrigé de +4,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+  },
+  {
+   "pk_debut_m": -32.5,
+   "pk_fin_m": -29.5,
+   "cote": "gauche",
+   "decalage_m": 6.5,
+   "hauteur_m": [
+    0.6,
+    1.0
+   ],
+   "pas_m": 1.5,
+   "profondeur_m": 0.8,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 12, 13, 16 ; gros blocs calcaires posés au sol à côté de la barrière pivotante de l'accès nord du parking",
+   "nature": "permanent",
+   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
   }
  ],
  "lisses": [
@@ -2528,6 +2590,67 @@
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : barrière basse sombre à l'entrée de la piste DFCI",
    "nature": "permanent",
    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": -27.0,
+   "pk_fin_m": -1.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "points": [
+    [
+     -27.0,
+     "gauche",
+     4.7
+    ],
+    [
+     -20.0,
+     "gauche",
+     1.7
+    ],
+    [
+     -10.0,
+     "gauche",
+     1.7
+    ],
+    [
+     -5.0,
+     "gauche",
+     1.5
+    ],
+    [
+     -1.0,
+     "gauche",
+     1.5
+    ]
+   ],
+   "hauteur_m": 0.6,
+   "pas_m": 2.5,
+   "lisses_a_m": [
+    0.55
+   ],
+   "section_poteau_m": 0.12,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 13, 14, 16, 18 à 20, 25, 26 ; tracé de la polyligne relevée (décalage 4,7 m au PK -27, 1,5-1,7 m ensuite)",
+   "note": "lisse basse en bois rond grisé le long du sentier, premier tronçon ; ouverture du sentier entre les PK -1 et +0,5",
+   "nature": "permanent",
+   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
+  },
+  {
+   "genre": "lisse_bois",
+   "pk_debut_m": 0.5,
+   "pk_fin_m": 3.0,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "hauteur_m": 0.6,
+   "pas_m": 2.5,
+   "lisses_a_m": [
+    0.55
+   ],
+   "section_poteau_m": 0.12,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 20, 25, 26",
+   "note": "lisse basse en bois, second tronçon après l'ouverture du sentier",
+   "nature": "permanent",
+   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
   }
  ],
  "rubalises": [

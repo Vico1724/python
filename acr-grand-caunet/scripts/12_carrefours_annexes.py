@@ -7,9 +7,13 @@ au-delà : l'enrobé de la branche de droite et de l'amorce de la D1 nord (avec 
 le terre-plein en terre, les parapets (pierre, ponceau), les panneaux et la rubalise de
 fermeture. Le plan (polygones, polylignes, hauteurs, sources) est dans le JSON : il a été
 établi sur le nuage de points LiDAR HD classé de l'IGN, le MNT, Street View et la vidéo.
+Section « constructions de la zone de départ » : volumes qui ne suivent pas la route (bâtiments, murs en
+travers, portail, pilier, monolithe, rampe, barrières) de data/reference/zone_depart.json, ajoutés à
+annexes.glb et annexes_collision.glb.
 
-Entrées : data/reference/carrefours_annexes.json, data/processed/chaussee_precise.csv,
-          data/raw/mnt_lidarhd_50cm.tif, modele/repere.json, modele/ouvrages_collision.glb (parapets
+Entrées : data/reference/carrefours_annexes.json, data/reference/zone_depart.json (liste « constructions »),
+          data/processed/chaussee_precise.csv, data/raw/mnt_lidarhd_50cm.tif, mns_lidarhd_50cm.tif (hauteur
+          des bâtiments), modele/repere.json, modele/ouvrages_collision.glb (parapets
           de l'étape 11, pour écarter le balisage)
 Méthode : surfaces = polygones du plan moins la chaussée de la spéciale (ce qui recolle leur bord
           exactement sur la ligne de fermeture), triangulées (contour tous les 0,5 m, grille de 1 m).
@@ -505,6 +509,392 @@ def rendus(vues, fichiers, prefixe="carrefour"):
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# --- constructions de la zone de départ -------------------------------------------------------------------
+# Volumes qui ne suivent pas la route (data/reference/zone_depart.json, liste « constructions ») : bâtiments de la BD TOPO
+# et cabanon, murs en travers, portail, pilier, monolithe, rampe, barrières. Coordonnées Lambert-93, pied sur le MNT
+# LiDAR. Les matières nouvelles sont des couleurs unies (16_paquet_unreal.py en fait une matière à couleur unie) ; béton
+# et pierre reprennent les matières des parapets. Physique : un volume balayé (m11.boite) par mur ou par face de
+# bâtiment, matière de choc prise dans la table OBSTACLES de 09_export_stage_ir.py (beton, pierre, metal_glissiere).
+ZD_MATIERES = {          # couleurs linéaires (glTF), d'après les captures Street View
+    "enduit_clair": {"color": [0.60, 0.52, 0.40], "rough": 0.95},      # enduit beige rosé (mur du parking, maisons)
+    "enduit_blanc": {"color": [0.74, 0.72, 0.66], "rough": 0.9},       # enduit blanc cassé (cabanon, pans du portail)
+    "tuile": {"color": [0.42, 0.13, 0.06], "rough": 0.9},              # tuiles canal rouge orangé
+    "portail_blanc": {"color": [0.83, 0.83, 0.80], "rough": 0.5},      # portail métallique plein
+    "barriere_noire": {"color": [0.018, 0.018, 0.02], "rough": 0.5},   # lisses et montants des barrières
+    "barriere_rouge": {"color": [0.55, 0.02, 0.02], "rough": 0.6},     # bandes des poteaux, disque « sens interdit »
+    "barriere_blanc": {"color": [0.80, 0.80, 0.78], "rough": 0.6},
+    "plaque_jaune": {"color": [0.80, 0.52, 0.01], "rough": 0.6},       # plaque de la barrière DFCI
+}
+ZD_COLLISION = {"metal_glissiere": {"color": [0.72, 0.74, 0.76]}, "beton": {"color": [0.7, 0.7, 0.68]}}
+ZD_EP_TOIT = 0.15        # m : épaisseur de la dalle de toit (débord compris)
+ZD_ENFOUI = 0.3          # m : les murs descendent sous le terrain le plus bas de leur pied
+
+
+def _vers_gltf_n(n):
+    """Normale Lambert-93 (x est, y nord, z haut) -> repère glTF du modèle (X, Y haut, Z sud)."""
+    n = np.atleast_2d(np.asarray(n, float))
+    return np.column_stack([n[:, 0], n[:, 2], -n[:, 1]])
+
+
+class _Lot:
+    """Faces planes accumulées par matériau : sommets propres à chaque face (arêtes vives), normale de la face, UV en
+    mètres, triangles orientés dans le sens de la normale."""
+
+    def __init__(self, ref):
+        self.ref, self.parts = ref, {}
+
+    def face(self, mat, P, n, uv):
+        """P : (k, 3) Lambert-93, polygone plan convexe (éventail) ; n : normale L93 ; uv : (k, 2) en mètres."""
+        P = np.asarray(P, float)
+        pos = m08.to_gltf(P, self.ref).astype(np.float64)
+        k = len(P)
+        tri = np.column_stack([np.zeros(k - 2, int), np.arange(1, k - 1), np.arange(2, k)])
+        ng = _vers_gltf_n(n)[0]
+        ng /= max(np.linalg.norm(ng), 1e-12)
+        tri = m11.oriente(pos, tri, ng)
+        self.parts.setdefault(mat, []).append({"pos": pos, "nrm": np.tile(ng, (k, 1)).astype(np.float32),
+                                               "uv": np.asarray(uv, np.float32), "idx": tri})
+
+    def triangles(self, mat, T, n, uv):
+        """T : (m, 3, 3) triangles Lambert-93 de même normale n ; uv : (m, 3, 2)."""
+        for t, u in zip(T, uv):
+            self.face(mat, t, n, u)
+
+    def meshes(self, nom):
+        out = []
+        for mat, parts in self.parts.items():
+            m = m11.fusion(parts, f"{nom}_{mat}", mat)
+            m["pos"] = m["pos"].astype(np.float32)
+            out.append(m)
+        return out
+
+
+def _anneau(poly, ligne=None):
+    """Sommets de l'anneau extérieur (sens trigonométrique, sans répétition), avec les points où il coupe la ligne de
+    faîtage (pour que le haut des murs et des rives suive exactement les deux pans)."""
+    R = np.asarray(shapely.orient_polygons(poly).exterior.coords)[:-1, :2]
+    if ligne is None:
+        return R
+    c, v = ligne
+    out = []
+    for a, b in zip(R, np.roll(R, -1, axis=0)):
+        out.append(a)
+        da, db = (a - c) @ v, (b - c) @ v
+        if da * db < 0:
+            out.append(a + (b - a) * da / (da - db))
+    return np.array(out)
+
+
+def _batiment(e, lot, mnt, mns, ref):
+    """Bâtiment : murs extrudés du pied (MNT le plus bas du contour, moins ZD_ENFOUI) au toit ; toit plat ou à deux pans
+    (faîtage dans l'axe long du rectangle d'emprise minimal, ou selon « faitage_direction »), dalle de toit fermée
+    (dessus, dessous, rives) avec débord. Hauteur = faîtage au-dessus du terrain : hauteur_m, ou MNS - MNT LiDAR."""
+    P = shapely.orient_polygons(Polygon(e["polygone_l93"]))
+    x0, y0, x1, y1 = P.bounds
+    gx, gy = np.meshgrid(np.arange(x0, x1, 0.5), np.arange(y0, y1, 0.5))
+    Q = np.column_stack([gx.ravel(), gy.ravel()])
+    Q = Q[shapely.contains_xy(P.buffer(-0.5), Q[:, 0], Q[:, 1])]
+    if len(Q) < 4:
+        Q = np.asarray(P.exterior.coords)[:-1]
+    z_terrain = mnt.z(Q[:, 0], Q[:, 1])
+    z_ref = float(np.median(z_terrain))
+    H, h_src = e.get("hauteur_m"), "donnée"
+    if H is None:
+        # Faîtage : 90e centile du MNS - MNT si le toit est net (écart p90 - p50 < 1,5 m) ; sinon des arbres débordent sur
+        # le toit et l'on prend le 75e centile, plafonné à la hauteur BD TOPO + 0,5 m.
+        h = mns.z(Q[:, 0], Q[:, 1]) - z_terrain
+        p50, p75, p90 = np.percentile(h, [50, 75, 90])
+        if p90 - p50 < 1.5:
+            H, h_src = float(p90), "MNS - MNT, 90e centile"
+        else:
+            H = float(p75) if e.get("hauteur_bd_topo_m") is None else float(min(p75, e["hauteur_bd_topo_m"] + 0.5))
+            H, h_src = H, "MNS - MNT, 75e centile (arbres au-dessus du toit), plafonné à BD TOPO + 0,5 m"
+        H = max(H, 2.2)
+    deux_pans = e.get("toit", "deux_pans") == "deux_pans"
+    debord = float(e.get("debord_toit_m", 0.3)) if deux_pans else 0.0
+    # repère du faîtage : u le long, v en travers
+    if e.get("faitage_direction"):
+        u = np.asarray(e["faitage_direction"], float)
+    else:
+        R = np.asarray(P.minimum_rotated_rectangle.exterior.coords)[:4]
+        a, b = R[1] - R[0], R[2] - R[1]
+        u = a if np.linalg.norm(a) >= np.linalg.norm(b) else b
+    u = u / np.linalg.norm(u)
+    v = np.array([-u[1], u[0]])
+    S = np.asarray(P.exterior.coords)[:-1]
+    sv = S @ v
+    c = S.mean(0) - v * (S.mean(0) @ v) + v * (sv.min() + sv.max()) / 2       # faîtage au milieu de la largeur
+    hw = (sv.max() - sv.min()) / 2
+    # montée du toit : pente donnée, sans dépasser 45 % de la hauteur ni descendre l'égout sous 2,2 m
+    monte = max(min(float(e.get("pente_toit", 0.30)) * hw, 0.45 * H, H - 2.2), 0.0) if deux_pans else 0.0
+    pente = monte / hw if hw > 1e-6 else 0.0
+    ligne = (c, v) if deux_pans else None
+
+    def z_toit(XY):
+        return z_ref + H - pente * np.abs((np.atleast_2d(XY) - c) @ v)
+
+    z_bas = float(mnt.z(*_anneau(P).T).min()) - ZD_ENFOUI
+    mm, mt = e.get("materiau_murs", "enduit_clair"), e.get("materiau_toit", "tuile")
+    # murs
+    W = _anneau(P, ligne)
+    cum = 0.0
+    for a, b in zip(W, np.roll(W, -1, axis=0)):
+        L = float(np.linalg.norm(b - a))
+        if L < 1e-3:
+            continue
+        ta, tb = z_toit(np.array([a, b])) - ZD_EP_TOIT
+        n = np.array([(b - a)[1], -(b - a)[0], 0.0]) / L                       # anneau trigonométrique : extérieur à droite
+        lot.face(mm, [[*a, z_bas], [*b, z_bas], [*b, tb], [*a, ta]], n,
+                 [[cum, 0], [cum + L, 0], [cum + L, tb - z_bas], [cum, ta - z_bas]])
+        cum += L
+    # toit : dessus et dessous de chaque pan (triangulation contrainte), rives tout autour
+    Rt = shapely.orient_polygons(P.buffer(debord, join_style="mitre")) if debord > 0 else P
+    if deux_pans:
+        grand = 4 * (hw + debord + 50)
+        pans = [Rt.intersection(Polygon([c - u * grand, c + u * grand, c + u * grand + s * v * grand, c - u * grand + s * v * grand]))
+                for s in (1.0, -1.0)]
+    else:
+        pans = [Rt]
+    for s, pan in zip((1.0, -1.0), pans):
+        for g in getattr(pan, "geoms", [pan]):
+            if g.is_empty or g.geom_type != "Polygon" or g.area < 1e-4:
+                continue
+            for t in shapely.get_parts(shapely.constrained_delaunay_triangles(g)):
+                T = np.asarray(t.exterior.coords)[:3]
+                zt = z_toit(T)
+                # pan s : z = z_ref + H - pente * s * (p - c).v, normale (s * pente * v, 1) (plat : verticale)
+                nh = np.array([s * pente * v[0], s * pente * v[1], 1.0])
+                uvt = np.column_stack([(T - c) @ u, (T - c) @ v])
+                lot.face(mt, np.column_stack([T, zt]), nh, uvt)
+                lot.face(mt, np.column_stack([T, zt - ZD_EP_TOIT]), -nh, uvt)
+    Rr = _anneau(Rt, ligne)
+    cum = 0.0
+    for a, b in zip(Rr, np.roll(Rr, -1, axis=0)):
+        L = float(np.linalg.norm(b - a))
+        if L < 1e-3:
+            continue
+        ta, tb = z_toit(np.array([a, b]))
+        n = np.array([(b - a)[1], -(b - a)[0], 0.0]) / L
+        lot.face(mt, [[*a, ta - ZD_EP_TOIT], [*b, tb - ZD_EP_TOIT], [*b, tb], [*a, ta]], n,
+                 [[cum, 0], [cum + L, 0], [cum + L, ZD_EP_TOIT], [cum, ZD_EP_TOIT]])
+        cum += L
+    # physique : un volume balayé de 0,3 m par face de mur, du pied jusqu'à l'égout (le pignon au-dessus n'arrête rien)
+    coll = []
+    R0 = _anneau(P)
+    for a, b in zip(R0, np.roll(R0, -1, axis=0)):
+        L = float(np.linalg.norm(b - a))
+        if L < 0.2:
+            continue
+        n = np.array([(b - a)[1], -(b - a)[0]]) / L
+        zt = float(min(z_toit(np.array([a, b])).min() - ZD_EP_TOIT, z_ref + H - monte - ZD_EP_TOIT))
+        Pp = np.array([a, b])
+        coins = [np.column_stack([Pp + n * o, np.full(2, zz)]) for o, zz in ((-0.3, z_bas), (0.0, z_bas), (0.0, zt), (-0.3, zt))]
+        coll.append(m11.boite(coins, ref))
+    return coll, {"hauteur_faitage_m": round(H, 2), "hauteur_methode": h_src, "egout_m": round(H - monte, 2),
+                  "toit": "deux pans" if deux_pans else "plat", "z_terrain_m": round(z_ref, 2)}
+
+
+def _mur(e, mnt, ref, ruban):
+    """Mur libre le long d'une polyligne : épaisseur centrée, dessus à hauteur_m au-dessus du pied le plus bas (MNT des deux
+    côtés), dessous ZD_ENFOUI sous le terrain le plus bas. Jamais à moins de 0,3 m de la chaussée de la spéciale."""
+    ep = float(e["epaisseur_m"])
+    L_ = LineString(e["polyligne_l93"]).difference(ruban.buffer(0.3 + ep / 2))
+    L_ = max(shapely.get_parts(L_), key=lambda g: g.length)
+    P = np.asarray(L_.segmentize(1.0).coords)
+    tg = np.gradient(P, axis=0)
+    n = np.column_stack([tg[:, 1], -tg[:, 0]]) / np.linalg.norm(tg, axis=1, keepdims=True)
+    cotes = [mnt.z(*(P + n * o).T) for o in (-(ep / 2 + 0.7), 0.0, ep / 2 + 0.7)]
+    pied = np.minimum.reduce(cotes)
+    haut = pied + float(e["hauteur_m"])
+    bas = pied - ZD_ENFOUI
+    coins = [np.column_stack([P + n * o, z_]) for o, z_ in ((-ep / 2, bas), (ep / 2, bas), (ep / 2, haut), (-ep / 2, haut))]
+    v = m11.boite(coins, ref)
+    return v, {"longueur_m": round(L_.length, 1), "hauteur_au_dessus_du_pied_m": e["hauteur_m"],
+               "denivele_entre_les_deux_faces_m": round(float(np.max(np.abs(cotes[0] - cotes[2]))), 2)}, P
+
+
+def _bloc(c, t, L, W, z_bas, z_haut0, z_haut1, ref):
+    """Pavé horizontal centré en c (x, y), long de L selon t, large de W, dessus de z_haut0 (début) à z_haut1 (fin)."""
+    t = np.asarray(t, float) / np.linalg.norm(t)
+    n = np.array([-t[1], t[0]])
+    P = np.array([np.asarray(c) - t * L / 2, np.asarray(c) + t * L / 2])
+    zh = np.array([z_haut0, z_haut1])
+    co = lambda o, z_: np.column_stack([P + o * n, np.broadcast_to(z_, 2)])     # noqa: E731
+    return m11.boite([co(-W / 2, z_bas), co(W / 2, z_bas), co(W / 2, zh), co(-W / 2, zh)], ref)
+
+
+def _disque(lot, mat, c3, t, r, ep, k=16):
+    """Disque vertical (prisme à k côtés) centré en c3 (L93), dans le plan de la direction t, épais de ep."""
+    t = np.asarray(t, float) / np.linalg.norm(t)
+    n = np.array([-t[1], t[0], 0.0])
+    T = np.array([t[0], t[1], 0.0])
+    a = np.linspace(0, 2 * np.pi, k, endpoint=False)
+    ring = np.asarray(c3)[None] + r * (np.cos(a)[:, None] * T + np.sin(a)[:, None] * np.array([0, 0, 1.0]))
+    uv = np.column_stack([np.cos(a), np.sin(a)]) * r
+    for s in (1.0, -1.0):
+        lot.face(mat, ring + s * n * ep / 2, s * n, uv)
+    for i in range(k):
+        j = (i + 1) % k
+        q = [ring[i] - n * ep / 2, ring[j] - n * ep / 2, ring[j] + n * ep / 2, ring[i] + n * ep / 2]
+        nm = (ring[i] + ring[j]) / 2 - np.asarray(c3)
+        lot.face(mat, q, nm / np.linalg.norm(nm), [[0, 0], [1, 0], [1, 1], [0, 1]])
+
+
+def _barriere(e, mnt, ref):
+    """Barrière de piste ou de parking : deux poteaux (rayés rouge et blanc ou noirs), lisses et montants noirs, plaque
+    (disque « sens interdit » ou plaque jaune) au milieu. Renvoie (pièces par matériau, lot de faces, collision, segment)."""
+    a, b = (np.asarray(p, float) for p in e["segment_l93"])
+    t = (b - a) / np.linalg.norm(b - a)
+    m = (a + b) / 2
+    L = float(e.get("longueur_m") or np.linalg.norm(b - a))
+    a, b = m - t * L / 2, m + t * L / 2
+    zs = mnt.z(np.array([a[0], m[0], b[0]]), np.array([a[1], m[1], b[1]]))
+    z0 = float(zs.mean())
+    pieces = {}
+    sec, hp = 0.10, float(e.get("hauteur_poteaux_m", 1.2))
+    for p, zp in ((a, zs[0]), (b, zs[2])):
+        # haut des poteaux au niveau des lisses (z0 : terrain moyen), pied sous le terrain local (terrain en pente)
+        pied = float(min(zp, z0)) - ZD_ENFOUI
+        if e.get("poteaux") == "rouge_blanc":                 # bandes de 25 cm, la plus haute rouge
+            bornes = np.append(np.arange(0.0, hp, 0.25), hp)
+            for k_, (h0, h1) in enumerate(zip(bornes[:-1], bornes[1:])):
+                mat = "barriere_rouge" if (len(bornes) - 2 - k_) % 2 == 0 else "barriere_blanc"
+                pieces.setdefault(mat, []).append(pave(p, t, sec, sec, pied if k_ == 0 else z0 + h0, z0 + h1, ref))
+        else:
+            pieces.setdefault("barriere_noire", []).append(pave(p, t, sec, sec, pied, z0 + hp, ref))
+    lisses = sorted(e.get("lisses_a_m", [1.0, 0.5]))
+    Li = L - sec
+    for zl in lisses:
+        pieces.setdefault("barriere_noire", []).append(pave(m, t, Li, 0.06, z0 + zl - 0.03, z0 + zl + 0.03, ref))
+    pas = float(e.get("pas_montants_m", 0.75))
+    nb = max(int(round(Li / pas)), 1)
+    for k_ in range(1, nb):
+        p = a + t * (sec / 2 + Li * k_ / nb)
+        pieces.setdefault("barriere_noire", []).append(pave(p, t, 0.04, 0.04, z0 + lisses[0], z0 + lisses[-1], ref))
+    lot = _Lot(ref)
+    zc = z0 + (lisses[0] + lisses[-1]) / 2
+    nrm = np.array([-t[1], t[0]])
+    if e.get("plaque") == "disque_sens_interdit":
+        _disque(lot, "barriere_rouge", [*(m + nrm * 0.05), zc], t, 0.30, 0.02)
+        pieces.setdefault("barriere_blanc", []).append(pave(m + nrm * 0.075, t, 0.40, 0.012, zc - 0.05, zc + 0.05, ref))
+    elif e.get("plaque") == "plaque_jaune":
+        pieces.setdefault("plaque_jaune", []).append(pave(m + nrm * 0.05, t, 0.45, 0.02, zc - 0.17, zc + 0.17, ref))
+    coll = _bloc(m, t, L, 0.10, float(zs.min()) - 0.2,z0 + float(e["hauteur_m"]), z0 + float(e["hauteur_m"]), ref)
+    return pieces, lot, coll, np.array([a, b])
+
+
+def constructions_depart(ch, mnt, ref):
+    """Section « constructions de la zone de départ » : maillages du décor (à ajouter à annexes.glb), volumes de collision
+    (annexes_collision.glb), bilan et éléments du plan de contrôle."""
+    f = REF / "zone_depart.json"
+    if not f.exists():
+        return [], [], {}, []
+    cfg = json.loads(f.read_text(encoding="utf-8")).get("constructions", [])
+    if not cfg:
+        return [], [], {}, []
+
+    class MNS(m08.MNT):
+        def __init__(self):
+            import rasterio
+            with rasterio.open(ROOT / "data" / "raw" / "mns_lidarhd_50cm.tif") as s:
+                self.a, self.inv = s.read(1), ~s.transform
+
+    mns = MNS()
+    ruban = ruban_poly(ch, ch["pk"][0], 100.0)              # la zone de départ ne va pas au-delà du PK +20
+    shapely.prepare(ruban)
+    deco, coll, bilan, plan = [], [], {}, []
+    sol = None
+    for k, e in enumerate(cfg):
+        cle = f"depart_{k:02d}_{e['type']}"
+        info = {"nom": e["nom"], "type": e["type"]}
+        if e["type"] == "batiment":
+            lot = _Lot(ref)
+            cb, inf = _batiment(e, lot, mnt, mns, ref)
+            deco += lot.meshes(cle)
+            coll += [(cb, e.get("materiau_collision", "beton"))]
+            info.update(inf)
+            plan.append(("batiment", np.asarray(e["polygone_l93"]), e["nom"]))
+        elif e["type"] == "mur":
+            v, inf, P = _mur(e, mnt, ref, ruban)
+            deco.append(m11.fusion([v], f"{cle}_{e['materiau']}", e["materiau"]))
+            coll += [([v], e.get("materiau_collision", "beton"))]
+            info.update(inf)
+            plan.append(("mur", P, e["nom"]))
+        elif e["type"] == "bloc":
+            c = np.asarray(e["centre_l93"], float)
+            t = np.asarray(e.get("direction", [1.0, 0.0]), float)
+            L, W = float(e["longueur_m"]), float(e["largeur_m"])
+            tn = t / np.linalg.norm(t)
+            Q = np.array([c + s1 * tn * L / 2 + s2 * np.array([-tn[1], tn[0]]) * W / 2 for s1 in (-1, 1) for s2 in (-1, 1)])
+            zq = mnt.z(Q[:, 0], Q[:, 1])
+            zc = float(mnt.z(c[:1], c[1:])[0])
+            v = _bloc(c, t, L, W, float(zq.min()) - ZD_ENFOUI, zc + float(e["hauteur_m"]), zc + float(e.get("hauteur_fin_m", e["hauteur_m"])), ref)
+            deco.append(m11.fusion([v], f"{cle}_{e['materiau']}", e["materiau"]))
+            coll += [([v], e.get("materiau_collision", "pierre"))]
+            plan.append(("bloc", Q[[0, 1, 3, 2]], e["nom"]))
+        elif e["type"] == "portail":
+            a, b = (np.asarray(p, float) for p in e["segment_l93"])
+            t = (b - a) / np.linalg.norm(b - a)
+            pl = e.get("piliers") or {}
+            sp = float(pl.get("section_m", 0.0))
+            zab = mnt.z(np.array([a[0], b[0]]), np.array([a[1], b[1]]))
+            z0 = float(zab.mean())
+            Lg = float(np.linalg.norm(b - a)) - sp
+            v = _bloc((a + b) / 2, t, Lg, float(e["epaisseur_m"]), float(zab.min()) - 0.05, z0 + float(e["hauteur_m"]), z0 + float(e["hauteur_m"]), ref)
+            deco.append(m11.fusion([v], f"{cle}_{e['materiau']}", e["materiau"]))
+            vs = [v]
+            if pl:
+                pil = [_bloc(p, t, sp, sp, float(zp) - ZD_ENFOUI, float(zp) + float(pl["hauteur_m"]), float(zp) + float(pl["hauteur_m"]), ref)
+                       for p, zp in ((a, zab[0]), (b, zab[1]))]
+                deco.append(m11.fusion(pil, f"{cle}_piliers_{pl['materiau']}", pl["materiau"]))
+                vs += pil
+            coll += [(vs, e.get("materiau_collision", "beton"))]
+            plan.append(("portail", np.array([a, b]), e["nom"]))
+        elif e["type"] == "barriere":
+            pieces, lot, cb, seg = _barriere(e, mnt, ref)
+            for mat, vs in pieces.items():
+                deco.append(m11.fusion(vs, f"{cle}_{mat}", mat))
+            deco += lot.meshes(f"{cle}_plaque")
+            coll += [([cb], e.get("materiau_collision", "metal_glissiere"))]
+            plan.append(("barriere", seg, e["nom"]))
+        elif e["type"] == "rampe":
+            P = Polygon(e["polygone_l93"]).difference(ruban.buffer(0.05))
+            P = max(getattr(P, "geoms", [P]), key=lambda g: g.area)
+            if sol is None and (MOD / "terrain.glb").exists():
+                sol = SolTerrain(ref, P.buffer(8).bounds)
+            z_de = lambda XY: mnt.z(XY[:, 0], XY[:, 1]) + SURELEV                          # noqa: E731
+            if sol is not None:
+                sm, aire = maillage_sur_terrain(P, sol, z_de, ref, e["materiau"], f"{cle}_{e['materiau']}", m11.S_PAROI, [])
+            else:
+                sm, aire = maillage_surface(P, z_de, ref, e["materiau"], f"{cle}_{e['materiau']}", m11.S_PAROI)
+            deco.append(sm)                                            # décor seul : le sol physique reste le terrain
+            ring = np.asarray(P.exterior.coords)
+            zr = mnt.z(ring[:, 0], ring[:, 1])
+            info.update({"aire_m2": round(aire, 1), "denivele_mnt_m": round(float(zr.max() - zr.min()), 2)})
+            plan.append(("rampe", ring, e["nom"]))
+        else:
+            info["non_construit"] = f"type inconnu « {e['type']} »"
+        bilan[cle] = info
+    # garde-fou : aucun volume à moins de 0,3 m de la chaussée de la spéciale (la rampe s'y raccorde, elle est exclue)
+    for m in deco:
+        cle = "_".join(m["name"].split("_")[:3])
+        if bilan[cle]["type"] == "rampe":
+            continue
+        pp = m["pos"].astype(np.float64)
+        XY = np.column_stack([pp[:, 0] + ref["x0"], ref["y0"] - pp[:, 2]])
+        d = float(shapely.distance(ruban, shapely.points(XY)).min())
+        bilan[cle]["distance_min_a_la_chaussee_m"] = round(min(d, bilan[cle].get("distance_min_a_la_chaussee_m", np.inf)), 2)
+    trop_pres = [b["nom"] for b in bilan.values() if b.get("distance_min_a_la_chaussee_m", np.inf) <= 0.3]
+    if trop_pres:
+        raise SystemExit(f"constructions de la zone de départ à moins de 0,3 m de la chaussée : {trop_pres}")
+    # collision : un maillage par matière de choc
+    par_mat = {}
+    for vs, mat in coll:
+        par_mat.setdefault(mat, []).extend(vs)
+    m_coll = [m11.fusion(vs, f"constructions_depart_{mat}_collision", mat) for mat, vs in par_mat.items()]
+    return deco, m_coll, bilan, plan
+
+
 # --- programme principal ---------------------------------------------------------------------------------
 def main():
     t0 = time.time()
@@ -657,6 +1047,11 @@ def main():
                         "balisage": {k: sum(1 for b in lignes_b if b["type"] == k) for k in ("piquet de rubalise", "rubalise")},
                         "_ctx": (ruban, lignes3, revetu, terre, parapets_int, lignes_b, c, parapets_plan, panneaux, cle)}
 
+    # --- constructions de la zone de départ (zone_depart.json) : ajoutées au décor et à la physique des annexes
+    deco_d, coll_d, bilan_d, _ = constructions_depart(ch, mnt, ref)
+    m_ann += deco_d
+    m_coll += coll_d
+
     # --- écriture
     write_geojson(OUT / "annexes_revetues.geojson", feats, "annexes_revetues")
     with open(OUT / "balisage.csv", "w", newline="", encoding="utf-8") as f:
@@ -674,12 +1069,12 @@ def main():
                 "pierre_sombre": {"color": [0.33, 0.32, 0.30], "rough": 0.95}, "beton": {"jpeg": m11.tex_beton(px // 2), "rough": 0.9},
                 "panneau": {"color": [0.9, 0.9, 0.88], "rough": 0.6},
                 "piquet": {"color": [0.92, 0.92, 0.92], "rough": 0.6}, "piquet_tete": {"color": [0.8, 0.08, 0.06], "rough": 0.6},
-                "rubalise": {"color": [0.85, 0.1, 0.08], "rough": 0.5}}
+                "rubalise": {"color": [0.85, 0.1, 0.08], "rough": 0.5}, **ZD_MATIERES}
         m11.ecrire_glb(dossier / "annexes.glb", m_ann, mats)
         m11.ecrire_glb(dossier / "balisage.glb", m_bal, mats)
         if version == "complet":
             mc = {"enrobe": {"color": [0.3, 0.3, 0.3]}, "terre": {"color": [0.47, 0.39, 0.29]}, "pierre": {"color": [0.6, 0.58, 0.54]},
-                  "plastique_piquet": {"color": [0.92, 0.92, 0.92]}}
+                  "plastique_piquet": {"color": [0.92, 0.92, 0.92]}, **ZD_COLLISION}
             m11.ecrire_glb(dossier / "annexes_collision.glb", m_coll, mc)
             m11.ecrire_glb(dossier / "balisage_collision.glb", m_bcoll, mc)
     for f in ("balisage_collision.glb",):                   # le balisage n'a plus de barrières
@@ -694,6 +1089,7 @@ def main():
         FIG4.mkdir(parents=True, exist_ok=True)
         plan_figure(c, ch, ruban, revetu, terre, parapets_plan, panneaux, lignes3[:len(d["fermetures_pk"])], lignes_b,
                     FIG4 / ("carrefour_plan.png" if k_ == 0 else f"carrefour_plan_{cle}.png"), d["fermetures_pk"])
+    rapport["constructions_zone_depart"] = bilan_d
     # obstacles (parapets, panneaux, piquets) sur la chaussée de la spéciale, sur tout le parcours
     XYo = []
     for f in ("annexes_collision.glb", "balisage_collision.glb"):

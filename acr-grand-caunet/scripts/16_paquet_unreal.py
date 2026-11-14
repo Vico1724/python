@@ -88,7 +88,7 @@ LOIN0 = (880000, 6210000)             # coin sud-ouest de la grille kilométriqu
 # calcaires blanches, nettes, rayées de strates. Depuis le 14/11/2026 : teinte plus blanche et plus couvrante, élargie de
 # 2 m au lieu de 4 (moins de flou), et rayée de strates horizontales tirées de l'altitude (une tous les strates_m).
 FALAISE = {"pente_5m_deg": (46.0, 58.0), "couleur": (218, 212, 198), "taux": 0.86, "elargir_m": 2.0, "strates_m": 3.4, "strates": 0.20}
-FALAISE_ROCHE = {"pente_deg": 50.0, "a_m": 700.0}      # faces du relief lointain rendues par la roche du jeu (--falaises-roche)
+FALAISE_ROCHE = {"pente_deg": 48.0, "a_m": 1100.0}      # faces du relief lointain rendues par la roche du jeu (--falaises-roche)
 # Vu en jeu le 13/11/2026 : massifs lointains blancs, d'aspect enneigé, et rayés de bandes horizontales. Les bancs
 # (strates) sont retirés, la teinte est moins claire et moins couvrante, et elle n'est plus posée au-delà du relief à
 # 5 m (6 km environ) : le relief à 25 m ne montre pas les falaises, les seuils abaissés teintaient des versants entiers.
@@ -119,6 +119,9 @@ A_CONFIRMER = ("noms de paramètres confirmés dans le jeu ; M_Simple nommé ici
 # touffes sèches restent, mais basses. Tailles natives lues dans le jeu (largeur, hauteur) ; l'échelle donne la hauteur.
 HERBES = {"dossier": "/Game/Foliage/GroundCover", "bande_m": 14.0, "debut_m": 0.35, "portee_m": 4.5,
           "candidats_par_metre": 44, "disparition_cm": [9000, 14000], "petit": "GreenGrassLong02/SM_GreengrassLong02",
+          # pente : au-dessus de pente_min_deg la touffe est couchée sur le terrain (jusqu'à pente_max_deg) ; entre les deux
+          # premières valeurs de pente_rare_deg, la part gardée tombe de 1 à la troisième
+          "pente_min_deg": 6.0, "pente_max_deg": 55.0, "pente_rare_deg": (28.0, 48.0, 0.35),
           "maillages": {"GreenGrass03/SM_Greengrass03": {"vert": 0.62, "sec": 0.12, "echelle": [0.8, 1.5], "largeur_m": 1.49},       # 14 à 27 cm
                         "GreenGrassLong02/SM_GreengrassLong02": {"vert": 0.36, "sec": 0.08, "echelle": [0.6, 1.1], "largeur_m": 0.93},  # 17 à 32 cm
                         # Plantain (SM_Ribwort_01) et herbe sauvage (SM_WildGrass01) retirés le 14/11/2026. Vus en jeu le
@@ -147,10 +150,12 @@ BUISSONS = {"maillage": "/Game/Foliage/GroundCover/Willow/SM_Willow_03a", "haute
 # parent_du_jeu). Lu dans le jeu le 12/11/2026 : les murs de pierre de Bollène sont dépliés à 5 m par unité et
 # peints de gris aux sommets (médiane 135, alpha 255) ; ses murs de béton à 3,14 m par unité, sans couleur. Nos
 # parapets sont dépliés à 2 m par unité (scripts/11_route_ouvrages.py, S_PAROI).
-# Depuis le 14/11/2026 : presque blanc. Le gris médian (135) donnait moitié pierre, moitié mousse brun sombre (la couleur
+# Relevé du test de la septième version : avec le presque blanc ci-dessous, les parapets sont sortis ENCORE PLUS moussus
+# (« face brun-vert bruitée, comme de la haie »). C'est donc l'inverse : blanc = mousse, noir = pierre. Couleur noire.
+# (Écrit le 14/11/2026 au matin, et faux :) presque blanc. Le gris médian (135) donnait moitié pierre, moitié mousse brun sombre (la couleur
 # de sommet dose le mélange des deux matières du mur) : murets « brun moussu ou noirs » au relevé du sixième essai.
-MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (245, 245, 245, 255)},
-               "pierre_sombre": {"uv": 2.0 / 5.0, "couleur": (245, 245, 245, 255)},
+MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
+               "pierre_sombre": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
                "beton": {"uv": 2.0 / 3.144, "couleur": None}, "dalle": {"uv": 2.0 / 3.144, "couleur": None},
                "chaperon": {"uv": 2.0 / 3.144, "couleur": None}}
 # Câbles électriques entre les poteaux (maillage à nous) : trois par portée, accrochés à la traverse du poteau du jeu
@@ -162,7 +167,7 @@ CABLES = {"portee_max_m": 115.0, "fleche_par_m2": 0.8 / 60.0 ** 2, "segments": 1
 RUBALISE = {"hauteur_m": 0.90, "largeur_m": 0.075, "periode_m": 0.30, "fleche_par_m": 0.012,
             "rouge": (196, 32, 30), "blanc": (232, 232, 228)}
 # Lisses en bois (aires, clôtures) et barrières de piste forestière (rouges) : couleur unie.
-LISSES = {"couleurs": {"lisse_bois": (118, 100, 80), "barriere_de_piste": (170, 42, 36)}}
+LISSES = {"couleurs": {"lisse_bois": (146, 134, 114), "barriere_de_piste": (170, 42, 36)}}
 GLISSIERE = {"dossier": "/Game/Props/Guardrails/MetalGuardrailA", "debut": "SM_MetalGuardrailASimpleBegin",
              "milieu": "SM_MetalGuardrailASimpleCenter", "fin": "SM_MetalGuardrailASimpleEnd", "module_m": 4.0,
              "enfoncement_m": 0.05}
@@ -1012,7 +1017,7 @@ class Pentes:
         return w, alt
 
 
-def teinte_falaises(im, m, ref, pentes):
+def teinte_falaises(im, m, ref, pentes, origine=None):
     """Image de la dalle lointaine `m` avec ses versants très raides teintés de calcaire ; part de l'image teintée.
 
     La position Lambert-93 de chaque pixel vient des sommets de la dalle (u vers l'est, v vers le sud, origine en
@@ -1033,6 +1038,13 @@ def teinte_falaises(im, m, ref, pentes):
     r = FALAISE["elargir_m"] / max(abs(ax) / W, 1e-6)                     # en pixels de cette image
     if r >= 0.75:
         w = ndimage.gaussian_filter(ndimage.maximum_filter(w, size=2 * int(round(r)) + 1), max(r / 2.0, 0.6))
+    if origine is not None:
+        # Un versant raide mais boisé sur la photo n'est pas une falaise nue (relevé du test de la septième version,
+        # PK 2280 : « bande claire horizontale à mi-pente » d'une colline qui n'est que forêt). La teinte de calcaire
+        # ne vaut pleinement que là où la photo d'origine est claire.
+        o = np.asarray(origine, np.float32) / 255.0
+        clair = np.clip(((o @ np.array([0.30, 0.59, 0.11], np.float32)) - 0.34) / 0.22, 0.0, 1.0)
+        w = w * (0.2 + 0.8 * ndimage.gaussian_filter(clair, max(r / 2.0, 0.8)))
     a = np.asarray(im, np.float32)
     # la roche n'est pas unie : grain tiré de l'image elle-même
     grain = 0.85 + 0.30 * (a.mean(2) / max(float(a.mean()), 1.0)).clip(0.5, 1.5) / 1.5
@@ -1052,9 +1064,13 @@ def teinte_falaises(im, m, ref, pentes):
 #   - là où le couvert domine, l'image prend la teinte des houppiers (vert de pinède), modulée par la clarté locale
 #     de la végétation voisine : pistes et trouées disparaissent sous les arbres, les grandes ombres du relief restent ;
 #   - champs, villages, rocher nu et mer gardent la photo.
-RASANT = {"sombre": (0.50, 0.36), "couvert": (0.25, 0.60), "rayon_couvert_m": 14.0, "rayon_teinte_m": 7.0,
+RASANT = {"sombre": (0.50, 0.36), "couvert": (0.12, 0.42), "rayon_couvert_m": 14.0, "rayon_teinte_m": 7.0,
           "foret": (62, 82, 52), "clarte_de_reference": 0.30, "contraste": 0.6, "part_de_la_photo": 0.3, "detail": 0.7,
-          "nu_clair": (0.56, 0.78), "nu_taux": 0.6, "garrigue": (128, 134, 108)}
+          "nu_clair": (0.48, 0.72), "nu_taux": 0.75, "garrigue": (112, 122, 96),
+          # Relevé du test de la septième version : versants « beiges et nus », collines « lisses, comme tondues ». Le couvert
+          # gagne donc dès qu'un huitième du sol est boisé (un bois clair vu de côté est une masse d'arbres), la garrigue est
+          # plus sombre, et la forêt reçoit un moucheté de houppiers (amplitude, taille en mètres) au lieu d'un aplat.
+          "houppiers": (0.22, 3.2)}
 
 
 def vue_rasante(im, m_par_px):
@@ -1082,6 +1098,11 @@ def vue_rasante(im, m_par_px):
     photo = teinte_veg / np.maximum(teinte_veg @ poids, 1e-3)[:, :, None] * float(foret @ poids)     # teinte de la photo, clarté de la pinède
     canopee = ((1.0 - RASANT["part_de_la_photo"]) * foret[None, None, :] + RASANT["part_de_la_photo"] * photo) * rel[:, :, None]
     canopee *= (1.0 + RASANT["detail"] * np.clip(detail, -0.12, 0.12) / np.maximum(lum_veg, 0.08))[:, :, None]
+    amp_h, taille_h = RASANT["houppiers"]
+    tirage = np.random.default_rng(SEED + a.shape[0] * 31 + int(m_par_px * 1000))
+    moucheté = ndimage.gaussian_filter(tirage.normal(0.0, 1.0, lum.shape).astype(np.float32), max(taille_h / m_par_px / 2.0, 0.6), mode="wrap")
+    moucheté /= max(float(moucheté.std()), 1e-6)
+    canopee = canopee * (1.0 + amp_h * np.clip(moucheté, -1.5, 1.5))[:, :, None]
     out = a * (1.0 - w) + canopee * w
     # Rocher nu et pierraille vus du ciel : presque blancs sur la photo. Depuis la route, ces plateaux et ces crêtes sont
     # une garrigue gris-vert piquée de blanc ; rendus tels quels ils faisaient des sommets « enneigés » et des taches pâles
@@ -1093,6 +1114,80 @@ def vue_rasante(im, m_par_px):
     garrigue = np.array(RASANT["garrigue"], np.float32) / 255.0
     out = out * (1.0 - k) + (garrigue[None, None, :] * (0.85 + 0.5 * np.clip(detail, -0.15, 0.3))[:, :, None]) * k
     return Image.fromarray(np.clip(255.0 * out + 0.5, 0, 255).astype(np.uint8), "RGB")
+
+
+# Falaises rompues (--falaises-rompues). Essai en jeu du 14/11/2026 (septième version) : « les reliefs lointains restent à
+# retravailler pour avoir une impression moins géométrique ». Les faces raides habillées de roche étaient les grands
+# triangles plans du relief lointain (10 à 20 m de côté), à facettes franches : des pans de verre. Chaque triangle est
+# maintenant recoupé en 16, ses sommets intérieurs poussés le long de la normale par un bruit à deux échelles (ressauts
+# de quelques mètres, grain d'un mètre), et les normales sont lissées. Le bord de la zone raide ne bouge pas : il reste
+# cousu au reste du relief.
+ROMPRE = {"coupes": 4, "bord_m": 1.5, "ressaut_m": (2.2, 9.0), "grain_m": (0.6, 2.2), "part_de_face": 0.35}
+
+
+def rompre_falaise(tri3, nf):
+    """tri3 : (n, 3, 3) sommets des triangles raides (glTF du projet, m) ; nf : (n, 3) normales de face.
+    Renvoie (sommets (m, 3) par triplets, normales (m, 3))."""
+    n = ROMPRE["coupes"]
+    cle = lambda p: np.round(p * 100.0).astype(np.int64)                       # noqa: E731 : sommets confondus au centimètre
+    # normales lissées aux sommets d'origine, et arêtes du bord de la zone raide (portées par un seul triangle)
+    k3 = cle(tri3.reshape(-1, 3))
+    _, inv = np.unique(k3, axis=0, return_inverse=True)
+    inv = inv.reshape(-1)
+    somme = np.zeros((inv.max() + 1, 3))
+    np.add.at(somme, inv, np.repeat(nf, 3, axis=0))
+    nv = (somme / np.maximum(np.linalg.norm(somme, axis=1, keepdims=True), 1e-9))[inv].reshape(-1, 3, 3)
+    iv = inv.reshape(-1, 3)
+    aretes = np.sort(np.concatenate([iv[:, [0, 1]], iv[:, [1, 2]], iv[:, [2, 0]]]), axis=1)
+    a_u, a_inv, a_nb = np.unique(aretes, axis=0, return_inverse=True, return_counts=True)
+    seule = (a_nb[a_inv.reshape(-1)] == 1).reshape(3, -1).T                    # (triangle, arête 01 / 12 / 20)
+    bouts = np.concatenate([tri3[:, [0, 1]], tri3[:, [1, 2]], tri3[:, [2, 0]]])[seule.T.reshape(-1)]
+    if len(bouts):
+        t = np.linspace(0.0, 1.0, 9)[None, :, None]
+        bord = cKDTree((bouts[:, 0][:, None, :] * (1 - t) + bouts[:, 1][:, None, :] * t).reshape(-1, 3))
+    # recoupe régulière en coordonnées barycentriques
+    ij = [(i, j) for i in range(n + 1) for j in range(n + 1 - i)]
+    rang = {q: r for r, q in enumerate(ij)}
+    b = np.array([[i, j, n - i - j] for i, j in ij], float) / n               # (points, 3)
+    faces = []
+    for i in range(n):
+        for j in range(n - i):
+            faces.append((rang[(i, j)], rang[(i + 1, j)], rang[(i, j + 1)]))
+            if i + j < n - 1:
+                faces.append((rang[(i + 1, j)], rang[(i + 1, j + 1)], rang[(i, j + 1)]))
+    faces = np.array(faces)
+    pts = np.einsum("pk,tkc->tpc", b, tri3)                                   # (triangles, points, 3)
+    nrm = np.einsum("pk,tkc->tpc", b, nv)
+    nrm /= np.maximum(np.linalg.norm(nrm, axis=2, keepdims=True), 1e-9)
+    q = pts.reshape(-1, 3)
+    d_bord = bord.query(q)[0] if len(bouts) else np.full(len(q), 1e3)
+    w = np.clip(d_bord / ROMPRE["bord_m"], 0.0, 1.0)
+    w = w * w * (3 - 2 * w)
+    (a1, l1), (a2, l2) = ROMPRE["ressaut_m"], ROMPRE["grain_m"]
+    # bruit fonction de la seule position : deux triangles voisins donnent le même déplacement à leurs sommets communs
+    dep = a1 * _fbm((q[:, 0] + 0.6 * q[:, 1]) / l1, (q[:, 2] - 0.4 * q[:, 1]) / l1, 61, 3) \
+        + a2 * _fbm((q[:, 0] - 0.3 * q[:, 1]) / l2, (q[:, 2] + 0.7 * q[:, 1]) / l2, 67, 2)
+    q = q + nrm.reshape(-1, 3) * (dep * w)[:, None]
+    pts = q.reshape(pts.shape)
+    # triangles et normales : lissées par sommet (moyenne des faces autour), avec une part de la normale de face
+    tri_p = pts[:, faces]                                                     # (triangles, faces, 3, 3)
+    sortie = tri_p.reshape(-1, 3, 3)
+    fnn = np.cross(sortie[:, 1] - sortie[:, 0], sortie[:, 2] - sortie[:, 0])
+    ref_n = np.repeat(nf, len(faces), axis=0)
+    envers = np.einsum("ij,ij->i", fnn, ref_n) < 0
+    sortie[envers] = sortie[envers][:, [0, 2, 1]]
+    fnn[envers] *= -1.0
+    fnn /= np.maximum(np.linalg.norm(fnn, axis=1, keepdims=True), 1e-12)
+    ks = cle(sortie.reshape(-1, 3))
+    _, inv_s = np.unique(ks, axis=0, return_inverse=True)
+    inv_s = inv_s.reshape(-1)
+    som = np.zeros((inv_s.max() + 1, 3))
+    np.add.at(som, inv_s, np.repeat(fnn, 3, axis=0))
+    nvs = som[inv_s]
+    nvs /= np.maximum(np.linalg.norm(nvs, axis=1, keepdims=True), 1e-9)
+    out_n = (1.0 - ROMPRE["part_de_face"]) * nvs + ROMPRE["part_de_face"] * np.repeat(fnn, 3, axis=0)
+    out_n /= np.maximum(np.linalg.norm(out_n, axis=1, keepdims=True), 1e-9)
+    return sortie.reshape(-1, 3), out_n
 
 
 def lointain(P, ref, args, pkf):
@@ -1124,6 +1219,7 @@ def lointain(P, ref, args, pkf):
             continue
         nom_t, nom_mi, nom_sm = f"T_FarRing{L}_{suf}", f"MI_FarRing{L}_{suf}", f"SM_{NOM}FarRing{L}_{suf}"
         im = Image.open(io.BytesIO(m["mat"]["image"])).convert("RGB")
+        im0 = im
         if not P.echantillon and args.lointain_rasant:
             im = vue_rasante(im, float(np.ptp(g[:, 0])) / im.width)
         elif not P.echantillon and args.lointain_clarte:
@@ -1132,7 +1228,7 @@ def lointain(P, ref, args, pkf):
             a = np.asarray(im, np.float32) / 255.0
             im = Image.fromarray(np.clip(255.0 * LOIN_GAIN * a ** LOIN_GAMMA + 0.5, 0, 255).astype(np.uint8), "RGB")
         if pentes is not None:
-            im, part = teinte_falaises(im, m, ref, pentes)
+            im, part = teinte_falaises(im, m, ref, pentes, origine=im0)
             if part > 0:
                 teintees.append((part, nom_t))
         P.texture(nom_t, "lointain", f"{UE}/FarRing/Textures", im, essais, adressage="Clamp",
@@ -1166,15 +1262,24 @@ def lointain(P, ref, args, pkf):
                 materiau_roche(P)
                 pr = p3[raide].reshape(-1, 3)
                 nf = fn[raide]
-                selon_x = np.abs(nf[:, 0]) >= np.abs(nf[:, 2])                    # face tournée vers l'est ou l'ouest : dépliée le long du nord-sud
+                if args.falaises_rompues:
+                    pr, nrm_r = rompre_falaise(p3[raide], nf)
+                    nf = None
+                if nf is None:                                                    # falaise rompue : normales par sommet
+                    nrm_f = nrm_r.reshape(-1, 3, 3).mean(1)
+                    selon_x = np.abs(nrm_f[:, 0]) >= np.abs(nrm_f[:, 2])
+                else:
+                    nrm_r = np.repeat(nf, 3, axis=0)
+                    selon_x = np.abs(nf[:, 0]) >= np.abs(nf[:, 2])                # face tournée vers l'est ou l'ouest : dépliée le long du nord-sud
                 u = np.where(np.repeat(selon_x, 3), pr[:, 2], pr[:, 0]) / ROCHE["uv_m"]
                 uvr = np.column_stack([u, -pr[:, 1] / ROCHE["uv_m"]])
                 usure = np.clip(0.30 + 0.40 * _fbm(pr[:, 0] / 6.0 + pr[:, 2] / 9.0, pr[:, 1] / 3.0, 41, 3), 0.0, 0.62)
                 coul = np.column_stack([(255 * usure).astype(np.uint8), np.zeros(len(pr), np.uint8), np.full(len(pr), 255, np.uint8),
                                         np.full(len(pr), 255, np.uint8)])
-                P.maillage(f"SM_{NOM}Cliff{L}_{suf}", "falaises", f"{UE}/FarRing/Meshes", pr, np.repeat(nf, 3, axis=0), uvr,
+                P.maillage(f"SM_{NOM}Cliff{L}_{suf}", "falaises", f"{UE}/FarRing/Meshes", pr, nrm_r, uvr,
                            np.arange(len(pr)).reshape(-1, 3), "MI_GC_Roche", essais, couleurs=coul,
-                           extra={"triangles_raides": int(raide.sum()), "pente_min_deg": FALAISE_ROCHE["pente_deg"]})
+                           extra={"triangles_raides": int(raide.sum()), "pente_min_deg": FALAISE_ROCHE["pente_deg"],
+                                  "rompue": bool(args.falaises_rompues), "triangles_rendus": int(len(pr) // 3)})
                 tri_dalle = tri_dalle[~raide]
                 n_falaises[0] += 1
                 n_falaises[1] += int(raide.sum())
@@ -1273,7 +1378,13 @@ class Sol:
 # reste au niveau du sol jusqu'à 450 m (13_paysage_lointain.py), et les arbres y sont plantés ENTIERS, à la densité du
 # relevé laser près de la route (un peu plus de 200 par hectare), puis moins serrés jusqu'à 650 m, où la surface monte
 # à hauteur de cime. Des buissons couvrent la garrigue (végétation de 0,5 à 3 m), que rien ne rendait.
-ARBRES_LOIN = {"de_m": 135.0, "a_m": 650.0, "bandes": [(300.0, 4.8), (450.0, 6.0), (650.0, 8.0)], "mnh_min_m": 3.0, "part_pin": 0.65,
+# Relevé du test de la septième version (14/11/2026, PK 1480, 2280, 920) : « versant nu semé de petites boules sombres
+# identiques et espacées pareil », « rangée de petits arbres identiques sur la crête », bande verte qui s'arrête en ligne
+# droite. Depuis : semis plus serré, hauteurs et largeurs de houppier variées (l'import choisit le maillage du jeu
+# d'après elles : quinze pins différents au lieu d'un seul), et une frange au-delà de a_m où les arbres se raréfient
+# par plaques au lieu de s'arrêter net (distance de fin, pas).
+ARBRES_LOIN = {"de_m": 135.0, "a_m": 650.0, "bandes": [(300.0, 4.4), (450.0, 5.5), (650.0, 7.0)], "frange": (880.0, 9.0),
+               "mnh_min_m": 3.0, "part_pin": 0.65,
                "hauteur_m": (4.0, 20.0), "disparition_cm": [95000, 130000],
                "pin": ("Foliage/Trees/AleppoPine", "SM_AleppoPine04", "pin d'Alep"),
                "feuillu": ("Foliage/Trees/Boxthorn", "SM_Boxthorn02", "chêne vert"),
@@ -1311,17 +1422,23 @@ def arbres_lointains(ref):
 
     rows, n_pins = [], 0
     de = ARBRES_LOIN["de_m"]
-    for a, pas in ARBRES_LOIN["bandes"]:
+    fr_a, fr_pas = ARBRES_LOIN["frange"]
+    for a, pas in list(ARBRES_LOIN["bandes"]) + [(fr_a, fr_pas)]:
         X, Y, d, mnh, alt = semis(de, a, pas)
         ok = mnh >= ARBRES_LOIN["mnh_min_m"]
+        if a == fr_a:                                   # frange : de moins en moins d'arbres, par plaques
+            t_ = (d - ARBRES_LOIN["a_m"]) / (fr_a - ARBRES_LOIN["a_m"])
+            plaque = 0.5 + 0.5 * _fbm(X / 70.0, Y / 70.0, 83, 3)
+            ok &= rng.random(len(X)) < np.clip((1.0 - t_) * (0.35 + 1.1 * plaque), 0.0, 1.0)
         X, Y, d, mnh, alt = X[ok], Y[ok], d[ok], mnh[ok], alt[ok]
-        haut = np.clip(mnh * rng.uniform(0.85, 1.1, len(X)), *ARBRES_LOIN["hauteur_m"])
+        haut = np.clip(mnh * rng.uniform(0.7, 1.2, len(X)), *ARBRES_LOIN["hauteur_m"])
+        larg = rng.uniform(0.45, 1.0, len(X))            # largeur du houppier rapportée à la hauteur
         pin = rng.random(len(X)) < ARBRES_LOIN["part_pin"]
         n_pins += int(pin.sum())
         for i in range(len(X)):
             fam, elt, ess = ARBRES_LOIN["pin" if pin[i] else "feuillu"]
             rows.append({"x_l93": f"{X[i]:.2f}", "y_l93": f"{Y[i]:.2f}", "z_sol_m": f"{alt[i]:.2f}", "hauteur_m": f"{haut[i]:.1f}",
-                         "diametre_houppier_m": f"{0.7 * haut[i]:.1f}", "essence": ess, "famille_jeu": fam, "element_jeu_propose": elt,
+                         "diametre_houppier_m": f"{larg[i] * haut[i]:.1f}", "essence": ess, "famille_jeu": fam, "element_jeu_propose": elt,
                          "regle_essence": "versant lointain", "dist_axe_m": f"{d[i]:.1f}", "pk_m": "", "cote": "", "detection": "tirage"})
         de = a
     b = ARBRES_LOIN["buissons"]
@@ -1434,7 +1551,7 @@ def sous_bois_de_bord(ref, arbres):
     haut = np.clip(np.minimum(mnh, h1 * 1.2) * rng.uniform(0.6, 1.0, len(Q)), h0, h1)
     haut = np.where(haut_couvert, rng.uniform(*SOUS_BOIS["sous_couvert_m"], len(Q)), haut)
     for k_rang, (_, _, (hh0, hh1), _) in enumerate(SOUS_BOIS["haie_rangs"], 1):
-        haut = np.where(rang_h == k_rang, np.clip(mnh * rng.uniform(0.8, 1.05, len(Q)), hh0, hh1), haut)
+        haut = np.where(rang_h == k_rang, np.clip(mnh * rng.uniform(0.55, 1.25, len(Q)), hh0, hh1), haut)
     fam, elt, ess = SOUS_BOIS["famille"]
     rows = [{"x_l93": f"{Q[i, 0]:.2f}", "y_l93": f"{Q[i, 1]:.2f}", "z_sol_m": f"{zt[i]:.2f}", "hauteur_m": f"{haut[i]:.1f}",
              "diametre_houppier_m": f"{0.9 * haut[i]:.1f}", "essence": ess, "famille_jeu": fam, "element_jeu_propose": elt,
@@ -1659,7 +1776,7 @@ def instances(P, ref, sol, ruban, pkf, args):
         # posés sur le maillage du relief lointain lui-même (pas de 5 m), pour ne ni flotter ni s'enfoncer
         axe_g = pkf.A[:, [0, 2]] if pkf.A.shape[1] == 3 else pkf.A
         arbre_axe_g = cKDTree(axe_g[::3])
-        sol_loin = Sol("lointain.glb", garder=lambda c: arbre_axe_g.query(c)[0] < ARBRES_LOIN["a_m"] + 60.0)
+        sol_loin = Sol("lointain.glb", garder=lambda c: arbre_axe_g.query(c)[0] < ARBRES_LOIN["frange"][0] + 60.0)
         table("versants", loin, chemin_arbre, lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"], sol_loin=sol_loin,
               reglages=lambda chemin: {"distances_de_disparition_cm": ARBRES_LOIN["disparition_cm"], "ombre_dynamique": False})
         if loin_buissons:
@@ -1836,9 +1953,29 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
     ok = np.isfinite(zs)
     g, choix, ech = g[ok], choix[ok], ech[ok]
     g[:, 1] = zs[ok] - 0.03
+    # Pente du terrain sous chaque touffe. Essai en jeu du 14/11/2026 (septième version) : sur les talus du bord de route,
+    # des touffes d'herbe « à l'horizontale alors que le sol est en pente à 45 degrés ». Les touffes étaient posées
+    # droites. Elles sont maintenant couchées sur la pente (tournées vers l'amont, puis basculées de l'angle de la
+    # pente), et raréfiées sur les pentes raides, où l'herbe réelle est clairsemée.
+    pas_p = 0.35
+    zxp, zxm = sol(g[:, 0] + pas_p, g[:, 2]), sol(g[:, 0] - pas_p, g[:, 2])
+    zzp, zzm = sol(g[:, 0], g[:, 2] + pas_p), sol(g[:, 0], g[:, 2] - pas_p)
+    gx = np.where(np.isfinite(zxp) & np.isfinite(zxm), (zxp - zxm) / (2 * pas_p), 0.0)
+    gz = np.where(np.isfinite(zzp) & np.isfinite(zzm), (zzp - zzm) / (2 * pas_p), 0.0)
+    pente = np.degrees(np.arctan(np.hypot(gx, gz)))
+    p0_, p1_, reste_ = HERBES["pente_rare_deg"]
+    garde_p = rng.random(len(g)) < np.clip(1.0 - (1.0 - reste_) * (pente - p0_) / (p1_ - p0_), reste_, 1.0)
+    g, choix, ech, gx, gz, pente = g[garde_p], choix[garde_p], ech[garde_p], gx[garde_p], gz[garde_p], pente[garde_p]
     ue = Axes.ue(g)
     pk = pkf(g)
     lacet = rng.uniform(-180.0, 180.0, len(g))
+    norme = np.maximum(np.hypot(gx, gz), 1e-6)
+    vers_amont = Axes.ue(g + np.column_stack([gx / norme, np.zeros(len(g)), gz / norme])) - ue      # un mètre vers l'amont
+    en_pente = pente > HERBES["pente_min_deg"]
+    lacet = np.where(en_pente, np.degrees(np.arctan2(vers_amont[:, 1], vers_amont[:, 0])), lacet)
+    tangage = np.where(en_pente, np.minimum(pente, HERBES["pente_max_deg"]), 0.0)
+    print(f"  herbes : {int(en_pente.sum())} touffes couchées sur une pente de plus de {HERBES['pente_min_deg']} degrés, "
+          f"{int((~garde_p).sum())} retirées des pentes raides")
     cat = catalogue_du_jeu()
     bilan = {}
     for i, n in enumerate(noms):
@@ -1852,10 +1989,10 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
         out.parent.mkdir(parents=True, exist_ok=True)
         with open(out, "w", newline="", encoding="utf-8") as fh:
             wr = csv.writer(fh, lineterminator="\n")
-            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle"])
+            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle", "tangage_deg"])
             for j in sel:
                 wr.writerow([j, f"{ue[j, 0]:.1f}", f"{ue[j, 1]:.1f}", f"{ue[j, 2]:.1f}", f"{lacet[j]:.1f}", "1.00", f"{pk[j]:.0f}",
-                             f"{ech[j]:.3f}"])
+                             f"{ech[j]:.3f}", f"{tangage[j]:.1f}"])
         el = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Herbes_{nom}", "maillage_jeu": chemin,
                        "present_au_catalogue": chemin in cat, "fichier": fichier.as_posix(), "nombre": int(len(sel)),
                        "composant": "HierarchicalInstancedStaticMeshComponent", "collision": "NoCollision",
@@ -2070,10 +2207,16 @@ def objets_en_long(P, ref, sol, liste):
 # Par genre : avancée devant le terrain, épaisseur des bancs (min, max), part de la largeur d'un banc occupée par son
 # front (0,3 : front raide et replat ; 1 : pente continue), décrochement des blocs, longueur des blocs (min, max),
 # lacunes (plus la valeur est basse, plus la terre reparaît par plaques entre les roches).
-ROCHE = {"pas_m": 0.4, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
+# Essai en jeu du 14/11/2026 (septième version) : teinte juste, mais parois « à retravailler, et leur intégration en bord de
+# route » : longs gradins réguliers, trop propres, sommet tranché net, pied posé sur une bande de sol nu, là où la
+# reconnaissance montre des bancs fins, fracturés, mangés de terre et de buissons. Pour le genre « lite » : bancs plus
+# minces (18 à 42 cm au lieu de 28 à 60), blocs plus courts (0,5 à 1,5 m au lieu de 0,9 à 2,5), front moins en marche
+# d'escalier, davantage de lacunes où la terre et la végétation reparaissent ; pas de 25 cm le long de la route pour
+# rendre ces blocs ; hauteur du sommet plus irrégulière ; pierres semées au pied (regles_arbres.pieds_de_paroi).
+ROCHE = {"pas_m": 0.25, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
          "epaisseur_m": 0.16, "pente_deg": (9.0, 24.0), "plat_m": (2.0, 0.35), "uv_m": 2.5, "marge_chaussee_m": 0.3,
          "couleur_secours": (188, 182, 168),
-         "genres": {"lite": {"avance_m": 0.8, "banc_m": (0.28, 0.6), "front": 0.3, "decroche_m": 0.3, "bloc_m": (0.9, 2.5), "lacunes": 0.36},
+         "genres": {"lite": {"avance_m": 0.8, "banc_m": (0.18, 0.42), "front": 0.5, "decroche_m": 0.38, "bloc_m": (0.5, 1.5), "lacunes": 0.30},
                     "blocs": {"avance_m": 1.0, "banc_m": (0.6, 1.1), "front": 0.25, "decroche_m": 0.45, "bloc_m": (1.2, 2.4), "lacunes": 0.2},
                     "eboulis": {"avance_m": 0.45, "banc_m": (0.3, 0.45), "front": 1.0, "decroche_m": 0.22, "bloc_m": (0.6, 1.3), "lacunes": 0.08}}}
 
@@ -2174,7 +2317,7 @@ def parois_rocheuses(P, ref, sol):
         dehors /= np.maximum(np.linalg.norm(dehors, axis=1, keepdims=True), 1e-9)
         fin = np.clip(np.minimum(S - S[0], S[-1] - S) / ROCHE["biseau_m"], 0.0, 1.0)
         fin = fin * fin * (3 - 2 * fin)                                             # la paroi meurt en sifflet à ses bouts
-        H = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.8 + 0.25 * _bruit(S / 2.1, 7.0, k + 2)) * (0.1 + 0.9 * fin)
+        H = (h0 + (h1 - h0) * _bruit(S / 9.0, 0.0, k)) * (0.70 + 0.42 * _bruit(S / 2.1, 7.0, k + 2)) * (0.1 + 0.9 * fin)
         avance = g["avance_m"] * (0.65 + 0.7 * _bruit(S / 7.0, 3.0, k + 4)) * (0.15 + 0.85 * fin)
         # profil du terrain en travers, tous les 10 cm, hauteurs comptées depuis le bord de chaussée
         o0 = max(float(e["decalage_m"]) - 0.8, ROCHE["marge_chaussee_m"])
@@ -2353,7 +2496,7 @@ def pierraille_des_talus(P, ref, sol, pkf, ruban):
     """Pierres calcaires semées sur les talus de rocaille (regles_arbres.rocailles). Relus sur la reconnaissance le
     13/11/2026 : la plupart des talus pris pour des parois sont des pentes de pierres et de roche brisée ; rendus en
     maillage de roche, ils faisaient des dalles grises ou des murailles. Positions tirées au sort (graine fixe)."""
-    polys = regles_arbres.rocailles(ROOT)
+    polys = regles_arbres.rocailles(ROOT) + regles_arbres.pieds_de_paroi(ROOT)      # talus de rocaille, et pied des parois
     if not polys:
         return {}
     rng = np.random.default_rng(SEED + 91)
@@ -2389,9 +2532,10 @@ def pierraille_des_talus(P, ref, sol, pkf, ruban):
         (P.sortie / fichier).parent.mkdir(parents=True, exist_ok=True)
         with open(P.sortie / fichier, "w", newline="", encoding="utf-8") as fh:
             wr = csv.writer(fh, lineterminator="\n")
-            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle"])
+            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle", "tangage_deg"])
             for j, s_ in zip(sel, ech):
-                wr.writerow([j, f"{ue[j, 0]:.1f}", f"{ue[j, 1]:.1f}", f"{ue[j, 2] - creux_cm * s_:.1f}", f"{lacet[j]:.1f}", "1.00", f"{pk[j]:.0f}", f"{s_:.3f}"])
+                wr.writerow([j, f"{ue[j, 0]:.1f}", f"{ue[j, 1]:.1f}", f"{ue[j, 2] - creux_cm * s_:.1f}", f"{lacet[j]:.1f}", "1.00", f"{pk[j]:.0f}", f"{s_:.3f}",
+                             f"{rng.uniform(-28.0, 28.0):.1f}"])       # basculée au hasard : des pierres toutes posées pareil faisaient un cordon
         el = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Rocaille_{nom}", "maillage_jeu": chemin, "present_au_catalogue": chemin in cat,
                        "fichier": fichier.as_posix(), "nombre": int(len(sel)), "composant": "HierarchicalInstancedStaticMeshComponent",
                        "collision": "NoCollision", "hauteur_native_cm": None, "echelle": "colonne « echelle » de la table, maillage posé tel quel",
@@ -2529,6 +2673,8 @@ def main():
                          "photo : photo aérienne plaquée, comme avant le 12/11/2026. L'échantillon reste en photo.")
     ap.add_argument("--falaises-roche", type=int, default=1,
                     help="1 : faces très raides du relief à moins de 700 m de la route habillées de la roche du jeu ; 0 : photo aérienne")
+    ap.add_argument("--falaises-rompues", type=int, default=1,
+                    help="1 : faces de roche du relief recoupées et bosselées (moins géométriques) ; 0 : grands triangles plans")
     ap.add_argument("--lointain-rasant", type=int, default=1,
                     help="1 : images du paysage lointain traitées pour être vues de la route (versants boisés vert sombre, pistes "
                          "et trouées effacées sous les arbres ; remplace --lointain-clarte) ; 0 : non")

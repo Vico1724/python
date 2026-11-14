@@ -1236,7 +1236,7 @@
   },
   {
    "nom": "Départ : dégagement des véhicules de secours",
-   "actif": true,
+   "actif": false,
    "pk": [
     -66,
     0
@@ -1349,7 +1349,8 @@
     }
    ],
    "source": "relevé vidéo, nuage LiDAR HD, ortho",
-   "cle": "depart"
+   "cle": "depart",
+   "desactive": "le 14/11/2026 : cette surface d'enrobé de 2 à 5 m à gauche (PK -66 à -1) contredit les captures Street View du directeur (data/reference/zone_depart.json), qui montrent de l'herbe, un sentier et une lisse basse en bois"
   }
  ]
 }

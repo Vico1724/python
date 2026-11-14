@@ -293,3 +293,39 @@ def garde_en_zone_ouverte(cle):
     """Vrai pour l'arbre sur quatre qui reste dans une zone ouverte ; `cle` rend le tirage reproductible."""
     import zlib
     return zlib.crc32(f"ouvert:{cle}".encode("utf-8")) % 100 < 100 * PART_GARDEE_EN_ZONE_OUVERTE
+
+
+def pieds_de_paroi(racine):
+    """[(polygone Lambert-93, hauteur maxi)] : bande étroite au pied de chaque paroi de roche en place (tout genre sauf
+    « eboulis ») de data/reference/parois_rocheuses.json. Essai en jeu du 14/11/2026 : les parois étaient posées sur une
+    bande de sol nu ; une paroi réelle a toujours à son pied les pierres qui s'en détachent."""
+    import csv
+    import json
+    from pathlib import Path
+
+    import numpy as np
+    import shapely
+    f = Path(racine) / "data" / "reference" / "parois_rocheuses.json"
+    if not f.exists():
+        return []
+    with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:
+        r = list(csv.DictReader(h))
+    pk = np.array([float(x["pk_m"]) for x in r])
+    A = np.array([[float(x["x_axe"]), float(x["y_axe"])] for x in r])
+    bords = {"gauche": np.array([[float(x["x_gauche"]), float(x["y_gauche"])] for x in r]),
+             "droite": np.array([[float(x["x_droite"]), float(x["y_droite"])] for x in r])}
+    out = []
+    for e in json.loads(f.read_text(encoding="utf-8"))["parois"]:
+        if e["genre"] == "eboulis":
+            continue
+        s = np.arange(e["pk_debut_m"] - 3.0, e["pk_fin_m"] + 3.5, 1.0)
+        B = np.column_stack([np.interp(s, pk, bords[e["cote"]][:, k]) for k in (0, 1)])
+        C = np.column_stack([np.interp(s, pk, A[:, k]) for k in (0, 1)])
+        n = B - C
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+        d0 = max(float(e["decalage_m"]) - 0.9, 0.35)
+        d1 = float(e["decalage_m"]) + 0.5
+        poly = shapely.Polygon(np.vstack([B + n * d0, (B + n * d1)[::-1]])).buffer(0)
+        if not poly.is_empty:
+            out.append((poly, float(max(e["hauteur_m"]))))
+    return out

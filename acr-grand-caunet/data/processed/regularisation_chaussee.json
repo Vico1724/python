@@ -1360,12 +1360,12 @@
   "lambda_devers": 1000.0,
   "tolerance_devers_pct": 2.0,
   "deplacement_axe_m": {
-   "moyen": 0.0059,
-   "max": 0.045
+   "moyen": 0.0028,
+   "max": 0.031
   },
   "deplacement_bords_m": {
-   "moyen": 0.0151,
-   "max": 0.343
+   "moyen": 0.0078,
+   "max": 0.346
   },
   "acceleration_verticale_a_90_kmh_g": {
    "axe_avant": [
@@ -1374,9 +1374,9 @@
     "maximum au PK 3077"
    ],
    "axe_apres": [
-    0.04,
-    0.23,
-    "maximum au PK 5575"
+    0.079,
+    0.42,
+    "maximum au PK 5577"
    ],
    "bord_gauche_avant": [
     0.365,
@@ -1384,8 +1384,8 @@
     "maximum au PK 4474"
    ],
    "bord_gauche_apres": [
-    0.05,
-    0.53,
+    0.14,
+    0.87,
     "maximum au PK 3452"
    ],
    "bord_droit_avant": [
@@ -1394,9 +1394,9 @@
     "maximum au PK 3673"
    ],
    "bord_droit_apres": [
-    0.062,
-    0.77,
-    "maximum au PK 3658"
+    0.163,
+    1.19,
+    "maximum au PK 3684"
    ]
   },
   "devers_aberrants": {
