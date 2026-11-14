@@ -1879,17 +1879,22 @@
    "piliers": {
     "section_m": 0.4,
     "hauteur_m": 2.2,
-    "materiau": "enduit_blanc"
+    "materiau": "enduit_blanc",
+    "bouts": [
+     "debut"
+    ]
    },
    "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 6 ; au fond de la rampe, ≈ 15 m de l'axe (± 3 m)",
+   "revision": "relecture de la capture 6 après l'essai de la onzième version : un seul pilier enduit blanc, à gauche (côté sud, premier point) ; à droite le portail s'arrête contre le monolithe. Tôle laquée blanc cassé à lames (matière à image), plus de blanc lisse qui prenait le bleu du ciel",
    "confiance": "moyenne"
   },
   {
    "nom": "monolithe de pierre dressé",
    "type": "bloc",
+   "forme": "dresse",
    "centre_l93": [
-    917031.86,
-    6240963.02
+    917031.59,
+    6240962.31
    ],
    "direction": [
     0.351,
@@ -1897,11 +1902,11 @@
    ],
    "longueur_m": 1.0,
    "largeur_m": 0.6,
-   "hauteur_m": 3.5,
-   "hauteur_fin_m": 3.0,
-   "materiau": "pierre",
+   "hauteur_m": 3.2,
+   "materiau": "pierre_ocre",
    "materiau_collision": "pierre",
    "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 5 et 6 ; à droite du portail, devant le mur du parking",
+   "revision": "relecture de la capture 6 après l'essai de la onzième version (grande dalle sombre à arêtes vives) : calcaire ocre clair, bloc irrégulier qui s'effile en pointe, ≈ 1 m de large et ≈ 3,2 m de haut (1,6 fois le portail de 2 m), accolé au bout droit du portail (centre ramené de 0,7 m vers lui, dans l'alignement du portail ; avant : (917031,86 ; 6240963,02), 3,5 m puis 3,0 m, pierre de mur du jeu)",
    "confiance": "moyenne"
   },
   {
@@ -1965,12 +1970,12 @@
    "type": "barriere",
    "segment_l93": [
     [
-     917011.5,
-     6241042.3
+     917007.84,
+     6241045.65
     ],
     [
-     917010.3,
-     6241047.6
+     917012.16,
+     6241044.35
     ]
    ],
    "longueur_m": 4.5,
@@ -1983,9 +1988,10 @@
    "poteaux": "noir",
    "hauteur_poteaux_m": 1.2,
    "plaque": "plaque_jaune",
-   "materiau": "barriere_noire",
+   "materiau": "barriere_verte",
    "materiau_collision": "metal_glissiere",
    "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 22 à 24",
+   "revision": "après l'essai de la onzième version (directeur : « barrière verte mal axée ») : posée EN TRAVERS de la piste, perpendiculaire à son axe BD TOPO (troncon GC 107 : du débouché (917004,8 ; 6241031,4) vers (917011,2 ; 6241052,4), cap ≈ 17°), centre (917010,0 ; 6241045,0) entre l'axe BD TOPO (≈ 917009,0) et le relevé Street View (917010,9), à ≈ 10 m de la route ; vue de face depuis le PK -9 (capture 22), ce qui confirme qu'elle barre la piste. Elle était le long de la piste (segment (917011,5 ; 6241042,3) - (917010,3 ; 6241047,6), cap ≈ -13°, parallèle à son axe). Couleur : vert sombre de barrière DFCI (lisse au soleil ≈ sRGB 43, 63, 53 sur la capture 23), et non noir",
    "confiance": "moyenne"
   }
  ],

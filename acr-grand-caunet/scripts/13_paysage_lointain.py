@@ -17,11 +17,11 @@ Entrées : modele/terrain.glb et modele/apercu/terrain.glb (bord extérieur du t
           4,5 km de l'axe et à 25 m au-delà, hauteur de végétation LiDAR HD (MNH) aux mêmes pas,
           BD ORTHO (HR.ORTHOIMAGERY.ORTHOPHOTOS) de 1 m (près) à 10 m (au-delà de 10 km) par pixel
 Maillage : une seule triangulation (pas de fissure entre niveaux), pas croissant avec la
-          distance à l'axe : 5 m jusqu'à 400 m, 10 m jusqu'à 1,2 km, 20 m jusqu'à 4 km, 50 m
+          distance à l'axe : 5 m jusqu'à 400 m, 10 m jusqu'à 2 km, 20 m jusqu'à 4 km, 50 m
           jusqu'à 10 km, 100 m jusqu'à 20 km, 200 m jusqu'à 30 km.
 Raccord : le bord intérieur de l'anneau EST le bord extérieur du terrain de 08 (mêmes sommets,
           mêmes positions) : ni marche ni trou. Jusqu'à 280 m de l'axe, l'altitude vient du MNT
-          LiDAR (celui de 08), puis passe au RGE ALTI.
+          LiDAR (celui de 08), puis vient du MNT LiDAR HD à 2 m jusqu'à 2 km, puis passe au RGE ALTI.
 Altitude : sol + hauteur de la végétation (MNH x 0,9, lissé), introduite de 140 à 220 m de l'axe :
           au loin, on voit le dessus des bois, pas le sol ; au bord du couloir, la surface
           rejoint le sol sous les arbres 3D. Au-delà de 1 km, abaissement dû à la courbure de
@@ -48,7 +48,7 @@ from scipy.ndimage import map_coordinates
 from scipy.spatial import Delaunay, cKDTree
 from shapely.geometry import LineString, Polygon
 
-from acr_geo import RAW, ROOT, wms_tile, LAYER_ORTHO
+from acr_geo import RAW, ROOT, wms_tile, LAYER_MNS, LAYER_MNT, LAYER_ORTHO
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -66,7 +66,8 @@ R_MAX = 30000.0            # m de l'axe
 RAYON_TERRE = 6371000.0
 K_REFRACTION = 0.13
 VERSIONS = {   # (bandes (distance max à l'axe, pas)), (px texture près / moyen / loin)
-    "complet": ([(400, 5), (1200, 10), (4000, 20), (10000, 50), (20000, 100), (R_MAX, 200)], (1024, 1024, 512)),
+    # pas de 10 m jusqu'à 2 km (1,2 km jusqu'au 14/11/2026) : toute la bande où l'altitude vient du relevé laser
+    "complet": ([(400, 5), (2000, 10), (4000, 20), (10000, 50), (20000, 100), (R_MAX, 200)], (1024, 1024, 512)),
     "apercu": ([(400, 16), (1200, 40), (4000, 80), (10000, 200), (20000, 400), (R_MAX, 800)], (256, 128, 64)),
 }
 # Vu en jeu le 13/11/2026 (quatrième version) : « les reliefs moyennement lointains font tas de sable avec une photo
@@ -79,6 +80,19 @@ CANOPEE = (450.0, 650.0)   # m : introduction de la hauteur de végétation
 RAIDE_DEG = 30.0
 LIDAR = (550.0, 650.0)     # m : passage du MNT LiDAR (50 cm) au RGE ALTI (5 m) ; 220 à 280 m jusqu'au 13/11/2026.
                            # Le relevé laser couvre toute cette bande : barres rocheuses et ravins y gardent leur forme.
+# Redit par le directeur le 14/11/2026 : falaises lointaines « floues, sombres, trop petites », relief « géométrique ». Les
+# grandes barres calcaires vues de la route (PK 3900 à 4300) sont à 0,8-2 km : au-delà de LIDAR[1], le RGE ALTI à 5 m
+# les écrasait en talus. Le MNT LiDAR HD est donc pris aussi à 2 m (Géoplateforme, même flux WMS que l'étape 03, dalles
+# de 2 km) jusqu'à LIDAR_LOIN_M de l'axe, et sert d'altitude jusqu'à LIDAR_2M (fondu vers le RGE ALTI au-delà, et
+# sur 60 m avant le bord de son image ou d'un trou). Le MNS au même pas est gardé à côté (MNS - MNT : hauteur des arbres).
+LIDAR_LOIN_M = 2200.0      # m de l'axe : emprise du MNT et du MNS LiDAR HD à 2 m (data/raw/lointain/m?s_lidarhd_2m.tif)
+LIDAR_2M = (1950.0, 2150.0)  # m : passage du MNT LiDAR à 2 m au RGE ALTI à 5 m
+# Maillage des barres rocheuses : la pente est lue sur ce MNT à 2 m (base de 2 x RAIDE_BASE_M), et plus sur le RGE ALTI.
+# Au-delà de RAIDE_DEG, demi-pas ; au-delà de RAIDE_FORT_DEG (paroi), quart de pas (5 m dans la bande à 20 m, 2,5 m dans
+# celle à 10 m), jamais sous RAIDE_PAS_MIN_M (le relevé n'a pas plus fin).
+RAIDE_FORT_DEG = 50.0
+RAIDE_BASE_M = 4.0
+RAIDE_PAS_MIN_M = 2.5
 TRES_PRES_M = 600.0        # m de l'axe : en deçà, image des dalles à 50 cm par point
 
 
@@ -223,12 +237,18 @@ def points_anneau(axe, bord, bandes, raide=None):
         sel = (d > lo) & (d <= dmax)
         pts.append(np.column_stack([X[sel], Y[sel], d[sel]]))
         if raide is not None and pas <= 20:
-            # points intermédiaires (demi-pas) sur les versants raides : milieux d'arêtes et centres de mailles
+            # points intermédiaires sur les versants raides : demi-pas (milieux d'arêtes et centres de mailles) au-delà de
+            # RAIDE_DEG, quart de pas au-delà de RAIDE_FORT_DEG (parois), pente lue au point ajouté
+            k = 4 if pas / 4 >= RAIDE_PAS_MIN_M else 2
             ajout = []
-            for dx, dy in ((pas / 2, 0.0), (0.0, pas / 2), (pas / 2, pas / 2)):
-                xa, ya = X[sel] + dx, Y[sel] + dy
-                r = raide(xa, ya) >= RAIDE_DEG
-                ajout.append(np.column_stack([xa[r], ya[r], d[sel][r]]))
+            for i in range(k):
+                for j in range(k):
+                    if i == 0 and j == 0:
+                        continue
+                    seuil = RAIDE_DEG if (i * 2) % k == 0 and (j * 2) % k == 0 else RAIDE_FORT_DEG
+                    xa, ya = X[sel] + i * pas / k, Y[sel] + j * pas / k
+                    r = raide(xa, ya) >= seuil
+                    ajout.append(np.column_stack([xa[r], ya[r], d[sel][r]]))
             ajout = np.vstack(ajout)
             print(f"  bande jusqu'à {dmax:.0f} m (pas {pas} m) : {len(ajout)} points ajoutés sur les versants raides, pour {int(sel.sum())}")
             pts.append(ajout)
@@ -279,6 +299,15 @@ def altitudes(Pxy, dist, nb, bord, src, centre):
     z_near = np.where(proche, src["alti5"](x, y), z_far)
     w = np.clip((dist - (R_PROCHE - 600)) / 500, 0, 1)
     z_rge = (1 - w) * z_near + w * z_far
+    # MNT LiDAR à 2 m jusqu'à LIDAR_2M[1] de l'axe, fondu vers le RGE ALTI au-delà, au bord de son image et autour de
+    # ses trous (60 m)
+    l2 = src.get("lidar2")
+    if l2 is not None:
+        z_2 = l2(x, y)
+        ok_2 = l2.dedans(x, y, marge=4) & (z_2 > -1000)
+        w2 = np.where(ok_2, 1 - np.clip((dist - LIDAR_2M[0]) / (LIDAR_2M[1] - LIDAR_2M[0]), 0, 1), 0)
+        w2 = w2 * np.clip((src["lidar2_bord"](x, y) - 10.0) / 60.0, 0, 1)
+        z_rge = w2 * np.where(ok_2, z_2, 0.0) + (1 - w2) * z_rge
     # MNT LiDAR près du couloir
     lid = src["lidar"]
     ok_l = lid.dedans(x, y, marge=4)
@@ -348,15 +377,23 @@ def construit(version, ref, axe, src, centre, rapport):
     bandes, px_niv = VERSIONS[version]
     dossier = MOD if version == "complet" else MOD / "apercu"
     bord, info_bord = bord_exterieur(dossier / "terrain.glb", ref)
-    def raide(x, y, h=5.0):
-        a5 = src["alti5"]
-        ok = a5.dedans(x - h, y - h) & a5.dedans(x + h, y + h)
+    def pente(r, x, y, h):
+        ok = r.dedans(x - h, y - h) & r.dedans(x + h, y + h)
         p = np.zeros(len(x))
         if ok.any():
-            gx = (a5(x[ok] + h, y[ok]) - a5(x[ok] - h, y[ok])) / (2 * h)
-            gy = (a5(x[ok], y[ok] + h) - a5(x[ok], y[ok] - h)) / (2 * h)
+            gx = (r(x[ok] + h, y[ok]) - r(x[ok] - h, y[ok])) / (2 * h)
+            gy = (r(x[ok], y[ok] + h) - r(x[ok], y[ok] - h)) / (2 * h)
             p[ok] = np.degrees(np.arctan(np.hypot(gx, gy)))
-            p[ok] = np.where(np.abs(a5(x[ok], y[ok])) < 5000, p[ok], 0.0)      # hors données (mer, bord) : pas de falaise
+            p[ok] = np.where(np.abs(r(x[ok], y[ok])) < 5000, p[ok], 0.0)      # hors données (mer, bord) : pas de falaise
+        return p
+
+    def raide(x, y):
+        """Pente en degrés : MNT LiDAR à 2 m là où il est sûr (loin de son bord et de ses trous), RGE ALTI à 5 m ailleurs."""
+        p = pente(src["alti5"], x, y, 5.0)
+        if "lidar2" in src:
+            sur = src["lidar2_bord"](x, y) > 20.0
+            if sur.any():
+                p[sur] = pente(src["lidar2"], x[sur], y[sur], RAIDE_BASE_M)
         return p
 
     Q, poly = points_anneau(axe, bord, bandes, raide if version == "complet" else None)
@@ -477,6 +514,15 @@ def main():
            "mnh5": Raster(*mosaique(LAYER_MNH, BRUT / "mnh_5m.tif", bp, 5.0)),
            "mnh25": Raster(*mosaique(LAYER_MNH, BRUT / "mnh_25m.tif", bl, 25.0)),
            "alti50": Raster(*mosaique(LAYER_ALTI, BRUT / "rgealti_50m_horizon.tif", bh, 50.0, dalle_px=800))}
+    # MNT (et MNS) LiDAR HD à 2 m jusqu'à LIDAR_LOIN_M de l'axe ; distance de chaque point au bord des données (m)
+    b2 = tuple(np.r_[np.floor((axe.min(0) - LIDAR_LOIN_M - 100) / 100) * 100, np.ceil((axe.max(0) + LIDAR_LOIN_M + 100) / 100) * 100])
+    src["lidar2"] = Raster(*mosaique(LAYER_MNT, BRUT / "mnt_lidarhd_2m.tif", b2, 2.0))
+    mosaique(LAYER_MNS, BRUT / "mns_lidarhd_2m.tif", b2, 2.0)
+    from scipy.ndimage import distance_transform_edt
+    ok2 = np.pad(src["lidar2"].ok & (src["lidar2"].a < 5000), 1)
+    src["lidar2_bord"] = Raster((distance_transform_edt(ok2)[1:-1, 1:-1] * 2.0).astype(np.float32), src["lidar2"].tr)
+    print(f"MNT LiDAR à 2 m : {src['lidar2'].a.shape[1]} x {src['lidar2'].a.shape[0]} points, "
+          f"{100 * (1 - ok2[1:-1, 1:-1].mean()):.2f} % sans valeur")
     with rasterio.open(RAW / "mnt_lidarhd_50cm.tif") as s:
         a = s.read(1, out_shape=(s.height // 4, s.width // 4), resampling=Resampling.average, masked=True)
         a = a.filled(-9999.0)

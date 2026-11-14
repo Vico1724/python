@@ -87,8 +87,23 @@ LOIN0 = (880000, 6210000)             # coin sud-ouest de la grille kilométriqu
 # taches pâles et floues, ou restaient sombres (PK 3920 à 3960, 4320, 5400), là où la reconnaissance montre des barres
 # calcaires blanches, nettes, rayées de strates. Depuis le 14/11/2026 : teinte plus blanche et plus couvrante, élargie de
 # 2 m au lieu de 4 (moins de flou), et rayée de strates horizontales tirées de l'altitude (une tous les strates_m).
-FALAISE = {"pente_5m_deg": (46.0, 58.0), "couleur": (218, 212, 198), "taux": 0.86, "elargir_m": 2.0, "strates_m": 3.4, "strates": 0.20}
-FALAISE_ROCHE = {"pente_deg": 48.0, "a_m": 1100.0}      # faces du relief lointain rendues par la roche du jeu (--falaises-roche)
+# Depuis le 14/11/2026 (falaises lointaines encore « floues, trop petites ») : la pente vient d'abord du MNT LiDAR HD à
+# 2 m (data/raw/lointain/mnt_lidarhd_2m.tif, jusqu'à 2,2 km de l'axe, voir 13_paysage_lointain.py), où une paroi dépasse
+# 60 degrés ; seuils choisis pour couvrir la même part du massif que ceux du RGE ALTI (0,4 % puis 0,15 % de la surface
+# au-delà du début et de la fin), mais aux bords nets du relevé. Le RGE ALTI à 5 m prend le relais au-delà, par un fondu
+# de 150 m avant le bord du relevé (fondu_m).
+FALAISE = {"pente_2m_deg": (55.0, 68.0), "pente_5m_deg": (46.0, 58.0), "fondu_m": 150.0,
+           "couleur": (218, 212, 198), "taux": 0.86, "elargir_m": 2.0, "strates_m": 3.4, "strates": 0.20}
+# faces du relief lointain rendues par la roche du jeu (--falaises-roche) ; 1 100 m jusqu'au 14/11/2026, 2 000 m depuis
+# que le relief lointain suit le relevé laser jusqu'à 2 km
+# Captures du directeur du 14/11/2026 (onzième version) : falaises lointaines en « dômes lisses blanc rosé » (texture de
+# roche dépliée à 2,5 m, illisible de loin) et au pied « en dents de scie ». Depuis : dépliage à uv_m (motif de 17,5 m,
+# 7 fois celui du bord de route) et roche étendue de proche en proche (anneaux) aux triangles de plus de pente_bord_deg.
+# Le relief lointain étant désormais maillé à 2,5-10 m (au lieu de 10-20 m) jusqu'à 2 km, chaque face raide n'est plus
+# recoupée en 16 mais selon sa taille : morceaux de coupe_m (+ 1 m tous les coupe_par_m de distance à la route, le grain
+# fin ne se voit plus au loin), de 1 à ROMPRE["coupes"] par côté.
+FALAISE_ROCHE = {"pente_deg": 48.0, "a_m": 2000.0, "uv_m": 17.5, "pente_bord_deg": 40.0, "anneaux": 1,
+                 "coupe_m": 2.5, "coupe_par_m": 400.0}
 # Vu en jeu le 13/11/2026 : massifs lointains blancs, d'aspect enneigé, et rayés de bandes horizontales. Les bancs
 # (strates) sont retirés, la teinte est moins claire et moins couvrante, et elle n'est plus posée au-delà du relief à
 # 5 m (6 km environ) : le relief à 25 m ne montre pas les falaises, les seuils abaissés teintaient des versants entiers.
@@ -980,41 +995,68 @@ def materiaux_modele(P, glbs, dest_tex, dest_mat, prefixe_mat):
 
 
 class Pentes:
-    """Pente du relief (RGE ALTI à 5 m, puis à 25 m au-delà) en un point Lambert-93, pour teinter les falaises."""
+    """Pente du relief (MNT LiDAR HD à 2 m jusqu'à 2,2 km de l'axe, puis RGE ALTI à 5 m) en un point Lambert-93, pour
+    teinter les falaises."""
 
     def __init__(self):
         import rasterio
+        from scipy import ndimage
         self.couches = []
-        for nom, cle in (("rgealti_5m.tif", "pente_5m_deg"),):
+        for nom, cle in (("mnt_lidarhd_2m.tif", "pente_2m_deg"), ("rgealti_5m.tif", "pente_5m_deg")):
             p = ROOT / "data" / "raw" / "lointain" / nom
             if not p.exists():
                 continue
             with rasterio.open(p) as d:
                 z, t, nd = d.read(1).astype(np.float32), d.transform, d.nodata
-            ok = np.isfinite(z) & (z != nd) if nd is not None else np.isfinite(z)
+            ok = np.isfinite(z) & (z > -1000) & (z < 5000)
+            if nd is not None:
+                ok &= z != nd
             z = np.where(ok, z, 0.0).astype(np.float32)
             gl, gc = np.gradient(z, abs(t.e), t.a)
             pente = np.degrees(np.arctan(np.hypot(gl, gc))).astype(np.float32)
-            from scipy import ndimage
-            pente[~ndimage.binary_erosion(ok, iterations=2)] = 0.0          # pas de fausse falaise au bord des données
-            self.couches.append((pente, z, ok, t, FALAISE[cle]))
+            ok = ndimage.binary_erosion(ok, iterations=2)
+            pente[~ok] = 0.0                                                  # pas de fausse falaise au bord des données
+            # part de cette couche : 1 loin de son bord (et de ses trous), 0 au bord, sur FALAISE["fondu_m"] ; la couche
+            # suivante (plus grossière) complète, sans limite nette là où le relevé s'arrête
+            if cle == "pente_5m_deg":
+                part = ok.astype(np.float32)
+            else:
+                part = np.clip(ndimage.distance_transform_edt(np.pad(ok, 1))[1:-1, 1:-1] * abs(t.a) / FALAISE["fondu_m"],
+                               0.0, 1.0).astype(np.float32)
+            self.couches.append((pente, z, part, t, FALAISE[cle]))
 
     def roche(self, x, y):
         """Part de roche (0 à 1) et altitude en chaque point (tableaux Lambert-93 de même forme)."""
         from scipy import ndimage
-        w, alt, fait = np.zeros(x.shape, np.float32), np.zeros(x.shape, np.float32), np.zeros(x.shape, bool)
-        for pente, z, ok, t, (a, b) in self.couches:
+        w, alt, reste = np.zeros(x.shape, np.float32), np.zeros(x.shape, np.float32), np.ones(x.shape, np.float32)
+        for pente, z, part, t, (a, b) in self.couches:
             c, l = (x - t.c) / t.a - 0.5, (y - t.f) / t.e - 0.5
-            ici = ~fait & (c >= 0) & (l >= 0) & (c <= z.shape[1] - 1) & (l <= z.shape[0] - 1)
+            ici = (reste > 0) & (c >= 0) & (l >= 0) & (c <= z.shape[1] - 1) & (l <= z.shape[0] - 1)
             if not ici.any():
                 continue
             cl = np.vstack([l[ici], c[ici]])
-            ici[ici] = ndimage.map_coordinates(ok.astype(np.float32), cl, order=0) > 0.5
-            cl = np.vstack([l[ici], c[ici]])
+            k = ndimage.map_coordinates(part, cl, order=1) * reste[ici]
             s = np.clip((ndimage.map_coordinates(pente, cl, order=1) - a) / (b - a), 0.0, 1.0)
-            w[ici], alt[ici] = s * s * (3.0 - 2.0 * s), ndimage.map_coordinates(z, cl, order=1)
-            fait |= ici
+            w[ici] += k * s * s * (3.0 - 2.0 * s)
+            alt[ici] += k * ndimage.map_coordinates(z, cl, order=1)
+            reste[ici] -= k
+        alt = np.where(reste < 1.0, alt / np.maximum(1.0 - reste, 1e-6), 0.0).astype(np.float32)   # moyenne des couches lues
         return w, alt
+
+    def degres(self, x, y):
+        """Pente en degrés (relevé à 2 m là où il existe, RGE ALTI à 5 m ailleurs ; 0 hors données)."""
+        from scipy import ndimage
+        p, reste = np.zeros(x.shape, np.float32), np.ones(x.shape, np.float32)
+        for pente, z, part, t, _ in self.couches:
+            c, l = (x - t.c) / t.a - 0.5, (y - t.f) / t.e - 0.5
+            ici = (reste > 0) & (c >= 0) & (l >= 0) & (c <= z.shape[1] - 1) & (l <= z.shape[0] - 1)
+            if not ici.any():
+                continue
+            cl = np.vstack([l[ici], c[ici]])
+            k = ndimage.map_coordinates(part, cl, order=1) * reste[ici]
+            p[ici] += k * ndimage.map_coordinates(pente, cl, order=1)
+            reste[ici] -= k
+        return np.where(reste < 1.0, p / np.maximum(1.0 - reste, 1e-6), 0.0)
 
 
 def teinte_falaises(im, m, ref, pentes, origine=None):
@@ -1070,7 +1112,8 @@ RASANT = {"sombre": (0.50, 0.36), "couvert": (0.12, 0.42), "rayon_couvert_m": 14
           # Relevé du test de la septième version : versants « beiges et nus », collines « lisses, comme tondues ». Le couvert
           # gagne donc dès qu'un huitième du sol est boisé (un bois clair vu de côté est une masse d'arbres), la garrigue est
           # plus sombre, et la forêt reçoit un moucheté de houppiers (amplitude, taille en mètres) au lieu d'un aplat.
-          "houppiers": (0.22, 3.2)}
+          # Depuis le 14/11/2026 : amplitude 0,12 au lieu de 0,22, bruit à plusieurs échelles (facteur de taille, poids).
+          "houppiers": (0.12, 3.2), "houppiers_echelles": ((1.0, 0.5), (2.5, 0.35), (8.0, 0.25))}
 
 
 def vue_rasante(im, m_par_px):
@@ -1098,10 +1141,21 @@ def vue_rasante(im, m_par_px):
     photo = teinte_veg / np.maximum(teinte_veg @ poids, 1e-3)[:, :, None] * float(foret @ poids)     # teinte de la photo, clarté de la pinède
     canopee = ((1.0 - RASANT["part_de_la_photo"]) * foret[None, None, :] + RASANT["part_de_la_photo"] * photo) * rel[:, :, None]
     canopee *= (1.0 + RASANT["detail"] * np.clip(detail, -0.12, 0.12) / np.maximum(lum_veg, 0.08))[:, :, None]
+    # Moucheté de houppiers. Captures du directeur du 14/11/2026 (onzième version) : colline « en camouflage », taches
+    # régulières. Un bruit d'une seule taille, posé à au moins 0,6 pixel sur des dalles de 4 à 12 m par pixel, faisait des
+    # taches de 5 à 15 m toutes pareilles. Depuis : plusieurs échelles (de la taille d'un houppier à huit fois plus),
+    # chacune seulement si elle couvre au moins un pixel et demi (sinon elle est omise, pas grossie), et une amplitude
+    # réduite quand la dalle a moins d'un pixel pour 2 m (proportionnelle à 2 m / taille du pixel).
     amp_h, taille_h = RASANT["houppiers"]
     tirage = np.random.default_rng(SEED + a.shape[0] * 31 + int(m_par_px * 1000))
-    moucheté = ndimage.gaussian_filter(tirage.normal(0.0, 1.0, lum.shape).astype(np.float32), max(taille_h / m_par_px / 2.0, 0.6), mode="wrap")
-    moucheté /= max(float(moucheté.std()), 1e-6)
+    moucheté = np.zeros(lum.shape, np.float32)
+    for facteur, poids_o in RASANT["houppiers_echelles"]:
+        sigma = taille_h * facteur / m_par_px / 2.0
+        if sigma < 0.75:
+            continue
+        o = ndimage.gaussian_filter(tirage.normal(0.0, 1.0, lum.shape).astype(np.float32), sigma, mode="wrap")
+        moucheté += poids_o * o / max(float(o.std()), 1e-6)
+    amp_h = amp_h * min(1.0, 2.0 / max(m_par_px, 1e-3))
     canopee = canopee * (1.0 + amp_h * np.clip(moucheté, -1.5, 1.5))[:, :, None]
     out = a * (1.0 - w) + canopee * w
     # Rocher nu et pierraille vus du ciel : presque blancs sur la photo. Depuis la route, ces plateaux et ces crêtes sont
@@ -1125,10 +1179,10 @@ def vue_rasante(im, m_par_px):
 ROMPRE = {"coupes": 4, "bord_m": 1.5, "ressaut_m": (2.2, 9.0), "grain_m": (0.6, 2.2), "part_de_face": 0.35}
 
 
-def rompre_falaise(tri3, nf):
-    """tri3 : (n, 3, 3) sommets des triangles raides (glTF du projet, m) ; nf : (n, 3) normales de face.
-    Renvoie (sommets (m, 3) par triplets, normales (m, 3))."""
-    n = ROMPRE["coupes"]
+def rompre_falaise(tri3, nf, coupes=None):
+    """tri3 : (n, 3, 3) sommets des triangles raides (glTF du projet, m) ; nf : (n, 3) normales de face ; coupes : par côté
+    (ROMPRE["coupes"] par défaut). Renvoie (sommets (m, 3) par triplets, normales (m, 3))."""
+    n = int(coupes or ROMPRE["coupes"])
     cle = lambda p: np.round(p * 100.0).astype(np.int64)                       # noqa: E731 : sommets confondus au centimètre
     # normales lissées aux sommets d'origine, et arêtes du bord de la zone raide (portées par un seul triangle)
     k3 = cle(tri3.reshape(-1, 3))
@@ -1203,7 +1257,7 @@ def lointain(P, ref, args, pkf):
     n = 0
     pentes = Pentes() if not P.echantillon and args.falaises else None
     teintees = []
-    n_falaises = [0, 0]
+    n_falaises = [0, 0, 0]
     for m in ms:
         _, taille, kx, ky = m["nom"].split("_")
         kx, ky = int(kx), int(ky)
@@ -1258,12 +1312,29 @@ def lointain(P, ref, args, pkf):
             cen = p3.mean(1)
             d_tri = pkf.t.query(cen[:, [0, 2]])[0]
             raide = (fn[:, 1] < math.cos(math.radians(FALAISE_ROCHE["pente_deg"]))) & (d_tri < FALAISE_ROCHE["a_m"])
+            # Bas des falaises en dents de scie (captures du directeur, 14/11/2026) : la limite suivait les marches de la
+            # grille des triangles raides. La roche gagne les triangles voisins moyennement raides (éboulis au pied et
+            # rebord au sommet), FALAISE_ROCHE["anneaux"] fois de proche en proche : le contour suit alors la pente
+            # réelle du pied de la paroi. Ces triangles quittent la dalle comme les autres : ni trou ni recouvrement.
+            if raide.any():
+                moyen = (fn[:, 1] < math.cos(math.radians(FALAISE_ROCHE["pente_bord_deg"]))) & (d_tri < FALAISE_ROCHE["a_m"])
+                for _ in range(FALAISE_ROCHE["anneaux"]):
+                    touche = np.zeros(len(g), bool)
+                    touche[tri_dalle[raide].ravel()] = True
+                    raide |= moyen & touche[tri_dalle].any(1)
             if raide.sum() >= 4:
                 materiau_roche(P)
                 pr = p3[raide].reshape(-1, 3)
                 nf = fn[raide]
                 if args.falaises_rompues:
-                    pr, nrm_r = rompre_falaise(p3[raide], nf)
+                    # recoupe selon la taille de chaque face et sa distance : un appel par nombre de coupes ; entre deux
+                    # groupes, l'arête commune est un bord pour chacun, donc fixe et droite : pas de fente
+                    t3, dr = p3[raide], d_tri[raide]
+                    cote = np.max([np.linalg.norm(t3[:, i] - t3[:, (i + 1) % 3], axis=1) for i in range(3)], axis=0)
+                    morceau = FALAISE_ROCHE["coupe_m"] + dr / FALAISE_ROCHE["coupe_par_m"]
+                    nc = np.clip(np.ceil(cote / morceau), 1, ROMPRE["coupes"]).astype(int)
+                    parts = [rompre_falaise(t3[nc == c], nf[nc == c], coupes=c) for c in np.unique(nc)]
+                    pr, nrm_r = np.vstack([q[0] for q in parts]), np.vstack([q[1] for q in parts])
                     nf = None
                 if nf is None:                                                    # falaise rompue : normales par sommet
                     nrm_f = nrm_r.reshape(-1, 3, 3).mean(1)
@@ -1271,8 +1342,10 @@ def lointain(P, ref, args, pkf):
                 else:
                     nrm_r = np.repeat(nf, 3, axis=0)
                     selon_x = np.abs(nf[:, 0]) >= np.abs(nf[:, 2])                # face tournée vers l'est ou l'ouest : dépliée le long du nord-sud
-                u = np.where(np.repeat(selon_x, 3), pr[:, 2], pr[:, 0]) / ROCHE["uv_m"]
-                uvr = np.column_stack([u, -pr[:, 1] / ROCHE["uv_m"]])
+                # dépliage large (FALAISE_ROCHE["uv_m"], pas celui des parois du bord de route) : à 1 ou 2 km, un motif
+                # de 2,5 m se fond en un aplat lisse ; à 17 m, bancs et fissures de la texture se lisent de loin
+                u = np.where(np.repeat(selon_x, 3), pr[:, 2], pr[:, 0]) / FALAISE_ROCHE["uv_m"]
+                uvr = np.column_stack([u, -pr[:, 1] / FALAISE_ROCHE["uv_m"]])
                 usure = np.clip(0.30 + 0.40 * _fbm(pr[:, 0] / 6.0 + pr[:, 2] / 9.0, pr[:, 1] / 3.0, 41, 3), 0.0, 0.62)
                 coul = np.column_stack([(255 * usure).astype(np.uint8), np.zeros(len(pr), np.uint8), np.full(len(pr), 255, np.uint8),
                                         np.full(len(pr), 255, np.uint8)])
@@ -1283,12 +1356,14 @@ def lointain(P, ref, args, pkf):
                 tri_dalle = tri_dalle[~raide]
                 n_falaises[0] += 1
                 n_falaises[1] += int(raide.sum())
+                n_falaises[2] += int(len(pr) // 3)
         P.maillage(nom_sm, "lointain", f"{UE}/FarRing/Meshes", m["pos"], nrm, m["uv"], tri_dalle, nom_mi, essais,
                    extra={"distance_min_e4_m": round(dmin), "source": f"{src.relative_to(ROOT).as_posix()}#{m['nom']}",
                           **({"normales_adoucies": aplat} if aplat > 0 else {})})
         n += 1
     if n_falaises[0]:
-        print(f"  falaises des versants : {n_falaises[1]} faces raides habillées de roche, en {n_falaises[0]} maillages")
+        print(f"  falaises des versants : {n_falaises[1]} faces raides habillées de roche, en {n_falaises[0]} maillages, "
+              f"{n_falaises[2]} triangles rendus")
     if teintees:
         print(f"  falaises : {len(teintees)} images lointaines teintées ; les plus rocheuses : "
               + ", ".join(f"{t} {100 * p:.0f} %" for p, t in sorted(teintees, reverse=True)[:4]))
@@ -1384,7 +1459,7 @@ class Sol:
 # d'après elles : quinze pins différents au lieu d'un seul), et une frange au-delà de a_m où les arbres se raréfient
 # par plaques au lieu de s'arrêter net (distance de fin, pas).
 ARBRES_LOIN = {"de_m": 135.0, "a_m": 650.0, "bandes": [(300.0, 4.4), (450.0, 5.5), (650.0, 7.0)], "frange": (880.0, 9.0),
-               "mnh_min_m": 3.0, "part_pin": 0.65,
+               "mnh_min_m": 3.0, "part_pin": 0.65, "pente_max_deg": 40.0,
                "hauteur_m": (4.0, 20.0), "disparition_cm": [95000, 130000],
                "pin": ("Foliage/Trees/AleppoPine", "SM_AleppoPine04", "pin d'Alep"),
                "feuillu": ("Foliage/Trees/Boxthorn", "SM_Boxthorn02", "chêne vert"),
@@ -1401,6 +1476,9 @@ def arbres_lointains(ref):
         axe = np.array([[float(r["x_axe"]), float(r["y_axe"])] for r in csv.DictReader(h)])
     rng = np.random.default_rng(SEED + 31)
     arbre_axe = cKDTree(axe[::3])
+    pentes = Pentes()
+    pentes = pentes if pentes.couches else None
+    ecartes = [0]
 
     def semis(de, a, pas):
         """Points d'une grille tirée au sort, entre `de` et `a` mètres de l'axe : x, y, distance, hauteur de végétation, sol."""
@@ -1418,6 +1496,12 @@ def arbres_lointains(ref):
                 v = np.array([q[0] for q in src.sample(np.column_stack([X, Y]))], float)
                 out.append(np.where((v == src.nodata) | (v < -1000), np.nan, v))
         ok = np.isfinite(out[0]) & np.isfinite(out[1])
+        # pas d'arbre ni de buisson sur une paroi (captures du directeur du 14/11/2026 : arbres plantés sur les faces de
+        # roche) : le MNH à 5 m déborde des bois voisins sur la falaise ; la pente du relevé à 2 m l'écarte
+        if pentes is not None:
+            raide = pentes.degres(X, Y) > ARBRES_LOIN["pente_max_deg"]
+            ecartes[0] += int((ok & raide).sum())
+            ok &= ~raide
         return X[ok], Y[ok], d[ok], out[0][ok], out[1][ok]
 
     rows, n_pins = [], 0
@@ -1450,7 +1534,8 @@ def arbres_lointains(ref):
                  "diametre_m": f"{1.1 * haut[i]:.2f}", "famille_jeu": "", "element_jeu_propose": "", "dist_axe_m": f"{d[i]:.1f}", "pk_m": ""}
                 for i in range(len(X))]
     print(f"  versants : {len(rows)} arbres entre {ARBRES_LOIN['de_m']:.0f} et {ARBRES_LOIN['a_m']:.0f} m de l'axe ({n_pins} pins), "
-          f"{len(buissons)} buissons de garrigue jusqu'à {b['a_m']:.0f} m")
+          f"{len(buissons)} buissons de garrigue jusqu'à {b['a_m']:.0f} m ; {ecartes[0]} places écartées sur les pentes de plus de "
+          f"{ARBRES_LOIN['pente_max_deg']:.0f} degrés")
     return rows, buissons
 
 

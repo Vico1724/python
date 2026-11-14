@@ -512,19 +512,84 @@ def rendus(vues, fichiers, prefixe="carrefour"):
 # --- constructions de la zone de départ -------------------------------------------------------------------
 # Volumes qui ne suivent pas la route (data/reference/zone_depart.json, liste « constructions ») : bâtiments de la BD TOPO
 # et cabanon, murs en travers, portail, pilier, monolithe, rampe, barrières. Coordonnées Lambert-93, pied sur le MNT
-# LiDAR. Les matières nouvelles sont des couleurs unies (16_paquet_unreal.py en fait une matière à couleur unie) ; béton
-# et pierre reprennent les matières des parapets. Physique : un volume balayé (m11.boite) par mur ou par face de
-# bâtiment, matière de choc prise dans la table OBSTACLES de 09_export_stage_ir.py (beton, pierre, metal_glissiere).
-ZD_MATIERES = {          # couleurs linéaires (glTF), d'après les captures Street View
-    "enduit_clair": {"color": [0.60, 0.52, 0.40], "rough": 0.95},      # enduit beige rosé (mur du parking, maisons)
-    "enduit_blanc": {"color": [0.74, 0.72, 0.66], "rough": 0.9},       # enduit blanc cassé (cabanon, pans du portail)
-    "tuile": {"color": [0.42, 0.13, 0.06], "rough": 0.9},              # tuiles canal rouge orangé
-    "portail_blanc": {"color": [0.83, 0.83, 0.80], "rough": 0.5},      # portail métallique plein
-    "barriere_noire": {"color": [0.018, 0.018, 0.02], "rough": 0.5},   # lisses et montants des barrières
-    "barriere_rouge": {"color": [0.55, 0.02, 0.02], "rough": 0.6},     # bandes des poteaux, disque « sens interdit »
-    "barriere_blanc": {"color": [0.80, 0.80, 0.78], "rough": 0.6},
-    "plaque_jaune": {"color": [0.80, 0.52, 0.01], "rough": 0.6},       # plaque de la barrière DFCI
-}
+# LiDAR. Physique : un volume balayé (m11.boite) par mur ou par face de bâtiment, matière de choc prise dans la table
+# OBSTACLES de 09_export_stage_ir.py (beton, pierre, metal_glissiere).
+# Matières : depuis l'essai de la onzième version (14/11/2026), toutes portent une petite image procédurale intégrée au
+# glb (crépi, tuiles en rangs, tôle laquée, peinture, pierre), que 16_paquet_unreal.py (materiaux_modele) reprend telle
+# quelle : en couleurs unies elles sortaient en aplats « maquette », et le portail blanc lisse (rugosité 0,5) prenait le
+# bleu du ciel. Images en sRGB, une répétition pour m11.S_PAROI (2 m) : _Lot et m11.boite déplient tous deux à cette
+# échelle. Teintes lues sur les parties au soleil des captures Street View 4 à 7.
+# « pierre_sombre » (pilier) est rendue par la pierre des murs du jeu (MURS_DU_JEU de 16) : son image ne sert qu'aux
+# aperçus.
+ENDUIT_BLANC_SRGB = (0.86, 0.84, 0.78)   # blanc cassé chaud (mur de la rampe, cabanon, pilier du portail) : pas un blanc pur
+
+
+def tex_tuiles(n, seed=21):
+    """Tuiles canal en rangs : 10 tuiles de 20 cm en travers (u, le long du faîtage), 5 rangs de 40 cm dans la pente
+    (v) ; chaque tuile bombée (ombre sur ses bords), teinte rouge orangé variable d'une tuile à l'autre, ombre portée
+    au bas de chaque rang, patine."""
+    rng = np.random.default_rng(seed)
+    nc, nr = 10, 5
+    g = (np.arange(n) + 0.5) / n
+    uu, vv = np.meshgrid(g * nc, g * nr)                     # x = u (colonnes), y = v (rangs)
+    rang = np.floor(vv).astype(int)
+    uu = uu + 0.5 * (rang % 2)                               # tuiles décalées d'un rang à l'autre
+    col = np.floor(uu).astype(int) % nc
+    fu, fv = uu % 1.0, vv % 1.0
+    teintes = np.array([0.69, 0.38, 0.24]) * (0.82 + 0.3 * rng.random((nr, nc, 1))) + 0.03 * rng.standard_normal((nr, nc, 3))
+    rgb = teintes[rang % nr, col]
+    rgb = rgb * (0.70 + 0.30 * np.sin(np.pi * fu))[..., None]                    # bombé de la tuile
+    rgb = rgb * (1.0 - 0.45 * np.clip((fv - 0.82) / 0.18, 0, 1) ** 1.5)[..., None]   # ombre au bas du rang
+    rgb = rgb * (1.0 + 0.07 * m11.bruit(n, rng, 1.6) + 0.04 * m11.flou(rng.standard_normal((n, n)), 0.7))[..., None]
+    return m11.jpeg(rgb)
+
+
+def tex_tole(n, teinte, seed=23, lames=0.0):
+    """Tôle ou métal laqué : teinte sRGB, grain très léger, nuances lentes ; lames horizontales (y) tous les « lames »
+    mètres s'il y a lieu (portail)."""
+    rng = np.random.default_rng(seed)
+    v = 0.025 * m11.bruit(n, rng, 2.0) + 0.012 * m11.flou(rng.standard_normal((n, n)), 0.6)
+    if lames > 0:
+        k = max(int(round(n * lames / m11.S_PAROI)), 4)
+        y = np.arange(n) % k
+        v[(y == 0) | (y == 1)] -= 0.07
+        v[y == 2] += 0.03
+    t = np.asarray(teinte, float)
+    return m11.jpeg(t[None, None, :] * (1.0 + v)[..., None])
+
+
+def tex_pierre_ocre(n, seed=29, teinte=(0.76, 0.67, 0.50)):
+    """Calcaire ocre d'un bloc dressé (ou autre pierre, selon la teinte sRGB) : marbrures, veines sombres, petites
+    cavités, lichens gris."""
+    rng = np.random.default_rng(seed)
+    v = 0.08 * m11.bruit(n, rng, 1.8) + 0.04 * m11.flou(rng.standard_normal((n, n)), 0.8)
+    veines = np.abs(m11.bruit(n, rng, 1.9))
+    v -= 0.22 * np.clip(0.12 - veines, 0, None) / 0.12
+    cav = m11.flou((rng.random((n, n)) < 0.01).astype(float), 1.5)
+    v -= 0.25 * cav / max(cav.max(), 1e-6)
+    rgb = np.asarray(teinte, float)[None, None, :] * (1.0 + v)[..., None]
+    lichen = np.clip(m11.bruit(n, rng, 2.2) - 1.0, 0, 1)[..., None]
+    rgb = rgb * (1 - 0.5 * lichen) + np.array([0.62, 0.62, 0.58]) * 0.5 * lichen
+    return m11.jpeg(rgb)
+
+
+def zd_matieres(px):
+    """Matières de la zone de départ pour des textures de px pixels (m11.VERSIONS) ; enduit_clair a la même image que
+    dans ouvrages.glb (11 : même nom de matière, 16 n'en garde qu'une)."""
+    n = px // 2
+    return {
+        "enduit_clair": {"jpeg": m11.tex_enduit(n), "rough": 0.95},                      # mur du parking, maisons
+        "enduit_blanc": {"jpeg": m11.tex_enduit(n, ENDUIT_BLANC_SRGB, seed=17), "rough": 0.92},   # rampe, cabanon
+        "tuile": {"jpeg": tex_tuiles(n), "rough": 0.85},                                  # tuiles canal
+        "portail_blanc": {"jpeg": tex_tole(n, (0.87, 0.86, 0.82), lames=0.25), "rough": 0.75},   # portail laqué
+        "pierre_ocre": {"jpeg": tex_pierre_ocre(n), "rough": 0.95},                       # monolithe
+        "pierre_sombre": {"jpeg": tex_pierre_ocre(n, seed=53, teinte=(0.36, 0.35, 0.32)), "rough": 0.95},   # pilier (aperçus)
+        "barriere_noire": {"jpeg": tex_tole(n // 4, (0.13, 0.13, 0.14), seed=31), "rough": 0.6},
+        "barriere_verte": {"jpeg": tex_tole(n // 4, (0.17, 0.27, 0.21), seed=47), "rough": 0.6},     # barrière DFCI GC 107
+        "barriere_rouge": {"jpeg": tex_tole(n // 4, (0.72, 0.12, 0.10), seed=37), "rough": 0.6},
+        "barriere_blanc": {"jpeg": tex_tole(n // 4, (0.88, 0.88, 0.85), seed=41), "rough": 0.6},
+        "plaque_jaune": {"jpeg": tex_tole(n // 4, (0.90, 0.68, 0.10), seed=43), "rough": 0.6},
+    }
 ZD_COLLISION = {"metal_glissiere": {"color": [0.72, 0.74, 0.76]}, "beton": {"color": [0.7, 0.7, 0.68]}}
 ZD_EP_TOIT = 0.15        # m : épaisseur de la dalle de toit (débord compris)
 ZD_ENFOUI = 0.3          # m : les murs descendent sous le terrain le plus bas de leur pied
@@ -554,8 +619,9 @@ class _Lot:
         ng = _vers_gltf_n(n)[0]
         ng /= max(np.linalg.norm(ng), 1e-12)
         tri = m11.oriente(pos, tri, ng)
+        # UV donnés en mètres, dépliés comme m11.boite (une répétition d'image pour m11.S_PAROI)
         self.parts.setdefault(mat, []).append({"pos": pos, "nrm": np.tile(ng, (k, 1)).astype(np.float32),
-                                               "uv": np.asarray(uv, np.float32), "idx": tri})
+                                               "uv": (np.asarray(uv, float) / m11.S_PAROI).astype(np.float32), "idx": tri})
 
     def triangles(self, mat, T, n, uv):
         """T : (m, 3, 3) triangles Lambert-93 de même normale n ; uv : (m, 3, 2)."""
@@ -716,11 +782,19 @@ def _mur(e, mnt, ref, ruban):
     n = np.column_stack([tg[:, 1], -tg[:, 0]]) / np.linalg.norm(tg, axis=1, keepdims=True)
     cotes = [mnt.z(*(P + n * o).T) for o in (-(ep / 2 + 0.7), 0.0, ep / 2 + 0.7)]
     pied = np.minimum.reduce(cotes)
-    haut = pied + float(e["hauteur_m"])
-    bas = pied - ZD_ENFOUI
+    # Dessus : une droite (pente constante le long du mur), ajustée sur le pied le plus bas, plus hauteur_m ; relevée
+    # d'un bloc si le terrain du côté haut l'approchait à moins de 0,3 m. Le dessus suivait le MNT point par point et
+    # sortait « en dents de scie » au onzième essai : le dessus d'un mur enduit est une ligne régulière.
+    s = np.concatenate([[0.0], np.cumsum(np.linalg.norm(np.diff(P, axis=0), axis=1))])
+    b_, a_ = np.polyfit(s, pied, 1) if len(s) > 1 and s[-1] > 0 else (0.0, float(pied.mean()))
+    haut = a_ + b_ * s + float(e["hauteur_m"])
+    haut += max(float((np.maximum.reduce(cotes) + 0.3 - haut).max()), 0.0)
+    bas = np.minimum(pied, haut - float(e["hauteur_m"])) - ZD_ENFOUI
     coins = [np.column_stack([P + n * o, z_]) for o, z_ in ((-ep / 2, bas), (ep / 2, bas), (ep / 2, haut), (-ep / 2, haut))]
     v = m11.boite(coins, ref)
     return v, {"longueur_m": round(L_.length, 1), "hauteur_au_dessus_du_pied_m": e["hauteur_m"],
+               "hauteur_vue_du_pied_le_plus_bas_m": [round(float((haut - pied).min()), 2), round(float((haut - pied).max()), 2)],
+               "pente_du_dessus_pct": round(100 * float(b_), 1),
                "denivele_entre_les_deux_faces_m": round(float(np.max(np.abs(cotes[0] - cotes[2]))), 2)}, P
 
 
@@ -751,6 +825,34 @@ def _disque(lot, mat, c3, t, r, ep, k=16):
         lot.face(mat, q, nm / np.linalg.norm(nm), [[0, 0], [1, 0], [1, 1], [0, 1]])
 
 
+def _pierre_dressee(lot, mat, c, t, L, W, z_bas, z_sol, H, graine):
+    """Pierre dressée (monolithe vu sur les captures 5 et 6) : enveloppe convexe de quatre anneaux irréguliers qui se
+    resserrent (pleine section jusqu'au tiers, 55 % aux 4/5) et d'une pointe décalée vers un bord, à H au-dessus du sol.
+    Au onzième essai, un pavé de 1 x 0,6 x 3,5 m sortait en grande dalle sombre à arêtes vives."""
+    from scipy.spatial import ConvexHull
+    rng = np.random.default_rng(graine)
+    t = np.asarray(t, float) / np.linalg.norm(t)
+    nrm = np.array([-t[1], t[0]])
+    k = 9
+    ang = np.sort(rng.uniform(0, 2 * np.pi, k))
+    pts = []
+    for z_, f in ((z_bas, 1.0), (z_sol + 0.35 * H, 0.97), (z_sol + 0.65 * H, 0.8), (z_sol + 0.85 * H, 0.55)):
+        r = f * (0.85 + 0.15 * rng.random(k))
+        xy = np.asarray(c)[None] + (np.cos(ang) * r * L / 2)[:, None] * t + (np.sin(ang) * r * W / 2)[:, None] * nrm
+        pts.append(np.column_stack([xy, np.full(k, z_)]))
+    pts.append(np.array([[*(np.asarray(c) + t * 0.2 * L), z_sol + H]]))
+    Q = np.vstack(pts)
+    hull = ConvexHull(Q)
+    for s_, eq in zip(hull.simplices, hull.equations):
+        T = Q[s_]
+        nn = eq[:3]
+        a1 = np.cross(nn, [0, 0, 1.0])
+        a1 = a1 / np.linalg.norm(a1) if np.linalg.norm(a1) > 1e-6 else np.array([1.0, 0, 0])
+        a2 = np.cross(nn, a1)
+        uv = np.column_stack([(T - Q[0]) @ a1, (T - Q[0]) @ a2])      # mètres, relatifs au bloc (pas de grands nombres)
+        lot.face(mat, T, nn, uv)
+
+
 def _barriere(e, mnt, ref):
     """Barrière de piste ou de parking : deux poteaux (rayés rouge et blanc ou noirs), lisses et montants noirs, plaque
     (disque « sens interdit » ou plaque jaune) au milieu. Renvoie (pièces par matériau, lot de faces, collision, segment)."""
@@ -762,6 +864,7 @@ def _barriere(e, mnt, ref):
     zs = mnt.z(np.array([a[0], m[0], b[0]]), np.array([a[1], m[1], b[1]]))
     z0 = float(zs.mean())
     pieces = {}
+    mat_b = e.get("materiau", "barriere_noire")             # lisses, montants et poteaux unis (noir, ou vert DFCI)
     sec, hp = 0.10, float(e.get("hauteur_poteaux_m", 1.2))
     for p, zp in ((a, zs[0]), (b, zs[2])):
         # haut des poteaux au niveau des lisses (z0 : terrain moyen), pied sous le terrain local (terrain en pente)
@@ -772,16 +875,16 @@ def _barriere(e, mnt, ref):
                 mat = "barriere_rouge" if (len(bornes) - 2 - k_) % 2 == 0 else "barriere_blanc"
                 pieces.setdefault(mat, []).append(pave(p, t, sec, sec, pied if k_ == 0 else z0 + h0, z0 + h1, ref))
         else:
-            pieces.setdefault("barriere_noire", []).append(pave(p, t, sec, sec, pied, z0 + hp, ref))
+            pieces.setdefault(mat_b, []).append(pave(p, t, sec, sec, pied, z0 + hp, ref))
     lisses = sorted(e.get("lisses_a_m", [1.0, 0.5]))
     Li = L - sec
     for zl in lisses:
-        pieces.setdefault("barriere_noire", []).append(pave(m, t, Li, 0.06, z0 + zl - 0.03, z0 + zl + 0.03, ref))
+        pieces.setdefault(mat_b, []).append(pave(m, t, Li, 0.06, z0 + zl - 0.03, z0 + zl + 0.03, ref))
     pas = float(e.get("pas_montants_m", 0.75))
     nb = max(int(round(Li / pas)), 1)
     for k_ in range(1, nb):
         p = a + t * (sec / 2 + Li * k_ / nb)
-        pieces.setdefault("barriere_noire", []).append(pave(p, t, 0.04, 0.04, z0 + lisses[0], z0 + lisses[-1], ref))
+        pieces.setdefault(mat_b, []).append(pave(p, t, 0.04, 0.04, z0 + lisses[0], z0 + lisses[-1], ref))
     lot = _Lot(ref)
     zc = z0 + (lisses[0] + lisses[-1]) / 2
     nrm = np.array([-t[1], t[0]])
@@ -840,7 +943,14 @@ def constructions_depart(ch, mnt, ref):
             zq = mnt.z(Q[:, 0], Q[:, 1])
             zc = float(mnt.z(c[:1], c[1:])[0])
             v = _bloc(c, t, L, W, float(zq.min()) - ZD_ENFOUI, zc + float(e["hauteur_m"]), zc + float(e.get("hauteur_fin_m", e["hauteur_m"])), ref)
-            deco.append(m11.fusion([v], f"{cle}_{e['materiau']}", e["materiau"]))
+            if e.get("forme") == "dresse":
+                # pierre dressée : décor en bloc irrégulier qui s'effile vers une pointe ; la collision reste le pavé
+                lot = _Lot(ref)
+                _pierre_dressee(lot, e["materiau"], c, tn, L, W, float(zq.min()) - ZD_ENFOUI, zc, float(e["hauteur_m"]),
+                                int(e.get("graine", 3)))
+                deco += lot.meshes(cle)
+            else:
+                deco.append(m11.fusion([v], f"{cle}_{e['materiau']}", e["materiau"]))
             coll += [([v], e.get("materiau_collision", "pierre"))]
             plan.append(("bloc", Q[[0, 1, 3, 2]], e["nom"]))
         elif e["type"] == "portail":
@@ -855,8 +965,10 @@ def constructions_depart(ch, mnt, ref):
             deco.append(m11.fusion([v], f"{cle}_{e['materiau']}", e["materiau"]))
             vs = [v]
             if pl:
-                pil = [_bloc(p, t, sp, sp, float(zp) - ZD_ENFOUI, float(zp) + float(pl["hauteur_m"]), float(zp) + float(pl["hauteur_m"]), ref)
-                       for p, zp in ((a, zab[0]), (b, zab[1]))]
+                # « bouts » : extrémités du segment qui portent un pilier (« debut » = premier point, « fin » = second)
+                bouts = pl.get("bouts", ["debut", "fin"])
+                pil = [_bloc(p, t, sp, sp, float(zp) - ZD_ENFOUI, float(z0) + float(pl["hauteur_m"]), float(z0) + float(pl["hauteur_m"]), ref)
+                       for nom_b, p, zp in (("debut", a, zab[0]), ("fin", b, zab[1])) if nom_b in bouts]
                 deco.append(m11.fusion(pil, f"{cle}_piliers_{pl['materiau']}", pl["materiau"]))
                 vs += pil
             coll += [(vs, e.get("materiau_collision", "beton"))]
@@ -1080,7 +1192,7 @@ def main():
                 "pierre_sombre": {"color": [0.33, 0.32, 0.30], "rough": 0.95}, "beton": {"jpeg": m11.tex_beton(px // 2), "rough": 0.9},
                 "panneau": {"color": [0.9, 0.9, 0.88], "rough": 0.6},
                 "piquet": {"color": [0.92, 0.92, 0.92], "rough": 0.6}, "piquet_tete": {"color": [0.8, 0.08, 0.06], "rough": 0.6},
-                "rubalise": {"color": [0.85, 0.1, 0.08], "rough": 0.5}, **ZD_MATIERES}
+                "rubalise": {"color": [0.85, 0.1, 0.08], "rough": 0.5}, **zd_matieres(px)}
         m11.ecrire_glb(dossier / "annexes.glb", m_ann, mats)
         m11.ecrire_glb(dossier / "balisage.glb", m_bal, mats)
         if version == "complet":

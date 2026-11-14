@@ -56,6 +56,11 @@ RAYON_T3_M = 140.0    # m : sous ce rayon, l'axiale discontinue passe en traits 
 BISEAU_M, BISEAU_BAS = 1.0, 0.3   # extrémités des parapets : biseau d'un mètre, partant de 30 % de la hauteur
 DES_PAS, DES_LONG = 3.5, 0.35   # m : dés blancs (supposé : 3 à 4 m sur la vidéo)
 MUR_DIST_MAX = 15.0   # m : murs BD TOPO retenus à moins de cette distance de l'axe
+# Parapets d'un seul corps, sans chaperon : type -> matière du décor. Leur choc est celui du béton (09_export_stage_ir.py).
+# « enduit » : mur de clôture enduit (long mur de gauche avant le départ) ; matière à image (tex_enduit), que
+# 16_paquet_unreal.py reprend telle quelle (elle n'est pas dans ses MURS_DU_JEU, contrairement au béton, rendu par le
+# béton moussu des murs de Bollène).
+CORPS_LISSES = {"beton": "beton", "enduit": "enduit_clair"}
 
 
 # --- textures procédurales (périodiques) -------------------------------------------
@@ -121,6 +126,26 @@ def tex_beton(n, seed=7):
     rows = np.arange(n) % (n // 4)
     v[(rows == 0) | (rows == 1)] -= 0.06
     return jpeg(np.dstack([v, v - 0.005, v - 0.02]))
+
+
+ENDUIT_CLAIR_SRGB = (0.72, 0.68, 0.60)   # enduit gris-beige des murs de clôture (Street View, captures 4 à 7, parties au soleil)
+
+
+def tex_enduit(n, teinte=ENDUIT_CLAIR_SRGB, seed=13):
+    """Enduit gratté (crépi) : grain fin, petits reliefs du crépi, nuances lentes et salissures ; teinte en sRGB.
+    Isotrope (les faces des volumes balayés sont dépliées dans des sens différents). Pour un enduit sans texture, une
+    couleur unie sortait en aplat « maquette » au onzième essai."""
+    rng = np.random.default_rng(seed)
+    v = 0.035 * bruit(n, rng, 2.0) + 0.02 * bruit(n, rng, 1.2)               # nuances lentes (taches, reprises)
+    v += 0.035 * flou(rng.standard_normal((n, n)), 0.7)                        # grain du sable
+    grains = flou((rng.random((n, n)) < 0.03).astype(float), 1.2)
+    v += 0.10 * grains / max(grains.max(), 1e-6)                               # reliefs du crépi, éclairés
+    creux = flou((rng.random((n, n)) < 0.02).astype(float), 0.9)
+    v -= 0.10 * creux / max(creux.max(), 1e-6)                                 # creux, à l'ombre
+    sale = np.clip(bruit(n, rng, 2.4), 0, None)
+    v -= 0.03 * sale / max(sale.max(), 1e-6)                                   # salissures diffuses
+    t = np.asarray(teinte, float)
+    return jpeg(t[None, None, :] * (1.0 + v)[..., None])
 
 
 # --- écriture glb (matériaux partagés, textures répétées) ----------------------------
@@ -513,8 +538,16 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
     s = echant(s0, s1)
     E, n = rg.bord(s, cote)
     h, t = p["hauteur_m"], p["epaisseur_m"]
-    dec = float(p.get("decalage_m", 0.0))                 # recul par rapport au bord de chaussée (0 : posé sur le bord)
-    biseau = float(p.get("biseau_m", BISEAU_M))
+    dec0 = float(p.get("decalage_m", 0.0))                # recul par rapport au bord de chaussée (0 : posé sur le bord)
+    # "decalage_fin_m" : recul au bout du parapet, s'il varie (variation linéaire le long du PK). Un mur continu dont le
+    # recul change était coupé en deux entrées et sortait en deux tronçons séparés par un vide (onzième essai, PK -113).
+    dec1 = float(p.get("decalage_fin_m", dec0))
+
+    def dec(ss):
+        return dec0 + (dec1 - dec0) * np.clip((np.asarray(ss, float) - s0) / max(s1 - s0, 1e-6), 0.0, 1.0)
+    # Essai en jeu du 14/11/2026 (onzième version, PK 6091) : une tête de ponceau de 2 m sortait en dalle penchée, ses
+    # deux biseaux se rejoignant. Le biseau ne prend jamais plus de 30 % de la longueur de l'ouvrage.
+    biseau = min(float(p.get("biseau_m", BISEAU_M)), 0.3 * max(float(s1 - s0), 0.1))
 
     def haut(ss):
         """Hauteur du dessus : extrémités en biseau (vu sur la vidéo du 12/11/2026 : tous les parapets, de pierre
@@ -529,12 +562,12 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
         if mnt is None:
             return np.full(len(ss), -DALLE_RETRAIT - 0.02)
         EE, nn = rg.bord(ss, cote)
-        q = EE[:, :2] + nn * (dec + t)
+        q = EE[:, :2] + nn * (dec(ss) + t)[:, None]
         return np.minimum(mnt.z(q[:, 0], q[:, 1]) - EE[:, 2], 0) - 0.3
 
     def bloc(ss, o0, o1, z0, z1):
         EE, nn = rg.bord(ss, cote)
-        o3 = lambda o: np.column_stack([nn * (o + dec), np.zeros(len(ss))])    # noqa: E731
+        o3 = lambda o: np.column_stack([nn * (o + dec(ss))[:, None], np.zeros(len(ss))])    # noqa: E731
         zz = lambda v: np.column_stack([np.zeros(len(ss)), np.zeros(len(ss)), np.broadcast_to(v, len(ss))])  # noqa: E731
         z0 = base(ss) if isinstance(z0, str) else z0(ss) if callable(z0) else z0
         z1 = z1(ss) if callable(z1) else z1
@@ -542,8 +575,8 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
 
     pieces = {}
     base_ = "pied"
-    if p["type"] == "beton":
-        pieces["beton"] = [boite(bloc(s, 0, t, base_, haut), ref)]
+    if p["type"] in CORPS_LISSES:
+        pieces[CORPS_LISSES[p["type"]]] = [boite(bloc(s, 0, t, base_, haut), ref)]
     else:
         sous = lambda q: haut(q) - CHAPERON                                 # noqa: E731
         pieces["pierre"] = [boite(bloc(s, 0, t, base_, sous), ref)]
@@ -887,8 +920,8 @@ def main():
             # hors du tablier (prolongement de plus de 3 m, ou recul), le pied descend jusqu'au terrain
             hors = s0 < pa - 3 or s1 > pb + 3 or p.get("decalage_m")
             pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p, mnt=mnt if hors else None)
-            coll["beton" if p["type"] == "beton" else "pierre"].append(cb)
-            corps = "beton" if p["type"] == "beton" else "pierre"
+            coll["beton" if p["type"] in CORPS_LISSES else "pierre"].append(cb)
+            corps = CORPS_LISSES.get(p["type"], "pierre")
             # "peint_en_blanc" : béton peint (bloc du Lion d'Or, blanc sur la reconnaissance, gris sombre en jeu le 13/11/2026)
             meshes_ouv.append(fusion(pcs[corps], f"parapet_{nom}_{cote}", "blanc" if p.get("peint_en_blanc") else corps))
             if "blanc" in pcs:
@@ -906,8 +939,8 @@ def main():
                 continue
             s0, s1 = float(e["pk_debut_m"]), float(e["pk_fin_m"])
             pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p, mnt=mnt)
-            corps = "beton" if p["type"] == "beton" else "pierre"
-            coll[corps].append(cb)
+            corps = CORPS_LISSES.get(p["type"], "pierre")
+            coll["beton" if p["type"] in CORPS_LISSES else "pierre"].append(cb)
             if p.get("rendu") == "roche":            # paroi rocheuse : la collision reste, la forme vient de 16_paquet_unreal.py
                 hors.append(f"{s0:.0f}-{s1:.0f} {cote} paroi rocheuse (collision seule)")
                 continue
@@ -938,6 +971,7 @@ def main():
                 "fissure": {"color": stats_a.get("couleurs", {}).get("fissure", [0.06, 0.06, 0.06]), "rough": 0.7},
                 "pierre": {"jpeg": tex_pierre(px // 2), "rough": 0.95}, "beton": {"jpeg": tex_beton(px // 2), "rough": 0.9},
                 "dalle": {"jpeg": tex_beton(px // 2, seed=3), "rough": 0.9},
+                "enduit_clair": {"jpeg": tex_enduit(px // 2), "rough": 0.95},   # même image que dans 12 (même nom de matière)
                 "blanc": {"color": [0.60, 0.585, 0.55], "rough": 0.85}, "chaperon": {"color": [0.62, 0.61, 0.58], "rough": 0.9},
                 "glissiere_lisse": {"color": [0.72, 0.74, 0.76], "rough": 0.45}, "glissiere_poteau": {"color": [0.55, 0.56, 0.58], "rough": 0.5}}
         ecrire_glb(dossier / "route_habillee.glb", [route, marq, *aspect], mats)

@@ -71,41 +71,39 @@
    }
   },
   "poteau_beton": {
-   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB11",
-   "description": "fût de béton clair sans traverse, 9,2 m ramené à 7,8 m (échelle 0,85). Relevé du sixième essai (13/11/2026 au soir) : les poteaux « béton » sortaient en bois sombre et épais ; SM_MonPylonC11 est en fait un poteau de bois (sa texture est une bande de bois dans l'atlas de la famille C). La famille MonPylonB du jeu est tout en béton clair : SM_MonPylonB11 en est le fût simple (44 x 56 cm au pied), sans la large traverse de SM_MonPylonB15 qui paraissait démesurée le 13/11.",
-   "lacet_relatif_deg": 0,
+   "maillage_jeu": "/Game/Environments/GrandCaunet/Props/Poles/SM_GrandCaunetPoteauBeton",
+   "maillage_du_projet": true,
+   "description": "poteau de béton du projet (scripts/pierres_calcaires.py) : fût effilé de 8.2 m, traverse de 1.1 m, trois isolateurs",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "echelle": 1.0,
    "bornes_cm": {
     "min": [
-     -22,
-     -28,
-     -19
+     -55,
+     -12,
+     0
     ],
     "max": [
-     22,
-     28,
-     917
+     55,
+     12,
+     819
     ]
    },
    "collision": {
     "forme": "cylinder",
     "paroi": "PM_WallConcrete",
-    "diametre_m": 0.3,
+    "diametre_m": 0.25,
     "hauteur_m": 3.5,
     "enfoui_m": 0.4
    },
    "cable": {
-    "hauteur_m": 7.4,
+    "hauteur_m": 7.8,
     "ecarts_m": [
-     -0.2,
+     -0.49,
      0.0,
-     0.2
+     0.49
     ]
-   },
-   "maillage_jeu_avant_le_13_11": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
-   "enfoncement_m": 0.0,
-   "maillage_jeu_avant_le_13_11_soir": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9",
-   "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
-   "echelle": 0.85
+   }
   },
   "poteau_bois": {
    "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
@@ -3551,5 +3549,44 @@
    "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
    "pourquoi": "gros tronc posé au-dessus du vide du pont 5554 : suspendu à 3,5 m du sol"
   }
- ]
+ ],
+ "types_de_poteaux_du_jeu_abandonnes": {
+  "poteau_beton": {
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB11",
+   "description": "fût de béton clair sans traverse, 9,2 m ramené à 7,8 m (échelle 0,85). Relevé du sixième essai (13/11/2026 au soir) : les poteaux « béton » sortaient en bois sombre et épais ; SM_MonPylonC11 est en fait un poteau de bois (sa texture est une bande de bois dans l'atlas de la famille C). La famille MonPylonB du jeu est tout en béton clair : SM_MonPylonB11 en est le fût simple (44 x 56 cm au pied), sans la large traverse de SM_MonPylonB15 qui paraissait démesurée le 13/11.",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {
+    "min": [
+     -22,
+     -28,
+     -19
+    ],
+    "max": [
+     22,
+     28,
+     917
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallConcrete",
+    "diametre_m": 0.3,
+    "hauteur_m": 3.5,
+    "enfoui_m": 0.4
+   },
+   "cable": {
+    "hauteur_m": 7.4,
+    "ecarts_m": [
+     -0.2,
+     0.0,
+     0.2
+    ]
+   },
+   "maillage_jeu_avant_le_13_11": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
+   "enfoncement_m": 0.0,
+   "maillage_jeu_avant_le_13_11_soir": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9",
+   "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
+   "echelle": 0.85
+  }
+ }
 }

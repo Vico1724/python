@@ -106,12 +106,26 @@ $mod = Join-Path $work 'mod'
 $rapport = Join-Path $work 'stage-grandcaunet.report.json'
 Remove-Item -Recurse -Force $mod -ErrorAction SilentlyContinue
 $cfg = Join-Path $src 'config'
+# Portiques de départ et d'arrivée du constructeur : deux poteaux de 5 m et une bannière dans une matière verte unie
+# du jeu (visuals.toml, [markers] gate_height_m, [materials] gates). Essais en jeu des 13 et 14/11/2026 : « grande
+# dalle verte » au départ, « portique vert uni sans texture » à l'arrivée ; le directeur l'a prise pour une barrière
+# mal axée. Visuals.cs les dessine même quand nos zones de décor excluent tout le reste (ligne 335). Avec notre décor
+# (-ExclureVisuels), une copie de la configuration les enterre : hauteur négative, poteaux et bannière à plus de 30 cm
+# sous le sol. Le fichier d'origine du constructeur n'est pas modifié.
+$visuels = Join-Path $cfg 'visuals.toml'
+if ($ExclureVisuels) {
+    $visuels = Join-Path $work 'visuals_sans_portiques.toml'
+    $txt = Get-Content (Join-Path $cfg 'visuals.toml') -Raw
+    $neuf = [regex]::Replace($txt, '(?m)^(\s*gate_height_m\s*=\s*)[-0-9.]+', '${1}-0.4')
+    if ($neuf -eq $txt) { Echec "visuals.toml : réglage gate_height_m introuvable, portiques non retirés" }
+    Set-Content -Path $visuels -Value $neuf -Encoding utf8NoBOM -NoNewline
+}
 $a = @('stage-build', '--ir', $irTravail, '--legacy', $legacy, '--out', $mod, '--report', $rapport, '--surface-registry', $registre,
        '--game', $vanilla, '--usmap', $usmap,
        '--bounds', '1',                                                             # monde agrandi (Bounds.cs)
        '--pacenote-map', (Join-Path $cfg 'pacenote-map.toml'), '--pacenote-report', (Join-Path $work 'notes-grandcaunet.md'),
        '--respawn', 'relay',                                                        # build.ps1 l.165 (v1.3+)
-       '--visuals', (Join-Path $cfg 'visuals.toml'), '--visuals-host', 'start', '--visuals-retarget', '1',
+       '--visuals', $visuels, '--visuals-host', 'start', '--visuals-retarget', '1',
        '--visuals-vegetation', 'none', '--visuals-canopies', 'apex')               # build.ps1 l.173-181
 if (-not $Longueur) { $a += @('--keep-variants', '1') }
 # Voie hybride : zones où notre décor cuit par Unreal remplace les visuels d'essai (retouche 0004 ;

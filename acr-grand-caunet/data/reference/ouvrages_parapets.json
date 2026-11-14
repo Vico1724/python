@@ -723,13 +723,17 @@
    },
    "droite": {
     "type": "beton",
-    "hauteur_m": 0.45,
+    "hauteur_m": 0.4,
     "epaisseur_m": 0.4,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.4,
     "sans_biseau_debut": true,
-    "sans_biseau_fin": true
+    "sans_biseau_fin": true,
+    "avant_le_onzieme_essai": {
+     "hauteur_m": 0.45
+    },
+    "controle": "onzième essai (PK 1960) : sortait en bloc de béton de 1,3 m au départ de la glissière ; la reconnaissance ne montre qu'un socle bas"
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "note": "tête de ponceau, juste avant la glissière",
@@ -1736,46 +1740,25 @@
   },
   {
    "pk_debut_m": -140,
-   "pk_fin_m": -113,
+   "pk_fin_m": -86,
    "route": "D3D",
    "gauche": {
-    "type": "beton",
+    "type": "enduit",
     "hauteur_m": 2.0,
     "epaisseur_m": 0.25,
     "decalage_m": 2.8,
+    "decalage_fin_m": 2.3,
     "statut": "vu sur Street View",
     "sans_biseau_debut": true,
     "sans_biseau_fin": true,
-    "revision": "mur de clôture enduit gris-beige, chaperon plat (rendu en béton, faute de matière d'enduit pour les murs le long de la route)"
+    "revision": "mur de clôture enduit gris-beige continu, chaperon plat ; enduit à image (11_route_ouvrages.py, tex_enduit) depuis l'essai de la onzième version (rendu en béton, il sortait gris sombre moussu, en deux tronçons séparés d'un vide)"
    },
    "droite": {
     "type": "aucun",
     "statut": "vu sur Street View"
    },
    "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 3 à 6, ligne continue du MNS - MNT (1,8-2,3 m) à 5,3-6,3 m de l'axe",
-   "note": "long mur de gauche, première moitié (décalage relevé 2,6-3,0 m) ; il commence au cabanon du carrefour",
-   "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
-  },
-  {
-   "pk_debut_m": -113,
-   "pk_fin_m": -86,
-   "route": "D3D",
-   "gauche": {
-    "type": "beton",
-    "hauteur_m": 2.0,
-    "epaisseur_m": 0.25,
-    "decalage_m": 2.3,
-    "statut": "vu sur Street View",
-    "sans_biseau_debut": true,
-    "sans_biseau_fin": true,
-    "revision": "mur de clôture enduit gris-beige, chaperon plat (rendu en béton)"
-   },
-   "droite": {
-    "type": "aucun",
-    "statut": "vu sur Street View"
-   },
-   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 4 à 6",
-   "note": "long mur de gauche, seconde moitié (décalage relevé 2,1-2,6 m) ; finit au pilier de pierre de l'entrée de la propriété (volume de l'étape 12)",
+   "note": "long mur de gauche, d'un seul tenant : décalage relevé 2,6-3,0 m sur la première moitié, 2,1-2,6 m sur la seconde, d'où un recul qui passe de 2,8 à 2,3 m ; il commence au cabanon du carrefour et finit au pilier de pierre de l'entrée de la propriété (volume de l'étape 12). Jusqu'à l'essai de la onzième version : deux entrées (PK -140 à -113 et -113 à -86, reculs 2,8 et 2,3 m), d'où le vide entre les deux tronçons",
    "calage": "posé d'après Street View géolocalisé (data/reference/zone_depart.json), sans correction de calage"
   },
   {

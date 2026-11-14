@@ -205,8 +205,9 @@ def main():
         for k in COUCHES:
             p[k] *= (1.0 - 0.8 * m_roc)
         # sixième essai : « sol gris » sous de gros blocs, là où la reconnaissance montre de la terre ocre et du cailloutis
-        p["cailloux"] += 0.34 * m_roc
-        p["terre"] += 0.30 * m_roc
+        # (onzième essai : « éboulis gris uniforme » là où le réel montre de la terre ocre ou brune : davantage de terre)
+        p["cailloux"] += 0.20 * m_roc
+        p["terre"] += 0.45 * m_roc
         del m_roc
 
     # hors des photos : le mélange de sous-bois, faute de mieux (peu de terrain s'y trouve)
