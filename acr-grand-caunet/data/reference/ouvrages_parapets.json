@@ -964,8 +964,8 @@
    "calage": "PK corrigé de +10,0 m à +9,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "pk_debut_m": 4554.5,
-   "pk_fin_m": 4566.5,
+   "pk_debut_m": 4571.0,
+   "pk_fin_m": 4583.0,
    "route": "D1",
    "gauche": {
     "type": "beton",
@@ -981,7 +981,7 @@
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "pk_releve_debut_m": 4556,
    "pk_releve_fin_m": 4568,
-   "calage": "PK corrigé de -1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "déplacé à la main le 14/11/2026 sur le thalweg que le relief laser montre du côté gauche (PK 4572 à 4584, sol sous le niveau de la chaussée) ; le relevé le plaçait de 4554,5 à 4566,5, quinze mètres avant ; le parapet de droite du même ponceau (4563,5 à 4575,5) tombe déjà sur le creux de droite"
   },
   {
    "pk_debut_m": 4563.5,

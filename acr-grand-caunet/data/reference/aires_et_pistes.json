@@ -12,14 +12,15 @@
    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
   },
   {
-   "pk_debut_m": 440.0,
-   "pk_fin_m": 460.0,
+   "pk_debut_m": 436.0,
+   "pk_fin_m": 468.0,
    "cote": "gauche",
    "decalage_m": 0.5,
-   "profondeur_m": 4.0,
+   "profondeur_m": 5.5,
    "matiere": "pierre",
    "genre": "aire",
-   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+   "calage": "vérifié le 13/11/2026 : écart nul à cet endroit",
+   "note": "élargie le 14/11/2026 (était 440 à 460, 4 m de profondeur) : relevé du sixième essai (data/reference/releve_essai_13_11_v6/) recoupé avec le relief laser le 14/11/2026 : sol au niveau de la chaussée, sans végétation, sur cette emprise ; le jeu la rendait en bande étroite"
   },
   {
    "pk_debut_m": 1205.0,
@@ -30,6 +31,17 @@
    "matiere": "pierre",
    "genre": "aire",
    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+  },
+  {
+   "pk_debut_m": 1474.0,
+   "pk_fin_m": 1486.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "profondeur_m": 6.0,
+   "matiere": "pierre",
+   "genre": "aire",
+   "calage": "posée d'après le relief laser, sans correction de calage",
+   "note": "ajoutée le 14/11/2026, devant le débouché de piste du PK 1485 : relevé du sixième essai (data/reference/releve_essai_13_11_v6/) recoupé avec le relief laser le 14/11/2026 : sol au niveau de la chaussée, sans végétation, sur cette emprise"
   },
   {
    "pk_debut_m": 1485.0,
@@ -162,6 +174,17 @@
    "calage": "PK corrigé de +5,5 m à +8,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
+   "pk_debut_m": 2999.0,
+   "pk_fin_m": 3009.0,
+   "cote": "gauche",
+   "decalage_m": 0.0,
+   "profondeur_m": 12.0,
+   "matiere": "terre",
+   "genre": "piste",
+   "note": "relevée du PK 2985 au PK 2995 ; glissée de 14 m sur le débouché de la route empierrée de l'IGN (PK 3005), que le sol trace déjà : une seule embouchure au lieu de deux",
+   "calage": "laissé en place : déjà déplacé à la main sur un repère connu"
+  },
+  {
    "pk_debut_m": 3000.0,
    "pk_fin_m": 3045.0,
    "cote": "droite",
@@ -172,17 +195,6 @@
    "pk_releve_debut_m": 2985.0,
    "pk_releve_fin_m": 3030.0,
    "calage": "PK corrigé de +15,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
-  },
-  {
-   "pk_debut_m": 2999.0,
-   "pk_fin_m": 3009.0,
-   "cote": "gauche",
-   "decalage_m": 0.0,
-   "profondeur_m": 12.0,
-   "matiere": "terre",
-   "genre": "piste",
-   "note": "relevée du PK 2985 au PK 2995 ; glissée de 14 m sur le débouché de la route empierrée de l'IGN (PK 3005), que le sol trace déjà : une seule embouchure au lieu de deux",
-   "calage": "laissé en place : déjà déplacé à la main sur un repère connu"
   },
   {
    "pk_debut_m": 3387.5,
@@ -281,6 +293,17 @@
    "matiere": "terre",
    "genre": "piste",
    "calage": "vérifié le 13/11/2026 : écart nul à cet endroit"
+  },
+  {
+   "pk_debut_m": 6368.0,
+   "pk_fin_m": 6398.0,
+   "cote": "gauche",
+   "decalage_m": 0.5,
+   "profondeur_m": 7.0,
+   "matiere": "pierre",
+   "genre": "aire",
+   "calage": "posée d'après le relief laser, sans correction de calage",
+   "note": "ajoutée le 14/11/2026 : « large aire plane de gravier clair » aux relevés des quatrième et sixième essais (PK 6360), rendue en talus de terre ; le relief laser montre le sol au niveau de la chaussée de 6370 à 6395 (il est 1,3 m plus haut de 6320 à 6355)"
   },
   {
    "pk_debut_m": 6500.5,
