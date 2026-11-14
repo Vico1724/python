@@ -1474,6 +1474,22 @@ SOUS_BOIS = {"de_m": 1.7, "a_m": 9.0, "pas_m": 1.1, "par_pas": 3, "mnh_min_m": 1
              "pin_m": (2.2, 4.2), "pin_pas_m": 6.0, "pin_mnh_m": 8.0, "pin_voisin_m": 4.5, "pin_hauteur_m": (8.0, 18.0)}
 
 
+def hors_du_bati(x, y, ok, quoi, murs):
+    """Retire de `ok` les points (Lambert-93) tombés dans un bâtiment BD TOPO (marge de 10_semis_arbres.py), dans une
+    construction de la zone de départ (+ 1 m) et, avec `murs`, à moins de 1 m d'un mur ou parapet le long de la route
+    (regles_arbres.dans_le_bati). Le relevé laser voit un toit ou un mur de 2 m comme un taillis : sans ce filtre, des
+    arbustes étaient semés dans les maisons et sur les murs de la zone de départ. Affiche le compte par source."""
+    masques = regles_arbres.dans_le_bati(ROOT, x, y, murs=murs)
+    retire = np.zeros(len(ok), bool)
+    detail = []
+    for nom, m in masques.items():
+        n = int((m & ok & ~retire).sum())
+        retire |= m & ok
+        detail.append(f"{n} {nom}")
+    print(f"  {quoi} : {int(retire.sum())} points écartés du bâti et des murs ({', '.join(detail) or 'aucune emprise'})")
+    return ok & ~retire
+
+
 def sous_bois_de_bord(ref, arbres):
     import rasterio
     f_mns, f_mnt = ROOT / "data" / "raw" / "mns_lidarhd_50cm.tif", ROOT / "data" / "raw" / "mnt_lidarhd_50cm.tif"
@@ -1546,6 +1562,7 @@ def sous_bois_de_bord(ref, arbres):
     if arbres:                                                   # pas dans le pied d'un arbre du semis
         tr = cKDTree(np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in arbres]))
         ok &= tr.query(Q[:, :2])[0] >= np.where(rang_h > 0, 0.8, SOUS_BOIS["voisin_min_m"])
+    ok = hors_du_bati(Q[:, 0], Q[:, 1], ok, "bord de route", murs=True)
     Q, mnh, zt, rang_h, haut_couvert = Q[ok], mnh[ok], zt[ok], rang_h[ok], haut_couvert[ok]
     h0, h1 = SOUS_BOIS["hauteur_m"]
     haut = np.clip(np.minimum(mnh, h1 * 1.2) * rng.uniform(0.6, 1.0, len(Q)), h0, h1)
@@ -1582,6 +1599,7 @@ def sous_bois_de_bord(ref, arbres):
         dv, iv = tr.query(Pp[:, :2])
         _, i8 = tr.query(Pp[:, :2], k=8)
         ok_p = (zt_p > -1000) & (zs_p > -1000) & (h_p >= SOUS_BOIS["pin_mnh_m"]) & (dv >= SOUS_BOIS["pin_voisin_m"]) & (ess[i8].mean(1) >= 0.6)
+        ok_p = hors_du_bati(Pp[:, 0], Pp[:, 1], ok_p, "pins de bord de route", murs=True)
         Pp, h_p, zt_p = Pp[ok_p], h_p[ok_p], zt_p[ok_p]
         hp = np.clip(h_p * rng.uniform(0.85, 1.0, len(Pp)), *SOUS_BOIS["pin_hauteur_m"])
         rows += [{"x_l93": f"{Pp[i, 0]:.2f}", "y_l93": f"{Pp[i, 1]:.2f}", "z_sol_m": f"{zt_p[i]:.2f}", "hauteur_m": f"{hp[i]:.1f}",
@@ -1628,6 +1646,7 @@ def fourre_des_versants(arbres):
     ok = (zs > -1000) & (zt > -1000) & np.isfinite(mnh) & (mnh >= FOURRE["mnh_m"][0]) & (mnh < FOURRE["mnh_m"][1])
     tr = cKDTree(np.array([[float(r["x_l93"]), float(r["y_l93"])] for r in arbres]))
     ok &= tr.query(q)[0] > FOURRE["voisin_min_m"]
+    ok = hors_du_bati(q[:, 0], q[:, 1], ok, "fourré des versants", murs=False)
     q, mnh, zt = q[ok], mnh[ok], zt[ok]
     haut = np.clip(mnh * rng.uniform(0.85, 1.05, len(q)), *FOURRE["hauteur_m"])
     pk_q = pk_a[cKDTree(A).query(q)[1]]

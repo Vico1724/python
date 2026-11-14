@@ -295,6 +295,170 @@ def garde_en_zone_ouverte(cle):
     return zlib.crc32(f"ouvert:{cle}".encode("utf-8")) % 100 < 100 * PART_GARDEE_EN_ZONE_OUVERTE
 
 
+# --- bâti et murs : ni arbre ni buisson dedans -------------------------------------------------------------
+# Les semis d'arbustes de 16_paquet_unreal.py (sous-bois de bord, fourré des versants) suivent la seule hauteur laser
+# (MNS − MNT) : un toit ou un mur de 2 m y passe pour un taillis. Vu sur la zone de départ modélisée le 14/11/2026 :
+# des arbustes plantés dans les maisons et sur le long mur enduit. On écarte donc :
+#   - les emprises des bâtiments de la BD TOPO, avec la marge du semis d'arbres (MARGE_BATI de 10_semis_arbres.py) ;
+#   - les constructions de la zone de départ (data/reference/zone_depart.json, « constructions »), plus 1 m ;
+#   - pour le sous-bois de bord, une bande de 1 m autour des murs et parapets le long de la route
+#     (data/reference/ouvrages_parapets.json), reconstitués comme 11_route_ouvrages.py les pose.
+MARGE_BATI_M = 2.0                  # même valeur que MARGE_BATI de 10_semis_arbres.py
+MARGE_CONSTRUCTION_M = 1.0
+MARGE_MUR_M = 1.0
+_BATI = {}
+
+
+def _bords_chaussee(racine):
+    import csv
+    from pathlib import Path
+
+    import numpy as np
+    with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:
+        r = list(csv.DictReader(h))
+    pk = np.array([float(x["pk_m"]) for x in r])
+    A = np.array([[float(x["x_axe"]), float(x["y_axe"])] for x in r])
+    bords = {"gauche": np.array([[float(x["x_gauche"]), float(x["y_gauche"])] for x in r]),
+             "droite": np.array([[float(x["x_droite"]), float(x["y_droite"])] for x in r])}
+    return pk, A, bords
+
+
+def batiments_bd_topo(racine):
+    """Emprises Lambert-93 des bâtiments BD TOPO du couloir (data/processed/couloir/batiment.geojson, WGS84 sur disque),
+    lues comme couche("batiment") de 10_semis_arbres.py."""
+    import json
+    from pathlib import Path
+
+    import numpy as np
+    import shapely
+    from pyproj import Transformer
+    f = Path(racine) / "data" / "processed" / "couloir" / "batiment.geojson"
+    if not f.exists():
+        return []
+    vers_l93 = Transformer.from_crs(4326, 2154, always_xy=True)
+    out = []
+    for ft in json.loads(f.read_text(encoding="utf-8"))["features"]:
+        if ft.get("geometry"):
+            g = shapely.transform(shapely.force_2d(shapely.geometry.shape(ft["geometry"])),
+                                  lambda c: np.column_stack(vers_l93.transform(c[:, 0], c[:, 1])))
+            out.append(g if g.is_valid else g.buffer(0))
+    return out
+
+
+def constructions_zone_depart(racine):
+    """Emprises Lambert-93 des constructions de data/reference/zone_depart.json : polygone (bâtiment, rampe), polyligne ou
+    segment épaissi (mur, portail, barrière), rectangle orienté (bloc : pilier, monolithe)."""
+    import json
+    from pathlib import Path
+
+    import numpy as np
+    import shapely
+    f = Path(racine) / "data" / "reference" / "zone_depart.json"
+    if not f.exists():
+        return []
+    out = []
+    for c in json.loads(f.read_text(encoding="utf-8")).get("constructions", []):
+        if c.get("polygone_l93"):
+            g = shapely.Polygon(c["polygone_l93"]).buffer(0)
+        elif c.get("polyligne_l93") or c.get("segment_l93"):
+            g = shapely.LineString(c.get("polyligne_l93") or c["segment_l93"]).buffer(max(float(c.get("epaisseur_m") or 0.2), 0.1) / 2.0)
+        elif c.get("centre_l93"):
+            u = np.asarray(c.get("direction") or (1.0, 0.0), float)
+            u /= max(float(np.linalg.norm(u)), 1e-9)
+            v = np.array([-u[1], u[0]])
+            o = np.asarray(c["centre_l93"], float)
+            a, b = float(c.get("longueur_m") or 1.0) / 2.0, float(c.get("largeur_m") or 1.0) / 2.0
+            g = shapely.Polygon([o + a * u + b * v, o - a * u + b * v, o - a * u - b * v, o + a * u - b * v])
+        else:
+            continue
+        if not g.is_empty:
+            out.append(g)
+    return out
+
+
+def murs_le_long_de_la_route(racine):
+    """Emprises Lambert-93 des murs et parapets de data/reference/ouvrages_parapets.json (« ouvrages » et
+    « parapets_hors_tablier ») : du bord de chaussée + decalage_m à + decalage_m + epaisseur_m, entre leurs PK, du côté
+    donné (comme parapet() de 11_route_ouvrages.py). Un parapet d'ouvrage sans PK relevés prend la portée BD TOPO du
+    tablier, prolongée de prolongement_par_defaut_m."""
+    import json
+    from pathlib import Path
+
+    import numpy as np
+    import shapely
+    f = Path(racine) / "data" / "reference" / "ouvrages_parapets.json"
+    if not f.exists():
+        return []
+    cfg = json.loads(f.read_text(encoding="utf-8"))
+    prol = float(cfg.get("valeurs_par_defaut", {}).get("prolongement_par_defaut_m", 2.0))
+    pk, A, bords = _bords_chaussee(racine)
+    troncons = []                                       # (pk début, pk fin, côté, paramètres)
+    for e in cfg.get("ouvrages", []):
+        for cote in ("gauche", "droite"):
+            p = e.get(cote) or {}
+            if p.get("type", "aucun") == "aucun":
+                continue
+            if "pk_debut_m" in p and "pk_fin_m" in p:
+                s0, s1 = float(p["pk_debut_m"]), float(p["pk_fin_m"])
+            elif e.get("bdtopo_pk"):
+                a_, b_ = (float(x) for x in str(e["bdtopo_pk"]).split("-")[:2])
+                s0, s1 = a_ - prol, b_ + prol
+            else:
+                continue
+            troncons.append((s0, s1, cote, p))
+    for e in cfg.get("parapets_hors_tablier", []):
+        for cote in ("gauche", "droite"):
+            p = e.get(cote) or {}
+            if p.get("type", "aucun") != "aucun":
+                troncons.append((float(e["pk_debut_m"]), float(e["pk_fin_m"]), cote, p))
+    out = []
+    for s0, s1, cote, p in troncons:
+        s = np.append(np.arange(s0, s1, 0.5), s1)
+        if len(s) < 2:
+            continue
+        B = np.column_stack([np.interp(s, pk, bords[cote][:, k]) for k in (0, 1)])
+        C = np.column_stack([np.interp(s, pk, A[:, k]) for k in (0, 1)])
+        n = B - C
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+        d0 = float(p.get("decalage_m") or 0.0)
+        d1 = d0 + float(p.get("epaisseur_m") or 0.4)
+        poly = shapely.Polygon(np.vstack([B + n * d0, (B + n * d1)[::-1]])).buffer(0)
+        if not poly.is_empty:
+            out.append(poly)
+    return out
+
+
+def emprises_interdites(racine):
+    """{nom : polygone Lambert-93 préparé, marge comprise} : bâtiments BD TOPO (+ MARGE_BATI_M), constructions de la zone
+    de départ (+ MARGE_CONSTRUCTION_M), murs et parapets le long de la route (+ MARGE_MUR_M). Mis en cache."""
+    import shapely
+    cle = str(racine)
+    if cle not in _BATI:
+        brut = {"bâtiments BD TOPO": (batiments_bd_topo(racine), MARGE_BATI_M),
+                "constructions de la zone de départ": (constructions_zone_depart(racine), MARGE_CONSTRUCTION_M),
+                "murs et parapets": (murs_le_long_de_la_route(racine), MARGE_MUR_M)}
+        _BATI[cle] = {}
+        for nom, (geoms, marge) in brut.items():
+            if geoms:
+                g = shapely.union_all([x.buffer(marge) for x in geoms])
+                shapely.prepare(g)
+                _BATI[cle][nom] = g
+    return _BATI[cle]
+
+
+def dans_le_bati(racine, x, y, murs=True):
+    """{nom : masque booléen} des points (x, y) Lambert-93 tombant dans une emprise de emprises_interdites ; sans
+    `murs`, la bande autour des murs et parapets de la route n'est pas regardée."""
+    import numpy as np
+    import shapely
+    out = {}
+    for nom, g in emprises_interdites(racine).items():
+        if nom == "murs et parapets" and not murs:
+            continue
+        out[nom] = shapely.contains_xy(g, np.asarray(x, float), np.asarray(y, float))
+    return out
+
+
 def pieds_de_paroi(racine):
     """[(polygone Lambert-93, hauteur maxi)] : bande étroite au pied de chaque paroi de roche en place (tout genre sauf
     « eboulis ») de data/reference/parois_rocheuses.json. Essai en jeu du 14/11/2026 : les parois étaient posées sur une

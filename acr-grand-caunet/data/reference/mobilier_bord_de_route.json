@@ -528,13 +528,17 @@
      "calage": "PK corrigé de +14,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
     },
     {
-     "pk_m": 3139.5,
+     "pk_m": 3144.0,
      "decalage_m": 1.5,
      "type": "poteau_bois",
      "confiance": "moyenne",
      "statut": "poteau en bois, bague rouge et blanche",
      "pk_releve_m": 3125,
-     "calage": "PK corrigé de +14,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "PK corrigé de +14,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+     "avant_le_controle": {
+      "pk_m": 3139.5
+     },
+     "controle": "contrôle hors jeu du placement, 14/11/2026 : poteau dans la paroi rocheuse du PK 3114-3141, avancé au bout de la paroi"
     },
     {
      "pk_m": 3169.5,
@@ -1151,21 +1155,29 @@
     },
     {
      "pk_m": 5525.0,
-     "decalage_m": 0.7,
+     "decalage_m": 2.0,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau électrique béton au ras de la chaussée, à l'intérieur du virage à droite, collé au ",
      "pk_releve_m": 5523,
-     "calage": "PK corrigé de +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "PK corrigé de +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+     "avant_le_controle": {
+      "decalage_m": 0.7
+     },
+     "controle": "contrôle hors jeu du placement, 14/11/2026 : poteau à 0,55 m du bord de chaussée, reculé à 2 m"
     },
     {
-     "pk_m": 5571.5,
+     "pk_m": 5589.0,
      "decalage_m": 1.5,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau béton haut, juste après la fin du parapet droit du pont, à côté de pins plantés à 1",
      "pk_releve_m": 5570,
-     "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+     "avant_le_controle": {
+      "pk_m": 5571.5
+     },
+     "controle": "contrôle hors jeu du placement, 14/11/2026 : poteau au-dessus du vide du pont (5522-5586), reporté au bout du pont"
     },
     {
      "pk_m": 5636.5,
@@ -1417,12 +1429,16 @@
     },
     {
      "pk_m": 6667.5,
-     "decalage_m": 1.0,
+     "decalage_m": 2.2,
      "type": "poteau_beton",
      "confiance": "élevée",
      "statut": "poteau à bague jaune au ras de la chaussée, à la corde du virage à droite, planté contre l",
      "pk_releve_m": 6663,
-     "calage": "PK corrigé de +4,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+     "calage": "PK corrigé de +4,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+     "avant_le_controle": {
+      "decalage_m": 1.0
+     },
+     "controle": "contrôle hors jeu du placement, 14/11/2026 : poteau dans le mur de béton du PK 6666-6669, reculé à 2,2 m"
     },
     {
      "pk_m": 6680.5,
@@ -1621,24 +1637,6 @@
    "calage": "PK corrigé de -0,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
   },
   {
-   "type": "arbre_de_bord",
-   "pk_m": 5569.0,
-   "cote": "droite",
-   "decalage_m": 1.0,
-   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m",
-   "pk_releve_m": 5567,
-   "calage": "PK corrigé de +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
-  },
-  {
-   "type": "arbre_de_bord",
-   "pk_m": 5579.5,
-   "cote": "droite",
-   "decalage_m": 1.0,
-   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m",
-   "pk_releve_m": 5578,
-   "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
-  },
-  {
    "type": "panneau_danger",
    "pk_m": 2157.0,
    "cote": "droite",
@@ -1716,11 +1714,15 @@
    "type": "borne_kilometrique",
    "pk_m": 4005.0,
    "cote": "droite",
-   "decalage_m": 0.6,
+   "decalage_m": 0.12,
    "source": "relevé de la vidéo de reconnaissances (data/reference/releve_reco/) : plaque kilométrique « D 1 - 13 » contre le mur",
    "nature": "permanent",
    "pk_releve_m": 3997,
-   "calage": "PK corrigé de +8,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "PK corrigé de +8,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+   "avant_le_controle": {
+    "decalage_m": 0.6
+   },
+   "controle": "contrôle hors jeu du placement, 14/11/2026 : borne dans l'épaisseur du mur de pierre du PK 3988-4062, ramenée devant sa face"
   },
   {
    "type": "panneau_chaussee_retrecie",
@@ -2014,13 +2016,17 @@
   },
   {
    "type": "panneau_radio_annonce_sur_mat",
-   "pk_m": 5571.5,
+   "pk_m": 5589.0,
    "cote": "droite",
    "decalage_m": 1.5,
    "source": "vidéo de course VMRS 2025, recalée sur les repères fixes (data/reference/releve_course/) : annonce de point radio sur le poteau en béton après le parapet du pont",
    "nature": "rallye",
    "pk_releve_m": 5570,
-   "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+   "avant_le_controle": {
+    "pk_m": 5571.5
+   },
+   "controle": "contrôle hors jeu du placement, 14/11/2026 : panneau porté par le poteau reporté au bout du pont"
   },
   {
    "type": "panneau_public_interdit",
@@ -2349,7 +2355,7 @@
   },
   {
    "pk_debut_m": 1636.5,
-   "pk_fin_m": 1654.0,
+   "pk_fin_m": 1646.0,
    "cote": "gauche",
    "decalage_m": 1.0,
    "hauteur_m": [
@@ -2360,10 +2366,14 @@
    "nature": "permanent",
    "pk_releve_debut_m": 1640,
    "pk_releve_fin_m": 1658,
-   "calage": "PK corrigé de -3,5 m à -4,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "PK corrigé de -3,5 m à -4,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+   "avant_le_controle": {
+    "pk_fin_m": 1654.0
+   },
+   "controle": "contrôle hors jeu du placement, 14/11/2026 : bloc contre le parapet du pont (1648-1662) : la rangée s'arrête avant lui"
   },
   {
-   "pk_debut_m": 1668.0,
+   "pk_debut_m": 1698.0,
    "pk_fin_m": 1718.0,
    "cote": "gauche",
    "decalage_m": 2.5,
@@ -2376,7 +2386,11 @@
    "nature": "permanent",
    "pk_releve_debut_m": 1672,
    "pk_releve_fin_m": 1720,
-   "calage": "PK corrigé de -4,0 m à -2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "PK corrigé de -4,0 m à -2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+   "avant_le_controle": {
+    "pk_debut_m": 1668.0
+   },
+   "controle": "contrôle hors jeu du placement, 14/11/2026 : huit blocs pris dans la paroi rocheuse du PK 1661-1697 : la rangée commence après elle"
   },
   {
    "pk_debut_m": 2197.0,
@@ -2582,7 +2596,7 @@
    "pk_debut_m": 6676.5,
    "pk_fin_m": 6682.5,
    "cote": "gauche",
-   "decalage_m": 1.5,
+   "decalage_m": 3.1,
    "hauteur_m": [
     0.4,
     0.5
@@ -2591,7 +2605,11 @@
    "nature": "permanent",
    "pk_releve_debut_m": 6672,
    "pk_releve_fin_m": 6678,
-   "calage": "PK corrigé de +4,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   "calage": "PK corrigé de +4,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+   "avant_le_controle": {
+    "decalage_m": 1.5
+   },
+   "controle": "contrôle hors jeu du placement, 14/11/2026 : blocs dans le mur de béton du PK 6676-6684, reculés derrière lui"
   },
   {
    "pk_debut_m": -32.5,
@@ -3511,5 +3529,27 @@
     }
    }
   }
- }
+ },
+ "retires_au_controle_du_14_11": [
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 5569.0,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m",
+   "pk_releve_m": 5567,
+   "calage": "PK corrigé de +2,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+   "pourquoi": "gros tronc posé au-dessus du vide du pont 5554 : suspendu à 3,5 m du sol"
+  },
+  {
+   "type": "arbre_de_bord",
+   "pk_m": 5579.5,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "source": "gros tronc au ras de la route ; relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/), PK à ±10 m",
+   "pk_releve_m": 5578,
+   "calage": "PK corrigé de +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+   "pourquoi": "gros tronc posé au-dessus du vide du pont 5554 : suspendu à 3,5 m du sol"
+  }
+ ]
 }

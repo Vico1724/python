@@ -41,7 +41,7 @@
  },
  "troncons": [
   {
-   "pk_debut_m": 1720.0,
+   "pk_debut_m": 1723.5,
    "pk_fin_m": 1834.5,
    "cote": "droite",
    "detail": "au-dessus du vallon ; 40 m de plus que l'ancien relevé",
@@ -54,7 +54,11 @@
    "avant_la_relecture": {
     "pk_debut_m": 1725.0,
     "calage": "PK corrigé de -2,0 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
-   }
+   },
+   "avant_le_controle": {
+    "pk_debut_m": 1720.0
+   },
+   "controle": "contrôle hors jeu du placement, 14/11/2026 : la glissière recouvrait sur 3 m le mur de pierre du PK 1709-1723 : elle commence au bout du mur"
   },
   {
    "pk_debut_m": 1963.0,
