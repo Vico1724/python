@@ -176,6 +176,8 @@ def main():
     if f_mob.exists():
         deja = {x["objet"] for x in liste}
         for t in json.loads(f_mob.read_text(encoding="utf-8"))["types"].values():
+            if t.get("maillage_du_projet"):          # bloc calcaire fabriqué par le paquet : importé, pas de factice
+                continue
             if t["maillage_jeu"] not in deja:
                 liste.append({"objet": t["maillage_jeu"], "type": "StaticMesh", "essai": "mobilier de bord de route",
                               **({"bornes_cm": t["bornes_cm"]} if t.get("bornes_cm") else {})})

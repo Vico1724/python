@@ -940,13 +940,18 @@
    "pk_fin_m": 4109.5,
    "route": "D1",
    "gauche": {
-    "type": "pierre",
-    "hauteur_m": 2.5,
-    "epaisseur_m": 0.6,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 2.5,
-    "biseau_m": 2.0
+    "nature": "relevé du sixième essai (13/11/2026) : le jeu montrait ici un mur de soutènement sombre de 2 m sur 40 m ; la reconnaissance montre un talus naturel de bancs calcaires délités, sans mur : rendu par la paroi rocheuse du PK 4080 à 4107 (data/reference/parois_rocheuses.json)",
+    "ancien": {
+     "type": "pierre",
+     "hauteur_m": 2.5,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 2.5,
+     "biseau_m": 2.0
+    }
    },
    "droite": {
     "type": "aucun",

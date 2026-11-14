@@ -4,7 +4,7 @@
   "parent": "/Game/Environments/MonteCarloS1Bollene/TerrainMaterial/MI_MonteCarloS1BolleneTerrainFirstChild",
   "couches": {
    "1": {
-    "role": "fond : sol pierreux clair (remplace le paillis de Bollène, presque noir)",
+    "role": "fond : sol pierreux clair (remplace le paillis de Bollène, presque noir) ; éclairci le 14/11/2026 (1,45 -> 2,1, moins saturé) : relevé du sixième essai, aires de stationnement et accotements de « gravier gris ou brun sombre » là où la reconnaissance montre un gravier calcaire beige clair",
     "textures": {
      "Material1Color": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_BC",
      "Material1Normal": "/Game/Environments/GreeceShared/GravelTextures/T_SoilAndGravel_00_N",
@@ -15,15 +15,15 @@
     },
     "vecteurs": {
      "Material1AlbedoControls": [
-      1.45,
-      0.62,
+      2.1,
+      0.45,
       1.0,
       0.0
      ],
      "Material1Tint": [
       1.0,
-      1.0,
-      0.98,
+      0.985,
+      0.94,
       1.0
      ]
     }
@@ -123,7 +123,7 @@
     }
    },
    "6": {
-    "role": "roche et pierraille calcaire sur les pentes raides",
+    "role": "roche et pierraille calcaire sur les pentes raides ; éclaircie le 14/11/2026 (2,0 -> 2,7) comme la roche des parois",
     "textures": {
      "Material6Color": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_B",
      "Material6Normal": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_N",
@@ -134,14 +134,14 @@
     },
     "vecteurs": {
      "Material6AlbedoControls": [
-      2.0,
-      0.35,
+      2.7,
+      0.25,
       1.0,
       0.0
      ],
      "Material6Tint": [
       1.0,
-      0.99,
+      0.985,
       0.95,
       1.0
      ]
@@ -166,55 +166,92 @@
   },
   "MI_GC_Pierre": {
    "parent": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA",
-   "pourquoi": "parapets vus trop sombres : la variante A de Bollène a une pierre claire (T_StoneWallVmghfd3o) teintée beige, au lieu de la pierre brute sombre de la variante A2 ; éclaircie le 13/11/2026 (1,55 -> 2,0) : parapets plus sombres en jeu que sur la reconnaissance (PK 4000, 5600)",
+   "pourquoi": "parapets vus trop sombres : la variante A de Bollène a une pierre claire (T_StoneWallVmghfd3o) teintée beige, au lieu de la pierre brute sombre de la variante A2 ; éclaircie le 13/11/2026 (1,55 -> 2,0) : parapets plus sombres en jeu que sur la reconnaissance (PK 4000, 5600) ; relevé du sixième essai (13/11/2026 au soir) : murets et parapets « à remplissage brun moussu ou noir » au lieu de moellons gris clair ou beiges. Lu dans le jeu le 14/11/2026 : ce matériau mêle une pierre grise (clarté 0,25) à une mousse brun sombre (T_Moss2, clarté 0,07) selon la couleur de sommet ; nos murs portaient le gris médian des murs de Bollène (135), soit moitié mousse ; le parent ajoute une teinte brune, des plages de variation à 0,5 et un voile sombre à 0,45 (ColorMult VPW). Réglages du 14/11/2026 : couleur de sommet presque blanche dans 16_paquet_unreal.py (pierre seule), teinte moins brune, variation et voile éclaircis",
    "scalaires": {
     "Mat1_UVTiling": 2.9
    },
    "vecteurs": {
     "Mat1_AlbedoControls": [
      2.0,
-     0.8,
+     0.6,
      1.0,
+     0.0
+    ],
+    "Mat1_TintMult": [
+     1.0,
+     0.95,
+     0.86,
+     0.0
+    ],
+    "Mat1_ColorVariationTintMult": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
      0.0
     ]
    }
   },
   "MI_GC_Roche": {
    "parent": "/Game/Props/MonteCarloProps/MonBolRockfaces/MI_BolleneRockfacesParent",
-   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc ; échelle réglée sur celle des parois du jeu (dépliage du jeu à 3,9 m par unité et Mat1_UVTiling de 0,7 à 0,95, soit un motif de 4 à 5,6 m ; le nôtre est à 2,5 m par unité : 0,45 et 0,5 donnent 5,6 et 5 m). Sans ce réglage, valeur par défaut du maître, inconnue ; vu en jeu le 13/11/2026 (quatrième version, PK 2400) : roche gris ardoise, bien plus sombre que le calcaire clair de la reconnaissance : clarté passée de 1,9 à 3,0, teinte réchauffée (les parois du jeu vont de 1,7 à 4,2) ; réglage final du 13/11/2026 : 2,4 et non 3,0, car au soleil (PK 4000 de la vidéo du quatrième essai) la roche est déjà beige clair ; c'est à l'ombre, sous le ciel bleu du matin, qu'elle vire à l'ardoise",
+   "pourquoi": "parois rocheuses : roche répétable de Bollène, éclaircie et désaturée vers le calcaire gris-blanc ; échelle réglée sur celle des parois du jeu (dépliage du jeu à 3,9 m par unité et Mat1_UVTiling de 0,7 à 0,95, soit un motif de 4 à 5,6 m ; le nôtre est à 2,5 m par unité : 0,45 et 0,5 donnent 5,6 et 5 m). Sans ce réglage, valeur par défaut du maître, inconnue ; vu en jeu le 13/11/2026 (quatrième version, PK 2400) : roche gris ardoise, bien plus sombre que le calcaire clair de la reconnaissance : clarté passée de 1,9 à 3,0, teinte réchauffée (les parois du jeu vont de 1,7 à 4,2) ; réglage final du 13/11/2026 : 2,4 et non 3,0, car au soleil (PK 4000 de la vidéo du quatrième essai) la roche est déjà beige clair ; c'est à l'ombre, sous le ciel bleu du matin, qu'elle vire à l'ardoise ; vu en jeu le 13/11/2026 au soir (sixième version, PK 680, 880, 3960) : au soleil la roche sort beige-ocre en grandes dalles lisses, à l'ombre gris ardoise, avec des dessus brun sombre, là où la reconnaissance montre un calcaire blanc-gris finement lité et fracturé. Réglages du 14/11/2026 : clarté 3,0 et saturation 0,15 (la texture du jeu est brun clair, clarté linéaire 0,19 : 3,0 la porte vers 0,6, l'albédo d'un calcaire blanc), teinte presque neutre, variation de couleur éclaircie (0,56 par défaut chez le parent : des plages sombres), motif resserré de 5 m à 3 m environ (bancs plus fins), et couche de terre brune posée sur les faces tournées vers le haut ramenée de 1,1 à 0,25 (Mat3_AdditionalBlendFromTop_Amount) ; voile sombre du parent (ColorMult VPW, 0,43) ramené à 0,85",
    "vecteurs": {
     "Mat1_AlbedoControls": [
-     2.4,
-     0.35,
+     3.0,
+     0.15,
      1.0,
      0.0
     ],
     "Mat2_AlbedoControls": [
-     2.4,
-     0.35,
+     3.0,
+     0.15,
      1.0,
      0.0
     ],
     "Mat1_TintMult": [
      1.0,
-     0.96,
-     0.88,
+     0.985,
+     0.95,
      1.0
     ],
     "Mat2_TintMult": [
      1.0,
-     0.96,
-     0.88,
+     0.985,
+     0.95,
+     1.0
+    ],
+    "Mat1_ColorVariationTintMult": [
+     0.85,
+     0.85,
+     0.85,
+     1.0
+    ],
+    "Mat2_ColorVariationTintMult": [
+     0.85,
+     0.85,
+     0.85,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.85,
+     0.85,
+     0.85,
      1.0
     ]
    },
    "scalaires": {
-    "Mat1_UVTiling": 0.45,
-    "Mat2_UVTiling": 0.5
+    "Mat1_UVTiling": 0.8,
+    "Mat2_UVTiling": 0.9,
+    "Mat3_AdditionalBlendFromTop_Amount": 0.25
    }
   },
   "MI_GC_Beton": {
-   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair",
+   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair ; relevé du sixième essai (13/11/2026 au soir) : parapets de béton « gris strié », trop sombres, au lieu d'un béton blanc cassé. Lu dans le jeu le 14/11/2026 : le parent (MI_MonBolConcreteWallsA) pose un voile sombre à 0,30 (ColorMult VPW), en traînées. Réglages du 14/11/2026 : voile ramené à 0,8, clarté 1,45 -> 1,7",
    "vecteurs": {
     "Mat1_TintMult": [
      1.0,
@@ -229,21 +266,27 @@
      1.0
     ],
     "Mat1_AlbedoControls": [
-     1.45,
-     0.8,
+     1.7,
+     0.7,
      1.0,
      0.0
     ],
     "Mat2_AlbedoControls": [
-     1.45,
-     0.8,
+     1.7,
+     0.7,
      1.0,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
      0.0
     ]
    }
   },
   "MI_GC_Dalle": {
-   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair",
+   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair ; relevé du sixième essai (13/11/2026 au soir) : parapets de béton « gris strié », trop sombres, au lieu d'un béton blanc cassé. Lu dans le jeu le 14/11/2026 : le parent (MI_MonBolConcreteWallsA) pose un voile sombre à 0,30 (ColorMult VPW), en traînées. Réglages du 14/11/2026 : voile ramené à 0,8, clarté 1,45 -> 1,7",
    "vecteurs": {
     "Mat1_TintMult": [
      1.0,
@@ -258,21 +301,27 @@
      1.0
     ],
     "Mat1_AlbedoControls": [
-     1.45,
-     0.8,
+     1.7,
+     0.7,
      1.0,
      0.0
     ],
     "Mat2_AlbedoControls": [
-     1.45,
-     0.8,
+     1.7,
+     0.7,
      1.0,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
      0.0
     ]
    }
   },
   "MI_GC_Chaperon": {
-   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair",
+   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair ; relevé du sixième essai (13/11/2026 au soir) : parapets de béton « gris strié », trop sombres, au lieu d'un béton blanc cassé. Lu dans le jeu le 14/11/2026 : le parent (MI_MonBolConcreteWallsA) pose un voile sombre à 0,30 (ColorMult VPW), en traînées. Réglages du 14/11/2026 : voile ramené à 0,8, clarté 1,45 -> 1,7",
    "vecteurs": {
     "Mat1_TintMult": [
      1.0,
@@ -287,15 +336,21 @@
      1.0
     ],
     "Mat1_AlbedoControls": [
-     1.45,
-     0.8,
+     1.7,
+     0.7,
      1.0,
      0.0
     ],
     "Mat2_AlbedoControls": [
-     1.45,
-     0.8,
+     1.7,
+     0.7,
      1.0,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
      0.0
     ]
    }
@@ -322,7 +377,8 @@
     "Mat2_NormalStrength",
     "Tiling VPW",
     "BlendContrast",
-    "TileSize(meters) (S)"
+    "TileSize(meters) (S)",
+    "Mat3_AdditionalBlendFromTop_Amount"
    ],
    "vecteurs": [
     "Mat1_TintMult",

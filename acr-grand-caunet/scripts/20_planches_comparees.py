@@ -12,10 +12,14 @@ import argparse
 import json
 from pathlib import Path
 
+import sys
+
 import cv2
 import numpy as np
 
 RACINE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))          # « python -P » n'ajoute pas le dossier du script
+import calage_reco  # noqa: E402
 
 
 def table(nom):
@@ -45,6 +49,8 @@ def main():
     a = ap.parse_args()
     tj, pj = table(a.nom)
     tr, pr = table("reco")
+    # le calage de la reconnaissance est en avance de 0 à 24 m selon l'endroit (docs/14, section 6) : PK réel
+    pr = np.maximum.accumulate(calage_reco.corrige(pr))
     pj = pj + a.avance_jeu_m
     sortie = Path(a.sortie) if a.sortie else RACINE / "figures" / f"compare_{a.nom}"
     sortie.mkdir(parents=True, exist_ok=True)

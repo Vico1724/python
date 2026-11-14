@@ -342,7 +342,9 @@ class Construction:
 
     # --- sélection : seuls les textures et matériaux utilisés par les maillages retenus ---
     def selection(self):
-        mesh = [e for e in self.el if e["type"] == "StaticMesh" and e.get("acteur")]
+        # maillages posés (avec acteur) et modèles d'instances fabriqués par le paquet (pierres calcaires : importés,
+        # jamais posés seuls, désignés ensuite par des groupes d'instances)
+        mesh = [e for e in self.el if e["type"] == "StaticMesh" and (e.get("acteur") or e.get("modele_d_instances"))]
         mats = {e["materiau"] for e in mesh if e.get("materiau")}
         mi = [self.par_nom[m] for m in sorted(mats) if m in self.par_nom]
         tex = sorted({t for m in mi for t in m["parametres_texture"].values()})
@@ -633,8 +635,8 @@ class Construction:
             v_ouvrir_ou_creer_niveau(niveau)
             deja = {x.get_actor_label() for x in v_acteurs_du_niveau()}
             for e in mesh_el:
-                ac = e["acteur"]
-                if ac["label"] in deja:
+                ac = e.get("acteur")
+                if not ac or ac["label"] in deja:                  # modèle d'instances : pas d'acteur
                     continue
                 p, lacet = self.position(ac["position_cm"], ac["rotation_deg"][2])
                 famille = e["destination"].split("/")[-2]

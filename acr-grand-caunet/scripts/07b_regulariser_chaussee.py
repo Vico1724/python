@@ -19,6 +19,10 @@ Principe (rien n'est redessiné, tout part des points mesurés) :
   3. ALTITUDES. Chaque point déplacé garde l'altitude du profil en travers mesuré.
   3 bis. PROFIL EN TRAVERS. Là où l'altitude d'un bord a été lue hors de la chaussée (vide d'un pont, talus), les
      bords sont reconstruits d'après l'inclinaison et le toit des profils sains voisins. L'axe n'est pas touché.
+  3 ter. PROFIL EN LONG ET DÉVERS (14/11/2026, après l'essai « route par moments trop bosselée »). L'altitude de l'axe
+     est lissée à l'ordre 3 (bosses et creux de moins de 25 m de long retirés, 5 cm de déplacement au plus) ; le dévers
+     de chaque demi-chaussée est débarrassé de ses valeurs aberrantes puis lissé à l'ordre 2 (2 % au plus). Les
+     sections dessinées à la main gardent leur tracé mais reçoivent ces altitudes lissées.
   4. CONTRÔLES, écrits dans data/processed/regularisation_chaussee.json. Si l'un échoue, rien n'est écrit :
        - déplacement de chaque point sous sa tolérance ;
        - même enchaînement de virages (nombre, sens, position), lu à l'échelle de 25 m ;
@@ -77,6 +81,12 @@ ECART_LONGUEUR_MAX_M = 3.0
 TOIT_ADMIS = (-0.045, 0.030)      # demi-somme des dévers gauche et droit : toit de 4,5 % au plus, V de 3 % au plus
 SAUT_DEVERS_MAX = 0.04            # variation de dévers d'un mètre au suivant
 ELARGIR_PROFIL = 3                # points repris de part et d'autre d'un profil douteux
+# profil en long et dévers (étape 3 ter)
+LAMBDA_Z = 4000.0                 # ordre 3 : coupe sous 2 pi lambda^(1/6), soit 25 m de longueur d'onde environ
+TOL_Z_M = 0.05                    # l'axe lissé reste à 5 cm au plus de l'altitude mesurée (précision du relevé laser)
+LAMBDA_DEVERS = 1000.0            # ordre 2 : coupe sous 2 pi lambda^(1/4), soit 35 m environ (300 laissait des vrilles de 2 %/m)
+TOL_DEVERS = 0.02                 # le dévers lissé reste à 2 % au plus du dévers mesuré (6 cm au bord)
+FENETRE_DEVERS, ECART_DEVERS = 21, 0.03    # dévers aberrant : à plus de 3 % de la médiane sur 21 m
 
 
 def whittaker(y, poids, lam, ordre):
@@ -239,6 +249,51 @@ def main():
               "devers_extreme_apres_pct": round(float(max(np.abs((zg2 - za1) / lg1).max(), np.abs((zd2 - za1) / ld1).max()) * 100), 1)}
     zg1, zd1 = zg2, zd2
 
+    # 3 ter. PROFIL EN LONG ET DÉVERS. Essai en jeu du 13/11/2026 au soir (sixième version) : « à certains moments la
+    # route est un peu trop bosselée ». Mesuré sur le profil : l'axe porte des bosses et des creux de 2 à 4 cm sur 4 à
+    # 8 m (PK 1655, 2600, 3073, 5578...), soit 1 à 2 g à 90 km/h, qu'une chaussée réelle n'a pas : c'est le grain du
+    # relevé laser et des raccords entre sources, qu'un simple lissage sur 7 m (étape 07) laissait passer. Le dévers
+    # saute aussi par endroits (bout du pont du PK 4470 : de +8 % à -2 % en 4 m, puis retour). Les sections dessinées
+    # à la main (approche, Lion d'Or) gardaient en plus des altitudes au centimètre, jamais lissées.
+    #   - axe : lissage d'ordre 3 (il pénalise la variation de courbure : une bosse ou un creux réels de plus de
+    #     25 m de long le traversent), chaque point restant à moins de TOL_Z_M de l'altitude mesurée ;
+    #   - dévers de chaque demi-chaussée : valeurs aberrantes écartées (écart à la médiane sur 21 m), puis lissage
+    #     d'ordre 2, chaque point restant à moins de TOL_DEVERS de sa valeur ; les bords sont reposés sur l'axe lissé.
+    def mediane_glissante(v, w):
+        return np.median(np.lib.stride_tricks.sliding_window_view(np.pad(v, w // 2, mode="edge"), w), axis=1)
+
+    def agitation(z_):                                   # accélération verticale à 90 km/h, en g (écart-type, maximum)
+        acc = np.gradient(np.gradient(z_, pk), pk) * 25.0 ** 2 / 9.81
+        return round(float(acc.std()), 3), round(float(np.abs(acc).max()), 2), f"maximum au PK {pk[int(np.argmax(np.abs(acc)))]:.0f}"
+
+    def lisser_en_long(y, tol_, lam, ordre):
+        # sur une grille régulière d'un mètre : le fichier a un point hors grille (ligne d'arrivée, PK 6735,8), et un
+        # lissage fait point par point y créait une marche
+        grille = np.arange(pk[0], pk[-1] + 0.5, 1.0)
+        yl = lisser_borne(np.interp(grille, pk, y), tol_, lam, ordre, np.zeros(len(grille), bool), np.ones(len(grille)))
+        return np.interp(pk, grille, yl)
+
+    za_l = lisser_en_long(za1, TOL_Z_M, LAMBDA_Z, 3)
+    sg, sd = (zg1 - za1) / lg1, (zd1 - za1) / ld1
+    faux = (np.abs(sg - mediane_glissante(sg, FENETRE_DEVERS)) > ECART_DEVERS) | (np.abs(sd - mediane_glissante(sd, FENETRE_DEVERS)) > ECART_DEVERS)
+    faux = np.convolve(faux.astype(float), np.ones(5), "same") > 0
+    bons = ~faux
+    sg_l = lisser_en_long(np.interp(rang, rang[bons], sg[bons]), TOL_DEVERS, LAMBDA_DEVERS, 2)
+    sd_l = lisser_en_long(np.interp(rang, rang[bons], sd[bons]), TOL_DEVERS, LAMBDA_DEVERS, 2)
+    zg_l, zd_l = za_l + sg_l * lg1, za_l + sd_l * ld1
+    i_f = np.flatnonzero(faux)
+    en_long = {"lambda_axe": LAMBDA_Z, "tolerance_axe_m": TOL_Z_M, "lambda_devers": LAMBDA_DEVERS, "tolerance_devers_pct": TOL_DEVERS * 100,
+               "deplacement_axe_m": {"moyen": round(float(np.abs(za_l - za1).mean()), 4), "max": round(float(np.abs(za_l - za1).max()), 3)},
+               "deplacement_bords_m": {"moyen": round(float(np.r_[np.abs(zg_l - zg1), np.abs(zd_l - zd1)].mean()), 4),
+                                       "max": round(float(max(np.abs(zg_l - zg1).max(), np.abs(zd_l - zd1).max())), 3)},
+               "acceleration_verticale_a_90_kmh_g": {"axe_avant": agitation(za1), "axe_apres": agitation(za_l),
+                                                     "bord_gauche_avant": agitation(zg1), "bord_gauche_apres": agitation(zg_l),
+                                                     "bord_droit_avant": agitation(zd1), "bord_droit_apres": agitation(zd_l)},
+               "devers_aberrants": {"metres": int(faux.sum()),
+                                    "troncons": [[round(float(pk[t[0]])), round(float(pk[t[-1]]))]
+                                                 for t in np.split(i_f, np.flatnonzero(np.diff(i_f) > 1) + 1)] if len(i_f) else []}}
+    za1, zg1, zd1 = za_l, zg_l, zd_l
+
     # 4. contrôles
     dep = {"axe": np.hypot(*(ax - axe).T), "gauche": np.hypot(*(g1 - g).T), "droite": np.hypot(*(d1 - d).T)}
     par_source = {}
@@ -320,6 +375,7 @@ def main():
                       "saut_max_avant": round(float(np.abs(np.diff(col("largeur_m")))[~fixe[:-1]].max()), 2),
                       "saut_max_apres": round(float(np.abs(np.diff(largeur1))[~fixe[:-1]].max()), 2)},
         "profil_en_travers": profil,
+        "profil_en_long": en_long,
         "echecs": echecs,
     }
     print(f"{n} points lus dans {source.name} ; {len(groupes)} cassures artificielles :", [(c["pk_debut"], c["pk_fin"]) for c in bilan["cassures_artificielles"]])
@@ -331,6 +387,10 @@ def main():
     print(f"profil en travers : {profil['metres_repris']} m repris en {len(profil['troncons'])} tronçons ; dévers extrême "
           f"{profil['devers_extreme_avant_pct']} % -> {profil['devers_extreme_apres_pct']} %")
     print("  ", [(t["pk_debut"], t["pk_fin"], max(t["correction_max_gauche_m"], t["correction_max_droite_m"])) for t in profil["troncons"]])
+    print(f"profil en long : axe déplacé de {en_long['deplacement_axe_m']['moyen'] * 100:.1f} cm en moyenne, {en_long['deplacement_axe_m']['max'] * 100:.1f} cm au plus ; "
+          f"bords {en_long['deplacement_bords_m']['max'] * 100:.1f} cm au plus ; dévers aberrants sur {en_long['devers_aberrants']['metres']} m "
+          f"{en_long['devers_aberrants']['troncons'][:14]}")
+    print("  accélération verticale à 90 km/h, en g (écart-type, maximum) :", en_long["acceleration_verticale_a_90_kmh_g"])
     print("CONTRÔLES :", "tous passés" if not echecs else echecs[:10])
     if a.essai:
         return
@@ -346,11 +406,13 @@ def main():
     brut_dev = np.where(np.abs(zd - zg) > 1e-3, (zd - zg) / np.maximum(col("largeur_m"), 0.1) * 100, np.nan)
     signe = np.sign(np.nanmedian(col("devers_pct") / brut_dev))
     for i, x in enumerate(lignes):
-        if fixe[i]:
-            continue
-        nv = {"x_axe": ax[i, 0], "y_axe": ax[i, 1], "z_axe": za1[i], "x_gauche": g1[i, 0], "y_gauche": g1[i, 1], "z_gauche": zg1[i],
-              "x_droite": d1[i, 0], "y_droite": d1[i, 1], "z_droite": zd1[i], "largeur_m": largeur1[i],
-              "devers_pct": signe * (zd1[i] - zg1[i]) / max(largeur1[i], 0.1) * 100}
+        if fixe[i]:                # section dessinée à la main : le tracé ne bouge pas, mais ses altitudes sont lissées
+            nv = {"z_axe": za1[i], "z_gauche": zg1[i], "z_droite": zd1[i],
+                  "devers_pct": signe * (zd1[i] - zg1[i]) / max(largeur1[i], 0.1) * 100}
+        else:
+            nv = {"x_axe": ax[i, 0], "y_axe": ax[i, 1], "z_axe": za1[i], "x_gauche": g1[i, 0], "y_gauche": g1[i, 1], "z_gauche": zg1[i],
+                  "x_droite": d1[i, 0], "y_droite": d1[i, 1], "z_droite": zd1[i], "largeur_m": largeur1[i],
+                  "devers_pct": signe * (zd1[i] - zg1[i]) / max(largeur1[i], 0.1) * 100}
         for k, v in nv.items():
             x[k] = f"{v:.{deci[k]}f}"
     with open(SORTIE, "w", encoding="utf-8", newline="") as f:

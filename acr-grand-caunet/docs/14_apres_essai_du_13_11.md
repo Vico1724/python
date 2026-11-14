@@ -144,3 +144,40 @@ La vidéo a été calée sur la route d'après la barre de progression du jeu (7
 - Relevés du quatrième essai : `data/reference/releve_essai_13_11_v4/`. Relecture des parois : `scripts/24_planches_parois.py`, `data/reference/releve_parois_v2/`, `data/reference/parois_rocheuses.json`. Calage corrigé de la reconnaissance : `scripts/calage_reco.py`, `data/reference/calage_reco_reperes.json`.
 - Rocaille : `regles_arbres.rocailles()`, `pierraille_des_talus()` dans `scripts/16_paquet_unreal.py`.
 - Les versions vues en jeu sont gardées sur le PC (`sol_jeu_vu_le_13_11`, `_bis`, `_ter`), chacune avec sa route physique.
+
+## 8. Après l'essai de la sixième version (13 novembre au soir)
+
+Retour du directeur : le jeu tourne sans souci ; « il y a encore du travail à faire sur l'aspect visuel et, à certains moments, la route est un peu trop bosselée ». Il a fourni la vidéo du test et quatre captures du relief lointain.
+
+**Ce qui a été fait de cette vidéo.**
+
+- Calée sur la route d'après la barre de progression du jeu (`scripts/19b_calage_barre.py`, qui mesure aussi les secousses de la caméra, tous les 10 m).
+- 167 paires d'images jeu / reconnaissance, tous les 40 m, la reconnaissance étant désormais prise à son PK corrigé (`scripts/20_planches_comparees.py`). Toutes lues : 324 écarts notés (`data/reference/releve_essai_13_11_v6/`).
+
+**La route bosselée.** Mesuré sur le profil : l'axe portait des bosses et des creux de 2 à 4 cm sur 4 à 8 m (PK 1655, 2600, 3073, 5578…), soit 1 à 2 g à 90 km/h ; le dévers sautait par endroits (bout du pont du PK 4470 : de +8 % à −2 % en 4 m). C'est le grain du relevé laser et des raccords entre sources, pas la route réelle. Les secousses de la caméra désignent les mêmes endroits. Correction (`scripts/07b_regulariser_chaussee.py`, étape 3 ter) : altitude de l'axe lissée sans s'écarter de plus de 5 cm du relevé, dévers lissé à 2 % près, valeurs aberrantes écartées.
+
+| À 90 km/h, en g | Avant (écart-type / maximum) | Après |
+|---|---|---|
+| Axe | 0,17 / 1,1 | 0,04 / 0,23 |
+| Bord gauche | 0,37 / 4,2 | 0,05 / 0,53 |
+| Bord droit | 0,42 / 4,3 | 0,06 / 0,77 |
+
+**Défauts visuels relevés, causes trouvées, corrections de la septième version.**
+
+| Défaut (nombre de paires) | Cause trouvée | Correction |
+|---|---|---|
+| Touffes d'un noir pur (44) | Deux herbes du jeu (plantain, herbe sauvage : 24 000 touffes) prennent leur couleur dans une texture du niveau gallois d'origine, que notre sol n'alimente pas | Retirées, remplacées par des herbes saines |
+| Blocs ronds gris-rosé sur les talus et les accotements (55) | Pierres et rochers du jeu : leur texture est beige rosé assombrie, et ils ne peuvent pas être réglés | Pierres et blocs calcaires fabriqués par le projet (`scripts/pierres_calcaires.py`), anguleux, dans notre roche claire, plus petits et plus nombreux |
+| Parois beiges en grandes dalles lisses, ardoise à l'ombre, dessus bruns | Clarté trop faible, teinte chaude, motif de 5 m, couche de terre du matériau du jeu sur les faces du dessus, voile sombre | Roche éclaircie et presque neutre, motif de 3 m, terre du dessus et voile réduits |
+| Murets « brun moussu ou noirs », béton strié | La couleur de sommet dosait moitié mousse ; voile sombre du matériau du jeu | Pierre seule, voile éclairci, béton plus clair |
+| Sol brun nu sous les pins, pentes nues « en dunes » | Litière d'aiguilles partout ; le semis place un arbre par cime, un taillis n'a pas de cimes | Herbe sous les arbres ; un arbuste là où le laser voit un taillis de 2 à 7 m sans arbre ; buissons bas sous les pins |
+| Couloir du km 5,1 à 5,4 ouvert (haies à 3 à 5 m) | Aucun arbuste du jeu ne tenait à moins de 1,6 m du bord | Trois rangs de haie dès 0,9 m du bord, là seulement (`data/reference/bords_vegetation.json`) |
+| Buissons collés à la route ailleurs, haies sur le plateau du km 5,8 à 6,7 | Sous-bois semé dès 1,7 m du bord partout | Bande d'herbe de 2,6 m ; bords relevés comme ouverts éclaircis (décor et physique) |
+| Poteaux « béton » en bois sombre et épais, gros câbles noirs | Le modèle choisi était un poteau de bois ; câbles de 4 cm | Fût de béton clair du jeu ; câbles de 1,6 cm |
+| Aires et accotements de gravier gris ou brun sombre | Teinte du fond pierreux | Gravier éclairci vers le beige |
+| Falaises lointaines en taches pâles et floues, sommets « enneigés » | Teinte unie trop étalée ; rocher nu vu du ciel presque blanc sur la photo | Falaises plus blanches, plus nettes, rayées de strates ; plateaux ramenés vers la teinte de la garrigue |
+| Mur de soutènement sombre à l'épingle du km 4,08 | Relevé à tort comme un mur | Retiré : c'est le talus de bancs calcaires, déjà rendu en roche |
+
+**Non traité, relevé pour la suite** : troncs des pins rouge-orangé (c'est le pin du jeu ; les vrais sont gris) ; pas de voûte de branches au-dessus de la route (elle s'oppose à la règle « rien ne déborde sur la chaussée ») ; îlots du Lion d'Or bordurés en dur ; panneaux directionnels (pas d'équivalent dans le jeu) ; aires manquantes ou étroites aux PK 440, 1480, 5040 et 6360 ; mur de pierre sèche du PK 3720 trop court ; écran bas sous les glissières ; enrobé un peu foncé, fissures trop marquées.
+
+**Où c'est décrit** : lissage en long, `scripts/07b_regulariser_chaussee.py` ; pierres, `scripts/pierres_calcaires.py`, `ROCAILLE` et `HERBES` dans `scripts/16_paquet_unreal.py` ; bords de route, `data/reference/bords_vegetation.json`, `scripts/regles_arbres.py`, `SOUS_BOIS` et `FOURRE` dans `16_paquet_unreal.py` ; matières, `data/reference/matieres_du_jeu.json` ; chaîne Unreal complète, `pc/etape2_unreal/scripts_pc/chaine_decor.ps1`.

@@ -352,6 +352,10 @@ def troncs_proches():
     emprises = regles_arbres.emprises_degagees(OUT.parents[1])            # aires et débouchés de pistes : pas d'arbre
     if emprises:
         garde &= ~shapely.contains_xy(shapely.union_all([g_ for g_, _ in emprises]), x, y)
+    ouvertes = regles_arbres.bandes_ouvertes(OUT.parents[1])              # bords relevés comme ouverts : comme le décor
+    if ouvertes is not None:
+        dans = shapely.contains_xy(ouvertes, x, y)
+        garde &= ~dans | np.array([regles_arbres.garde_en_zone_ouverte(f"{r['x_l93']}:{r['y_l93']}") for r in a])
     ht = np.array([r[1] if r[0] else ht[i] for i, r in enumerate(res)])
     tronc = np.clip(0.035 * ht, 0.12, 0.60)                     # diamètre du tronc d'après la hauteur de l'arbre
     return [(float(x[i]), float(y[i]), float(z[i]), float(tronc[i])) for i in np.where(garde)[0]]

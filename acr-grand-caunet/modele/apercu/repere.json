@@ -5,7 +5,7 @@
     "lambert93_y_m": 6241030.601,
     "lon": 5.67032114,
     "lat": 43.23544662,
-    "altitude_m": 398.55,
+    "altitude_m": 398.535,
     "systeme_altimetrique": "NGF-IGN69 (altitudes du MNT LiDAR HD)"
   },
   "unites": "mètres",
@@ -19,6 +19,6 @@
   "passage_gltf_vers_lambert93": "x_L93 = X + x0 ; y_L93 = y0 - Z ; z = Y + z0",
   "x0": 917008.482,
   "y0": 6241030.601,
-  "z0": 398.55,
+  "z0": 398.535,
   "nord": "nord Lambert-93 (convergence des méridiens d'environ -0,9° ici, non corrigée)"
 }

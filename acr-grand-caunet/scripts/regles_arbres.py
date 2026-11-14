@@ -19,7 +19,7 @@ LARGEUR_PAR_DEFAUT = 0.92                       # feuillus du jeu (Smoketree, Bl
 PINS = ("Foliage/Trees/AleppoPine", "Foliage/Trees/BlackpineMonteCarlo")
 SURPLOMB_PIN_M = 1.0                            # un pin d'au moins HAUT_PIN_M peut surplomber la chaussée d'autant
 HAUT_PIN_M = 9.0
-HAUT_MIN_M = {"pin": 3.0, "feuillu": 1.8}
+HAUT_MIN_M = {"pin": 3.0, "feuillu": 1.2}          # 1,8 jusqu'au 13/11/2026 ; 1,2 pour le premier rang des haies
 # Un feuillu réduit prend un maillage de cette famille, qui a de petits sujets (1,9 à 10 m) ; les érables du jeu ne
 # descendent pas sous 13 m et seraient réduits au tiers, feuilles comprises.
 # Jusqu'au 13/11/2026 : Smoketree. Relevé du quatrième essai : ses feuillages sont teintés de mauve et de rose (c'est un
@@ -57,6 +57,10 @@ def ajuste(hauteur_m, distance_au_bord_m, famille):
 DEGAGE_M = 4.5
 SURPLOMB_MAX_M = 3.0
 ECHELLES = (0.6, 1.5)                           # échelles admises, comme scripts_editeur/attribution.py
+# Le Boxthorn est un arbuste : réduit au tiers, il fait un buisson de 1,3 m plausible. Sans cela, aucun sujet ne tient à
+# moins de 1,6 m du bord, et les haies du km 5,1 à 5,4 restaient à 3 à 5 m de la chaussée (relevé du sixième essai).
+ECHELLES_PAR_FAMILLE = {"Foliage/Trees/Boxthorn": (0.3, 1.5)}
+TRONC_MIN_HAIE_M = 0.8                          # pied d'un sujet de haie (décor seul, sans tronc dans la physique)
 BANDE_M = 14.0                                  # au-delà de cette distance au bord, aucun maillage n'atteint la route
 _PROFILS = None
 
@@ -96,13 +100,14 @@ def tient(profil, echelle, distance_au_bord_m):
     return True
 
 
-def choisir(hauteur_m, distance_au_bord_m, famille, cle):
+def choisir(hauteur_m, distance_au_bord_m, famille, cle, tronc_min_m=None):
     """(gardé, hauteur, famille du jeu, maillage, échelle). Maillage et échelle valent None quand le choix est laissé à
-    l'import (formes non relevées) ; `cle` rend le tirage reproductible."""
+    l'import (formes non relevées) ; `cle` rend le tirage reproductible. tronc_min_m : distance minimale du pied au
+    bord (TRONC_MIN_M par défaut ; TRONC_MIN_HAIE_M pour les sujets de haie du décor)."""
     import math
     import random
     import zlib
-    if distance_au_bord_m < TRONC_MIN_M:
+    if distance_au_bord_m < (TRONC_MIN_M if tronc_min_m is None else tronc_min_m):
         return False, hauteur_m, famille, None, None
     if famille not in profils():
         g, h, fam, elt = ajuste(hauteur_m, distance_au_bord_m, famille)
@@ -116,7 +121,8 @@ def choisir(hauteur_m, distance_au_bord_m, famille, cle):
         h = h0
         while h >= HAUT_MIN_M["pin" if pin else "feuillu"]:
             tous = [(n, h / p["haut_m"], p) for n, p in sorted(profils()[fam].items())]
-            admis = [x for x in tous if ECHELLES[0] <= x[1] <= ECHELLES[1]]
+            e0, e1 = ECHELLES_PAR_FAMILLE.get(fam, ECHELLES)
+            admis = [x for x in tous if e0 <= x[1] <= e1]
             if not admis and not pin and fam != FAMILLE_DES_PETITS_FEUILLUS[0]:
                 break                                       # érable ou olivier trop petit ou trop grand : petit feuillu à la place
             if not admis:                                   # aucune taille du jeu ne convient : les plus proches, comme à l'import
@@ -225,3 +231,65 @@ def pistes_ign(racine):
         if len(xy) >= 2:
             out.append((shapely.LineString(xy).buffer(regle[0] / 2.0, cap_style="flat"), regle[1]))
     return out
+
+
+# --- nature du bord de route (data/reference/bords_vegetation.json) -------------------------------------
+PART_GARDEE_EN_ZONE_OUVERTE = 0.25
+BANDE_OUVERTE_M = 16.0
+_BORDS = {}
+
+
+def bords_vegetation(racine):
+    """[(genre, pk de début, pk de fin, côté)] : zones où la nature du bord de route a été relevée sur la reconnaissance."""
+    import json
+    from pathlib import Path
+    cle = str(racine)
+    if cle not in _BORDS:
+        f = Path(racine) / "data" / "reference" / "bords_vegetation.json"
+        _BORDS[cle] = [(z["genre"], float(z["pk"][0]), float(z["pk"][1]), z["cote"])
+                       for z in json.loads(f.read_text(encoding="utf-8"))["zones"]] if f.exists() else []
+    return _BORDS[cle]
+
+
+def genre_du_bord(racine, pk, cote):
+    """Genre relevé pour ce PK et ce côté (« gauche » ou « droite »), ou None : règle générale."""
+    for genre, p0, p1, c in bords_vegetation(racine):
+        if p0 <= pk <= p1 and c in (cote, "les deux"):
+            return genre
+    return None
+
+
+def bandes_ouvertes(racine):
+    """Polygone Lambert-93 (ou None) des bords « ouverts » : du bord de chaussée à BANDE_OUVERTE_M, du côté relevé."""
+    import csv
+    from pathlib import Path
+
+    import numpy as np
+    import shapely
+    zones = [z for z in bords_vegetation(racine) if z[0] == "ouvert"]
+    if not zones:
+        return None
+    with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:
+        r = list(csv.DictReader(h))
+    pk = np.array([float(x["pk_m"]) for x in r])
+    A = np.array([[float(x["x_axe"]), float(x["y_axe"])] for x in r])
+    bords = {"gauche": np.array([[float(x["x_gauche"]), float(x["y_gauche"])] for x in r]),
+             "droite": np.array([[float(x["x_droite"]), float(x["y_droite"])] for x in r])}
+    polys = []
+    for _, p0, p1, c in zones:
+        s = np.arange(p0, p1 + 0.5, 1.0)
+        C = np.column_stack([np.interp(s, pk, A[:, k]) for k in (0, 1)])
+        for cote in (("gauche", "droite") if c == "les deux" else (c,)):
+            B = np.column_stack([np.interp(s, pk, bords[cote][:, k]) for k in (0, 1)])
+            n = B - C
+            n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
+            poly = shapely.Polygon(np.vstack([B, (B + n * BANDE_OUVERTE_M)[::-1]])).buffer(0)
+            if not poly.is_empty:
+                polys.append(poly)
+    return shapely.union_all(polys) if polys else None
+
+
+def garde_en_zone_ouverte(cle):
+    """Vrai pour l'arbre sur quatre qui reste dans une zone ouverte ; `cle` rend le tirage reproductible."""
+    import zlib
+    return zlib.crc32(f"ouvert:{cle}".encode("utf-8")) % 100 < 100 * PART_GARDEE_EN_ZONE_OUVERTE

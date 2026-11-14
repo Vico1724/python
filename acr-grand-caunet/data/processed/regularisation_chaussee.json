@@ -1,5 +1,5 @@
 {
- "source": "chaussee_precise.csv",
+ "source": "chaussee_precise_brut.csv",
  "points": 7549,
  "tolerances_m": {
   "lidar+ortho": 0.2,
@@ -1353,6 +1353,129 @@
   ],
   "devers_extreme_avant_pct": 50.1,
   "devers_extreme_apres_pct": 17.2
+ },
+ "profil_en_long": {
+  "lambda_axe": 4000.0,
+  "tolerance_axe_m": 0.05,
+  "lambda_devers": 1000.0,
+  "tolerance_devers_pct": 2.0,
+  "deplacement_axe_m": {
+   "moyen": 0.0059,
+   "max": 0.045
+  },
+  "deplacement_bords_m": {
+   "moyen": 0.0151,
+   "max": 0.343
+  },
+  "acceleration_verticale_a_90_kmh_g": {
+   "axe_avant": [
+    0.172,
+    1.11,
+    "maximum au PK 3077"
+   ],
+   "axe_apres": [
+    0.04,
+    0.23,
+    "maximum au PK 5575"
+   ],
+   "bord_gauche_avant": [
+    0.365,
+    4.15,
+    "maximum au PK 4474"
+   ],
+   "bord_gauche_apres": [
+    0.05,
+    0.53,
+    "maximum au PK 3452"
+   ],
+   "bord_droit_avant": [
+    0.42,
+    4.3,
+    "maximum au PK 3673"
+   ],
+   "bord_droit_apres": [
+    0.062,
+    0.77,
+    "maximum au PK 3658"
+   ]
+  },
+  "devers_aberrants": {
+   "metres": 148,
+   "troncons": [
+    [
+     828,
+     833
+    ],
+    [
+     1359,
+     1364
+    ],
+    [
+     1705,
+     1710
+    ],
+    [
+     1718,
+     1731
+    ],
+    [
+     1915,
+     1919
+    ],
+    [
+     2992,
+     2996
+    ],
+    [
+     3404,
+     3410
+    ],
+    [
+     3456,
+     3462
+    ],
+    [
+     3663,
+     3677
+    ],
+    [
+     4009,
+     4015
+    ],
+    [
+     4031,
+     4038
+    ],
+    [
+     4445,
+     4449
+    ],
+    [
+     4470,
+     4486
+    ],
+    [
+     5538,
+     5545
+    ],
+    [
+     5615,
+     5620
+    ],
+    [
+     5668,
+     5680
+    ],
+    [
+     5708,
+     5715
+    ],
+    [
+     5717,
+     5721
+    ]
+   ]
+  }
  },
  "echecs": []
 }

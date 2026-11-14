@@ -121,9 +121,12 @@ def main():
     # de la litière rousse et de l'herbe verte. Le calcaire nu passe donc surtout au fond pierreux, la roche est
     # gardée pour les affleurements et les pentes raides, et l'herbe verte est plus présente.
     p = {}
-    p["aiguilles_de_pin"] = arbres * (0.50 + 0.40 * melange) + garrigue * 0.20
-    p["herbe_haute"] = ouvert * vert * (0.25 + 0.60 * vigoureux)
-    p["herbe_seche"] = ouvert * vert * (0.75 - 0.60 * vigoureux) * (0.65 + 0.35 * b1) + garrigue * (0.30 + 0.15 * b2)
+    # Relevé du sixième essai (13/11/2026 au soir) : « sol brun nu sous les pins », alors que la reconnaissance montre de
+    # l'herbe, de la garrigue et de la pierraille claire entre les troncs. La litière d'aiguilles couvre donc moins, et
+    # l'herbe se glisse sous les arbres ; le reste revient au fond pierreux clair.
+    p["aiguilles_de_pin"] = arbres * (0.34 + 0.30 * melange) + garrigue * 0.15
+    p["herbe_haute"] = ouvert * vert * (0.25 + 0.60 * vigoureux) + arbres * 0.10 * (1.0 - melange)
+    p["herbe_seche"] = ouvert * vert * (0.75 - 0.60 * vigoureux) * (0.65 + 0.35 * b1) + garrigue * (0.30 + 0.15 * b2) + arbres * 0.14 * b1
     p["terre"] = ouvert * (1.0 - vert) * (1.0 - clair)
     p["cailloux"] = 0.35 * ouvert * (1.0 - vert) * clair + garrigue * 0.10 * (1.0 - b1)
     del arbres, garrigue, ouvert, vert, vigoureux, clair, b2, melange
@@ -199,8 +202,9 @@ def main():
         m_roc[sur_route] = 0.0
         for k in COUCHES:
             p[k] *= (1.0 - 0.8 * m_roc)
-        p["cailloux"] += 0.55 * m_roc
-        p["terre"] += 0.12 * m_roc
+        # sixième essai : « sol gris » sous de gros blocs, là où la reconnaissance montre de la terre ocre et du cailloutis
+        p["cailloux"] += 0.34 * m_roc
+        p["terre"] += 0.30 * m_roc
         del m_roc
 
     # hors des photos : le mélange de sous-bois, faute de mieux (peu de terrain s'y trouve)

@@ -187,7 +187,9 @@ def objets(route=None):
             if alea(pk, 8) < 0.25:
                 h *= 0.45
             # un bloc du jeu n'est pas grossi ni réduit de plus du double : choix parmi ceux dont la taille convient
-            ok = [k for k in blocs if 0.55 <= h / types[k]["hauteur_native_m"] <= 1.9] or \
+            # (les blocs du projet, scripts/pierres_calcaires.py, portent leurs propres bornes : « echelle_libre »)
+            ok = [k for k in blocs if types[k].get("echelle_libre", (0.55, 1.9))[0] <= h / types[k]["hauteur_native_m"]
+                  <= types[k].get("echelle_libre", (0.55, 1.9))[1]] or \
                 [min(blocs, key=lambda k: abs(math.log(h / types[k]["hauteur_native_m"])))]
             typ = ok[int(alea(pk, 2) * len(ok)) % len(ok)]
             t = types[typ]

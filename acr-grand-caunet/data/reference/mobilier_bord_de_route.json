@@ -71,8 +71,45 @@
    }
   },
   "poteau_beton": {
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB11",
+   "description": "fût de béton clair sans traverse, 9,2 m ramené à 7,8 m (échelle 0,85). Relevé du sixième essai (13/11/2026 au soir) : les poteaux « béton » sortaient en bois sombre et épais ; SM_MonPylonC11 est en fait un poteau de bois (sa texture est une bande de bois dans l'atlas de la famille C). La famille MonPylonB du jeu est tout en béton clair : SM_MonPylonB11 en est le fût simple (44 x 56 cm au pied), sans la large traverse de SM_MonPylonB15 qui paraissait démesurée le 13/11.",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {
+    "min": [
+     -22,
+     -28,
+     -19
+    ],
+    "max": [
+     22,
+     28,
+     917
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallConcrete",
+    "diametre_m": 0.3,
+    "hauteur_m": 3.5,
+    "enfoui_m": 0.4
+   },
+   "cable": {
+    "hauteur_m": 7.4,
+    "ecarts_m": [
+     -0.2,
+     0.0,
+     0.2
+    ]
+   },
+   "maillage_jeu_avant_le_13_11": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
+   "enfoncement_m": 0.0,
+   "maillage_jeu_avant_le_13_11_soir": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9",
+   "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
+   "echelle": 0.85
+  },
+  "poteau_bois": {
    "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
-   "description": "poteau simple de 6,9 m (relevé du quatrième essai, 13/11/2026 : les poteaux du jeu étaient jumelés en A, les vrais sont des poteaux simples et clairs ; SM_MonPylonC9 a un pied écarté de 1,8 m, SM_MonPylonC11 est un fût seul)",
+   "description": "poteau de bois simple de 6,9 m (SM_MonPylonC11, vu en jeu comme un fût de bois sombre). Jusqu'au 13/11/2026 : SM_FraMunPylonA, rendu en « mât métallique bleu-gris à longue potence, allure de lampadaire » (relevé du quatrième essai, PK 6120)",
    "lacet_relatif_deg": 0,
    "bornes_cm": {
     "min": [
@@ -88,7 +125,7 @@
    },
    "collision": {
     "forme": "cylinder",
-    "paroi": "PM_WallConcrete",
+    "paroi": "PM_WallWoodPole",
     "diametre_m": 0.25,
     "hauteur_m": 3.5,
     "enfoui_m": 0.4
@@ -101,41 +138,8 @@
      0.25
     ]
    },
-   "maillage_jeu_avant_le_13_11": "/Game/Props/MonteCarloProps/MonPylonB/SM_MonPylonB15",
-   "enfoncement_m": 0.0,
-   "maillage_jeu_avant_le_13_11_soir": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC9"
-  },
-  "poteau_bois": {
-   "maillage_jeu": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
-   "description": "poteau de bois de 6,3 m",
-   "lacet_relatif_deg": 0,
-   "bornes_cm": {
-    "min": [
-     -10,
-     -20,
-     0
-    ],
-    "max": [
-     10,
-     20,
-     630
-    ]
-   },
-   "collision": {
-    "forme": "cylinder",
-    "paroi": "PM_WallWoodPole",
-    "diametre_m": 0.25,
-    "hauteur_m": 3.5,
-    "enfoui_m": 0.4
-   },
-   "cable": {
-    "hauteur_m": 6.0,
-    "ecarts_m": [
-     -0.15,
-     0.0,
-     0.15
-    ]
-   }
+   "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
+   "enfoncement_m": 0.0
   },
   "arbre_de_bord": {
    "maillage_jeu": "/Game/Foliage/Trees/AleppoPine/SM_AleppoPine11",
@@ -276,106 +280,6 @@
     ]
    }
   },
-  "rocher_a": {
-   "maillage_jeu": "/Game/Props/Nature/ForestRockWjxqcct/SM_ForestRockWjxqcct",
-   "description": "bloc de roche du jeu, 0.57 m de haut à l'échelle 1",
-   "lacet_relatif_deg": 0,
-   "lacet_aleatoire": true,
-   "enfoncement_m": 0.05,
-   "hauteur_native_m": 0.57,
-   "largeur_native_m": 1.1,
-   "hauteurs_rendues_m": [
-    0.31,
-    1.08
-   ],
-   "bornes_cm": {
-    "min": [
-     -61,
-     -49,
-     -5
-    ],
-    "max": [
-     61,
-     49,
-     57
-    ]
-   }
-  },
-  "rocher_b": {
-   "maillage_jeu": "/Game/Props/Nature/RockWjwvac3/SM_RockWjwvac3",
-   "description": "bloc de roche du jeu, 0.43 m de haut à l'échelle 1",
-   "lacet_relatif_deg": 0,
-   "lacet_aleatoire": true,
-   "enfoncement_m": 0.05,
-   "hauteur_native_m": 0.43,
-   "largeur_native_m": 0.9,
-   "hauteurs_rendues_m": [
-    0.24,
-    0.82
-   ],
-   "bornes_cm": {
-    "min": [
-     -49,
-     -41,
-     -5
-    ],
-    "max": [
-     49,
-     40,
-     43
-    ]
-   }
-  },
-  "rocher_c": {
-   "maillage_jeu": "/Game/Props/Nature/RockShopk/SM_RockShopk",
-   "description": "bloc de roche du jeu, 1.19 m de haut à l'échelle 1",
-   "lacet_relatif_deg": 0,
-   "lacet_aleatoire": true,
-   "enfoncement_m": 0.05,
-   "hauteur_native_m": 1.19,
-   "largeur_native_m": 1.4,
-   "hauteurs_rendues_m": [
-    0.65,
-    2.26
-   ],
-   "bornes_cm": {
-    "min": [
-     -58,
-     -81,
-     -6
-    ],
-    "max": [
-     62,
-     81,
-     119
-    ]
-   }
-  },
-  "rocher_d": {
-   "maillage_jeu": "/Game/Props/Nature/ForestRockWgqrfdi/SM_ForestRockWgqrfdi",
-   "description": "bloc de roche du jeu, 0.2 m de haut à l'échelle 1",
-   "lacet_relatif_deg": 0,
-   "lacet_aleatoire": true,
-   "enfoncement_m": 0.05,
-   "hauteur_native_m": 0.2,
-   "largeur_native_m": 0.44,
-   "hauteurs_rendues_m": [
-    0.11,
-    0.38
-   ],
-   "bornes_cm": {
-    "min": [
-     -24,
-     -23,
-     -3
-    ],
-    "max": [
-     20,
-     20,
-     20
-    ]
-   }
-  },
   "piquet_rubalise": {
    "maillage_jeu": "/Game/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
    "description": "piquet plastique de rubalise du jeu, 1,05 m",
@@ -507,6 +411,84 @@
      22,
      22,
      55
+    ]
+   }
+  },
+  "rocher_a": {
+   "maillage_jeu": "/Game/Environments/GrandCaunet/Props/Blocks/SM_GrandCaunetBlocA",
+   "maillage_du_projet": true,
+   "description": "bloc calcaire du projet (scripts/pierres_calcaires.py), 0.36 m de haut pour 1 m de long à l'échelle 1",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.05,
+   "hauteur_native_m": 0.36,
+   "largeur_native_m": 0.93,
+   "echelle_libre": [
+    0.4,
+    2.6
+   ],
+   "bornes_cm": {
+    "min": [
+     -50,
+     -43,
+     0
+    ],
+    "max": [
+     50,
+     43,
+     36
+    ]
+   }
+  },
+  "rocher_b": {
+   "maillage_jeu": "/Game/Environments/GrandCaunet/Props/Blocks/SM_GrandCaunetBlocB",
+   "maillage_du_projet": true,
+   "description": "bloc calcaire du projet (scripts/pierres_calcaires.py), 0.62 m de haut pour 1 m de long à l'échelle 1",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.05,
+   "hauteur_native_m": 0.62,
+   "largeur_native_m": 0.9,
+   "echelle_libre": [
+    0.4,
+    2.6
+   ],
+   "bornes_cm": {
+    "min": [
+     -50,
+     -40,
+     0
+    ],
+    "max": [
+     50,
+     40,
+     62
+    ]
+   }
+  },
+  "rocher_c": {
+   "maillage_jeu": "/Game/Environments/GrandCaunet/Props/Blocks/SM_GrandCaunetBlocC",
+   "maillage_du_projet": true,
+   "description": "bloc calcaire du projet (scripts/pierres_calcaires.py), 0.92 m de haut pour 1 m de long à l'échelle 1",
+   "lacet_relatif_deg": 0,
+   "lacet_aleatoire": true,
+   "enfoncement_m": 0.05,
+   "hauteur_native_m": 0.92,
+   "largeur_native_m": 0.87,
+   "echelle_libre": [
+    0.4,
+    2.6
+   ],
+   "bornes_cm": {
+    "min": [
+     -50,
+     -37,
+     0
+    ],
+    "max": [
+     50,
+     37,
+     92
     ]
    }
   }
@@ -3128,5 +3110,110 @@
    "decalage_m": 0.8,
    "source": "inventaire : panneau rouge à damier d'arrivée"
   }
- ]
+ ],
+ "types_de_rochers_du_jeu_abandonnes": {
+  "pourquoi": "vus en jeu le 13/11/2026 au soir : rochers ronds et sombres du jeu, alors que la reconnaissance montre des blocs et des affleurements de calcaire blanc ; remplacés par les blocs du projet (scripts/pierres_calcaires.py)",
+  "types": {
+   "rocher_a": {
+    "maillage_jeu": "/Game/Props/Nature/ForestRockWjxqcct/SM_ForestRockWjxqcct",
+    "description": "bloc de roche du jeu, 0.57 m de haut à l'échelle 1",
+    "lacet_relatif_deg": 0,
+    "lacet_aleatoire": true,
+    "enfoncement_m": 0.05,
+    "hauteur_native_m": 0.57,
+    "largeur_native_m": 1.1,
+    "hauteurs_rendues_m": [
+     0.31,
+     1.08
+    ],
+    "bornes_cm": {
+     "min": [
+      -61,
+      -49,
+      -5
+     ],
+     "max": [
+      61,
+      49,
+      57
+     ]
+    }
+   },
+   "rocher_b": {
+    "maillage_jeu": "/Game/Props/Nature/RockWjwvac3/SM_RockWjwvac3",
+    "description": "bloc de roche du jeu, 0.43 m de haut à l'échelle 1",
+    "lacet_relatif_deg": 0,
+    "lacet_aleatoire": true,
+    "enfoncement_m": 0.05,
+    "hauteur_native_m": 0.43,
+    "largeur_native_m": 0.9,
+    "hauteurs_rendues_m": [
+     0.24,
+     0.82
+    ],
+    "bornes_cm": {
+     "min": [
+      -49,
+      -41,
+      -5
+     ],
+     "max": [
+      49,
+      40,
+      43
+     ]
+    }
+   },
+   "rocher_c": {
+    "maillage_jeu": "/Game/Props/Nature/RockShopk/SM_RockShopk",
+    "description": "bloc de roche du jeu, 1.19 m de haut à l'échelle 1",
+    "lacet_relatif_deg": 0,
+    "lacet_aleatoire": true,
+    "enfoncement_m": 0.05,
+    "hauteur_native_m": 1.19,
+    "largeur_native_m": 1.4,
+    "hauteurs_rendues_m": [
+     0.65,
+     2.26
+    ],
+    "bornes_cm": {
+     "min": [
+      -58,
+      -81,
+      -6
+     ],
+     "max": [
+      62,
+      81,
+      119
+     ]
+    }
+   },
+   "rocher_d": {
+    "maillage_jeu": "/Game/Props/Nature/ForestRockWgqrfdi/SM_ForestRockWgqrfdi",
+    "description": "bloc de roche du jeu, 0.2 m de haut à l'échelle 1",
+    "lacet_relatif_deg": 0,
+    "lacet_aleatoire": true,
+    "enfoncement_m": 0.05,
+    "hauteur_native_m": 0.2,
+    "largeur_native_m": 0.44,
+    "hauteurs_rendues_m": [
+     0.11,
+     0.38
+    ],
+    "bornes_cm": {
+     "min": [
+      -24,
+      -23,
+      -3
+     ],
+     "max": [
+      20,
+      20,
+      20
+     ]
+    }
+   }
+  }
+ }
 }
