@@ -1743,6 +1743,22 @@ def fourre_des_versants(arbres):
              "detection": "tirage"} for i in range(len(q))]
 
 
+def annexes_l93():
+    """Polygones Lambert-93 des surfaces revêtues annexes (data/processed/annexes_revetues.geojson, en WGS84), élargis
+    de 0,5 m (2,5 m pour un tracé linéaire)."""
+    f_ann = OUT / "annexes_revetues.geojson"
+    if not f_ann.exists():
+        return []
+    from pyproj import Transformer
+    from shapely.ops import transform
+    vers_l93 = Transformer.from_crs("EPSG:4326", "EPSG:2154", always_xy=True).transform
+    out = []
+    for ft in json.loads(f_ann.read_text(encoding="utf-8"))["features"]:
+        g_ = transform(vers_l93, shapely.geometry.shape(ft["geometry"]))
+        out.append(g_.buffer(0.5) if g_.geom_type in ("Polygon", "MultiPolygon") else g_.buffer(2.5))
+    return out
+
+
 def instances(P, ref, sol, ruban, pkf, args):
     """Tables d'instances (cm, degrés, repère Unreal du projet), une par maillage du jeu."""
     cat = set()
@@ -1754,7 +1770,9 @@ def instances(P, ref, sol, ruban, pkf, args):
     bilan = {}
     rng = np.random.default_rng(SEED)
     emprises = regles_arbres.emprises_degagees(ROOT)
-    degagee = shapely.union_all([g_ for g_, _ in emprises]) if emprises else None
+    # aires, débouchés de pistes, et routes annexes revêtues (test de la douzième version : la branche fermée du Lion d'Or
+    # était couverte d'arbres ; le fichier est en WGS84, on le passait sans conversion, en degrés contre des mètres)
+    degagee = shapely.union_all([g_ for g_, _ in emprises] + annexes_l93())
     ouvertes = regles_arbres.bandes_ouvertes(ROOT)
     if degagee is not None:
         shapely.prepare(degagee)
@@ -2023,9 +2041,7 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
     interdit = [ruban]
     f_ann = OUT / "annexes_revetues.geojson"
     if f_ann.exists():
-        for ft in json.loads(f_ann.read_text(encoding="utf-8"))["features"]:
-            g = shapely.geometry.shape(ft["geometry"])
-            interdit.append(g.buffer(0.5) if g.geom_type == "Polygon" else g.buffer(2.5))
+        interdit += annexes_l93()
     interdit += [g_ for g_, _ in regles_arbres.emprises_degagees(ROOT)]         # aires de terre : pas de touffes
     zone = shapely.union_all(interdit)
     shapely.prepare(zone)
@@ -2317,7 +2333,9 @@ def objets_en_long(P, ref, sol, liste):
 # minces (18 à 42 cm au lieu de 28 à 60), blocs plus courts (0,5 à 1,5 m au lieu de 0,9 à 2,5), front moins en marche
 # d'escalier, davantage de lacunes où la terre et la végétation reparaissent ; pas de 25 cm le long de la route pour
 # rendre ces blocs ; hauteur du sommet plus irrégulière ; pierres semées au pied (regles_arbres.pieds_de_paroi).
-ROCHE = {"pas_m": 0.25, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
+# Test de la douzième version (14/11/2026) : « augmenter le nombre de polygones des parois pour les rendre plus réalistes ».
+# Pas de 15 cm le long de la route (25 cm avant) et grain de surface à l'échelle de la main (dx, 0,45 m de longueur d'onde).
+ROCHE = {"pas_m": 0.15, "biseau_m": 7.0, "allonge_m": 6.0, "portee_m": 10.0, "pas_profil_m": 0.1, "enfoui_m": 0.45,
          "epaisseur_m": 0.16, "pente_deg": (9.0, 24.0), "plat_m": (2.0, 0.35), "uv_m": 2.5, "marge_chaussee_m": 0.3,
          "couleur_secours": (188, 182, 168),
          "genres": {"lite": {"avance_m": 0.8, "banc_m": (0.18, 0.42), "front": 0.5, "decroche_m": 0.38, "bloc_m": (0.5, 1.5), "lacunes": 0.30},
@@ -2507,6 +2525,7 @@ def parois_rocheuses(P, ref, sol):
             de_niveau = 0.07 * (_alea(bloc, n + 0.5, k + 19) - 0.5) * 2.0                     # dessus des blocs à des hauteurs inégales
             dx += 0.10 * (float(_alea(n, 2.0, k + 16)) - 0.5) * 2.0                          # un banc entier en saillie ou en retrait
             dx += 0.25 * _fbm(S / 2.6, 0.6 * n + 3.1 * k, k)                                 # grandes bosses
+            dx += 0.07 * _fbm(S / 0.45, 1.3 * n + 0.7 * k, k + 41, 2)                        # grain : arêtes et éclats
             dx -= 0.14 * np.clip((np.abs(u % 1.0 - 0.5) * 2.0 - 0.86) / 0.14, 0.0, 1.0)      # joints verticaux en creux
             dx *= ampl
             fb, ft = 0.5 - g["front"] / 2, 0.5 + g["front"] / 2

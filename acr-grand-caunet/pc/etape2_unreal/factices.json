@@ -1120,6 +1120,193 @@
    }
   },
   {
+   "objet": "/Game/Props/NonDrivableVehicles/VanA/SM_VanCrew",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -312,
+     -132,
+     0
+    ],
+    "max": [
+     296,
+     126,
+     270
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/SecurityCarA/SM_SecurityCarA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -257,
+     -112,
+     -1
+    ],
+    "max": [
+     256,
+     112,
+     178
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/HatchbackA/SM_HatchbackA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -219,
+     -99,
+     -2
+    ],
+    "max": [
+     222,
+     99,
+     146
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/MpvA/SM_MpvA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -256,
+     -112,
+     0
+    ],
+    "max": [
+     245,
+     112,
+     194
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/SedanB/SM_SedanB",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -237,
+     -103,
+     -1
+    ],
+    "max": [
+     238,
+     103,
+     148
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/StationWagonA/SM_StationWagon",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -233,
+     -103,
+     0
+    ],
+    "max": [
+     239,
+     103,
+     147
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/SuvA/SM_SuvA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -256,
+     -119,
+     1
+    ],
+    "max": [
+     256,
+     119,
+     189
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/CanopyTent/SM_CanopyTent3mt",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -160,
+     -159,
+     0
+    ],
+    "max": [
+     159,
+     160,
+     300
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/ServicePark/DeskA/SM_DeskA",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -61,
+     -30,
+     0
+    ],
+    "max": [
+     60,
+     30,
+     73
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/CrowdProps/PicnicChairA/SM_PicnicChairA1",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -30,
+     -58,
+     0
+    ],
+    "max": [
+     30,
+     33,
+     108
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Props/RallyProps/FireExtiguisher/SM_FireExtiguisher",
+   "type": "StaticMesh",
+   "essai": "mobilier de bord de route",
+   "bornes_cm": {
+    "min": [
+     -16,
+     -7,
+     -1
+    ],
+    "max": [
+     9,
+     7,
+     42
+    ]
+   }
+  },
+  {
    "objet": "/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
    "type": "Material",
    "essai": "E3",

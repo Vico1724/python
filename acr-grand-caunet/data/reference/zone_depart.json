@@ -1269,7 +1269,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -151.7,
@@ -1280,7 +1280,7 @@
     "75": 6.78,
     "90": 7.71
    },
-   "source": "BD TOPO batiment.30852865 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.30852865 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "moyenne"
   },
   {
@@ -1373,7 +1373,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -141.0,
@@ -1384,7 +1384,7 @@
     "75": 2.58,
     "90": 2.65
    },
-   "source": "BD TOPO batiment.48031275 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.48031275 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "faible"
   },
   {
@@ -1413,7 +1413,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -119.1,
@@ -1424,7 +1424,7 @@
     "75": 3.15,
     "90": 9.21
    },
-   "source": "BD TOPO batiment.48031276 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.48031276 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "faible"
   },
   {
@@ -1453,7 +1453,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -84.3,
@@ -1464,7 +1464,7 @@
     "75": 3.28,
     "90": 4.14
    },
-   "source": "BD TOPO batiment.30852862 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.30852862 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "moyenne"
   },
   {
@@ -1525,7 +1525,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -79.8,
@@ -1536,7 +1536,7 @@
     "75": 6.09,
     "90": 6.36
    },
-   "source": "BD TOPO batiment.30852863 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.30852863 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "moyenne"
   },
   {
@@ -1609,7 +1609,7 @@
    "toit": "plat",
    "pente_toit": 0.3,
    "debord_toit_m": 0.0,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -75.1,
@@ -1620,7 +1620,7 @@
     "75": 4.17,
     "90": 4.3
    },
-   "source": "BD TOPO batiment.30852861 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.30852861 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "faible"
   },
   {
@@ -1649,7 +1649,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -71.9,
@@ -1660,7 +1660,7 @@
     "75": 3.13,
     "90": 3.39
    },
-   "source": "BD TOPO batiment.30852800 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.30852800 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "faible"
   },
   {
@@ -1689,7 +1689,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -71.9,
@@ -1700,7 +1700,7 @@
     "75": 2.11,
     "90": 2.23
    },
-   "source": "BD TOPO batiment.30852849 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.30852849 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "faible"
   },
   {
@@ -1729,7 +1729,7 @@
    "toit": "deux_pans",
    "pente_toit": 0.3,
    "debord_toit_m": 0.3,
-   "materiau_murs": "enduit_clair",
+   "materiau_murs": "enduit_maison",
    "materiau_toit": "tuile",
    "materiau_collision": "beton",
    "pk_m": -57.0,
@@ -1740,7 +1740,7 @@
     "75": 4.28,
     "90": 6.28
    },
-   "source": "BD TOPO batiment.48031273 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit clair supposé ; toit de tuiles (orthophoto)",
+   "source": "BD TOPO batiment.48031273 (emprise) ; hauteur MNS - MNT LiDAR HD 50 cm calculée par 12_carrefours_annexes.py ; murs non vus sur les captures : enduit beige supposé (enduit_maison ; jusqu'au 14/11/2026 gris clair, celui du long mur) ; toit de tuiles (orthophoto)",
    "confiance": "faible"
   },
   {
@@ -1767,8 +1767,9 @@
    "epaisseur_m": 0.3,
    "hauteur_m": 1.9,
    "hauteur_depuis": "pied le plus bas",
-   "materiau": "enduit_clair",
+   "materiau": "enduit_ocre",
    "materiau_collision": "beton",
+   "teinte": "après l'essai de la douzième version (14/11/2026) : enduit ocre brun sali à voiles de lichen, sans les tags rouges (l'image se répète tous les 2 m) (captures 6, 7, 9 : médiane sRGB 87, 72, 44 à 86, 77, 55), au lieu de l'enduit gris clair du long mur",
    "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 6, 7, 9 ; tracé lu sur l'orthophoto (± 2 m)",
    "note": "parking ≈ 1 m plus haut que la cour au sud : ≈ 1,9 m vu de la rampe et de la route, ≈ 0,9 m vu du parking",
    "confiance": "moyenne"

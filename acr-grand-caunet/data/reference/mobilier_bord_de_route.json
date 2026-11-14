@@ -489,6 +489,333 @@
      92
     ]
    }
+  },
+  "vehicule_fourgon": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/VanA/SM_VanCrew",
+   "description": "fourgon à vitres latérales (enfoncé de 10 cm : au départ il est posé sur le pied du talus, 0,2 à 0,3 m de dévers sous sa largeur), carrosserie gris bleuté (6,1 x 2,6 x 2,7 m) : véhicule de secours du départ (le VPSP réel est jaune et bleu, le jeu n'en a pas). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.1,
+   "bornes_cm": {
+    "min": [
+     -312,
+     -132,
+     0
+    ],
+    "max": [
+     296,
+     126,
+     270
+    ]
+   },
+   "collision": {
+    "forme": "box",
+    "paroi": "PM_WallMetalBigObject",
+    "largeur_m": 2.5,
+    "longueur_m": 6.0,
+    "hauteur_m": 2.6,
+    "enfoui_m": 0.0
+   }
+  },
+  "vehicule_organisation": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/SecurityCarA/SM_SecurityCarA",
+   "description": "voiture d'organisation du jeu, livrée rouge sombre à bandes orange et blanches (5,1 x 2,2 x 1,8 m) : rend le véhicule orange d'intervention garé à l'entrée de la GC 107. véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -257,
+     -112,
+     -1
+    ],
+    "max": [
+     256,
+     112,
+     178
+    ]
+   },
+   "collision": {
+    "forme": "box",
+    "paroi": "PM_WallMetalBigObject",
+    "largeur_m": 2.2,
+    "longueur_m": 5.1,
+    "hauteur_m": 1.7,
+    "enfoui_m": 0.0
+   }
+  },
+  "voiture_citadine": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/HatchbackA/SM_HatchbackA",
+   "description": "citadine gris clair (4,4 x 2,0 x 1,5 m). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -219,
+     -99,
+     -2
+    ],
+    "max": [
+     222,
+     99,
+     146
+    ]
+   },
+   "collision": {
+    "forme": "box",
+    "paroi": "PM_WallMetalBigObject",
+    "largeur_m": 1.9,
+    "longueur_m": 4.4,
+    "hauteur_m": 1.4,
+    "enfoui_m": 0.0
+   }
+  },
+  "voiture_monospace": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/MpvA/SM_MpvA",
+   "description": "monospace / SUV gris (5,0 x 2,2 x 1,9 m) : voiture des chronométreurs de l'arrivée. véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -256,
+     -112,
+     0
+    ],
+    "max": [
+     245,
+     112,
+     194
+    ]
+   },
+   "collision": {
+    "forme": "box",
+    "paroi": "PM_WallMetalBigObject",
+    "largeur_m": 2.2,
+    "longueur_m": 5.0,
+    "hauteur_m": 1.9,
+    "enfoui_m": 0.0
+   }
+  },
+  "voiture_garee_citadine": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/HatchbackA/SM_HatchbackA",
+   "description": "voiture gris clair garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -219,
+     -99,
+     -2
+    ],
+    "max": [
+     222,
+     99,
+     146
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallMetalBigObject",
+    "diametre_m": 2.4,
+    "hauteur_m": 1.5,
+    "enfoui_m": 0.0
+   }
+  },
+  "voiture_garee_berline": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/SedanB/SM_SedanB",
+   "description": "voiture blanche garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -237,
+     -103,
+     -1
+    ],
+    "max": [
+     238,
+     103,
+     148
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallMetalBigObject",
+    "diametre_m": 2.4,
+    "hauteur_m": 1.5,
+    "enfoui_m": 0.0
+   }
+  },
+  "voiture_garee_break": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/StationWagonA/SM_StationWagon",
+   "description": "voiture blanc garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -233,
+     -103,
+     0
+    ],
+    "max": [
+     239,
+     103,
+     147
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallMetalBigObject",
+    "diametre_m": 2.4,
+    "hauteur_m": 1.5,
+    "enfoui_m": 0.0
+   }
+  },
+  "voiture_garee_monospace": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/MpvA/SM_MpvA",
+   "description": "voiture gris garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -256,
+     -112,
+     0
+    ],
+    "max": [
+     245,
+     112,
+     194
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallMetalBigObject",
+    "diametre_m": 2.4,
+    "hauteur_m": 1.5,
+    "enfoui_m": 0.0
+   }
+  },
+  "voiture_garee_suv": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/SuvA/SM_SuvA",
+   "description": "voiture rouge garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -256,
+     -119,
+     1
+    ],
+    "max": [
+     256,
+     119,
+     189
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallMetalBigObject",
+    "diametre_m": 2.4,
+    "hauteur_m": 1.5,
+    "enfoui_m": 0.0
+   }
+  },
+  "vehicule_fourgon_ferme": {
+   "maillage_jeu": "/Game/Props/NonDrivableVehicles/VanA/SM_VanCrew",
+   "description": "même fourgon gris bleuté, garé sur une branche fermée derrière la fermeture (inaccessible) : sans collision ; objet loin de la route de la spéciale (le PK le plus proche est celui de l'autre côté de l'épingle), dont l'altitude écrite par mobilier.py est bornée à 1 m sous le bord de chaussée, alors que le paquet le pose sur le terrain importé",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -312,
+     -132,
+     0
+    ],
+    "max": [
+     296,
+     126,
+     270
+    ]
+   }
+  },
+  "tente_pliante": {
+   "maillage_jeu": "/Game/Props/RallyProps/CanopyTent/SM_CanopyTent3mt",
+   "description": "tente pliante blanche de 3 x 3 m, 3 m de haut (tonnelle des officiels) ; collision : pavé de toile PM_WallCloth (3 x 3 x 2 m)",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -160,
+     -159,
+     0
+    ],
+    "max": [
+     159,
+     160,
+     300
+    ]
+   },
+   "collision": {
+    "forme": "box",
+    "paroi": "PM_WallCloth",
+    "largeur_m": 3.0,
+    "longueur_m": 3.0,
+    "hauteur_m": 2.0,
+    "enfoui_m": 0.0
+   }
+  },
+  "table_pliante": {
+   "maillage_jeu": "/Game/Props/ServicePark/DeskA/SM_DeskA",
+   "description": "petite table pliante (1,2 x 0,6 x 0,73 m) du parc d'assistance ; sans collision",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -61,
+     -30,
+     0
+    ],
+    "max": [
+     60,
+     30,
+     73
+    ]
+   }
+  },
+  "chaise_pliante": {
+   "maillage_jeu": "/Game/Props/CrowdProps/PicnicChairA/SM_PicnicChairA1",
+   "description": "chaise pliante de camping (0,6 x 0,9 x 1,1 m) ; sans collision",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -30,
+     -58,
+     0
+    ],
+    "max": [
+     30,
+     33,
+     108
+    ]
+   }
+  },
+  "extincteur": {
+   "maillage_jeu": "/Game/Props/RallyProps/FireExtiguisher/SM_FireExtiguisher",
+   "description": "extincteur rouge posé au sol (0,42 m), vu aux postes 2658 et 3206 de la vidéo de course ; sans collision",
+   "lacet_relatif_deg": 0,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -16,
+     -7,
+     -1
+    ],
+    "max": [
+     9,
+     7,
+     42
+    ]
+   }
   }
  },
  "lignes_electriques": [
@@ -2140,6 +2467,255 @@
    "decalage_m": 2.9,
    "calage": "posé avec le panneau qu'il porte (PK déjà corrigé)",
    "source": "ajouté le 14/11/2026 (remarque du directeur : panneau de rallye seul sur un piquet à l'extérieur d'un virage à droite). La vidéo de course montre cette annonce de point radio « clouée sur un tronc de pin à 1,6 m » ; nos arbres n'étant pas à la place des vrais, le panneau se retrouvait seul sur son mât au bord de l'aire. Ce pin est le sien."
+  },
+  {
+   "type": "vehicule_organisation",
+   "pk_m": 0.0,
+   "cote": "droite",
+   "decalage_m": 5.2,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 10,5-12,6 s : véhicule orange d'intervention garé à l'entrée de la piste GC 107 (PK -2 à +2, ≈ 4 m), derrière l'officiel ; posé dans le sens de la route, derrière la rubalise (3,5 m), sur l'aire de gravier du départ",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "vehicule_fourgon",
+   "pk_m": 6.5,
+   "cote": "gauche",
+   "decalage_m": 1.4,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 10,5-12,6 s : fourgon « Véhicule de Premiers Secours à Personnes » garé le long du bord gauche, nez vers l'avant. Relevé aux PK -3 à +3 ; posé aux PK 3,5 à 9,5, juste après la lisse en bois (PK -27 à +3, à 1,5 m de la rive : Street View), sur le replat de terre que montre la capture 24",
+   "nature": "rallye",
+   "ajout": "décor de course v13",
+   "calage": "décalé de +6 m le long de la route pour ne pas traverser la lisse"
+  },
+  {
+   "type": "voiture_citadine",
+   "pk_m": -27.5,
+   "cote": "droite",
+   "decalage_m": 5.0,
+   "source": "ajout plausible, non vu : voiture des officiels du départ garée près de leur tonnelle, sur l'aire de terre du centre équestre (terrain plat à ±0,1 m). Elle remplace le SUV gris de la vidéo (vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 12,6 s, garé devant le fourgon le long du bord gauche, PK 5 à 9) : à gauche après la lisse, le talus monte de 0,3 m par mètre et une voiture y aurait flotté d'un côté",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "tente_pliante",
+   "pk_m": -20.0,
+   "cote": "droite",
+   "decalage_m": 3.0,
+   "source": "ajout plausible, non vu (la caméra de course regarde devant) : tonnelle des officiels du départ sur l'aire de terre du centre équestre (Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 10, 15, 17), 20 m derrière la ligne, visible du pilote qui se retourne",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "table_pliante",
+   "pk_m": -20.0,
+   "cote": "droite",
+   "decalage_m": 3.6,
+   "source": "ajout plausible : table des officiels sous la tonnelle du départ",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "chaise_pliante",
+   "pk_m": -21.0,
+   "cote": "droite",
+   "decalage_m": 4.4,
+   "lacet_en_plus_deg": 180.0,
+   "source": "ajout plausible : chaise des officiels sous la tonnelle du départ",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "chaise_pliante",
+   "pk_m": -19.2,
+   "cote": "droite",
+   "decalage_m": 4.5,
+   "lacet_en_plus_deg": 160.0,
+   "source": "ajout plausible : chaise des officiels sous la tonnelle du départ",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "extincteur",
+   "pk_m": -22.0,
+   "cote": "droite",
+   "decalage_m": 1.8,
+   "source": "ajout plausible : extincteur au pied de la tonnelle du départ (les postes de la vidéo de course en ont un)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_break",
+   "pk_m": -48.2,
+   "cote": "gauche",
+   "decalage_m": 34.0,
+   "lacet_en_plus_deg": -158.3,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (916994.5 ; 6240970.4), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_citadine",
+   "pk_m": -48.9,
+   "cote": "gauche",
+   "decalage_m": 31.4,
+   "lacet_en_plus_deg": -158.5,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (916997.2 ; 6240970.4), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_suv",
+   "pk_m": -49.7,
+   "cote": "gauche",
+   "decalage_m": 28.8,
+   "lacet_en_plus_deg": -158.4,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (917000.0 ; 6240970.4), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_berline",
+   "pk_m": -51.4,
+   "cote": "gauche",
+   "decalage_m": 23.6,
+   "lacet_en_plus_deg": -157.5,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (917005.5 ; 6240970.4), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_monospace",
+   "pk_m": -52.3,
+   "cote": "gauche",
+   "decalage_m": 21.0,
+   "lacet_en_plus_deg": -156.7,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (917008.2 ; 6240970.4), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_citadine",
+   "pk_m": -54.3,
+   "cote": "gauche",
+   "decalage_m": 15.9,
+   "lacet_en_plus_deg": -154.4,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (917013.8 ; 6240970.4), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_berline",
+   "pk_m": -39.4,
+   "cote": "gauche",
+   "decalage_m": 33.0,
+   "lacet_en_plus_deg": -67.6,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (916991.7 ; 6240980.5), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_break",
+   "pk_m": -33.5,
+   "cote": "gauche",
+   "decalage_m": 31.0,
+   "lacet_en_plus_deg": -67.3,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (916991.7 ; 6240986.0), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_monospace",
+   "pk_m": -25.2,
+   "cote": "gauche",
+   "decalage_m": 20.4,
+   "lacet_en_plus_deg": 28.1,
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 7, 9, 12 (parking plein, une quinzaine de voitures garées sans marquage, nez vers le mur du fond) ; un jour de course il sert aux spectateurs. Position et cap choisis en Lambert-93 dans l'emprise du parking (916998.0 ; 6240997.5), convertis en PK et décalage (couple qui redonne exactement ce point par mobilier.Route.point)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "vehicule_fourgon_ferme",
+   "pk_m": 3689.4,
+   "cote": "droite",
+   "decalage_m": 38.7,
+   "lacet_en_plus_deg": 44.1,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 184,5-185 s : voiture sombre au hayon ouvert et commissaires en gilet derrière le muret gris, véhicules garés sur la D1 côté est au-delà du ponceau, derrière la fermeture. Posé en Lambert-93 (916739,0 ; 6243590,0) sur l'amorce de la D1 nord, dans l'axe de la branche, puis converti en PK et décalage (le seul couple possible est pris de l'autre côté de l'épingle)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "voiture_garee_berline",
+   "pk_m": 6502.5,
+   "cote": "gauche",
+   "decalage_m": 4.6,
+   "lacet_en_plus_deg": 90.0,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 323,8 s : berline garée sur l'aire gravillonnée, nez vers la route (PK relevé 6496-6501)",
+   "nature": "rallye",
+   "ajout": "décor de course v13",
+   "calage": "PK corrigé de +5,5 m comme le point radio voisin (6510 -> 6515,5)"
+  },
+  {
+   "type": "voiture_garee_break",
+   "pk_m": 6505.3,
+   "cote": "gauche",
+   "decalage_m": 4.6,
+   "lacet_en_plus_deg": 90.0,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 323,8 s : seconde voiture, côte à côte avec la première, nez vers la route",
+   "nature": "rallye",
+   "ajout": "décor de course v13",
+   "calage": "PK corrigé de +5,5 m comme le point radio voisin"
+  },
+  {
+   "type": "table_pliante",
+   "pk_m": 6508.3,
+   "cote": "gauche",
+   "decalage_m": 2.8,
+   "lacet_en_plus_deg": 90.0,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 324,0 s : commissaire debout avec chaise et table pliantes devant les voitures (PK relevé 6502-6504)",
+   "nature": "rallye",
+   "ajout": "décor de course v13",
+   "calage": "PK corrigé de +5,5 m comme le point radio voisin"
+  },
+  {
+   "type": "chaise_pliante",
+   "pk_m": 6509.4,
+   "cote": "gauche",
+   "decalage_m": 3.6,
+   "lacet_en_plus_deg": -120.0,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 324,0 s : chaise pliante du poste",
+   "nature": "rallye",
+   "ajout": "décor de course v13",
+   "calage": "PK corrigé de +5,5 m"
+  },
+  {
+   "type": "voiture_monospace",
+   "pk_m": 6733.0,
+   "cote": "gauche",
+   "decalage_m": 7.5,
+   "lacet_en_plus_deg": 180.0,
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 334,3 s : SUV gris foncé des chronométreurs garé dans l'herbe derrière un chêne, en biais, nez vers la route (PK relevé 6727-6731) ; posé dans le sens de la route",
+   "nature": "rallye",
+   "ajout": "décor de course v13",
+   "calage": "PK corrigé de +4,0 m comme le panneau d'arrivée (6731 -> 6735)"
+  },
+  {
+   "type": "chaise_pliante",
+   "pk_m": 6736.8,
+   "cote": "gauche",
+   "decalage_m": 5.6,
+   "lacet_en_plus_deg": 100.0,
+   "source": "ajout plausible : chaise du chronométreur à côté de sa voiture (personne n'est visible sur la vidéo)",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
+  },
+  {
+   "type": "extincteur",
+   "pk_m": 6737.4,
+   "cote": "gauche",
+   "decalage_m": 5.0,
+   "source": "ajout plausible : extincteur du poste d'arrivée",
+   "nature": "rallye",
+   "ajout": "décor de course v13"
   }
  ],
  "non_poses": [
@@ -2147,7 +2723,7 @@
   "Sens des chevrons des balises de virage : le jeu n'a qu'un dessin ; il peut pointer du mauvais côté.",
   "Triangle « animaux sauvages » du PK 3745 et panonceaux : seul le triangle « chaussée glissante » est rendu.",
   "Talus rocheux à 1 m ou plus du bord (une quarantaine de tronçons, surtout à gauche) : rendus par le terrain et par la matière « cailloux » sur les pentes raides, sans mur ajouté.",
-  "Public, véhicules, commissaires.",
+  "Public et commissaires : pas de personne en maillage statique dans le jeu (voir commissaires_et_public_non_poses). Véhicules : posés au départ, au poste radio d'avant l'arrivée, à l'arrivée et dans le parking du Grand Caunet (décor de course v13).",
   "Portail du PK 5406, bornes et piquets de repérage de réseaux.",
   "Objets du rallye non rendus : chevalets « ATTENTION CELLULE » et cellules de chronométrage (départ, arrivée), fléchage jaune du PK 3549, banderole à chevrons et filet orange du Lion d'Or (la fermeture de la branche de droite y reste en rubalise, étape 12), lambeaux de ruban du PK 3490-3510.",
   "Panneaux temporaires de chantier vus le jour de la course : « ABSENCE DE MARQUAGE » (PK 2192), triangle « ! » sur pied (PK 5310)."
@@ -3588,5 +4164,59 @@
    "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
    "echelle": 0.85
   }
+ },
+ "commissaires_et_public_non_poses": {
+  "note": "Commissaires, officiels et public relevés sur la vidéo de course, NON POSÉS : le catalogue du jeu n'a aucune personne en maillage statique utilisable. Commissaires (Characters/Common/Marshal : SK_MarshalMale_*, SK_MarshalFemale_*) et public haute définition (Characters/Crowd_HiRes) sont des maillages squelettiques animés, posés par le jeu lui-même (Data/Marshals : BC_Marshal, séquences de départ et d'arrivée BC_MarshalStartEndSequence*, BC_StopMarshal*). Le public lointain (Data/Crowd/CrowdMeshes/*/SM_*_Generated) est fait de StaticMesh, mais animés par leur matériau (texture d'os, AnimToTexture, interrupteur CrowdCustomData) avec des données par instance fournies par le système de foule du jeu (Mass, DA_CrowdSetup) ; posé seul, sans ces données ni la texture d'animation, son allure est imprévisible (pose de référence bras écartés, 1,06 m d'envergure lue dans ses bornes, ou sommets écrasés). Positions gardées ici pour le jour où l'on passera par les acteurs du jeu.",
+  "liste": [
+   {
+    "pk_m": 1.0,
+    "cote": "droite",
+    "decalage_m": 2.5,
+    "role": "officiel du départ debout (veste sombre) derrière le chevalet « ATTENTION CELLULE », devant la rubalise",
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 10,5-12,6 s"
+   },
+   {
+    "pk_m": -20.0,
+    "cote": "droite",
+    "decalage_m": 4.0,
+    "role": "deux officiels assis sous la tonnelle (ajout plausible)",
+    "source": "ajout plausible"
+   },
+   {
+    "pk_m": 27.0,
+    "cote": "droite",
+    "decalage_m": 1.5,
+    "role": "2 spectateurs debout au bord de l'accotement",
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 15,2 s"
+   },
+   {
+    "pk_m": 6509.0,
+    "cote": "gauche",
+    "decalage_m": 3.0,
+    "role": "commissaire en chasuble orange debout près de la table, 2 personnes en sombre",
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 324,0 s (PK corrigé de +5,5 m)"
+   },
+   {
+    "pk_m": 6573.0,
+    "cote": "gauche",
+    "decalage_m": 3.0,
+    "role": "4 spectateurs debout en haut du petit talus",
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 327,8 s (PK corrigé de +5 m)"
+   },
+   {
+    "pk_m": 6736.0,
+    "cote": "gauche",
+    "decalage_m": 5.5,
+    "role": "chronométreur près de sa voiture (non vu sur la vidéo : personne de visible)",
+    "source": "ajout plausible"
+   },
+   {
+    "pk_m": 3650.0,
+    "cote": "droite",
+    "decalage_m": 9.0,
+    "role": "Lion d'Or : 2 commissaires en gilet jaune derrière le muret gris, 1 en chasuble orange sur la branche fermée (≈ 12 m)",
+    "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 184,5 s"
+   }
+  ]
  }
 }

@@ -55,6 +55,72 @@ NDVI_NU, NDVI_VERT = 0.03, 0.15
 NDVI_VIGOUREUX = (0.30, 0.42)
 CLARTE_CALCAIRE = (90.0, 130.0)
 GRAINE = 20261112
+# Aires de gravier de la zone de départ (parking du Grand Caunet, PK -72 à -22 à gauche ; aire du départ, PK -3 à +12 à
+# droite). Test de la douzième version (14/11/2026, directeur) : « le parking à gauche me semble vraiment bac à sable ».
+# Ces emprises « pierre » ne portaient que le fond pierreux clair (matière 1), uni sur 1 000 m², à bord net, sans un
+# arbre (l'emprise les retire), sans une touffe ni une pierre (16 n'en sème pas sur les aires). Street View (captures 7,
+# 9, 12, 16) montre un gravier calcaire blanc grossier, des ornières de terre brune aux accès, de l'herbe et de la terre
+# sur les bords et des chênes verts dont la litière déborde sur le gravier. Dans cette fenêtre seulement (le reste de la
+# spéciale ne change pas), le fond reçoit donc : de la roche calcaire en plaques (grain de gros gravier), deux ornières
+# de terre le long des voies de circulation, de la litière et de la terre sous le couvert des arbres voisins, et une
+# frange irrégulière d'herbe sèche et de terre sur le bord de l'emprise.
+ZD_FENETRE_L93 = (916950.0, 6240930.0, 917070.0, 6241070.0)       # x0, y0, x1, y1
+ZD_VOIES_L93 = [                                                   # axes des voies de circulation (orthophoto, Street View)
+    [(917031.0, 6240972.5), (917013.0, 6240974.0), (916995.0, 6240975.0), (916993.5, 6240990.0), (917004.0, 6240997.5)],
+    [(917011.5, 6240999.5), (917004.0, 6240990.0), (917001.0, 6240978.0)],
+]
+ZD_ORNIERE = {"ecart_m": 0.80, "sigma_m": 0.35}                    # ornières à ±0,8 m de l'axe de la voie
+ZD_FRANGE_M = (0.4, 2.2)                                           # frange d'herbe et de terre sur le bord de l'emprise
+
+
+def melange_aires_depart(p, emprises, forme, tr, sur_route, arbres_zd, fen):
+    """Mélange du sol des aires « pierre » de la zone de départ (voir ZD_FENETRE_L93) ; p est modifié sur place. Rend un
+    petit bilan."""
+    import shapely
+    from scipy.spatial import cKDTree
+    l0, l1, c0, c1 = fen
+    sous = (slice(l0, l1), slice(c0, c1))
+    boite = shapely.box(*ZD_FENETRE_L93)
+    polys = [g_ for g_, m_ in emprises if m_ == "pierre" and g_.intersects(boite)]
+    if not polys:
+        return {}
+    from rasterio.transform import Affine
+    trf = tr * Affine.translation(c0, l0)
+    h, w = l1 - l0, c1 - c0
+    nette = rasterize([(g_, 1) for g_ in polys], out_shape=(h, w), transform=trf, fill=0, all_touched=False, dtype="uint8").astype(bool)
+    nette &= ~sur_route[sous]
+    if not nette.any():
+        return {}
+    rng = np.random.default_rng(GRAINE + 7)
+    g1, g2, g3 = bruit((h, w), 6, rng), bruit((h, w), 14, rng), bruit((h, w), 3, rng)    # 3 m, 7 m, 1,5 m
+    dedans = ndi.distance_transform_edt(nette) * tr.a                                      # m jusqu'au bord de l'emprise
+    # frange : largeur variable (bruit), pour que le bord ne soit plus une droite
+    frange = (1.0 - marche(dedans, ZD_FRANGE_M[0], ZD_FRANGE_M[1] * (0.6 + 0.8 * g2))) * nette
+    # ornières : distance de chaque point aux axes des voies, deux bandes à ±écart
+    ys, xs = np.nonzero(nette)
+    X, Y = trf * (xs + 0.5, ys + 0.5)
+    pts = []
+    for v in ZD_VOIES_L93:
+        v = np.asarray(v, float)
+        for a, b in zip(v[:-1], v[1:]):
+            k = max(int(np.ceil(np.linalg.norm(b - a) / 0.1)), 1)
+            pts.append(a + (b - a) * (np.arange(k) / k)[:, None])
+    d_voie = cKDTree(np.vstack(pts)).query(np.column_stack([X, Y]))[0]
+    orn = np.zeros((h, w), np.float32)
+    o_ = ZD_ORNIERE
+    orn[ys, xs] = np.exp(-0.5 * ((d_voie - o_["ecart_m"]) / o_["sigma_m"]) ** 2) * (0.75 + 0.25 * g3[ys, xs])
+    couvert = np.clip(arbres_zd, 0.0, 1.0) * nette
+    m = ndi.gaussian_filter(nette.astype(np.float32), 0.8)                                # raccord doux avec l'extérieur
+    q = {}
+    q["cailloux"] = (0.20 + 0.25 * g1 + 0.10 * g3) * (1.0 - 0.75 * orn) * (1.0 - 0.6 * couvert) * (1.0 - frange)
+    q["terre"] = 0.08 * g2 + 0.50 * orn + 0.18 * couvert + 0.22 * frange * (0.5 + g1)
+    q["aiguilles_de_pin"] = 0.45 * couvert * (0.6 + 0.4 * g2)
+    q["herbe_seche"] = frange * (0.30 + 0.35 * g1) + 0.05 * couvert
+    q["herbe_haute"] = frange * 0.12 * g3
+    for k, v in q.items():
+        p[k][sous] = p[k][sous] * (1.0 - m) + np.clip(v, 0.0, 1.0) * m
+    return {"emprises": len(polys), "surface_m2": round(float(nette.sum()) * tr.a ** 2),
+            "parts_moyennes": {k: round(float(p[k][sous][nette].mean()), 3) for k in COUCHES}}
 
 
 def marche(x, a, b):
@@ -131,6 +197,12 @@ def main():
     p["herbe_seche"] = ouvert * vert * (0.75 - 0.60 * vigoureux) * (0.65 + 0.35 * b1) + garrigue * (0.30 + 0.15 * b2) + arbres * 0.14 * b1
     p["terre"] = ouvert * (1.0 - vert) * (1.0 - clair)
     p["cailloux"] = 0.35 * ouvert * (1.0 - vert) * clair + garrigue * 0.10 * (1.0 - b1)
+    # couvert des arbres dans la fenêtre de la zone de départ (mélange des aires de gravier, plus bas)
+    inv = ~tr
+    cz0, lz0 = (int(np.floor(v)) for v in inv * (ZD_FENETRE_L93[0], ZD_FENETRE_L93[3]))
+    cz1, lz1 = (int(np.ceil(v)) for v in inv * (ZD_FENETRE_L93[2], ZD_FENETRE_L93[1]))
+    fen_zd = (max(lz0, 0), min(lz1, forme[0]), max(cz0, 0), min(cz1, forme[1]))
+    arbres_zd = arbres[fen_zd[0]:fen_zd[1], fen_zd[2]:fen_zd[3]].copy()
     del arbres, garrigue, ouvert, vert, vigoureux, clair, b2, melange
 
     # Pentes raides : roche pour moitié seulement, terre et herbe sèche pour le reste. Relevé du quatrième essai
@@ -194,6 +266,9 @@ def main():
         if matiere != "pierre":
             p["terre"] += (0.65 if matiere == "sentier" else 0.8) * aire
         del aire
+    # aires de gravier de la zone de départ : plus de fond uni « bac à sable » (voir ZD_FENETRE_L93)
+    bilan_zd = melange_aires_depart(p, emprises, forme, tr, sur_route, arbres_zd, fen_zd) if fen_zd[1] > fen_zd[0] and fen_zd[3] > fen_zd[2] else {}
+    del arbres_zd
 
     # Talus de rocaille (parois_rocheuses.json, genre « eboulis », relus le 13/11/2026) : pierres, roche brisée et terre
     # claire. Le sol y est peint en pierraille mêlée de terre ; 16_paquet_unreal.py y sème des pierres calcaires.
@@ -277,7 +352,8 @@ def main():
              "seuils": {"ndvi_sol_nu": NDVI_NU, "ndvi_vert": NDVI_VERT, "ndvi_vigoureux": list(NDVI_VIGOUREUX),
                         "clarte_calcaire": list(CLARTE_CALCAIRE)},
              "pente_roche_deg": list(PENTE_ROCHE), "part_de_pentes_raides": round(part_raide, 3),
-             "accotement_m": ACCOTEMENT_M, "graine": GRAINE, "duree_s": round(time.time() - t0)}
+             "accotement_m": ACCOTEMENT_M, "graine": GRAINE,
+             "aires_de_gravier_de_la_zone_de_depart": bilan_zd, "duree_s": round(time.time() - t0)}
     (OUT / "sols_jeu.json").write_text(json.dumps(bilan, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(bilan["parts_moyennes"], ensure_ascii=False), f"; {bilan['duree_s']} s")
 

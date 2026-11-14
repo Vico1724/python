@@ -1222,6 +1222,30 @@
    "confiance": "moyenne"
   },
   {
+   "pk_debut_m": 3722.0,
+   "pk_fin_m": 3756.0,
+   "cote": "gauche",
+   "decalage_m": 0.8,
+   "hauteur_m": [
+    1.0,
+    2.3
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "gris-beige, plaquettes calcaires empilées, rouille par endroits",
+   "pk_reconnaissance_m": [
+    3722,
+    3756
+   ],
+   "pk_corrige_m": [
+    3725.0,
+    3753.0
+   ],
+   "source": "relecture de la reconnaissance du 14/11/2026 (data/reference/relecture_reco_v8.json, PK 3722-3756 : 2 à 2,3 m de 3724 à 3738, 1,2 à 1,5 m vers 3745, ≈ 0,8 m au bout ; verge d'herbe de 0,5 à 1 m au pied) et paire du PK 3720 (figures/compare_jeu_14_11_v11/pk_3720.jpg)",
+   "confiance": "bonne",
+   "controle": "test de la douzième version (14/11/2026) : remplace le mur de pierre sèche de 2,2 m (parapets_hors_tablier 3722,5-3756,5, gauche), rendu en « immense parapet » à la sortie du carrefour du Lion d'Or là où la reconnaissance montre un talus de roche litée. pk_corrige_m est resserré de 3 m à chaque bout parce que 16_paquet_unreal.py allonge chaque paroi de 6 m et la fait mourir en sifflet sur 7 m : la roche visible couvre ainsi ≈ 3721-3757. La collision reste assurée par le mur invisible (rendu « roche ») de ouvrages_parapets.json."
+  },
+  {
    "pk_debut_m": 3818.0,
    "pk_fin_m": 3859.1,
    "cote": "gauche",
@@ -1339,7 +1363,7 @@
    "pk_debut_m": 4079.9,
    "pk_fin_m": 4106.7,
    "cote": "gauche",
-   "decalage_m": 4.0,
+   "decalage_m": 3.0,
    "hauteur_m": [
     2.0,
     4.0
@@ -1352,7 +1376,21 @@
     4097
    ],
    "zone_relue": 38,
-   "confiance": "moyenne"
+   "confiance": "moyenne",
+   "avant_le_test_v12": {
+    "decalage_m": 4.0,
+    "pk_corrige_m": null,
+    "hauteur_corrigee_m": null
+   },
+   "pk_corrige_m": [
+    4082.0,
+    4102.0
+   ],
+   "hauteur_corrigee_m": [
+    1.2,
+    2.5
+   ],
+   "controle": "test de la douzième version (14/11/2026) : le mur de pierre sèche de 2,3 m posé devant cette paroi (parapets_hors_tablier 4079-4105, gauche) est retiré : c'est elle qui rend le talus de plaquettes de l'extérieur de l'épingle du km 4,08. Recul du pied ramené de 4,0 à 3,0 m (derrière la surlargeur de gravier, relecture_reco_v8.json), hauteur 2 à 2,5 m s'abaissant vers 1 m au bout (1,2 à 2,5 m au lieu de 2 à 4 m). pk_corrige_m 4082-4102 : avec l'allonge de 6 m et le sifflet de 7 m de 16_paquet_unreal.py, et l'arrêt contre le parapet béton du ponceau 4074 (fin 4080), la roche visible couvre ≈ 4081-4108. La collision reste assurée par le mur invisible (rendu « roche ») de ouvrages_parapets.json."
   },
   {
    "pk_debut_m": 4200.9,

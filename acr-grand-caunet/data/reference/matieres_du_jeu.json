@@ -286,29 +286,29 @@
    }
   },
   "MI_GC_Dalle": {
-   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair ; relevé du sixième essai (13/11/2026 au soir) : parapets de béton « gris strié », trop sombres, au lieu d'un béton blanc cassé. Lu dans le jeu le 14/11/2026 : le parent (MI_MonBolConcreteWallsA) pose un voile sombre à 0,30 (ColorMult VPW), en traînées. Réglages du 14/11/2026 : voile ramené à 0,8, clarté 1,45 -> 1,7",
+   "pourquoi": "parapets et tabliers de béton vus gris sombre en jeu (teinte de Bollène à 0,66) ; le béton réel est beige clair ; relevé du sixième essai (13/11/2026 au soir) : parapets de béton « gris strié », trop sombres, au lieu d'un béton blanc cassé. Lu dans le jeu le 14/11/2026 : le parent (MI_MonBolConcreteWallsA) pose un voile sombre à 0,30 (ColorMult VPW), en traînées. Réglages du 14/11/2026 : voile ramené à 0,8, clarté 1,45 -> 1,7 ; test de la douzième version (14/11/2026, ponts 1661, 4360, 5554) : la dalle du tablier, visible entre le bord de chaussée et le parapet, faisait une bande de béton clair au bord en dents de scie ; sur les vrais ponts l'enrobé va jusqu'au parapet : dalle assombrie vers le gris de l'enrobé",
    "vecteurs": {
     "Mat1_TintMult": [
-     1.0,
-     0.97,
-     0.9,
+     0.92,
+     0.92,
+     0.92,
      1.0
     ],
     "Mat2_TintMult": [
-     1.0,
-     0.97,
-     0.9,
+     0.92,
+     0.92,
+     0.92,
      1.0
     ],
     "Mat1_AlbedoControls": [
-     1.7,
-     0.7,
+     0.62,
+     0.35,
      1.0,
      0.0
     ],
     "Mat2_AlbedoControls": [
-     1.7,
-     0.7,
+     0.62,
+     0.35,
      1.0,
      0.0
     ],

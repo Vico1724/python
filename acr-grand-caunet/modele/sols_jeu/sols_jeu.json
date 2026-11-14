@@ -25,7 +25,7 @@
   "aiguilles_de_pin": 0.355,
   "herbe_haute": 0.083,
   "herbe_seche": 0.208,
-  "terre": 0.066,
+  "terre": 0.067,
   "cailloux": 0.038
  },
  "couleur_1m": {
@@ -59,5 +59,16 @@
  "part_de_pentes_raides": 0.013,
  "accotement_m": 1.5,
  "graine": 20261112,
- "duree_s": 83
+ "aires_de_gravier_de_la_zone_de_depart": {
+  "emprises": 9,
+  "surface_m2": 1403,
+  "parts_moyennes": {
+   "aiguilles_de_pin": 0.122,
+   "herbe_haute": 0.01,
+   "herbe_seche": 0.098,
+   "terre": 0.192,
+   "cailloux": 0.229
+  }
+ },
+ "duree_s": 87
 }

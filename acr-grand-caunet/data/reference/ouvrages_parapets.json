@@ -722,18 +722,23 @@
     "statut": "vu sur la vidéo de reconnaissances"
    },
    "droite": {
-    "type": "beton",
-    "hauteur_m": 0.4,
-    "epaisseur_m": 0.4,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.4,
-    "sans_biseau_debut": true,
-    "sans_biseau_fin": true,
-    "avant_le_onzieme_essai": {
-     "hauteur_m": 0.45
+    "avant_le_test_v12": {
+     "type": "beton",
+     "hauteur_m": 0.4,
+     "epaisseur_m": 0.4,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.4,
+     "sans_biseau_debut": true,
+     "sans_biseau_fin": true,
+     "avant_le_onzieme_essai": {
+      "hauteur_m": 0.45
+     },
+     "controle": "onzième essai (PK 1960) : sortait en bloc de béton de 1,3 m au départ de la glissière ; la reconnaissance ne montre qu'un socle bas"
     },
-    "controle": "onzième essai (PK 1960) : sortait en bloc de béton de 1,3 m au départ de la glissière ; la reconnaissance ne montre qu'un socle bas"
+    "controle": "test de la douzième version (14/11/2026) : ressortait encore en bloc de béton d'environ 1 m (capture 4, PK ≈ 1960) bien que réduit à 0,4 m au onzième essai : le relief laser creuse là un fossé de 0,6 à 1 m sous le bord de chaussée (fossé du ponceau), le pied descend au fond du fossé et toute la face se voit. La paire du PK 1960 ne montre qu'une dalle de béton au ras de la chaussée, au départ de la glissière : retirée, la glissière (dès 1963) suffit à fermer le bord."
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "note": "tête de ponceau, juste avant la glissière",
@@ -1032,13 +1037,25 @@
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 2.2,
+    "hauteur_m": 1.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.8,
-    "biseau_m": 1.5,
-    "sans_biseau_fin": true
+    "sans_biseau_fin": true,
+    "rendu": "roche",
+    "nature": "talus de roche litée : collision seule, la forme vient de parois_rocheuses.json (16_paquet_unreal.py)",
+    "avant_le_test_v12": {
+     "type": "pierre",
+     "hauteur_m": 2.2,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.8,
+     "biseau_m": 1.5,
+     "sans_biseau_fin": true
+    },
+    "controle": "test de la douzième version (14/11/2026) : la paire du PK 3720 (essai de la onzième version) montre un talus de plaquettes calcaires litées, en pente, couronné d'herbe et de pins, et non un mur maçonné ; le mur de 2,2 m rendu ici sortait en « immense parapet » à la sortie du carrefour du Lion d'Or (remarque du directeur). Le mur visible est retiré ; la roche est rendue par la paroi litée 3722-3756 de parois_rocheuses.json ; ce tronçon ne garde qu'une boîte de collision invisible de 1,2 m au pied du talus (rendu « roche » : 11_route_ouvrages.py l'écrit dans ouvrages_collision.glb sans maillage de rendu), car les parois rocheuses n'ont pas de collision dans 09_export_stage_ir.py ni dans 16_paquet_unreal.py."
    },
    "droite": {
     "type": "aucun",
@@ -1065,14 +1082,27 @@
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 1.8,
+    "hauteur_m": 1.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.8,
-    "biseau_m": 1.5,
     "sans_biseau_debut": true,
-    "sans_biseau_fin": true
+    "sans_biseau_fin": true,
+    "rendu": "roche",
+    "nature": "talus de roche litée : collision seule, la forme vient de parois_rocheuses.json (16_paquet_unreal.py)",
+    "avant_le_test_v12": {
+     "type": "pierre",
+     "hauteur_m": 1.8,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.8,
+     "biseau_m": 1.5,
+     "sans_biseau_debut": true,
+     "sans_biseau_fin": true
+    },
+    "controle": "test de la douzième version (14/11/2026) : la paire du PK 3720 (essai de la onzième version) montre un talus de plaquettes calcaires litées, en pente, couronné d'herbe et de pins, et non un mur maçonné ; le mur de 2,2 m rendu ici sortait en « immense parapet » à la sortie du carrefour du Lion d'Or (remarque du directeur). Le mur visible est retiré ; la roche est rendue par la paroi litée 3722-3756 de parois_rocheuses.json ; ce tronçon ne garde qu'une boîte de collision invisible de 1,2 m au pied du talus (rendu « roche » : 11_route_ouvrages.py l'écrit dans ouvrages_collision.glb sans maillage de rendu), car les parois rocheuses n'ont pas de collision dans 09_export_stage_ir.py ni dans 16_paquet_unreal.py."
    },
    "droite": {
     "type": "aucun",
@@ -1099,14 +1129,27 @@
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 1.4,
+    "hauteur_m": 1.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.8,
-    "biseau_m": 1.5,
     "sans_biseau_debut": true,
-    "sans_biseau_fin": true
+    "sans_biseau_fin": true,
+    "rendu": "roche",
+    "nature": "talus de roche litée : collision seule, la forme vient de parois_rocheuses.json (16_paquet_unreal.py)",
+    "avant_le_test_v12": {
+     "type": "pierre",
+     "hauteur_m": 1.4,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.8,
+     "biseau_m": 1.5,
+     "sans_biseau_debut": true,
+     "sans_biseau_fin": true
+    },
+    "controle": "test de la douzième version (14/11/2026) : la paire du PK 3720 (essai de la onzième version) montre un talus de plaquettes calcaires litées, en pente, couronné d'herbe et de pins, et non un mur maçonné ; le mur de 2,2 m rendu ici sortait en « immense parapet » à la sortie du carrefour du Lion d'Or (remarque du directeur). Le mur visible est retiré ; la roche est rendue par la paroi litée 3722-3756 de parois_rocheuses.json ; ce tronçon ne garde qu'une boîte de collision invisible de 1,2 m au pied du talus (rendu « roche » : 11_route_ouvrages.py l'écrit dans ouvrages_collision.glb sans maillage de rendu), car les parois rocheuses n'ont pas de collision dans 09_export_stage_ir.py ni dans 16_paquet_unreal.py."
    },
    "droite": {
     "type": "aucun",
@@ -1133,13 +1176,25 @@
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 1.0,
+    "hauteur_m": 1.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.8,
-    "biseau_m": 1.5,
-    "sans_biseau_debut": true
+    "sans_biseau_debut": true,
+    "rendu": "roche",
+    "nature": "talus de roche litée : collision seule, la forme vient de parois_rocheuses.json (16_paquet_unreal.py)",
+    "avant_le_test_v12": {
+     "type": "pierre",
+     "hauteur_m": 1.0,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.8,
+     "biseau_m": 1.5,
+     "sans_biseau_debut": true
+    },
+    "controle": "test de la douzième version (14/11/2026) : la paire du PK 3720 (essai de la onzième version) montre un talus de plaquettes calcaires litées, en pente, couronné d'herbe et de pins, et non un mur maçonné ; le mur de 2,2 m rendu ici sortait en « immense parapet » à la sortie du carrefour du Lion d'Or (remarque du directeur). Le mur visible est retiré ; la roche est rendue par la paroi litée 3722-3756 de parois_rocheuses.json ; ce tronçon ne garde qu'une boîte de collision invisible de 1,2 m au pied du talus (rendu « roche » : 11_route_ouvrages.py l'écrit dans ouvrages_collision.glb sans maillage de rendu), car les parois rocheuses n'ont pas de collision dans 09_export_stage_ir.py ni dans 16_paquet_unreal.py."
    },
    "droite": {
     "type": "aucun",
@@ -1211,14 +1266,26 @@
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 2.3,
+    "hauteur_m": 1.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 3.0,
-    "biseau_m": 2.0,
-    "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
-    "sans_biseau_fin": true
+    "sans_biseau_fin": true,
+    "rendu": "roche",
+    "nature": "talus de roche litée : collision seule, la forme vient de parois_rocheuses.json (16_paquet_unreal.py)",
+    "avant_le_test_v12": {
+     "type": "pierre",
+     "hauteur_m": 2.3,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 3.0,
+     "biseau_m": 2.0,
+     "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
+     "sans_biseau_fin": true
+    },
+    "controle": "test de la douzième version (14/11/2026) : la paire du PK 4080 montre, à l'extérieur de l'épingle du km 4,08, un talus de plaquettes calcaires empilées (rocher lité) derrière une surlargeur de gravier, pas un mur maçonné ; le mur de 2,3 m rendu ici, en trois tronçons de hauteurs différentes (marches) avec une bosse de terre devant, était le second « immense parapet » signalé par le directeur. Le mur visible est retiré ; la roche est rendue par la paroi litée 4079,9-4106,7 de parois_rocheuses.json (emprise et recul corrigés) ; ce tronçon ne garde qu'une boîte de collision invisible de 1,2 m au pied du talus (rendu « roche »), les parois rocheuses n'ayant pas de collision."
    },
    "droite": {
     "type": "aucun",
@@ -1246,15 +1313,28 @@
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 1.6,
+    "hauteur_m": 1.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 3.0,
-    "biseau_m": 2.0,
-    "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
     "sans_biseau_debut": true,
-    "sans_biseau_fin": true
+    "sans_biseau_fin": true,
+    "rendu": "roche",
+    "nature": "talus de roche litée : collision seule, la forme vient de parois_rocheuses.json (16_paquet_unreal.py)",
+    "avant_le_test_v12": {
+     "type": "pierre",
+     "hauteur_m": 1.6,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 3.0,
+     "biseau_m": 2.0,
+     "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
+     "sans_biseau_debut": true,
+     "sans_biseau_fin": true
+    },
+    "controle": "test de la douzième version (14/11/2026) : la paire du PK 4080 montre, à l'extérieur de l'épingle du km 4,08, un talus de plaquettes calcaires empilées (rocher lité) derrière une surlargeur de gravier, pas un mur maçonné ; le mur de 2,3 m rendu ici, en trois tronçons de hauteurs différentes (marches) avec une bosse de terre devant, était le second « immense parapet » signalé par le directeur. Le mur visible est retiré ; la roche est rendue par la paroi litée 4079,9-4106,7 de parois_rocheuses.json (emprise et recul corrigés) ; ce tronçon ne garde qu'une boîte de collision invisible de 1,2 m au pied du talus (rendu « roche »), les parois rocheuses n'ayant pas de collision."
    },
    "droite": {
     "type": "aucun",
@@ -1282,14 +1362,26 @@
    "route": "D1",
    "gauche": {
     "type": "pierre",
-    "hauteur_m": 1.0,
+    "hauteur_m": 1.2,
     "epaisseur_m": 0.6,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 3.0,
-    "biseau_m": 2.0,
-    "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
-    "sans_biseau_debut": true
+    "sans_biseau_debut": true,
+    "rendu": "roche",
+    "nature": "talus de roche litée : collision seule, la forme vient de parois_rocheuses.json (16_paquet_unreal.py)",
+    "avant_le_test_v12": {
+     "type": "pierre",
+     "hauteur_m": 1.0,
+     "epaisseur_m": 0.6,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 3.0,
+     "biseau_m": 2.0,
+     "retabli": "rétabli le 14/11/2026. Je l'avais retiré dans la septième version sur la foi d'une seule lecture (« talus naturel, sans mur ») ; or deux sources le donnent : le relevé de la reconnaissance (« mur de pierres sèches et rocher lité, en retrait derrière une surlargeur de gravier ») et la vidéo de course (panneau « public interdit » fixé « sur le mur de pierres sèches »). Sans lui, ce panneau restait seul sur son piquet à l'extérieur de l'épingle (remarque du directeur). La paire du PK 4080 montre bien un talus de plaquettes calcaires empilées de 2 à 2,5 m : rendu par ce mur, désormais en pierre claire.",
+     "sans_biseau_debut": true
+    },
+    "controle": "test de la douzième version (14/11/2026) : la paire du PK 4080 montre, à l'extérieur de l'épingle du km 4,08, un talus de plaquettes calcaires empilées (rocher lité) derrière une surlargeur de gravier, pas un mur maçonné ; le mur de 2,3 m rendu ici, en trois tronçons de hauteurs différentes (marches) avec une bosse de terre devant, était le second « immense parapet » signalé par le directeur. Le mur visible est retiré ; la roche est rendue par la paroi litée 4079,9-4106,7 de parois_rocheuses.json (emprise et recul corrigés) ; ce tronçon ne garde qu'une boîte de collision invisible de 1,2 m au pied du talus (rendu « roche »), les parois rocheuses n'ayant pas de collision."
    },
    "droite": {
     "type": "aucun",
@@ -1588,7 +1680,11 @@
     "epaisseur_m": 0.3,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 1.5
+    "decalage_m": 0.3,
+    "avant_le_test_v12": {
+     "decalage_m": 1.5
+    },
+    "controle": "test de la douzième version (14/11/2026) : capture 12 (PK ≈ 5590) : parapet posé à 1,5 m du bord, au-dessus d'un talus qui descend de 0,9 à 1,4 m sous la chaussée (relief laser) : il flottait derrière une bande d'herbe et sa face se voyait sur près de 2 m. La paire du PK 5600 le montre au bord d'une verge étroite : recul ramené à 0,3 m, où le terrain est à 0 à -0,2 m du bord."
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "note": "parapet de béton en trois éléments à l'extérieur du gauche après le pont",
@@ -1610,12 +1706,18 @@
    },
    "droite": {
     "type": "pierre",
-    "hauteur_m": 1.2,
+    "hauteur_m": 1.0,
     "epaisseur_m": 0.4,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.3,
-    "sans_biseau_fin": true
+    "sans_biseau_fin": true,
+    "avant_le_test_v12": {
+     "hauteur_m": 1.2,
+     "sans_biseau_debut": null
+    },
+    "sans_biseau_debut": true,
+    "controle": "test de la douzième version (14/11/2026) : capture 13 (PK ≈ 6090) : la tête sortait en dalle de 1,2 m, deux fois la hauteur du parapet qu'elle précède, dessus en pente (biseau de 0,6 m sur 2 m de long) : mal raccordée. La paire du PK 6080 montre une tête de moellons à bout franc, à peine plus haute que le parapet : 1,0 m, sans biseau au début (elle se raccordait déjà sans biseau au parapet béton 6093-6111)."
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",

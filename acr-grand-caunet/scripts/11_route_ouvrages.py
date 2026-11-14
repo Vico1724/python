@@ -48,7 +48,8 @@ VERSIONS = {"complet": 1024, "apercu": 512}   # px des textures
 S_ENROBE = 4.0        # m couverts par une répétition de la texture d'enrobé
 S_PAROI = 2.0         # m couverts par une répétition des textures pierre / béton
 DALLE_EP = 0.6        # m : épaisseur du tablier sous le bord de chaussée
-DALLE_RETRAIT = 0.03  # m : dessus de la dalle sous la chaussée (évite le scintillement)
+DALLE_RETRAIT = 0.10  # m : dessus de la dalle sous la chaussée. 0,03 jusqu'au 14/11/2026 : test de la douzième version
+                      # (ponts 1661, 4360, 5554), la dalle plane perçait la chaussée bombée en dents de scie claires
 CORNICHE = 0.3        # m : débord de la dalle côté sans parapet
 DALLE_DEBORD = 2      # m (rangs) : la dalle entre dans le remblai à chaque bout
 CHAPERON = 0.08       # m : hauteur du chaperon (couronnement)
@@ -128,7 +129,11 @@ def tex_beton(n, seed=7):
     return jpeg(np.dstack([v, v - 0.005, v - 0.02]))
 
 
-ENDUIT_CLAIR_SRGB = (0.72, 0.68, 0.60)   # enduit gris-beige des murs de clôture (Street View, captures 4 à 7, parties au soleil)
+# Enduit gris-beige vieilli du long mur de clôture (PK -140 à -86). Était (0.72, 0.68, 0.60) jusqu'au 14/11/2026 : au test
+# de la douzième version, mur « gris clair bleuté, lisse » alors que Street View (captures 4 à 6, mur à l'ombre, face
+# nord) le montre gris olive moyen à brun, sali (médiane sRGB ≈ 57-70, 59-67, 52-58 à l'ombre, nettement plus sombre que
+# l'enrobé au soleil). Plus sombre et plus chaud : à l'ombre, la lumière bleue du ciel le ramène vers le gris olive.
+ENDUIT_CLAIR_SRGB = (0.58, 0.54, 0.44)
 
 
 def tex_enduit(n, teinte=ENDUIT_CLAIR_SRGB, seed=13):

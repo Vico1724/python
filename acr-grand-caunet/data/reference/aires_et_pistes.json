@@ -586,6 +586,30 @@
     "pk_fin_m": 6517.5,
     "calage": "PK corrigé de +5,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
    }
+  },
+  {
+   "pk_debut_m": 3.0,
+   "pk_fin_m": 11.0,
+   "cote": "gauche",
+   "decalage_m": 0.0,
+   "profondeur_m": 4.5,
+   "matiere": "terre",
+   "genre": "aire",
+   "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 24 (replat de terre et de feuilles sous les arbres, au bout de la lisse) ; vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ : fourgon de secours garé là le jour de la course",
+   "note": "dégage la place du fourgon de secours du départ (ni arbre, ni buisson, ni touffe)",
+   "calage": "posé le 14/11/2026 (décor de course v13)"
+  },
+  {
+   "pk_debut_m": 6729.0,
+   "pk_fin_m": 6738.0,
+   "cote": "gauche",
+   "decalage_m": 4.5,
+   "profondeur_m": 6.0,
+   "matiere": "terre",
+   "genre": "aire",
+   "source": "vidéo de course VMRS 2025 (Rallye de St Baume 2025 - VMRS - ES1), relue le 14/11/2026 ; data/reference/releve_course/ à t = 334,3 s : voiture des chronométreurs garée dans l'herbe derrière le chêne du panneau d'arrivée",
+   "note": "dégage la place de la voiture de l'arrivée (herbe foulée)",
+   "calage": "posé le 14/11/2026 (décor de course v13)"
   }
  ]
 }

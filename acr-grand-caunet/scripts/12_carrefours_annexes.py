@@ -521,7 +521,15 @@ def rendus(vues, fichiers, prefixe="carrefour"):
 # échelle. Teintes lues sur les parties au soleil des captures Street View 4 à 7.
 # « pierre_sombre » (pilier) est rendue par la pierre des murs du jeu (MURS_DU_JEU de 16) : son image ne sert qu'aux
 # aperçus.
-ENDUIT_BLANC_SRGB = (0.86, 0.84, 0.78)   # blanc cassé chaud (mur de la rampe, cabanon, pilier du portail) : pas un blanc pur
+# Teintes revues après le test de la douzième version (14/11/2026, directeur : « compare bien avec les photos Street View
+# pour la couleur des murs des bâtiments ») : jusque-là le mur du parking et toutes les maisons portaient l'enduit gris
+# clair du long mur (enduit_clair de 11), rendu gris bleuté uniforme. Lu sur les captures (copies réduites, médianes
+# sRGB) : mur de la rampe au soleil 151, 143, 125 (crème, rapport 1 : 0,95 : 0,83) ; mur de soutènement du parking
+# 87, 72, 44 à 86, 77, 55 (ocre brun, beige rosé sali, tags rouges) ; long mur à l'ombre 57-70, 59-67, 52-58 (gris olive,
+# voir ENDUIT_CLAIR_SRGB de 11) ; maisons non vues (bâtiment beige-crème du centre équestre au fond de la capture 17).
+ENDUIT_BLANC_SRGB = (0.86, 0.82, 0.72)   # crème (mur de la rampe, cabanon, pilier du portail) ; était (0.86, 0.84, 0.78)
+ENDUIT_OCRE_SRGB = (0.64, 0.55, 0.40)    # mur de soutènement sud du parking (captures 6, 7, 9)
+ENDUIT_MAISON_SRGB = (0.80, 0.72, 0.58)  # façades des maisons et dépendances (non vues : enduit beige provençal supposé)
 
 
 def tex_tuiles(n, seed=21):
@@ -573,12 +581,44 @@ def tex_pierre_ocre(n, seed=29, teinte=(0.76, 0.67, 0.50)):
     return m11.jpeg(rgb)
 
 
+def tex_enduit_vieilli(n, teinte, seed, nuances=0.08, sale=0.12, mousse=0.35, tags=0.0):
+    """Enduit extérieur vieilli : crépi (grain, reliefs, creux) comme m11.tex_enduit, mais avec de grandes nuances
+    (reprises, délavage), des salissures sombres en plaques, des voiles de lichen gris olive et, si tags > 0, quelques
+    traces de peinture rouge (tags du mur du parking). Isotrope (faces dépliées dans des sens différents) ; teinte sRGB."""
+    rng = np.random.default_rng(seed)
+    v = nuances * m11.bruit(n, rng, 2.2) + 0.03 * m11.bruit(n, rng, 1.2)          # reprises, délavage
+    v += 0.035 * m11.flou(rng.standard_normal((n, n)), 0.7)                        # grain du sable
+    grains = m11.flou((rng.random((n, n)) < 0.03).astype(float), 1.2)
+    v += 0.09 * grains / max(grains.max(), 1e-6)                                   # reliefs du crépi
+    creux = m11.flou((rng.random((n, n)) < 0.02).astype(float), 0.9)
+    v -= 0.10 * creux / max(creux.max(), 1e-6)                                     # creux
+    taches = np.clip(m11.bruit(n, rng, 2.6) - 0.4, 0, None)
+    v -= sale * taches / max(taches.max(), 1e-6)                                   # salissures en plaques
+    rgb = np.asarray(teinte, float)[None, None, :] * (1.0 + v)[..., None]
+    m = (mousse * np.clip(m11.bruit(n, rng, 2.0) - 0.9, 0, 1.2) / 1.2)[..., None]   # voiles de lichen gris olive
+    rgb = rgb * (1 - m) + np.array([0.44, 0.45, 0.37]) * m
+    if tags > 0:
+        t = (np.abs(m11.bruit(n, rng, 2.3)) < 0.035).astype(float)                 # traits fins et sinueux
+        t *= (m11.bruit(n, rng, 2.4) > 1.3)                                          # par endroits seulement
+        t = m11.flou(t, 0.6)
+        t = (tags * np.clip(t / max(t.max(), 1e-6) * 1.5, 0, 1))[..., None]
+        rgb = rgb * (1 - t) + np.array([0.60, 0.13, 0.12]) * t
+    return m11.jpeg(rgb)
+
+
 def zd_matieres(px):
     """Matières de la zone de départ pour des textures de px pixels (m11.VERSIONS) ; enduit_clair a la même image que
-    dans ouvrages.glb (11 : même nom de matière, 16 n'en garde qu'une)."""
+    dans ouvrages.glb (11 : même nom de matière, 16 n'en garde qu'une) : il ne sert plus ici depuis le 14/11/2026 (mur
+    du parking en enduit_ocre, maisons en enduit_maison), gardé pour une construction qui le nommerait."""
     n = px // 2
     return {
-        "enduit_clair": {"jpeg": m11.tex_enduit(n), "rough": 0.95},                      # mur du parking, maisons
+        "enduit_clair": {"jpeg": m11.tex_enduit(n), "rough": 0.95},                      # (teinte du long mur de 11)
+        # mur de soutènement du parking ; sans tags : l'image se répète tous les 2 m (m11.S_PAROI), un trait rouge y
+        # devenait une frise de 23 traits identiques
+        "enduit_ocre": {"jpeg": tex_enduit_vieilli(n, ENDUIT_OCRE_SRGB, 19, nuances=0.09, sale=0.14, mousse=0.35),
+                        "rough": 0.95},
+        "enduit_maison": {"jpeg": tex_enduit_vieilli(n, ENDUIT_MAISON_SRGB, 23, nuances=0.05, sale=0.07, mousse=0.15),
+                          "rough": 0.93},                                                # façades des maisons
         "enduit_blanc": {"jpeg": m11.tex_enduit(n, ENDUIT_BLANC_SRGB, seed=17), "rough": 0.92},   # rampe, cabanon
         "tuile": {"jpeg": tex_tuiles(n), "rough": 0.85},                                  # tuiles canal
         "portail_blanc": {"jpeg": tex_tole(n, (0.87, 0.86, 0.82), lames=0.25), "rough": 0.75},   # portail laqué
@@ -702,7 +742,7 @@ def _batiment(e, lot, mnt, mns, ref):
         return z_ref + H - pente * np.abs((np.atleast_2d(XY) - c) @ v)
 
     z_bas = float(mnt.z(*_anneau(P).T).min()) - ZD_ENFOUI
-    mm, mt = e.get("materiau_murs", "enduit_clair"), e.get("materiau_toit", "tuile")
+    mm, mt = e.get("materiau_murs", "enduit_maison"), e.get("materiau_toit", "tuile")
     # murs
     W = _anneau(P, ligne)
     cum = 0.0
@@ -1018,6 +1058,149 @@ def constructions_depart(ch, mnt, ref):
     return deco, m_coll, bilan, plan
 
 
+# --- prolongement des branches fermées (décor seul) ---------------------------------------------------------
+# Test de la douzième version (14/11/2026, directeur, capture v12_07 au PK ≈ 3640) : « au carrefour du Lion d'Or, la route
+# normalement barrée qui part à droite est inexistante » ; derrière les barrières on ne voyait que de l'herbe et des
+# arbres, alors que la reconnaissance (figures/apercu_lointain/reco_lion_d_or.jpg, PK 3620-3640) montre la D1 qui
+# continue, revêtue, vers Cuges et Gémenos. L'amorce de 40 m (surfaces_revetues de carrefours_annexes.json) est
+# prolongée ici en enrobé sur ≈ 140 m, le long de l'axe BD TOPO de la branche, recentré sur la banquette de la route
+# lue dans le MNT LiDAR (milieu de la plus longue bande plate en travers, à ±2 m au plus de la BD TOPO), à la largeur
+# BD TOPO (5,5 m ; 7 m au raccord avec l'amorce), avec l'axiale discontinue (T1) et les deux rives de la D1 (même
+# route que la spéciale). Décor seul : rien dans annexes_collision.glb, le pilote est arrêté par les barrières et la
+# rubalise de la fermeture, qui ne changent pas ; sous l'enrobé le sol physique reste le terrain. Le polygone est
+# écrit dans annexes_revetues.geojson (type « décor seul ») pour que la végétation du paquet l'évite (voir le bilan).
+PROLONGEMENTS = {
+    "Lion d'Or": [{
+        "nom": "D1 vers le nord (Cuges-les-Pins, Gémenos), fermée à la course",
+        "troncons_bd_topo": ["TRONROUT0000000040974099", "TRONROUT0000002276309350"],
+        "depart_l93": [916732.0, 6243597.0],       # premier sommet BD TOPO au-delà de l'amorce (son bout part plein nord)
+        "longueur_m": 140.0, "largeur_m": 5.5, "largeur_depart_m": 7.0, "raccord_m": 30.0,
+        "recalage_max_m": 2.0, "marquage": {"axiale": [3.0, 10.0], "rives": True},
+        "source": "BD TOPO (troncons TRONROUT0000000040974099, largeur 5,5 m, puis TRONROUT0000002276309350) ; banquette de "
+                  "la route dans le MNT LiDAR HD 50 cm ; reconnaissance PK 3620-3650 (route revêtue derrière la fermeture)",
+    }],
+}
+MARQUAGE_ANNEXE = {"largeur_m": 0.12, "rive_depuis_bord_m": 0.25, "au_dessus_m": 0.015, "couleur": [0.86, 0.86, 0.84]}
+
+
+def _axe_bd_topo(cleabs, depart):
+    """Polyligne Lambert-93 des troncons BD TOPO nommés, mis bout à bout en partant du sommet le plus proche de depart."""
+    from acr_geo import TO_L93
+    gj = json.loads((ROOT / "data" / "processed" / "couloir" / "troncon_de_route.geojson").read_text(encoding="utf-8"))
+    lignes = {}
+    for f in gj["features"]:
+        if f["properties"].get("cleabs") in cleabs:
+            a = np.asarray(f["geometry"]["coordinates"], float)[:, :2]
+            if np.abs(a[:, 0]).max() < 1000:                       # WGS84 -> Lambert-93
+                a = np.column_stack(TO_L93.transform(a[:, 0], a[:, 1]))
+            lignes[f["properties"]["cleabs"]] = a
+    if len(lignes) != len(cleabs):
+        return None
+    axe = None
+    for k in cleabs:
+        a = lignes[k]
+        bout = np.asarray(depart, float) if axe is None else axe[-1]
+        if np.linalg.norm(a[-1] - bout) < np.linalg.norm(a[0] - bout):
+            a = a[::-1]
+        axe = a if axe is None else np.vstack([axe, a[1:]])
+    return axe
+
+
+def prolongement(e, mnt, ruban, deja, ref, cle, k):
+    """Enrobé et marquage d'une branche fermée prolongée (décor seul). Rend (maillages, polygone L93, bilan)."""
+    from scipy.ndimage import uniform_filter1d
+    axe = _axe_bd_topo(e["troncons_bd_topo"], e["depart_l93"])
+    if axe is None:
+        return [], None, {"non_construit": "troncons BD TOPO introuvables"}
+    L = LineString(axe)
+    s0 = L.project(Point(e["depart_l93"]))
+    s = np.arange(s0, min(s0 + e["longueur_m"], L.length) + 1e-6, 1.0)
+    C = np.array([L.interpolate(v).coords[0] for v in s])
+    T = np.gradient(C, axis=0)
+    T /= np.linalg.norm(T, axis=1, keepdims=True)
+    N = np.column_stack([-T[:, 1], T[:, 0]])                                 # à gauche de la marche (vers le nord-ouest)
+    # recalage sur la banquette : milieu de la plus longue bande plate (pente < 10 %) dans ±9 m, lissé sur 15 m
+    o = np.arange(-9.0, 9.01, 0.25)
+    dec = np.full(len(s), np.nan)
+    for i in range(len(s)):
+        P = C[i] + o[:, None] * N[i]
+        z = mnt.z(P[:, 0], P[:, 1])
+        plat = uniform_filter1d(np.abs(np.gradient(z, 0.25)), 5) < 0.10
+        best, j = (0, 0, 0), 0
+        while j < len(o):
+            if plat[j]:
+                j2 = j
+                while j2 < len(o) and plat[j2]:
+                    j2 += 1
+                if j2 - j > best[0]:
+                    best = (j2 - j, j, j2)
+                j = j2
+            else:
+                j += 1
+        if best[0] * 0.25 >= e["largeur_m"] * 0.8:
+            dec[i] = (o[best[1]] + o[best[2] - 1]) / 2
+    ok = np.isfinite(dec)
+    dec = np.interp(np.arange(len(s)), np.flatnonzero(ok), dec[ok]) if ok.any() else np.zeros(len(s))
+    dec = np.clip(uniform_filter1d(dec, 15, mode="nearest"), -e["recalage_max_m"], e["recalage_max_m"])
+    dec *= np.clip((s - s0) / 10.0, 0, 1)                                    # pas de recalage au raccord avec l'amorce
+    C = C + dec[:, None] * N
+    T = np.gradient(C, axis=0)
+    T /= np.linalg.norm(T, axis=1, keepdims=True)
+    N = np.column_stack([-T[:, 1], T[:, 0]])
+    w = e["largeur_m"] + (e["largeur_depart_m"] - e["largeur_m"]) * np.clip(1 - (s - s0) / e["raccord_m"], 0, 1)
+    G, D = C + N * (w / 2)[:, None], C - N * (w / 2)[:, None]
+    poly = Polygon(np.vstack([G, D[::-1]])).buffer(0)
+    poly = poly.difference(ruban.buffer(0.3)).difference(deja.buffer(0.02))
+    poly = max(getattr(poly, "geoms", [poly]), key=lambda g: g.area)
+    sol = SolTerrain(ref, poly.buffer(3).bounds)
+    couvert = shapely.union_all(sol.tris[shapely.intersects(sol.tris, poly)]) if len(sol.tris) else Polygon()
+    poly_t = poly.intersection(couvert.buffer(-0.01)) if not couvert.is_empty else Polygon()
+    if poly_t.is_empty:
+        return [], None, {"non_construit": "hors du terrain de 08"}
+    poly_t = max(getattr(poly_t, "geoms", [poly_t]), key=lambda g: g.area)
+    z_de = lambda XY: sol.z(XY) + SURELEV                                     # noqa: E731
+    sm, aire = maillage_sur_terrain(poly_t, sol, z_de, ref, "enrobe", f"enrobe_prolongement_{cle}_{k}", m11.S_ENROBE, [])
+    # marquage : axiale T1 et rives continues, bandes de 12 cm posées 1,5 cm au-dessus de l'enrobé, dans le polygone
+    mq, lg = MARQUAGE_ANNEXE, MARQUAGE_ANNEXE["largeur_m"]
+    bandes = []
+    if e.get("marquage", {}).get("axiale"):
+        tr_, it_ = e["marquage"]["axiale"]
+        bandes += [(np.zeros(len(s)), a, a + tr_) for a in np.arange(s0 + 4.0, s[-1] - tr_, tr_ + it_)]
+    if e.get("marquage", {}).get("rives"):
+        bandes += [(sg * (w / 2 - mq["rive_depuis_bord_m"] - lg / 2), s0 + 3.0, s[-1] - 1.0) for sg in (1.0, -1.0)]
+    parts, peint = [], 0.0
+    for off, a, b in bandes:
+        sel = np.flatnonzero((s >= a) & (s <= b))
+        if len(sel) < 2:
+            continue
+        Pc = C[sel] + N[sel] * (off[sel] if np.ndim(off) else off)[:, None]
+        Pl, Pr = Pc + N[sel] * lg / 2, Pc - N[sel] * lg / 2
+        dans = shapely.contains_xy(poly_t, Pl[:, 0], Pl[:, 1]) & shapely.contains_xy(poly_t, Pr[:, 0], Pr[:, 1])
+        for run in np.split(np.arange(len(sel)), np.flatnonzero(np.diff(dans.astype(int)) != 0) + 1):
+            if len(run) < 2 or not dans[run[0]]:
+                continue
+            XY = np.empty((2 * len(run), 2))
+            XY[0::2], XY[1::2] = Pl[run], Pr[run]
+            z = sol.z(XY) + SURELEV + mq["au_dessus_m"]
+            i = np.arange(len(run) - 1)
+            tri = np.concatenate([np.column_stack([2 * i, 2 * i + 1, 2 * i + 3]), np.column_stack([2 * i, 2 * i + 3, 2 * i + 2])])
+            pos = m08.to_gltf(np.column_stack([XY, z]), ref).astype(np.float64)
+            tri = m11.oriente(pos, tri, np.array([0.0, 1.0, 0.0])).astype(np.uint32)
+            parts.append({"pos": pos.astype(np.float32), "nrm": m08.normales(pos, tri),
+                          "uv": np.zeros((len(pos), 2), np.float32), "idx": tri})
+            peint += float(np.linalg.norm(np.diff(Pc[run], axis=0), axis=1).sum())
+    out = [sm]
+    if parts:
+        out.append(m11.fusion(parts, f"marquage_prolongement_{cle}_{k}", "marquage"))
+    zc = sol.z(C)
+    info = {"nom": e["nom"], "longueur_axe_m": round(float(s[-1] - s0), 1), "aire_enrobe_m2": round(aire, 1),
+            "largeur_m": [e["largeur_depart_m"], e["largeur_m"]], "recalage_sur_banquette_m": [round(float(dec.min()), 2), round(float(dec.max()), 2)],
+            "denivele_m": round(float(np.nanmax(zc[np.isfinite(zc)]) - np.nanmin(zc[np.isfinite(zc)])), 1) if np.isfinite(zc).any() else None,
+            "marquage_peint_m": round(peint, 1), "collision": "aucune (décor seul ; barrières et rubalise de la fermeture inchangées)",
+            "source": e["source"]}
+    return out, poly_t, info
+
+
 # --- programme principal ---------------------------------------------------------------------------------
 def main():
     t0 = time.time()
@@ -1075,6 +1258,15 @@ def main():
                 aire_enr = a2
             else:
                 aire_ter = a2
+        # branches fermées prolongées au-delà de l'amorce (décor seul : pas dans m_coll)
+        prol_polys, prol_info = [], []
+        for k_p, e_p in enumerate(PROLONGEMENTS.get(c["nom"], [])):
+            deja = shapely.union_all([revetu, terre])
+            mp_, pp_, ip_ = prolongement(e_p, mnt, ruban, deja, ref, cle, k_p)
+            m_ann += mp_
+            if pp_ is not None:
+                prol_polys.append((pp_, e_p["nom"]))
+            prol_info.append(ip_)
         # ponceau : dalle sous le tablier (le terrain de 08 y garde le lit du ruisseau)
         if ponceau:
             Pp = Polygon(ponceau["polygone"])
@@ -1161,10 +1353,15 @@ def main():
             for gg in ([] if g.is_empty else getattr(g, "geoms", [g])):
                 feats.append({"type": "Feature", "geometry": mapping(to_wgs(gg)),
                               "properties": {"carrefour": nom, "type": typ, "surface_m2": round(gg.area, 1), "code_surface_jeu_propose": rq}})
+        for gg, nom_p in prol_polys:
+            feats.append({"type": "Feature", "geometry": mapping(to_wgs(gg)),
+                          "properties": {"carrefour": nom, "type": "surface revêtue annexe, décor seul (sans collision) : " + nom_p,
+                                         "surface_m2": round(gg.area, 1),
+                                         "code_surface_jeu_propose": "aucun : décor seul au-delà de la fermeture ; sol physique = terrain"}})
         for nom_p, P, typ in parapets_plan:
             feats.append({"type": "Feature", "geometry": mapping(to_wgs(LineString(P))),
                           "properties": {"carrefour": nom, "type": f"parapet ({typ})", "nom": nom_p}})
-        rapport[nom] = {"fermetures_pk": [(n_, s0, s1) for n_, s0, s1 in ferm_pk],
+        rapport[nom] = {"fermetures_pk": [(n_, s0, s1) for n_, s0, s1 in ferm_pk], **({"prolongements": prol_info} if prol_info else {}),
                         "enrobe_ferme_m2": round(revetu.area, 1), "terre_plein_m2": round(terre.area, 1),
                         "aire_triangulee_m2": {"enrobe": round(aire_enr, 1), "terre": round(aire_ter, 1)},
                         "balisage": {k: sum(1 for b in lignes_b if b["type"] == k) for k in ("piquet de rubalise", "rubalise")},
@@ -1192,7 +1389,9 @@ def main():
                 "pierre_sombre": {"color": [0.33, 0.32, 0.30], "rough": 0.95}, "beton": {"jpeg": m11.tex_beton(px // 2), "rough": 0.9},
                 "panneau": {"color": [0.9, 0.9, 0.88], "rough": 0.6},
                 "piquet": {"color": [0.92, 0.92, 0.92], "rough": 0.6}, "piquet_tete": {"color": [0.8, 0.08, 0.06], "rough": 0.6},
-                "rubalise": {"color": [0.85, 0.1, 0.08], "rough": 0.5}, **zd_matieres(px)}
+                "rubalise": {"color": [0.85, 0.1, 0.08], "rough": 0.5},
+                # marquage des branches prolongées : même nom et même blanc que le marquage de 11 (16 n'en garde qu'un)
+                "marquage": {"color": MARQUAGE_ANNEXE["couleur"], "rough": 0.6}, **zd_matieres(px)}
         m11.ecrire_glb(dossier / "annexes.glb", m_ann, mats)
         m11.ecrire_glb(dossier / "balisage.glb", m_bal, mats)
         if version == "complet":
