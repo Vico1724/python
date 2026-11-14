@@ -1,9 +1,9 @@
 diff --git a/tools/acr-ref/Characters.cs b/tools/acr-ref/Characters.cs
 new file mode 100644
-index 0000000..4307ba3
+index 0000000..ab2a0e8
 --- /dev/null
 +++ b/tools/acr-ref/Characters.cs
-@@ -0,0 +1,156 @@
+@@ -0,0 +1,194 @@
 +using System.Globalization;
 +using System.Text.Json.Nodes;
 +using CUE4Parse.UE4.Assets.Exports;
@@ -23,9 +23,29 @@ index 0000000..4307ba3
 +///
 +/// Yaw: these skeletal meshes face their component's +Y. Measured on Hafren South's own BC_Marshal_C placed by the studio
 +/// within 25 m of the road: (direction to the nearest centreline point) - yaw = +90 deg for 80 of 96 (all within +-45 deg).
++///
++/// Tag: the 10 actors carry Tags = ["ServicePark"], like the 479 service-park actors of the level, and the game shows those only
++/// in the service park (AGameConfigurator::OnServiceParkStateChanged, SetupServiceParkActors(bInServiceParkEnabled),
++/// ServiceParkSetupper.RequiredTag); none of the 92 + 252 stage marshals of Hafren South and Bollene has a tag. Seen in game
++/// on 14/11/2026: moved but not shown. The tag's FName number goes from 0 to 1 ("ServicePark" -> "ServicePark_0"): 4 bytes,
++/// same name index, no header change.
 +internal static class Characters
 +{
 +    const string RootName = "BodySkeletalMesh";
++    const string ServiceParkTag = "ServicePark";
++
++    /// Offset of the actor's Tags element FName ServicePark (array count 1, name index, number) with the given number, or -1;
++    /// throws when it is not unique.
++    static int TagAt(LegacyPackage pkg, byte[] d, int number)
++    {
++        int n = pkg.FindName(ServiceParkTag);
++        if (n < 0) return -1;
++        var pat = new byte[12];
++        BitConverter.GetBytes(1).CopyTo(pat, 0); BitConverter.GetBytes(n).CopyTo(pat, 4); BitConverter.GetBytes(number).CopyTo(pat, 8);
++        int first = d.AsSpan().IndexOf(pat);
++        if (first >= 0 && d.AsSpan(first + 1).IndexOf(pat) >= 0) throw new InvalidDataException($"Tags [{ServiceParkTag}] found more than once");
++        return first < 0 ? -1 : first + 4;
++    }
 +    const double MeshFacingDeg = 90;
 +
 +    /// Actor label (editor name, as in stage.json) -> export name and class in WalesS4HafrenSouth.umap (build of 14/11/2026).
@@ -68,11 +88,13 @@ index 0000000..4307ba3
 +
 +        var moved = new JsonArray();
 +        var comps = new HashSet<int>();
++        var actors = new HashSet<int>();
 +        foreach (var it in items)
 +        {
 +            string label = it!["actor"]!.GetValue<string>();
 +            if (!Known.TryGetValue(label, out var k))
 +                throw new InvalidDataException($"characters: unknown actor {label} (known: {string.Join(", ", Known.Keys)})");
++            int actor = pkg.FindExport(k.Export, k.Class);
 +            int c = Root(pkg, k.Export, k.Class);
 +            if (!comps.Add(c)) throw new InvalidDataException($"characters: {label} listed twice");
 +            var host = exports.Single(x => x.Name == RootName && x.Outer?.Name.ToString() == k.Export);
@@ -93,12 +115,18 @@ index 0000000..4307ba3
 +            StageBuild.WriteDoubles(data, locAt, ue.X, ue.Y, ue.Z);
 +            StageBuild.WriteDoubles(data, rotAt + 8, yaw);
 +            pkg.SetExportData(c, data);
++            var ad = (byte[])pkg.GetExportData(actor).Clone();
++            int tagAt = TagAt(pkg, ad, 0);
++            if (tagAt < 0) throw new InvalidDataException($"characters: {label} has no Tags [{ServiceParkTag}] (game update?)");
++            BitConverter.GetBytes(1).CopyTo(ad, tagAt + 4);
++            pkg.SetExportData(actor, ad);
++            actors.Add(actor);
 +            moved.Add(new JsonObject
 +            {
 +                ["actor"] = label, ["export"] = k.Export, ["class"] = k.Class, ["root_export"] = c,
 +                ["role"] = it["role"]?.GetValue<string>(), ["pk_m"] = it["pk_m"]?.GetValue<double>(),
 +                ["from_ue"] = new JsonArray((double)hl.X, (double)hl.Y, (double)hl.Z), ["from_yaw"] = (double)hr.Yaw,
-+                ["to_ue"] = new JsonArray(ue.X, ue.Y, ue.Z), ["pitch"] = (double)hr.Pitch, ["yaw"] = yaw, ["roll"] = (double)hr.Roll,
++                ["to_ue"] = new JsonArray(ue.X, ue.Y, ue.Z), ["pitch"] = (double)hr.Pitch, ["yaw"] = yaw, ["roll"] = (double)hr.Roll, ["tag"] = "ServicePark -> ServicePark_0",
 +            });
 +            Console.WriteLine($"  character {label}: UE ({F(hl.X, "0")}, {F(hl.Y, "0")}, {F(hl.Z, "0")}) yaw {F(hr.Yaw, "0.#")} -> " +
 +                              $"({F(ue.X, "0")}, {F(ue.Y, "0")}, {F(ue.Z, "0")}) yaw {F(yaw, "0.#")}  [{it["role"]?.GetValue<string>()}]");
@@ -113,10 +141,10 @@ index 0000000..4307ba3
 +            if (a.Length != b.Length) throw new InvalidDataException($"characters: export {e} changed size");
 +            int n = 0;
 +            for (int i = 0; i < a.Length; i++) if (a[i] != b[i]) n++;
-+            if (n > 0 && !comps.Contains(e)) otherExports++;
++            if (n > 0 && !comps.Contains(e) && !actors.Contains(e)) otherExports++;
 +            changed += n;
 +        }
-+        if (!h0.AsSpan().SequenceEqual(h1) || u0.Length != u1.Length || otherExports > 0 || changed > 32 * comps.Count)
++        if (!h0.AsSpan().SequenceEqual(h1) || u0.Length != u1.Length || otherExports > 0 || changed > 32 * comps.Count + 4 * actors.Count)
 +            throw new InvalidDataException($"characters: unexpected change (header same {h0.AsSpan().SequenceEqual(h1)}, uexp {u0.Length} -> {u1.Length} bytes, " +
 +                                           $"{otherExports} other exports changed, {changed} bytes changed)");
 +        if (src != dest)
@@ -126,8 +154,8 @@ index 0000000..4307ba3
 +                if (File.Exists(Path.ChangeExtension(src, ext))) File.Copy(Path.ChangeExtension(src, ext), Path.ChangeExtension(dest, ext), true);
 +        }
 +        pkg.SaveTo(dest);
-+        Console.WriteLine($"characters: {comps.Count} service-park actors of the persistent level moved; header and size unchanged, {changed} bytes rewritten");
-+        return new JsonObject { ["moved"] = moved, ["bytes_changed"] = changed, ["header_unchanged"] = true, ["source"] = Path.GetFileName(src) };
++        Console.WriteLine($"characters: {comps.Count} service-park actors of the persistent level moved and untagged (ServicePark -> ServicePark_0); header and size unchanged, {changed} bytes rewritten in {comps.Count + actors.Count} exports");
++        return new JsonObject { ["moved"] = moved, ["bytes_changed"] = changed, ["exports_changed"] = comps.Count + actors.Count, ["header_unchanged"] = true, ["uexp_bytes"] = u1.Length, ["source"] = Path.GetFileName(src) };
 +    }
 +
 +    /// stage-check: every moved root holds its new location and rotation once, and its host location no more.
@@ -151,12 +179,22 @@ index 0000000..4307ba3
 +                StageBuild.FindDoubles(d, [N(m["pitch"]), N(m["yaw"]), N(m["roll"])]);
 +                try { StageBuild.FindDoubles(d, V("from_ue")); bad.Add($"{label}: host location still present"); }
 +                catch (InvalidDataException) { }
++                if (m["tag"] is not null)
++                {
++                    var ad = pkg.GetExportData(pkg.FindExport(m["export"]!.GetValue<string>()));
++                    if (TagAt(pkg, ad, 0) >= 0) bad.Add($"{label}: still tagged {ServiceParkTag}");
++                    else if (TagAt(pkg, ad, 1) < 0) bad.Add($"{label}: tag {ServiceParkTag}_0 not found");
++                }
 +            }
 +            catch (Exception ex) when (ex is InvalidDataException or InvalidOperationException) { bad.Add($"{label}: {ex.Message}"); }
 +        }
 +        C(bad.Count == 0 && moved.Count > 0,
-+          $"characters: {moved.Count - bad.Count} of {moved.Count} persistent-level marshals / spectators at their stage place and heading" +
++          $"characters: {moved.Count - bad.Count} of {moved.Count} persistent-level marshals / spectators at their stage place and heading, none tagged ServicePark" +
 +          (bad.Count > 0 ? $" ({string.Join("; ", bad)})" : ""));
++        // the build's own byte comparison (Build): only the 10 roots and the 10 actors changed, header and package size identical
++        int nEx = report["exports_changed"]?.GetValue<int>() ?? -1, by = report["bytes_changed"]?.GetValue<int>() ?? -1;
++        C(report["header_unchanged"]?.GetValue<bool>() == true && nEx == 2 * moved.Count && by > 0 && by <= 36 * moved.Count,
++          $"characters: build compared the persistent level before / after: header and size identical, {by} bytes changed, all in the {nEx} exports of the moved actors and their roots");
 +        return failures;
 +    }
 +}
