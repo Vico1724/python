@@ -4,11 +4,11 @@
   "hors_de_notre_dossier": 0
  },
  "niveau": {
-  "maillages_poses": 568,
-  "attendus": 568,
-  "instances": 582176,
-  "attendues": 582176,
-  "composants_d_instances": 120,
+  "maillages_poses": 584,
+  "attendus": 584,
+  "instances": 582164,
+  "attendues": 582164,
+  "composants_d_instances": 114,
   "instances_hors_vegetation": {
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 225,
@@ -23,10 +23,8 @@
    "SM_GrandCaunetBlocB": 34,
    "SM_GrandCaunetBlocC": 23,
    "SM_GrandCaunetPoteauBeton": 80,
-   "SM_HatchbackA": 3,
    "SM_MileMarkerA": 1,
    "SM_MonPylonC11": 24,
-   "SM_MpvA": 3,
    "SM_NopublicSign": 10,
    "SM_PicnicChairA1": 4,
    "SM_PlasticTapePoleA": 4,
@@ -36,19 +34,15 @@
    "SM_RaceRadioPointA": 9,
    "SM_RaceRadioWarningA": 2,
    "SM_RaceRadioWarningB": 6,
+   "SM_RaceStart": 2,
    "SM_RaceTimer": 1,
-   "SM_SecurityCarA": 1,
-   "SM_SedanB": 3,
-   "SM_StationWagon": 3,
-   "SM_SuvA": 1,
-   "SM_TrafficConeA": 1,
+   "SM_TrafficConeA": 3,
    "SM_TrafficSignFraCrossRoadsA": 1,
    "SM_TrafficSignFraCurveMarkerD": 3,
    "SM_TrafficSignFraDangerA": 6,
    "SM_TrafficSignFraNarrowRoadA": 1,
    "SM_TrafficSignFraRightTurnA1": 1,
    "SM_TrafficSignFraSlipperyRoadA": 1,
-   "SM_VanCrew": 2,
    "SM_GrandCaunetStoneD": 2061
   },
   "composants_a_disparition_reglee": 40,
@@ -56,7 +50,7 @@
  },
  "sol": {
   "mode": "jeu",
-  "variantes": 41,
+  "variantes": 46,
   "variantes_non_conformes": [],
   "masques": 82,
   "format_des_masques_du_jeu": {
@@ -80,7 +74,7 @@
   },
   "masques_de_format_different": [],
   "ecart_moyen_au_fichier_source_sur_255": 2.53,
-  "maillages": 99,
+  "maillages": 100,
   "maillages_a_mauvaise_couleur_de_sommet": []
  },
  "variantes_heritees_du_jeu": {
@@ -89,8 +83,8 @@
  },
  "erreurs": [],
  "reglages_du_jeu": {
-  "variantes": 47,
-  "controlees": 9,
+  "variantes": 52,
+  "controlees": 14,
   "manques": [],
   "parents": [
    "MI_BolleneAsphalt1",

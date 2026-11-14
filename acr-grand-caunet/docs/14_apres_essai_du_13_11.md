@@ -244,3 +244,16 @@ Retour du directeur : reliefs lointains nettement améliorés, jeu fluide. À re
 
 **Commissaires et public** : étude dans `docs/15_commissaires_et_public.md`. Consigne du directeur : utiliser les personnages du jeu, ne jamais en créer. Méthode retenue pour la quatorzième version : déplacer les 4 commissaires et 6 spectateurs du niveau persistant de Hafren South vers nos positions, par une retouche du constructeur de la route physique.
 
+## 12. Après l'essai de la treizième version (14 novembre, 20 h)
+
+Retour du directeur : zone de départ et route barrée du Lion d'Or encore insuffisantes ; aucun personnage (normal : version construite sans) ; voitures sans texture ; rien ne matérialise la zone de départ (zone rouge translucide des spéciales du jeu) ; panneau de fin de spéciale en hauteur ; parois encore géométriques et « en suspension », surtout en travers (roche trop avancée au-dessus du vide). Consigne : utiliser les personnages et éléments du jeu, ne pas en créer ; s'appuyer sur les caméras embarquées du rallye.
+
+**Quatorzième version : construite, relue conforme, installée le 14 novembre à 22 h 41.**
+- Commissaires et public : les 10 personnages du parc d'assistance de Hafren South déplacés sur la spéciale par la retouche `pc/patches/0005-personnages.patch` du constructeur (option `-Personnages`) ; contrôle « 10 sur 10 à leur place ».
+- Zones de départ et d'arrivée : la zone rouge est la boîte du déclencheur du jeu, que le constructeur déplace bien ; nos options de visuels la supprimaient. `4_construire.ps1` ne passe plus d'options de visuels avec notre décor (portiques verts supprimés du même coup). Deux panneaux de départ du jeu et deux cônes posés.
+- Véhicules : leurs matériaux refusent la pose en instances (le jeu cuit leur substituait le matériau par défaut) ; posés en acteurs individuels comme le fait le studio.
+- Zone de départ : enduits et monolithe hérités des matériaux de mur et de roche du jeu ; parking aplani (`scripts/aplanissements.py`, appelé par `08_modele_3d.py` et `mobilier.py`).
+- Lion d'Or : branche fermée noire à cause d'un dépliage en coordonnées Lambert-93 (au-delà de ce que le moteur stocke) ; corrigé, avec un contrôle dans 16 ; murets du ponceau prolongés jusqu'au fond du ruisseau.
+- Panneau de fin de spéciale ramené au pied du talus.
+- Parois : roche posée sur le terrain (85 % des sommets visibles étaient en porte-à-faux, jusqu'à 2,3 m au-dessus du vide ; contrôle hors jeu à zéro), jupe sous terre, cinq rangs par banc : 491 691 triangles (143 410 avant).
+

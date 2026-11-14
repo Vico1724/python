@@ -2,7 +2,9 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (treizième, du 14/11/2026 à 19 h 32) : murs hauts redevenus parois, parapets
+    sol_jeu              version courante (quatorzième, du 14/11/2026 à 22 h 41) : commissaires et public du jeu, zones
+                         de départ et d'arrivée, parois posées sur le talus, zone de départ, véhicules ; jamais vue en jeu
+    sol_jeu_vu_le_14_11_20h  treizième version, vue en jeu le 14/11/2026 vers 20 h (du 14/11/2026 à 19 h 32) : murs hauts redevenus parois, parapets
                          corrigés, ponts, zone de départ, décor de course, Lion d'Or ; jamais vue en jeu
     sol_jeu_vu_le_14_11_soir  douzième version, vue en jeu le 14/11/2026 vers 17 h 15 (du 14/11/2026 à 17 h 04) : relief lointain d'après le relevé laser
                          jusqu'à 2 km, falaises reprises, zone de départ texturée, portiques retirés ; jamais vue en jeu
