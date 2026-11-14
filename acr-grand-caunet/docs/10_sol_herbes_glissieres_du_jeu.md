@@ -49,11 +49,12 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Dix-huit versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
+Dix-neuf versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | douzième version, du 14 novembre à 17 h 04 : relief lointain d'après le relevé laser jusqu'à 2 km, falaises lointaines reprises, zone de départ texturée, barrière de la piste en travers, portiques verts retirés, poteaux béton du projet, roche et sol réchauffés (`docs/14_apres_essai_du_13_11.md`, section 10) ; jamais vue en jeu |
+| `sol_jeu` (installée) | treizième version, du 14 novembre à 19 h 32 : murs hauts redevenus parois rocheuses, parapets corrigés, tablier des ponts sous la chaussée, parois plus fines, zone de départ recolorée, parking en gravier, véhicules et décor de course, branche fermée du Lion d'Or prolongée ; jamais vue en jeu |
+| `sol_jeu_vu_le_14_11_soir` | douzième version, vue en jeu le 14 novembre vers 17 h 15, du 14 novembre à 17 h 04 : relief lointain d'après le relevé laser jusqu'à 2 km, falaises lointaines reprises, zone de départ texturée, barrière de la piste en travers, portiques verts retirés, poteaux béton du projet, roche et sol réchauffés (`docs/14_apres_essai_du_13_11.md`, section 10) ; jamais vue en jeu |
 | `sol_jeu_vu_le_14_11_midi` | onzième version, vue en jeu le 14 novembre à midi (installée à 11 h 54) : la dixième, sans les arbustes plantés dans les bâtiments et sur les murs, et avec douze objets replacés après un contrôle hors jeu du placement ; jamais vue en jeu |
 | `sol_jeu_cycle10_du_14_11` | dixième version, du 14 novembre à 9 h 46 : la neuvième, plus 39 corrections de position relues sur la reconnaissance (murs, parapets, glissières, aires, clôtures : `data/reference/relecture_reco_v9.json`) ; jamais vue en jeu |
 | `sol_jeu_cycle9_du_14_11` | neuvième version, du 14 novembre à 8 h 28 : la huitième, plus douze endroits corrigés d'après la relecture de la reconnaissance (parapets des ponts 1661, 2602 et 2777, murs des PK 3722, 4079 et 5358 à 5508, poteaux, aires) ; jamais vue en jeu |

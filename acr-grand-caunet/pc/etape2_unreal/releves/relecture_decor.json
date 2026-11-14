@@ -1,29 +1,35 @@
 {
  "conteneur": {
-  "fichiers": 2305,
+  "fichiers": 2312,
   "hors_de_notre_dossier": 0
  },
  "niveau": {
   "maillages_poses": 568,
   "attendus": 568,
-  "instances": 583384,
-  "attendues": 583384,
-  "composants_d_instances": 110,
+  "instances": 582176,
+  "attendues": 582176,
+  "composants_d_instances": 120,
   "instances_hors_vegetation": {
-   "SM_PlasticTapePoleA": 16,
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 225,
    "SM_MetalGuardrailASimpleEnd": 6,
-   "SM_GrandCaunetStoneA": 8344,
-   "SM_GrandCaunetStoneB": 8571,
-   "SM_GrandCaunetStoneC": 7476,
+   "SM_GrandCaunetStoneA": 8321,
+   "SM_GrandCaunetStoneB": 8694,
+   "SM_GrandCaunetStoneC": 7557,
+   "SM_CanopyTent3mt": 1,
+   "SM_DeskA": 2,
+   "SM_FireExtiguisher": 2,
    "SM_GrandCaunetBlocA": 33,
    "SM_GrandCaunetBlocB": 34,
    "SM_GrandCaunetBlocC": 23,
    "SM_GrandCaunetPoteauBeton": 80,
+   "SM_HatchbackA": 3,
    "SM_MileMarkerA": 1,
    "SM_MonPylonC11": 24,
+   "SM_MpvA": 3,
    "SM_NopublicSign": 10,
+   "SM_PicnicChairA1": 4,
+   "SM_PlasticTapePoleA": 4,
    "SM_RaceControlZoneEnd": 1,
    "SM_RaceFlyingFinish": 1,
    "SM_RacePreFlyingFinish": 1,
@@ -31,6 +37,10 @@
    "SM_RaceRadioWarningA": 2,
    "SM_RaceRadioWarningB": 6,
    "SM_RaceTimer": 1,
+   "SM_SecurityCarA": 1,
+   "SM_SedanB": 3,
+   "SM_StationWagon": 3,
+   "SM_SuvA": 1,
    "SM_TrafficConeA": 1,
    "SM_TrafficSignFraCrossRoadsA": 1,
    "SM_TrafficSignFraCurveMarkerD": 3,
@@ -38,7 +48,8 @@
    "SM_TrafficSignFraNarrowRoadA": 1,
    "SM_TrafficSignFraRightTurnA1": 1,
    "SM_TrafficSignFraSlipperyRoadA": 1,
-   "SM_GrandCaunetStoneD": 2092
+   "SM_VanCrew": 2,
+   "SM_GrandCaunetStoneD": 2061
   },
   "composants_a_disparition_reglee": 40,
   "herbes_mal_reglees": []
@@ -69,7 +80,7 @@
   },
   "masques_de_format_different": [],
   "ecart_moyen_au_fichier_source_sur_255": 2.53,
-  "maillages": 100,
+  "maillages": 99,
   "maillages_a_mauvaise_couleur_de_sommet": []
  },
  "variantes_heritees_du_jeu": {

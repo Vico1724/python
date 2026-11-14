@@ -236,3 +236,11 @@ Retour du directeur : « dans l'ensemble nous sommes sur la bonne voie », avec 
 
 **Non traité** : un « tas » clair près de l'entrée du parking, d'origine inconnue ; l'emprise réservée aux arbres le long du mur enduit suit un recul fixe (0,5 m d'écart vers le PK -86).
 
+## 11. Après l'essai de la douzième version (14 novembre, 17 h 15)
+
+Retour du directeur : reliefs lointains nettement améliorés, jeu fluide. À revoir : couleurs des murs et bâtiments de la zone de départ, parking « bac à sable », commissaires et décor de course au départ et à l'arrivée, parois de bord de route plus détaillées, parapets en trop ou mal raccordés, deux « immenses parapets » à la place de parois (sortie du Lion d'Or, épingle du km 4,08), branche barrée du Lion d'Or inexistante, défauts de sol aux ponts. Relevé des captures : `data/reference/releve_essai_14_11_v12/murs.json`.
+
+**Treizième version : construite, relue conforme, installée le 14 novembre à 19 h 32.** Murs de pierre sèche des PK 3722-3756 et 4079-4105 rendus en parois de roche litée (collision gardée en mur invisible) ; trois parapets corrigés (PK 1960, 5600, 6091) ; tablier des ponts 10 cm sous la chaussée et au gris de l'enrobé ; parois proches deux fois plus fines, avec un grain d'arêtes ; zone de départ recolorée d'après Street View, parking en gravier à grain avec ornières et neuf voitures ; véhicules et décor de course au départ, au poste radio du PK 6502, à l'arrivée et au Lion d'Or ; branche fermée du Lion d'Or prolongée de 140 m en enrobé ; arbres et herbe exclus des routes annexes (le code comparait des degrés à des mètres). Jamais vue en jeu.
+
+**Commissaires et public** : étude dans `docs/15_commissaires_et_public.md`. Consigne du directeur : utiliser les personnages du jeu, ne jamais en créer. Méthode retenue pour la quatorzième version : déplacer les 4 commissaires et 6 spectateurs du niveau persistant de Hafren South vers nos positions, par une retouche du constructeur de la route physique.
+
