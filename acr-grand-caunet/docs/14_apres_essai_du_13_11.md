@@ -257,3 +257,13 @@ Retour du directeur : zone de départ et route barrée du Lion d'Or encore insuf
 - Panneau de fin de spéciale ramené au pied du talus.
 - Parois : roche posée sur le terrain (85 % des sommets visibles étaient en porte-à-faux, jusqu'à 2,3 m au-dessus du vide ; contrôle hors jeu à zéro), jupe sous terre, cinq rangs par banc : 491 691 triangles (143 410 avant).
 
+## 13. Après l'essai de la quatorzième version (15 novembre, 0 h 45)
+
+Retour du directeur : personnages absents ; bugs de parapet ; un mur invisible à l'intérieur de l'épingle du Lion d'Or, au niveau des piquets à droite de la route ; asphalte de la branche barrée toujours mal fait.
+
+**Quinzième version : construite, relue conforme, installée le 15 novembre à 3 h 29.**
+- Personnages : ils portaient l'étiquette `ServicePark`, que le jeu cache pendant une spéciale (les commissaires du studio le long des spéciales n'en ont pas). La retouche 0005 la neutralise ; contrôle « 10 sur 10 à leur place, aucun étiqueté ServicePark ».
+- Mur invisible : murs de reprise du jeu (limites qui ramènent la voiture sur la route), tracés par le constructeur à 20 m au-delà du bout de chaque porte ; au Lion d'Or, les bouts de porte très obliques ramenaient la limite dans le terre-plein, à 4-5 m des piquets. `09_export_stage_ir.py` redresse ces bouts de porte (PK 3656-3700) : limite à plus de 15 m de la chaussée. Les piquets de rubalise n'ont plus de collision.
+- Branche barrée : enrobé relevé au niveau du tablier du ponceau, raccord sans marche avec le prolongement, qui suit ensuite le terrain.
+- Parapets : PK 6091 (tête refaite en travers), 4062 (alignement), 3637 (collision rétablie), 4462 et 5565 (léger retrait, doublon supprimé), 5320 (muret abaissé), 6676-6684 (parapet inexistant retiré). Relevé : `data/reference/releve_essai_15_11_v14/`.
+
