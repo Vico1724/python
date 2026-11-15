@@ -55,7 +55,19 @@ def verifier(manifeste, etendue):
                 for ligne in f:
                     p = float(ligne.split(",")[6])
                     n_inst += (not pk) or (pk[0] <= p <= pk[1])
+    n_dec = 0
+    for e in el:
+        if e["type"] == "DecalGroup":
+            import csv
+            with open(os.path.join(base, e["fichier"]), encoding="utf-8") as f:
+                n_dec += sum((not pk) or (pk[0] <= float(x["pk_m"]) <= pk[1]) for x in csv.DictReader(f))
     erreurs = []
+    if r.get("decalques", 0) != n_dec:
+        erreurs.append(f"décalques {r.get('decalques', 0)} != {n_dec}")
+    poses = [a for a in u.ACTEURS if a.get_class().get_name() == "DecalActor"]
+    if n_dec and (len(poses) != n_dec or any(a.props["decal"].props.get("materiau") is None
+                                             or a.props["decal"].props.get("decal_size") is None for a in poses)):
+        erreurs.append(f"{len(poses)} DecalActor posés pour {n_dec}, ou sans matériau ou sans taille")
     if r["maillages"] != len(mesh) + 3:
         erreurs.append(f"maillages {r['maillages']} != {len(mesh)} + 3 (mire)")
     if r["acteurs"] != len(mesh):

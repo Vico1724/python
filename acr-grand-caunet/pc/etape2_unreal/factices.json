@@ -814,6 +814,108 @@
    "essai": "maillages du jeu posés tels quels"
   },
   {
+   "objet": "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_01",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -13,
+     -12,
+     -1
+    ],
+    "max": [
+     9,
+     9,
+     2
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_02",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -15,
+     -14,
+     -1
+    ],
+    "max": [
+     13,
+     10,
+     3
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_03",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -16,
+     -26,
+     0
+    ],
+    "max": [
+     25,
+     23,
+     1
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_04",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -33,
+     -39,
+     -1
+    ],
+    "max": [
+     42,
+     38,
+     2
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_05",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -69,
+     -48,
+     -1
+    ],
+    "max": [
+     64,
+     50,
+     2
+    ]
+   }
+  },
+  {
+   "objet": "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_06",
+   "type": "StaticMesh",
+   "essai": "maillages du jeu posés tels quels",
+   "bornes_cm": {
+    "min": [
+     -50,
+     -68,
+     0
+    ],
+    "max": [
+     100,
+     60,
+     2
+    ]
+   }
+  },
+  {
    "objet": "/Game/Props/RallyProps/Signs/SM_RaceRadioWarningA",
    "type": "StaticMesh",
    "essai": "mobilier de bord de route",
@@ -3281,6 +3383,88 @@
    "objet": "/Game/Props/MonteCarloProps/MonBolRockfaces/T_RockSurfaceSbcjgap0_N",
    "type": "Texture2D",
    "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"
+  },
+  {
+   "objet": "/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+   "type": "Material",
+   "parametres_texture": [],
+   "parametres_scalaires": [],
+   "parametres_vecteur": [],
+   "domaine_dans_le_jeu": "décalque différé",
+   "essai": "maître des décalques posés sur la chaussée (DecalActor)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterial/M_MasterDecals",
+   "type": "Material",
+   "parametres_texture": [],
+   "parametres_scalaires": [],
+   "parametres_vecteur": [],
+   "domaine_dans_le_jeu": "décalque différé",
+   "essai": "maître des décalques posés sur la chaussée (DecalActor)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltDirtDecalDirtDebree",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Environments/RallyShared/DecalMaterialInstances/MI_PineNeedles",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltDirtDecalGravel",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_DirtDecal_MontecarloDirtOnAsphalt",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_DirtDecal_DirtTracks",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_DirtDecal_MontecarloDirtTracks01",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_DirtDecal_DirtTracks",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltDecal_LightRubber",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltTiresMarksDecal",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Environments/AlsaceShared/DecalMaterial/M_MasterDecals",
+   "role": "decalque_du_jeu",
+   "static_switch": {},
+   "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
   },
   {
    "objet": "/Game/Data/Environments/Common/BC_TrackAvatar",

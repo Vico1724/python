@@ -6,7 +6,9 @@ dans l'éditeur qu'à lancer pc/etape2_unreal/scripts_editeur/construire_niveau.
 Entrées : modele/terrain_sol.glb + textures_sol/ (14), modele/lointain.glb (13), route_habillee.glb,
           ouvrages.glb (11), annexes.glb, balisage.glb (12), data/processed/arbres.csv, arbustes.csv.gz (10),
           balisage.csv (12), chaussee_precise.csv (07), modele/repere.json, data/reference/catalogue_jeu_*.txt.gz,
-          pc/etape2_unreal/factices.json
+          pc/etape2_unreal/factices.json ; détails de la chaussée : data/reference/aires_et_pistes.json,
+          data/processed/virages_es.csv (04), couloir/troncon_de_route.geojson (05)
+Sortie de contrôle : figures/apercu_lointain/details_chaussee.jpg (décalques et feuilles mortes, PK 2100 à 2400)
 Sorties : paquet_unreal/ (complet, non versionné) ou, avec --echantillon, pc/etape2_unreal/echantillon/
           (essais E3 et E4 seulement, images allégées, versionné) :
   manifeste.json          un élément par maillage, texture, variante de matériau, groupe d'instances
@@ -53,7 +55,7 @@ from PIL import Image
 from scipy.spatial import cKDTree
 
 import regles_arbres
-from acr_geo import OUT, REF, ROOT
+from acr_geo import FIG, OUT, REF, ROOT
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -1442,6 +1444,14 @@ class Sol:
             self.T = self.T[garder(self.T[:, :, [0, 2]].mean(1))]
         self.arbre = cKDTree(self.T[:, :, [0, 2]].mean(1))
 
+    @classmethod
+    def de_maillages(cls, ms):
+        """Même interpolation sur des maillages déjà lus (lire_glb) : enrobé, marquage."""
+        s = cls.__new__(cls)
+        s.T = np.vstack([m["pos"][m["idx"]] for m in ms])
+        s.arbre = cKDTree(s.T[:, :, [0, 2]].mean(1))
+        return s
+
     def __call__(self, gx, gz, k=16):
         """Altitude interpolée dans le triangle qui contient (gx, gz) ; NaN hors terrain."""
         q = np.column_stack([gx, gz])
@@ -2141,6 +2151,587 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
                        "retirees_sur_chaussee": 0, "essais": ["complet"]})
         bilan[el["nom"]] = el["nombre"]
     return bilan
+
+
+# --- détails de la chaussée : terre, débris, aiguilles, gravillons, gomme, traces de pneus, feuilles mortes -----------
+# Demande du directeur (15/11/2026, « amélioration globale des détails ») : des feuilles ou autres sur l'asphalte, sans
+# toucher à la physique, avec les éléments du jeu. Relevé le 15/11/2026 dans les niveaux du jeu sur asphalte (Bollène :
+# 541 cellules, 18 km ; Sisteron : 597 cellules) : le studio ne pose AUCUN maillage de feuilles sur ses routes de
+# spéciale (FallenLeaf_* et SM_Dead_Leaves_* n'y sont que dans le parc d'assistance, acteurs marqués ServicePark). Il
+# habille la chaussée de DecalActor (décalques projetés) portant ses variantes de AlsaceShared/DecalMaterialInstances,
+# toutes filles de M_MasterDecals_WorldSpace (domaine « décalque différé », aucune texture virtuelle du sol, aucun
+# interrupteur RVT) :
+#   - MI_AsphaltDirtDecalDirtDebree (terre fine et débris) : 386 à Bollène (21 par km), par paquets de 4 environ (un
+#     paquet tous les 180 m), boîtes de 10 à 18 m sur 3 à 5 m couchées le long du bord (8 degrés d'écart médian), centre
+#     à 0,3 - 3,8 m de l'axe ; 61 % dans les virages de moins de 50 m de rayon (20 % de la route), 79 % à l'intérieur ;
+#   - MI_AsphaltDirtDecalGravel (gravillons) : 23, au bord, à l'intérieur des virages ;
+#   - MI_DirtDecal_MontecarloDirtOnAsphalt (terre et cailloux) : 61 à Bollène, 205 à Sisteron, aux débouchés de chemins,
+#     par 3 ou 4 superposés (ordre de tri 1 à 4), de biais (37 degrés médians) ;
+#   - MI_DirtDecal_MontecarloDirtTracks01 (ornières de terre) : hors de l'enrobé, sur les chemins et les aires ;
+#   - MI_AsphaltDecal_LightRubber (gomme) : 129 et 82, par groupes de 8 à 13, surtout à l'extérieur des virages ;
+#   - MI_AsphaltTiresMarksDecal (traces de pneus noires, maître M_MasterDecals) : 2, dans une épingle.
+# Tous regardent vers le bas, inclinés comme la chaussée (tangage de -78 à -89 degrés), boîte de 26 à 51 cm de
+# profondeur, avec une couleur de décalque (DecalColor) que le maître lit ; gabarits et couleurs ci-dessous repris tels
+# quels du jeu (les plus fréquents), longueurs réduites pour notre route plus étroite et ses épingles plus serrées.
+# Ajouts : MI_PineNeedles (aiguilles de pin, RallyShared : même maître, mêmes interrupteurs et mêmes réglages que
+# DirtDebree) sous les pins d'Alep ; feuilles mortes du jeu (FallenLeaf_01 à 06 : plaques de 4 à 27 triangles,
+# MI_FallenLeaf, dont le maître M_GrassNew a UseRVTBaseColor faux par défaut et que la variante ne règle pas) semées
+# sur l'enrobé, surtout au bord et sous les chênes. Rien de tout cela n'a de collision ; la physique de la route
+# (09_export_stage_ir.py) n'en sait rien.
+DECALQUES = "/Game/Environments/AlsaceShared/DecalMaterialInstances"
+DETAILS = {
+    "graine": SEED + 31,
+    # rôle -> variante de décalque du jeu ; gabarits (longueur, largeur, profondeur de la boîte, cm) et couleurs de décalque
+    # (R, V, B, A) relevés à Bollène et Sisteron
+    "decalques": {
+        "debris": {"materiau": f"{DECALQUES}/MI_AsphaltDirtDecalDirtDebree",
+                   "gabarits": [(1163, 312, 51), (1200, 442, 51), (1275, 432, 51), (1418, 417, 51), (1131, 493, 51), (1013, 493, 51)],
+                   "couleurs": [(-5.92, 1.0, 2.82, 1.0), (-2.23, 1.0, 2.82, 1.0), (-7.43, 1.0, 2.82, 1.0), (-2.86, 1.38, 2.82, 1.0),
+                                (-4.2, 1.38, 3.17, 1.0), (-0.21, 1.0, 2.82, 1.0), (-4.54, 1.0, 3.17, 1.0), (8.04, 1.38, 3.17, 1.0)]},
+        "aiguilles": {"materiau": "/Game/Environments/RallyShared/DecalMaterialInstances/MI_PineNeedles", "comme": "debris"},
+        "gravillons": {"materiau": f"{DECALQUES}/MI_AsphaltDirtDecalGravel",
+                       "gabarits": [(1262, 286, 51), (1200, 442, 51), (1013, 493, 51), (1024, 358, 51)],
+                       "couleurs": [(-5.92, 1.0, 2.82, 1.0), (-4.54, 1.0, 3.17, 1.0), (2.34, 1.0, 1.0, 1.0), (-3.36, 1.0, 1.96, 1.0),
+                                    (4.02, 1.0, 1.0, 1.0)]},
+        "terre": {"materiau": f"{DECALQUES}/MI_DirtDecal_MontecarloDirtOnAsphalt",
+                  "gabarits": [(684, 193, 32), (633, 317, 32), (715, 256, 51), (799, 307, 51), (778, 389, 39), (651, 342, 39)],
+                  "couleurs": [(-4.43, 1.19, 1.0, 1.0), (1.0, 1.0, 1.0, 1.0), (-2.23, 1.52, 1.0, 1.0), (1.0, 1.66, 1.0, 1.0),
+                               (3.13, 1.88, 1.0, 1.0), (-3.54, 1.73, 1.0, 1.0), (6.77, 1.74, 1.0, 1.0), (9.87, 1.31, 1.0, 1.0)]},
+        "ornieres": {"materiau": f"{DECALQUES}/MI_DirtDecal_MontecarloDirtTracks01",
+                     "gabarits": [(684, 193, 32), (633, 317, 32), (778, 389, 39), (1027, 303, 47), (937, 393, 47)],
+                     "couleurs": [(1.0, 1.0, 1.0, 1.0), (1.0, 1.62, 1.0, 1.0), (1.0, 1.73, 1.0, 1.0), (1.0, 1.74, 1.0, 1.0),
+                                  (1.0, 1.9, 1.0, 1.0), (1.0, 1.54, 1.0, 1.0)]},
+        "gomme": {"materiau": f"{DECALQUES}/MI_AsphaltDecal_LightRubber",
+                  "gabarits": [(1024, 512, 38), (1024, 417, 38), (861, 301, 26), (1024, 325, 51)],
+                  "couleurs": [(1.0, 1.0, 1.0, 1.0), (21.0, 1.0, 1.0, 1.0), (1.47, 1.0, 1.0, 1.0), (2.14, 0.97, 1.0, 1.0),
+                               (-19.0, 1.0, 1.0, 1.0), (-6.16, 1.0, 1.0, 1.0), (-2.74, 1.0, 1.0, 1.0)]},
+        "pneus": {"materiau": f"{DECALQUES}/MI_AsphaltTiresMarksDecal", "gabarits": [(1458, 512, 26)],
+                  "couleurs": [(5.14, 1.0, 1.0, 1.0)]},
+    },
+    # litière du bord : terre et débris, ou aiguilles sous les pins. Paquets de 2 à 4 boîtes qui se chevauchent le long
+    # du bord, tirés au sort d'après le couvert des arbres du semis et la courbure (bonus dans les virages serrés, et
+    # surtout à leur intérieur, comme chez le studio). Décalage du centre au bord : positif vers l'extérieur ; dans un
+    # virage serré, à l'intérieur, la bande mord plus sur l'enrobé (vers_l_interieur_m). Longueur bornée pour que la
+    # boîte droite ne s'écarte pas de plus de fleche_max_m du bord courbe.
+    "litiere": {"par_km": 26.0, "par_groupe": (2, 4), "ecart_min_m": 30.0, "echelle": (0.55, 0.8), "longueur_m": (4.5, 11.0),
+                "largeur_min_m": 1.6, "fleche_max_m": 0.35, "recouvrement": 0.7, "biais_deg": 7.0, "fond": 0.25,
+                "bonus_virage": 1.0, "bonus_interieur": 3.0, "rayons_m": (25.0, 90.0), "decalage_m": (0.0, 0.6),
+                "vers_l_interieur_m": (0.3, 0.9), "part_aiguilles": 0.85, "couvert_min": 0.15},
+    # couvert : part de chaque groupe d'essences au-dessus d'un point (1 sous le houppier, 0 à portee_m au-delà)
+    "couvert": {"portee_m": 3.0, "recherche_m": 14.0,
+                "essences": {"pin d'Alep": "pin", "autre pin (pignon ou maritime)": "pin", "chêne vert": "chene_vert",
+                             "chêne pubescent": "chene_pubescent", "olivier": "feuillu"}},
+    # aires de data/reference/aires_et_pistes.json : gravillons (aire de pierre) ou terre (aire de terre) répandus sur le
+    # bord de l'enrobé devant l'aire, débordant de deborde_m de chaque côté
+    "aires": {"par_m": 1 / 9.0, "max": 4, "deborde_m": 2.0, "decalage_m": (-0.7, 0.1), "echelle": (0.55, 0.75), "biais_deg": 6.0,
+              "longueur_m": (4.0, 9.5)},
+    # débouchés de chemins (pistes de aires_et_pistes.json et chemins de la BD TOPO qui touchent la route) : terre et
+    # cailloux de biais sur l'enrobé, ornières sur le chemin (pas sur un talus de plus de pente_max_deg)
+    "debouches": {"par_debouche": (2, 4), "biais_deg": (20.0, 55.0), "le_long_m": 3.0, "decalage_m": (-1.6, 0.2),
+                  "echelle": (0.75, 1.0), "ornieres": (1, 2), "ornieres_a_m": (3.5, 6.5), "ornieres_echelle": (0.7, 0.9),
+                  "pente_max_deg": 14.0, "ign": ("Route empierrée", "Chemin"), "ign_distance_m": 6.0, "doublon_m": 20.0},
+    # épingles (data/processed/virages_es.csv, sommet recalé sur la courbure de chaussee_precise.csv) : gomme le long de la
+    # trajectoire (extérieur à l'entrée, corde, extérieur à la sortie : part de la demi-largeur, négatif = extérieur) et
+    # traces de pneus noires à la sortie (et au freinage dans les plus fermées). Sommet recalé dans les bornes du virage
+    # et dans son sens (deux épingles s'enchaînent aux PK 2179-2258 et 2260-2346)
+    "epingles": {"rayon_max_m": 22.0, "angle_min_deg": 70.0, "gomme": (3, 5), "deborde_m": 6.0, "ligne": (-0.45, 0.55),
+                 "echelle": (0.6, 0.8), "fleche_max_m": 0.5, "longueur_m": (4.0, 8.5), "pneus_echelle": (0.55, 0.7),
+                 "pneus_angle_min_deg": 120.0},
+    "lissage_courbure_m": 15.0,
+    "figure": {"pk": (2100.0, 2400.0), "fichier": FIG / "apercu_lointain" / "details_chaussee.jpg"},
+}
+# Feuilles mortes du jeu, en instances sur l'enrobé : nom -> (poids, rayon du maillage en cm, dessous du maillage sous son
+# pivot en cm, au bord seulement). Bornes lues dans le jeu le 15/11/2026 ; FallenLeaf_05 et 06 (plaques de 1,3 et 1,5 m)
+# restent à moins de bord_m du bord. Tirage : candidats à distance exponentielle du bord vers l'axe (portee_m), gardés
+# d'après le couvert (poids par essence : les chênes pubescents perdent leurs feuilles en novembre, les chênes verts un
+# peu, les pins presque pas), un peu plus à l'intérieur des virages. Posées à plat sur l'enrobé (tangage et roulis de la
+# chaussée), au_dessus_m au-dessus, ou au-dessus du marquage quand elles le touchent. Sans ombre, effacées à 25-40 m.
+FEUILLES = {"dossier": "/Game/Foliage/GroundCover/FallenLeaf",
+            "maillages": {"FallenLeaf_01": (0.27, 13.0, 0.7, False), "FallenLeaf_02": (0.27, 15.0, 0.8, False),
+                          "FallenLeaf_03": (0.20, 26.0, 0.0, False), "FallenLeaf_04": (0.14, 42.0, 0.4, False),
+                          "FallenLeaf_05": (0.07, 69.0, 0.6, True), "FallenLeaf_06": (0.05, 100.0, 0.0, True)},
+            "echelle": (0.8, 1.35), "candidats_par_m": 2.6, "portee_m": 0.55, "bord_m": 0.5, "au_dessus_m": 0.004,
+            "part_du_dessous": 0.5,      # part de la pointe sous le pivot relevée (le reste, 3 à 5 mm de bout de feuille, entre dans l'enrobé)
+            "poids": {"chene_pubescent": 1.0, "chene_vert": 0.5, "feuillu": 0.35, "pin": 0.12}, "fond": 0.03,
+            "bonus_interieur": 0.6, "disparition_cm": [2500, 4000]}
+
+
+def _rotateur_ue(X, Y, Z):
+    """Rotateur Unreal (tangage, lacet, roulis, degrés) d'un repère orthonormé donné en coordonnées Unreal ; même calcul
+    que FMatrix::Rotator() du moteur."""
+    tangage = math.atan2(X[2], math.hypot(X[0], X[1]))
+    lacet = math.atan2(X[1], X[0])
+    sy = np.array([-math.sin(lacet), math.cos(lacet), 0.0])           # axe Y du rotateur (tangage, lacet, 0)
+    roulis = math.atan2(float(np.dot(Z, sy)), float(np.dot(Y, sy)))
+    return math.degrees(tangage), math.degrees(lacet), math.degrees(roulis)
+
+
+def _axes_ue(tangage, lacet, roulis):
+    """Axes X, Y, Z d'un rotateur Unreal (FRotationMatrix) : contrôle de _rotateur_ue."""
+    p, y, r = (math.radians(v) for v in (tangage, lacet, roulis))
+    cp, sp, cy, sy, cr, sr = math.cos(p), math.sin(p), math.cos(y), math.sin(y), math.cos(r), math.sin(r)
+    return (np.array([cp * cy, cp * sy, sp]), np.array([sr * sp * cy - cr * sy, sr * sp * sy + cr * cy, -sr * cp]),
+            np.array([-(cr * sp * cy + sr * sy), cy * sr - cr * sp * sy, cr * cp]))
+
+
+def _couvert_des_arbres():
+    """Fonction xy (L93, n x 2) -> {groupe d'essences: couvert 0..1} d'après data/processed/arbres.csv."""
+    C = DETAILS["couvert"]
+    groupes = {}
+    with open(OUT / "arbres.csv", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            g = C["essences"].get(r["essence"])
+            if g:
+                groupes.setdefault(g, []).append((float(r["x_l93"]), float(r["y_l93"]), float(r["diametre_houppier_m"]) / 2.0))
+    arbres = {g: (cKDTree(np.array(v)[:, :2]), np.array(v)[:, 2]) for g, v in groupes.items()}
+
+    def couvert(xy):
+        out = {}
+        for g, (t, r) in arbres.items():
+            d, i = t.query(xy, k=8, distance_upper_bound=C["recherche_m"])
+            ok = np.isfinite(d)
+            i = np.minimum(i, len(r) - 1)
+            v = np.where(ok, np.clip(1.0 - np.maximum(d - r[i], 0.0) / C["portee_m"], 0.0, 1.0), 0.0)
+            out[g] = v.max(1)
+        for g in set(C["essences"].values()) - set(out):
+            out[g] = np.zeros(len(xy))
+        return out
+    return couvert
+
+
+class _Bande:
+    """Chaussée de chaussee_precise.csv interpolée au PK : point à une distance de l'axe dans le plan de la demi-chaussée
+    (prolongé au-delà du bord), normale à ce plan, tangente, demi-largeurs."""
+
+    def __init__(self, ch):
+        self.pk, self.A, self.G, self.D = ch["pk"], ch["A"], ch["G"], ch["D"]
+
+    def _i(self, P, s):
+        return np.column_stack([np.interp(s, self.pk, P[:, k]) for k in range(3)])
+
+    def demi(self, s, cote):
+        s = np.atleast_1d(np.asarray(s, float))
+        B = self._i(self.D if cote == "droite" else self.G, s)
+        return np.linalg.norm((B - self._i(self.A, s))[:, :2], axis=1)
+
+    def point(self, s, oa):
+        """s : PK ; oa : distance à l'axe (m), positive à droite (bord D). Renvoie point, normale, tangente (L93, 3D)."""
+        s = np.atleast_1d(np.asarray(s, float))
+        oa = np.broadcast_to(np.asarray(oa, float), s.shape)
+        A = self._i(self.A, s)
+        B = np.where((oa >= 0)[:, None], self._i(self.D, s), self._i(self.G, s))
+        h = np.maximum(np.linalg.norm((B - A)[:, :2], axis=1), 0.5)
+        P = A + (np.abs(oa) / h)[:, None] * (B - A)
+        T = self._i(self.A, s + 1.0) - self._i(self.A, s - 1.0)
+        n = np.cross(T, B - A)
+        n *= np.where(n[:, 2] < 0, -1.0, 1.0)[:, None]
+        n /= np.linalg.norm(n, axis=1, keepdims=True)
+        return P, n, T / np.linalg.norm(T, axis=1, keepdims=True)
+
+
+def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
+    """Habillage de la chaussée par des éléments du jeu, à la manière du studio (voir DETAILS) : décalques (un DecalActor
+    par ligne, composant « decalques » de construire_niveau.py) et feuilles mortes (instances). Positions tirées au sort
+    à graine fixe : c'est un habillage, pas un relevé. Renvoie ({groupe de feuilles: nombre}, {groupe de décalques: nombre})."""
+    from scipy.ndimage import uniform_filter1d
+    rng = np.random.default_rng(DETAILS["graine"])
+    bande = _Bande(ch)
+    couvert = _couvert_des_arbres()
+    pk, A, G, D = ch["pk"], ch["A"], ch["G"], ch["D"]
+    t2 = np.gradient(A[:, :2], axis=0)
+    t2 /= np.linalg.norm(t2, axis=1, keepdims=True)
+    if ((t2[:, 0] * (G[:, 1] - A[:, 1]) - t2[:, 1] * (G[:, 0] - A[:, 0])) > 0).mean() < 0.95:
+        raise SystemExit("détails de la chaussée : le bord G n'est pas à gauche du sens des PK")
+    # courbure signée (positive : virage à gauche), lissée ; rayon
+    cap = np.unwrap(np.arctan2(t2[:, 1], t2[:, 0]))
+    pas = float(np.median(np.diff(pk)))
+    courbure = uniform_filter1d(np.gradient(cap) / np.maximum(np.gradient(pk), 1e-6),
+                                size=max(3, int(round(DETAILS["lissage_courbure_m"] / pas))))
+    rayon = 1.0 / np.maximum(np.abs(courbure), 1e-6)
+
+    def au_pk(v, s):
+        return np.interp(s, pk, v)
+
+    def dedans(s, cote):
+        k = au_pk(courbure, s)
+        return (k > 0) if cote == "gauche" else (k < 0)
+
+    def force(s, rayons):
+        return np.clip((rayons[1] - au_pk(rayon, s)) / (rayons[1] - rayons[0]), 0.0, 1.0)
+
+    def ue(p):
+        return 100.0 * np.array([p[0] - ref["x0"], ref["y0"] - p[1], p[2] - ref["z0"]])
+
+    def vers_ue(v):
+        return np.array([v[0], -v[1], v[2]])
+
+    gab = {r: DETAILS["decalques"][d.get("comme", r)] for r, d in DETAILS["decalques"].items()}
+    decalques = {r: [] for r in DETAILS["decalques"]}
+
+    def poser(role, s, oa, longueur, largeur, profondeur, couleur, angle_deg=0.0, sens=1.0, ordre=0, direction=None,
+              sur_terrain=None):
+        """Un décalque : boîte centrée au PK s à oa m de l'axe (ou au point sur_terrain, L93 xy, posé sur le terrain),
+        axe long le long de la route (ou de direction, horizontale L93) tourné de angle_deg, regardant le sol."""
+        if sur_terrain is None:
+            p, n, t = (a[0] for a in bande.point(s, oa))
+        else:
+            g = m08.to_gltf(np.array([[sur_terrain[0], sur_terrain[1], 0.0]]), ref).astype(float)[0]
+            e_ = 0.75
+            z = sol(np.array([g[0], g[0] + e_, g[0] - e_, g[0], g[0]]), np.array([g[2], g[2], g[2], g[2] - e_, g[2] + e_]))
+            if not np.isfinite(z).all():
+                return False
+            p = np.array([sur_terrain[0], sur_terrain[1], z[0] + ref["z0"]])
+            n = np.array([-(z[1] - z[2]) / (2 * e_), -(z[3] - z[4]) / (2 * e_), 1.0])      # z[3] = z(y + e) : gz - e
+            n /= np.linalg.norm(n)
+            if math.degrees(math.acos(n[2])) > DETAILS["debouches"]["pente_max_deg"]:      # talus : pas d'ornières
+                return False
+            t = np.array([0.0, 0.0, 0.0])
+        d = np.array(direction if direction is not None else t[:2], float)
+        d /= np.linalg.norm(d)
+        a = math.radians(angle_deg)
+        d = np.array([d[0] * math.cos(a) - d[1] * math.sin(a), d[0] * math.sin(a) + d[1] * math.cos(a), 0.0]) * sens
+        Y = d - np.dot(d, n) * n
+        Y /= np.linalg.norm(Y)
+        Xu, Yu = vers_ue(-n), vers_ue(Y)
+        Zu = np.cross(Xu, Yu)
+        rot = _rotateur_ue(Xu, Yu, Zu)
+        if max(float(np.abs(u - v).max()) for u, v in zip(_axes_ue(*rot), (Xu, Yu, Zu))) > 1e-6:
+            raise SystemExit(f"détails de la chaussée : rotateur faux au PK {s:.0f}")
+        decalques[role].append({"p": p, "ue": ue(p), "rot": rot, "s": float(s), "long": longueur, "larg": largeur,
+                                "prof": profondeur, "couleur": couleur, "ordre": int(ordre), "y": Y[:2] / np.linalg.norm(Y[:2])})
+        return True
+
+    def gabarit(role, echelle, longueur_m, fleche=None, s=None, largeur_min=1.2):
+        g = gab[role]["gabarits"][rng.integers(len(gab[role]["gabarits"]))]
+        L = g[0] / 100.0 * rng.uniform(*echelle)
+        if fleche is not None:
+            L = min(L, math.sqrt(8.0 * float(au_pk(rayon, s)) * fleche))
+        L = float(np.clip(L, *longueur_m))
+        return L, max(largeur_min, L * g[1] / g[0]), g[2] / 100.0
+
+    def couleur(role):
+        c = gab[role]["couleurs"]
+        return c[rng.integers(len(c))]
+
+    s_min, s_max = float(pk[0]), float(pk[-1])
+    # 1. litière du bord : paquets tirés au sort d'après le couvert et la courbure
+    Lt = DETAILS["litiere"]
+    cand = []
+    for cote, B in (("gauche", G), ("droite", D)):
+        c = couvert(B[:, :2])
+        feuillus = c["chene_vert"] + c["chene_pubescent"] + c["feuillu"]
+        cv = np.clip(feuillus + c["pin"], 0.0, 1.0)
+        f = force(pk, Lt["rayons_m"])
+        score = (Lt["fond"] + cv) * (1.0 + Lt["bonus_virage"] * f + Lt["bonus_interieur"] * f * dedans(pk, cote))
+        cand += [(cote, float(pk[i]), float(score[i]), float(c["pin"][i]), float(feuillus[i])) for i in range(len(pk))]
+    n_groupes = int(round(Lt["par_km"] * (s_max - s_min) / 1000.0 / np.mean(Lt["par_groupe"])))
+    p_ = np.array([x[2] for x in cand])
+    ordre_tirage = rng.choice(len(cand), size=min(len(cand), 40 * n_groupes), replace=False, p=p_ / p_.sum())
+    pris = {"gauche": [], "droite": []}
+    groupes = []
+    for i in ordre_tirage:
+        cote, s0, _, cpin, cfeu = cand[i]
+        if all(abs(s0 - s) >= Lt["ecart_min_m"] for s in pris[cote]):
+            pris[cote].append(s0)
+            groupes.append((cote, s0, cpin, cfeu))
+            if len(groupes) >= n_groupes:
+                break
+    for cote, s0, cpin, cfeu in sorted(groupes, key=lambda g: g[1]):
+        tot = cpin + cfeu
+        role = "aiguilles" if tot > Lt["couvert_min"] and rng.random() < Lt["part_aiguilles"] * cpin / tot else "debris"
+        col = couleur(role)
+        signe = 1.0 if cote == "droite" else -1.0
+        s = s0
+        for _ in range(int(rng.integers(Lt["par_groupe"][0], Lt["par_groupe"][1] + 1))):
+            L, W, prof = gabarit(role, Lt["echelle"], Lt["longueur_m"], Lt["fleche_max_m"], s, Lt["largeur_min_m"])
+            sc = s + L / 2.0
+            if sc > s_max - 2.0:
+                break
+            o = rng.uniform(*Lt["decalage_m"]) - float(force(sc, Lt["rayons_m"]) * dedans(sc, cote)) * rng.uniform(*Lt["vers_l_interieur_m"])
+            poser(role, sc, signe * (float(bande.demi(sc, cote)[0]) + o), L, W, prof, col, rng.uniform(-Lt["biais_deg"], Lt["biais_deg"]))
+            s += Lt["recouvrement"] * L
+    # 2. aires (gravillons ou terre sur le bord de l'enrobé) et débouchés de chemins
+    Ai, Db = DETAILS["aires"], DETAILS["debouches"]
+    emprises = json.loads((REF / "aires_et_pistes.json").read_text(encoding="utf-8"))["emprises"]
+    aires = {}
+    # (seulement les aires qui touchent l'enrobé : pas les places dégagées à quelques mètres du bord)
+    for e in sorted((e for e in emprises if e["genre"] == "aire" and e["decalage_m"] <= 1.5), key=lambda e: e["pk_debut_m"]):
+        lst = aires.setdefault((e["cote"], e["matiere"]), [])
+        if lst and e["pk_debut_m"] <= lst[-1][1] + 3.0:
+            lst[-1] = [lst[-1][0], max(lst[-1][1], e["pk_fin_m"]), max(lst[-1][2], e["decalage_m"] + e["profondeur_m"])]
+        else:
+            lst.append([e["pk_debut_m"], e["pk_fin_m"], e["decalage_m"] + e["profondeur_m"]])
+    debouches = []                                       # (PK, côté, direction du chemin vers l'extérieur (L93 xy) ou None)
+    for (cote, matiere), lst in sorted(aires.items()):
+        role = "gravillons" if matiere == "pierre" else "terre"
+        signe = 1.0 if cote == "droite" else -1.0
+        for a, b, fond in lst:
+            col = couleur(role)
+            n = int(np.clip(round((b - a + 2 * Ai["deborde_m"]) * Ai["par_m"]), 1, Ai["max"]))
+            for s in np.linspace(a - Ai["deborde_m"], b + Ai["deborde_m"], n + 2)[1:-1] + rng.uniform(-1.0, 1.0, n):
+                s = float(np.clip(s, s_min + 2, s_max - 2))
+                L, W, prof = gabarit(role, Ai["echelle"], Ai["longueur_m"], Lt["fleche_max_m"], s)
+                poser(role, s, signe * (float(bande.demi(s, cote)[0]) + rng.uniform(*Ai["decalage_m"])), L, W, prof, col,
+                      rng.uniform(-Ai["biais_deg"], Ai["biais_deg"]), ordre=1 if role == "terre" else 0)
+            if matiere == "terre":                       # ornières dans l'aire de terre, en long
+                s = (a + b) / 2.0
+                pc, _, t_ = (x[0] for x in bande.point(s, signe * (float(bande.demi(s, cote)[0]) + min(fond, 8.0) / 2.0)))
+                L, W, prof = gabarit("ornieres", Db["ornieres_echelle"], (3.0, 9.0))
+                poser("ornieres", s, 0.0, L, W, max(prof, 0.6), couleur("ornieres"), rng.uniform(-25.0, 25.0),
+                      direction=t_[:2], sur_terrain=pc[:2])
+    for e in emprises:
+        if e["genre"] == "piste":
+            debouches.append(((e["pk_debut_m"] + e["pk_fin_m"]) / 2.0, e["cote"], None))
+    # chemins de la BD TOPO dont un bout touche la route (bouche) : direction du premier tronçon, vers l'extérieur
+    f_ign = OUT / "couloir" / "troncon_de_route.geojson"
+    if f_ign.exists():
+        from pyproj import Transformer
+        vers_l93 = Transformer.from_crs("EPSG:4326", "EPSG:2154", always_xy=True).transform
+        axe = cKDTree(A[:, :2])
+        for ft in json.loads(f_ign.read_text(encoding="utf-8"))["features"]:
+            if ft["properties"].get("nature") not in Db["ign"] or ft["geometry"]["type"] != "LineString":
+                continue
+            xy = np.array([vers_l93(lon, lat) for lon, lat, *_ in ft["geometry"]["coordinates"]])
+            if len(xy) < 2:
+                continue
+            for p0, p1 in ((xy[0], xy[1]), (xy[-1], xy[-2])):
+                if shapely.distance(ruban, shapely.Point(*p0)) > Db["ign_distance_m"]:
+                    continue
+                _, i = axe.query(p0)
+                if not (s_min + 5 < pk[i] < s_max - 5):
+                    continue
+                cote = "gauche" if t2[i, 0] * (p0[1] - A[i, 1]) - t2[i, 1] * (p0[0] - A[i, 0]) > 0 else "droite"
+                dirn = (p1 - p0) / max(np.linalg.norm(p1 - p0), 1e-6)
+                sortant = np.array([-t2[i, 1], t2[i, 0]]) * (1.0 if cote == "gauche" else -1.0)
+                if np.dot(dirn, sortant) < 0.3:          # chemin qui longe la route ou repart de l'autre côté
+                    continue
+                if any(c == cote and abs(s - pk[i]) < Db["doublon_m"] for s, c, _ in debouches):
+                    continue
+                debouches.append((float(pk[i]), cote, dirn))
+    for s_m, cote, dirn in debouches:
+        if not (s_min + 5 < s_m < s_max - 5):
+            continue
+        signe = 1.0 if cote == "droite" else -1.0
+        _, _, t_ = (x[0] for x in bande.point(s_m, 0.0))
+        sortant = np.array([-t_[1], t_[0]]) * (1.0 if cote == "gauche" else -1.0)
+        sortant /= np.linalg.norm(sortant)
+        if dirn is None:
+            a = math.radians(rng.uniform(-15.0, 15.0))
+            dirn = np.array([sortant[0] * math.cos(a) - sortant[1] * math.sin(a), sortant[0] * math.sin(a) + sortant[1] * math.cos(a)])
+        for j in range(int(rng.integers(Db["par_debouche"][0], Db["par_debouche"][1] + 1))):
+            s = s_m + rng.uniform(-Db["le_long_m"], Db["le_long_m"])
+            L, W, prof = gabarit("terre", Db["echelle"], (3.0, 8.5), Lt["fleche_max_m"], s)
+            poser("terre", s, signe * (float(bande.demi(s, cote)[0]) + rng.uniform(*Db["decalage_m"])), L, W, prof, couleur("terre"),
+                  rng.choice([-1.0, 1.0]) * rng.uniform(*Db["biais_deg"]), ordre=j + 1)
+        bord = bande.point(s_m, signe * float(bande.demi(s_m, cote)[0]))[0][0][:2]
+        for _ in range(int(rng.integers(Db["ornieres"][0], Db["ornieres"][1] + 1))):
+            L, W, prof = gabarit("ornieres", Db["ornieres_echelle"], (3.0, 9.0))
+            poser("ornieres", s_m, 0.0, L, W, max(prof, 0.6), couleur("ornieres"), rng.uniform(-10.0, 10.0), direction=dirn,
+                  sur_terrain=bord + dirn * rng.uniform(*Db["ornieres_a_m"]))
+    # 3. épingles : gomme sur la trajectoire, traces de pneus à la sortie (et au freinage des plus fermées)
+    Ep = DETAILS["epingles"]
+    n_epingles = 0
+    with open(OUT / "virages_es.csv", encoding="utf-8") as f:
+        virages = [v for v in csv.DictReader(f) if float(v["rayon_mini_m"]) <= Ep["rayon_max_m"] and float(v["angle_deg"]) >= Ep["angle_min_deg"]]
+    for v in virages:
+        a, b = float(v["pk_debut_m"]), float(v["pk_fin_m"])
+        gauche = v["sens"] == "gauche"
+        fen = (pk >= a) & (pk <= b)                      # sommet : courbure la plus forte dans le sens du virage
+        if not fen.any():
+            continue
+        i = np.flatnonzero(fen)[int(np.argmax(courbure[fen] * (1.0 if gauche else -1.0)))]
+        sc = float(pk[i])
+        a, b = min(a, sc - 8.0), max(b, sc + 8.0)
+        d = Ep["deborde_m"]
+        cote_in = "gauche" if gauche else "droite"
+        s_in = -1.0 if gauche else 1.0                   # signe de oa du côté intérieur
+
+        def trajectoire(s):
+            fr = float(np.interp(s, [a - d, sc, b + d], [Ep["ligne"][0], Ep["ligne"][1], Ep["ligne"][0]]))
+            cote = cote_in if fr > 0 else ("droite" if gauche else "gauche")
+            return s_in * fr * float(bande.demi(s, cote)[0])
+        n_epingles += 1
+        for s in np.linspace(a - d, b + d, int(rng.integers(Ep["gomme"][0], Ep["gomme"][1] + 1))):
+            L, W, prof = gabarit("gomme", Ep["echelle"], Ep["longueur_m"], Ep["fleche_max_m"], s)
+            poser("gomme", float(s), trajectoire(s), L, W, prof, couleur("gomme"), rng.uniform(-5.0, 5.0), ordre=int(rng.integers(1, 3)))
+        sorties = [sc + rng.uniform(0.35, 0.7) * (b + d - sc)]
+        if float(v["angle_deg"]) >= Ep["pneus_angle_min_deg"]:
+            sorties.append(a - d + rng.uniform(0.2, 0.5) * (sc - a + d))
+        for s in sorties:
+            L, W, prof = gabarit("pneus", Ep["pneus_echelle"], (5.0, 11.0), Ep["fleche_max_m"] * 2, s)
+            # la trace du jeu est un arc : son ventre doit être tourné vers l'extérieur du virage
+            poser("pneus", s, trajectoire(s), L, W, prof, couleur("pneus"), rng.uniform(-4.0, 4.0), sens=1.0 if gauche else -1.0, ordre=3)
+    # 4. feuilles mortes du jeu sur l'enrobé
+    F = FEUILLES
+    noms = list(F["maillages"])
+    poids = np.array([F["maillages"][n][0] for n in noms])
+    petits = np.array([not F["maillages"][n][3] for n in noms])
+    enrobe, trait = Sol.de_maillages(chaussee), Sol.de_maillages(marquage)
+    feuilles = []
+    for cote in ("gauche", "droite"):
+        signe = 1.0 if cote == "droite" else -1.0
+        n = int(F["candidats_par_m"] * (s_max - s_min))
+        s = rng.uniform(s_min + 1, s_max - 1, n)
+        h = bande.demi(s, cote)
+        dist = rng.exponential(F["portee_m"], n)
+        ok = dist < h - 0.1
+        s, h, dist = s[ok], h[ok], dist[ok]
+        c = couvert(bande.point(s, signe * (h - dist))[0][:, :2])
+        w = F["fond"] + sum(F["poids"][g] * c[g] for g in F["poids"])
+        w *= 1.0 + F["bonus_interieur"] * force(s, Lt["rayons_m"]) * dedans(s, cote)
+        k = rng.random(len(s)) < np.clip(w, 0.0, 1.0)
+        s, h, dist = s[k], h[k], dist[k]
+        choix = rng.choice(len(noms), len(s), p=poids / poids.sum())
+        loin = ~petits[choix] & (dist > F["bord_m"])       # grandes plaques : seulement près du bord
+        choix[loin] = rng.choice(np.flatnonzero(petits), int(loin.sum()), p=poids[petits] / poids[petits].sum())
+        ech = rng.uniform(*F["echelle"], len(s))
+        # la feuille reste entière sur l'enrobé : son centre à au moins 55 % de son rayon du bord
+        dist = np.maximum(dist, 0.0055 * np.array([F["maillages"][noms[i]][1] for i in choix]) * ech)
+        k = dist < h - 0.1
+        p, nrm, _ = bande.point(s[k], signe * (h[k] - dist[k]))
+        feuilles.append((s[k], p, nrm, choix[k], ech[k]))
+    s = np.concatenate([x[0] for x in feuilles])
+    p = np.concatenate([x[1] for x in feuilles])
+    nrm = np.concatenate([x[2] for x in feuilles])
+    choix = np.concatenate([x[3] for x in feuilles])
+    ech = np.concatenate([x[4] for x in feuilles])
+    lacet = rng.uniform(-180.0, 180.0, len(s))
+    g = m08.to_gltf(p, ref).astype(float)
+    z = enrobe(g[:, 0], g[:, 2])
+    rayon_cm = np.array([F["maillages"][noms[i]][1] for i in choix]) * ech
+    bas_cm = np.array([F["maillages"][noms[i]][2] for i in choix]) * ech
+    # marquage sous la feuille (centre et quatre points à 60 % de son rayon) : posée au-dessus du trait (épaisseur du
+    # trait mesurée au-dessus de l'enrobé en chaque point, pour ne pas compter deux fois le dévers)
+    ep = np.zeros(len(s))
+    for dx, dz in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)):
+        x_, z_ = g[:, 0] + dx * 0.006 * rayon_cm, g[:, 2] + dz * 0.006 * rayon_cm
+        e_ = trait(x_, z_) - enrobe(x_, z_)
+        ep = np.fmax(ep, np.where(np.isfinite(e_), e_, 0.0))
+    ok = np.isfinite(z)
+    z = z + ep + F["au_dessus_m"] + F["part_du_dessous"] * bas_cm / 100.0
+    s, p, nrm, choix, ech, lacet, z = s[ok], p[ok], nrm[ok], choix[ok], ech[ok], lacet[ok], z[ok]
+    g = g[ok]
+    g[:, 1] = z
+    u = Axes.ue(g)
+    nu = np.column_stack([nrm[:, 0], -nrm[:, 1], nrm[:, 2]])          # normale de la chaussée, en Unreal
+    cy, sy = np.cos(np.radians(lacet)), np.sin(np.radians(lacet))
+    nl = np.column_stack([cy * nu[:, 0] + sy * nu[:, 1], -sy * nu[:, 0] + cy * nu[:, 1], nu[:, 2]])   # dans le repère du lacet
+    roulis = np.degrees(np.arcsin(np.clip(nl[:, 1], -1, 1)))
+    tangage = np.degrees(np.arctan2(-nl[:, 0], nl[:, 2]))
+    for j in range(0, len(s), max(1, len(s) // 50)):                # contrôle : l'axe Z de la feuille = normale
+        if np.abs(_axes_ue(tangage[j], lacet[j], roulis[j])[2] - nu[j]).max() > 1e-6:
+            raise SystemExit("détails de la chaussée : feuilles mal couchées sur la chaussée")
+    cat = catalogue_du_jeu()
+    bilan_f, bilan_d = {}, {}
+    for i, nom in enumerate(noms):
+        sel = np.flatnonzero(choix == i)
+        if not len(sel):
+            continue
+        chemin = f"{F['dossier']}/{nom}"
+        fichier = Path("instances") / "feuilles" / f"{nom}.csv"
+        out = P.sortie / fichier
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with open(out, "w", newline="", encoding="utf-8") as fh:
+            wr = csv.writer(fh, lineterminator="\n")
+            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "hauteur_voulue_m", "pk_m", "echelle", "tangage_deg", "roulis_deg"])
+            for j in sel:
+                wr.writerow([j, f"{u[j, 0]:.1f}", f"{u[j, 1]:.1f}", f"{u[j, 2]:.1f}", f"{lacet[j]:.1f}", "1.00", f"{s[j]:.0f}",
+                             f"{ech[j]:.3f}", f"{tangage[j]:.2f}", f"{roulis[j]:.2f}"])
+        el = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Feuilles_{nom}", "maillage_jeu": chemin, "present_au_catalogue": chemin in cat,
+                       "fichier": fichier.as_posix(), "nombre": int(len(sel)), "composant": "HierarchicalInstancedStaticMeshComponent",
+                       "collision": "NoCollision", "hauteur_native_cm": None,
+                       "echelle": "colonne « echelle » de la table, maillage posé tel quel ; couché sur la chaussée (tangage, roulis)",
+                       "distances_de_disparition_cm": F["disparition_cm"], "ombre_dynamique": False, "retirees_sur_chaussee": 0,
+                       "essais": ["complet"]})
+        bilan_f[el["nom"]] = el["nombre"]
+    for role, lst in decalques.items():
+        if not lst:
+            continue
+        chemin = DETAILS["decalques"][role]["materiau"]
+        fichier = Path("instances") / "decalques" / f"{role}.csv"
+        out = P.sortie / fichier
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with open(out, "w", newline="", encoding="utf-8") as fh:
+            wr = csv.writer(fh, lineterminator="\n")
+            wr.writerow(["id", "x_cm", "y_cm", "z_cm", "lacet_deg", "tangage_deg", "roulis_deg", "pk_m", "longueur_cm", "largeur_cm",
+                         "profondeur_cm", "couleur_r", "couleur_v", "couleur_b", "couleur_a", "ordre"])
+            for j, x in enumerate(sorted(lst, key=lambda x: x["s"])):
+                wr.writerow([j, *(f"{v:.1f}" for v in x["ue"]), *(f"{v:.3f}" for v in (x["rot"][1], x["rot"][0], x["rot"][2])),
+                             f"{x['s']:.0f}", *(f"{100 * v:.0f}" for v in (x["long"], x["larg"], x["prof"])),
+                             *(f"{v:.3f}" for v in x["couleur"]), x["ordre"]])
+        el = P.ajoute({"type": "DecalGroup", "nom": f"GC_Decalques_{role}", "materiau_jeu": chemin, "present_au_catalogue": chemin in cat,
+                       "fichier": fichier.as_posix(), "nombre": len(lst), "composant": "DecalActor", "collision": "aucune",
+                       "taille": "longueur = axe Y de la boîte, largeur = axe Z, profondeur = axe X (projection, vers le sol) ; "
+                                 "DecalSize = moitiés, échelle 1", "essais": ["complet"]})
+        bilan_d[el["nom"]] = el["nombre"]
+    print(f"  détails de la chaussée : {sum(bilan_d.values())} décalques ({', '.join(f'{r} {len(v)}' for r, v in decalques.items())}), "
+          f"{n_epingles} épingles, {len(debouches)} débouchés de chemins ; {sum(bilan_f.values())} feuilles mortes")
+    figure_details(ch, decalques, p, choix, ech, s, couvert)
+    return bilan_f, bilan_d
+
+
+def figure_details(ch, decalques, feuilles_l93, choix, ech, pk_feuilles, couvert):
+    """Vue de dessus de contrôle (DETAILS["figure"]) : chaussée, arbres proches, boîtes des décalques, feuilles."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Circle, Polygon as Poly
+    a, b = DETAILS["figure"]["pk"]
+    sel = (ch["pk"] >= a) & (ch["pk"] <= b)
+    G, D = ch["G"][sel, :2], ch["D"][sel, :2]
+    o = np.vstack([G, D]).min(0)
+    lo, hi = np.vstack([G, D]).min(0) - 12, np.vstack([G, D]).max(0) + 12
+    l_, h_ = hi - lo
+    fig, ax = plt.subplots(figsize=(16 * l_ / max(l_, h_) + 1.5, 16 * h_ / max(l_, h_) + 1.0))
+    ax.add_patch(Poly(np.vstack([G, D[::-1]]) - o, closed=True, fc="#b9b9b6", ec="#555", lw=0.6, zorder=1))
+    with open(OUT / "arbres.csv", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            x, y = float(r["x_l93"]), float(r["y_l93"])
+            if lo[0] < x < hi[0] and lo[1] < y < hi[1]:
+                g = DETAILS["couvert"]["essences"].get(r["essence"])
+                col = {"pin": "#2f5d3a", "chene_vert": "#6f8f3f", "chene_pubescent": "#c08a2a"}.get(g, "#8aa")
+                ax.add_patch(Circle((x - o[0], y - o[1]), float(r["diametre_houppier_m"]) / 2, fc=col, alpha=0.13, ec="none", zorder=0))
+    couleurs = {"debris": "#7a5a3a", "aiguilles": "#8c7a2a", "gravillons": "#c8b48a", "terre": "#a0522d", "ornieres": "#5a3d22",
+                "gomme": "#333333", "pneus": "#000000"}
+    vus = {}
+    for role, lst in decalques.items():
+        for x in lst:
+            if not (a - 15 <= x["s"] <= b + 15):
+                continue
+            c, y = x["p"][:2] - o, x["y"]
+            z = np.array([-y[1], y[0]])
+            q = np.array([c + y * x["long"] / 2 + z * x["larg"] / 2, c - y * x["long"] / 2 + z * x["larg"] / 2,
+                          c - y * x["long"] / 2 - z * x["larg"] / 2, c + y * x["long"] / 2 - z * x["larg"] / 2])
+            ax.add_patch(Poly(q, closed=True, fc=couleurs[role], ec=couleurs[role], alpha=0.35, lw=0.8, zorder=2 + x["ordre"] * 0.1))
+            vus[role] = vus.get(role, 0) + 1
+    k = (pk_feuilles >= a) & (pk_feuilles <= b)
+    noms = list(FEUILLES["maillages"])
+    r = np.array([FEUILLES["maillages"][noms[i]][1] for i in choix[k]]) / 100.0 * ech[k]
+    for (x, y), rr in zip(feuilles_l93[k, :2] - o, r):                 # feuilles à leur taille réelle
+        ax.add_patch(Circle((x, y), rr, fc="#d4892a", ec="#8a4f10", lw=0.3, alpha=0.85, zorder=5))
+    for s in np.arange(np.ceil(a / 50) * 50, b + 1, 50):
+        i = int(np.argmin(np.abs(ch["pk"] - s)))
+        ax.annotate(f"PK {s:.0f}", ch["A"][i, :2] - o, fontsize=8, color="#222", ha="center", zorder=6)
+    from matplotlib.lines import Line2D
+    leg = [Line2D([], [], marker="s", ls="", ms=10, mfc=couleurs[r_], mec=couleurs[r_], alpha=0.6, label=f"{r_} ({vus[r_]})")
+           for r_ in couleurs if r_ in vus]
+    leg += [Line2D([], [], marker="o", ls="", ms=6, mfc="#d4892a", mec="none", label=f"feuilles mortes ({int(k.sum())})"),
+            Line2D([], [], marker="o", ls="", ms=10, mfc="#2f5d3a", alpha=0.3, mec="none", label="houppier de pin"),
+            Line2D([], [], marker="o", ls="", ms=10, mfc="#6f8f3f", alpha=0.3, mec="none", label="houppier de chêne vert"),
+            Line2D([], [], marker="o", ls="", ms=10, mfc="#c08a2a", alpha=0.3, mec="none", label="houppier de chêne pubescent")]
+    ax.legend(handles=leg, loc="upper right", fontsize=9, framealpha=0.9)
+    ax.set_aspect("equal")
+    ax.set_xlim(lo[0] - o[0], hi[0] - o[0])
+    ax.set_ylim(lo[1] - o[1], hi[1] - o[1])
+    ax.set_xlabel("m (est)")
+    ax.set_ylabel("m (nord)")
+    ax.set_title(f"Détails de la chaussée, PK {a:.0f} à {b:.0f} : boîtes des décalques du jeu et feuilles mortes (vue de dessus)")
+    ax.grid(alpha=0.2)
+    out = DETAILS["figure"]["fichier"]
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out, dpi=110, bbox_inches="tight", pil_kwargs={"quality": 88})
+    plt.close(fig)
+    print(f"  vue de contrôle : {out}")
 
 
 def mobilier_du_bord(P, ref, pkf, sol, args):
@@ -2915,6 +3506,9 @@ def main():
                     help="jeu : poteaux électriques et câbles, panneaux du rallye, barrières, haie (mobilier_bord_de_route.json)")
     ap.add_argument("--herbes", choices=("jeu", "sans"), default="jeu",
                     help="jeu : touffes d'herbe du jeu sur les bas-côtés (paquet complet seulement) ; sans : aucune")
+    ap.add_argument("--details", choices=("jeu", "sans"), default="jeu",
+                    help="jeu : décalques du jeu sur la chaussée (terre, débris, aiguilles, gravillons, gomme, traces de pneus) "
+                         "et feuilles mortes du jeu (paquet complet seulement) ; sans : aucun")
     ap.add_argument("--glissieres", choices=("jeu", "modele"), default="jeu",
                     help="jeu : glissières métalliques du jeu posées le long de nos tronçons ; modele : nos lisses "
                          "modélisées. L'échantillon garde les nôtres.")
@@ -2987,6 +3581,10 @@ def main():
         bilan_inst.update(pierraille_des_talus(P, ref, Sol(), pkf, ruban))
     if args.herbes == "jeu" and not args.echantillon and args.pk_min is None and (MOD / "sols_jeu" / "sols_jeu.json").exists():
         bilan_inst.update(herbes_du_bord(P, ref, ch, pkf, Sol(), ruban, args))
+    bilan_dec = {}
+    if args.details == "jeu" and not args.echantillon and args.pk_min is None:
+        bilan_f, bilan_dec = details_de_chaussee(P, ref, ch, Sol(), chaussee, marquage, ruban)
+        bilan_inst.update(bilan_f)
     manifeste = {
         "description": f"Paquet d'import Unreal Engine 5.6 de la spéciale {NOM} (scripts/16_paquet_unreal.py)",
         "version": 1, "genere_le": time.strftime("%Y-%m-%d %H:%M"), "echantillon": args.echantillon,
@@ -3019,7 +3617,8 @@ def main():
     }
     manifeste["controle"] = controle(P, sources_paquet)
     manifeste["controle"].update({"terrain": n_terrain, "lointain": n_loin, "groupes": {k: len(v) for k, v in noms.items()},
-                                  "instances": sum(bilan_inst.values()), "duree_s": round(time.time() - t0)})
+                                  "instances": sum(bilan_inst.values()), "decalques": sum(bilan_dec.values()),
+                                  "duree_s": round(time.time() - t0)})
     (sortie / "manifeste.json").write_text(json.dumps(manifeste, ensure_ascii=False, indent=1), encoding="utf-8",
                                            newline="\n")
     print(json.dumps(manifeste["controle"], ensure_ascii=False, indent=1))

@@ -19,6 +19,7 @@ Construit le décor de la spéciale GrandCaunet à partir d'un manifeste produit
   6. arbres, arbustes, piquets : un acteur par maillage du jeu, avec un composant d'instances. Si le relevé
      releves/maillages_vegetation.json existe, le maillage de chaque plante est rechoisi dans le dossier de son
      essence d'après sa taille (attribution.py) : le manifeste les tire au hasard, souches comprises ;
+     décalques du jeu sur la chaussée (groupes « DecalGroup », depuis le 15/11/2026) : un DecalActor par ligne ;
   7. enregistrement, et rapport JSON dans <projet>/Saved/GrandCaunet/.
 
 Utilisation, dans l'éditeur (Outils > Exécuter un script Python, ou console « py ») :
@@ -252,19 +253,40 @@ def v_composant_instances(acteur, nom, mesh):
 
 
 def v_regler_herbes(comp, distances_cm, ombre):
-    """Réglages des herbes du jeu (relevés à Bollène) : disparition progressive avec la distance, pas d'ombre portée."""
+    """Réglages des herbes du jeu (relevés à Bollène) : disparition progressive avec la distance, pas d'ombre portée,
+    et (depuis le 15/11/2026) pas de décalques reçus : les herbes, buissons et feuilles du studio ont bReceivesDecals
+    faux (FoliageType par défaut) ; sinon la terre et la gomme projetées au bord de la chaussée tacheraient leur pied."""
     comp.set_cull_distances(int(distances_cm[0]), int(distances_cm[1]))
     comp.set_editor_property("cast_dynamic_shadow", bool(ombre))
     comp.set_editor_property("affect_distance_field_lighting", False)
+    comp.set_editor_property("receives_decals", False)
 
 
 def v_ajouter_instances(comp, transfos):
     comp.add_instances(transfos, False, True)          # (transforms, renvoyer les indices, espace monde)
 
 
-def v_transfo(pos, lacet, echelle, tangage=0.0):
-    return unreal.Transform(location=unreal.Vector(*pos), rotation=unreal.Rotator(roll=0.0, pitch=tangage, yaw=lacet),
+def v_transfo(pos, lacet, echelle, tangage=0.0, roulis=0.0):
+    return unreal.Transform(location=unreal.Vector(*pos), rotation=unreal.Rotator(roll=roulis, pitch=tangage, yaw=lacet),
                             scale=unreal.Vector(echelle, echelle, echelle))
+
+
+def v_poser_decalque(mi, pos, rotation, demi_taille_cm, couleur, ordre, label, dossier_outliner):
+    """DecalActor du moteur portant une variante de décalque du jeu (désignée par son factice, chargée du jeu en jeu).
+    rotation = (roulis, tangage, lacet) ; demi_taille_cm = DecalSize (moitiés de la boîte : X profondeur de projection,
+    Y longueur, Z largeur), échelle 1. Couleur de décalque (DecalColor, lue par le maître du jeu) et ordre de tri comme
+    dans les niveaux du studio. [à vérifier : noms Python decal, decal_size, sort_order, decal_color]"""
+    eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
+    a = eas.spawn_actor_from_class(unreal.DecalActor, unreal.Vector(*pos),
+                                   unreal.Rotator(roll=rotation[0], pitch=rotation[1], yaw=rotation[2]))
+    a.set_actor_label(label)
+    a.set_folder_path(dossier_outliner)
+    a.set_decal_material(mi)
+    c = a.get_editor_property("decal")
+    c.set_editor_property("decal_size", unreal.Vector(*demi_taille_cm))
+    c.set_editor_property("sort_order", int(ordre))
+    c.set_editor_property("decal_color", unreal.LinearColor(*couleur))
+    return a
 
 
 def v_dossier_saved():
@@ -300,7 +322,8 @@ class Construction:
         self.rapport = {"manifeste": a.manifeste, "etendue": a.etendue, "debut": time.strftime("%Y-%m-%d %H:%M:%S"),
                         "textures": 0, "maillages": 0, "variantes": 0, "acteurs": 0, "instances": 0,
                         "verdicts_bornes": {"conformes": 0, "differents": []}, "alertes": []}
-        self.rapport.update({"variantes_sur_le_modele_du_jeu": 0, "reliefs_plats_ajoutes": 0, "instances_reattribuees": 0})
+        self.rapport.update({"variantes_sur_le_modele_du_jeu": 0, "reliefs_plats_ajoutes": 0, "instances_reattribuees": 0,
+                             "decalques": 0})
         # variante du jeu qui remplace M_Simple comme parent (voir l'en-tête, point 4)
         self.modele = None
         ffile = os.path.join(KIT, "factices.json")
@@ -623,7 +646,7 @@ class Construction:
                         s = float(r["hauteur_voulue_m"]) * 100.0 / h_nat if h_nat and h_nat >= A.PLAT_CM else 1.0
                     reglages[(f"{prefixe}_{choisi}", f"{dossier}/{choisi}")] = e
                     groupes.setdefault((f"{prefixe}_{choisi}", f"{dossier}/{choisi}"), []).append(
-                        v_transfo(p, lacet, s, float(r.get("tangage_deg") or 0.0)))
+                        v_transfo(p, lacet, s, float(r.get("tangage_deg") or 0.0), float(r.get("roulis_deg") or 0.0)))
                     reste -= 1
         for (label, chemin), transfos in sorted(groupes.items()):
             if not v_existe(chemin):
@@ -637,6 +660,37 @@ class Construction:
             v_ajouter_instances(comp, transfos)
             self.rapport["instances"] += len(transfos)
             v_journal(f"{label} : {len(transfos)} instances")
+
+    def decalques(self):
+        """Groupes « DecalGroup » du manifeste (scripts/16_paquet_unreal.py, details_de_chaussee) : un DecalActor par ligne,
+        avec la variante de décalque du jeu telle quelle (terre, débris, aiguilles, gravillons, gomme, traces de pneus),
+        comme les DecalActor des niveaux de Bollène et Sisteron. Aucune collision : un décalque n'en a pas. Le lacet
+        passe au repère de pose comme celui des maillages (rotation autour de la verticale) ; tangage et roulis restent."""
+        pk = self.man["essais"].get(self.a.etendue, {}).get("pk_m")
+        deja = {x.get_actor_label() for x in v_acteurs_du_niveau()}
+        for e in self.el:
+            if e["type"] != "DecalGroup":
+                continue
+            if not v_existe(e["materiau_jeu"]):
+                self.alerte(f"{e['materiau_jeu']} : factice absent (lancer creer_factices.py) ; {e['nom']} ignoré")
+                continue
+            mi = v_charger(e["materiau_jeu"])
+            n = 0
+            with open(self.fichier(e), encoding="utf-8") as f:
+                for r in csv.DictReader(f):
+                    if pk and not (pk[0] <= float(r["pk_m"]) <= pk[1]):
+                        continue
+                    label = f"{e['nom']}_{int(r['id']):03d}"
+                    self.rapport["decalques"] += 1
+                    n += 1
+                    if label in deja:
+                        continue
+                    p, lacet = self.position((float(r["x_cm"]), float(r["y_cm"]), float(r["z_cm"])), float(r["lacet_deg"]))
+                    v_poser_decalque(mi, p, (float(r["roulis_deg"]), float(r["tangage_deg"]), lacet),
+                                     (float(r["profondeur_cm"]) / 2.0, float(r["longueur_cm"]) / 2.0, float(r["largeur_cm"]) / 2.0),
+                                     tuple(float(r[k]) for k in ("couleur_r", "couleur_v", "couleur_b", "couleur_a")),
+                                     int(r["ordre"]), label, "GrandCaunet/Decalques")
+            v_journal(f"{e['nom']} : {n} décalques")
 
     def executer(self):
         a = self.a
@@ -669,6 +723,7 @@ class Construction:
             self.eclairage()
             if not a.sans_instances:
                 self.instances()
+                self.decalques()
             v_enregistrer_niveau()
         unreal.EditorAssetLibrary.save_directory(self.man["chemins"]["racine"], only_if_is_dirty=True, recursive=True)
         return self.fin()

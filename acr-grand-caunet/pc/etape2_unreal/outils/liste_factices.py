@@ -78,7 +78,33 @@ MAILLAGES_POSES = {
     # buissons : attribution.py choisit parmi les quatre d'après la taille de chaque arbuste
     "/Game/Foliage/GroundCover/Willow/SM_Willow_01": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_03a": None,
     "/Game/Foliage/GroundCover/Willow/SM_Willow_03b": None, "/Game/Foliage/GroundCover/Willow/SM_Willow_04a": None,
+    # feuilles mortes posées sur l'enrobé (15/11/2026, scripts/16_paquet_unreal.py, FEUILLES) : bornes lues dans le jeu
+    "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_01": {"min": [-13, -12, -1], "max": [9, 9, 2]},
+    "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_02": {"min": [-15, -14, -1], "max": [13, 10, 3]},
+    "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_03": {"min": [-16, -26, 0], "max": [25, 23, 1]},
+    "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_04": {"min": [-33, -39, -1], "max": [42, 38, 2]},
+    "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_05": {"min": [-69, -48, -1], "max": [64, 50, 2]},
+    "/Game/Foliage/GroundCover/FallenLeaf/FallenLeaf_06": {"min": [-50, -68, 0], "max": [100, 60, 2]},
 }
+# Décalques du jeu posés tels quels sur la chaussée (15/11/2026, scripts/16_paquet_unreal.py, DETAILS) : chaque
+# DecalActor désigne une variante de décalque du jeu ; son factice est une variante sans réglage, fille d'un factice du
+# maître (ou de la variante intermédiaire du jeu). Le jeu charge les vraies, avec leurs programmes d'affichage de
+# décalque. Ordre : parent avant enfant (creer_factices.py crée les variantes dans l'ordre de la liste).
+# Les factices de maîtres sont des matériaux ordinaires (domaine « surface ») : dans l'éditeur, un décalque qui les
+# désigne s'affiche avec le décalque par défaut du moteur ; sans effet sur le jeu, qui charge les vrais maîtres.
+MAITRES_DECALQUES = ["/Game/Environments/RallyShared/Materials/M_MasterDecals_WorldSpace",
+                     "/Game/Environments/AlsaceShared/DecalMaterial/M_MasterDecals"]
+_DEC = "/Game/Environments/AlsaceShared/DecalMaterialInstances"
+DECALQUES_DU_JEU = [  # (variante du jeu, parent dans le jeu)
+    (f"{_DEC}/MI_AsphaltDirtDecalDirtDebree", MAITRES_DECALQUES[0]),
+    ("/Game/Environments/RallyShared/DecalMaterialInstances/MI_PineNeedles", MAITRES_DECALQUES[0]),
+    (f"{_DEC}/MI_AsphaltDirtDecalGravel", MAITRES_DECALQUES[0]),
+    (f"{_DEC}/MI_DirtDecal_MontecarloDirtOnAsphalt", MAITRES_DECALQUES[0]),
+    (f"{_DEC}/MI_DirtDecal_DirtTracks", MAITRES_DECALQUES[0]),
+    (f"{_DEC}/MI_DirtDecal_MontecarloDirtTracks01", f"{_DEC}/MI_DirtDecal_DirtTracks"),
+    (f"{_DEC}/MI_AsphaltDecal_LightRubber", MAITRES_DECALQUES[0]),
+    (f"{_DEC}/MI_AsphaltTiresMarksDecal", MAITRES_DECALQUES[1]),
+]
 AUTRES_MATERIAUX = ["/Game/Environments/RallyShared/Materials/M_TerrainMaster_light",
                     "/Game/Environments/RallyShared/Materials/M_RoadSurface_Layered",
                     "/Game/Environments/RallyShared/Materials/M_AsphaltMaster_Adv"]
@@ -199,6 +225,14 @@ def main():
                "pour": p["pour"], "static_switch": {}, "essai": "E3b", "pourquoi": p["pourquoi"]} for p in parents]
     liste += [{"objet": t, "type": "Texture2D", "essai": "texture du jeu désignée par une de nos variantes (jamais livrée)"}
               for t in textures_jeu]
+    # décalques du jeu sur la chaussée : maîtres (matériaux factices sans paramètre), puis variantes, parent avant enfant
+    deja = {x["objet"] for x in liste}
+    liste += [{"objet": m, "type": "Material", "parametres_texture": [], "parametres_scalaires": [], "parametres_vecteur": [],
+               "domaine_dans_le_jeu": "décalque différé", "essai": "maître des décalques posés sur la chaussée (DecalActor)"}
+              for m in MAITRES_DECALQUES if m not in deja]
+    liste += [{"objet": o, "type": "MaterialInstanceConstant", "parent": p, "role": "decalque_du_jeu", "static_switch": {},
+               "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"}
+              for o, p in DECALQUES_DU_JEU]
     for o in BLUEPRINTS:
         a = (acteurs or {}).get(o)
         x = {"objet": o, "type": "Blueprint", "parent": a["classe_native"] if a else None, "essai": "E2"}

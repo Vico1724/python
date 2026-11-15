@@ -10,7 +10,9 @@ Contrôles :
      permutation propre, et désigne ses deux masques et la carte ; les masques sont des textures virtuelles au même
      format que ceux du jeu (DXT5, dalles de 128 + 4), et leur contenu relu est celui du fichier source ;
   4. les maillages de sol et d'enrobé ont une couleur de sommet nulle ;
-  5. les herbes disparaissent avec la distance et ne portent pas d'ombre, comme celles du jeu.
+  5. les herbes disparaissent avec la distance et ne portent pas d'ombre, comme celles du jeu ;
+  6. les décalques du jeu sur la chaussée : un par ligne du paquet, variantes présentes dans le jeu, taille réglée, et
+     végétation qui ne les reçoit pas.
 Ce script ne prouve pas l'affichage en jeu.
 
 Usage : python pc/etape2_unreal/outils/relire_decor.py [--conteneur Z:/acrxs/unreal/dist] [--paquet paquet_unreal]
@@ -195,6 +197,33 @@ def main():
     absents = [k for k in par if "acr/Content/" + k[len("/Game/"):] + ".uasset" not in tout]
     if absents:
         erreurs.append(f"maillages d'instances absents du jeu : {absents[:3]}")
+    # décalques du jeu sur la chaussée (groupes « DecalGroup », depuis le 15/11/2026) : un DecalActor par ligne, qui désigne
+    # la variante de décalque du jeu (présente dans les archives du jeu, jamais dans notre conteneur) ; et, comme chez le
+    # studio, la végétation à disparition réglée (herbes, buissons, feuilles) ne reçoit pas les décalques
+    groupes_d = [e for e in man["elements"] if e["type"] == "DecalGroup"]
+    if groupes_d:
+        dec = [o for o in j if o["Type"] == "DecalComponent" and (o.get("Properties") or {}).get("DecalMaterial")]
+        par_d = {}
+        for o in dec:
+            k = o["Properties"]["DecalMaterial"]["ObjectPath"].split(".")[0]
+            par_d[k] = par_d.get(k, 0) + 1
+        voulu_d = {}
+        for e in groupes_d:
+            voulu_d[e["materiau_jeu"]] = voulu_d.get(e["materiau_jeu"], 0) + e["nombre"]
+        sans_taille = sum(1 for o in dec if not o["Properties"].get("DecalSize"))
+        recoivent = [o["Properties"]["StaticMesh"]["ObjectPath"].split(".")[0].rsplit("/", 1)[1] for o in hism
+                     if o["Properties"].get("InstanceEndCullDistance") and o["Properties"].get("bReceivesDecals", True)]
+        bilan["niveau"]["decalques"] = {"poses": len(dec), "attendus": sum(voulu_d.values()), "par_materiau": par_d,
+                                        "sans_taille_propre": sans_taille, "vegetation_qui_recoit_les_decalques": sorted(set(recoivent))}
+        if par_d != voulu_d:
+            erreurs.append(f"décalques posés {par_d} au lieu de {voulu_d}")
+        absents_d = [k for k in par_d if "acr/Content/" + k[len("/Game/"):] + ".uasset" not in tout]
+        if absents_d:
+            erreurs.append(f"variantes de décalque absentes du jeu : {absents_d}")
+        if sans_taille:
+            erreurs.append(f"{sans_taille} décalques à la taille par défaut du moteur (DecalSize non réglé)")
+        if recoivent:
+            erreurs.append(f"végétation qui reçoit les décalques : {sorted(set(recoivent))[:3]}")
 
     # sol « façon jeu »
     sol = man.get("sol", {})

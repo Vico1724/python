@@ -326,6 +326,26 @@ class HierarchicalInstancedStaticMeshComponent(_Composant):
     pass
 
 
+class LinearColor:
+    def __init__(self, r=0.0, g=0.0, b=0.0, a=1.0):
+        self.r, self.g, self.b, self.a = float(r), float(g), float(b), float(a)
+
+
+class DecalComponent(_Composant):
+    pass
+
+
+class DecalActor(Actor):
+    _classe = "DecalActor"
+
+    def __init__(self, chemin=None):
+        super().__init__(chemin)
+        self.props["decal"] = DecalComponent()
+
+    def set_decal_material(self, m):
+        self.props["decal"].props["materiau"] = m
+
+
 class _EAS:
     def spawn_actor_from_object(self, o, pos, rot):
         a = Actor()
