@@ -367,12 +367,18 @@
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "pk_debut_m": 4062.5,
-    "pk_fin_m": 4076.0,
+    "pk_fin_m": 4073.0,
     "sans_biseau_debut": true,
     "note": "fin du mur de moellons continu depuis le PK 3972",
     "pk_releve_debut_m": 4053,
     "pk_releve_fin_m": 4066,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+    "avant_le_test_v14": {
+     "decalage_m": null,
+     "pk_fin_m": 4076.0
+    },
+    "decalage_m": 0.15,
+    "controle": "test de la quatorzième version (15/11/2026) : aligné sur le mur 3988-4062,5 (recul 0,15 m au lieu de 0, ressaut de 0,3 m supprimé) ; fin avancée de 4076 à 4073 (relecture_reco_v8.json, endroit 7 : « dernier morceau sorti du champ vers 4073 » ; la paire du PK 4068 montre son bout tout près)."
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -467,7 +473,12 @@
     "pk_fin_m": 4468.0,
     "pk_releve_debut_m": 4449,
     "pk_releve_fin_m": 4470,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+    "avant_le_test_v14": {
+     "decalage_m": null
+    },
+    "decalage_m": 0.1,
+    "controle": "test de la quatorzième version (15/11/2026) : sur ce pont en courbe, trois pavés de collision du parapet droit (PK 4461-4464) entraient de 0,31 à 0,32 m dans le couloir de chaussée de leur constructeur, qui retire tout obstacle à plus de 0,3 m (rapport de la quatorzième version : cinq pavés retirés, jusqu'à 0,34 m) : la voiture traversait le parapet à cet endroit. Recul de 0,1 m (invisible), pour que la collision reste."
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -521,7 +532,12 @@
     "note": "maçonnerie de moellons à chaperon de béton",
     "pk_releve_debut_m": 5527,
     "pk_releve_fin_m": 5567,
-    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+    "calage": "PK corrigé le 14/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté",
+    "avant_le_test_v14": {
+     "decalage_m": null
+    },
+    "decalage_m": 0.1,
+    "controle": "test de la quatorzième version (15/11/2026) : sur ce pont en courbe, trois pavés de collision du parapet droit (PK 5564-5566) entraient de 0,31 à 0,32 m dans le couloir de chaussée de leur constructeur, qui retire tout obstacle à plus de 0,3 m (rapport de la quatorzième version : cinq pavés retirés, jusqu'à 0,34 m) : la voiture traversait le parapet à cet endroit. Recul de 0,1 m (invisible), pour que la collision reste."
    },
    "avant_le_releve_de_reconnaissances": {
     "gauche": {
@@ -1247,8 +1263,12 @@
     "epaisseur_m": 0.4,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 0.3,
-    "sans_biseau_fin": true
+    "decalage_m": 0.15,
+    "sans_biseau_fin": true,
+    "avant_le_test_v14": {
+     "decalage_m": 0.3
+    },
+    "controle": "test de la quatorzième version (15/11/2026) : capture v12_06 (PK ≈ 4080) et paires des PK 4050-4068 : le mur de moellons de l'intérieur de l'épingle faisait un ressaut de 0,3 m en travers au PK 4062,5, où il passe au parapet droit de l'ouvrage 4074 (recul 0,3 m ici, 0 sur l'ouvrage), et sa face côté route se voyait sur 0,9 à 1,1 m : le terrain plonge de 0,1 à 0,5 m sous le bord dans les 30 cm de verge. La reconnaissance montre un mur continu au ras de l'enrobé : recul ramené à 0,15 m, le même que celui du parapet de l'ouvrage qui le prolonge."
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "note": "mur de moellons continu sur 95 m, à l'extérieur du long gauche puis de l'épingle ; se poursuit par le parapet droit de l'ouvrage 4074",
@@ -1503,11 +1523,15 @@
    },
    "droite": {
     "type": "pierre",
-    "hauteur_m": 0.45,
+    "hauteur_m": 0.2,
     "epaisseur_m": 0.4,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 1.5
+    "decalage_m": 1.5,
+    "avant_le_test_v14": {
+     "hauteur_m": 0.45
+    },
+    "controle": "test de la quatorzième version (15/11/2026) : paires des PK 5318-5345 : la reconnaissance montre un muret de pierre sèche d'environ 0,45 m au pied de la haie ; posé à 1,5 m du bord, où le terrain du jeu est 0,25 à 0,45 m sous la chaussée, il en montrait 0,75 à 0,9 m. La hauteur est comptée depuis le bord de chaussée : 0,2 m, soit environ 0,5 m au-dessus du terrain à son pied."
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "note": "muret de pierre sèche d'une propriété ; placé 60 m trop tôt dans l'ancien relevé",
@@ -1697,32 +1721,45 @@
    }
   },
   {
-   "pk_debut_m": 6091.0,
-   "pk_fin_m": 6093.0,
+   "pk_debut_m": 6091.3,
+   "pk_fin_m": 6092.1,
    "route": "D1",
    "gauche": {
     "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances"
    },
    "droite": {
-    "type": "pierre",
-    "hauteur_m": 1.0,
-    "epaisseur_m": 0.4,
+    "type": "beton",
+    "hauteur_m": 0.95,
+    "epaisseur_m": 0.45,
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.3,
-    "sans_biseau_fin": true,
-    "avant_le_test_v12": {
-     "hauteur_m": 1.2,
-     "sans_biseau_debut": null
-    },
     "sans_biseau_debut": true,
-    "controle": "test de la douzième version (14/11/2026) : capture 13 (PK ≈ 6090) : la tête sortait en dalle de 1,2 m, deux fois la hauteur du parapet qu'elle précède, dessus en pente (biseau de 0,6 m sur 2 m de long) : mal raccordée. La paire du PK 6080 montre une tête de moellons à bout franc, à peine plus haute que le parapet : 1,0 m, sans biseau au début (elle se raccordait déjà sans biseau au parapet béton 6093-6111)."
+    "sans_biseau_fin": true,
+    "controle": "test de la quatorzième version (15/11/2026) : capture v12_07 (PK ≈ 6090) : « la tête de moellons est décalée en travers et plus haute que le parapet bas qui la suit, comme un bloc posé à part ». Recadrages de la reconnaissance aux PK 6084-6094 : ce n'est pas un bloc de 2 m le long de la route mais la tête d'un petit ouvrage en travers, perpendiculaire à la chaussée : un about de béton clair côté route (face d'environ 0,6 m vers le trafic, haut d'environ 0,95 m au-dessus du bord) et un mur de moellons en retour vers l'extérieur sur environ 1,3 m, avec une ouverture au pied ; le parapet de béton bas commence juste après, par un biseau. Modélisé en deux pièces (about de béton, retour de moellons) de 0,5 à 0,8 m le long de la route.",
+    "avant_le_test_v14": {
+     "pk_debut_m": 6091.0,
+     "pk_fin_m": 6093.0,
+     "type": "pierre",
+     "hauteur_m": 1.0,
+     "epaisseur_m": 0.4,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 0.3,
+     "sans_biseau_fin": true,
+     "avant_le_test_v12": {
+      "hauteur_m": 1.2,
+      "sans_biseau_debut": null
+     },
+     "sans_biseau_debut": true,
+     "controle": "test de la douzième version (14/11/2026) : capture 13 (PK ≈ 6090) : la tête sortait en dalle de 1,2 m, deux fois la hauteur du parapet qu'elle précède, dessus en pente (biseau de 0,6 m sur 2 m de long) : mal raccordée. La paire du PK 6080 montre une tête de moellons à bout franc, à peine plus haute que le parapet : 1,0 m, sans biseau au début (elle se raccordait déjà sans biseau au parapet béton 6093-6111)."
+    }
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
    "note": "tête de moellons gris, plus haute (≈ 1,2 m), au début du parapet béton droit du ponceau 6100",
-   "troncon": "1/2 : tête de moellons",
+   "troncon": "1/3 : tête, about de béton côté route",
    "avant_la_relecture": {
     "pk_debut_m": 6100,
     "pk_fin_m": 6112,
@@ -1738,7 +1775,31 @@
    }
   },
   {
-   "pk_debut_m": 6093.0,
+   "pk_debut_m": 6091.6,
+   "pk_fin_m": 6092.1,
+   "route": "D1",
+   "gauche": {
+    "type": "aucun",
+    "statut": "vu sur la vidéo de reconnaissances"
+   },
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.95,
+    "epaisseur_m": 1.3,
+    "statut": "vu sur la vidéo de reconnaissances",
+    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+    "decalage_m": 0.75,
+    "sans_biseau_debut": true,
+    "sans_biseau_fin": true,
+    "controle": "voir la pièce 1/3 (about de béton) : retour de moellons de la tête, vers l'extérieur"
+   },
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "note": "tête de moellons gris, plus haute (≈ 1,2 m), au début du parapet béton droit du ponceau 6100",
+   "troncon": "2/3 : tête, retour de moellons vers l'extérieur"
+  },
+  {
+   "pk_debut_m": 6092.1,
    "pk_fin_m": 6111.0,
    "route": "D1",
    "gauche": {
@@ -1752,11 +1813,15 @@
     "statut": "vu sur la vidéo de reconnaissances",
     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
     "decalage_m": 0.3,
-    "sans_biseau_debut": true
+    "avant_le_test_v14": {
+     "pk_debut_m": 6093.0,
+     "sans_biseau_debut": true
+    },
+    "controle": "test de la quatorzième version (15/11/2026) : départ collé à la tête (6092,1) et biseau au début, comme sur la reconnaissance (PK 6093-6096)"
    },
    "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
    "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
-   "troncon": "2/2 : parapet béton",
+   "troncon": "3/3 : parapet béton",
    "avant_la_relecture": {
     "pk_debut_m": 6100,
     "pk_fin_m": 6112,
@@ -1823,13 +1888,18 @@
    "pk_fin_m": 6684.5,
    "route": "D1",
    "gauche": {
-    "type": "beton",
-    "hauteur_m": 0.4,
-    "epaisseur_m": 0.3,
+    "type": "aucun",
     "statut": "vu sur la vidéo de reconnaissances",
-    "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
-    "decalage_m": 1.2,
-    "confiance": "faible : vu de loin seulement"
+    "avant_le_test_v14": {
+     "type": "beton",
+     "hauteur_m": 0.4,
+     "epaisseur_m": 0.3,
+     "statut": "vu sur la vidéo de reconnaissances",
+     "revision": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+     "decalage_m": 1.2,
+     "confiance": "faible : vu de loin seulement"
+    },
+    "controle": "test de la quatorzième version (15/11/2026) : paires des PK 6664-6679 et recadrages de la moitié gauche de la reconnaissance (PK 6662-6678) : aucun parapet à gauche, seulement de la terre rouge, de l'herbe et deux blocs calcaires au ras du bord vers 6662 (relevé « vu de loin seulement ») ; en jeu, une dalle de béton de 0,4 m flottait à 1,2 m du bord au-dessus d'un creux (face visible jusqu'à 1,5 m). Retiré."
    },
    "droite": {
     "type": "aucun",

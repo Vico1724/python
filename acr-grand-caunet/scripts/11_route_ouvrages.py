@@ -906,6 +906,10 @@ def main():
     # --- ouvrages
     meshes_ouv, coll = [], {"pierre": [], "beton": []}
     tableau = []
+    # Deux tabliers détectés peuvent se rattacher à la même entrée (ouvrage 5554 : deux tabliers à moins de 40 m) : un
+    # parapet à bornes relevées (pk_debut_m / pk_fin_m) sortait alors deux fois, superposé à lui-même (maillages et pavés de
+    # collision en double, scintillement). Relevé le 15/11/2026 : on ne le pose qu'une fois.
+    deja_poses = set()
     for d in decks:
         pa, pb = d["pk"]
         cfg = d["cfg"]
@@ -922,6 +926,10 @@ def main():
             # tablier détecté et son prolongement
             s0 = float(p.get("pk_debut_m", pa - p.get("prolongement_avant_m", prol)))
             s1 = float(p.get("pk_fin_m", pb + p.get("prolongement_apres_m", prol)))
+            if (cote, s0, s1) in deja_poses:
+                ligne[cote] += " (déjà posé avec le tablier voisin)"
+                continue
+            deja_poses.add((cote, s0, s1))
             # hors du tablier (prolongement de plus de 3 m, ou recul), le pied descend jusqu'au terrain
             hors = s0 < pa - 3 or s1 > pb + 3 or p.get("decalage_m")
             pcs, cb, _ = parapet(rg, ref, cote, s0, s1, p, mnt=mnt if hors else None)
@@ -936,7 +944,7 @@ def main():
         tableau.append(ligne)
     # parapets hors tablier (relevé vidéo) : pied descendu jusqu'au terrain
     cfg_par = json.loads((REF / "ouvrages_parapets.json").read_text(encoding="utf-8"))
-    hors = []
+    hors, noms_hors = [], set()
     for e in cfg_par.get("parapets_hors_tablier", []):
         for cote in ("gauche", "droite"):
             p = e[cote]
@@ -950,6 +958,9 @@ def main():
                 hors.append(f"{s0:.0f}-{s1:.0f} {cote} paroi rocheuse (collision seule)")
                 continue
             nom = f"PK{s0:.0f}"
+            while f"{nom}_{cote}" in noms_hors:          # deux pièces commencent au même PK arrondi (tête du PK 6091)
+                nom += "b"
+            noms_hors.add(f"{nom}_{cote}")
             meshes_ouv.append(fusion(pcs[corps], f"parapet_hors_tablier_{nom}_{cote}", "blanc" if p.get("peint_en_blanc") else corps))
             if "blanc" in pcs:
                 meshes_ouv.append(fusion(pcs["blanc"], f"parapet_hors_tablier_{nom}_{cote}_des", "blanc"))

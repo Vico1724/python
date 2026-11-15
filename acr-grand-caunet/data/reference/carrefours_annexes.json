@@ -92,6 +92,110 @@
        6243588.0
       ],
       [
+       916742.0,
+       6243591.5
+      ],
+      [
+       916740.0,
+       6243594.5
+      ],
+      [
+       916738.0,
+       6243597.5
+      ],
+      [
+       916736.0,
+       6243600.0
+      ],
+      [
+       916733.5,
+       6243601.4
+      ],
+      [
+       916728.7,
+       6243601.5
+      ],
+      [
+       916732.7,
+       6243596.0
+      ],
+      [
+       916730.5,
+       6243592.0
+      ],
+      [
+       916733.5,
+       6243588.0
+      ],
+      [
+       916735.2,
+       6243585.0
+      ],
+      [
+       916736.0,
+       6243582.0
+      ],
+      [
+       916736.6,
+       6243579.5
+      ],
+      [
+       916736.6,
+       6243572.5
+      ],
+      [
+       916735.3,
+       6243569.6
+      ],
+      [
+       916734.6,
+       6243568.7
+      ]
+     ],
+     "source": "LiDAR HD : bord est = parapet de pierre puis pied du talus (coupes est-ouest tous les 4 m), bord ouest = parapet ouest du ponceau puis fossé du ruisseau ; tablier du ponceau (classe « pont ») de x = 916736,5 à 916745, y = 6243573 à 6243579 ; au-delà de y = 6243596, bord ouest supposé à 7,5 m du bord est (largeur BD TOPO 7 m)",
+     "controle": "test de la quatorzième version (15/11/2026) : le bord nord-est de l'amorce montait de 0,3 à 0,8 m sur le pied du talus est (relief laser : pente de 40 à 51° sous l'enrobé entre (916736 ; 6243602) et (916742,5 ; 6243592)) ; ramené au pied du talus, où le terrain est à moins de 0,2 m de la chaussée (la branche prolongée, scripts/12, repart de ce bord).",
+     "polygone_avant_le_test_v14": [
+      [
+       916748.4,
+       6243557.4
+      ],
+      [
+       916749.0,
+       6243558.3
+      ],
+      [
+       916747.3,
+       6243562.0
+      ],
+      [
+       916746.4,
+       6243566.0
+      ],
+      [
+       916745.6,
+       6243570.0
+      ],
+      [
+       916744.9,
+       6243573.0
+      ],
+      [
+       916744.7,
+       6243579.5
+      ],
+      [
+       916747.3,
+       6243582.0
+      ],
+      [
+       916744.5,
+       6243585.0
+      ],
+      [
+       916744.2,
+       6243588.0
+      ],
+      [
        916742.5,
        6243592.0
       ],
@@ -147,8 +251,7 @@
        916734.6,
        6243568.7
       ]
-     ],
-     "source": "LiDAR HD : bord est = parapet de pierre puis pied du talus (coupes est-ouest tous les 4 m), bord ouest = parapet ouest du ponceau puis fossé du ruisseau ; tablier du ponceau (classe « pont ») de x = 916736,5 à 916745, y = 6243573 à 6243579 ; au-delà de y = 6243596, bord ouest supposé à 7,5 m du bord est (largeur BD TOPO 7 m)"
+     ]
     }
    ],
    "terre_plein": {
@@ -249,12 +352,17 @@
       "a": [
        916749.0,
        6243558.3
-      ]
+      ],
+      "decalage_m": 0.45
      },
      "hauteur_m": 0.6,
      "epaisseur_m": 0.4,
      "type": "pierre",
-     "source": "Street View 3 (parapet bas à droite, au premier plan) et vidéo n° 2 t ≈ 184 s (bloc blanc et panneau bleu à son extrémité nord) ; début exact supposé (tête est du ponceau sous la D3D)"
+     "source": "Street View 3 (parapet bas à droite, au premier plan) et vidéo n° 2 t ≈ 184 s (bloc blanc et panneau bleu à son extrémité nord) ; début exact supposé (tête est du ponceau sous la D3D)",
+     "controle": "test de la quatorzième version (15/11/2026) : posé sur le bord (recul 0), ce muret entrait de 0,45 à 0,77 m dans le couloir de chaussée de leur constructeur aux PK 3637-3640 (RoadCorridor : cercles de la demi-largeur autour de chaque porte ; ici la chaussée s'évase de 0,43 m par mètre vers la patte d'oie, et le cercle de la porte suivante mord de k² w / 2 ≈ 0,7 m sur le bord) : 09 retirait cinq de ses pavés « sur la chaussée » et leur constructeur cinq autres (plus de 0,3 m), et la voiture traversait le muret visible. Recul de 0,45 m (verge devant le muret) : moins de 0,3 m dans ce couloir, la collision reste.",
+     "avant_le_test_v14": {
+      "decalage_m": 0.0
+     }
     },
     {
      "nom": "parapet ouest du ponceau (parapet sombre)",

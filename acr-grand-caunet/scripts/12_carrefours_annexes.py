@@ -21,8 +21,8 @@ Méthode : surfaces = polygones du plan moins la chaussée de la spéciale (ce q
           l'altitude du bord de chaussée le long des fermetures (raccord sans marche) ; sur le
           ponceau, tablier interpolé entre ses deux extrémités (le MNT y est le fond du ruisseau).
 Sorties : data/processed/annexes_revetues.geojson (WGS84), data/processed/balisage.csv,
-          modele/annexes.glb, annexes_collision.glb (enrobé / terre / pierre), balisage.glb,
-          balisage_collision.glb, modele/apercu/{annexes,balisage}.glb,
+          modele/annexes.glb, annexes_collision.glb (enrobé / terre / pierre), balisage.glb (décor seul : plus de
+          balisage_collision.glb depuis le 15/11/2026), modele/apercu/{annexes,balisage}.glb,
           figures/phase4/carrefour_plan.png, carrefour_plongeante.png, carrefour_conducteur_d3d.png
 """
 import csv
@@ -116,6 +116,46 @@ def fabrique_altitude(mnt, fermetures, ponceau):
     return z
 
 
+# Test de la quatorzième version (15/11/2026, capture v12_04, Lion d'Or) : « l'asphalte de la route barrée n'est toujours
+# pas bien fait » ; derrière la fermeture, une marche à face brune verticale coupait la branche de droite. L'amorce est
+# calquée sur le terrain de 08, qui garde contre le ponceau les berges du ruisseau (relief laser 0,4 à 1,1 m sous le tablier
+# contre son bord sud-est, 0,8 m contre son coin nord-ouest) : seul le tablier était à l'altitude de la route, d'où une
+# marche de 0,7 m à ses bords. Aux abords du ponceau, l'enrobé est donc relevé vers le profil du tablier prolongé le long de
+# son axe (relèvement seulement : plein à moins de plein_m du tablier, nul à nul_m) ; les parapets posés sur ces abords
+# suivent. Le relèvement s'efface sur bord_libre_m le long des bords de l'enrobé qui ne sont pas des parapets (terre-plein,
+# fermeture) : le terre-plein n'est pas rendu par le paquet (16 montre le terrain à sa place), le relever aurait mis sous
+# le pied un sol physique invisible ; l'enrobé y retombe donc au terrain, sans marche ni bosse cachée. Le sol physique
+# (annexes_collision.glb) est le même maillage que le rendu.
+RELEVE_PONCEAU = {"plein_m": 1.5, "nul_m": 4.0, "bord_libre_m": 1.5}
+
+
+def releve_ponceau(c, mnt, revetu):
+    """f(XY, Z, terre=False) : Z de l'enrobé relevé vers le profil du tablier prolongé aux abords du ponceau (identité sans
+    ponceau, et pour le terre-plein : terre=True)."""
+    p = c.get("ponceau")
+    if not p:
+        return lambda XY, Z, terre=False: np.asarray(Z, float)
+    a, b = (np.asarray(q, float) for q in p["axe"])
+    za, zb = mnt.z(np.array([a[0], b[0]]), np.array([a[1], b[1]]))
+    tab = Polygon(p["polygone"])
+    murs = shapely.union_all([LineString(q["polyligne"]).buffer(0.3) for q in c.get("parapets", []) if "polyligne" in q])
+    ouvert = revetu.boundary.difference(murs) if not revetu.is_empty else LineString()
+    r = RELEVE_PONCEAU
+
+    def f(XY, Z, terre=False):
+        XY, Z = np.asarray(XY, float), np.asarray(Z, float)
+        if terre:
+            return Z
+        t = np.clip(((XY - a) @ (b - a)) / ((b - a) @ (b - a)), 0, 1)
+        zp = za + t * (zb - za)
+        pts = shapely.points(XY)
+        w = np.clip((r["nul_m"] - shapely.distance(tab, pts)) / (r["nul_m"] - r["plein_m"]), 0, 1)
+        if not ouvert.is_empty:
+            w = w * np.clip(shapely.distance(ouvert, pts) / r["bord_libre_m"], 0, 1)
+        return Z + w * np.maximum(zp - Z, 0)
+    return f
+
+
 # --- surfaces ----------------------------------------------------------------------------------
 def aire_plan(XY, tri):
     u, v = XY[tri[:, 1]] - XY[tri[:, 0]], XY[tri[:, 2]] - XY[tri[:, 0]]
@@ -157,11 +197,12 @@ class SolTerrain:
         return out
 
 
-def maillage_sur_terrain(P, sol, z_de, ref, mat, name, uv_s, lignes, tablier=None):
+def maillage_sur_terrain(P, sol, z_de, ref, mat, name, uv_s, lignes, tablier=None, releve=None, terre=False):
     """Surface calquée sur le terrain de 08 : ses triangles sont découpés par le polygone et relevés
     de SURELEV (rampe de 0 à SURELEV sur 0,5 m depuis les lignes de fermeture, où l'altitude est
     celle du bord de chaussée). Le terrain ne peut donc pas percer la surface. Sur le tablier du
-    ponceau (où le terrain est le lit du ruisseau), triangulation propre à l'altitude du tablier."""
+    ponceau (où le terrain est le lit du ruisseau), triangulation propre à l'altitude du tablier.
+    releve(XY, Z, terre) : relèvement aux abords du ponceau (voir releve_ponceau)."""
     parts = []
     R = P.difference(tablier) if tablier is not None else P
     T = sol.T
@@ -192,6 +233,8 @@ def maillage_sur_terrain(P, sol, z_de, ref, mat, name, uv_s, lignes, tablier=Non
     for L in lignes:
         d = np.minimum(d, shapely.distance(L, pts))
     Z = np.where(d < 0.01, z_de(XY), Z + SURELEV * np.clip(d / 0.5, 0, 1))
+    if releve is not None:
+        Z = releve(XY, Z, terre)
     # fusion des sommets confondus (mêmes x, y au 0,1 mm)
     key = np.round(XY, 4)
     _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
@@ -210,7 +253,9 @@ def maillage_sur_terrain(P, sol, z_de, ref, mat, name, uv_s, lignes, tablier=Non
     parts.append({"pos": pos.astype(np.float32), "nrm": m08.normales(pos, tri), "uv": uv, "idx": tri})
     aire = float(aire_plan(XY, tri).sum())
     if tablier is not None and not P.intersection(tablier).is_empty:
-        sd, a2 = maillage_surface(P.intersection(tablier), lambda XY: np.maximum(z_de(XY), sol.z(XY) + SURELEV), ref, mat, name, uv_s)
+        zt = lambda XY: np.maximum(z_de(XY), sol.z(XY) + SURELEV)                                  # noqa: E731
+        sd, a2 = maillage_surface(P.intersection(tablier), zt if releve is None else (lambda XY: releve(XY, zt(XY), terre)),
+                                  ref, mat, name, uv_s)
         parts.append(sd)
         aire += a2
     out = m11.fusion(parts, name, mat)
@@ -1086,6 +1131,7 @@ PROLONGEMENTS = {
     }],
 }
 MARQUAGE_ANNEXE = {"largeur_m": 0.12, "rive_depuis_bord_m": 0.25, "au_dessus_m": 0.015, "couleur": [0.86, 0.86, 0.84]}
+RECUL_DEPART_M = 4.0     # m : départ du ruban du prolongement en arrière du point de départ, dans l'amorce (voir prolongement)
 
 
 def _axe_bd_topo(cleabs, depart):
@@ -1119,7 +1165,10 @@ def prolongement(e, mnt, ruban, deja, ref, cle, k):
         return [], None, {"non_construit": "troncons BD TOPO introuvables"}
     L = LineString(axe)
     s0 = L.project(Point(e["depart_l93"]))
-    s = np.arange(s0, min(s0 + e["longueur_m"], L.length) + 1e-6, 1.0)
+    # Le ruban part RECUL_DEPART_M en arrière, dans l'amorce, puis en est retranché sans marge : son bout épouse le bord
+    # nord de l'amorce, sommet pour sommet. Jusqu'au 15/11/2026 il partait à angle droit de l'axe au point de départ, à
+    # 2 cm de l'amorce (dont le bord est oblique) : des coins de terrain restaient entre les deux enrobés.
+    s = np.arange(max(s0 - RECUL_DEPART_M, 0.0), min(s0 + e["longueur_m"], L.length) + 1e-6, 1.0)
     C = np.array([L.interpolate(v).coords[0] for v in s])
     T = np.gradient(C, axis=0)
     T /= np.linalg.norm(T, axis=1, keepdims=True)
@@ -1155,7 +1204,7 @@ def prolongement(e, mnt, ruban, deja, ref, cle, k):
     w = e["largeur_m"] + (e["largeur_depart_m"] - e["largeur_m"]) * np.clip(1 - (s - s0) / e["raccord_m"], 0, 1)
     G, D = C + N * (w / 2)[:, None], C - N * (w / 2)[:, None]
     poly = Polygon(np.vstack([G, D[::-1]])).buffer(0)
-    poly = poly.difference(ruban.buffer(0.3)).difference(deja.buffer(0.02))
+    poly = poly.difference(ruban.buffer(0.3)).difference(deja)
     poly = max(getattr(poly, "geoms", [poly]), key=lambda g: g.area)
     sol = SolTerrain(ref, poly.buffer(3).bounds)
     couvert = shapely.union_all(sol.tris[shapely.intersects(sol.tris, poly)]) if len(sol.tris) else Polygon()
@@ -1250,11 +1299,12 @@ def main():
         lignes = [LineString(F[:, :2]) for F in lignes3]
         tab = Polygon(ponceau["polygone"]) if ponceau else None
         aire_enr = aire_ter = 0.0
+        releve = releve_ponceau(c, mnt, revetu)
         for P_, mat_, nm_, uv_ in ((revetu, "enrobe", f"enrobe_{cle}", m11.S_ENROBE), (terre, "terre", f"terre_plein_{cle}", 2.0)):
             if P_.is_empty:
                 continue
             if sol is not None:
-                sm, a2 = maillage_sur_terrain(P_, sol, z_de, ref, mat_, nm_, uv_, lignes, tab)
+                sm, a2 = maillage_sur_terrain(P_, sol, z_de, ref, mat_, nm_, uv_, lignes, tab, releve, terre=mat_ == "terre")
             else:
                 sm, a2 = maillage_surface(P_, z_de, ref, mat_, nm_, uv_)
             m_ann.append(sm)
@@ -1297,7 +1347,8 @@ def main():
                 lb = p["le_long_du_bord"]
                 s0, s1 = (pk_du_bord(ch, lb[k], lb["cote"], pk0, pk1) for k in ("de", "a"))
                 _, E, n = bord_3d(rg, s0, s1, lb["cote"], 1.0)
-                P, sortant, zp = E[:, :2], n, E[:, 2]
+                # "decalage_m" : recul de la face intérieure derrière le bord (voir carrefours_annexes.json)
+                P, sortant, zp = E[:, :2] + n * float(lb.get("decalage_m", 0.0)), n, E[:, 2]
             else:
                 L_ = shapely.LineString(p["polyligne"]).difference(ruban.buffer(0.05))   # jamais sur la chaussée de la spéciale
                 if L_.is_empty:
@@ -1305,7 +1356,7 @@ def main():
                 L_ = max(shapely.get_parts(L_), key=lambda g: g.length)
                 P = np.asarray(L_.segmentize(1.0).coords)
                 sortant = normales_sortantes(P, revetu)
-                zp = z_de(P)
+                zp = releve(P, z_de(P))                       # pied à l'altitude de l'enrobé relevé près du ponceau
             zb = np.minimum(mnt.z(*(P + sortant * p["epaisseur_m"]).T), zp) - 0.3
             if ponceau:
                 # sur le ponceau : le parapet descend jusqu'au fond (tête de ponceau maçonnée), sauf au droit du
@@ -1352,8 +1403,10 @@ def main():
         for k, v in mb.items():
             if v:
                 m_bal.append(m11.fusion(v, f"balisage_{cle}_{k}", k))
-        if mb["piquet"]:
-            m_bcoll.append(m11.fusion(mb["piquet"], f"piquets_{cle}", "plastique_piquet"))
+        # Plus de collision pour les piquets depuis le test de la quatorzième version (15/11/2026, Lion d'Or : « un mur
+        # invisible empêche de prendre le virage », au niveau des piquets). Un piquet de rubalise est un tube de plastique
+        # qui plie ou casse : en capsule fixe de 2 cm il arrêtait net la voiture qui coupe l'intérieur. Comme les rubalises
+        # de mobilier_bord_de_route.json et celles des spéciales du jeu, le balisage n'est plus qu'un décor.
         for b in lignes_b:
             lignes_csv.append({**b, "carrefour": nom})
         # geojson WGS84
@@ -1409,7 +1462,8 @@ def main():
             mc = {"enrobe": {"color": [0.3, 0.3, 0.3]}, "terre": {"color": [0.47, 0.39, 0.29]}, "pierre": {"color": [0.6, 0.58, 0.54]},
                   "plastique_piquet": {"color": [0.92, 0.92, 0.92]}, **ZD_COLLISION}
             m11.ecrire_glb(dossier / "annexes_collision.glb", m_coll, mc)
-            m11.ecrire_glb(dossier / "balisage_collision.glb", m_bcoll, mc)
+            if m_bcoll:
+                m11.ecrire_glb(dossier / "balisage_collision.glb", m_bcoll, mc)
     for f in ("balisage_collision.glb",):                   # le balisage n'a plus de barrières
         if not m_bcoll and (MOD / f).exists():
             (MOD / f).unlink()

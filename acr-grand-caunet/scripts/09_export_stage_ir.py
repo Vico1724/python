@@ -7,7 +7,8 @@ partir de DiRT Rally 2.0 ; ici il est produit à partir de nos propres mesures.
 Entrées : data/processed/chaussee_precise.csv (axe et bords au mètre), points_officiels_recales.csv,
           ouvrages_es.csv, annexes_revetues.geojson, modele/terrain.glb (étape 8), data/raw/mnt_lidarhd_50cm.tif
           (repérage des ponts) ; facultatifs : modele/annexes_collision.glb (étape 12, surfaces des carrefours),
-          modele/ouvrages_collision.glb (étape 11, parapets et murs), modele/annexes_collision.glb (parapets du carrefour) et modele/balisage_collision.glb (étape 12)
+          modele/ouvrages_collision.glb (étape 11, parapets et murs), modele/annexes_collision.glb (parapets du carrefour) et
+          modele/balisage_collision.glb (étape 12 ; plus écrit depuis le 15/11/2026 : les piquets de rubalise n'arrêtent plus la voiture)
 Sorties (export/stage_ir/grand_caunet/) :
   stage.json             tout sauf la géométrie : identité, longueurs, repère, axe, portes (tous les ~10 m),
                          chronométrage, zone d'arrêt, reprise en piste, sol physique, surfaces, obstacles
@@ -60,6 +61,17 @@ STAGE_ID = "grand_caunet_rally_01_route_0"         # forme <lieu>_rally_<nn>_rou
 NOM = "Le Grand Caunet"
 PAS_PORTES = 10.0                                  # m
 TOL_PORTES = 0.25                                  # m : écart toléré entre la corde de deux portes et l'axe ou un bord
+# Murs de reprise. Leur constructeur (acr-ref : StageBuild.cs, ContourPush = 20 m ; Respawn.cs, Relay) recouche les 837
+# murs de reprise du jeu hôte (déclencheurs invisibles de 20 m qui ramènent la voiture sur la route) bout à bout le long
+# d'un contour fait des deux bouts de chaque porte repoussés de 20 m dans la direction axe -> bout ; il n'enfonce que
+# ceux qui passent à moins de 3 m de la chaussée. Test de la quatorzième version (15/11/2026, Lion d'Or, à l'intérieur
+# du carrefour, à droite) : « un mur invisible empêche de prendre le virage ». Les rangs de chaussee_precise.csv y
+# relient l'axe au coin du terre-plein en éventail (bouts droits biaisés de 34 à 55° sur la normale de l'axe, PK 3661 à
+# 3684) : repoussé le long de ces portes, le contour retombait dans le terre-plein à 2,7-10 m du bord droit (un mur
+# gardé à 6,0 m d'après le rapport de construction). Un bout de porte biaisé de plus de BIAIS_MAX_DEG est donc reporté
+# sur la normale de l'axe, à son intersection avec le même bord ; le contour y passe à plus de 15 m de la chaussée.
+CONTOUR_POUSSEE_M, REPRISE_DEGAGEMENT_M = 20.0, 3.0
+BIAIS_MAX_DEG = 20.0
 ACCOTEMENT = 3.0                                   # m au-delà du bord de chaussée : code DBK+
 CODES = {                                          # code -> (matériau physique ACR, description)
     "TSD+": ("PM_SurfaceTarmacSmooth", "chaussée en enrobé (ruban de route mesuré) et enrobé annexe des carrefours"),
@@ -662,6 +674,119 @@ def portes_adaptees(garde, courbes, dist):
     return np.array(garde)
 
 
+def bords_normaux(ch):
+    """Bords gauche et droit (Lambert-93 + altitude, un point par rang) où le contour des murs de reprise retomberait près
+    de la chaussée. Un point biaisé de plus de BIAIS_MAX_DEG sur la normale de l'axe (tangente sur ±5 rangs), dont le point
+    repoussé de CONTOUR_POUSSEE_M tombe à moins de 15 m du ruban alors que celui de l'intersection de la normale avec le
+    même bord en tomberait à plus d'un mètre de plus, est reporté à cette intersection. Le report se fait le long du bord
+    (abscisse curviligne), atténué en cosinus sur RACCORD_RANGS rangs de part et d'autre du bloc : les bouts restent dans
+    l'ordre et sur le bord. Les biais de l'intérieur des virages, sans effet sur le contour, sont gardés (y redresser les
+    portes les ferait se croiser). Renvoie (G, D, bilan)."""
+    RACCORD_RANGS = 10
+    A = ch["A"]
+    n_r = len(A)
+    ruban = shapely.union_all([shapely.make_valid(q) for q in shapely.polygons(
+        np.stack([ch["G"][:-1, :2], ch["G"][1:, :2], ch["D"][1:, :2], ch["D"][:-1, :2]], axis=1))])
+    shapely.prepare(ruban)
+
+    def pousse(e, i):
+        d = e - A[i, :2]
+        return e + d * CONTOUR_POUSSEE_M / max(float(np.linalg.norm(d)), 1e-9)
+
+    def normale(E, S, i):
+        """(biais en degrés, abscisse curviligne sur le bord de l'intersection de la normale, ou None)."""
+        t = A[min(i + 5, n_r - 1), :2] - A[max(i - 5, 0), :2]
+        t /= np.linalg.norm(t)
+        d = E[i, :2] - A[i, :2]
+        w = float(np.linalg.norm(d))
+        if w < 0.05:
+            return 0.0, None
+        nrm = np.array([-t[1], t[0]])
+        nrm *= np.sign(float(d @ nrm)) or 1.0
+        a, b = max(i - 80, 0), min(i + 81, n_r)
+        bord = shapely.LineString(E[a:b, :2])
+        x = shapely.LineString([A[i, :2], A[i, :2] + nrm * max(3.0 * w, 30.0)]).intersection(bord)
+        pts = [np.asarray(g.coords[0]) for g in shapely.get_parts(x) if g.geom_type == "Point"]
+        biais = float(np.degrees(np.arcsin(min(1.0, abs(float(d @ t)) / w))))
+        if not pts:
+            return biais, None
+        q = min(pts, key=lambda p: float(np.linalg.norm(p - A[i, :2])))
+        return biais, S[a] + bord.project(shapely.Point(q))
+    out, bilan = [], {"biais_max_deg": BIAIS_MAX_DEG, "rangs_corriges": {}, "pk": {}, "report_max_le_long_du_bord_m": {}}
+    for nom, E in (("gauche", ch["G"]), ("droite", ch["D"])):
+        S = np.concatenate([[0.0], np.cumsum(np.hypot(*np.diff(E[:, :2], axis=0).T))])
+        dS, bloc = np.zeros(n_r), np.zeros(n_r, bool)
+        for i in range(n_r):
+            biais, s_q = normale(E, S, i)
+            if biais <= BIAIS_MAX_DEG or s_q is None:
+                continue
+            ecart = float(shapely.distance(ruban, shapely.Point(pousse(E[i, :2], i))))
+            if ecart >= 15.0:
+                continue
+            q = np.array([np.interp(s_q, S, E[:, 0]), np.interp(s_q, S, E[:, 1])])
+            if float(shapely.distance(ruban, shapely.Point(pousse(q, i)))) > ecart + 1.0:
+                dS[i], bloc[i] = s_q - S[i], True
+        if bloc.any():
+            # raccords : de part et d'autre de chaque bloc, report de la normale atténué en cosinus
+            idx = np.flatnonzero(bloc)
+            for grp in np.split(idx, np.flatnonzero(np.diff(idx) > 1) + 1):
+                for sens, bout in ((-1, grp[0]), (1, grp[-1])):
+                    for k in range(1, RACCORD_RANGS + 1):
+                        i = bout + sens * k
+                        if not 0 <= i < n_r or bloc[i]:
+                            break
+                        _, s_q = normale(E, S, i)
+                        ref_ = (s_q - S[i]) if s_q is not None else dS[bout]
+                        dS[i] = ref_ * 0.5 * (1 + np.cos(np.pi * k / (RACCORD_RANGS + 1)))
+        s2 = S + dS
+        E2 = E.copy()
+        mv = np.flatnonzero(dS != 0)
+        if len(mv):
+            E2[mv] = np.column_stack([np.interp(s2[mv], S, E[:, k]) for k in range(3)])
+        if np.any(np.diff(s2) < -1e-6):
+            raise SystemExit(f"bords_normaux : bord {nom} non monotone après report (PK "
+                             f"{ch['pk'][int(np.argmin(np.diff(s2)))]:.0f})")
+        bilan["rangs_corriges"][nom] = int(len(mv))
+        bilan["pk"][nom] = [round(float(ch["pk"][mv].min()), 1), round(float(ch["pk"][mv].max()), 1)] if len(mv) else None
+        bilan["report_max_le_long_du_bord_m"][nom] = round(float(np.abs(dS).max()), 2)
+        out.append(E2)
+    return out[0], out[1], bilan
+
+
+def contour_de_reprise(stage):
+    """Contour des murs de reprise tel que leur constructeur le trace (StageBuild.cs : bouts des portes repoussés de
+    CONTOUR_POUSSEE_M dans la direction axe -> bout, côté gauche puis côté droit en retour) et son écart au couloir de la
+    chaussée (Couloir, même calcul que RoadCorridor). Rapport : écart minimal et tronçons à moins de 15 m (les murs n'y
+    sont enfoncés qu'à moins de REPRISE_DEGAGEMENT_M)."""
+    cen = np.array(stage["centreline"])[:, [0, 2]]
+    pk = np.array([g["pk_m"] for g in stage["gates"]])
+    bouts = []
+    for cote in ("left", "right"):
+        E = np.array([g[cote] for g in stage["gates"]])[:, [0, 2]]
+        d = E - cen
+        n = np.linalg.norm(d, axis=1, keepdims=True)
+        bouts.append(np.where(n < 0.01, E, E + d * CONTOUR_POUSSEE_M / np.maximum(n, 1e-9)))
+    boucle = np.vstack([bouts[0], bouts[1][::-1], bouts[0][:1]])
+    pk_b = np.concatenate([pk, pk[::-1], pk[:1]])
+    abs_ = np.concatenate([[0.0], np.cumsum(np.linalg.norm(np.diff(boucle, axis=0), axis=1))])
+    s = np.arange(0.0, abs_[-1], 1.0)
+    P = np.column_stack([np.interp(s, abs_, boucle[:, 0]), np.interp(s, abs_, boucle[:, 1])])
+    pkp = np.interp(s, abs_, pk_b)
+    couloir = Couloir(stage)
+    c = np.array([couloir.clearance(x, z)[0] for x, z in P])
+    pres = np.flatnonzero(c < 15.0)
+    troncons = []
+    for grp in np.split(pres, np.flatnonzero(np.diff(pres) > 1) + 1) if len(pres) else []:
+        k = grp[int(np.argmin(c[grp]))]
+        troncons.append({"cote": "gauche" if s[k] < abs_[len(pk) - 1] else "droite", "pk_m": [round(float(pkp[grp].min())), round(float(pkp[grp].max()))],
+                         "longueur_m": int(len(grp)), "ecart_min_m": round(float(c[k]), 2)})
+    return {"poussee_m": CONTOUR_POUSSEE_M, "longueur_m": round(float(abs_[-1]), 1),
+            "note": "les bouts du contour croisent la chaussée aux deux extrémités du ruban (PK de la première et de la dernière "
+                    "porte) : leur constructeur y enfonce le mur ; ailleurs, un tronçon à moins de 15 m est un mur de reprise "
+                    "invisible près de la route",
+            "troncons_a_moins_de_15_m": troncons}
+
+
 def retirer_sur_chaussee(stage, prims):
     """Retire les obstacles que leur constructeur supprimerait (ObjectColliders.Build : plus de 0,3 m dans le
     corridor, à hauteur de voiture, au-dessus de l'enrobé) et les liste ; c'est le signe que le balisage ou un
@@ -862,7 +987,8 @@ def appliquer_retouches(vir, cfg, pk_fin):
 # --- stage.json --------------------------------------------------------------------------
 def construire(ch, ref, prims, deck, obst, rap_sol):
     pk = ch["pk"]
-    A, G, D = vers_ir(ch["A"], ref), vers_ir(ch["G"], ref), vers_ir(ch["D"], ref)
+    G_l93, D_l93, bilan_bords = bords_normaux(ch)                 # bouts des portes sur la normale de l'axe (murs de reprise)
+    A, G, D = vers_ir(ch["A"], ref), vers_ir(G_l93, ref), vers_ir(D_l93, ref)
     dist = np.concatenate([[0.0], np.cumsum(np.linalg.norm(np.diff(A, axis=0), axis=1))])   # 3D, au mètre
     es = np.flatnonzero(ch["zone"] == "es")
     i_dep, i_arr = int(np.argmin(np.abs(pk))), int(es[-1])
@@ -999,6 +1125,7 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
                                            "ecart_au_point_officiel_m": round(spl[nom][1], 1),
                                            "sur_un_pont": spl[nom][0] in deck_rows} for nom in SPLITS},
             "point_stop_pk_m": round(float(pk[i_stop]), 1),
+            "portes_bouts_sur_la_normale": bilan_bords,
             "sol": rap_sol["annexes"],
             "obstacles": obst[3],
             "manquant": ["objects : ni arbres, ni rochers, ni panneaux (seuls parapets, murs et balisage)",
@@ -1449,6 +1576,9 @@ def main():
     else:
         (DOSSIER / "objects_collision.glb").unlink(missing_ok=True)
     stage, vir = construire(ch, ref, prims, deck, obst, rap_sol)
+    stage["export"]["contour_de_reprise"] = cr = contour_de_reprise(stage)
+    print(f"contour des murs de reprise ({cr['longueur_m']} m) : tronçons à moins de 15 m de la chaussée :",
+          [(t["cote"], t["pk_m"], t["ecart_min_m"]) for t in cr["troncons_a_moins_de_15_m"]])
     if stage["objects"]:
         retirer_sur_chaussee(stage, prims)
         ecrire_glb(DOSSIER / "objects_collision.glb", volumes_retenus(stage, obst), nom="objects_collision")
