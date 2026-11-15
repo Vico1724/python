@@ -49,11 +49,12 @@ Il relève en revanche des défauts, corrigés depuis : chaussée pliée aux pon
 
 ## 5. Revenir en arrière
 
-Vingt-deux versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
+Vingt-trois versions sont gardées sur le PC. Chacune est rangée avec la route physique qui va avec elle, et le script installe les deux ensemble.
 
 | Version | Contenu |
 |---|---|
-| `sol_jeu` (installée) | seizième version, du 15 novembre à 18 h 15 : habillage de la chaussée avec les décalques du jeu (terre, aiguilles, gravillons, gomme, traces) et feuilles mortes, feux des véhicules garés éteints ; route physique de la quinzième (inchangée) ; jamais vue en jeu |
+| `sol_jeu` (installée) | dix-septième version, du 15 novembre à 22 h 22 : la seizième avec trois fois moins de débris sur la chaussée ; jamais vue en jeu |
+| `sol_jeu_vu_le_15_11_soir` | seizième version, vue en jeu le 15 novembre au soir (feux éteints confirmés, trop de débris), du 15 novembre à 18 h 15 : habillage de la chaussée avec les décalques du jeu (terre, aiguilles, gravillons, gomme, traces) et feuilles mortes, feux des véhicules garés éteints ; route physique de la quinzième (inchangée) ; jamais vue en jeu |
 | `sol_jeu_cycle15_du_15_11` | quinzième version, du 15 novembre à 3 h 29 : personnages sans étiquette de parc d'assistance, mur invisible du Lion d'Or supprimé, piquets sans collision, branche barrée raccordée au ponceau, parapets corrigés ; jamais vue en jeu |
 | `sol_jeu_vu_le_15_11_nuit` | quatorzième version, vue en jeu le 15 novembre vers 0 h 45, du 14 novembre à 22 h 41 : commissaires et public du jeu, zones de départ et d'arrivée du jeu rétablies, parois posées sur le talus et plus détaillées, murs de la zone de départ en matière du jeu, parking aplani, véhicules colorés, route barrée du Lion d'Or en enrobé ; jamais vue en jeu |
 | `sol_jeu_vu_le_14_11_20h` | treizième version, vue en jeu le 14 novembre vers 20 h, du 14 novembre à 19 h 32 : murs hauts redevenus parois rocheuses, parapets corrigés, tablier des ponts sous la chaussée, parois plus fines, zone de départ recolorée, parking en gravier, véhicules et décor de course, branche fermée du Lion d'Or prolongée ; jamais vue en jeu |
