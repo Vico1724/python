@@ -2179,6 +2179,9 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
 # sur l'enrobé, surtout au bord et sous les chênes. Rien de tout cela n'a de collision ; la physique de la route
 # (09_export_stage_ir.py) n'en sait rien.
 DECALQUES = "/Game/Environments/AlsaceShared/DecalMaterialInstances"
+# Essai de la seizième version (15/11/2026) : « trop de débris, et parfois non pertinents sur la piste ». Densités réduites
+# à environ un tiers (litière 26 -> 8 paquets par km, aires, débouchés des seuls chemins empierrés de l'IGN, gomme dans
+# les épingles, traces de pneus dans les seules épingles de plus de 150 degrés).
 DETAILS = {
     "graine": SEED + 31,
     # rôle -> variante de décalque du jeu ; gabarits (longueur, largeur, profondeur de la boîte, cm) et couleurs de décalque
@@ -2213,7 +2216,7 @@ DETAILS = {
     # surtout à leur intérieur, comme chez le studio). Décalage du centre au bord : positif vers l'extérieur ; dans un
     # virage serré, à l'intérieur, la bande mord plus sur l'enrobé (vers_l_interieur_m). Longueur bornée pour que la
     # boîte droite ne s'écarte pas de plus de fleche_max_m du bord courbe.
-    "litiere": {"par_km": 26.0, "par_groupe": (2, 4), "ecart_min_m": 30.0, "echelle": (0.55, 0.8), "longueur_m": (4.5, 11.0),
+    "litiere": {"par_km": 8.0, "par_groupe": (1, 3), "ecart_min_m": 30.0, "echelle": (0.55, 0.8), "longueur_m": (4.5, 11.0),
                 "largeur_min_m": 1.6, "fleche_max_m": 0.35, "recouvrement": 0.7, "biais_deg": 7.0, "fond": 0.25,
                 "bonus_virage": 1.0, "bonus_interieur": 3.0, "rayons_m": (25.0, 90.0), "decalage_m": (0.0, 0.6),
                 "vers_l_interieur_m": (0.3, 0.9), "part_aiguilles": 0.85, "couvert_min": 0.15},
@@ -2223,20 +2226,20 @@ DETAILS = {
                              "chêne pubescent": "chene_pubescent", "olivier": "feuillu"}},
     # aires de data/reference/aires_et_pistes.json : gravillons (aire de pierre) ou terre (aire de terre) répandus sur le
     # bord de l'enrobé devant l'aire, débordant de deborde_m de chaque côté
-    "aires": {"par_m": 1 / 9.0, "max": 4, "deborde_m": 2.0, "decalage_m": (-0.7, 0.1), "echelle": (0.55, 0.75), "biais_deg": 6.0,
+    "aires": {"par_m": 1 / 22.0, "max": 2, "deborde_m": 2.0, "decalage_m": (-0.7, 0.1), "echelle": (0.55, 0.75), "biais_deg": 6.0,
               "longueur_m": (4.0, 9.5)},
     # débouchés de chemins (pistes de aires_et_pistes.json et chemins de la BD TOPO qui touchent la route) : terre et
     # cailloux de biais sur l'enrobé, ornières sur le chemin (pas sur un talus de plus de pente_max_deg)
-    "debouches": {"par_debouche": (2, 4), "biais_deg": (20.0, 55.0), "le_long_m": 3.0, "decalage_m": (-1.6, 0.2),
+    "debouches": {"par_debouche": (1, 2), "biais_deg": (20.0, 55.0), "le_long_m": 3.0, "decalage_m": (-1.6, 0.2),
                   "echelle": (0.75, 1.0), "ornieres": (1, 2), "ornieres_a_m": (3.5, 6.5), "ornieres_echelle": (0.7, 0.9),
-                  "pente_max_deg": 14.0, "ign": ("Route empierrée", "Chemin"), "ign_distance_m": 6.0, "doublon_m": 20.0},
+                  "pente_max_deg": 14.0, "ign": ("Route empierrée",), "ign_distance_m": 6.0, "doublon_m": 20.0},
     # épingles (data/processed/virages_es.csv, sommet recalé sur la courbure de chaussee_precise.csv) : gomme le long de la
     # trajectoire (extérieur à l'entrée, corde, extérieur à la sortie : part de la demi-largeur, négatif = extérieur) et
     # traces de pneus noires à la sortie (et au freinage dans les plus fermées). Sommet recalé dans les bornes du virage
     # et dans son sens (deux épingles s'enchaînent aux PK 2179-2258 et 2260-2346)
-    "epingles": {"rayon_max_m": 22.0, "angle_min_deg": 70.0, "gomme": (3, 5), "deborde_m": 6.0, "ligne": (-0.45, 0.55),
+    "epingles": {"rayon_max_m": 22.0, "angle_min_deg": 70.0, "gomme": (1, 2), "deborde_m": 6.0, "ligne": (-0.45, 0.55),
                  "echelle": (0.6, 0.8), "fleche_max_m": 0.5, "longueur_m": (4.0, 8.5), "pneus_echelle": (0.55, 0.7),
-                 "pneus_angle_min_deg": 120.0},
+                 "pneus_angle_min_deg": 150.0},
     "lissage_courbure_m": 15.0,
     "figure": {"pk": (2100.0, 2400.0), "fichier": FIG / "apercu_lointain" / "details_chaussee.jpg"},
 }
