@@ -498,7 +498,7 @@
   },
   "vehicule_fourgon": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/VanA/SM_VanCrew",
-   "description": "fourgon à vitres latérales (enfoncé de 10 cm : au départ il est posé sur le pied du talus, 0,2 à 0,3 m de dévers sous sa largeur), carrosserie gris bleuté (6,1 x 2,6 x 2,7 m) : véhicule de secours du départ (le VPSP réel est jaune et bleu, le jeu n'en a pas). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "fourgon à vitres latérales (enfoncé de 10 cm : au départ il est posé sur le pied du talus, 0,2 à 0,3 m de dévers sous sa largeur), carrosserie gris bleuté (6,1 x 2,6 x 2,7 m) : véhicule de secours du départ (le VPSP réel est jaune et bleu, le jeu n'en a pas). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.1,
    "bornes_cm": {
@@ -524,7 +524,7 @@
   },
   "vehicule_organisation": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/SecurityCarA/SM_SecurityCarA",
-   "description": "voiture d'organisation du jeu, livrée rouge sombre à bandes orange et blanches (5,1 x 2,2 x 1,8 m) : rend le véhicule orange d'intervention garé à l'entrée de la GC 107. véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "voiture d'organisation du jeu, livrée rouge sombre à bandes orange et blanches (5,1 x 2,2 x 1,8 m) : rend le véhicule orange d'intervention garé à l'entrée de la GC 107. véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -550,7 +550,7 @@
   },
   "voiture_citadine": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/HatchbackA/SM_HatchbackA",
-   "description": "citadine gris clair (4,4 x 2,0 x 1,5 m). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "citadine gris clair (4,4 x 2,0 x 1,5 m). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -576,7 +576,7 @@
   },
   "voiture_monospace": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/MpvA/SM_MpvA",
-   "description": "monospace / SUV gris (5,0 x 2,2 x 1,9 m) : voiture des chronométreurs de l'arrivée. véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "monospace / SUV gris (5,0 x 2,2 x 1,9 m) : voiture des chronométreurs de l'arrivée. véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -602,7 +602,7 @@
   },
   "voiture_garee_citadine": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/HatchbackA/SM_HatchbackA",
-   "description": "voiture gris clair garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "voiture gris clair garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -627,7 +627,7 @@
   },
   "voiture_garee_berline": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/SedanB/SM_SedanB",
-   "description": "voiture blanche garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "voiture blanche garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -652,7 +652,7 @@
   },
   "voiture_garee_break": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/StationWagonA/SM_StationWagon",
-   "description": "voiture blanc garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "voiture blanc garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -677,7 +677,7 @@
   },
   "voiture_garee_monospace": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/MpvA/SM_MpvA",
-   "description": "voiture gris garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "voiture gris garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -702,7 +702,7 @@
   },
   "voiture_garee_suv": {
    "maillage_jeu": "/Game/Props/NonDrivableVehicles/SuvA/SM_SuvA",
-   "description": "voiture rouge garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu ne fait que changer la teinte) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
+   "description": "voiture rouge garée dans n'importe quel sens (parking, aire) : même maillage que les types voiture_*, collision en cylindre de 2,4 m (indépendante de l'orientation, plus étroite que la voiture). véhicule non conduisible du jeu (Props/NonDrivableVehicles), maillage statique sans Blueprint (le BC_* du jeu change la teinte ; feux : la variante « …MiscAllLightsOff » du jeu sur leur emplacement, voir vehicules_du_jeu) ; axe X = avant du véhicule, donc lacet 0 = garé dans le sens de la course. Collision : pavé aligné sur la route (09 n'oriente les pavés que sur la route), donc seulement pour un véhicule garé dans le sens de la route ; paroi PM_WallMetalBigObject (catalogue ; remplacée par PM_WallBasic si ACR Extra Stages ne l'a pas inscrite)",
    "lacet_relatif_deg": 0,
    "enfoncement_m": 0.0,
    "bornes_cm": {
@@ -4264,5 +4264,81 @@
     ]
    }
   ]
+ },
+ "vehicules_du_jeu": {
+  "note": "Feux des véhicules non conduisibles du jeu (Props/NonDrivableVehicles), relus le 15/11/2026 avec acr-ref sur les archives d'origine (construction 25170642). Chaque maillage a trois emplacements de matériau ; celui des feux (« feux », numéro d'emplacement) est rendu par une variante de M_NonDriveableVehicleGlass, dont le jeu a jusqu'à quatre versions par véhicule (…MiscAllLightsOff, …MiscAllLightsOn, …NormalLightsOnly, …EmergencyLightsOnly) qui ne diffèrent que par leurs static switch : UseEmissives (faux dans le maître) allume les feux, Enable1002 à Enable1005 choisissent les groupes de feux, UseBlinking1003 fait clignoter le groupe 1003 (clignotants et feux de détresse). SM_MpvA porte par défaut MI_MpvAMiscAllLightsOn (UseEmissives, Enable1002 à 1004, UseBlinking1003) : posé tel quel, le monospace avait ses feux allumés et ses clignotants en marche (essai de la seizième version, 15/11/2026 : « sur certains véhicules statiques, les clignotants sont allumés ») ; les six autres maillages portent déjà la variante éteinte. Le studio ne compte jamais sur la variante par défaut : dans Hafren South, Bollène, Sisteron, Elatia et Loutraki, chacun de ses véhicules (acteurs BC_*, dont 30 BC_MpvA à Elatia et Loutraki) remplace l'emplacement des feux par la variante « …MiscAllLightsOff » (OverrideMaterials du composant de maillage ; aucune donnée de primitive : dans ces deux maîtres, les indices 9 et 10 ne servent qu'à la poussière), et cache les projecteurs du Blueprint (bVisible faux) ; seuls deux camions d'assistance de Bollène sont allumés. 16_paquet_unreal.py écrit ce remplacement dans le manifeste pour chacun de nos véhicules, construire_niveau.py pose la variante éteinte du jeu sur l'emplacement, et relire_decor.py vérifie dans le niveau cuit qu'aucun emplacement d'un véhicule n'est rendu par une variante à UseEmissives. « emplacements » : noms des emplacements du maillage du jeu, dans l'ordre (le factice en reçoit autant).",
+  "maitre_des_feux": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+  "maillages": {
+   "/Game/Props/NonDrivableVehicles/HatchbackA/SM_HatchbackA": {
+    "emplacements": [
+     "interior",
+     "glass",
+     "low"
+    ],
+    "feux": 0,
+    "feux_par_defaut": "/Game/Props/NonDrivableVehicles/HatchbackA/MI_HatchbackAMiscAllLightsOff",
+    "feux_eteints": "/Game/Props/NonDrivableVehicles/HatchbackA/MI_HatchbackAMiscAllLightsOff"
+   },
+   "/Game/Props/NonDrivableVehicles/MpvA/SM_MpvA": {
+    "emplacements": [
+     "body",
+     "GlassLight",
+     "Glass"
+    ],
+    "feux": 1,
+    "feux_par_defaut": "/Game/Props/NonDrivableVehicles/MpvA/MI_MpvAMiscAllLightsOn",
+    "feux_eteints": "/Game/Props/NonDrivableVehicles/MpvA/MI_MpvAMiscAllLightsOff"
+   },
+   "/Game/Props/NonDrivableVehicles/SecurityCarA/SM_SecurityCarA": {
+    "emplacements": [
+     "SecurityCarAMain",
+     "SecurityCarAMisc",
+     "SecurityCarAGlass"
+    ],
+    "feux": 1,
+    "feux_par_defaut": "/Game/Props/NonDrivableVehicles/SecurityCarA/MI_SecurityCarAMiscAllLightsOff",
+    "feux_eteints": "/Game/Props/NonDrivableVehicles/SecurityCarA/MI_SecurityCarAMiscAllLightsOff"
+   },
+   "/Game/Props/NonDrivableVehicles/SedanB/SM_SedanB": {
+    "emplacements": [
+     "body",
+     "Glass",
+     "lightandGlass"
+    ],
+    "feux": 2,
+    "feux_par_defaut": "/Game/Props/NonDrivableVehicles/SedanB/MI_SedanBMiscAllLightsOff",
+    "feux_eteints": "/Game/Props/NonDrivableVehicles/SedanB/MI_SedanBMiscAllLightsOff"
+   },
+   "/Game/Props/NonDrivableVehicles/StationWagonA/SM_StationWagon": {
+    "emplacements": [
+     "body",
+     "lightandGlass",
+     "Glass"
+    ],
+    "feux": 1,
+    "feux_par_defaut": "/Game/Props/NonDrivableVehicles/StationWagonA/MI_StationWagonAMiscAllLightsOff",
+    "feux_eteints": "/Game/Props/NonDrivableVehicles/StationWagonA/MI_StationWagonAMiscAllLightsOff"
+   },
+   "/Game/Props/NonDrivableVehicles/SuvA/SM_SuvA": {
+    "emplacements": [
+     "MI_SuvAMain",
+     "MI_SuvAMisc",
+     "MI_SuvAGlass"
+    ],
+    "feux": 1,
+    "feux_par_defaut": "/Game/Props/NonDrivableVehicles/SuvA/MI_SuvAMiscAllLightsOff",
+    "feux_eteints": "/Game/Props/NonDrivableVehicles/SuvA/MI_SuvAMiscAllLightsOff"
+   },
+   "/Game/Props/NonDrivableVehicles/VanA/SM_VanCrew": {
+    "emplacements": [
+     "MI_VanAGlass",
+     "alt",
+     "low_001"
+    ],
+    "feux": 1,
+    "feux_par_defaut": "/Game/Props/NonDrivableVehicles/VanA/MI_VanAMiscAllLightsOff",
+    "feux_eteints": "/Game/Props/NonDrivableVehicles/VanA/MI_VanAMiscAllLightsOff"
+   }
+  }
  }
 }

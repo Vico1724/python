@@ -12,7 +12,10 @@ Contrôles :
   4. les maillages de sol et d'enrobé ont une couleur de sommet nulle ;
   5. les herbes disparaissent avec la distance et ne portent pas d'ombre, comme celles du jeu ;
   6. les décalques du jeu sur la chaussée : un par ligne du paquet, variantes présentes dans le jeu, taille réglée, et
-     végétation qui ne les reçoit pas.
+     végétation qui ne les reçoit pas ;
+  7. les véhicules du jeu ont les feux éteints : chaque composant porte la variante « feux éteints » du paquet sur
+     l'emplacement des feux, et aucun de ses emplacements (remplacement, sinon matériau du maillage du jeu) n'est rendu
+     par une variante dont le static switch UseEmissives est vrai (hérité du parent s'il n'est pas réglé).
 Ce script ne prouve pas l'affichage en jeu.
 
 Usage : python pc/etape2_unreal/outils/relire_decor.py [--conteneur Z:/acrxs/unreal/dist] [--paquet paquet_unreal]
@@ -105,6 +108,83 @@ def resume_vt(j):
             "bordure": vt.get("TileBorderSize"), "types_de_couche": vt.get("LayerTypes"),
             "codecs": sorted({c for ch in vt.get("Chunks", []) for c in ch.get("CodecType", [])}),
             "octets_par_dalle": vt.get("TileDataOffsetPerLayer")}
+
+
+def chemin_ue(ref_objet):
+    """« /Game/.../MI_X.0 » -> « /Game/.../MI_X » ; None ou vide -> None."""
+    c = ((ref_objet or {}).get("ObjectPath") or "").split(".")[0]
+    return c or None
+
+
+def paquet_du_jeu(chemin):
+    return "acr/Content/" + chemin[len("/Game/"):] + ".uasset"
+
+
+def feux_allumes(chemin, exporter, memo):
+    """Vrai si la matière du jeu rend des feux : static switch UseEmissives de la variante (bOverride), sinon celui de
+    son parent, jusqu'au maître (valeur par défaut, CachedExpressionData). Maîtres des véhicules relus le 15/11/2026 :
+    M_NonDriveableVehicleGlass l'a faux par défaut, M_NonDriveableVehicleMain ne l'a pas."""
+    if chemin in memo:
+        return memo[chemin]
+    ex = next((o for o in exporter(paquet_du_jeu(chemin)) if o.get("Type") in ("Material", "MaterialInstanceConstant")), None)
+    r = False
+    if ex is None:
+        r = None                                          # illisible : signalé par l'appelant
+    elif ex["Type"] == "Material":
+        c = ex.get("CachedExpressionData") or {}
+        valeurs = c.get("StaticSwitchValues") or []
+        for k, v in c.items():                            # « RuntimeEntries[n] » : la liste des static switch
+            noms = [p["Name"] for p in v.get("ParameterInfoSet", [])] if k.startswith("RuntimeEntries") and isinstance(v, dict) else []
+            if len(noms) == len(valeurs) and "UseEmissives" in noms:
+                r = bool(valeurs[noms.index("UseEmissives")])
+                break
+    else:
+        p = ex.get("Properties") or {}
+        sw = {s["ParameterInfo"]["Name"]: s["Value"] for s in (p.get("StaticParametersRuntime") or {}).get("StaticSwitchParameters", [])
+              if s.get("bOverride", True)}
+        r = bool(sw["UseEmissives"]) if "UseEmissives" in sw else feux_allumes(chemin_ue(p.get("Parent")), exporter, memo)
+    memo[chemin] = r
+    return r
+
+
+def controler_feux(j, man, exporter):
+    """Contrôle 7 sur le niveau cuit relu (j) : (bilan, erreurs). exporter(chemin du paquet) -> exports du jeu."""
+    groupes = {e["maillage_jeu"]: e for e in man["elements"] if e["type"] == "InstanceGroup" and e.get("composant") == "acteurs"}
+    if not groupes:
+        return {}, []
+    vehicules = [o for o in j if o["Type"] == "StaticMeshComponent" and chemin_ue((o.get("Properties") or {}).get("StaticMesh")) in groupes]
+    defauts, memo, sans, allumes, erreurs = {}, {}, [], [], []
+    for o in vehicules:
+        p = o["Properties"]
+        sm = chemin_ue(p["StaticMesh"])
+        if sm not in defauts:
+            ex = next((x for x in exporter(paquet_du_jeu(sm)) if x.get("Type") == "StaticMesh"), None)
+            defauts[sm] = [chemin_ue(m.get("MaterialInterface")) for m in ex["Properties"]["StaticMaterials"]] if ex else None
+            if ex is None:
+                erreurs.append(f"{sm} : maillage du jeu illisible, matériaux par défaut inconnus")
+        if defauts[sm] is None:
+            continue
+        om = [chemin_ue(m) for m in (p.get("OverrideMaterials") or [])]
+        effectifs = [om[i] if i < len(om) and om[i] else d for i, d in enumerate(defauts[sm])]
+        acteur = (o.get("Outer") or {}).get("ObjectName", "?").rstrip("'").rsplit(".", 1)[-1]
+        for m in groupes[sm].get("materiaux_de_remplacement", []):
+            if m["emplacement"] >= len(effectifs) or effectifs[m["emplacement"]] != m["materiau_jeu"]:
+                sans.append(f"{acteur} ({sm.rsplit('/', 1)[1]}, emplacement {m['emplacement']})")
+        lum = [c for c in effectifs if c and feux_allumes(c, exporter, memo) is not False]
+        if lum:
+            allumes.append(f"{acteur} ({sm.rsplit('/', 1)[1]}) : {lum[0].rsplit('/', 1)[1]}")
+    attendus = sum(e["nombre"] for e in groupes.values())
+    bilan = {"poses": len(vehicules), "attendus": attendus,
+             "par_maillage": {k.rsplit("/", 1)[1]: sum(1 for o in vehicules if chemin_ue(o["Properties"]["StaticMesh"]) == k) for k in groupes},
+             "sans_la_variante_feux_eteints": sans[:10], "aux_feux_allumes": allumes[:10],
+             "matieres_relues": {c.rsplit("/", 1)[1]: ("illisible" if v is None else "feux allumés" if v else "éteinte") for c, v in sorted(memo.items())}}
+    if len(vehicules) != attendus:
+        erreurs.append(f"{len(vehicules)} véhicules du jeu posés pour {attendus} attendus")
+    if sans:
+        erreurs.append(f"{len(sans)} véhicules sans la variante « feux éteints » sur l'emplacement des feux, par exemple {sans[:2]}")
+    if allumes:
+        erreurs.append(f"{len(allumes)} véhicules aux feux allumés (UseEmissives) ou illisibles, par exemple {allumes[:2]}")
+    return bilan, erreurs
 
 
 def main():
@@ -224,6 +304,17 @@ def main():
             erreurs.append(f"{sans_taille} décalques à la taille par défaut du moteur (DecalSize non réglé)")
         if recoivent:
             erreurs.append(f"végétation qui reçoit les décalques : {sorted(set(recoivent))[:3]}")
+    # véhicules du jeu aux feux éteints (15/11/2026, essai de la seizième version : « sur certains véhicules statiques,
+    # les clignotants sont allumés ») : comme ceux du studio, chacun porte la variante « …MiscAllLightsOff » du jeu sur
+    # l'emplacement des feux (OverrideMaterials), présente dans les archives du jeu et jamais dans notre conteneur
+    feux, err_feux = controler_feux(j, man, exporter)
+    if feux:
+        bilan["niveau"]["vehicules"] = feux
+        erreurs += err_feux
+        voulues = {m["materiau_jeu"] for e in man["elements"] for m in e.get("materiaux_de_remplacement", [])}
+        absentes = sorted(c for c in voulues if paquet_du_jeu(c) not in tout)
+        if absentes:
+            erreurs.append(f"variantes « feux éteints » absentes du jeu : {absentes}")
 
     # sol « façon jeu »
     sol = man.get("sol", {})

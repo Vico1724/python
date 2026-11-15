@@ -28,7 +28,9 @@ def lancer(manifeste, args, axes="X,Z,Y"):
             unreal.ASSETS[e["maillage_jeu"]] = unreal.StaticMesh(e["maillage_jeu"], [-50] * 3, [50] * 3, "cube")
     for x in json.load(open(os.path.join(KIT, "factices.json"), encoding="utf-8"))["factices"]:
         if x["type"] == "StaticMesh":
-            unreal.ASSETS.setdefault(x["objet"], unreal.StaticMesh(x["objet"], [-50] * 3, [50] * 3, "cube"))
+            sm = unreal.ASSETS.setdefault(x["objet"], unreal.StaticMesh(x["objet"], [-50] * 3, [50] * 3, "cube"))
+            if x.get("emplacements_de_materiau"):       # véhicules du jeu : autant d'emplacements que le vrai maillage
+                sm.props["static_materials"] = [unreal._Slot() for _ in x["emplacements_de_materiau"]]
         elif x["type"] == "Material":
             unreal.ASSETS.setdefault(x["objet"], unreal.Material(x["objet"]))
         elif x["type"] == "MaterialInstanceConstant":
@@ -76,6 +78,30 @@ def verifier(manifeste, etendue):
         erreurs.append(f"bornes : {r['verdicts_bornes']['conformes']} conformes sur {len(mesh)}")
     if r["instances"] != n_inst:
         erreurs.append(f"instances {r['instances']} != {n_inst}")
+    # véhicules du jeu : un acteur par ligne, la variante « feux éteints » du jeu sur l'emplacement des feux
+    import csv
+    n_veh, n_remplaces, mal_eteints = 0, 0, []
+    for e in el:
+        if e["type"] != "InstanceGroup" or e.get("composant") != "acteurs":
+            continue
+        with open(os.path.join(base, e["fichier"]), encoding="utf-8") as f:
+            ids = {int(x["id"]) for x in csv.DictReader(f) if (not pk) or (pk[0] <= float(x["pk_m"]) <= pk[1])}
+        poses = {a.get_actor_label(): a for a in u.ACTEURS if a.get_actor_label().startswith(e["nom"] + "_")}
+        n_veh += len(ids)
+        n_remplaces += len(ids) * len(e.get("materiaux_de_remplacement", []))
+        if len(poses) != len(ids):
+            erreurs.append(f"{e['nom']} : {len(poses)} acteurs posés pour {len(ids)}")
+        if not e.get("materiaux_de_remplacement"):
+            erreurs.append(f"{e['nom']} : véhicule sans variante « feux éteints » dans le manifeste")
+        for a in poses.values():
+            om = a.props["static_mesh_component"].props.get("override_materials", {})
+            for m in e.get("materiaux_de_remplacement", []):
+                if om.get(m["emplacement"]) is not u.ASSETS.get(m["materiau_jeu"]):
+                    mal_eteints.append(a.get_actor_label())
+    if mal_eteints:
+        erreurs.append(f"véhicules sans la variante « feux éteints » sur l'emplacement des feux : {mal_eteints[:3]}")
+    if r.get("materiaux_remplaces", 0) != n_remplaces:
+        erreurs.append(f"{r.get('materiaux_remplaces', 0)} matériaux remplacés pour {n_remplaces} attendus ({n_veh} véhicules)")
     parasites = [c for c in u.ASSETS if "parasite" in c]
     if parasites:
         erreurs.append(f"matériaux parasites restés : {parasites[:3]}")
@@ -88,7 +114,7 @@ def verifier(manifeste, etendue):
     if sans_mat:
         erreurs.append(f"maillages sans variante : {sans_mat[:3]}")
     print(f"--- {etendue} : {r['maillages']} maillages, {r['textures']} textures, {r['variantes']} variantes, "
-          f"{r['acteurs']} acteurs, {r['instances']} instances, alertes {len(r['alertes'])} -> "
+          f"{r['acteurs']} acteurs, {r['instances']} instances, {n_veh} véhicules aux feux éteints, alertes {len(r['alertes'])} -> "
           f"{'OK' if not erreurs else erreurs}")
     return not erreurs
 

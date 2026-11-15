@@ -72,6 +72,32 @@ def maillage(objet, bornes=None):
         EAL.save_asset(objet)
 
 
+def emplacements(objet, noms):
+    """Donne au cube factice les emplacements de matériau du vrai maillage (véhicules du jeu, 15/11/2026). Un composant
+    de maillage ne garde pas de matériau de remplacement au-delà du nombre d'emplacements de son maillage : avec l'unique
+    emplacement du cube, la variante « feux éteints » posée sur l'emplacement 1 ou 2 serait perdue.
+    [à vérifier : set_editor_property("static_materials") ; replis set_static_materials puis add_material]"""
+    sm = EAL.load_asset(objet)
+    poses = list(sm.get_editor_property("static_materials") or [])
+    if [str(s.get_editor_property("material_slot_name")) for s in poses] == list(noms):
+        return
+    mat = poses[0].get_editor_property("material_interface") if poses else None
+    voulus = [unreal.StaticMaterial(material_interface=mat, material_slot_name=n) for n in noms]
+    for essai in (lambda: sm.set_editor_property("static_materials", voulus), lambda: sm.set_static_materials(voulus)):
+        try:
+            essai()
+            break
+        except Exception:
+            continue
+    else:
+        for _ in range(len(noms) - len(poses)):
+            sm.add_material(mat)
+    n = len(sm.get_editor_property("static_materials"))
+    if n < len(noms):
+        unreal.log_warning(f"{objet} : {n} emplacements de matériau pour {len(noms)} dans le jeu")
+    EAL.save_asset(objet)
+
+
 def completer_materiau(x):
     """Matériau factice déjà créé : lui ajoute les paramètres qui lui manquent (liste allongée depuis sa création)."""
     m = EAL.load_asset(x["objet"])
@@ -183,6 +209,8 @@ def main():
     for x in sorted(liste, key=lambda x: ordre.get(x["type"], 9)):
         if x["type"] == "StaticMesh":
             maillage(x["objet"], x.get("bornes_cm"))
+            if x.get("emplacements_de_materiau"):
+                emplacements(x["objet"], x["emplacements_de_materiau"])
         elif x["type"] == "Material":
             if x.get("a_completer"):
                 unreal.log_warning(f"{x['objet']} : {x['a_completer']} ; non créé")

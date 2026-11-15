@@ -199,14 +199,21 @@ def main():
               for c, b in MAILLAGES_POSES.items() if c not in deja]
     # mobilier de bord de route : poteaux, panneaux, barrières, haie (data/reference/mobilier_bord_de_route.json)
     f_mob = RACINE / "data" / "reference" / "mobilier_bord_de_route.json"
+    vehicules = {}
     if f_mob.exists():
         deja = {x["objet"] for x in liste}
-        for t in json.loads(f_mob.read_text(encoding="utf-8"))["types"].values():
+        mob = json.loads(f_mob.read_text(encoding="utf-8"))
+        vehicules = mob.get("vehicules_du_jeu", {})
+        for t in mob["types"].values():
             if t.get("maillage_du_projet"):          # bloc calcaire fabriqué par le paquet : importé, pas de factice
                 continue
             if t["maillage_jeu"] not in deja:
+                # véhicule du jeu : le factice reçoit autant d'emplacements de matériau que le vrai maillage, sinon le
+                # composant ne garderait pas la variante « feux éteints » posée sur l'emplacement 1 ou 2
+                v = vehicules.get("maillages", {}).get(t["maillage_jeu"])
                 liste.append({"objet": t["maillage_jeu"], "type": "StaticMesh", "essai": "mobilier de bord de route",
-                              **({"bornes_cm": t["bornes_cm"]} if t.get("bornes_cm") else {})})
+                              **({"bornes_cm": t["bornes_cm"]} if t.get("bornes_cm") else {}),
+                              **({"emplacements_de_materiau": v["emplacements"]} if v else {})})
                 deja.add(t["maillage_jeu"])
     liste += [materiau(o, maitres, "E3") for o in AUTRES_MATERIAUX]
     # matières choisies le 13/11/2026 (data/reference/matieres_du_jeu.json) : un matériau réattribué quitte son ancien parent
@@ -233,6 +240,20 @@ def main():
     liste += [{"objet": o, "type": "MaterialInstanceConstant", "parent": p, "role": "decalque_du_jeu", "static_switch": {},
                "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"}
               for o, p in DECALQUES_DU_JEU]
+    # feux éteints des véhicules du jeu (15/11/2026, mobilier_bord_de_route.json, vehicules_du_jeu) : maître des feux
+    # (matériau factice sans paramètre), puis les variantes « …MiscAllLightsOff » que nos acteurs de véhicule posent sur
+    # l'emplacement des feux, comme le studio. Le jeu charge les vraies, et leurs programmes d'affichage.
+    eteints = sorted({v["feux_eteints"] for v in vehicules.get("maillages", {}).values()})
+    if eteints:
+        deja = {x["objet"] for x in liste}
+        maitre = vehicules["maitre_des_feux"]
+        if maitre not in deja:
+            liste.append({"objet": maitre, "type": "Material", "parametres_texture": [], "parametres_scalaires": [],
+                          "parametres_vecteur": [], "essai": "maître des feux et vitres des véhicules du jeu"})
+        liste += [{"objet": o, "type": "MaterialInstanceConstant", "parent": maitre, "role": "feux_eteints_du_jeu",
+                   "static_switch": {}, "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules "
+                                                 "(scripts/16_paquet_unreal.py, materiaux_de_remplacement)"}
+                  for o in eteints if o not in deja]
     for o in BLUEPRINTS:
         a = (acteurs or {}).get(o)
         x = {"objet": o, "type": "Blueprint", "parent": a["classe_native"] if a else None, "essai": "E2"}

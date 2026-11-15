@@ -229,6 +229,18 @@ def v_poser_maillage(sm, pos, lacet, label, dossier_outliner, ombre=True):
     return a
 
 
+def v_remplacer_materiau(acteur, emplacement, mi):
+    """Matériau de remplacement d'un emplacement du maillage, sur le composant de l'acteur (OverrideMaterials), comme
+    les véhicules garés du studio : la variante « feux éteints » du jeu sur l'emplacement des feux."""
+    acteur.get_editor_property("static_mesh_component").set_material(int(emplacement), mi)
+
+
+def v_nombre_emplacements(sm):
+    """Nombre d'emplacements de matériau du maillage (du factice dans l'éditeur). Un composant ne garde pas de
+    remplacement au-delà de ce nombre : le factice doit en avoir autant que le maillage du jeu (creer_factices.py)."""
+    return len(sm.get_editor_property("static_materials") or [])
+
+
 def v_poser_classe(classe, pos, label, dossier_outliner, rotation=(0.0, 0.0, 0.0)):
     eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
     a = eas.spawn_actor_from_class(classe, unreal.Vector(*pos), unreal.Rotator(roll=rotation[0], pitch=rotation[1], yaw=rotation[2]))
@@ -609,6 +621,19 @@ class Construction:
                     self.alerte(f"{e['maillage_jeu']} : factice absent (lancer creer_factices.py) ; {e['nom']} ignoré")
                     continue
                 sm = v_charger(e["maillage_jeu"])
+                # feux éteints (16_paquet_unreal.py, materiaux_de_remplacement) : variante du jeu désignée par son factice.
+                # Un véhicule dont la variante ne peut être posée n'est pas posé : il garderait les feux de son maillage
+                # (SM_MpvA : feux allumés et clignotants en marche, essai de la seizième version).
+                remplace = [(int(m["emplacement"]), m["materiau_jeu"]) for m in e.get("materiaux_de_remplacement", [])]
+                manque = [c for _, c in remplace if not v_existe(c)]
+                if manque:
+                    self.alerte(f"{manque[0]} : factice absent (lancer creer_factices.py) ; {e['nom']} ignoré (feux allumés sinon)")
+                    continue
+                if remplace and v_nombre_emplacements(sm) < max(i for i, _ in remplace) + 1:
+                    self.alerte(f"{e['maillage_jeu']} : factice à {v_nombre_emplacements(sm)} emplacements de matériau pour "
+                                f"{e.get('emplacements_de_materiau')} dans le jeu (relancer creer_factices.py) ; {e['nom']} ignoré")
+                    continue
+                remplace = [(i, v_charger(c)) for i, c in remplace]
                 deja = {x.get_actor_label() for x in v_acteurs_du_niveau()}
                 with open(self.fichier(e), encoding="utf-8") as f:
                     for r in csv.DictReader(f):
@@ -621,10 +646,14 @@ class Construction:
                             continue
                         p, lacet = self.position((float(r["x_cm"]), float(r["y_cm"]), float(r["z_cm"])), float(r["lacet_deg"]))
                         a = v_poser_maillage(sm, p, lacet, label, "GrandCaunet/Mobilier")
+                        for i, mi in remplace:
+                            v_remplacer_materiau(a, i, mi)
                         s = float(r.get("echelle") or 1.0)
                         if abs(s - 1.0) > 1e-3:
                             a.set_actor_scale3d(unreal.Vector(s, s, s))
                         self.rapport["acteurs_de_mobilier"] = self.rapport.get("acteurs_de_mobilier", 0) + 1
+                        if remplace:
+                            self.rapport["materiaux_remplaces"] = self.rapport.get("materiaux_remplaces", 0) + len(remplace)
                 continue
             with open(self.fichier(e), encoding="utf-8") as f:
                 for r in csv.DictReader(f):

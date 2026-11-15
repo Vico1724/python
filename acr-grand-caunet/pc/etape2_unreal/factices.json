@@ -1253,7 +1253,12 @@
      126,
      270
     ]
-   }
+   },
+   "emplacements_de_materiau": [
+    "MI_VanAGlass",
+    "alt",
+    "low_001"
+   ]
   },
   {
    "objet": "/Game/Props/NonDrivableVehicles/SecurityCarA/SM_SecurityCarA",
@@ -1270,7 +1275,12 @@
      112,
      178
     ]
-   }
+   },
+   "emplacements_de_materiau": [
+    "SecurityCarAMain",
+    "SecurityCarAMisc",
+    "SecurityCarAGlass"
+   ]
   },
   {
    "objet": "/Game/Props/NonDrivableVehicles/HatchbackA/SM_HatchbackA",
@@ -1287,7 +1297,12 @@
      99,
      146
     ]
-   }
+   },
+   "emplacements_de_materiau": [
+    "interior",
+    "glass",
+    "low"
+   ]
   },
   {
    "objet": "/Game/Props/NonDrivableVehicles/MpvA/SM_MpvA",
@@ -1304,7 +1319,12 @@
      112,
      194
     ]
-   }
+   },
+   "emplacements_de_materiau": [
+    "body",
+    "GlassLight",
+    "Glass"
+   ]
   },
   {
    "objet": "/Game/Props/NonDrivableVehicles/SedanB/SM_SedanB",
@@ -1321,7 +1341,12 @@
      103,
      148
     ]
-   }
+   },
+   "emplacements_de_materiau": [
+    "body",
+    "Glass",
+    "lightandGlass"
+   ]
   },
   {
    "objet": "/Game/Props/NonDrivableVehicles/StationWagonA/SM_StationWagon",
@@ -1338,7 +1363,12 @@
      103,
      147
     ]
-   }
+   },
+   "emplacements_de_materiau": [
+    "body",
+    "lightandGlass",
+    "Glass"
+   ]
   },
   {
    "objet": "/Game/Props/NonDrivableVehicles/SuvA/SM_SuvA",
@@ -1355,7 +1385,12 @@
      119,
      189
     ]
-   }
+   },
+   "emplacements_de_materiau": [
+    "MI_SuvAMain",
+    "MI_SuvAMisc",
+    "MI_SuvAGlass"
+   ]
   },
   {
    "objet": "/Game/Props/RallyProps/CanopyTent/SM_CanopyTent3mt",
@@ -3465,6 +3500,70 @@
    "role": "decalque_du_jeu",
    "static_switch": {},
    "essai": "variante de décalque du jeu désignée telle quelle par nos DecalActor (scripts/16_paquet_unreal.py, DETAILS)"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "type": "Material",
+   "parametres_texture": [],
+   "parametres_scalaires": [],
+   "parametres_vecteur": [],
+   "essai": "maître des feux et vitres des véhicules du jeu"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/HatchbackA/MI_HatchbackAMiscAllLightsOff",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "role": "feux_eteints_du_jeu",
+   "static_switch": {},
+   "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules (scripts/16_paquet_unreal.py, materiaux_de_remplacement)"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/MpvA/MI_MpvAMiscAllLightsOff",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "role": "feux_eteints_du_jeu",
+   "static_switch": {},
+   "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules (scripts/16_paquet_unreal.py, materiaux_de_remplacement)"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/SecurityCarA/MI_SecurityCarAMiscAllLightsOff",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "role": "feux_eteints_du_jeu",
+   "static_switch": {},
+   "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules (scripts/16_paquet_unreal.py, materiaux_de_remplacement)"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/SedanB/MI_SedanBMiscAllLightsOff",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "role": "feux_eteints_du_jeu",
+   "static_switch": {},
+   "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules (scripts/16_paquet_unreal.py, materiaux_de_remplacement)"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/StationWagonA/MI_StationWagonAMiscAllLightsOff",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "role": "feux_eteints_du_jeu",
+   "static_switch": {},
+   "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules (scripts/16_paquet_unreal.py, materiaux_de_remplacement)"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/SuvA/MI_SuvAMiscAllLightsOff",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "role": "feux_eteints_du_jeu",
+   "static_switch": {},
+   "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules (scripts/16_paquet_unreal.py, materiaux_de_remplacement)"
+  },
+  {
+   "objet": "/Game/Props/NonDrivableVehicles/VanA/MI_VanAMiscAllLightsOff",
+   "type": "MaterialInstanceConstant",
+   "parent": "/Game/Props/NonDrivableVehicles/MasterMaterial/M_NonDriveableVehicleGlass",
+   "role": "feux_eteints_du_jeu",
+   "static_switch": {},
+   "essai": "variante « feux éteints » du jeu posée telle quelle sur nos véhicules (scripts/16_paquet_unreal.py, materiaux_de_remplacement)"
   },
   {
    "objet": "/Game/Data/Environments/Common/BC_TrackAvatar",

@@ -287,6 +287,9 @@ class _Composant(_Objet):
     def add_instances(self, t, retour, monde):
         self.props.setdefault("instances", []).extend(t)
 
+    def set_material(self, i, m):
+        self.props.setdefault("override_materials", {})[i] = m
+
 
 class Actor(_Objet):
     _classe = "Actor"

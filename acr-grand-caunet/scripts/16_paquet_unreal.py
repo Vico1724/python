@@ -2742,6 +2742,7 @@ def mobilier_du_bord(P, ref, pkf, sol, args):
     objets, lignes = mobilier.objets()
     if not objets:
         return {}
+    vehicules = (mobilier.charger() or {}).get("vehicules_du_jeu", {}).get("maillages", {})
     pierres_du_projet(P)                                 # blocs calcaires du projet (types « rocher_* »)
     cat = catalogue_du_jeu()
     bilan, par_maillage = {}, {}
@@ -2773,9 +2774,26 @@ def mobilier_du_bord(P, ref, pkf, sol, args):
         # moteur. Le studio les pose en acteurs (BC_* de Hafren South, composant de maillage ordinaire), avec la couleur de
         # leurs propres variantes (blanc, gris, rouge, livrée).
         composant = "acteurs" if "/NonDrivableVehicles/" in chemin else "HierarchicalInstancedStaticMeshComponent"
+        # Feux éteints, comme chez le studio. Essai de la seizième version (15/11/2026) : « sur certains véhicules
+        # statiques, les clignotants sont allumés ». SM_MpvA porte par défaut, sur son emplacement des feux, la variante
+        # MI_MpvAMiscAllLightsOn (feux allumés, groupe 1003 clignotant) ; chaque véhicule du studio (Hafren South, Bollène,
+        # Sisteron, Elatia, Loutraki) remplace cet emplacement par la variante « …MiscAllLightsOff » du jeu, quel que soit
+        # le défaut du maillage. Relevé : mobilier_bord_de_route.json, vehicules_du_jeu.
+        feux = {}
+        if composant == "acteurs":
+            v = vehicules.get(chemin)
+            if not v or not v.get("feux_eteints"):
+                raise SystemExit(f"{chemin} : véhicule du jeu sans variante « feux éteints » relevée (mobilier_bord_de_route.json, "
+                                 f"vehicules_du_jeu) ; posé tel quel, il garderait les feux de son maillage")
+            if v["feux_eteints"] not in cat:
+                raise SystemExit(f"{v['feux_eteints']} : variante « feux éteints » absente du catalogue du jeu")
+            feux = {"emplacements_de_materiau": len(v["emplacements"]),
+                    "materiaux_de_remplacement": [{"emplacement": int(v["feux"]), "nom": v["emplacements"][v["feux"]],
+                                                   "materiau_jeu": v["feux_eteints"], "au_lieu_de": v["feux_par_defaut"],
+                                                   "role": "feux éteints (variante du jeu, comme les véhicules du studio)"}]}
         e = P.ajoute({"type": "InstanceGroup", "nom": f"GC_Mobilier_{nom}", "maillage_jeu": chemin, "present_au_catalogue": chemin in cat,
                       "fichier": fichier.as_posix(), "nombre": len(lot), "composant": composant,
-                      "collision": "NoCollision", "hauteur_native_cm": None,
+                      "collision": "NoCollision", "hauteur_native_cm": None, **feux,
                       "echelle": "colonne « echelle » de la table, maillage posé tel quel", "retirees_sur_chaussee": 0, "essais": ["complet"]})
         bilan[e["nom"]] = e["nombre"]
     # câbles : trois par portée, en chaînette approchée, accrochés aux bouts et au milieu de la traverse
