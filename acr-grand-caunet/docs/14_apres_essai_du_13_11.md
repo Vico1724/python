@@ -267,3 +267,10 @@ Retour du directeur : personnages absents ; bugs de parapet ; un mur invisible �
 - Branche barrée : enrobé relevé au niveau du tablier du ponceau, raccord sans marche avec le prolongement, qui suit ensuite le terrain.
 - Parapets : PK 6091 (tête refaite en travers), 4062 (alignement), 3637 (collision rétablie), 4462 et 5565 (léger retrait, doublon supprimé), 5320 (muret abaissé), 6676-6684 (parapet inexistant retiré). Relevé : `data/reference/releve_essai_15_11_v14/`.
 
+## 14. Détails de la chaussée et parc d'assistance (15 novembre)
+
+Demande du directeur pendant son essai de la quinzième version : amélioration globale des détails (feuilles ou autres sur l'asphalte, sans toucher à la physique, avec les éléments du jeu) ; pas de parc d'assistance au chargement ; clignotants allumés sur certains véhicules garés.
+
+- **Parc d'assistance** : étude dans `docs/16_parc_assistance.md`. Le jeu cache toujours le parc pendant une spéciale ; nos retouches ne le retirent pas (459 de ses 479 acteurs intacts), mais il reste à son emplacement gallois, à 2,1 km de notre départ, en l'air au-dessus de notre paysage. Essai en jeu demandé au directeur avant de le déplacer (zone plate d'environ 93 × 125 m nécessaire).
+- **Seizième version : construite, relue conforme, installée le 15 novembre à 18 h 15.** Habillage de la chaussée comme sur les spéciales goudronnées du jeu (Bollène, Sisteron) : 385 décalques du jeu (terre et débris, aiguilles de pin, gravillons, terre aux débouchés de pistes, ornières, gomme, traces de pneus) posés en acteurs de décalque, et 5 765 feuilles mortes du jeu à plat sur l'enrobé ; décor seul. Feux des véhicules garés éteints par la variante « feux éteints » du jeu, comme le fait le studio (les trois monospaces avaient leurs feux de détresse allumés) ; contrôle dans `relire_decor.py`. La route physique n'a pas été reconstruite (jeu ouvert pendant la fabrication) : celle de la quinzième, inchangée, est gardée. Jamais vue en jeu.
+

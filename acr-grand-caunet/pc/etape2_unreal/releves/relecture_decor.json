@@ -6,9 +6,9 @@
  "niveau": {
   "maillages_poses": 584,
   "attendus": 584,
-  "instances": 582241,
-  "attendues": 582241,
-  "composants_d_instances": 114,
+  "instances": 588006,
+  "attendues": 588006,
+  "composants_d_instances": 120,
   "instances_hors_vegetation": {
    "SM_MetalGuardrailASimpleBegin": 6,
    "SM_MetalGuardrailASimpleCenter": 225,
@@ -45,8 +45,63 @@
    "SM_TrafficSignFraSlipperyRoadA": 1,
    "SM_GrandCaunetStoneD": 2061
   },
-  "composants_a_disparition_reglee": 40,
-  "herbes_mal_reglees": []
+  "composants_a_disparition_reglee": 46,
+  "herbes_mal_reglees": [],
+  "decalques": {
+   "poses": 385,
+   "attendus": 385,
+   "par_materiau": {
+    "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltDirtDecalDirtDebree": 85,
+    "/Game/Environments/RallyShared/DecalMaterialInstances/MI_PineNeedles": 106,
+    "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltDirtDecalGravel": 66,
+    "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_DirtDecal_MontecarloDirtOnAsphalt": 63,
+    "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_DirtDecal_MontecarloDirtTracks01": 14,
+    "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltDecal_LightRubber": 39,
+    "/Game/Environments/AlsaceShared/DecalMaterialInstances/MI_AsphaltTiresMarksDecal": 12
+   },
+   "sans_taille_propre": 0,
+   "vegetation_qui_recoit_les_decalques": []
+  },
+  "vehicules": {
+   "poses": 16,
+   "attendus": 16,
+   "par_maillage": {
+    "SM_HatchbackA": 3,
+    "SM_MpvA": 3,
+    "SM_SecurityCarA": 1,
+    "SM_SedanB": 3,
+    "SM_StationWagon": 3,
+    "SM_SuvA": 1,
+    "SM_VanCrew": 2
+   },
+   "sans_la_variante_feux_eteints": [],
+   "aux_feux_allumes": [],
+   "matieres_relues": {
+    "MI_HatchbackAGlass": "éteinte",
+    "MI_HatchbackAMainWhite1": "éteinte",
+    "MI_HatchbackAMiscAllLightsOff": "éteinte",
+    "M_NonDriveableVehicleGlass": "éteinte",
+    "M_NonDriveableVehicleMain": "éteinte",
+    "MI_MpvAGlass": "éteinte",
+    "MI_MpvAMainWhite": "éteinte",
+    "MI_MpvAMiscAllLightsOff": "éteinte",
+    "MI_SecurityCarAGlass": "éteinte",
+    "MI_SecurityCarAMain": "éteinte",
+    "MI_SecurityCarAMiscAllLightsOff": "éteinte",
+    "MI_SedanBGlass": "éteinte",
+    "MI_SedanBMainWhite1": "éteinte",
+    "MI_SedanBMiscAllLightsOff": "éteinte",
+    "MI_StationWagonAMainWhite": "éteinte",
+    "MI_StationWagonAMiscAllLightsOff": "éteinte",
+    "MI_StationWagonGlass": "éteinte",
+    "MI_SuvAGlass": "éteinte",
+    "MI_SuvAMain": "éteinte",
+    "MI_SuvAMiscAllLightsOff": "éteinte",
+    "MI_VanAGlass": "éteinte",
+    "MI_VanAMain01": "éteinte",
+    "MI_VanAMiscAllLightsOff": "éteinte"
+   }
+  }
  },
  "sol": {
   "mode": "jeu",

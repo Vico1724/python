@@ -2,7 +2,9 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (quinzième, du 15/11/2026 à 3 h 29) : personnages sans étiquette de parc,
+    sol_jeu              version courante (seizième, du 15/11/2026 à 18 h 15) : décalques du jeu sur la chaussée,
+                         feuilles mortes, feux des véhicules éteints ; jamais vue en jeu
+    sol_jeu_cycle15_du_15_11  quinzième version (15/11/2026 à 3 h 29) : personnages sans étiquette de parc,
                          mur invisible du Lion d'Or supprimé, branche barrée, parapets ; jamais vue en jeu
     sol_jeu_vu_le_15_11_nuit  quatorzième version, vue en jeu le 15/11/2026 vers 0 h 45 (du 14/11/2026 à 22 h 41) : commissaires et public du jeu, zones
                          de départ et d'arrivée, parois posées sur le talus, zone de départ, véhicules ; jamais vue en jeu
