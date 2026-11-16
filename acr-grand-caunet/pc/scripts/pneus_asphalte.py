@@ -12,6 +12,11 @@ autres lignes s'en servent), et un renvoi de nom a une taille fixe : le fichier 
 
 Il refuse d'écrire si le nombre de renvois trouvés n'est pas celui attendu (5 et 1).
 
+--meteo (essai de la 17, 16/11/2026 : sous-virage et manque d'adhérence par rapport à Munster, même voiture, mêmes
+réglages, même adhérence de départ) : la ligne gardait WeatherConfig = Wales, donc les températures galloises (4 °C
+affichés), alors que les spéciales sur asphalte du jeu ont la leur (MonteCarlo, Alsace). --meteo MonteCarlo remplace
+ce seul renvoi (1 attendu) par une autre ligne de DT_WeatherConfigurations, déjà nommée dans la table.
+
 La table de départ peut être celle du jeu ou celle d'un mod « registre » qui la livre déjà (cas du PC du directeur :
 pakchunk99-SandoRegistry_2_P, qui porte les lignes de BioBio ; il a autorisé le 13/11/2026 qu'on parte de cette table,
 voir 6_table_asphalte.ps1). --suivante donne la ligne qui suit la nôtre dans la table, pour borner la nôtre sans rien
@@ -61,15 +66,20 @@ def main():
     ap.add_argument("--suivante", help="nom de la ligne qui suit la nôtre dans la table")
     ap.add_argument("--longueur-km", type=float, help="longueur à écrire à la place de celle de la ligne (4,8 km)")
     ap.add_argument("--longueur-d-origine-km", type=float, default=4.8)
+    ap.add_argument("--meteo", help="configuration météo à mettre à la place de Wales (ligne de DT_WeatherConfigurations, "
+                                    "par exemple MonteCarlo)")
     ap.add_argument("--essai", action="store_true", help="contrôle sans écrire")
     a = ap.parse_args()
+    echanges = list(ECHANGES)
+    if a.meteo:
+        echanges.append(("Wales", a.meteo, 1))
     base = Path(a.mod) / REL
     f_asset, f_exp = base.with_suffix(".uasset"), base.with_suffix(".uexp")
     if not (f_asset.exists() and f_exp.exists()):
         sys.exit(f"table absente de {a.mod} : le constructeur doit la livrer (4_construire.ps1 -Asphalte)")
     noms = table_des_noms(f_asset.read_bytes())
     rang = {n: i for i, n in enumerate(noms)}
-    manque = [n for n in (a.ligne, "Gravel", "Tarmac", "GravelOnly", "TarmacSnow") if n not in rang]
+    manque = [n for n in [a.ligne] + [x for v, w, _ in echanges for x in (v, w)] if n not in rang]
     if manque:
         sys.exit(f"noms absents de la table ({len(noms)} noms lus) : {manque}")
     exp = bytearray(f_exp.read_bytes())
@@ -89,7 +99,7 @@ def main():
         fins = [x for x in fins if x > 0]
         fin = min(fins) if fins else len(exp)
     bilan = []
-    for vieux, neuf, attendu in ECHANGES:
+    for vieux, neuf, attendu in echanges:
         motif, rempl = struct.pack("<ii", rang[vieux], 0), struct.pack("<ii", rang[neuf], 0)
         pos, k = [], debut + 8
         while True:

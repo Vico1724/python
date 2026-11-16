@@ -2182,6 +2182,11 @@ DECALQUES = "/Game/Environments/AlsaceShared/DecalMaterialInstances"
 # Essai de la seizième version (15/11/2026) : « trop de débris, et parfois non pertinents sur la piste ». Densités réduites
 # à environ un tiers (litière 26 -> 8 paquets par km, aires, débouchés des seuls chemins empierrés de l'IGN, gomme dans
 # les épingles, traces de pneus dans les seules épingles de plus de 150 degrés).
+# Essai de la dix-septième version (16/11/2026) : « encore trop de débris (feuilles mortes, effet tache au sol), pas assez
+# de traces de pneus ; retirer la plupart des débris ». Les 5 837 feuilles mortes de la 17 (non réduites la veille) sont
+# retirées (FEUILLES["actif"]) ; litière ramenée à 2,5 paquets par km, une boîte par aire, une seule par débouché ;
+# traces de pneus étendues à tous les virages serrés (pneus_rayon_max_m, pneus_angle_min_deg), au freinage de toutes les
+# épingles et par paire à la sortie.
 DETAILS = {
     "graine": SEED + 31,
     # rôle -> variante de décalque du jeu ; gabarits (longueur, largeur, profondeur de la boîte, cm) et couleurs de décalque
@@ -2216,7 +2221,7 @@ DETAILS = {
     # surtout à leur intérieur, comme chez le studio). Décalage du centre au bord : positif vers l'extérieur ; dans un
     # virage serré, à l'intérieur, la bande mord plus sur l'enrobé (vers_l_interieur_m). Longueur bornée pour que la
     # boîte droite ne s'écarte pas de plus de fleche_max_m du bord courbe.
-    "litiere": {"par_km": 8.0, "par_groupe": (1, 3), "ecart_min_m": 30.0, "echelle": (0.55, 0.8), "longueur_m": (4.5, 11.0),
+    "litiere": {"par_km": 2.5, "par_groupe": (1, 2), "ecart_min_m": 30.0, "echelle": (0.55, 0.8), "longueur_m": (4.5, 11.0),
                 "largeur_min_m": 1.6, "fleche_max_m": 0.35, "recouvrement": 0.7, "biais_deg": 7.0, "fond": 0.25,
                 "bonus_virage": 1.0, "bonus_interieur": 3.0, "rayons_m": (25.0, 90.0), "decalage_m": (0.0, 0.6),
                 "vers_l_interieur_m": (0.3, 0.9), "part_aiguilles": 0.85, "couvert_min": 0.15},
@@ -2226,11 +2231,11 @@ DETAILS = {
                              "chêne pubescent": "chene_pubescent", "olivier": "feuillu"}},
     # aires de data/reference/aires_et_pistes.json : gravillons (aire de pierre) ou terre (aire de terre) répandus sur le
     # bord de l'enrobé devant l'aire, débordant de deborde_m de chaque côté
-    "aires": {"par_m": 1 / 22.0, "max": 2, "deborde_m": 2.0, "decalage_m": (-0.7, 0.1), "echelle": (0.55, 0.75), "biais_deg": 6.0,
+    "aires": {"garder": 0.4, "par_m": 1 / 40.0, "max": 1, "deborde_m": 2.0, "decalage_m": (-0.7, 0.1), "echelle": (0.55, 0.75), "biais_deg": 6.0,
               "longueur_m": (4.0, 9.5)},
     # débouchés de chemins (pistes de aires_et_pistes.json et chemins de la BD TOPO qui touchent la route) : terre et
     # cailloux de biais sur l'enrobé, ornières sur le chemin (pas sur un talus de plus de pente_max_deg)
-    "debouches": {"par_debouche": (1, 2), "biais_deg": (20.0, 55.0), "le_long_m": 3.0, "decalage_m": (-1.6, 0.2),
+    "debouches": {"garder": 0.4, "par_debouche": (1, 1), "biais_deg": (20.0, 55.0), "le_long_m": 3.0, "decalage_m": (-1.6, 0.2),
                   "echelle": (0.75, 1.0), "ornieres": (1, 2), "ornieres_a_m": (3.5, 6.5), "ornieres_echelle": (0.7, 0.9),
                   "pente_max_deg": 14.0, "ign": ("Route empierrée",), "ign_distance_m": 6.0, "doublon_m": 20.0},
     # épingles (data/processed/virages_es.csv, sommet recalé sur la courbure de chaussee_precise.csv) : gomme le long de la
@@ -2239,7 +2244,9 @@ DETAILS = {
     # et dans son sens (deux épingles s'enchaînent aux PK 2179-2258 et 2260-2346)
     "epingles": {"rayon_max_m": 22.0, "angle_min_deg": 70.0, "gomme": (1, 2), "deborde_m": 6.0, "ligne": (-0.45, 0.55),
                  "echelle": (0.6, 0.8), "fleche_max_m": 0.5, "longueur_m": (4.0, 8.5), "pneus_echelle": (0.55, 0.7),
-                 "pneus_angle_min_deg": 150.0},
+                 # traces de pneus : aussi dans les virages serrés qui ne sont pas des épingles (sortie seulement) ;
+                 # dans les épingles, une paire à la sortie et une au freinage
+                 "pneus_rayon_max_m": 40.0, "pneus_angle_min_deg": 60.0, "pneus_sortie": (1, 2)},
     "lissage_courbure_m": 15.0,
     "figure": {"pk": (2100.0, 2400.0), "fichier": FIG / "apercu_lointain" / "details_chaussee.jpg"},
 }
@@ -2249,7 +2256,8 @@ DETAILS = {
 # d'après le couvert (poids par essence : les chênes pubescents perdent leurs feuilles en novembre, les chênes verts un
 # peu, les pins presque pas), un peu plus à l'intérieur des virages. Posées à plat sur l'enrobé (tangage et roulis de la
 # chaussée), au_dessus_m au-dessus, ou au-dessus du marquage quand elles le touchent. Sans ombre, effacées à 25-40 m.
-FEUILLES = {"dossier": "/Game/Foliage/GroundCover/FallenLeaf",
+FEUILLES = {"actif": False,      # retirées après l'essai de la 17 (16/11/2026) : taches au sol
+            "dossier": "/Game/Foliage/GroundCover/FallenLeaf",
             "maillages": {"FallenLeaf_01": (0.27, 13.0, 0.7, False), "FallenLeaf_02": (0.27, 15.0, 0.8, False),
                           "FallenLeaf_03": (0.20, 26.0, 0.0, False), "FallenLeaf_04": (0.14, 42.0, 0.4, False),
                           "FallenLeaf_05": (0.07, 69.0, 0.6, True), "FallenLeaf_06": (0.05, 100.0, 0.0, True)},
@@ -2472,6 +2480,8 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
             col = couleur(role)
             n = int(np.clip(round((b - a + 2 * Ai["deborde_m"]) * Ai["par_m"]), 1, Ai["max"]))
             for s in np.linspace(a - Ai["deborde_m"], b + Ai["deborde_m"], n + 2)[1:-1] + rng.uniform(-1.0, 1.0, n):
+                if rng.random() >= Ai["garder"]:
+                    continue
                 s = float(np.clip(s, s_min + 2, s_max - 2))
                 L, W, prof = gabarit(role, Ai["echelle"], Ai["longueur_m"], Lt["fleche_max_m"], s)
                 poser(role, s, signe * (float(bande.demi(s, cote)[0]) + rng.uniform(*Ai["decalage_m"])), L, W, prof, col,
@@ -2521,7 +2531,7 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
         if dirn is None:
             a = math.radians(rng.uniform(-15.0, 15.0))
             dirn = np.array([sortant[0] * math.cos(a) - sortant[1] * math.sin(a), sortant[0] * math.sin(a) + sortant[1] * math.cos(a)])
-        for j in range(int(rng.integers(Db["par_debouche"][0], Db["par_debouche"][1] + 1))):
+        for j in range(int(rng.integers(Db["par_debouche"][0], Db["par_debouche"][1] + 1)) * (rng.random() < Db["garder"])):
             s = s_m + rng.uniform(-Db["le_long_m"], Db["le_long_m"])
             L, W, prof = gabarit("terre", Db["echelle"], (3.0, 8.5), Lt["fleche_max_m"], s)
             poser("terre", s, signe * (float(bande.demi(s, cote)[0]) + rng.uniform(*Db["decalage_m"])), L, W, prof, couleur("terre"),
@@ -2535,8 +2545,12 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
     Ep = DETAILS["epingles"]
     n_epingles = 0
     with open(OUT / "virages_es.csv", encoding="utf-8") as f:
-        virages = [v for v in csv.DictReader(f) if float(v["rayon_mini_m"]) <= Ep["rayon_max_m"] and float(v["angle_deg"]) >= Ep["angle_min_deg"]]
+        virages = [v for v in csv.DictReader(f) if float(v["rayon_mini_m"]) <= max(Ep["rayon_max_m"], Ep["pneus_rayon_max_m"])
+                   and float(v["angle_deg"]) >= min(Ep["angle_min_deg"], Ep["pneus_angle_min_deg"])]
     for v in virages:
+        epingle = float(v["rayon_mini_m"]) <= Ep["rayon_max_m"] and float(v["angle_deg"]) >= Ep["angle_min_deg"]
+        if not epingle and not (float(v["rayon_mini_m"]) <= Ep["pneus_rayon_max_m"] and float(v["angle_deg"]) >= Ep["pneus_angle_min_deg"]):
+            continue
         a, b = float(v["pk_debut_m"]), float(v["pk_fin_m"])
         gauche = v["sens"] == "gauche"
         fen = (pk >= a) & (pk <= b)                      # sommet : courbure la plus forte dans le sens du virage
@@ -2553,12 +2567,14 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
             fr = float(np.interp(s, [a - d, sc, b + d], [Ep["ligne"][0], Ep["ligne"][1], Ep["ligne"][0]]))
             cote = cote_in if fr > 0 else ("droite" if gauche else "gauche")
             return s_in * fr * float(bande.demi(s, cote)[0])
-        n_epingles += 1
-        for s in np.linspace(a - d, b + d, int(rng.integers(Ep["gomme"][0], Ep["gomme"][1] + 1))):
-            L, W, prof = gabarit("gomme", Ep["echelle"], Ep["longueur_m"], Ep["fleche_max_m"], s)
-            poser("gomme", float(s), trajectoire(s), L, W, prof, couleur("gomme"), rng.uniform(-5.0, 5.0), ordre=int(rng.integers(1, 3)))
-        sorties = [sc + rng.uniform(0.35, 0.7) * (b + d - sc)]
-        if float(v["angle_deg"]) >= Ep["pneus_angle_min_deg"]:
+        n_epingles += epingle
+        if epingle:
+            for s in np.linspace(a - d, b + d, int(rng.integers(Ep["gomme"][0], Ep["gomme"][1] + 1))):
+                L, W, prof = gabarit("gomme", Ep["echelle"], Ep["longueur_m"], Ep["fleche_max_m"], s)
+                poser("gomme", float(s), trajectoire(s), L, W, prof, couleur("gomme"), rng.uniform(-5.0, 5.0), ordre=int(rng.integers(1, 3)))
+        n_sortie = 2 if epingle else int(rng.integers(Ep["pneus_sortie"][0], Ep["pneus_sortie"][1] + 1))
+        sorties = [sc + rng.uniform(0.3, 0.75) * (b + d - sc) for _ in range(n_sortie)]
+        if epingle:                                      # freinage
             sorties.append(a - d + rng.uniform(0.2, 0.5) * (sc - a + d))
         for s in sorties:
             L, W, prof = gabarit("pneus", Ep["pneus_echelle"], (5.0, 11.0), Ep["fleche_max_m"] * 2, s)
@@ -2582,7 +2598,7 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
         c = couvert(bande.point(s, signe * (h - dist))[0][:, :2])
         w = F["fond"] + sum(F["poids"][g] * c[g] for g in F["poids"])
         w *= 1.0 + F["bonus_interieur"] * force(s, Lt["rayons_m"]) * dedans(s, cote)
-        k = rng.random(len(s)) < np.clip(w, 0.0, 1.0)
+        k = (rng.random(len(s)) < np.clip(w, 0.0, 1.0)) & bool(F["actif"])
         s, h, dist = s[k], h[k], dist[k]
         choix = rng.choice(len(noms), len(s), p=poids / poids.sum())
         loin = ~petits[choix] & (dist > F["bord_m"])       # grandes plaques : seulement près du bord

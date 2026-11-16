@@ -20,7 +20,8 @@
 .EXAMPLE
   pwsh -ExecutionPolicy Bypass -File pc\scripts\6_table_asphalte.ps1 -LongueurKm 6.738
 #>
-param([string]$Jeu, [string]$Travail, [double]$LongueurKm = 6.738, [string]$Ligne = 'WelesS4HafrenSouthFullForward')
+param([string]$Jeu, [string]$Travail, [double]$LongueurKm = 6.738, [string]$Ligne = 'WelesS4HafrenSouthFullForward',
+      [string]$Meteo = 'MonteCarlo')   # configuration météo de la ligne (Wales d'origine : 4 °C, essai de la 17) ; '' pour la garder
 . "$PSScriptRoot\commun.ps1"
 $ErrorActionPreference = 'Stop'
 if (-not $Jeu) { $Jeu = $script:JeuParDefaut }
@@ -90,6 +91,7 @@ foreach ($e in 'uasset', 'uexp') {
 $p = @((Join-Path $PSScriptRoot 'pneus_asphalte.py'), $mod, '--ligne', $Ligne, '--longueur-km', $LongueurKm.ToString([cultureinfo]::InvariantCulture),
        '--longueur-d-origine-km', ([double]$avant.Length).ToString([cultureinfo]::InvariantCulture))
 if ($suivante) { $p += @('--suivante', $suivante) }
+if ($Meteo) { $p += @('--meteo', $Meteo) }
 Lancer 'python' $p "classement de la ligne en asphalte"
 
 Etape "Empaquetage"
@@ -110,11 +112,12 @@ $apres = Read-Ligne (Join-Path $work 'vue_table') (Join-Path $work 'vue_table\ta
 $l = $apres.$Ligne
 $surf = @($l.SurfaceTypes | ForEach-Object { $_.Key.Row }) -join ','
 $sect = @($l.Sectors | ForEach-Object { $_.SurfaceType.Row }) -join ','
-$etat = "surface $surf ; réglages $($l.CarSetupDefaultSurfaceType.Row) ; pneus $($l.TireCompounds.Row) ; secteurs $sect ; longueur $($l.Length) km"
+$etat = "surface $surf ; réglages $($l.CarSetupDefaultSurfaceType.Row) ; pneus $($l.TireCompounds.Row) ; secteurs $sect ; météo $($l.WeatherConfig.Row) ; longueur $($l.Length) km"
+$meteoOk = (-not $Meteo) -or ($l.WeatherConfig.Row -eq $Meteo)
 $n0, $n1 = @($rows.PSObject.Properties).Count, @($apres.PSObject.Properties).Count
 # les autres lignes doivent être celles de la table de départ, à l'identique
 $autresChangees = @($noms | Where-Object { $_ -ne $Ligne -and (($rows.$_ | ConvertTo-Json -Depth 12 -Compress) -ne ($apres.$_ | ConvertTo-Json -Depth 12 -Compress)) })
-if ($surf -eq 'Tarmac' -and $l.CarSetupDefaultSurfaceType.Row -eq 'Tarmac' -and $l.TireCompounds.Row -eq 'TarmacSnow' -and $sect -eq 'Tarmac,Tarmac,Tarmac' -and
+if ($surf -eq 'Tarmac' -and $l.CarSetupDefaultSurfaceType.Row -eq 'Tarmac' -and $l.TireCompounds.Row -eq 'TarmacSnow' -and $sect -eq 'Tarmac,Tarmac,Tarmac' -and $meteoOk -and
     $n0 -eq $n1 -and $autresChangees.Count -eq 0) {
     Ok "notre conteneur passe devant : $etat"
     Ok "$n1 lignes, les $($n1 - 1) autres identiques à la table de départ"
