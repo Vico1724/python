@@ -38,7 +38,7 @@ from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 RAW, OUT = RACINE / "data" / "raw", RACINE / "modele" / "sols_jeu"
 COUCHES = ["aiguilles_de_pin", "herbe_haute", "herbe_seche", "terre", "cailloux"]      # matières 2 à 6 du jeu
 COULEURS_APERCU = {"paillis": (176, 160, 132), "aiguilles_de_pin": (150, 105, 60), "herbe_haute": (70, 140, 50),

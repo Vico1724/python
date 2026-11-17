@@ -1,0 +1,22 @@
+{
+  "note": "Parapets des ouvrages de la montée (D3). AUCUN RELEVÉ : pas de vidéo ni de photo exploitée à ce jour. Le seul ouvrage détecté par le LiDAR (ponceau vers le PK 2010-2042) prend la valeur par défaut, supposée. Types et géométrie repris du Grand Caunet.",
+  "types": {
+    "pierre_des_blancs": "maçonnerie de moellons calcaires gris, dés (potelets) de béton peints en blanc tous les 3 à 4 m et chaperon blanc",
+    "pierre": "maçonnerie de moellons, chaperon de pierre ou de béton gris, sans dés blancs nets",
+    "beton": "béton lisse banché, couleur gris clair",
+    "aucun": "pas de parapet vu de ce côté (talus rocheux ou terrain au niveau de la chaussée)"
+  },
+  "valeurs_par_defaut": {
+    "route_par_defaut": "D3",
+    "D3": {
+      "type": "beton",
+      "hauteur_m": 0.7,
+      "epaisseur_m": 0.3,
+      "statut": "supposé (non relevé à Ceyreste ; valeur de la D1 du Grand Caunet)"
+    },
+    "prolongement_par_defaut_m": 2.0
+  },
+  "ouvrages": [],
+  "parapets_hors_tablier": [],
+  "a_relever": "murs de soutènement, parapets et têtes de ponceaux : relevé sur vidéo embarquée ou Panoramax (data/reference/panoramax_d3.json)"
+}

@@ -49,7 +49,7 @@ from scipy.signal import savgol_filter
 from scipy.sparse.linalg import spsolve
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 SORTIE = RACINE / "data" / "processed" / "chaussee_precise.csv"
 BRUT = RACINE / "data" / "processed" / "chaussee_precise_brut.csv"
 

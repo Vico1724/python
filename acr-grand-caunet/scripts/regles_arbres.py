@@ -30,15 +30,15 @@ PART_D_AUTOMNE, HAUT_AUTOMNE_M = 0.30, 8.0
 
 
 
-def ref(nom, racine):
-    """data/reference/<nom> de l'épreuve (racine) ; repli de acr_geo.ref (relevés partagés du Grand Caunet) quand il
+def fichier_ref(nom, racine):
+    """data/reference/<nom> de l'épreuve (racine) ; repli de acr_geo.fichier_ref (relevés partagés du Grand Caunet) quand il
     est importable. Sans dépendance au chargement : ce module sert aussi hors de la chaîne Python complète."""
     from pathlib import Path
     p = Path(racine) / "data" / "reference" / nom
     if p.exists():
         return p
     try:
-        from acr_geo import ref as _ref
+        from acr_geo import fichier_ref as _ref
     except ImportError:
         return p
     return _ref(nom, racine)
@@ -160,7 +160,7 @@ def rocailles(racine):
 
     import numpy as np
     import shapely
-    f = ref("parois_rocheuses.json", racine)
+    f = fichier_ref("parois_rocheuses.json", racine)
     if not f.exists():
         return []
     with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:
@@ -197,7 +197,7 @@ def emprises_degagees(racine):
 
     import numpy as np
     import shapely
-    f = ref("aires_et_pistes.json", racine)
+    f = fichier_ref("aires_et_pistes.json", racine)
     if not f.exists():
         return []
     with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:
@@ -259,7 +259,7 @@ def bords_vegetation(racine):
     from pathlib import Path
     cle = str(racine)
     if cle not in _BORDS:
-        f = ref("bords_vegetation.json", racine)
+        f = fichier_ref("bords_vegetation.json", racine)
         _BORDS[cle] = [(z["genre"], float(z["pk"][0]), float(z["pk"][1]), z["cote"])
                        for z in json.loads(f.read_text(encoding="utf-8"))["zones"]] if f.exists() else []
     return _BORDS[cle]
@@ -375,7 +375,7 @@ def constructions_zone_depart(racine):
 
     import numpy as np
     import shapely
-    f = ref("zone_depart.json", racine)
+    f = fichier_ref("zone_depart.json", racine)
     if not f.exists():
         return []
     out = []
@@ -431,7 +431,7 @@ def murs_le_long_de_la_route(racine, pk_max=None):
 
     import numpy as np
     import shapely
-    f = ref("ouvrages_parapets.json", racine)
+    f = fichier_ref("ouvrages_parapets.json", racine)
     if not f.exists():
         return []
     cfg = json.loads(f.read_text(encoding="utf-8"))
@@ -554,7 +554,7 @@ def pieds_de_paroi(racine):
 
     import numpy as np
     import shapely
-    f = ref("parois_rocheuses.json", racine)
+    f = fichier_ref("parois_rocheuses.json", racine)
     if not f.exists():
         return []
     with open(Path(racine) / "data" / "processed" / "chaussee_precise.csv", encoding="utf-8") as h:

@@ -31,7 +31,7 @@ import numpy as np
 from scipy.signal import savgol_filter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 PAS_S = 0.2
 V_MAX = 32.0            # m/s
 SIGMA_DEG = 0.7         # écart admis entre rotation vue et changement de cap, par pas

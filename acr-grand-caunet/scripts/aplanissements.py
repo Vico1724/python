@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 MARGE_M = 3.0            # raccord au MNT autour de l'emprise
 ECART_MAX_M = 0.12       # points écartés de l'ajustement du plan (bourrelet, creux)
 NOTES = ("parking du Grand Caunet", "accès nord du parking")
@@ -49,8 +49,8 @@ def zones():
     from shapely.geometry import Polygon
     import mobilier
     _zones = []
-    fz = ref("zone_depart.json")
-    fa = ref("aires_et_pistes.json")
+    fz = fichier_ref("zone_depart.json")
+    fa = fichier_ref("aires_et_pistes.json")
     fm = RACINE / "data" / "raw" / "mnt_lidarhd_50cm.tif"
     if not (fz.exists() and fa.exists() and fm.exists()):
         return _zones

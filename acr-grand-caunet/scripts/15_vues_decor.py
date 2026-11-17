@@ -39,7 +39,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-from acr_geo import FIG, OUT, REF, ROOT, ref
+from acr_geo import FIG, OUT, REF, ROOT, fichier_ref
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -450,7 +450,7 @@ RENDER_JS = """const { chromium } = require('playwright');
 
 def temps_video(pk):
     """Temps (s) de la vidéo de référence v2 au PK donné (table du relevé vidéo, interpolée)."""
-    t = json.loads((ref("releve_video.json")).read_text(encoding="utf-8"))["table_temps_pk"]["v2"]
+    t = json.loads((fichier_ref("releve_video.json")).read_text(encoding="utf-8"))["table_temps_pk"]["v2"]
     pts = [(t["depart"]["t_s"], t["depart"]["pk_m"])] + [(r["t_s"], r["pk_m"]) for r in t["reperes"]] + \
           [(t["arrivee"]["t_s"], t["arrivee"]["pk_m"])]
     pts.sort()

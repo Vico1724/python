@@ -58,7 +58,7 @@ from scipy.spatial import cKDTree
 from shapely.geometry import LineString, shape
 from skimage.segmentation import watershed
 
-from acr_geo import FIG, OUT, RAW, REF, ROOT, TO_L93, l93, ref
+from acr_geo import FIG, OUT, RAW, REF, ROOT, TO_L93, l93, fichier_ref
 
 SEED = 20261111
 BANDE = 135.0               # m de part et d'autre de l'axe (emprise du modèle 3D : 130 m)
@@ -72,7 +72,7 @@ NDVI_ARBUSTE = 0.12         # NDVI minimal d'un pixel d'arbuste
 GLB_DIST = 40.0             # m : aperçu 3D
 RES = 0.5
 FIG4 = FIG / "phase4"
-CATALOGUE = ref("catalogue_jeu_25170642.txt.gz")
+CATALOGUE = fichier_ref("catalogue_jeu_25170642.txt.gz")
 
 # --- Essences et proportions par type de formation BD Forêt V2 ---------------------------
 # Définitions BD Forêt : « pur » = l'essence fait au moins 75 % du couvert libre ;

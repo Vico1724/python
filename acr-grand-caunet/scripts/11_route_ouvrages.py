@@ -36,7 +36,7 @@ from PIL import Image
 from scipy.spatial import cKDTree
 from shapely.geometry import LineString, Polygon
 
-from acr_geo import FIG, OUT, REF, ROOT, l93, ref
+from acr_geo import FIG, OUT, REF, ROOT, l93, fichier_ref, param
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -457,7 +457,7 @@ def marquage(ch, ref, rg, cfg, decks, ruban):
 def aspect_chaussee(ch, ref, rg, ruban):
     """Pièces d'enrobé plus sombres et fissures pontées (data/reference/aspect_chaussee.json), en bandes minces
     posées sur l'enrobé, sous le marquage. Rend deux maillages (« reprise », « fissure ») et un bilan."""
-    f = ref("aspect_chaussee.json")
+    f = fichier_ref("aspect_chaussee.json")
     if not f.exists():
         return [], {}
     cfg = json.loads(f.read_text(encoding="utf-8"))
@@ -523,15 +523,16 @@ def aspect_chaussee(ch, ref, rg, ruban):
 
 # --- ouvrages ------------------------------------------------------------------------------
 def config_ouvrages(ch, deck):
-    cfg = json.loads((ref("ouvrages_parapets.json")).read_text(encoding="utf-8"))
+    cfg = json.loads((fichier_ref("ouvrages_parapets.json")).read_text(encoding="utf-8"))
     dflt = cfg["valeurs_par_defaut"]
     out = []
     for a, b in m08.runs(deck):
         pa, pb = float(ch["pk"][a]), float(ch["pk"][b])
         c = (pa + pb) / 2
-        ent = min(cfg["ouvrages"], key=lambda o: abs(o["pk_centre_m"] - c))
-        if abs(ent["pk_centre_m"] - c) > 40:
-            route = "D3D" if c < dflt["pk_limite_D3D_D1_m"] else "D1"
+        ent = min(cfg["ouvrages"], key=lambda o: abs(o["pk_centre_m"] - c), default=None)
+        if ent is None or abs(ent["pk_centre_m"] - c) > 40:
+            # « route_par_defaut » : épreuve sur une seule route (sinon partage D3D / D1 du Grand Caunet)
+            route = dflt.get("route_par_defaut") or ("D3D" if c < dflt["pk_limite_D3D_D1_m"] else "D1")
             ent = {"pk_centre_m": c, "route": route, "gauche": dict(dflt[route]), "droite": dict(dflt[route])}
         out.append({"rangs": (a, b), "pk": (pa, pb), "cfg": ent})
     return out, dflt["prolongement_par_defaut_m"]
@@ -605,7 +606,7 @@ def glissieres(rg, ref, mnt, ch):
     """Glissières simples (data/reference/glissieres.json) : lisse à deux ondes (deux bandes en
     saillie et un creux), poteaux tous les pas_poteaux_m, posés à decalage_depuis_bord_m du bord.
     Renvoie (pièces de rendu par matériau, boîtes de collision, bilan)."""
-    cfg = json.loads((ref("glissieres.json")).read_text(encoding="utf-8"))
+    cfg = json.loads((fichier_ref("glissieres.json")).read_text(encoding="utf-8"))
     g = {k: v["valeur"] for k, v in cfg["geometrie"].items()}
     H, hl, sa, pas, sp, dec, anc = (g[k] for k in ("hauteur_haut_lisse_m", "hauteur_lisse_m", "saillie_ondes_m", "pas_poteaux_m",
                                                    "section_poteau_m", "decalage_depuis_bord_m", "ancrage_poteaux_m"))
@@ -894,7 +895,7 @@ def main():
               "on garde repere.json (celui du terrain)")
     rg = Rangs(ch)
     decks, prol = config_ouvrages(ch, deck)
-    cfg_m = json.loads((ref("marquage_route.json")).read_text(encoding="utf-8"))
+    cfg_m = json.loads((fichier_ref("marquage_route.json")).read_text(encoding="utf-8"))
     print(f"chaussée : {len(ch['pk'])} rangs, PK {ch['pk'][0]:.0f} à {ch['pk'][-1]:.0f} ; {len(decks)} tabliers")
 
     # --- route habillée
@@ -943,7 +944,7 @@ def main():
                 meshes_ouv.append(fusion(pcs["chaperon"], f"parapet_{nom}_{cote}_chaperon", "chaperon"))
         tableau.append(ligne)
     # parapets hors tablier (relevé vidéo) : pied descendu jusqu'au terrain
-    cfg_par = json.loads((ref("ouvrages_parapets.json")).read_text(encoding="utf-8"))
+    cfg_par = json.loads((fichier_ref("ouvrages_parapets.json")).read_text(encoding="utf-8"))
     hors, noms_hors = [], set()
     for e in cfg_par.get("parapets_hors_tablier", []):
         for cote in ("gauche", "droite"):
@@ -1003,7 +1004,8 @@ def main():
     # --- rendus : virage (marquage), pont de la D3D, plus long ouvrage de la D1, vue conducteur
     A = rg(ch["pk"])[0]
     Ag = m08.to_gltf(A, ref)
-    es = np.flatnonzero((ch["zone"] == "es") & ((ch["pk"] < 3550) | (ch["pk"] > 3750)))
+    ex0, ex1 = param("pk_exclus_rendu_virage", (3550, 3750))       # carrefour du Lion d'Or au Grand Caunet
+    es = np.flatnonzero((ch["zone"] == "es") & ((ch["pk"] < ex0) | (ch["pk"] > ex1)))
     h = np.unwrap(np.arctan2(np.gradient(A[:, 1]), np.gradient(A[:, 0])))
     k = np.abs(np.convolve(np.gradient(h), np.ones(15) / 15, "same"))
     loin = np.ones(len(A), bool)
@@ -1013,18 +1015,27 @@ def main():
     v = es[np.argmax(k[es])]
     eye = Ag[v - 22] + np.array([0, 3.2, 0])
     vues = [("virage", eye, Ag[v + 6] - np.array([0, 0.5, 0]), 60)]
-    d3d = min((d for d in decks if d["cfg"]["route"] == "D3D"), key=lambda d: abs(sum(d["pk"]) / 2 - 1661))
-    d1 = max((d for d in decks if d["cfg"]["route"] == "D1"), key=lambda d: d["pk"][1] - d["pk"][0])
+    # ouvrages rendus : celui de la première route le plus proche du PK donné, le plus long de la seconde (Grand Caunet :
+    # pont de la D3D vers le PK 1661, plus long ouvrage de la D1) ; une épreuve d'une seule route prend tous ses ouvrages
+    r1, r2 = param("routes_rendus", ("D3D", "D1"))
+    c1 = [d for d in decks if d["cfg"]["route"] == r1] or decks
+    c2 = [d for d in decks if d["cfg"]["route"] == r2] or decks
+    d3d = min(c1, key=lambda d: abs(sum(d["pk"]) / 2 - param("pk_rendu_pont", 1661)), default=None)
+    d1 = max(c2, key=lambda d: d["pk"][1] - d["pk"][0], default=None)
     for nom, d, kw in (("pont_d3d", d3d, {}), ("pont_d1", d1, {"recul": 30.0, "lat": 45.0, "haut": 8.0})):
+        if d is None or (nom == "pont_d1" and d is d3d):
+            continue
         e_, a_ = vue_pont(ch, ref, mnt, rg, d, **kw)
         vues.append((nom, e_, a_, 55))
-    i = int(np.searchsorted(ch["pk"], d3d["pk"][0])) - 30                 # vue conducteur avant le pont
-    vues.append(("pont_d3d_conducteur", Ag[i] + m08.to_gltf(rg.point(np.array([ch["pk"][i]]), 1.6, 1.25), ref)[0] - Ag[i],
-                 m08.to_gltf(rg.point(np.array([ch["pk"][i] + 35]), 1.0, 0.6), ref)[0], 60))
+    if d3d is not None:
+        i = int(np.searchsorted(ch["pk"], d3d["pk"][0])) - 30             # vue conducteur avant le pont
+        vues.append(("pont_d3d_conducteur", Ag[i] + m08.to_gltf(rg.point(np.array([ch["pk"][i]]), 1.6, 1.25), ref)[0] - Ag[i],
+                     m08.to_gltf(rg.point(np.array([ch["pk"][i] + 35]), 1.0, 0.6), ref)[0], 60))
     fichiers = [MOD / "terrain.glb", MOD / "route_habillee.glb", MOD / "ouvrages.glb"]
     ok = rendus(vues, fichiers)
-    print("rendus :", ok, {"virage_pk": round(float(ch["pk"][v])), "pont_d3d_pk": [round(x) for x in d3d["pk"]],
-                            "pont_d1_pk": [round(x) for x in d1["pk"]]})
+    print("rendus :", ok, {"virage_pk": round(float(ch["pk"][v])),
+                            "pont_d3d_pk": [round(x) for x in d3d["pk"]] if d3d else None,
+                            "pont_d1_pk": [round(x) for x in d1["pk"]] if d1 and d1 is not d3d else None})
     print(f"durée : {time.time() - t0:.0f} s")
 
 

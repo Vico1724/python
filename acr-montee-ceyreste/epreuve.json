@@ -41,5 +41,25 @@
   ],
   "note_point_bas": "",
   "legende_liaison": "route fermée hors montée (approche, PK 3000 -> 3746)",
-  "legende_es": "montée retenue (3,0 km, arrivée estimée)"
+  "legende_es": "montée retenue (3,0 km, arrivée estimée)",
+  "pk_bdtopo_traites": [
+    -160.0,
+    3760.0
+  ],
+  "id_point_fin": "FIN_ZONE",
+  "sortie_apres_fin_m": 0.0,
+  "extraits_chaussee": [
+    [
+      893.0,
+      "épingle la plus serrée (rayon BD TOPO 9 m)"
+    ],
+    [
+      2650.0,
+      "extrait courant"
+    ]
+  ],
+  "libelle_debut_axe": "approche : D3 depuis le village",
+  "pk_extrait_approche": -60.0,
+  "libelle_approche": "approche : carrefour du Plan de Masse",
+  "nom_court": "Montée historique de Ceyreste"
 }

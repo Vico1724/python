@@ -61,7 +61,7 @@ from rasterio.windows import from_bounds
 from scipy import ndimage as ndi
 from shapely.geometry import shape
 
-from acr_geo import FIG, OUT, RAW, REF, ROOT, TO_L93, get, ref
+from acr_geo import FIG, OUT, RAW, REF, ROOT, TO_L93, get, fichier_ref
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -121,7 +121,7 @@ LUMA = np.array([0.299, 0.587, 0.114], np.float32)
 def telecharge_cc0():
     """Télécharge (une fois) diffuse et normale OpenGL 2k des textures, note la provenance."""
     CC0.mkdir(parents=True, exist_ok=True)
-    prov_path = ref("ressources_cc0.json")
+    prov_path = fichier_ref("ressources_cc0.json")
     prov = json.loads(prov_path.read_text(encoding="utf-8")) if prov_path.exists() else {}
     textures = prov.get("textures_sol", {})
     for role, ident in CC0_TEXTURES.items():
@@ -632,7 +632,7 @@ _C = {}
 
 def _init():
     _C.update(charge_communs())
-    prov = json.loads((ref("ressources_cc0.json")).read_text(encoding="utf-8"))["textures_sol"]
+    prov = json.loads((fichier_ref("ressources_cc0.json")).read_text(encoding="utf-8"))["textures_sol"]
     tex = {v["role"]: v["taille_physique_m"] for v in prov.values()}
     res5 = (SOUS + 2 * SOUS_MARGE) / SOUS_PX
     _C["mats"] = {m: [Matiere(CC0_TEXTURES[m], tex[m], res5, echelle=s) for s in (1.0, 1.37, 0.81)] for m in MATIERES}

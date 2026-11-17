@@ -41,7 +41,7 @@ for _d in (RAW, OUT, FIG):
 REF_CODE = CODE / "data" / "reference"   # relevés du Grand Caunet (dont les valeurs lues dans le jeu)
 
 
-def ref(nom: str, racine=None) -> Path:
+def fichier_ref(nom: str, racine=None) -> Path:
     """Fichier de data/reference de l'épreuve. Pour une autre épreuve que le Grand Caunet, un fichier absent de son
     dossier et déclaré partagé (« references_partagees » d'epreuve.json : valeurs lues dans le jeu, catalogue, textures)
     est lu dans les relevés du Grand Caunet ; un relevé propre au site n'est jamais emprunté."""

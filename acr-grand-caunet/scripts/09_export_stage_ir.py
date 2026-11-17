@@ -49,7 +49,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import OUT, ROOT, TO_L93, wgs, ref  # noqa: E402
+from acr_geo import OUT, ROOT, TO_L93, wgs, fichier_ref  # noqa: E402
 import shapely  # noqa: E402
 from shapely.geometry import shape as geo_shape  # noqa: E402
 
@@ -96,7 +96,7 @@ OBSTACLES = {
     "metal_glissiere": ("PM_WallMetalGuardrail", "box", "gc_glissiere"),
 }
 SOURCES_OBSTACLES = ("ouvrages_collision.glb", "annexes_collision.glb", "balisage_collision.glb")
-CATALOGUE = gzip.open(ref("catalogue_jeu_25170642.txt.gz"), "rt", encoding="utf-8").read()
+CATALOGUE = gzip.open(fichier_ref("catalogue_jeu_25170642.txt.gz"), "rt", encoding="utf-8").read()
 CATALOGUE = "\n".join(f'"{m}"' for m in re.findall(r"PhysicalMaterials/(PM_\w+)\.uasset", CATALOGUE))
 SPLITS = ("INTER2", "INTER6")                      # points officiels retenus comme temps intermédiaires
 
@@ -859,7 +859,7 @@ def volumes_retenus(stage, obst):
 
 
 # --- retouches des notes (relevé vidéo) -------------------------------------------------
-RETOUCHES = ref("notes_copilote_retouches.json")
+RETOUCHES = fichier_ref("notes_copilote_retouches.json")
 # Ce que leur constructeur sait dire (config/pacenote-map.toml + Pacenotes.Generate) : un virage (sens, sévérité
 # "6".."1", square, hairpin), le modificateur dont_cut -> DontCut, les distances, Into/And entre virages liés et
 # l'arrivée. Tout autre jeton (kind "unknown", modificateur non listé) est abandonné par Pacenotes.Generate.
@@ -1105,7 +1105,7 @@ def parc_assistance(ch, A, G, ref):
     import mobilier
     from shapely.geometry import Point, Polygon
     from shapely.ops import polylabel, unary_union
-    zd = json.loads(ref("zone_depart.json").read_text(encoding="utf-8"))
+    zd = json.loads(fichier_ref("zone_depart.json").read_text(encoding="utf-8"))
     e = next(o for o in zd["objets"] if o["genre"] == PARC["emprise"])["emprise_l93"]
     parking = Polygon(json.loads(e) if isinstance(e, str) else e)
     objs, _ = mobilier.objets()

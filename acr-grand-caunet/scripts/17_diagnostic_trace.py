@@ -24,7 +24,7 @@ import numpy as np
 from scipy.signal import savgol_filter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 LONGUEUR_LISSAGE_M = 31          # fenêtre de référence : plus courte que le plus petit virage réel (épingle : ~40 m d'arc)
 FENETRE_M = 50
 SEUIL_COURBURE = 1.0 / 400.0     # sous R = 400 m, un changement de signe n'est pas compté (droite)

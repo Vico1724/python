@@ -1,0 +1,43 @@
+{
+  "note": "Glissières de la montée. Géométrie et noms du jeu repris du Grand Caunet (géométrie supposée là-bas aussi ; noms vérifiés dans le catalogue du jeu). AUCUN TRONÇON RELEVÉ à Ceyreste : liste vide tant qu'une vidéo ou des photos n'ont pas été dépouillées.",
+  "geometrie": {
+    "hauteur_haut_lisse_m": {
+      "valeur": 0.75,
+      "provenance": "supposé (valeur courante d'une glissière simple, 0,70-0,75 m)"
+    },
+    "hauteur_lisse_m": {
+      "valeur": 0.31,
+      "provenance": "supposé (lisse à deux ondes, ≈ 31 cm)"
+    },
+    "saillie_ondes_m": {
+      "valeur": 0.08,
+      "provenance": "supposé"
+    },
+    "pas_poteaux_m": {
+      "valeur": 4.0,
+      "provenance": "supposé (2 ou 4 m selon le type)"
+    },
+    "section_poteau_m": {
+      "valeur": 0.1,
+      "provenance": "supposé"
+    },
+    "decalage_depuis_bord_m": {
+      "valeur": 0.5,
+      "provenance": "supposé (sur l'accotement, la vidéo montre la lisse à quelques dizaines de cm de la rive)"
+    },
+    "ancrage_poteaux_m": {
+      "valeur": 0.6,
+      "provenance": "supposé (sous le terrain)"
+    }
+  },
+  "jeu": {
+    "materiau_de_choc": [
+      "acr/Content/Data/Gameplay/PhysicalMaterials/PM_GuardrailMetalHF",
+      "acr/Content/Data/Gameplay/PhysicalMaterials/PM_WallMetalGuardrail"
+    ],
+    "maillage_possible": "acr/Content/Props/AlsaceProps/SaverneCityGuardrailA/SM_SaverneCityGuardrailA (glissière urbaine de Saverne, dimensions inconnues)",
+    "evenement_de_choc": "acr/Content/Events/Destruction/Props/FME_ImpactGuardrail",
+    "remarque": "noms vérifiés dans data/reference/catalogue_jeu_25170642.txt.gz"
+  },
+  "troncons": []
+}

@@ -18,8 +18,8 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
-FICHIER = ref("mobilier_bord_de_route.json")
+from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+FICHIER = fichier_ref("mobilier_bord_de_route.json")
 CREUX_MAX_M = 1.5
 PORTEE_MIN_M = 30.0
 

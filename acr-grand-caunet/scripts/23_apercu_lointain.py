@@ -22,7 +22,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 _spec = importlib.util.spec_from_file_location("s16", Path(__file__).with_name("16_paquet_unreal.py"))
 s16 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(s16)

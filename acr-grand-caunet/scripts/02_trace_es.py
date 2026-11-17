@@ -19,7 +19,7 @@ from xml.sax.saxutils import escape
 
 import numpy as np
 
-from acr_geo import OUT, RAW, REF, cumdist, param, l93, load_official, project_on_line, wgs, write_geojson, ref
+from acr_geo import OUT, RAW, REF, cumdist, param, l93, load_official, project_on_line, wgs, write_geojson, fichier_ref
 
 # L'ES emprunte la D3D puis la D1 (carte officielle + avis de fermeture de routes) ;
 # la D3 ne sert qu'à l'approche du CH. On n'accroche les points officiels qu'à ces
@@ -137,7 +137,7 @@ def main():
     # Lignes retenues (data/reference/lignes_es.json) : le PK 0 du projet est la ligne de
     # départ réelle, décalée par rapport à l'origine des PK officiels ; l'arrivée garde
     # sa position dans le calage officiel.
-    lignes = json.loads((ref("lignes_es.json")).read_text(encoding="utf-8"))
+    lignes = json.loads((fichier_ref("lignes_es.json")).read_text(encoding="utf-8"))
     dec = lignes["depart"]["decalage_par_rapport_au_calage_pk_m"]
     s0 = s0_cal + dec
     pk = s - s0
