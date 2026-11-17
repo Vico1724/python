@@ -34,6 +34,11 @@ TOL_BORNES_CM = 1.0                   # arrondi des bornes du manifeste (0,1 cm)
 MARGE_OBJETS_M = 25.0                 # demi-largeur de route ou débord toléré hors de la zone de détail
 
 Image.MAX_IMAGE_PIXELS = None
+for _flux in (sys.stdout, sys.stderr):      # tube en cp1252 sous Windows : pas d'échec sur « ≠ » ou « ≤ »
+    try:
+        _flux.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 
 class Controle:

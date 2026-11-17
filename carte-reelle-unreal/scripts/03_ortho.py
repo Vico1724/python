@@ -29,7 +29,7 @@ def vide_pct(a):
 
 def obtenir(ctx, fichier, bornes, res, nom):
     if fichier:
-        return geo.reprojeter(Path(fichier).resolve(), bornes, res, ctx.crs, bandes=3)
+        return geo.reprojeter(fichier, bornes, res, ctx.crs, bandes=3)
     return geo.wms_mosaique(ctx.cache, geo.COUCHE_ORTHO, bornes, res, fmt="image/jpeg", bandes=3, progres=nom)
 
 
@@ -38,14 +38,14 @@ def main():
     ap.add_argument("--ortho", help="orthophoto fournie (GeoTIFF RVB, tout système) à la place de la BD ORTHO")
     args = ap.parse_args()
     ctx = geo.Contexte(args)
-    fichier = args.ortho or ctx.cfg["sources"].get("ortho")
+    fichier = ctx.source("ortho", args.ortho)
     if not fichier and not ctx.en_france():
         raise SystemExit("ERREUR 03_ortho : zone hors France, pas de BD ORTHO. Fournir une orthophoto avec "
                          "--ortho fichier.tif (photo aérienne nationale, ou Sentinel-2 à 10 m si rien d'autre), "
                          "ou \"sources\": {\"ortho\": ...} dans zone.json.")
     d = ctx.dossier("ortho")
     sorties = [d / "ortho.tif", d / "ortho_terrain.jpg", d / "ortho_lointain.jpg"]
-    j = ctx.deja_fait("03_ortho", sorties, ortho=fichier)
+    j = ctx.deja_fait("03_ortho", sorties, ortho=str(fichier) if fichier else None)
     if j and ctx.repere.get("ortho"):
         geo.resume([f"03_ortho : déjà fait ({j['resume']}) ; --force pour refaire"])
         return
@@ -57,6 +57,9 @@ def main():
     res = 2 * demi / px
     bornes = ctx.bornes_proj(demi)
     a = obtenir(ctx, fichier, bornes, res, "ortho terrain")
+    if vide_pct(a) > 95:
+        raise SystemExit("ERREUR 03_ortho : orthophoto vide sur le terrain (zone hors couverture "
+                         + ("du fichier fourni" if fichier else "de la BD ORTHO") + ") : fournir --ortho fichier.tif")
     geo.ecrire_tif(d / "ortho.tif", a, bornes, res, ctx.crs, image=True)
     Image.fromarray(np.moveaxis(a, 0, -1)).save(d / "ortho_terrain.jpg", quality=90)
 
@@ -77,7 +80,7 @@ def main():
     ctx.ecrire_repere()
     txt = (f"terrain {px} x {px} px à {res:.2f} m ({info['terrain']['vide_pct']} % vide), lointain {lpx} px "
            f"sur {2 * rayon / 1000:.1f} km à {2 * rayon / lpx:.1f} m")
-    ctx.journal("03_ortho", {"options": {"ortho": fichier}, "resume": txt, **info})
+    ctx.journal("03_ortho", {"options": {"ortho": str(fichier) if fichier else None}, "resume": txt, **info})
     lignes = [f"03_ortho : {txt}", f"  téléchargé : {geo.volume_telecharge()} ; {ctx.duree()}"]
     if res > res_voulu * 1.01:
         lignes.insert(1, f"  pas porté de {res_voulu} à {res:.2f} m (texture plafonnée à {ctx.cfg['texture_max_px']} px)")

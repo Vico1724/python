@@ -14,7 +14,6 @@ Sorties : relief/mnt.tif (altitudes, pas du terrain), relief/heightmap_<N>.png e
           journaux/02_relief.json
 """
 import math
-from pathlib import Path
 
 import numpy as np
 from PIL import Image
@@ -28,9 +27,8 @@ FIN_MAX_PX = 64e6    # au-delà (≈ 16 km² à 0,5 m), les rasters fins passent
 
 def mnt_terrain(ctx, args, bornes, res):
     """Renvoie (altitudes, info sources)."""
-    fichier = args.mnt or ctx.cfg["sources"].get("mnt")
-    if fichier:
-        p = Path(fichier).resolve()
+    p = ctx.source("mnt", args.mnt)
+    if p:
         a = geo.reprojeter(p, bornes, res, ctx.crs)
         return a, {"source": f"fichier fourni ({p.name})", "couverture_pct": round(float(np.isfinite(a).mean() * 100), 1)}
     if not ctx.en_france():
@@ -91,7 +89,8 @@ def main():
     n, res, demi = t["taille_px"], t["pas_m"], t["demi_cote_m"]
     d = ctx.dossier("relief")
     hm = d / f"heightmap_{n}.png"
-    opts = {"mnt": args.mnt, "sans_lidar_fin": args.sans_lidar_fin}
+    src_mnt = ctx.source("mnt", args.mnt)
+    opts = {"mnt": str(src_mnt) if src_mnt else None, "sans_lidar_fin": args.sans_lidar_fin}
     j = ctx.deja_fait("02_relief", [d / "mnt.tif", hm], **opts)
     if j and ctx.repere.get("unreal_landscape"):
         geo.resume([f"02_relief : déjà fait ({j['resume']}) ; --force pour refaire"])
@@ -129,11 +128,12 @@ def main():
     ctx.repere.update({"z0_m": z0, "altitude_min_m": round(float(a.min()), 2), "altitude_max_m": round(float(a.max()), 2),
                        "unreal_landscape": ue})
     fin = None
-    if ctx.en_france() and not args.mnt and not args.sans_lidar_fin and info.get("couverture_lidar_pct", 0) > 0:
+    mf = ctx.source("mnt", args.mnt)
+    if ctx.en_france() and not mf and not args.sans_lidar_fin and info.get("couverture_lidar_pct", 0) > 0:
         fin = lidar_fin(ctx, args)
     info.pop("_lidar", None)
     ctx.repere["lidar_fin"] = fin
-    ctx.repere["mnt_fourni"] = str(Path(args.mnt or ctx.cfg["sources"].get("mnt")).resolve()) if (args.mnt or ctx.cfg["sources"].get("mnt")) else None
+    ctx.repere["mnt_fourni"] = str(mf) if mf else None
     ctx.ecrire_repere()
     pente = np.degrees(np.arctan(np.hypot(*np.gradient(a, res))))
     txt = (f"{n} x {n} px au pas {res} m, altitudes {a.min():.1f} à {a.max():.1f} m, z0 {z0} m, "

@@ -11,6 +11,8 @@ Chaque couche est découpée à la zone de détail (emprise + marge) et écrite 
 Usage : python 04_vecteurs.py --zone zone.json --sortie DOSSIER [--sans-osm]
 Sorties : vecteurs/bdtopo_<couche>.geojson, vecteurs/osm_<categorie>.geojson, journaux/04_vecteurs.json
 """
+import json
+
 import shapely
 from shapely.geometry import LineString, Point, Polygon, mapping, shape
 from shapely.ops import polygonize, unary_union
@@ -129,7 +131,8 @@ def categorie(t):
 
 
 def osm(ctx, zone, bbox, dossier):
-    d, serveur = geo.overpass(ctx.cache, requete_osm(bbox))
+    budget = float(ctx.cfg["osm_budget_s"]) if ctx.en_france() else max(float(ctx.cfg["osm_budget_s"]), 600.0)
+    d, serveur = geo.overpass(ctx.cache, requete_osm(bbox), budget=budget)
     if d is None:
         return None, serveur
     par_cat = {c: [] for c in OSM}
@@ -164,6 +167,10 @@ def main():
     if j and (not avec_osm or j.get("osm")):
         geo.resume([f"04_vecteurs : déjà fait ({j['resume']}) ; --force pour refaire"])
         return
+    pj = ctx.sortie / "journaux" / "04_vecteurs.json"
+    if pj.exists() and json.loads(pj.read_text(encoding="utf-8")).get("signature") != ctx.signature:
+        for g in d.glob("*.geojson"):         # zone.json a changé : pas de couche d'une ancienne emprise
+            g.unlink()
     zone = ctx.emprise_locale()
     bbox = ctx.bbox_lonlat(*zone.bounds)
     comptes, echecs = ({}, {})
@@ -178,7 +185,8 @@ def main():
                          f"{d} (osm_routes.geojson, osm_batiments.geojson, osm_vegetation.geojson).")
     txt = ("BD TOPO " + ", ".join(f"{k} {v}" for k, v in comptes.items() if k in ("routes", "batiments", "vegetation"))
            if comptes else "BD TOPO non (hors France)")
-    txt += " ; OSM " + (", ".join(f"{k} {v}" for k, v in c_osm.items()) if c_osm else "indisponible")
+    txt += " ; OSM " + (", ".join(f"{k} {v}" for k, v in c_osm.items()) if c_osm else
+                         "indisponible" if avec_osm else "désactivé")
     ctx.journal("04_vecteurs", {"options": {"osm": avec_osm}, "resume": txt, "bdtopo": comptes,
                                 "bdtopo_echecs": echecs, "osm": c_osm, "osm_serveur": serveur})
     lignes = [f"04_vecteurs : {txt}"]

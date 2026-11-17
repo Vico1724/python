@@ -9,6 +9,7 @@ Usage : python tout_lancer.py --zone zone.json --sortie DOSSIER [--cache DOSSIER
         [--depuis 03] [--jusqua 07] [--mnt f.tif] [--ortho f.tif] [--sans-osm] [--vignettes] [--table t.csv]
 """
 import argparse
+import os
 import subprocess
 import sys
 import time
@@ -20,6 +21,11 @@ ETAPES = ["01_emprise", "02_relief", "03_ortho", "04_vecteurs", "05_vegetation",
 # options propres à une étape : (option de tout_lancer, étape, prend une valeur)
 PROPRES = [("mnt", "02_relief", True), ("ortho", "03_ortho", True), ("sans_osm", "04_vecteurs", False),
            ("vignettes", "06_photos_rue", False), ("table", "08_paquet_unreal", True)]
+for _flux in (sys.stdout, sys.stderr):      # console ou tube en cp1252 : pas d'échec sur un caractère
+    try:
+        _flux.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 SIGNAUX = ("ATTENTION", "ERREUR", "ÉCART", "injoignable", "Traceback")
 
 
@@ -59,7 +65,8 @@ def main():
             if etape == e and v:
                 cmd += [f"--{opt.replace('_', '-')}"] + ([str(Path(v).resolve())] if valeur else [])
         t = time.time()
-        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+        env = {**os.environ, "PYTHONIOENCODING": "utf-8"}     # sorties des étapes lues en UTF-8 partout
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=env)
         sortie_txt = (r.stdout + r.stderr).strip()
         log.write(f"=== {e} ({time.time() - t:.0f} s, code {r.returncode})\n{sortie_txt}\n")
         log.flush()

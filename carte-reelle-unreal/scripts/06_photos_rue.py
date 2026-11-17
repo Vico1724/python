@@ -121,7 +121,7 @@ def main():
                                   "trouvees_bbox": len(vus), "subdivision": prof, "licences": lic,
                                   "vignettes": n_v, "vignettes_echecs": echecs})
     geo.resume([f"06_photos_rue : {txt} ; vignettes : {n_v}" + (f" ({echecs} échecs)" if echecs else ""),
-                f"  licences : " + ", ".join(f"{k or '?'} {v}" for k, v in lic.items()),
+                "  licences : " + ", ".join(f"{k or '?'} {v}" for k, v in lic.items()),
                 f"  téléchargé : {geo.volume_telecharge()} ; {ctx.duree()}"])
 
 

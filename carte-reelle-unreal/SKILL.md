@@ -45,6 +45,7 @@ Chaque script est relançable seul, garde ses téléchargements en cache et n'im
 | `06_photos_rue.py` | liste des images Panoramax de la zone, vignettes sur option |
 | `07_lointain.py` | maillage basse résolution du relief autour de la zone |
 | `08_paquet_unreal.py` | paquet assemblé, `manifeste.json`, notice d'import |
+| `telecharger_assets_cc0.py` | assets libres de `assets/assets_cc0.csv` (Poly Haven, ambientCG), avec crédits |
 | `controle_paquet.py` | verdict CONFORME ou NON CONFORME avec les écarts |
 
 Ne pas passer à Unreal tant que le contrôle n'est pas conforme. Hors de France, fournir ses propres rasters (`--mnt`, `--ortho`) ; les sources par pays sont dans `references/sources_geodonnees.md`.
@@ -62,7 +63,7 @@ Confier la description des images à un petit modèle qui rend un tableau struct
 
 Sur le PC, dans un projet Unreal de la même version de moteur que le jeu cible :
 
-1. Lancer `scripts/unreal/importer_paquet.py` dans l'éditeur. Il lit `manifeste.json`, importe le relief aux échelles notées, les maillages, et pose les arbres en instances d'après une table `type → asset` (`assets/table_assets_exemple.csv`) à remplir avec les assets du jeu ou d'une banque. Ce script n'a pas été exécuté lors de l'écriture du skill : le faire tourner d'abord sur une petite zone et corriger ce que la version du moteur exige.
+1. Lancer `scripts/unreal/importer_paquet.py` dans l'éditeur (une copie est dans le paquet). Il lit `manifeste.json`, importe les maillages, pose le décor et les arbres en instances d'après une table `type → asset` (`assets/table_assets_exemple.csv`, formes de base par défaut) à remplir avec les assets du jeu ou d'une banque. Il ne crée pas le Landscape, faute d'API Python stable : il écrit la consigne exacte (fichier de heightmap, position, échelles X/Y/Z) à saisir dans l'outil d'import, et pose en attendant le terrain en maillage. Ce script n'a jamais tourné dans Unreal (seul son mode `--essai` a été exécuté) : le lancer d'abord sur une petite zone, vérifier l'échelle Z et l'orientation du nord, et corriger ce que la version du moteur exige.
 2. Choisir les assets dans cet ordre : assets du jeu cible (cohérents, légers, déjà chez le joueur), puis assets scannés libres, et seulement en dernier un objet fabriqué en code. Mesurer chaque asset avant de le poser ; son nom ne prouve rien. Noter licence et crédit dès le téléchargement.
 3. Garder la construction reproductible : un script reconstruit le niveau depuis les données. Les retouches manuelles de l'utilisateur vivent dans une copie que le script ne réécrit jamais.
 

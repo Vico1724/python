@@ -28,8 +28,8 @@ from pathlib import Path
 
 import numpy as np
 import requests
-from pyproj import CRS, Transformer
-from shapely.geometry import LineString, MultiLineString, Polygon, box, mapping, shape
+from pyproj import Transformer
+from shapely.geometry import LineString, Polygon, box, mapping, shape
 import shapely
 from shapely.ops import unary_union
 
@@ -56,8 +56,18 @@ TAILLES_LANDSCAPE = (505, 1009, 2017, 4033, 8129)
 # reste sous la minute et se relance à moindre coût si elle échoue.
 DALLE_PX = 2000
 NODATA = -9999.0
-# Emprise grossière de la France métropolitaine (Corse comprise) : au-delà, les sources IGN n'ont rien.
-FRANCE_LONLAT = (-5.3, 41.3, 9.7, 51.2)
+# Contour grossier de la France métropolitaine (lon, lat), élargi de 0,15° à l'usage, et la Corse.
+# Sert seulement à choisir Lambert-93 et les sources IGN ; une zone frontalière mal classée échoue
+# proprement plus loin (sources IGN vides).
+FRANCE_CONTOUR = [(-1.79, 43.37), (-1.4, 43.05), (-0.75, 42.92), (0.0, 42.68), (0.7, 42.6), (1.45, 42.43),
+                  (1.98, 42.35), (2.6, 42.33), (3.2, 42.42), (3.25, 42.6), (3.1, 43.0), (3.5, 43.25), (4.0, 43.45),
+                  (4.8, 43.3), (5.3, 43.15), (6.0, 42.95), (6.7, 43.1), (7.2, 43.6), (7.55, 43.75), (7.7, 44.1),
+                  (6.9, 44.4), (7.1, 45.1), (6.8, 45.8), (7.05, 45.95), (6.8, 46.4), (6.1, 46.15), (6.1, 46.6),
+                  (6.9, 47.4), (7.6, 47.6), (7.6, 48.0), (8.25, 48.95), (7.0, 49.15), (6.4, 49.5), (5.8, 49.55),
+                  (4.8, 50.15), (4.2, 50.3), (2.6, 51.1), (1.6, 50.9), (1.5, 50.2), (0.2, 49.7), (-1.3, 49.7),
+                  (-1.9, 49.7), (-1.6, 48.6), (-3.5, 48.85), (-4.8, 48.4), (-4.4, 47.8), (-2.5, 47.2), (-1.2, 46.0),
+                  (-1.3, 45.0), (-1.5, 43.6)]
+CORSE_LONLAT = (8.5, 41.3, 9.6, 43.05)
 
 DEFAUTS = {
     "marge_m": 50.0,                 # autour de l'emprise : bord de terrain et objets voisins visibles
@@ -69,8 +79,16 @@ DEFAUTS = {
     "vegetation": {"methode": "auto", "hauteur_min_m": 2.0},
     "photos_rue": {"vignettes": False, "max_vignettes": 100},
     "osm": True,
+    "osm_budget_s": 150,             # temps maximal passé à attendre Overpass (en France l'OSM n'est qu'un complément)
     "sources": {"mnt": None, "ortho": None},
 }
+
+# Console Windows ou tube en cp1252 : un caractère non représentable ne doit pas faire échouer une étape.
+for _flux in (sys.stdout, sys.stderr):
+    try:
+        _flux.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 _session = requests.Session()
 _session.headers["User-Agent"] = "carte-reelle-unreal/1.0"
@@ -107,9 +125,11 @@ class Contexte:
         if args.zone:
             zone = Path(args.zone).resolve()
             cfg = json.loads(zone.read_text(encoding="utf-8"))
-            if p.exists() and not self.force:
+            # Le repère ne dépend que de zone.json : il n'est recalculé (et les étapes suivantes refaites,
+            # leur signature changeant) que si zone.json a changé ; --force n'y touche pas, pour garder z0.
+            if p.exists():
                 rep = json.loads(p.read_text(encoding="utf-8"))
-                if rep.get("config") != cfg:      # zone.json modifiée : on recalcule le repère
+                if rep.get("config") != cfg:
                     rep = calculer_repere(cfg, zone.parent, self.sortie)
             else:
                 rep = calculer_repere(cfg, zone.parent, self.sortie)
@@ -128,6 +148,15 @@ class Contexte:
     # --- repère
     def ecrire_repere(self):
         (self.sortie / "repere.json").write_text(json.dumps(self.repere, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    def source(self, nom: str, option=None):
+        """Fichier fourni pour une source (--mnt, --ortho, ou "sources" de zone.json, relatif à zone.json)."""
+        if option:
+            return Path(option).resolve()
+        v = self.cfg["sources"].get(nom)
+        if not v:
+            return None
+        return (Path(self.repere.get("dossier_config", ".")) / v).resolve()
 
     def en_france(self) -> bool:
         return self.repere["france"]
@@ -269,8 +298,8 @@ def geometrie_emprise(cfg: dict, dossier: Path):
 
 def choisir_crs(lon: float, lat: float) -> tuple[str, bool]:
     """Lambert-93 en France métropolitaine, sinon la zone UTM du centre (déformation < 0,1 %)."""
-    x0, y0, x1, y1 = FRANCE_LONLAT
-    if x0 <= lon <= x1 and y0 <= lat <= y1:
+    from shapely.geometry import Point
+    if Polygon(FRANCE_CONTOUR).buffer(0.15).contains(Point(lon, lat)) or box(*CORSE_LONLAT).contains(Point(lon, lat)):
         return "EPSG:2154", True
     zone = int((lon + 180) // 6) + 1
     return f"EPSG:{(32600 if lat >= 0 else 32700) + zone}", False
@@ -316,6 +345,7 @@ def calculer_repere(cfg: dict, dossier_cfg: Path, sortie: Path) -> dict:
     rep = {
         "nom": c["nom"],
         "config": cfg,
+        "dossier_config": str(dossier_cfg.resolve()),
         "crs": crs,
         "france": france,
         "type_emprise": genre,
@@ -453,19 +483,25 @@ def wfs_couche(cache: Path, typename: str, bbox_lonlat, srs: str = "EPSG:2154", 
     return list(feats.values())
 
 
-def overpass(cache: Path, requete_ql: str, delai: int = 60) -> tuple[dict | None, str]:
-    """Interroge Overpass (miroirs successifs). Renvoie (réponse, serveur) ou (None, raison)."""
+def overpass(cache: Path, requete_ql: str, delai: int = 60, budget: float = 150.0) -> tuple[dict | None, str]:
+    """Interroge Overpass (miroirs successifs, au plus « budget » secondes en tout).
+    Renvoie (réponse, serveur) ou (None, raison)."""
     cle = _cle(requete_ql)
     p = cache / "osm" / f"{cle}.json"
     if p.exists():
         Compteur.cache += 1
         return json.loads(p.read_text(encoding="utf-8")), "cache"
     raisons = []
+    debut = time.time()
     # Les miroirs renvoient souvent des 504 passagers : deux tours sur la liste, connexion limitée à 10 s.
     for tour in range(2):
         for url in OVERPASS:
+            reste = budget - (time.time() - debut)
+            if reste < 15:                  # budget épuisé : on abandonne OSM pour cette fois
+                raisons.append("budget de temps épuisé")
+                return None, " ; ".join(raisons)
             try:
-                r = requete(url, data={"data": requete_ql}, essais=1, delai=(10, delai),
+                r = requete(url, data={"data": requete_ql}, essais=1, delai=(10, min(delai, reste)),
                             accepte=lambda r: "json" in r.headers.get("content-type", ""))
                 d = r.json()
                 p.parent.mkdir(parents=True, exist_ok=True)

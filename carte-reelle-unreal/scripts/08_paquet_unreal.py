@@ -321,7 +321,7 @@ def main():
     ctx.journal("08_paquet_unreal", {"options": {"table": args.table}, "resume": txt, "dossier": P,
                                      "sources_hauteur_batiments": src_h, "types_arbres": types})
     geo.resume([f"08_paquet_unreal : {txt}",
-                f"  hauteurs des bâtiments : " + ", ".join(f"{k} {v}" for k, v in src_h.items()),
+                "  hauteurs des bâtiments : " + ", ".join(f"{k} {v}" for k, v in src_h.items()),
                 f"  paquet : {P} ; {ctx.duree()}"])
 
 

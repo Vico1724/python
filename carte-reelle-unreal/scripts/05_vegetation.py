@@ -45,7 +45,6 @@ def disque(r):
 
 def apex(hs, cand, res, hmin):
     """Pixel apex : le plus haut du disque de rayon 0,5 + 0,15 h (borné à 1-3 m)."""
-    from skimage.segmentation import watershed  # noqa: F401  (import tôt : erreur claire si absent)
     rpx = np.rint(np.clip(0.5 + 0.15 * hs, 1.0, 3.0) / res).astype(np.int16)
     cand = cand & (hs >= hmin)
     seed = np.zeros(hs.shape, bool)
@@ -132,7 +131,6 @@ def familles(ctx, x, y):
 
 
 def par_lidar(ctx, hmin):
-    import rasterio
     from rasterio.features import rasterize
     from affine import Affine
     rel = ctx.sortie / "relief"
@@ -247,6 +245,8 @@ def main():
     ap.add_argument("--methode", choices=("auto", "lidar", "semis"), help="défaut : vegetation.methode de zone.json")
     args = ap.parse_args()
     ctx = geo.Contexte(args)
+    if ctx.repere.get("z0_m") is None:
+        raise SystemExit("ERREUR 05_vegetation : lancer d'abord 02_relief.py (relief et z0)")
     vcfg = ctx.cfg["vegetation"]
     methode = args.methode or vcfg.get("methode", "auto")
     d = ctx.dossier("vegetation")

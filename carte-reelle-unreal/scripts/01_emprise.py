@@ -8,8 +8,6 @@ du terrain (heightmap) à une taille valide pour un Landscape Unreal.
 Usage : python 01_emprise.py --zone zone.json --sortie DOSSIER
 Sorties : DOSSIER/repere.json, DOSSIER/emprise.geojson (WGS84), DOSSIER/journaux/01_emprise.json
 """
-import json
-
 from shapely.geometry import mapping, shape
 
 import geo
