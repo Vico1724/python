@@ -1,0 +1,204 @@
+{
+ "note": "Glissières de sécurité métalliques, lues par scripts/11_route_ouvrages.py. Tronçons repris de data/reference/releve_video.json (inventaire_bord_de_route, type « glissiere ») : existence vue sur la vidéo n° 2, bornes à ±10 m. Géométrie : valeurs courantes d'une glissière simple à lisse à deux ondes sur poteaux (type GS2), non mesurées ici.",
+ "geometrie": {
+  "hauteur_haut_lisse_m": {
+   "valeur": 0.75,
+   "provenance": "supposé (valeur courante d'une glissière simple, 0,70-0,75 m)"
+  },
+  "hauteur_lisse_m": {
+   "valeur": 0.31,
+   "provenance": "supposé (lisse à deux ondes, ≈ 31 cm)"
+  },
+  "saillie_ondes_m": {
+   "valeur": 0.08,
+   "provenance": "supposé"
+  },
+  "pas_poteaux_m": {
+   "valeur": 4.0,
+   "provenance": "supposé (2 ou 4 m selon le type)"
+  },
+  "section_poteau_m": {
+   "valeur": 0.1,
+   "provenance": "supposé"
+  },
+  "decalage_depuis_bord_m": {
+   "valeur": 0.5,
+   "provenance": "supposé (sur l'accotement, la vidéo montre la lisse à quelques dizaines de cm de la rive)"
+  },
+  "ancrage_poteaux_m": {
+   "valeur": 0.6,
+   "provenance": "supposé (sous le terrain)"
+  }
+ },
+ "jeu": {
+  "materiau_de_choc": [
+   "acr/Content/Data/Gameplay/PhysicalMaterials/PM_GuardrailMetalHF",
+   "acr/Content/Data/Gameplay/PhysicalMaterials/PM_WallMetalGuardrail"
+  ],
+  "maillage_possible": "acr/Content/Props/AlsaceProps/SaverneCityGuardrailA/SM_SaverneCityGuardrailA (glissière urbaine de Saverne, dimensions inconnues)",
+  "evenement_de_choc": "acr/Content/Events/Destruction/Props/FME_ImpactGuardrail",
+  "remarque": "noms vérifiés dans data/reference/catalogue_jeu_25170642.txt.gz"
+ },
+ "troncons": [
+  {
+   "pk_debut_m": 1723.5,
+   "pk_fin_m": 1834.5,
+   "cote": "droite",
+   "detail": "au-dessus du vallon ; 40 m de plus que l'ancien relevé",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 1727,
+   "pk_releve_fin_m": 1833,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1725.0,
+    "calage": "PK corrigé de -2,0 m à +1,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   },
+   "avant_le_controle": {
+    "pk_debut_m": 1720.0
+   },
+   "controle": "contrôle hors jeu du placement, 14/11/2026 : la glissière recouvrait sur 3 m le mur de pierre du PK 1709-1723 : elle commence au bout du mur"
+  },
+  {
+   "pk_debut_m": 1963.0,
+   "pk_fin_m": 2130.0,
+   "cote": "droite",
+   "detail": "commence accolée à la tête de ponceau béton (sans extrémité abaissée), se termine contre le parapet",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 1963,
+   "pk_releve_fin_m": 2129,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 1966.5,
+    "pk_fin_m": 2134.0,
+    "detail": "commence après l'aire de gravier, se termine contre le parapet",
+    "calage": "PK corrigé de +3,5 m à +5,0 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 2261.0,
+   "pk_fin_m": 2401.0,
+   "cote": "droite",
+   "detail": "extrémité de début abaissée et enterrée ; fin descendante juste avant le muret blanc ; se prolonge de 50 m dans la ligne droite",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 2261,
+   "pk_releve_fin_m": 2388,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 2266.5,
+    "pk_fin_m": 2394.5,
+    "detail": "se prolonge de 50 m dans la ligne droite",
+    "calage": "PK corrigé de +5,5 m à +6,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 3246.0,
+   "pk_fin_m": 3386.0,
+   "cote": "droite",
+   "detail": "collée au bout du parapet du pont 3229",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 3232,
+   "pk_releve_fin_m": 3366,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_fin_m": 3381.5,
+    "calage": "PK corrigé de +14,0 m à +15,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 3747.0,
+   "pk_fin_m": 3988.0,
+   "cote": "droite",
+   "detail": "long gauche ; se termine où commence le mur de moellons",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 3746,
+   "pk_releve_fin_m": 3978,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v9.json), PK réel",
+   "avant_la_relecture": {
+    "pk_fin_m": 3985.5,
+    "calage": "PK corrigé de +1,0 m à +7,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  },
+  {
+   "pk_debut_m": 4089.0,
+   "pk_fin_m": 4229.5,
+   "cote": "droite",
+   "detail": "dès la sortie de l'épingle",
+   "statut": "vu sur la vidéo de reconnaissances",
+   "confiance_bornes": "±10 m",
+   "source": "relevé de la vidéo de reconnaissances du 12/11/2026 (data/reference/releve_reco/, PK à ±10 m)",
+   "pk_releve_debut_m": 4090,
+   "pk_releve_fin_m": 4221,
+   "calage": "relu sur la reconnaissance le 14/11/2026 (data/reference/relecture_reco_v8.json), PK réel",
+   "avant_la_relecture": {
+    "pk_debut_m": 4100.0,
+    "calage": "PK corrigé de +10,0 m à +8,5 m le 13/11/2026 (scripts/calage_reco.py) ; valeur lue sur la vidéo gardée à côté"
+   }
+  }
+ ],
+ "troncons_avant_le_releve_de_reconnaissances": [
+  {
+   "pk_debut_m": 1720,
+   "pk_fin_m": 1793,
+   "cote": "droite",
+   "temps_video_s": "93.0-96.5 (vidéo n° 2)",
+   "detail": "glissière simple",
+   "statut": "vu sur la vidéo",
+   "confiance_bornes": "±10 m (table temps -> PK du relevé vidéo)"
+  },
+  {
+   "pk_debut_m": 1924,
+   "pk_fin_m": 2120,
+   "cote": "droite",
+   "temps_video_s": "103.5-110.5 (vidéo n° 2)",
+   "detail": "glissière simple, vue dégagée sur la vallée",
+   "statut": "vu sur la vidéo",
+   "confiance_bornes": "±10 m (table temps -> PK du relevé vidéo)"
+  },
+  {
+   "pk_debut_m": 2247,
+   "pk_fin_m": 2336,
+   "cote": "droite",
+   "temps_video_s": "119.0-124.6 (vidéo n° 2)",
+   "detail": "glissière à l'extérieur du gauche 2 long",
+   "statut": "vu sur la vidéo",
+   "confiance_bornes": "±10 m (table temps -> PK du relevé vidéo)"
+  },
+  {
+   "pk_debut_m": 3236,
+   "pk_fin_m": 3321,
+   "cote": "droite",
+   "temps_video_s": "166.0-171.0 (vidéo n° 2)",
+   "detail": "glissière simple",
+   "statut": "vu sur la vidéo",
+   "confiance_bornes": "±10 m (table temps -> PK du relevé vidéo)"
+  },
+  {
+   "pk_debut_m": 3716,
+   "pk_fin_m": 4006,
+   "cote": "droite",
+   "temps_video_s": "189.0-200.5 (vidéo n° 2)",
+   "detail": "glissière simple le long du long gauche, poteaux électriques béton ou bois à droite",
+   "statut": "vu sur la vidéo",
+   "confiance_bornes": "±10 m (table temps -> PK du relevé vidéo)"
+  },
+  {
+   "pk_debut_m": 4108,
+   "pk_fin_m": 4219,
+   "cote": "droite",
+   "temps_video_s": "209.0-214.6 (vidéo n° 2)",
+   "detail": "glissière simple",
+   "statut": "vu sur la vidéo",
+   "confiance_bornes": "±10 m (table temps -> PK du relevé vidéo)"
+  }
+ ]
+}

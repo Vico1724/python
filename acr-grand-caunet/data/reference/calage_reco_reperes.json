@@ -1,0 +1,105 @@
+{
+ "note": "Écart entre le PK donné par le calage de la vidéo de reconnaissance (data/processed/calage_reco.json) et le PK réel, en des points dont la position réelle est connue par une autre source : vide sous la chaussée dans le relevé laser pour les ponts (centre du vide comparé au centre des parapets relevés sur la vidéo), débouché de piste de la BD TOPO pour les pistes. PK réel = PK de la reconnaissance + écart, interpolé entre deux repères. Établi le 13/11/2026 ; lu par scripts/calage_reco.py.",
+ "reperes": [
+  [
+   0,
+   0,
+   "départ"
+  ],
+  [
+   1490,
+   0,
+   "piste IGN 1491"
+  ],
+  [
+   1665,
+   -4,
+   "pont, vide laser 1652-1670"
+  ],
+  [
+   1877,
+   3,
+   "piste DFCI IGN 1877"
+  ],
+  [
+   2594,
+   8,
+   "pont, vide laser 2600-2604"
+  ],
+  [
+   2773,
+   4.5,
+   "pont, vide laser 2773-2782"
+  ],
+  [
+   2990,
+   15,
+   "piste IGN 3005"
+  ],
+  [
+   3215,
+   14,
+   "pont, vide laser 3221-3238"
+  ],
+  [
+   3416,
+   16,
+   "voie IGN 3432"
+  ],
+  [
+   3450,
+   23.5,
+   "ponceau, vide laser 3472-3474"
+  ],
+  [
+   3655,
+   0,
+   "carrefour du Lion d'Or"
+  ],
+  [
+   3709,
+   0,
+   "piste DFCI IGN 3709"
+  ],
+  [
+   4064,
+   10,
+   "pont, vide laser 4072-4076"
+  ],
+  [
+   4352,
+   7.5,
+   "pont, vide laser 4350-4369"
+  ],
+  [
+   4463,
+   -2,
+   "pont, vide laser 4451-4471"
+  ],
+  [
+   5552,
+   2,
+   "pont, vide laser 5522-5586"
+  ],
+  [
+   5674,
+   0,
+   "piste DFCI IGN 5674"
+  ],
+  [
+   6378,
+   0,
+   "chemin IGN 6378"
+  ],
+  [
+   6487,
+   5.5,
+   "pont, vide laser 6488-6497"
+  ],
+  [
+   6740,
+   4,
+   "arrivée"
+  ]
+ ]
+}

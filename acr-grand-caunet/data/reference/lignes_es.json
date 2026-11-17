@@ -1,0 +1,13 @@
+{
+  "note": "Position des lignes de chronométrage. Le PK 0 du projet est la ligne de départ retenue.",
+  "depart": {
+    "decalage_par_rapport_au_calage_pk_m": -20,
+    "source": "décision du directeur (10/11/2026) d'après la vidéo embarquée n° 2 (2025, ES 1) : cellule de départ 20 m avant la position déduite des PK officiels",
+    "incertitude_m": 15
+  },
+  "arrivee": {
+    "pk_dans_le_calage_officiel_m": 6702,
+    "source": "PK officiel, confirmé par la vidéo embarquée n° 2 : panneau rouge et cellule à la sortie de la dernière courbe à droite",
+    "incertitude_m": 15
+  }
+}
