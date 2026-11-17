@@ -133,6 +133,7 @@ def main():
         fin = lidar_fin(ctx, args)
     info.pop("_lidar", None)
     ctx.repere["lidar_fin"] = fin
+    ctx.repere["mnt_fourni"] = str(Path(args.mnt or ctx.cfg["sources"].get("mnt")).resolve()) if (args.mnt or ctx.cfg["sources"].get("mnt")) else None
     ctx.ecrire_repere()
     pente = np.degrees(np.arctan(np.hypot(*np.gradient(a, res))))
     txt = (f"{n} x {n} px au pas {res} m, altitudes {a.min():.1f} à {a.max():.1f} m, z0 {z0} m, "
