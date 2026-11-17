@@ -49,16 +49,17 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import OUT, ROOT, TO_L93, wgs, fichier_ref  # noqa: E402
+from acr_geo import OUT, ROOT, TO_L93, wgs, fichier_ref, param  # noqa: E402
 import shapely  # noqa: E402
 from shapely.geometry import shape as geo_shape  # noqa: E402
 
 M08 = importlib.import_module("08_modele_3d")      # mêmes lecteurs et même ruban de route que le modèle 3D
 
 EXPORT = ROOT / "export" / "stage_ir"
-DOSSIER = EXPORT / "grand_caunet"
-STAGE_ID = "grand_caunet_rally_01_route_0"         # forme <lieu>_rally_<nn>_route_<n> exigée par leurs scripts
-NOM = "Le Grand Caunet"
+LIEU = param("id_lieu", "grand_caunet")             # identifiant du lieu (dossier, repère, contrôle)
+DOSSIER = EXPORT / LIEU
+STAGE_ID = param("stage_id", "grand_caunet_rally_01_route_0")        # forme <lieu>_rally_<nn>_route_<n> exigée par leurs scripts
+NOM = param("nom_stage", "Le Grand Caunet")
 PAS_PORTES = 10.0                                  # m
 TOL_PORTES = 0.25                                  # m : écart toléré entre la corde de deux portes et l'axe ou un bord
 # Murs de reprise. Leur constructeur (acr-ref : StageBuild.cs, ContourPush = 20 m ; Respawn.cs, Relay) recouche les 837
@@ -98,7 +99,7 @@ OBSTACLES = {
 SOURCES_OBSTACLES = ("ouvrages_collision.glb", "annexes_collision.glb", "balisage_collision.glb")
 CATALOGUE = gzip.open(fichier_ref("catalogue_jeu_25170642.txt.gz"), "rt", encoding="utf-8").read()
 CATALOGUE = "\n".join(f'"{m}"' for m in re.findall(r"PhysicalMaterials/(PM_\w+)\.uasset", CATALOGUE))
-SPLITS = ("INTER2", "INTER6")                      # points officiels retenus comme temps intermédiaires
+SPLITS = tuple(param("temps_intermediaires", ("INTER2", "INTER6")))                     # points officiels retenus comme temps intermédiaires
 
 # notes du copilote (vocabulaire de config/pacenote-map.toml : direction left/right, sévérité "6".."1",
 # square, hairpin ; 6 = le plus rapide). Rayons = médianes de la spéciale hôte ACR (Pacenotes.cs, HostRadius)
@@ -1098,7 +1099,8 @@ def ligne_ideale(G, D, dist, idx):
 # parking à côté du départ. Vingtième version : centre de la tente au point du parking le plus éloigné de ses bords, des
 # voitures garées et du mobilier de notre décor (pôle d'inaccessibilité de l'emprise du parking de zone_depart.json
 # moins ces objets), voiture tournée vers l'entrée principale du parking (PK -60) ; dégagement vérifié.
-PARC = {"emprise": "parking", "rayon_m": 8.0, "garde_m": 1.0, "vehicule_m": 3.5, "objet_m": 1.0, "sortie_pk_m": -60.0}
+PARC = {"emprise": "parking", "rayon_m": 8.0, "garde_m": 1.0, "vehicule_m": 3.5, "objet_m": 1.0,
+        "sortie_pk_m": float(param("parc_sortie_pk_m", -60.0))}
 
 
 def parc_assistance(ch, A, G, ref):
@@ -1143,10 +1145,11 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
 
     off = {r["id"]: r for r in csv.DictReader(open(OUT / "points_officiels_recales.csv", encoding="utf-8"))}
     spl = {}
-    for nom in SPLITS + ("STOP",):
+    ARRET = param("id_point_arret", "STOP")                       # point d'arrêt (zone d'arrêt après l'arrivée)
+    for nom in SPLITS + (ARRET,):
         r = off[nom]
         spl[nom] = point_sur_axe(ch, float(r["x_l93"]), float(r["y_l93"]), float(r["pk_mesure_m"]))
-    i_stop = spl.pop("STOP")[0]
+    i_stop = spl.pop(ARRET)[0]
 
     # portes tous les PAS_PORTES m ; la première et la dernière à 5 m des bouts du ruban (comme la porte 0 de DR2,
     # vers 5 m) pour que chacune ait du sol physique tout autour
@@ -1195,13 +1198,13 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
     stage = {
         "schema": "acrxs/stage-ir", "version": 2,
         "id": STAGE_ID, "name": NOM,
-        "location": {"id": "grand_caunet", "country": "france",
-                     "name": "Le Grand Caunet, Bouches-du-Rhône, France", "archive": None, "route_index": 0},
+        "location": {"id": LIEU, "country": "france",
+                     "name": param("nom_lieu", "Le Grand Caunet, Bouches-du-Rhône, France"), "archive": None, "route_index": 0},
         "length_m": round(float(dist[i_arr] - dist[i_dep]), 2),
         "total_distance_m": round(float(gdist[-1]), 2),
         "track_type": "point_to_point", "direction": "forwards",
         "coordinates": {
-            "frame": "grand_caunet_local_l93", "units": "metres", "up": "+Y",
+            "frame": f"{LIEU}_local_l93", "units": "metres", "up": "+Y",
             "handedness": "right-handed (X est, Y haut, Z sud ; déterminant +1 depuis Lambert-93 est/nord/haut)",
             "origin": {"lambert93_x_m": ref["x0"], "lambert93_y_m": ref["y0"], "lon": round(lon0, 8),
                        "lat": round(lat0, 8), "description": "axe de la chaussée au PK 0 (ligne de départ)"},
@@ -1479,8 +1482,19 @@ def controle(dossier, deck_pk):
             continue
         a, b = t["brouillon"]["pk_virage"]
         i0, i1 = np.searchsorted(gpk, a - 10), min(np.searchsorted(gpk, b + 10), len(gpk) - 2)
-        f0, f1 = cen[i0 + 1] - cen[i0], cen[i1 + 1] - cen[i1]
-        droite = float(np.dot(f1, np.cross(f0, [0, 1, 0]))) > 0
+        # cap cumulé le long des portes (et non corde d'entrée contre corde de sortie) : une épingle de plus de 180°
+        # (lacets de Ceyreste, 198°) inversait le signe du produit vectoriel. Même résultat sous 180°.
+        # droite <=> dot(f1, cross(f0, +Y)) > 0 <=> l'angle atan2(Z, X) croît.
+        seg = np.diff(cen[i0:i1 + 2], axis=0)
+        cap = np.unwrap(np.arctan2(seg[:, 2], seg[:, 0]))
+        droite = float(cap[-1] - cap[0]) > 0
+        if droite != (t["direction"] == "right"):
+            # petit virage serré entre deux virages contraires (Ceyreste, PK 2056-2071, 11°) : la marge de 10 m déborde
+            # sur les voisins ; on mesure alors le virage seul, entre ses propres bornes
+            j0, j1 = np.searchsorted(gpk, a), min(np.searchsorted(gpk, b), len(gpk) - 2)
+            seg = np.diff(cen[j0:j1 + 2], axis=0)
+            cap = np.unwrap(np.arctan2(seg[:, 2], seg[:, 0]))
+            droite = float(cap[-1] - cap[0]) > 0
         n_v += 1
         ok_sens += droite == (t["direction"] == "right")
     r["notes_sens_vs_geometrie"] = {"virages": n_v, "coherents": ok_sens}
@@ -1761,7 +1775,7 @@ def main():
                                   "appels": max(t["call"] for t in toks), "jetons": len(toks),
                                   "avance_lecture_m": AVANCE}
     rapport["fichiers_mo"] = {p.name: round(p.stat().st_size / 1e6, 2) for p in sorted(DOSSIER.iterdir())}
-    (EXPORT / "controle_grand_caunet.json").write_text(json.dumps(rapport, ensure_ascii=False, indent=2),
+    (EXPORT / f"controle_{LIEU}.json").write_text(json.dumps(rapport, ensure_ascii=False, indent=2),
                                                        encoding="utf-8")
     print(json.dumps(rapport, ensure_ascii=False, indent=1))
     if rapport["erreurs"]:

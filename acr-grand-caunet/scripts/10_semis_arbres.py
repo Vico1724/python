@@ -58,7 +58,7 @@ from scipy.spatial import cKDTree
 from shapely.geometry import LineString, shape
 from skimage.segmentation import watershed
 
-from acr_geo import FIG, OUT, RAW, REF, ROOT, TO_L93, l93, fichier_ref
+from acr_geo import FIG, OUT, RAW, REF, ROOT, TO_L93, l93, fichier_ref, param
 
 SEED = 20261111
 BANDE = 135.0               # m de part et d'autre de l'axe (emprise du modèle 3D : 130 m)
@@ -450,13 +450,14 @@ def choisir_extraits(T, S, ch):
 
     def best(sel, score):
         i = np.flatnonzero(sel)
-        return i[np.argmax(score[i])]
+        return i[np.argmax(score[i])] if len(i) else None     # formation absente du couloir (autre épreuve)
 
     near = (T["dist"] > 25) & (T["dist"] < 60)
-    i = best(near & (T["regle"] == "Forêt fermée de pin d'Alep pur"), dens)
-    out.append(("Pinède dense (pin d'Alep pur)", T["x"][i], T["y"][i]))
-    i = best(near & (T["regle"] == "Forêt fermée de chênes sempervirents purs"), dens)
-    out.append(("Chênaie verte (chênes sempervirents)", T["x"][i], T["y"][i]))
+    for regle, titre in (("Forêt fermée de pin d'Alep pur", "Pinède dense (pin d'Alep pur)"),
+                         ("Forêt fermée de chênes sempervirents purs", "Chênaie verte (chênes sempervirents)")):
+        i = best(near & (T["regle"] == regle), dens)
+        if i is not None:
+            out.append((titre, T["x"][i], T["y"][i]))
     sx, sy = S
     st = cKDTree(np.column_stack([sx, sy]))
     li = np.flatnonzero(near & (T["regle"] == "Lande"))
@@ -469,14 +470,16 @@ def choisir_extraits(T, S, ch):
     j = int(np.argmin(np.abs(ch["pk"] - k)))
     out.append((f"Bord de route en virage (épingle, PK {k:.0f})", *ch["A"][j]))
     # zone ouverte de la D1 : PK 3700-6700, minimum de couvert à moins de 30 m
-    kk = np.arange(3700, 6700, 20)
+    z0, z1 = param("pk_zone_ouverte", (3700, 6700))
+    z0, z1 = max(z0, float(ch["pk"][0])), min(z1, float(ch["pk"][-1]))
+    kk = np.arange(z0, max(z1, z0 + 20), 20)
     cnt = []
     for k2 in kk:
         j = int(np.argmin(np.abs(ch["pk"] - k2)))
         cnt.append(len(tree.query_ball_point(ch["A"][j], 30)))
     k2 = kk[int(np.argmin(cnt))]
     j = int(np.argmin(np.abs(ch["pk"] - k2)))
-    out.append((f"Zone ouverte de la D1 (PK {k2:.0f})", *ch["A"][j]))
+    out.append((f"{param('nom_zone_ouverte', 'Zone ouverte de la D1')} (PK {k2:.0f})", *ch["A"][j]))
     with open(OUT / "ouvrages_es.csv", encoding="utf-8") as f:
         b = max((r for r in csv.DictReader(f) if r["dans_es"] == "True"), key=lambda r: float(r["longueur_bdtopo_m"]))
     bx, by = l93(float(b["lon"]), float(b["lat"]))

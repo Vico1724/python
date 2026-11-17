@@ -1,0 +1,70 @@
+{
+  "note": "Zone utile de la montée de Ceyreste. Seul objet : le parking du Grand Caunet (aire d'accueil, au bout de la route modélisée, à côté du carrefour D3/D3D), repris du projet Grand Caunet : il est aplani de la même façon (raccord des deux cartes) et sert d'emprise au parc d'assistance du jeu. Aucun relevé de la zone du départ (Plan de Masse) à ce jour.",
+  "captures": [],
+  "objets": [
+    {
+      "genre": "parking",
+      "description": "Parking du Grand Caunet (accès au massif), gravier calcaire, ombragé de chênes verts et de pins ; plein de voitures les jours de sortie",
+      "cote": "gauche",
+      "pk_debut_m": -68,
+      "pk_fin_m": -26,
+      "decalage_bord_m": 3.0,
+      "emprise_l93": [
+        [
+          917033,
+          6240969
+        ],
+        [
+          917028,
+          6240976
+        ],
+        [
+          917020,
+          6240990
+        ],
+        [
+          917013,
+          6241000
+        ],
+        [
+          917000,
+          6241002
+        ],
+        [
+          916989,
+          6240995
+        ],
+        [
+          916989,
+          6240968
+        ]
+      ],
+      "hauteur_m": null,
+      "longueur_m": 45,
+      "profondeur_m": 32,
+      "materiau": "gravier calcaire blanc compacté, terre par endroits",
+      "couleurs": "blanc cassé à beige",
+      "details": "≈ 1 000 m², 30 à 40 places sans marquage ; au niveau de la route (MNT 398,4 m contre 398,1 m sur l'axe au PK -50) ; arbres isolés dans l'emprise (un chêne vert au bord de la route vers le PK -40) ; deux accès : principal au PK -68…-52 (bouche de gravier ≈ 15 m) et accès nord au PK -33…-26 fermé par la barrière pivotante ; côté route, bande d'herbe et d'arbres de 2 à 4 m du PK -52 au PK -33. L'emprise s'étend jusqu'à ≈ 43 m à gauche de l'axe (PK -52…-21 en projection)",
+      "captures": [
+        "(4)",
+        "(6)",
+        "(7)",
+        "(8)",
+        "(9)",
+        "(10)",
+        "(12)",
+        "(16)",
+        "(19)",
+        "(25)"
+      ],
+      "confiance": "bonne",
+      "source": "repris tel quel de acr-grand-caunet/data/reference/zone_depart.json (relevé Street View du 14/11/2026) ; PK et côté exprimés sur l'axe du Grand Caunet, seule l'emprise Lambert-93 sert ici"
+    }
+  ],
+  "sol": [],
+  "constructions": [],
+  "a_verifier": [
+    "Zone du départ au Plan de Masse : mobilier, murs, portails, parking éventuel — non relevés",
+    "Parc réel de la manifestation : parkings de la salle polyvalente et derrière la mairie (village), hors du tracé : non modélisés"
+  ]
+}

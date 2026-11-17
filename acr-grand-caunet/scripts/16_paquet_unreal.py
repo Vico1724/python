@@ -55,7 +55,7 @@ from PIL import Image
 from scipy.spatial import cKDTree
 
 import regles_arbres
-from acr_geo import FIG, OUT, REF, ROOT, fichier_ref
+from acr_geo import FIG, OUT, REF, ROOT, fichier_ref, param
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -622,7 +622,7 @@ class Placement:
     def __init__(self, ref):
         d = json.loads((KIT / "releves" / "placement_etape1.json").read_text(encoding="utf-8"))
         self.p = d["placement"]
-        o = json.loads((ROOT / "export" / "stage_ir" / "grand_caunet" / "stage.json").read_text(encoding="utf-8"))["coordinates"]["origin"]
+        o = json.loads((ROOT / "export" / "stage_ir" / param("id_lieu", "grand_caunet") / "stage.json").read_text(encoding="utf-8"))["coordinates"]["origin"]
         self.ox, self.oy = o["lambert93_x_m"], o["lambert93_y_m"]
         self.x0, self.y0 = ref["x0"], ref["y0"]
         t = math.radians(self.p["theta_deg"])

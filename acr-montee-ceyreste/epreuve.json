@@ -61,5 +61,19 @@
   "libelle_debut_axe": "approche : D3 depuis le village",
   "pk_extrait_approche": -60.0,
   "libelle_approche": "approche : carrefour du Plan de Masse",
-  "nom_court": "Montée historique de Ceyreste"
+  "nom_court": "Montée historique de Ceyreste",
+  "pk_zone_ouverte": [
+    2700,
+    3746
+  ],
+  "nom_zone_ouverte": "Zone ouverte avant le Grand Caunet",
+  "id_lieu": "ceyreste",
+  "stage_id": "ceyreste_rally_01_route_0",
+  "nom_stage": "Montée de Ceyreste",
+  "nom_lieu": "Ceyreste, Bouches-du-Rhône, France",
+  "temps_intermediaires": [
+    "INTER_JEU"
+  ],
+  "id_point_arret": "ARRET",
+  "parc_sortie_pk_m": 3746.0
 }

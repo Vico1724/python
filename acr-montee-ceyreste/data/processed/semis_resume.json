@@ -1,0 +1,463 @@
+{
+ "methode": "1. Modèle de hauteur du couvert MNH = MNS - MNT (0,5 m), lissé (gaussien, sigma 0,5 m).\n  2. Apex = maxima locaux du MNH lissé dans un disque dont le rayon croît avec la hauteur\n     (r = 0,5 + 0,15 h, borné à 1-3 m), au-dessus de 2 m ; plateaux ramenés à un point.\n     Exclusions : chaussée (ruban bord gauche - bord droit + 0,5 m), bâtiments BD TOPO + 2 m.\n     Pas de ligne électrique dans le couloir (la seule ligne BD TOPO est à plus de 15 km).\n  3. Houppiers : segmentation par ligne de partage des eaux (scikit-image) du MNH lissé,\n     marqueurs = apex, limitée aux pixels > 2 m, à ceux qui dépassent 40 % de la hauteur de\n     l'apex et à un rayon maximal 1 + 0,45 h ; diamètre = diamètre du disque de même surface.\n     Deux passes complémentaires cherchent des apex dans le couvert > 2 m resté hors de tout\n     houppier (taillis jointifs de chêne vert surtout ; houppier minimal 3 m²).\n     Apex au-dessus de la chaussée (surplomb) : gardé s'il est vert et à moins de 2,5 m du\n     bord, tronc reporté au bord + 0,8 m.\n     Rejet des « arbres » minéraux (NDVI moyen du houppier < -0,05 et moins de 15 % de pixels à\n     NDVI >= 0,12 : toits non cadastrés, rochers, véhicules) et des pointes (houppier < 1 m²).\n     Le seuil est volontairement bas : des pins secs ou à l'ombre ont un NDVI de 0,04-0,06.\n  4. Essence : tirage pondéré selon le type de formation BD Forêt qui contient l'apex\n     (table FORMATIONS), modulé par la hauteur ; règles par défaut hors polygone.\n     C'est une attribution STATISTIQUE : la donnée ne permet pas d'identifier un arbre.\n  5. Arbustes : chaque pixel de végétation basse (MNH 0,4-2 m et NDVI > 0,12) porte un\n     arbuste avec une probabilité 0,25 m² / surface moyenne d'un arbuste, modulée par le\n     NDVI ; densité juste à l'échelle de quelques mètres, position individuelle fictive.",
+ "graine_aleatoire": 20261111,
+ "bande_m": "0 à 135 m de l'axe (PK -149 à 3768)",
+ "surface_analysee_ha": 87.1,
+ "mesure": {
+  "couvert_sup_2m_pct_de_la_bande": 71.0,
+  "part_du_couvert_sup_2m_dans_un_houppier_segmente_pct": 88.5,
+  "surface_cumulee_disques_de_houppier_sur_surface_couverte": 0.91,
+  "ndvi_rvb_recale_sur_irc_(pente, ordonnee, correlation)": [
+   1.872,
+   0.028,
+   0.84
+  ],
+  "part_de_la_bande_couverte_par_l_irc_pct": 98.2,
+  "vegetation_basse_0.4_2m_ha": 5.6
+ },
+ "arbres": {
+  "nombre": 17902,
+  "rejets": {
+   "apex_passe_1": 11982,
+   "apex_passes_2_3_couvert_restant": 9823,
+   "houppier_trop_petit_1m2_ou_3m2_en_passes_2_3": 3796,
+   "mineral_ndvi_moyen_inf_-0.05_et_moins_de_15pct_pixels_verts": 107,
+   "apex_au_dessus_de_la_chaussee_tronc_reporte_au_bord": 77
+  },
+  "par_passe": {
+   "apex (passe 1)": 11807,
+   "couvert restant (passes 2-3)": 6095
+  },
+  "a_moins_de_40m": 4816,
+  "a_moins_de_15m": 1231,
+  "densite_moyenne_par_ha": 206,
+  "hauteur_m": {
+   "mediane": 9.0,
+   "p10": 3.7,
+   "p90": 17.2,
+   "max": 28.3,
+   "histogramme": {
+    "2-4": 2236,
+    "4-6": 3161,
+    "6-8": 2856,
+    "8-10": 1233,
+    "10-12": 1396,
+    "12-14": 2219,
+    "14-16": 2166,
+    "16-18": 1330,
+    "18-20": 858,
+    "20-25": 438,
+    "25-40": 9
+   }
+  },
+  "ecart_hauteur_brute_max_moins_lissee_m_mediane": 0.37,
+  "diametre_houppier_m": {
+   "mediane": 4.9,
+   "p10": 2.2,
+   "p90": 9.9
+  },
+  "par_essence": {
+   "pin d'Alep": {
+    "nombre": 13509,
+    "pct": 75.5,
+    "hauteur_mediane_m": 11.6
+   },
+   "chêne vert": {
+    "nombre": 2886,
+    "pct": 16.1,
+    "hauteur_mediane_m": 5.6
+   },
+   "olivier": {
+    "nombre": 572,
+    "pct": 3.2,
+    "hauteur_mediane_m": 4.4
+   },
+   "cyprès": {
+    "nombre": 532,
+    "pct": 3.0,
+    "hauteur_mediane_m": 6.1
+   },
+   "chêne pubescent": {
+    "nombre": 403,
+    "pct": 2.3,
+    "hauteur_mediane_m": 5.7
+   }
+  },
+  "par_famille_jeu": {
+   "Foliage/Trees/AleppoPine": 13509,
+   "Foliage/Trees/Smoketree": 1617,
+   "Foliage/Trees/BlackmapleMonteCarlo": 1269,
+   "Foliage/Trees/Olivetree": 572,
+   "Foliage/Trees/Cypress": 532,
+   "Foliage/Trees/Blackmaple": 403
+  }
+ },
+ "arbustes": {
+  "nombre": 31516,
+  "par_famille_jeu": {
+   "Foliage/Trees/Boxthorn": 21228,
+   "Foliage/GroundCover/BroomCreeper": 10288
+  },
+  "densite_par_ha_de_vegetation_basse": 5629
+ },
+ "par_type_de_formation": {
+  "Forêt fermée de pin d'Alep pur": {
+   "surface_ha": 66.7,
+   "arbres": 14579,
+   "arbres_par_ha": 219,
+   "couvert_sup_2m_pct": 79.3,
+   "part_couvert_dans_houppiers_pct": 89.4,
+   "hauteur_mediane_m": 10.9,
+   "essences_tirees_pct": {
+    "pin d'Alep": 85,
+    "chêne vert": 13,
+    "chêne pubescent": 2
+   }
+  },
+  "Forêt fermée à mélange de feuillus prépondérants et conifères": {
+   "surface_ha": 2.0,
+   "arbres": 467,
+   "arbres_par_ha": 232,
+   "couvert_sup_2m_pct": 85.0,
+   "part_couvert_dans_houppiers_pct": 89.3,
+   "hauteur_mediane_m": 8.3,
+   "essences_tirees_pct": {
+    "chêne vert": 50,
+    "pin d'Alep": 40,
+    "chêne pubescent": 10
+   }
+  },
+  "Forêt fermée à mélange de conifères prépondérants et feuillus": {
+   "surface_ha": 0.3,
+   "arbres": 48,
+   "arbres_par_ha": 173,
+   "couvert_sup_2m_pct": 84.8,
+   "part_couvert_dans_houppiers_pct": 91.4,
+   "hauteur_mediane_m": 11.8,
+   "essences_tirees_pct": {
+    "pin d'Alep": 77,
+    "chêne vert": 15,
+    "chêne pubescent": 8
+   }
+  },
+  "hors forêt : haie (BD TOPO, 4 m)": {
+   "surface_ha": 1.3,
+   "arbres": 333,
+   "arbres_par_ha": 250,
+   "couvert_sup_2m_pct": 72.6,
+   "part_couvert_dans_houppiers_pct": 87.4,
+   "hauteur_mediane_m": 6.2,
+   "essences_tirees_pct": {
+    "cyprès": 39,
+    "chêne vert": 28,
+    "pin d'Alep": 23,
+    "chêne pubescent": 11
+   }
+  },
+  "hors forêt : abords bâtis (< 40 m)": {
+   "surface_ha": 12.4,
+   "arbres": 2127,
+   "arbres_par_ha": 172,
+   "couvert_sup_2m_pct": 38.0,
+   "part_couvert_dans_houppiers_pct": 78.6,
+   "hauteur_mediane_m": 4.6,
+   "essences_tirees_pct": {
+    "chêne vert": 28,
+    "olivier": 27,
+    "pin d'Alep": 26,
+    "cyprès": 19
+   }
+  },
+  "hors forêt : autre": {
+   "surface_ha": 4.3,
+   "arbres": 348,
+   "arbres_par_ha": 81,
+   "couvert_sup_2m_pct": 29.4,
+   "part_couvert_dans_houppiers_pct": 85.8,
+   "hauteur_mediane_m": 12.1,
+   "essences_tirees_pct": {
+    "pin d'Alep": 62,
+    "chêne vert": 34,
+    "chêne pubescent": 3
+   }
+  }
+ },
+ "formations_bdforet_non_reconnues": {},
+ "proportions_hypothese": {
+  "Forêt fermée de pin d'Alep pur": {
+   "pin_alep": 0.85,
+   "chene_vert": 0.13,
+   "chene_pubescent": 0.02
+  },
+  "Forêt fermée de chênes sempervirents purs": {
+   "chene_vert": 0.85,
+   "pin_alep": 0.12,
+   "chene_pubescent": 0.03
+  },
+  "Forêt fermée d'un autre pin pur": {
+   "autre_pin": 0.8,
+   "pin_alep": 0.15,
+   "chene_vert": 0.05
+  },
+  "Forêt fermée à mélange de feuillus prépondérants et conifères": {
+   "chene_vert": 0.5,
+   "chene_pubescent": 0.12,
+   "pin_alep": 0.38
+  },
+  "Forêt fermée à mélange de conifères prépondérants et feuillus": {
+   "pin_alep": 0.62,
+   "chene_vert": 0.3,
+   "chene_pubescent": 0.08
+  },
+  "Forêt fermée à mélange de feuillus": {
+   "chene_vert": 0.6,
+   "chene_pubescent": 0.4
+  },
+  "Forêt ouverte de feuillus purs": {
+   "chene_vert": 0.75,
+   "chene_pubescent": 0.25
+  },
+  "Forêt ouverte de conifères purs": {
+   "pin_alep": 0.88,
+   "autre_pin": 0.04,
+   "chene_vert": 0.08
+  },
+  "Forêt ouverte à mélange de feuillus et conifères": {
+   "pin_alep": 0.45,
+   "chene_vert": 0.45,
+   "chene_pubescent": 0.1
+  },
+  "Lande": {
+   "pin_alep": 0.5,
+   "chene_vert": 0.5
+  },
+  "hors forêt : haie (BD TOPO, 4 m)": {
+   "cypres": 0.4,
+   "chene_vert": 0.25,
+   "pin_alep": 0.25,
+   "chene_pubescent": 0.1
+  },
+  "hors forêt : abords bâtis (< 40 m)": {
+   "pin_alep": 0.35,
+   "cypres": 0.25,
+   "chene_vert": 0.2,
+   "olivier": 0.2
+  },
+  "hors forêt : autre": {
+   "pin_alep": 0.55,
+   "chene_vert": 0.4,
+   "chene_pubescent": 0.05
+  }
+ },
+ "correspondance_jeu": {
+  "pin d'Alep": [
+   {
+    "famille": "acr/Content/Foliage/Trees/AleppoPine",
+    "hauteur_m": ">= 0",
+    "note": "même essence",
+    "maillages": [
+     "SM_AleppoPine01",
+     "SM_AleppoPine02",
+     "SM_AleppoPine03",
+     "SM_AleppoPine04",
+     "SM_AleppoPine05",
+     "SM_AleppoPine06",
+     "SM_AleppoPine07",
+     "SM_AleppoPine08",
+     "SM_AleppoPine09",
+     "SM_AleppoPine10",
+     "SM_AleppoPine11",
+     "SM_AleppoPine12",
+     "SM_AleppoPine13",
+     "SM_AleppoPine14",
+     "SM_AleppoPine15"
+    ]
+   }
+  ],
+  "chêne vert": [
+   {
+    "famille": "acr/Content/Foliage/Trees/Smoketree",
+    "hauteur_m": "0-6",
+    "note": "SUBSTITUT A ARBITRER : petits chênes verts (taillis)",
+    "maillages": [
+     "SM_Smoketree01",
+     "SM_Smoketree02",
+     "SM_Smoketree04",
+     "SM_Smoketree06"
+    ]
+   },
+   {
+    "famille": "acr/Content/Foliage/Trees/BlackmapleMonteCarlo",
+    "hauteur_m": ">= 6",
+    "note": "SUBSTITUT A ARBITRER : chênes verts > 6 m",
+    "maillages": [
+     "SM_BlackmapleMonteCarlo01",
+     "SM_BlackmapleMonteCarlo02",
+     "SM_BlackmapleMonteCarlo03"
+    ]
+   }
+  ],
+  "chêne pubescent": [
+   {
+    "famille": "acr/Content/Foliage/Trees/Blackmaple",
+    "hauteur_m": ">= 0",
+    "note": "substitut : feuillu caduc à houppier arrondi",
+    "maillages": [
+     "SM_Blackmaple01",
+     "SM_Blackmaple02",
+     "SM_Blackmaple03",
+     "SM_Blackmaple04",
+     "SM_Blackmaple06"
+    ]
+   }
+  ],
+  "autre pin (pignon ou maritime)": [
+   {
+    "famille": "acr/Content/Foliage/Trees/BlackpineMonteCarlo",
+    "hauteur_m": ">= 0",
+    "note": "pin noir, habillage Monte-Carlo",
+    "maillages": [
+     "SM_BlackpineMonteCarlo01",
+     "SM_BlackpineMonteCarlo02",
+     "SM_BlackpineMonteCarlo03",
+     "SM_BlackpineMonteCarlo04",
+     "SM_BlackpineMonteCarlo05",
+     "SM_BlackpineMonteCarlo06",
+     "SM_BlackpineMonteCarlo07",
+     "SM_BlackpineMonteCarlo08",
+     "SM_BlackpineMonteCarlo09",
+     "SM_BlackpineMonteCarlo11",
+     "SM_BlackpineMonteCarlo12"
+    ]
+   }
+  ],
+  "cyprès": [
+   {
+    "famille": "acr/Content/Foliage/Trees/Cypress",
+    "hauteur_m": ">= 0",
+    "note": "même essence (cyprès d'ornement)",
+    "maillages": [
+     "SM_Cypress01",
+     "SM_Cypress02",
+     "SM_Cypress03",
+     "SM_Cypress04"
+    ]
+   }
+  ],
+  "olivier": [
+   {
+    "famille": "acr/Content/Foliage/Trees/Olivetree",
+    "hauteur_m": ">= 0",
+    "note": "même essence",
+    "maillages": [
+     "SM_Olivetree01",
+     "SM_Olivetree02",
+     "SM_Olivetree03"
+    ]
+   }
+  ],
+  "arbuste / garrigue": [
+   {
+    "famille": "acr/Content/Foliage/GroundCover/BroomCreeper",
+    "hauteur_m": "0-1",
+    "note": "genêt rampant : arbustes < 1 m",
+    "maillages": [
+     "SM_BroomCreeper01",
+     "SM_BroomCreeper02",
+     "SM_BroomCreeper03",
+     "SM_BroomCreeper04",
+     "SM_BroomCreeper05"
+    ]
+   },
+   {
+    "famille": "acr/Content/Foliage/Trees/Boxthorn",
+    "hauteur_m": ">= 1",
+    "note": "lyciet : arbustes de garrigue 1-2 m",
+    "maillages": [
+     "SM_Boxthorn01",
+     "SM_Boxthorn02",
+     "SM_Boxthorn03",
+     "SM_Boxthorn04",
+     "SM_Boxthorn05"
+    ]
+   }
+  ]
+ },
+ "chene_vert_substitut": {
+  "probleme": "le catalogue n'a aucun chêne (ni Quercus, ni Oak, ni Holm) : le chêne vert, 2e essence du couloir, n'a pas d'équivalent",
+  "proposition": "Smoketree (arbre à perruque, Cotinus) sous 6 m, BlackmapleMonteCarlo au-dessus",
+  "justification": [
+   "feuillus à houppier dense et arrondi, sans tronc dégagé, comme le chêne vert en taillis",
+   "Cotinus est une essence de la garrigue provençale, de la taille des taillis de chêne vert",
+   "la variante MonteCarlo de l'érable a été habillée par le studio pour les spéciales de Haute-Provence, la plus proche de notre palette de couleurs"
+  ],
+  "alternative": "Olivetree : persistant et méditerranéen, mais feuillage gris argenté et tronc d'arbre de verger",
+  "defaut": "les deux sont caducs dans la réalité ; si le jeu les montre en livrée automnale ou dénudée, l'olivier devient préférable",
+  "a_arbitrer": "directeur : choix sur rendu dans l'éditeur, les maillages n'ayant pas été vus (noms seulement)"
+ },
+ "autres_elements_utiles_du_catalogue": {
+  "pins_destructibles": [
+   "DestructibleTrees/Aleppopine/Aleppopine_07/BP_Aleppopine_07_Replacement",
+   "DestructibleTrees/Aleppopine/Aleppopine_08/BP_Aleppopine_08_Replacement"
+  ],
+  "cypres_sauvage_MonteCarlo": [
+   "SM_CypressWildMonteCarlo04",
+   "SM_CypressWildMonteCarlo05"
+  ],
+  "haies": [
+   "SM_Hedge01",
+   "SM_Hedge02",
+   "SM_Hedge06",
+   "SM_Hedge07",
+   "SM_Hedge08",
+   "SM_CypressHedge01"
+  ]
+ },
+ "limites": [
+  "Essence attribuée par tirage dans des proportions supposées par type de formation BD Forêt : juste en moyenne sur un polygone, fausse arbre par arbre (aucune identification spectrale).",
+  "BD Forêt : unité minimale 0,5 ha, contours à quelques mètres, photos plus anciennes que le LiDAR.",
+  "Le MNS ne voit que la surface : le sous-étage (chênes et arbustes sous les pins) est absent.",
+  "Pinède dense à houppiers jointifs : plusieurs pins peuvent être fusionnés en un seul houppier, et de gros houppiers étalés peuvent être coupés en deux ; le nombre d'arbres y est incertain d'environ 20-30 %.",
+  "Taillis de chêne vert : cépées multi-tiges vues comme un seul houppier large et bas.",
+  "Arbustes : seule la densité (pixel 0,5 m) est mesurée ; positions, tailles et genres sont semés.",
+  "Ortho et LiDAR ne sont pas pris le même jour ; l'ortho a un dévers (houppiers hauts décalés de 1-3 m vers l'extérieur de l'image), d'où des cercles parfois légèrement décalés sur les planches.",
+  "Les maillages du jeu ne sont connus que par leur nom : hauteurs natives et aspect non vérifiés."
+ ],
+ "fichiers": [
+  "data/processed/arbres.csv",
+  "data/processed/arbustes.csv"
+ ],
+ "extraits_planche": [
+  {
+   "titre": "Pinède dense (pin d'Alep pur)",
+   "x_l93": 916440.2,
+   "y_l93": 6240849.2
+  },
+  {
+   "titre": "Lande / garrigue",
+   "x_l93": 917066.2,
+   "y_l93": 6241041.8
+  },
+  {
+   "titre": "Bord de route en virage (épingle, PK 217)",
+   "x_l93": 915382.1,
+   "y_l93": 6239811.2
+  },
+  {
+   "titre": "Zone ouverte avant le Grand Caunet (PK 3740)",
+   "x_l93": 917097.4,
+   "y_l93": 6240914.1
+  },
+  {
+   "titre": "Abords d'un pont (PK 2009-2023, 14 m)",
+   "x_l93": 915991.2,
+   "y_l93": 6240421.0
+  }
+ ],
+ "apercu_3d": {
+  "fichier": "modele/apercu/arbres.glb",
+  "arbres": 4816,
+  "rayon_m": 40.0,
+  "taille_mo": 2.66
+ }
+}

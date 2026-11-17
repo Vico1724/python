@@ -18,9 +18,53 @@
     "note": "Aucune coordonnée n'est publiée par l'organisateur. DEPART : carrefour D3 / Voie Romaine / route du Caunet au droit de l'arrêt « Plan-de-Masse » (certain : départ « au Plan de Masse » ; position de la ligne : estimée, ±50 m). ARRIVEE : position calculée sur l'axe BD TOPO au PK 3000 (estimée). FIN_ZONE : carrefour D3/D3D au Grand Caunet (fin de route utile, raccord avec le projet Grand Caunet)."
   },
   "points": [
-    {"id": "APPROCHE", "pk_km": -0.150, "lat": 43.22221, "lon": 5.64776, "role": "liaison", "label": "Approche depuis le village (D3, route du Caunet), 150 m sous le départ - position calculée"},
-    {"id": "DEPART", "pk_km": 0.000, "lat": 43.22313, "lon": 5.64904, "role": "depart", "label": "Départ - carrefour du Plan de Masse (D3 / Voie Romaine) - ligne estimée"},
-    {"id": "ARRIVEE", "pk_km": 3.000, "lat": 43.23343, "lon": 5.66295, "role": "arrivee", "label": "Arrivée retenue (hypothèse 3,0 km) - position calculée au PK 3000"},
-    {"id": "FIN_ZONE", "pk_km": 3.746, "lat": 43.23445, "lon": 5.67170, "role": "fin_zone", "label": "Carrefour D3/D3D au Grand Caunet : fin de la route modélisée, raccord avec le projet Grand Caunet (PK -0.183 de l'ES)"}
+    {
+      "id": "APPROCHE",
+      "pk_km": -0.15,
+      "lat": 43.22221,
+      "lon": 5.64776,
+      "role": "liaison",
+      "label": "Approche depuis le village (D3, route du Caunet), 150 m sous le départ - position calculée"
+    },
+    {
+      "id": "DEPART",
+      "pk_km": 0.0,
+      "lat": 43.22313,
+      "lon": 5.64904,
+      "role": "depart",
+      "label": "Départ - carrefour du Plan de Masse (D3 / Voie Romaine) - ligne estimée"
+    },
+    {
+      "id": "INTER_JEU",
+      "pk_km": 1.5,
+      "lat": 43.22989,
+      "lon": 5.65357,
+      "role": "intermediaire_jeu",
+      "label": "Temps intermédiaire du jeu au PK 1500 : AUCUN intermédiaire n'existe sur l'épreuve réelle (démonstration non chronométrée) ; point technique pour le format du jeu"
+    },
+    {
+      "id": "ARRIVEE",
+      "pk_km": 3.0,
+      "lat": 43.23343,
+      "lon": 5.66295,
+      "role": "arrivee",
+      "label": "Arrivée retenue (hypothèse 3,0 km) - position calculée au PK 3000"
+    },
+    {
+      "id": "ARRET",
+      "pk_km": 3.7,
+      "lat": 43.23433,
+      "lon": 5.67116,
+      "role": "point_stop",
+      "label": "Zone d'arrêt du jeu, 46 m avant le carrefour D3/D3D (position choisie pour le jeu, non relevée)"
+    },
+    {
+      "id": "FIN_ZONE",
+      "pk_km": 3.746,
+      "lat": 43.23445,
+      "lon": 5.6717,
+      "role": "fin_zone",
+      "label": "Carrefour D3/D3D au Grand Caunet : fin de la route modélisée, raccord avec le projet Grand Caunet (PK -0.183 de l'ES)"
+    }
   ]
 }

@@ -30,6 +30,15 @@ PART_D_AUTOMNE, HAUT_AUTOMNE_M = 0.30, 8.0
 
 
 
+
+def _id_lieu():
+    """Identifiant du lieu de l'épreuve (dossier de l'export) ; « grand_caunet » hors de la chaîne Python complète."""
+    try:
+        from acr_geo import param
+    except ImportError:
+        return "grand_caunet"
+    return param("id_lieu", "grand_caunet")
+
 def fichier_ref(nom, racine):
     """data/reference/<nom> de l'épreuve (racine) ; repli de acr_geo.fichier_ref (relevés partagés du Grand Caunet) quand il
     est importable. Sans dépendance au chargement : ce module sert aussi hors de la chaîne Python complète."""
@@ -409,7 +418,7 @@ def parc_assistance(racine):
     from pathlib import Path
 
     import shapely
-    f = Path(racine) / "export" / "stage_ir" / "grand_caunet" / "stage.json"
+    f = Path(racine) / "export" / "stage_ir" / _id_lieu() / "stage.json"
     if not f.exists():
         return []
     st = json.loads(f.read_text(encoding="utf-8"))
