@@ -306,6 +306,14 @@ def garde_en_zone_ouverte(cle):
 MARGE_BATI_M = 2.0                  # même valeur que MARGE_BATI de 10_semis_arbres.py
 MARGE_CONSTRUCTION_M = 2.0          # 1 m jusqu'à la 17 : un tronc de pin à 1,5 m du portail le traversait (essai du 16/11/2026)
 MARGE_MUR_M = 1.0
+# Murs de la zone de départ : ceux dont tout le tronçon est avant le PK ZONE_DEPART_PK_MAX_M (le mur de pierres sèches du
+# carrefour, PK -163 à -128, et le long mur enduit, PK -140 à -86). Les règles ajoutées après l'essai de la dix-septième
+# version (troncs du semis écartés des murs) et de la dix-neuvième (houppier tenu hors des murs) ne valent que là :
+# demande du directeur le 17/11/2026, le reste de la spéciale garde les arbres du build 18.
+ZONE_DEPART_PK_MAX_M = 0.0
+# Végétation de la zone de départ (16_paquet_unreal.vegetation_de_bord) : en deçà de ce PK, les règles actuelles ; au-delà,
+# celles du build 18. Les houppiers que tient un mur ou une construction du départ sont tous avant le PK +24.
+ZONE_DEPART_ARBRES_PK_MAX_M = 30.0
 _BATI = {}
 
 
@@ -399,7 +407,7 @@ def parc_assistance(racine):
     return [shapely.Point(o["lambert93_x_m"] + x, o["lambert93_y_m"] - z).buffer(PARC_RAYON_M)]
 
 
-def murs_le_long_de_la_route(racine):
+def murs_le_long_de_la_route(racine, pk_max=None):
     """Emprises Lambert-93 des murs et parapets de data/reference/ouvrages_parapets.json (« ouvrages » et
     « parapets_hors_tablier ») : du bord de chaussée + decalage_m à + decalage_m + epaisseur_m, entre leurs PK, du côté
     donné (comme parapet() de 11_route_ouvrages.py). Un parapet d'ouvrage sans PK relevés prend la portée BD TOPO du
@@ -434,6 +442,8 @@ def murs_le_long_de_la_route(racine):
             p = e.get(cote) or {}
             if p.get("type", "aucun") != "aucun":
                 troncons.append((float(e["pk_debut_m"]), float(e["pk_fin_m"]), cote, p))
+    if pk_max is not None:
+        troncons = [t for t in troncons if t[1] <= pk_max]
     out = []
     for s0, s1, cote, p in troncons:
         s = np.append(np.arange(s0, s1, 0.5), s1)
@@ -451,16 +461,23 @@ def murs_le_long_de_la_route(racine):
     return out
 
 
-def emprises_interdites(racine):
+MARGE_CONSTRUCTION_BUILD_18_M = 1.0
+
+
+def emprises_interdites(racine, build_18=False):
     """{nom : polygone Lambert-93 préparé, marge comprise} : bâtiments BD TOPO (+ MARGE_BATI_M), constructions de la zone
-    de départ (+ MARGE_CONSTRUCTION_M), murs et parapets le long de la route (+ MARGE_MUR_M). Mis en cache."""
+    de départ (+ MARGE_CONSTRUCTION_M), murs et parapets le long de la route (+ MARGE_MUR_M), parc d'assistance. Avec
+    `build_18`, les emprises du build 18 (constructions + 1 m, pas de parc), pour garder ses tirages : voir
+    tirage_du_build_18. Mis en cache."""
     import shapely
-    cle = str(racine)
+    cle = (str(racine), build_18)
     if cle not in _BATI:
         brut = {"bâtiments BD TOPO": (batiments_bd_topo(racine), MARGE_BATI_M),
-                "constructions de la zone de départ": (constructions_zone_depart(racine), MARGE_CONSTRUCTION_M),
-                "murs et parapets": (murs_le_long_de_la_route(racine), MARGE_MUR_M),
-                "parc d'assistance": (parc_assistance(racine), 0.0)}
+                "constructions de la zone de départ": (constructions_zone_depart(racine),
+                                                       MARGE_CONSTRUCTION_BUILD_18_M if build_18 else MARGE_CONSTRUCTION_M),
+                "murs et parapets": (murs_le_long_de_la_route(racine), MARGE_MUR_M)}
+        if not build_18:
+            brut["parc d'assistance"] = (parc_assistance(racine), 0.0)
         _BATI[cle] = {}
         for nom, (geoms, marge) in brut.items():
             if geoms:
@@ -471,8 +488,8 @@ def emprises_interdites(racine):
 
 
 def distance_au_bati(racine, x, y):
-    """Distance (m) des points (x, y) Lambert-93 aux constructions de la zone de départ, aux murs et parapets le long de
-    la route et aux bâtiments BD TOPO, sans marge. Essai de la dix-neuvième version (17/11/2026) : « quelques branches
+    """Distance (m) des points (x, y) Lambert-93 aux constructions et aux murs de la zone de départ (ZONE_DEPART_PK_MAX_M),
+    sans marge ; ailleurs, la règle du build 18 (seule la chaussée compte) est gardée. Essai de la dix-neuvième version (17/11/2026) : « quelques branches
     dépassent du mur au départ » ; seuls les troncs étaient écartés du bâti. Le houppier est désormais tenu hors d'un
     mur comme hors de la chaussée : choisir() reçoit la plus petite des deux distances (rien ne traverse sous DEGAGE_M,
     un houppier peut passer au-dessus d'un mur bas)."""
@@ -480,7 +497,7 @@ def distance_au_bati(racine, x, y):
     import shapely
     cle = ("distance", str(racine))
     if cle not in _BATI:
-        geoms = batiments_bd_topo(racine) + constructions_zone_depart(racine) + murs_le_long_de_la_route(racine)
+        geoms = constructions_zone_depart(racine) + murs_le_long_de_la_route(racine, ZONE_DEPART_PK_MAX_M)
         _BATI[cle] = shapely.union_all(geoms) if geoms else None
         if _BATI[cle] is not None:
             shapely.prepare(_BATI[cle])
@@ -490,16 +507,26 @@ def distance_au_bati(racine, x, y):
     return shapely.distance(g, shapely.points(np.asarray(x, float), np.asarray(y, float)))
 
 
-def dans_le_bati(racine, x, y, murs=True):
+def dans_le_bati(racine, x, y, murs=True, build_18=False):
     """{nom : masque booléen} des points (x, y) Lambert-93 tombant dans une emprise de emprises_interdites ; sans
-    `murs`, la bande autour des murs et parapets de la route n'est pas regardée."""
+    `murs`, la bande autour des murs et parapets de la route n'est pas regardée ; avec murs="depart", seulement celle des
+    murs de la zone de départ (ZONE_DEPART_PK_MAX_M)."""
     import numpy as np
     import shapely
     out = {}
-    for nom, g in emprises_interdites(racine).items():
-        if nom == "murs et parapets" and not murs:
+    for nom, g in emprises_interdites(racine, build_18).items():
+        if nom == "murs et parapets" and murs is not True:
             continue
         out[nom] = shapely.contains_xy(g, np.asarray(x, float), np.asarray(y, float))
+    if murs == "depart":
+        cle = ("murs du départ", str(racine))
+        if cle not in _BATI:
+            geoms = murs_le_long_de_la_route(racine, ZONE_DEPART_PK_MAX_M)
+            _BATI[cle] = shapely.union_all([g_.buffer(MARGE_MUR_M) for g_ in geoms]) if geoms else None
+            if _BATI[cle] is not None:
+                shapely.prepare(_BATI[cle])
+        if _BATI[cle] is not None:
+            out["murs de la zone de départ"] = shapely.contains_xy(_BATI[cle], np.asarray(x, float), np.asarray(y, float))
     return out
 
 

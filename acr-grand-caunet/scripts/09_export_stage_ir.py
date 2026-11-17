@@ -357,13 +357,14 @@ def troncs_proches():
     # même règle que le décor (scripts/regles_arbres.py) : un arbre trop grand pour sa place est réduit, pas retiré ;
     # il n'est retiré que trop près du bord ou trop petit une fois réduit
     import regles_arbres
-    # place de l'arbre : distance au bord de chaussée ou au mur le plus proche (même règle que le décor, docs/14 § 17)
+    # place de l'arbre : distance au bord de chaussée ou, dans la zone de départ, au mur le plus proche (même règle que
+    # le décor, docs/14 § 17)
     place = np.minimum(dist, regles_arbres.distance_au_bati(OUT.parents[1], x, y))
     res = [regles_arbres.choisir(float(ht[i]), float(place[i]), regles_arbres.famille_rendue(a[i]["essence"], a[i]["famille_jeu"], float(ht[i]), f"{a[i]['x_l93']}:{a[i]['y_l93']}"),
                                  f"{a[i]['x_l93']}:{a[i]['y_l93']}") if dist[i] <= TRONCS["distance_max_m"] else (False, 0.0, "", None, None)
            for i in range(len(a))]
     garde = np.array([r[0] for r in res])
-    for m in regles_arbres.dans_le_bati(OUT.parents[1], x, y, murs=True).values():   # troncs retirés du décor près du bâti
+    for m in regles_arbres.dans_le_bati(OUT.parents[1], x, y, murs="depart").values():   # troncs retirés du décor près du bâti
         garde &= ~m
     emprises = regles_arbres.emprises_degagees(OUT.parents[1])            # aires et débouchés de pistes : pas d'arbre
     if emprises:

@@ -2,8 +2,10 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (vingtième, du 17/11/2026 à 13 h 10) : officiels chargés partout (grille),
-                         parc d'assistance au milieu du parking, ligne idéale plus marquée, houppiers écartés des
+    sol_jeu              version courante (vingt et unième, du 17/11/2026 à 16 h 06) : la vingtième, avec les
+                         arbres du build 18 hors de la zone de départ (au-delà du PK +30) ; jamais vue en jeu
+    sol_jeu_cycle20_du_17_11  vingtième version (17/11/2026 à 13 h 10) : officiels chargés partout (grille), parc
+                         d'assistance au milieu du parking, ligne idéale plus marquée, houppiers écartés de tous les
                          murs ; jamais vue en jeu
     sol_jeu_vu_le_17_11_bis  dix-neuvième version (17/11/2026 à 3 h 18), vue en jeu le 17/11 : tenue de route un peu
                          meilleure, officiels absents, parc à moitié sur le parking, branches à travers les murs

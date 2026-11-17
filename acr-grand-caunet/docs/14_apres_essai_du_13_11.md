@@ -359,3 +359,18 @@ Jusqu'ici, seul le tronc des arbres était écarté du bâti (2 m des constructi
 
 
 **Vingtième version, installée le 17 novembre** : construite en 82 min, route physique sans échec. Les deux cellules d'officiels sont échangées avec les cellules 3H10 et 7FF9 du niveau supérieur de la grille et relues PASS « referenced in the top grid level ». Le parc d'assistance est déplacé au milieu du parking (164 acteurs, 295 enfoncés, le râtelier de pneus compris), relu PASS. La ligne idéale compte 932 points. Table et décor relus conformes. 47 arbres du semis et 353 du bord de route sont écartés du bâti et des murs ; 791 arbres sont réduits pour ne pas déborder. La dix-neuvième est gardée sous `sol_jeu_vu_le_17_11_bis`. Pour l'essai, mettre « Adhérence de départ » sur Optimale dans les options météo. Jamais vue en jeu.
+
+### 17.5 Arbres du build 18 hors de la zone de départ
+
+Le directeur demande que le reste de la spéciale garde les arbres du build 18 et que seule la zone de départ change. Or les builds 19 et 20 avaient étendu deux règles à toute la spéciale : l'écart des troncs du semis aux murs et la tenue du houppier hors des murs. Il y avait un second effet, moins visible. Le sous-bois, le fourré et les orientations des arbres sont tirés au sort à la suite, dans l'ordre des places retenues. Une seule place de plus écartée au départ, à cause de la marge des constructions portée à 2 m ou du parc d'assistance, décalait donc le tirage sur toute la spéciale. Hors du départ, le sous-bois des builds 19 et 20 différait de celui du build 18 aux PK 174 à 7 214.
+
+Correction :
+- Les deux règles ne regardent que les murs de la zone de départ (`regles_arbres.ZONE_DEPART_PK_MAX_M` : tronçons finis avant le PK 0, soit le mur de pierres sèches et le long mur enduit, PK −163 à −86).
+- `16_paquet_unreal.vegetation_de_bord` tire la végétation deux fois, avec les règles du build 18 puis avec les règles actuelles. Le décor prend la première au-delà du PK +30 (`ZONE_DEPART_ARBRES_PK_MAX_M`) et la seconde en deçà. Les lacets du build 18 sont tirés comme avant, donc la suite du tirage est inchangée.
+
+Vérifications faites avec le code du build 18 repris de git, sur les mêmes données :
+- au-delà du PK +30, les 73 512 sujets sont identiques (position, hauteur, maillage, lacet) et la suite du tirage aussi ;
+- en deçà du PK +30, il y a 1 677 sujets contre 1 709 au build 18 ;
+- les troncs de la physique ne diffèrent qu'entre les PK −165 et −86.
+
+**Vingt et unième version, installée le 17 novembre** : la vingtième, avec les arbres du build 18 au-delà du PK +30 (section 17.5). Construite en 83 min. Route physique ALL PASS (officiels, parc d'assistance, ligne idéale de 932 points), table conforme, relecture du décor conforme. Le journal confirme 73 512 sujets du build 18 et 1 677 sujets de la zone de départ, ainsi que 1 153 troncs dans la physique. La vingtième, jamais vue en jeu, est gardée sous `sol_jeu_cycle20_du_17_11`. Pour l'essai, mettre « Adhérence de départ » sur Optimale. Jamais vue en jeu.

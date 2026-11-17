@@ -1589,20 +1589,53 @@ SOUS_BOIS = {"de_m": 1.7, "a_m": 9.0, "pas_m": 1.1, "par_pas": 3, "mnh_min_m": 1
              "pin_m": (2.2, 4.2), "pin_pas_m": 6.0, "pin_mnh_m": 8.0, "pin_voisin_m": 4.5, "pin_hauteur_m": (8.0, 18.0)}
 
 
-def hors_du_bati(x, y, ok, quoi, murs):
+# Règles du build 18 (demande du directeur, 17/11/2026) : hors de la zone de départ, la végétation du build 18. Elle est
+# tirée deux fois (vegetation_de_bord), avec les règles du build 18 puis avec les règles actuelles ; le décor prend la
+# première au-delà du PK regles_arbres.ZONE_DEPART_ARBRES_PK_MAX_M et la seconde en deçà. Les tirages au sort du sous-bois,
+# du fourré et des lacets suivent le nombre de places retenues : une place de plus écartée au départ décalait tout le
+# tirage qui suit, sur toute la spéciale (builds 19 et 20).
+_REGLES_BUILD_18 = False
+
+
+def hors_du_bati(x, y, ok, quoi, murs, bavard=True):
     """Retire de `ok` les points (Lambert-93) tombés dans un bâtiment BD TOPO (marge de 10_semis_arbres.py), dans une
     construction de la zone de départ (+ 1 m) et, avec `murs`, à moins de 1 m d'un mur ou parapet le long de la route
     (regles_arbres.dans_le_bati). Le relevé laser voit un toit ou un mur de 2 m comme un taillis : sans ce filtre, des
     arbustes étaient semés dans les maisons et sur les murs de la zone de départ. Affiche le compte par source."""
-    masques = regles_arbres.dans_le_bati(ROOT, x, y, murs=murs)
+    if _REGLES_BUILD_18 and murs == "depart":
+        murs = False
+    masques = regles_arbres.dans_le_bati(ROOT, x, y, murs=murs, build_18=_REGLES_BUILD_18)
     retire = np.zeros(len(ok), bool)
     detail = []
     for nom, m in masques.items():
         n = int((m & ok & ~retire).sum())
         retire |= m & ok
         detail.append(f"{n} {nom}")
-    print(f"  {quoi} : {int(retire.sum())} points écartés du bâti et des murs ({', '.join(detail) or 'aucune emprise'})")
+    if bavard:
+        print(f"  {quoi} : {int(retire.sum())} points écartés du bâti et des murs ({', '.join(detail) or 'aucune emprise'})")
     return ok & ~retire
+
+
+def vegetation_de_bord(ref, semis, sous_bois, regles_build_18):
+    """Semis (data/processed/arbres.csv), plus le sous-bois de bord et le fourré des versants si `sous_bois`, avec les
+    règles du build 18 ou les règles actuelles (voir _REGLES_BUILD_18)."""
+    global _REGLES_BUILD_18
+    _REGLES_BUILD_18 = regles_build_18
+    try:
+        arbres = list(semis)
+        if arbres and not regles_build_18:
+            # Essai de la dix-septième version (16/11/2026, captures de la zone de départ) : un tronc de pin dans le portail
+            # et le pilier de l'entrée de propriété. Le semis principal n'écartait que les bâtiments BD TOPO ; ses troncs
+            # s'écartent désormais aussi des constructions de la zone de départ et de ses murs (+ 1 m), comme le sous-bois.
+            k_ = hors_du_bati(np.array([float(r["x_l93"]) for r in arbres]), np.array([float(r["y_l93"]) for r in arbres]),
+                              np.ones(len(arbres), bool), "arbres du semis", murs="depart")
+            arbres = [r for r, k in zip(arbres, k_) if k]
+        if sous_bois:
+            arbres += sous_bois_de_bord(ref, arbres)
+            arbres += fourre_des_versants(arbres)
+        return arbres
+    finally:
+        _REGLES_BUILD_18 = False
 
 
 def sous_bois_de_bord(ref, arbres):
@@ -1807,7 +1840,7 @@ def instances(P, ref, sol, ruban, pkf, args):
     if degagee is not None:
         shapely.prepare(degagee)
 
-    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None, reglages=None, ajuster=None, sol_loin=None):
+    def table(famille, rows, chemin_de, hauteur, extra_cols, sur_terrain=True, degagement=None, reglages=None, ajuster=None, sol_loin=None, lacets=None):
         x = np.array([float(r["x_l93"]) for r in rows])
         y = np.array([float(r["y_l93"]) for r in rows])
         zc = np.array([float(r.get("z_sol_m") or r.get("z_m")) for r in rows])
@@ -1819,7 +1852,7 @@ def instances(P, ref, sol, ruban, pkf, args):
                 zs[hors] = sol_loin(g[hors, 0], g[hors, 2])
             g[:, 1] = np.where(np.isfinite(zs), zs, g[:, 1])
         ue = Axes.ue(g)
-        lacet = rng.uniform(-180.0, 180.0, len(rows))
+        lacet = rng.uniform(-180.0, 180.0, len(rows)) if lacets is None else np.asarray(lacets, float)
         pk = pkf(g)
         sur_chaussee = shapely.contains_xy(ruban, x, y)
         if degagee is not None:                              # aires et débouchés de pistes : ni arbre ni buisson
@@ -1844,8 +1877,8 @@ def instances(P, ref, sol, ruban, pkf, args):
             # pour sa place, l'arbre est réduit, et prend au besoin un maillage d'une famille à petits sujets
             # Près de la route, le maillage est choisi ici d'après sa forme mesurée (regles_arbres.choisir) et posé à
             # l'échelle écrite dans la table : l'import ne le rechoisit pas.
-            # houppier tenu aussi hors des murs et du bâti (essai de la dix-neuvième version : branches à travers le mur
-            # du départ) : la place d'un arbre est sa distance au bord de chaussée OU au mur le plus proche
+            # houppier tenu aussi hors des murs et constructions de la zone de départ (essai de la dix-neuvième version :
+            # branches à travers le mur du départ) : la place d'un arbre y est sa distance au bord de chaussée OU au mur
             dist = np.minimum(shapely.distance(ruban, shapely.points(x, y)), regles_arbres.distance_au_bati(ROOT, x, y))
             for i in np.flatnonzero(dist < regles_arbres.BANDE_M):
                 garde, h_i, fam, elt, ech = ajuster(rows[i], float(dist[i]), chemins[i])
@@ -1906,17 +1939,23 @@ def instances(P, ref, sol, ruban, pkf, args):
                   f"{choisis} posés avec un maillage choisi d'après sa forme")
 
     with open(OUT / "arbres.csv", encoding="utf-8") as f:
-        arbres = list(csv.DictReader(f))
-    # Essai de la dix-septième version (16/11/2026, captures de la zone de départ) : un tronc de pin dans le portail et le
-    # pilier de l'entrée de propriété. Le semis principal n'écartait que les bâtiments BD TOPO ; ses troncs s'écartent
-    # désormais aussi des constructions de la zone de départ et des murs le long de la route (+ 1 m), comme le sous-bois.
-    if arbres:
-        k_ = hors_du_bati(np.array([float(r["x_l93"]) for r in arbres]), np.array([float(r["y_l93"]) for r in arbres]),
-                          np.ones(len(arbres), bool), "arbres du semis", murs=True)
-        arbres = [r for r, k in zip(arbres, k_) if k]
-    if args.sous_bois and not P.echantillon and args.pk_min is None:
-        arbres += sous_bois_de_bord(ref, arbres)
-        arbres += fourre_des_versants(arbres)
+        semis = list(csv.DictReader(f))
+    sous_bois = bool(args.sous_bois and not P.echantillon and args.pk_min is None)
+    zone = regles_arbres.ZONE_DEPART_ARBRES_PK_MAX_M
+    print(f"  végétation de bord, règles du build 18 (gardée au-delà du PK {zone:+.0f}) :")
+    arbres_18 = vegetation_de_bord(ref, semis, sous_bois, regles_build_18=True)
+    print("  végétation de bord, règles actuelles (gardée en deçà) :")
+    arbres_ici = vegetation_de_bord(ref, semis, sous_bois, regles_build_18=False)
+    lacets_18 = rng.uniform(-180.0, 180.0, len(arbres_18))        # comme le build 18 : la suite du tirage est inchangée
+
+    def depart(r):
+        return float(r["pk_m"]) < zone
+    garde_18 = [i for i, r in enumerate(arbres_18) if not depart(r)]
+    arbres = [arbres_18[i] for i in garde_18] + [r for r in arbres_ici if depart(r)]
+    lacets_arbres = np.concatenate([lacets_18[garde_18], np.random.default_rng(SEED + 101).uniform(
+        -180.0, 180.0, len(arbres) - len(garde_18))])
+    print(f"  végétation de bord : {len(garde_18)} sujets du build 18, {len(arbres) - len(garde_18)} de la zone de départ "
+          f"(règles actuelles ; {sum(map(depart, arbres_18))} avec celles du build 18)")
     loin, loin_buissons = arbres_lointains(ref) if args.arbres_lointains and not P.echantillon and args.pk_min is None else ([], [])
     def chemin_arbre(r):
         """Chênes verts : Boxthorn du jeu (arbuste dense, vert sombre), et feuillu d'automne pour une part des grands
@@ -1930,7 +1969,8 @@ def instances(P, ref, sol, ruban, pkf, args):
           lambda r: float(r["hauteur_m"]), ["essence", "diametre_houppier_m"],
           ajuster=lambda r, d, chemin: regles_arbres.choisir(
               float(r["hauteur_m"]), d, chemin[len("/Game/"):].rsplit("/", 1)[0], f"{r['x_l93']}:{r['y_l93']}",
-              tronc_min_m=regles_arbres.TRONC_MIN_HAIE_M if r.get("regle_essence") == "haie au ras de la chaussée" else None))
+              tronc_min_m=regles_arbres.TRONC_MIN_HAIE_M if r.get("regle_essence") == "haie au ras de la chaussée" else None),
+          lacets=lacets_arbres)
     if loin:
         # Arbres des versants : un groupe à part, sans ombre portée et masqué au-delà d'un kilomètre environ. Ils sont
         # 29 000 de plus ; avec les ombres et sans limite de distance, ils pèseraient sur la fluidité pour rien.

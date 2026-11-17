@@ -66,3 +66,4 @@ Chaque ligne a coûté au moins une version au Grand Caunet. Référence entre p
 - Ne pas ouvrir le jeu pendant `7_tout_refaire.ps1` : la route physique est sautée.
 - Toute nouvelle règle de placement mérite un contrôle chiffré (degrés comparés à des mètres jusqu'à la v12 ; arbustes dans les bâtiments jusqu'à la v11).
 - Avant de supprimer un objet relevé, relire la vidéo : le mur de l'épingle du km 4,08 retiré à tort en v7.
+- Une correction locale (zone de départ) ne doit pas changer le reste de la spéciale. Deux pièges : une règle écrite sur « tous les murs » s'applique partout, et tout tirage au sort fait après un filtre (sous-bois, fourré, lacets) se décale sur toute la spéciale dès qu'une seule place change. Le cas s'est produit aux builds 19 et 20, avec un sous-bois différent jusqu'au PK 7 214. Pour figer l'ancien état, tirer la végétation deux fois (anciennes règles, nouvelles) et assembler par PK, puis comparer au code repris de git.
