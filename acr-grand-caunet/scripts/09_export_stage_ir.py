@@ -357,10 +357,14 @@ def troncs_proches():
     # même règle que le décor (scripts/regles_arbres.py) : un arbre trop grand pour sa place est réduit, pas retiré ;
     # il n'est retiré que trop près du bord ou trop petit une fois réduit
     import regles_arbres
-    res = [regles_arbres.choisir(float(ht[i]), float(dist[i]), regles_arbres.famille_rendue(a[i]["essence"], a[i]["famille_jeu"], float(ht[i]), f"{a[i]['x_l93']}:{a[i]['y_l93']}"),
+    # place de l'arbre : distance au bord de chaussée ou au mur le plus proche (même règle que le décor, docs/14 § 17)
+    place = np.minimum(dist, regles_arbres.distance_au_bati(OUT.parents[1], x, y))
+    res = [regles_arbres.choisir(float(ht[i]), float(place[i]), regles_arbres.famille_rendue(a[i]["essence"], a[i]["famille_jeu"], float(ht[i]), f"{a[i]['x_l93']}:{a[i]['y_l93']}"),
                                  f"{a[i]['x_l93']}:{a[i]['y_l93']}") if dist[i] <= TRONCS["distance_max_m"] else (False, 0.0, "", None, None)
            for i in range(len(a))]
     garde = np.array([r[0] for r in res])
+    for m in regles_arbres.dans_le_bati(OUT.parents[1], x, y, murs=True).values():   # troncs retirés du décor près du bâti
+        garde &= ~m
     emprises = regles_arbres.emprises_degagees(OUT.parents[1])            # aires et débouchés de pistes : pas d'arbre
     if emprises:
         garde &= ~shapely.contains_xy(shapely.union_all([g_ for g_, _ in emprises]), x, y)
@@ -1003,11 +1007,16 @@ IDEALE = {
     "ecart_max_m": 2.5,             # écart à l'axe plafonné (carrefour du Lion d'Or : chaussée de plus de 12 m)
     "pas_m": 2.0,                   # résolution du calcul (lignes de la chaussée prises un mètre sur deux)
     "rappel_axe": 3e-4,             # poids du rappel vers l'axe : garde la ligne au milieu des lignes droites
-    "couloir_garde_m": 0.2,         # le couloir s'arrête à 20 cm du bord de chaussée
-    "couloir_m": (1.5, 3.4),        # bornes du couloir de chaque côté, comme les spéciales du jeu (150 à 338 cm)
-    # SkidIntensity selon le rayon de la trajectoire : moyennes relevées sur Munster et Hafren Sud
+    # Essai de la dix-neuvième version (17/11/2026) : « un peu mieux, mais encore plus prononcé ». Hors trajectoire, le
+    # jeu descend d'un niveau d'adhérence (DA_PhysMaterialsMappingCommon, OnTrajectoryToOffTrajectoryMapping : Optimal
+    # 1,0 -> Fast 0,92) et y accumule des billes (MarblesMuK) ; sur la trajectoire, la gomme ajoute MarblesGrooveK
+    # (0,08) x SkidIntensity. Vingtième version : couloir sur toute la chaussée (jusqu'au bord) et gomme d'une route
+    # très roulée (0,5 en ligne droite, 1 en épingle), au lieu des moyennes de Munster et Hafren (0,2 ; 0,8).
+    "couloir_garde_m": 0.0,         # le couloir va jusqu'au bord de chaussée
+    "couloir_m": (1.5, 6.0),        # bornes du couloir de chaque côté (les spéciales du jeu : 150 à 338 cm)
+    # SkidIntensity selon le rayon de la trajectoire (Munster et Hafren Sud : 0,8 ; 0,65 ; 0,4 ; 0,25 ; 0,17 ; 0,2)
     "gomme_rayon_m": (15.0, 30.0, 60.0, 120.0, 300.0, 1e9),
-    "gomme": (0.8, 0.65, 0.4, 0.25, 0.17, 0.2),
+    "gomme": (1.0, 0.95, 0.85, 0.7, 0.55, 0.5),
     "gomme_lissage_m": 20.0,
 }
 
@@ -1084,21 +1093,42 @@ def ligne_ideale(G, D, dist, idx):
 # l'embouchure du parking du Grand Caunet (gauche, PK -68 à -26), voiture dans l'axe de la route. Le reste du parc gallois
 # et son grand sol (SM_WalesServiceParkTerrain, 3 x 3 km) sont enfoncés de 1 000 m. Le jeu cache tout le parc pendant
 # la spéciale (docs/16, § 1.2) : rien ne gêne la route.
-PARC = {"pk_m": -47.0, "vers_la_gauche_m": 3.0, "rayon_m": 8.0}
+# Essai de la dix-neuvième version (17/11/2026) : la tente était « à moitié sur le parking » ; le directeur la veut sur le
+# parking à côté du départ. Vingtième version : centre de la tente au point du parking le plus éloigné de ses bords, des
+# voitures garées et du mobilier de notre décor (pôle d'inaccessibilité de l'emprise du parking de zone_depart.json
+# moins ces objets), voiture tournée vers l'entrée principale du parking (PK -60) ; dégagement vérifié.
+PARC = {"emprise": "parking", "rayon_m": 8.0, "garde_m": 1.0, "vehicule_m": 3.5, "objet_m": 1.0, "sortie_pk_m": -60.0}
 
 
-def parc_assistance(ch, A, G):
+def parc_assistance(ch, A, G, ref):
+    import mobilier
+    from shapely.geometry import Point, Polygon
+    from shapely.ops import polylabel, unary_union
+    zd = json.loads((ROOT / "data" / "reference" / "zone_depart.json").read_text(encoding="utf-8"))
+    e = next(o for o in zd["objets"] if o["genre"] == PARC["emprise"])["emprise_l93"]
+    parking = Polygon(json.loads(e) if isinstance(e, str) else e)
+    objs, _ = mobilier.objets()
+    gene = [Point(o["x"], o["y"]).buffer(PARC["vehicule_m"] if "NonDrivableVehicles" in o.get("maillage_jeu", "")
+                                          else PARC["objet_m"]) for o in objs]
+    libre = parking.difference(unary_union(gene))
+    if libre.geom_type == "MultiPolygon":
+        libre = max(libre.geoms, key=lambda q: q.area)
+    c = polylabel(libre, 0.05)
+    degagement = float(libre.boundary.distance(c))
+    if degagement < PARC["rayon_m"] + PARC["garde_m"]:
+        raise SystemExit(f"parc d'assistance : {degagement:.1f} m de dégagement dans le parking, il en faut "
+                         f"{PARC['rayon_m'] + PARC['garde_m']:.1f}")
     pk = ch["pk"]
-    i = int(np.argmin(np.abs(pk - PARC["pk_m"])))
-    g = G[i] - A[i]
-    g[1] = 0.0
-    g /= np.linalg.norm(g)
-    f = A[min(i + 5, len(A) - 1)] - A[max(i - 5, 0)]
+    L = np.asarray(ch["A"], float)
+    i = int(np.argmin(np.hypot(L[:, 0] - c.x, L[:, 1] - c.y)))
+    j = int(np.argmin(np.abs(pk - PARC["sortie_pk_m"])))
+    t = vers_ir(np.array([c.x, c.y, L[i, 2]]), ref)[0]
+    f = A[j] - t
     f[1] = 0.0
     f /= np.linalg.norm(f)
-    return {"source": "scripts/09_export_stage_ir.py, PARC (demande du 17/11/2026 : parc très réduit, avant la spéciale)",
-            "pk_m": PARC["pk_m"], "target": r3(A[i] + PARC["vers_la_gauche_m"] * g), "forward": r3(f, 5),
-            "radius_m": PARC["rayon_m"]}
+    return {"source": "scripts/09_export_stage_ir.py, PARC (essai du 17/11/2026 : tente sur le parking, à côté du départ)",
+            "pk_m": round(float(pk[i]), 1), "a_gauche_de_l_axe_m": round(float(np.hypot(L[i, 0] - c.x, L[i, 1] - c.y)), 1),
+            "degagement_m": round(degagement, 1), "target": r3(t), "forward": r3(f, 5), "radius_m": PARC["rayon_m"]}
 
 
 # --- stage.json --------------------------------------------------------------------------
@@ -1193,7 +1223,7 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
             "skid_intensity": [round(float(x), 3) for x in ideale["gomme"]],
             "bilan": ideale["bilan"],
         },
-        "service_park": parc_assistance(ch, A, G),      # extension du projet (retouche 0006, --service-park)
+        "service_park": parc_assistance(ch, A, G, ref),      # extension du projet (retouche 0006, --service-park)
         "timing": timing,
         "pacenotes": {
             "source": "BROUILLON généré par scripts/09_export_stage_ir.py à partir de la courbure de l'axe précis "

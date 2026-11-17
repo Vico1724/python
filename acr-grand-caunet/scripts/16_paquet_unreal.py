@@ -1844,7 +1844,9 @@ def instances(P, ref, sol, ruban, pkf, args):
             # pour sa place, l'arbre est réduit, et prend au besoin un maillage d'une famille à petits sujets
             # Près de la route, le maillage est choisi ici d'après sa forme mesurée (regles_arbres.choisir) et posé à
             # l'échelle écrite dans la table : l'import ne le rechoisit pas.
-            dist = shapely.distance(ruban, shapely.points(x, y))
+            # houppier tenu aussi hors des murs et du bâti (essai de la dix-neuvième version : branches à travers le mur
+            # du départ) : la place d'un arbre est sa distance au bord de chaussée OU au mur le plus proche
+            dist = np.minimum(shapely.distance(ruban, shapely.points(x, y)), regles_arbres.distance_au_bati(ROOT, x, y))
             for i in np.flatnonzero(dist < regles_arbres.BANDE_M):
                 garde, h_i, fam, elt, ech = ajuster(rows[i], float(dist[i]), chemins[i])
                 if not garde:

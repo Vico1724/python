@@ -10,6 +10,10 @@ Chaque ligne a coûté au moins une version au Grand Caunet. Référence entre p
 - **Registre tiers dans `Paks`** (pas dans `~mods`) : il masque toute table livrée moins bien classée. Notre table part de la sienne, dans un conteneur `_9_P`, et se refait s'il change. (doc 14 § 6)
 - **Personnages du parc étiquetés `ServicePark`** : cachés pendant la spéciale ; neutraliser l'étiquette. (doc 14 § 13)
 - **Parc d'assistance** : toujours caché pendant une spéciale, même dans le jeu d'origine ; il reste à sa place galloise si on ne le déplace pas. (doc 16)
+- **Cellules World Partition « toujours chargées »** : le drapeau `bIsAlwaysLoaded` ne suffit pas, le jeu cuit charge par cases de grille (`MainGrid` : 350 m, portée 640 m). Une cellule à faire charger ailleurs (officiels du départ et de l'arrivée) doit être rangée dans la case unique du niveau 5, en échangeant sa référence avec une cellule du sens retour. (doc 14 § 17.1)
+- **Adhérence de départ** : option de météo du joueur (« Starting Grip Level »), de Dirty 0,85 à Optimal 1,0 ; à mettre sur Optimale avant de juger la tenue de route. Hors trajectoire, l'adhérence perd un niveau. (doc 14 § 17.2)
+- **Parc réduit** : le présentoir `BC_TiresRack_C` fait apparaître des pneus que le jeu ne cache pas pendant la spéciale ; l'enfoncer. Placer la tente au pôle d'inaccessibilité du parking, voitures garées exclues. (doc 14 § 17.3)
+- **Arbres près des murs** : écarter le tronc ne suffit pas, le houppier traverse les murs ; appliquer la règle du houppier avec la distance au mur. (doc 14 § 17.4)
 - **Portiques verts** d'acr-ref au départ et à l'arrivée : les enterrer ; **ne pas** passer d'option de visuels avec notre décor, sinon la zone rouge de départ disparaît aussi. (doc 14 § 10, § 12)
 - **Murs de reprise** tracés 20 m au-delà du bout de chaque porte : des bouts très obliques les ramènent sur le terrain près de la route (mur invisible). (doc 14 § 13)
 - **Menus** : « Hafren South » reste affiché sans `-Noms` ; la variante 2/2 n'est plus jouable tant que le mod est installé.
@@ -46,6 +50,15 @@ Chaque ligne a coûté au moins une version au Grand Caunet. Référence entre p
 - Ponceaux IGN décalés : le LiDAR montre le vrai vide (26 m d'écart au PK 3 450).
 - Le calage de la vidéo de course par les virages échoue souvent ; celui d'une vidéo du jeu part de t = 0 alors que la voiture attend le départ.
 - Le tangage de la caméra ne mesure pas le profil en long.
+
+## Contrôles et méthode (conversations du 11 au 15/11)
+
+- **Un contrôle hors jeu prouve la présence, pas la visibilité** : « 10 personnages sur 10 à leur place » alors qu'aucun ne s'affichait (étiquette `ServicePark`). Pour un nouvel acteur, comparer tous ses réglages à ceux d'un acteur du jeu qu'on sait visible.
+- **Ne pas conclure « impossible » sans avoir regardé les spéciales du studio** (commissaires le 14/11, faisabilité le 10/11).
+- **Demander l'endroit exact d'un défaut** (capture, PK, côté) avant d'en chercher la cause : le mur invisible du Lion d'Or a d'abord été attribué à tort aux parois.
+- **Véhicules garés** : variante « feux éteints » imposée à chacun (les monospaces du jeu ont leurs feux de détresse allumés par défaut).
+- **Parc d'assistance** : l'écran n'apparaît ni avec « Recommencer » ni en week-end de rallye ; essayer depuis le menu principal, en essais libres.
+- **Ne pas empiler plusieurs versions sans essai** quand des relectures d'agents se succèdent : elles peuvent se contredire (pont du PK 2602, v8).
 
 ## Placement et construction
 

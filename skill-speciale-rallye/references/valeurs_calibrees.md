@@ -30,14 +30,15 @@ Contrôle rapide qu'une copie des scripts n'a pas dérivé : `grep -n "^NOM_DE_L
 |---|---|---|---|
 | matière de chaussée | `PM_SurfaceTarmacSmooth` ; annexes enrobé `TSD+`, terre `DBK+` ; accotement terre dure sur 3 m | vu | 0 |
 | table des variantes | Tarmac / TarmacSnow, `WeatherConfig` MonteCarlo, longueur au menu ; conteneur à part `zz_…_table_9_P` bâti sur la table **du registre installé** (seule notre ligne change) | vu (pneus), météo 18 | 2 |
-| `IDEALE` | marge 1,2 m ; écart ≤ 2,5 m ; rappel 3e-4 ; pas 2 m ; couloir (1,5 ; 3,4) m, garde 0,2 m ; SkidIntensity par rayon 15/30/60/120/300/∞ m → 0,8/0,65/0,4/0,25/0,17/0,2, lissée sur 20 m | 19 | 2 (manque d'adhérence signalé aux 17 et 18) |
+| `IDEALE` | marge 1,2 m ; écart ≤ 2,5 m ; rappel 3e-4 ; pas 2 m ; couloir (1,5 ; 6) m, garde 0 (toute la chaussée) ; SkidIntensity par rayon 15/30/60/120/300/∞ m → 1/0,95/0,85/0,7/0,55/0,5, lissée sur 20 m (route très roulée) | 20 (la 19, aux valeurs de Munster, jugée « un peu mieux ») | 3 |
+| adhérence de départ (option du joueur) | Optimale pour juger la tenue de route | à essayer | — |
 | repères Munster | écart à l'axe médian 0,47 m ; couloir 150 à 330 cm ; SkidIntensity médiane 0,2, 0,7 sous 30 m | lu | — |
 | humidité de base | `--level-wetness 0` (Hafren : 0,1 ; Munster : aucune) | 19 | idem |
 | portes | `PAS_PORTES` 10 m, `TOL_PORTES` 0,25 m ; bouts biaisés de plus de `BIAIS_MAX_DEG` 20° reportés sur la normale (limite de reprise à plus de 15 m de la chaussée) | vu (v15) | 1 (mur invisible) |
 | obstacles | parapets, murs `PM_WallConcrete`/roche ; poteau cylindre `PM_WallConcrete` ; bois `PM_WallWoodPole` ; troncs `PM_WallWoodTreeTrunks` à moins de 6 m, 3 m de haut ; haie `PM_WallBush` ; piquets de rubalise **sans** collision ; rocher sous 35 cm sans collision | vu | 2 |
 | notes | `SEUILS` 1:17°, 2:23°, 3:34°, 4:54°, 5:81°, 6:150° ; `LIEN` 40 m ; `AVANCE` 80 m ; retouches dans `notes_copilote_retouches.json` | brouillon jugé correct | — |
 | portiques d'acr-ref | enterrés (hauteur négative), aucune option de visuels avec notre décor (sinon la zone rouge de départ disparaît) | vu (v14) | 2 |
-| `PARC` | PK −47, 3 m à gauche, rayon 8 m (164 acteurs) ; reste du parc enfoncé de 1 000 m ; arbres écartés sur 11 m | 19 | — |
+| `PARC` | tente de la voiture et ce qui l'entoure (acteurs à moins de 8 m, 169 au Grand Caunet) posés sur l'emprise « parking » de `zone_depart.json`, 1 m de garde, sortie au PK −60 ; reste du parc enfoncé de 1 000 m ; arbres écartés sur 11 m | 19 | — |
 | officiels | cellules de départ A0I1 et d'arrivée 0QY7 ; même distance au repère et au **bord** de la route ; au plus 25 cm au-dessus du sol ; portiques « Rally Wales » enfoncés | 19 | — |
 | personnages du parc | 4 commissaires + 6 spectateurs déplacés, étiquette `ServicePark` neutralisée ; jamais à moins de 1 m du bord, regard vers l'axe 15 m en amont | vu (v15) | 2 |
 

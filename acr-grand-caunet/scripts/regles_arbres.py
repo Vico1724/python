@@ -470,6 +470,26 @@ def emprises_interdites(racine):
     return _BATI[cle]
 
 
+def distance_au_bati(racine, x, y):
+    """Distance (m) des points (x, y) Lambert-93 aux constructions de la zone de départ, aux murs et parapets le long de
+    la route et aux bâtiments BD TOPO, sans marge. Essai de la dix-neuvième version (17/11/2026) : « quelques branches
+    dépassent du mur au départ » ; seuls les troncs étaient écartés du bâti. Le houppier est désormais tenu hors d'un
+    mur comme hors de la chaussée : choisir() reçoit la plus petite des deux distances (rien ne traverse sous DEGAGE_M,
+    un houppier peut passer au-dessus d'un mur bas)."""
+    import numpy as np
+    import shapely
+    cle = ("distance", str(racine))
+    if cle not in _BATI:
+        geoms = batiments_bd_topo(racine) + constructions_zone_depart(racine) + murs_le_long_de_la_route(racine)
+        _BATI[cle] = shapely.union_all(geoms) if geoms else None
+        if _BATI[cle] is not None:
+            shapely.prepare(_BATI[cle])
+    g = _BATI[cle]
+    if g is None:
+        return np.full(len(x), np.inf)
+    return shapely.distance(g, shapely.points(np.asarray(x, float), np.asarray(y, float)))
+
+
 def dans_le_bati(racine, x, y, murs=True):
     """{nom : masque booléen} des points (x, y) Lambert-93 tombant dans une emprise de emprises_interdites ; sans
     `murs`, la bande autour des murs et parapets de la route n'est pas regardée."""

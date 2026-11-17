@@ -330,5 +330,32 @@ Option `--service-park 1` (automatique quand `stage.json → service_park` exist
 - Mur de la rampe rendu comme un panneau lisse et bleuté : enduit vieilli (nuances, salissures, lichen) au lieu du crépi crème uni.
 - Touffes d'herbe sur la rampe béton : les constructions de la zone de départ sont retirées de l'emprise des herbes.
 
-**Dix-neuvième version, installée le 17 novembre** : construite en 83 min, route physique sans échec (ligne idéale, humidité 0, parc et officiels relus PASS), table conforme, relecture du décor conforme ; 49 arbres du semis écartés des murs et constructions. La dix-huitième est gardée sous `sol_jeu_vu_le_17_11`. Jamais vue en jeu.
+**Dix-neuvième version, installée le 17 novembre** : construite en 83 min, route physique sans échec (ligne idéale, humidité 0, parc et officiels relus PASS), table conforme, relecture du décor conforme ; 49 arbres du semis écartés des murs et constructions. La dix-huitième est gardée sous `sol_jeu_vu_le_17_11`. Vue en jeu le 17 novembre (section 17).
 
+## 17. Essai de la dix-neuvième version (17 novembre, captures `essaiev18`)
+
+Retour du directeur : la tenue de route est un peu meilleure, il la veut « encore un peu plus prononcée » ; le parc d'assistance doit être sur le parking à côté du départ, pas à moitié dessus ; l'officiel n'apparaît pas ; quelques branches dépassent encore du mur au départ. Les captures montrent aussi deux pneus qui flottent au bord de la route, au départ.
+
+### 17.1 Officiels absents : la grille de chargement
+
+Aucun personnage des cellules A0I1 et 0QY7 n'est visible au départ : seul le commissaire de la méthode A (niveau persistant) l'est. Le drapeau « toujours chargée » (`bIsAlwaysLoaded`) posé par la dix-neuvième version ne suffit pas : un World Partition cuit charge les cellules des cases de sa grille autour de la caméra. `MainGrid` a des cases de 350 m et une portée de 640 m. A0I1 est dans la case de niveau 0 du départ gallois, à (−875 ; 875) m, soit 2,1 km de notre départ. Notre arrivée, en X = −2 518 m, est même hors du monde gallois (X min −1 529 m) : aucune case ne la couvre.
+
+Le niveau 5 de la grille est une seule case sur tout le monde, donc toujours à portée. On y trouve les cellules de jeu (22VG, 1LS8) et des cellules du sens retour. Correction (`Officials.cs`, retouche 0006) : chaque cellule des officiels échange sa référence dans le hachage spatial (`WorldPartitionRuntimeSpatialHash`, un entier de 4 octets, taille inchangée) avec une cellule du niveau 5 qui ne se charge jamais dans le sens aller (calques retour seuls : 7FF9 pour le jeu retour, BGX4 pour les décors retour). Les officiels sont alors chargés partout. La cellule donneuse passe dans la case galloise, où son calque inactif la laisse déchargée. La relecture vérifie la référence.
+
+### 17.2 Adhérence
+
+- Le jeu a cinq niveaux d'adhérence de surface (`DA_PhysMaterialsMappingCommon`, asphalte) : Optimal 1,0, Fast 0,92, Green 0,88, Slow 0,86, Dirty 0,85. Hors trajectoire, l'adhérence descend d'un niveau (Optimal → Fast). Le niveau de départ est une **option de météo du joueur** (« Starting Grip Level », `DA_StartingGripOption`), pas une donnée de la spéciale. Elle n'est pas dans la sauvegarde : le jeu prend sa valeur par défaut. **Passer cette option à « Optimale » vaut jusqu'à +13 % d'adhérence par rapport à « Green ».** C'est le premier réglage à faire en jeu.
+- Côté spéciale : le couloir de la trajectoire couvre désormais toute la chaussée (`couloir_garde_m` 0, bornes 1,5 à 6 m). La gomme (`SkidIntensity`, bonus `MarblesGrooveK` 0,08 × intensité) est celle d'une route très roulée : 0,5 en ligne droite, 1 en épingle, au lieu des moyennes de Munster et Hafren (0,2 et 0,8).
+
+### 17.3 Parc d'assistance sur le parking
+
+- La tente est posée au point du parking du Grand Caunet le plus éloigné de ses bords, des voitures garées de notre décor (3,5 m de garde) et du mobilier (1 m). C'est le pôle d'inaccessibilité de l'emprise de `zone_depart.json`, avec 11,9 m de dégagement pour 8 m de rayon. La voiture est tournée vers l'entrée principale (PK −60).
+- Les deux pneus flottants viennent de `BC_TiresRack_C`. Le jeu cache le présentoir avec le parc pendant la spéciale, mais pas les pneus qu'il fait apparaître comme acteurs à part. Le présentoir est retiré du parc réduit (`ServiceParkSinkClasses`).
+- La retouche 0006 enregistrée ne contenait pas `ServicePark.cs`. Elle est régénérée et vérifiée sur une copie neuve d'ACR Extra Stages : appliquée après 0001 à 0005, elle redonne exactement nos fichiers.
+
+### 17.4 Branches à travers les murs
+
+Jusqu'ici, seul le tronc des arbres était écarté du bâti (2 m des constructions, 1 m des murs). Désormais, la place d'un arbre est la plus petite de deux distances : au bord de chaussée et au mur ou bâtiment le plus proche (`regles_arbres.distance_au_bati`). La règle du houppier s'y applique (`choisir` : rien ne dépasse sous 4,5 m, un surplomb de 3 m au plus au-dessus). Un arbre trop grand pour sa place est réduit, ou retiré s'il deviendrait trop petit. Environ 160 arbres sont concernés. La physique applique la même règle : les troncs retirés du décor près du bâti n'ont plus de collision.
+
+
+**Vingtième version, installée le 17 novembre** : construite en 82 min, route physique sans échec. Les deux cellules d'officiels sont échangées avec les cellules 3H10 et 7FF9 du niveau supérieur de la grille et relues PASS « referenced in the top grid level ». Le parc d'assistance est déplacé au milieu du parking (164 acteurs, 295 enfoncés, le râtelier de pneus compris), relu PASS. La ligne idéale compte 932 points. Table et décor relus conformes. 47 arbres du semis et 353 du bord de route sont écartés du bâti et des murs ; 791 arbres sont réduits pour ne pas déborder. La dix-neuvième est gardée sous `sol_jeu_vu_le_17_11_bis`. Pour l'essai, mettre « Adhérence de départ » sur Optimale dans les options météo. Jamais vue en jeu.

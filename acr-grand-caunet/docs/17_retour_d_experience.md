@@ -2,7 +2,7 @@
 
 *17 novembre 2026. Document destiné au directeur de projet, et base du skill `projets/python/skill-speciale-rallye/`.*
 
-**Sources.** Docs 01 à 16 du projet, `pc/LISEZMOI.md`, `pc/etape2_unreal/PROTOCOLE.md`, les 119 commits de `projets/python` (du 10/11 à 20 h 59 au 16/11 à 23 h 14), les constantes datées et commentées des scripts, les retouches `pc/patches/0001` à `0006`, et l'historique de conversation local (du 16/11 au 17/11 ; les sessions du 10 au 15/11, tenues sur le serveur Linux puis sur le PC, ne sont connues ici que par les docs et les commits, qui les décrivent en détail).
+**Sources.** Docs 01 à 16 du projet, `pc/LISEZMOI.md`, `pc/etape2_unreal/PROTOCOLE.md`, les commits de `projets/python` (du 10/11 à 20 h 59 au 17/11), les constantes datées et commentées des scripts, les retouches `pc/patches/0001` à `0006`, et les conversations tenues sur le PC : celles du 11/11 au 15/11 (dossier de Claude Code `…-projets-python`, deux conversations, 71 messages du directeur) et celles du 16 et du 17/11. Les échanges du 10/11 (étude de faisabilité, phases 2 à 4) ont eu lieu sur le serveur Linux et ne sont connus que par les docs 01 à 08 et les commits. *Première rédaction le 17/11 sans les conversations du 11 au 15/11, cherchées par erreur dans un seul dossier ; complétée le même jour après leur relecture.*
 
 **En une phrase.** En sept jours, le projet est passé de « est-ce possible ? » à une spéciale complète, jouable et proche de la réalité, au prix d'une vingtaine d'aller-retours en jeu dont plus de la moitié auraient pu être évités en mesurant d'abord ce que fait le studio sur ses propres spéciales goudronnées, au lieu d'inventer une valeur puis de la corriger d'après l'essai.
 
@@ -17,15 +17,16 @@
 | 10/11 | Phase 3 (doc 03) | Axe, bords, largeur et dévers au mètre, depuis le LiDAR HD 0,5 m et l'ortho 20 cm. Ligne de départ reculée de 20 m sur la vidéo embarquée de 2025. |
 | 10/11 | Archives de BioBio et du jeu (doc 04) | BioBio est un niveau simple, terrain en dalles, végétation et matériaux du jeu désignés par leur chemin. Décision : ne pas contacter son auteur, ne rien réutiliser de ses fichiers. |
 | 10-11/11 nuit | Export Stage IR (doc 05), phase 4 (doc 07) | Format d'échange d'ACR Extra Stages produit sans l'avoir jamais exécuté. Lion d'Or refait trois fois (deux interprétations fausses des photos, puis nuage de points brut). Premier relevé vidéo (doc 08) : largeurs fausses là où un accotement plat a été compté en chaussée. |
-| 11/11 | Kit PC, étape 1 en jeu | La route physique seule (acr-ref `stage-build`, remplacement de Hafren South 1/2) roule en jeu du premier coup après les retouches 0001 à 0003. |
-| 11/11 | Unreal 5.6.1 installé, essais E0-E4 | Cuisson « avec versions » obligatoire dès qu'il y a un niveau ; parent = variante du jeu déjà configurée, jamais un maître ; Nanite désactivé dans le jeu. |
-| 11/11 après-midi | **Voie hybride** (PROTOCOLE § 0 quater) | Notre niveau Unreal remplace une cellule de World Partition de Hafren South ; la physique reste celle d'acr-ref. Vu en jeu sur 200 m, puis **toute la spéciale dans une seule cellule toujours chargée** (`1LS8FPM8JIMX697U3QIPKC01K`) : fluide, sans bug. C'est le choix structurant du projet. |
-| 12/11 | Sol du jeu, régularisation, mobilier (docs 09, 10, 11) | Le terrain prend le matériau de terrain de Bollène avec nos masques ; glissières, herbes, buissons du jeu. Relevé de la reconnaissance (doc 12) : beaucoup d'objets de la vidéo de course étaient placés 20 à 60 m trop tôt. |
-| 13/11 | Essais 2, 3, 4, 6 (doc 14 § 1-7) | Relief proche et lointain, parois, herbe, arbres sur la route, bords saccadés. Table asphalte (pneus) livrée à part à cause du registre de BioBio. |
-| 14/11 | Essais 7, 11, 12, 13 (doc 14 § 9-12) | Relief lointain « moins géométrique », route « trop lissée », zone de départ (Street View), portiques verts, personnages (doc 15). |
-| 15/11 | Essais 14, 15, 16 | Personnages cachés par l'étiquette `ServicePark`, mur invisible du Lion d'Or, habillage de chaussée (décalques). |
+| 11/11 matin | Kit PC, étape 1 en jeu | Prérequis installés (PowerShell 7, .NET 10, Rust, outils C++), une correction (`--locked` pour `retoc`). La route physique seule (acr-ref `stage-build`, remplacement de Hafren South 1/2) roule en jeu du premier coup : « le tracé semble bon ». L'option `-Textures` (matières galloises) est jugée « toujours dégueu de fou » : c'est le plafond de cette voie. |
+| 11/11 | Préparation hors Unreal, puis Unreal 5.6.1 installé, essais E0-E4 | Avant l'installation, tout ce que le protocole voulait « lire dans Unreal » est lu dans les archives du jeu (3 erreurs du protocole évitées : `M_Simple` sans ses static switch, mauvais maillage de portique, Nanite supposé actif ; 3 468 arbres pointant vers des souches). Puis cuisson « avec versions » obligatoire (les groupes d'arbres cuits sans versions sont illisibles), import dans l'éditeur complet, factices aux dimensions réelles. **Première preuve en jeu à 16 h 26** : notre bannière cuite s'affiche sur le portique de Hafren North. |
+| 11/11 après-midi | **Voie hybride** (PROTOCOLE § 0 quater) | Une étude du code d'acr-ref montre qu'il ne sait pas ajouter d'objets à un niveau, seulement réutiliser ceux de Hafren : on abandonne sa retouche. À la place, notre niveau Unreal remplace une cellule de World Partition de Hafren South ; la physique reste celle d'acr-ref. Vu en jeu sur 200 m (alignement exact), doublons retirés (retouche 0004), puis **toute la spéciale dans une seule cellule toujours chargée** (`1LS8FPM8JIMX697U3QIPKC01K`) : « sans bug et de manière fluide » à 22 h 22. C'est le choix structurant du projet. |
+| 11/11 23 h 36 | Mode autonome | Le directeur autorise à « avancer vers le rendu final sans qu'on teste à nouveau ». À partir de là, plusieurs versions s'empilent souvent sans essai entre elles. |
+| 12/11 | Sol du jeu, régularisation, mobilier (docs 09, 10, 11) | Nuit autonome : tracé régularisé, collision des troncs proches, sol aux matières du jeu (matériau de terrain de Bollène avec nos masques), 82 000 herbes, 98 000 buissons, glissières du jeu, trois versions gardées (`choisir_decor.ps1`). Matin : chaussée pliée aux ponts (bords lus dans le vide, 340 m repris). Après-midi : vidéo de reconnaissance (doc 12), où beaucoup d'objets de la vidéo de course étaient placés 20 à 60 m trop tôt. **Consigne du directeur** : la course est la référence, la reconnaissance affine le décor fixe, les objets du rallye restent. Soir : objets du rallye et barres rocheuses du lointain (doc 13), quatre versions sans essai. |
+| 13/11 | Essais 2, 3, 4, 6 (doc 14 § 1-7) | Relief proche et lointain, parois, herbe, arbres sur la route, bords saccadés. Le directeur constate en jeu que les pneus restent « terre » : registre de BioBio dans `Paks`, table asphalte livrée à part, confirmée à 18 h 56. |
+| 14/11 | Essais 7, 11, 12, 13 (doc 14 § 9-12) | Relief lointain « moins géométrique », route « trop lissée », zone de départ d'après 24 captures Street View fournies par le directeur, portiques verts. **Consigne** du directeur : confier les tâches simples à des agents sur un modèle moins coûteux. Les commissaires, d'abord déclarés impossibles, sont trouvés après que le directeur a demandé de regarder comment font les autres spéciales (doc 15). **Consigne permanente** : n'utiliser que les personnages du jeu, n'en créer aucun. |
+| 15/11 | Essais 14, 15, 16 | Personnages cachés par l'étiquette `ServicePark`, mur invisible du Lion d'Or (murs de reprise), habillage de chaussée : le directeur demandait des feuilles, le studio met des décalques. Feux de détresse allumés sur trois monospaces garés (variante « feux allumés » par défaut). Parc d'assistance absent : enquête (doc 16), question au directeur restée ouverte jusqu'au 16/11. |
 | 16/11 | Essai 17 | Trop de débris, pas assez de traces ; sous-virage signalé. |
-| 17/11 | Essai 18, construction de la 19 | Enquête d'adhérence : **ligne idéale** recopiée de l'axe et **humidité de base 0,1** héritée du niveau gallois. Officiels animés, parc réduit au PK −47. |
+| 17/11 | Essai 18, construction de la 19 | Enquête d'adhérence : **ligne idéale** recopiée de l'axe et **humidité de base 0,1** héritée du niveau gallois. Officiels animés, parc réduit posé sur le parking du départ. |
 
 ## 2. Les choix structurants, et pourquoi ils étaient bons
 
@@ -59,6 +60,12 @@
 | Table des variantes livrée dans le mod de la route | 1 essai sans effet | Le registre de BioBio est dans `Paks`, pas dans `~mods`, et mieux classé | Inventorier tout `Paks` (et pas seulement `~mods`) avant de livrer une table partagée |
 | Météo galloise pour l'adhérence | 1 essai sans effet | Ce n'était pas la cause | Comparer d'abord la physique entière avec une spéciale goudronnée du jeu (§ 6) |
 | Débris de chaussée au niveau du studio | 3 essais | Densité de Bollène appliquée telle quelle, plus 5 800 feuilles | Partir bas (2,5 paquets/km) et monter si le directeur le demande |
+| Retouche d'acr-ref pour poser le décor | ½ heure d'étude | L'outil ne sait que réutiliser les objets existants de Hafren, en même nombre | Lire d'abord ce que l'outil sait écrire ; la cellule de World Partition était la bonne porte |
+| « Pas de commissaires possibles » (14/11) | 1 version sans personnages | Conclusion tirée de la seule forme des personnages du jeu | Regarder d'abord comment le studio fait sur ses spéciales (demandé par le directeur, trouvé en une étude) |
+| Contrôle « 10 sur 10 » des personnages | 1 essai (invisibles) | Le contrôle vérifiait le fichier, pas ce que le jeu affiche (étiquette `ServicePark`) | Comparer chaque réglage de nos acteurs à ceux d'acteurs visibles du jeu, pas seulement leur présence |
+| Mur invisible du Lion d'Or diagnostiqué sans l'endroit exact | 2 messages du directeur (« non pas du tout ») | Cause supposée (collisions des parois) avant de savoir où il était | Demander l'endroit exact (capture, PK, côté) avant de diagnostiquer ; chercher ensuite dans les données de collision, pas sur la vidéo |
+| Versions 8 à 10 empilées sans essai, relectures d'agents successives | 2 erreurs corrigées dans la version suivante (pont du PK 2602) | Deux relectures de la reconnaissance se contredisaient, sans essai entre elles | Une relecture complète, une fois, avec la règle « le LiDAR l'emporte » ; puis un essai |
+| Voitures garées posées en série | 1 essai (noires) | Leurs matériaux refusent les instances | Acteurs individuels, variante « feux éteints », comme le studio |
 
 ## 4. Ce qui marche, et qu'il faut garder
 
@@ -86,8 +93,8 @@ La numérotation est celle du doc 14. Les versions 5, 8, 9 et 10 ont été insta
 | 14/11 | 7 | Lointain trop géométrique, parois, touffes à plat sur talus, route trop lissée | 15 pins variés, frange jusqu'à 880 m, falaises recoupées ; route rendue aux 3/4 ; touffes couchées sur la pente ; zone de départ (Street View) |
 | 14/11 midi | 11 | « Bonne voie » ; dalle et portique verts, barrière mal axée | Portiques enterrés, falaises au LiDAR 2 m jusqu'à 2 km, poteau de béton du projet |
 | 14/11 17 h | 12 | Lointain nettement amélioré, fluide ; zone de départ, parapets, parois | Murs de pierre sèche → roche litée, tabliers sous la chaussée, véhicules et décor de course |
-| 14/11 20 h | 13 | Zone de départ, pas de zone rouge, parois « en suspension » | Déclencheurs rendus visibles, roche posée sur le terrain, personnages (0005) |
-| 15/11 0 h 45 | 14 | Personnages absents, mur invisible au Lion d'Or, parapets | Étiquette `ServicePark`, bouts de porte redressés, parapets |
+| 14/11 20 h | 13 | Zone de départ en aplats, parking en butte, voitures noires, pas de zone rouge, panneau de fin en hauteur, parois géométriques et « en suspension » (en travers, au-dessus du vide) | Déclencheurs rendus visibles, voitures en acteurs individuels, murs en matière du jeu, parking aplani, roche posée sur le terrain, personnages (0005) |
+| 15/11 0 h 45 | 14 | Personnages absents ; mur invisible le long des piquets du Lion d'Or ; enrobé de la route barrée en contrebas ; parapets | Étiquette `ServicePark`, murs de reprise repoussés à plus de 15 m, piquets sans collision, route barrée raccordée, parapets |
 | 15/11 | 15 | Demande d'habillage de chaussée, de parc, feux allumés | Décalques du jeu, feuilles, feux éteints (v16) |
 | 15/11 soir | 16 | Trop de débris ; feux éteints confirmés | Densité au tiers (v17) |
 | 16/11 | 17 | Encore trop de débris, pas assez de traces ; parc absent ; sous-virage | Feuilles retirées, 2,5 paquets/km, traces de pneus ; météo MonteCarlo (v18) |
@@ -159,7 +166,7 @@ Les valeurs ci-dessous sont celles des scripts au 17/11 (dix-neuvième version).
 | Panneaux du rallye | lacet = cap de la route + 90°, à 2,5-4 m de l'axe | `mobilier.py` |
 | Personnages | jamais à moins de 1 m du bord, regard vers l'axe 15 m en amont | `mobilier.py` |
 | Officiels | cellules de départ et d'arrivée de Hafren (A0I1, 0QY7), reportés à la même distance du bord, posés au plus 25 cm au-dessus du sol | retouche 0006 |
-| Parc d'assistance | acteurs à moins de 8 m du point de la voiture, posés au PK −47, 3 m à gauche ; le reste enfoncé de 1 000 m | `09`, `PARC` ; retouche 0006 |
+| Parc d'assistance | acteurs à moins de 8 m du point de la voiture, posés sur le parking du Grand Caunet (emprise « parking » de `zone_depart.json`), sortie au PK −60 ; le reste enfoncé de 1 000 m | `09`, `PARC` ; retouche 0006 |
 
 ## 7. Ce qu'il faut retenir
 
@@ -170,6 +177,10 @@ Les valeurs ci-dessous sont celles des scripts au 17/11 (dix-neuvième version).
 5. **Le LiDAR prime** pour les ouvrages, les talus et le relief ; la reconnaissance pour le décor fixe ; la course pour le décor du rallye ; Street View pour les abords du départ et de l'arrivée.
 6. **Le relief lointain doit rester au sol avec de vrais arbres** jusqu'à ~450 m, et suivre le LiDAR à 2 m jusqu'à 2 km. Une photo aérienne posée sur une nappe à hauteur de cime donne le « tas de sable » ; une photo vue du ciel ne montre jamais une falaise.
 7. **Tout ce que le directeur a jugé bon est désormais une constante** : le prochain projet doit partir de ces valeurs, pas de zéro.
+8. **Avant de dire « impossible », regarder comment fait le studio.** Deux fois le projet a conclu trop vite : la faisabilité le 10/11 et les commissaires le 14/11. Les deux fois, la réponse existait déjà dans le jeu ou chez d'autres moddeurs.
+9. **Demander l'endroit exact avant de diagnostiquer** (capture, PK, côté), et chercher la cause dans les données plutôt que sur la vidéo quand le défaut ne s'y voit pas.
+10. **Une demande du directeur dit un résultat, pas forcément le moyen** : il demandait des feuilles sur l'asphalte, le studio habille ses routes de décalques. Montrer ce que fait le jeu avant d'appliquer le moyen demandé.
+11. **L'autonomie sans essai a un prix.** Elle a permis d'avancer la nuit et pendant les limites d'usage, mais les versions empilées sans essai (quatre le 12/11, trois le 14/11) ont aussi empilé des erreurs, découvertes ensemble au premier essai. Un essai court entre deux grosses passes coûte moins cher.
 
 ## 8. Ce qu'il ne faut pas refaire
 
@@ -192,11 +203,12 @@ Les valeurs ci-dessous sont celles des scripts au 17/11 (dix-neuvième version).
 | Relief lointain | 8 itérations | Les réglages du § 6.2 d'emblée |
 | Parois | 8 itérations | Roche épousant le LiDAR, relue sur planches tous les 6 m, dès la première version |
 | Adhérence | 2 essais et une enquête | Comparaison systématique de la route physique avec Munster ou Bollène (`acr-ref export`) avant le premier essai |
-| Jetons | Longues sorties de construction relues en entier, relevés d'images faits par le modèle principal | Constructions en arrière-plan, journaux filtrés par motif (`7_tout_refaire.ps1` le fait), relevés confiés à des agents sur un modèle moins coûteux (adopté le 14/11) |
+| Jetons | Longues sorties de construction relues en entier, relevés d'images faits par le modèle principal ; au moins dix arrêts sur la limite de cinq heures entre le 11 et le 15/11, reprises par réveils programmés ; le 14/11 au matin, 48 % de la limite hebdomadaire consommés, et huit agents lancés dans la matinée. La session principale portait un historique de quatre jours, qui coûtait à chaque tour | Constructions en arrière-plan, journaux filtrés par motif (`7_tout_refaire.ps1` le fait), relevés confiés à des agents sur un modèle moins coûteux (adopté le 14/11), **sessions courtes avec une note de reprise** plutôt qu'une session de plusieurs jours |
+| Création d'une spéciale | Copier le projet et retoucher à la main une quarantaine de valeurs codées en dur | `skill-speciale-rallye/scripts/creer_speciale.py` (17/11) : copie et remplacements vérifiés à partir de `speciale.json` |
 
 ## 10. Ce qui reste ouvert
 
 - Ressenti d'adhérence après la ligne idéale et l'humidité 0 (dix-neuvième version, pas encore essayée) ; sinon comparer avec Bollène (même température de référence), puis le masque de débris de la matière asphalte.
 - Troncs de pin rouge-orangé (le pin du jeu), voûte de branches au-dessus de la route, panneaux directionnels sans équivalent dans le jeu, écran bas sous les glissières.
 - Une seule spéciale à la fois : elle remplace Hafren South 1/2. Deux spéciales simultanées demanderaient un second hôte.
-- Les scripts sont propres au Grand Caunet en de nombreux endroits : la liste des généralisations est dans `projets/python/skill-speciale-rallye/references/generalisations.md`.
+- Les scripts sont propres au Grand Caunet en de nombreux endroits. Pour une nouvelle spéciale, `skill-speciale-rallye/scripts/creer_speciale.py` en fait une copie paramétrée et vérifiée ; elle n'a pas encore servi sur une vraie spéciale. L'inventaire et les généralisations facultatives sont dans `skill-speciale-rallye/references/generalisations.md`.

@@ -1,244 +1,16 @@
-diff --git a/tools/acr-ref/Splines.cs b/tools/acr-ref/Splines.cs
-index fbe0305..bd25bd5 100644
---- a/tools/acr-ref/Splines.cs
-+++ b/tools/acr-ref/Splines.cs
-@@ -318,6 +318,16 @@ internal static class Splines
-         return r;
-     }
- 
-+    /// [Grand Caunet] one key per spline point (InVal = point index), value per point, interp mode from the template.
-+    public static Curve ValuesFloatCurve(IReadOnlyList<double> values, Curve template)
-+    {
-+        var first = template.Points.Count > 0 ? template.Points[0] : new Point { Out = [0], Arrive = [0], Leave = [0], Mode = CIM_Linear };
-+        var c = new Curve { Kind = 'f', Looped = template.Looped, LoopKeyOffset = template.LoopKeyOffset };
-+        for (int i = 0; i < values.Count; i++)
-+            c.Points.Add(new Point { InVal = i, Out = [values[i]], Arrive = [0], Leave = [0], Mode = first.Mode });
-+        return c;
-+    }
-+
-     public static Curve ConstantFloatCurve(int n, Curve template)
-     {
-         var first = template.Points.Count > 0 ? template.Points[0] : new Point { Out = [0], Arrive = [0], Leave = [0] };
-diff --git a/tools/acr-ref/StageBuild.cs b/tools/acr-ref/StageBuild.cs
-index 60a6e8c..8d71dd6 100644
---- a/tools/acr-ref/StageBuild.cs
-+++ b/tools/acr-ref/StageBuild.cs
-@@ -15,7 +15,7 @@ namespace AcrRef;
- /// Frames: DR2 (x, y, z) metres, Y up, right-handed. ACR physics (x, y, z) metres, Y up = UE (X, Z, Y) / 100, which is
- /// also right-handed, so DR2 -> physics is a rotation about Y plus a translation (no mirroring):
- ///   physics = R_y(theta) * (dr2 - c) + t,   with c the DR2 route bbox centre (XZ) and t = (tx, dy, tz).
--internal static class StageBuild
-+internal static partial class StageBuild
- {
-     // Host limits in physics metres (x = UE X, z = UE Y, y = UE Z). PhysicsWorldBounds of WalesS4HafrenSouth, and the
-     // safe XZ region = forward gameplay cell content bounds grown by its 640 m loading range, intersected with them.
-@@ -63,6 +63,9 @@ internal static class StageBuild
-         public double LengthM, TotalM;
-         public List<double[]> Centre = new();
-         public List<(double distance, double[] crossing, double[] left, double[] right)> Gates = new();
-+        // [Grand Caunet] optional racing line (stage.json "ideal_line"), one point per centreline point
-+        public List<double[]> Ideal = new();
-+        public double[] IdealLeftM = [], IdealRightM = [], IdealSkid = [];
-         public List<(string type, int gate, double distance)> Timing = new();
-         public List<(string type, string name, double[] position)> Triggers = new();
-         public Dictionary<string, string> Materials = new();   // gltf material -> ACR asset path
-@@ -91,6 +94,15 @@ internal static class StageBuild
-             foreach (var m in j["collision"]!["meshes"]!.AsArray())
-                 ir.Materials[m!["gltf_material"]!.GetValue<string>()] = m["acr_asset_path"]!.GetValue<string>();
-             if (ir.Gates.Count != ir.Centre.Count) throw new InvalidDataException("expected one gate per centreline point");
-+            if (j["ideal_line"] is JsonObject il)
-+            {
-+                double[] D(string k) => il[k]!.AsArray().Select(x => x!.GetValue<double>()).ToArray();
-+                foreach (var c in il["points"]!.AsArray()) ir.Ideal.Add(V(c));
-+                ir.IdealLeftM = D("left_width_m"); ir.IdealRightM = D("right_width_m"); ir.IdealSkid = D("skid_intensity");
-+                int n = ir.Centre.Count;
-+                if (ir.Ideal.Count != n || ir.IdealLeftM.Length != n || ir.IdealRightM.Length != n || ir.IdealSkid.Length != n)
-+                    throw new InvalidDataException("ideal_line: expected one point, widths and skid intensity per centreline point");
-+            }
-             return ir;
-         }
-     }
-@@ -213,6 +225,15 @@ internal static class StageBuild
-             report["options"]!["characters"] = true;
-             report["characters"] = Characters.Build(legacy, outRoot, ir.Dir, pl, o);
-         }
-+        // [Grand Caunet] --level-wetness <0..1>: base wetness of the host level's weather actor (Weather.cs)
-+        if (o.Named.GetValueOrDefault("level-wetness") is { } levelWetness)
-+        {
-+            report["options"]!["level_wetness"] = levelWetness;
-+            report["level_weather"] = Weather.Build(legacy, outRoot, double.Parse(levelWetness, CultureInfo.InvariantCulture), o);
-+        }
-+        // [Grand Caunet] --officials: their cells always loaded in the persistent level (Officials.cs)
-+        if (o.Named.GetValueOrDefault("officials") is { } officialCells)
-+            report["officials_cells"] = AlwaysLoadCells(legacy, outRoot, officialCells.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
- 
-         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(reportPath))!);
-         File.WriteAllText(reportPath, report.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
-@@ -643,7 +664,10 @@ internal static class StageBuild
- 
-         var splines = new JsonObject();
-         double[] gateS = [];
--        foreach (var (name, pts) in new[] { ("CenterSpline", centre), ("IdealSpline", centre), ("LeftBorderSpline", left), ("RightBorderSpline", right), ("ContourSpline", contour) })
-+        // [Grand Caunet] IdealSpline: the stage's racing line when stage.json has one (the physics plugin's SplinesActor;
-+        // the host's line follows the racing line, not the centre), else the centre as before
-+        var ideal = ir.Ideal.Count > 0 ? ir.Ideal.Select(pl.ToUe).ToList() : centre;
-+        foreach (var (name, pts) in new[] { ("CenterSpline", centre), ("IdealSpline", ideal), ("LeftBorderSpline", left), ("RightBorderSpline", right), ("ContourSpline", contour) })
-         {
-             int e = cell.FindExport(name, "DMSplineComponent");
-             var split = Splines.SplitComponent(cell.GetExportData(e));
-@@ -665,6 +689,18 @@ internal static class StageBuild
-         var md = Splines.ReadMetadata(cell.GetExportData(me));
-         for (int i = 0; i < md.Curves.Length; i++)
-             if (md.Curves[i] is { } hc) md.Curves[i] = Splines.ConstantFloatCurve(centre.Count, hc);
-+        if (ir.Ideal.Count > 0)
-+        {
-+            // [Grand Caunet] LeftWidth / RightWidth (cm) and SkidIntensity per point of the racing line, like the host's
-+            var vals = new[] { ir.IdealLeftM.Select(v => v * 100).ToArray(), ir.IdealRightM.Select(v => v * 100).ToArray(), ir.IdealSkid };
-+            for (int i = 0; i < 3; i++)
-+            {
-+                if (md.Curves[i] is not { } hc) throw new InvalidDataException($"host DMSplineMetadata curve {i} absent");
-+                md.Curves[i] = Splines.ValuesFloatCurve(vals[i], hc);
-+            }
-+            r["ideal_line"] = $"{ideal.Count} pts; width L {F(ir.IdealLeftM.Min(), "0.##")}-{F(ir.IdealLeftM.Max(), "0.##")} m, " +
-+                              $"R {F(ir.IdealRightM.Min(), "0.##")}-{F(ir.IdealRightM.Max(), "0.##")} m; skid {F(ir.IdealSkid.Min(), "0.##")}-{F(ir.IdealSkid.Max(), "0.##")}";
-+        }
-         cell.SetExportData(me, Splines.WriteMetadata(md));
- 
-         // actors
-@@ -708,12 +744,14 @@ internal static class StageBuild
-             ("PostRaceCamera", postCam, newEnd + hostLine.Project(Loc(objs[postCam])).s - hostEnd),
-         };
-         var actors = new JsonArray();
-+        var anchors = new List<(string role, double hostS, double newS)>();   // [Grand Caunet] officials (Officials.cs)
-         foreach (var (role, comp, s0) in plan)
-         {
-             double s = Math.Clamp(s0, minS, maxS);
-             var obj = objs[comp];
-             var hostLoc = Loc(obj);
--            var (_, lat, upOff, hHead) = hostLine.Project(hostLoc);
-+            var (hostS, lat, upOff, hHead) = hostLine.Project(hostLoc);
-+            if (role.StartsWith("CompleStart") || role.StartsWith("StartSequenceTrigger") || role.StartsWith("EndSequenceTrigger")) anchors.Add((role, hostS, s));
-             var data = cell.GetExportData(comp);
-             var newLoc = newLine.At(s, lat, upOff, out double nHead);
-             int locAt = FindDoubles(data, Floats(obj, "RelativeLocation"));
-@@ -754,6 +792,9 @@ internal static class StageBuild
-             var dr2 = vopt.Dr2 ? new Dr2Materials(vcfg, ir.Dir, legacy, outRoot, packageRoot) : null;
-             r["visuals"] = Visuals.Build(cell, ir, pl, vcfg, vopt, objectShapes, InPhysicsBounds, dr2);
-         }
-+        if (o.Named.GetValueOrDefault("officials") is { } officials)   // [Grand Caunet]
-+            r["officials"] = RelocateOfficials(o, legacy, outRoot, ir, pl, officials.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries),
-+                                               hostLine, newLine, anchors, minS, maxS);
-         r["actors"] = actors;
-         r["dr2_centre_length_m"] = newLine.Length / 100;
-         foreach (var a in actors) Console.WriteLine($"  {a}");
-@@ -954,6 +995,10 @@ internal static class StageBuild
-                                   report["options"]?["sky_section"]?.GetValue<string>() ?? "nz");
-         if (report["characters"] is { } charactersReport)   // [Grand Caunet]
-             failures += Characters.Check(root, charactersReport, w);
-+        if (report["level_weather"] is { } weatherReport)   // [Grand Caunet]
-+            failures += Weather.Check(root, weatherReport, w);
-+        if (report["officials_cells"] is { } officialsReport)   // [Grand Caunet]
-+            failures += CheckOfficials(root, officialsReport, w);
- 
-         var bpath = HostPaths.Resolve(root, HostPaths.Baked);
-         _ = new LegacyPackage(bpath);
-diff --git a/tools/acr-ref/Weather.cs b/tools/acr-ref/Weather.cs
-new file mode 100644
-index 0000000..d8a8ae8
---- /dev/null
-+++ b/tools/acr-ref/Weather.cs
-@@ -0,0 +1,81 @@
-+using System.Globalization;
-+using System.Text.Json.Nodes;
-+using CUE4Parse.UE4.Assets.Exports;
-+using CUE4Parse.UE4.Assets.Objects;
-+
-+namespace AcrRef;
-+
-+/// [Grand Caunet] `stage-build --level-wetness <0..1>`: the base wetness of the host level's weather actor.
-+///
-+/// Hafren South's BC_WeatherActor_C stores weather_data { global_day_time 1559.361, global_wetness 0.1, global_gloominess
-+/// 0.45, global_fogginess 0.2, global_gust 0.2 } (floats, in that order, in the actor's export); Munster's weather actor
-+/// stores no wetness at all. On a gravel host a damp start is harmless; on a tarmac stage it lowers the friction
-+/// (PM_SurfaceTarmacSmooth FrictionReductionConstantWet) and dries slowly at 4 deg C. Same technique as Characters.cs: the
-+/// one float is rewritten in place, export sizes, header, names and imports unchanged, the host value read with CUE4Parse.
-+internal static class Weather
-+{
-+    const string ActorClass = "BC_WeatherActor_C";
-+
-+    static string F(double v) => v.ToString("0.###", CultureInfo.InvariantCulture);
-+
-+    /// Offset in the actor's export of the float run (day time, wetness), or throws if absent or not unique.
-+    static int WetnessAt(byte[] d, float dayTime, float wetness)
-+    {
-+        var pat = new byte[8];
-+        BitConverter.GetBytes(dayTime).CopyTo(pat, 0); BitConverter.GetBytes(wetness).CopyTo(pat, 4);
-+        int first = d.AsSpan().IndexOf(pat);
-+        if (first < 0) throw new InvalidDataException($"weather: global_day_time {F(dayTime)} followed by global_wetness {F(wetness)} not found");
-+        if (d.AsSpan(first + 1).IndexOf(pat) >= 0) throw new InvalidDataException("weather: global_day_time / global_wetness found more than once");
-+        return first + 4;
-+    }
-+
-+    public static JsonObject Build(string legacy, string outRoot, double wetness, Options o)
-+    {
-+        if (wetness is < 0 or > 1) throw new ArgumentException("--level-wetness must be between 0 and 1");
-+        var dest = Path.Combine(outRoot, Scenery.Persistent + ".umap");
-+        var src = File.Exists(dest) ? dest : HostPaths.Resolve(legacy, Scenery.Persistent);
-+        var pkg = new LegacyPackage(src);
-+        var (h0, u0) = pkg.Save();
-+
-+        using var provider = Program.Open(o);
-+        var host = provider.LoadPackage(Scenery.PersistentLevel).GetExports().Single(x => x.Class?.Name.ToString() == ActorClass);
-+        if (!host.TryGetValue(out FStructFallback wd, "weather_data")
-+            || !wd.TryGetValue(out float dayTime, "global_day_time") || !wd.TryGetValue(out float wet0, "global_wetness"))
-+            throw new InvalidDataException("weather: the host weather actor has no weather_data.global_day_time / global_wetness (game update?)");
-+
-+        int actor = pkg.FindExport(host.Name, ActorClass);
-+        var data = (byte[])pkg.GetExportData(actor).Clone();
-+        int at = WetnessAt(data, dayTime, wet0);
-+        BitConverter.GetBytes((float)wetness).CopyTo(data, at);
-+        pkg.SetExportData(actor, data);
-+        var (h1, u1) = pkg.Save();
-+        if (!h0.AsSpan().SequenceEqual(h1) || u0.Length != u1.Length)
-+            throw new InvalidDataException("weather: header or package size changed");
-+        if (src != dest)
-+        {
-+            Directory.CreateDirectory(Path.GetDirectoryName(dest)!);
-+            foreach (var ext in new[] { ".ubulk", ".uptnl" })
-+                if (File.Exists(Path.ChangeExtension(src, ext))) File.Copy(Path.ChangeExtension(src, ext), Path.ChangeExtension(dest, ext), true);
-+        }
-+        pkg.SaveTo(dest);
-+        Console.WriteLine($"weather: {host.Name} global_wetness {F(wet0)} -> {F(wetness)} (byte {at} of its export); header and size unchanged");
-+        return new JsonObject { ["actor"] = host.Name, ["day_time"] = dayTime, ["from"] = wet0, ["to"] = wetness, ["offset"] = at };
-+    }
-+
-+    /// stage-check: the weather actor holds the requested wetness after the day time.
-+    public static int Check(string root, JsonNode report, TextWriter w)
-+    {
-+        var pkg = new LegacyPackage(HostPaths.Resolve(root, Scenery.Persistent));
-+        bool ok;
-+        string why = "";
-+        try
-+        {
-+            var d = pkg.GetExportData(pkg.FindExport(report["actor"]!.GetValue<string>()));
-+            WetnessAt(d, report["day_time"]!.GetValue<float>(), (float)report["to"]!.GetValue<double>());
-+            ok = true;
-+        }
-+        catch (Exception ex) when (ex is InvalidDataException or InvalidOperationException) { ok = false; why = $" ({ex.Message})"; }
-+        w.WriteLine($"{(ok ? "PASS" : "FAIL")} weather: level weather actor global_wetness {report["from"]} -> {report["to"]}{why}");
-+        return ok ? 0 : 1;
-+    }
-+}
 diff --git a/tools/acr-ref/Officials.cs b/tools/acr-ref/Officials.cs
 new file mode 100644
-index 0000000..652383f
+index 0000000..2b953f4
 --- /dev/null
 +++ b/tools/acr-ref/Officials.cs
-@@ -0,0 +1,162 @@
+@@ -0,0 +1,229 @@
++using System.Buffers.Binary;
 +using System.Globalization;
 +using System.Numerics;
 +using System.Text.Json.Nodes;
 +using CUE4Parse.UE4.Assets.Exports;
++using CUE4Parse.UE4.Assets.Objects;
++using CUE4Parse.UE4.Assets.Objects.Properties;
 +using CUE4Parse.UE4.Objects.Core.Math;
 +using CUE4Parse.UE4.Objects.UObject;
 +using static AcrRef.Splines;
@@ -355,23 +127,55 @@ index 0000000..652383f
 +        return res;
 +    }
 +
-+    /// The officials' cells always loaded in the persistent level (they must already be in the forward layers: scenery keep).
-+    static JsonObject AlwaysLoadCells(string legacy, string outRoot, string[] cells)
++    /// The officials' cells loaded wherever the car is (they must already be in the forward layers: scenery keep).
++    /// bIsAlwaysLoaded alone is not enough: a cooked World Partition loads the cells of the grid squares around the
++    /// streaming source (MainGrid: 350 m squares, 640 m loading range), and these cells sit in the level-0 squares of the
++    /// Welsh start and finish, 2 km from ours (our finish is even outside the Welsh grid). Each officials' cell therefore
++    /// swaps its reference in the runtime spatial hash (one int32, same size) with a cell of the top grid level (one
++    /// square over the whole world, always in range) that never streams in the forward variant (reverse layers only):
++    /// the officials' cell is then queried everywhere, the donor goes to the Welsh square, where its inactive layer keeps
++    /// it unloaded.
++    static JsonObject AlwaysLoadCells(Options o, string legacy, string outRoot, string[] cells)
 +    {
 +        var dest = Path.Combine(outRoot, Scenery.Persistent + ".umap");
 +        var src = File.Exists(dest) ? dest : HostPaths.Resolve(legacy, Scenery.Persistent);
 +        var pkg = new LegacyPackage(src);
++        int hash = Enumerable.Range(0, pkg.ExportCount).Single(i => pkg.ExportClass(i) == "WorldPartitionRuntimeSpatialHash");
++        var top = TopGridCells(o);
++        int CellExport(string id) => Enumerable.Range(0, pkg.ExportCount).SingleOrDefault(i => pkg.ExportClass(i) == Scenery.CellExportClass && pkg.ExportName(i) == id, -1);
++        var donors = new Queue<string>(top.Where(id =>
++        {
++            int e = CellExport(id);
++            if (e < 0) return false;
++            var desc = Scenery.CellState(pkg, pkg.GetExportData(e)).describe;
++            return !desc.Contains("BE01") && !desc.Contains("E8A3") && !desc.Contains("layers none");   // never streams forward
++        }).OrderBy(x => x));
 +        var r = new JsonObject();
 +        foreach (var id in cells)
 +        {
-+            int e = Enumerable.Range(0, pkg.ExportCount).SingleOrDefault(i => pkg.ExportClass(i) == Scenery.CellExportClass && pkg.ExportName(i) == id, -1);
++            int e = CellExport(id);
 +            if (e < 0) throw new InvalidDataException($"officials: streaming cell {id} not in the persistent level");
 +            var d = pkg.GetExportData(e);
 +            var (always, desc) = Scenery.CellState(pkg, d);
 +            if (!desc.Contains("BE01")) throw new InvalidDataException($"officials: cell {id} is not in the forward gameplay layer ({desc}): add it to scenery.toml keep");
 +            if (!always) pkg.SetExportData(e, Scenery.WithAlwaysLoaded(d));
-+            r[id] = $"{desc}; always loaded {(always ? "already" : "set")}";
-+            Console.WriteLine($"officials: cell {id} {r[id]}");
++            var cell = new JsonObject { ["state"] = $"{desc}; always loaded {(always ? "already" : "set")}" };
++            if (top.Contains(id)) cell["grid"] = "already in the top grid level";
++            else
++            {
++                if (donors.Count == 0) throw new InvalidDataException("officials: no top-level grid cell left that never streams forward");
++                string donor = donors.Dequeue();
++                int de = CellExport(donor);
++                var h = (byte[])pkg.GetExportData(hash).Clone();
++                int at = UniqueInt32(h, e + 1, id), dat = UniqueInt32(h, de + 1, donor);
++                BinaryPrimitives.WriteInt32LittleEndian(h.AsSpan(at), de + 1);
++                BinaryPrimitives.WriteInt32LittleEndian(h.AsSpan(dat), e + 1);
++                pkg.SetExportData(hash, h);
++                cell["grid"] = $"swapped with top-level cell {donor} (spatial hash bytes {at} and {dat})";
++                cell["hash_offset"] = dat;
++            }
++            r[id] = cell;
++            Console.WriteLine($"officials: cell {id} {cell["state"]}; {cell["grid"]}");
 +        }
 +        if (src != dest)
 +        {
@@ -383,6 +187,30 @@ index 0000000..652383f
 +        return r;
 +    }
 +
++    static int UniqueInt32(byte[] d, int value, string what)
++    {
++        var hits = new List<int>();
++        for (int i = 0; i + 4 <= d.Length; i++)
++            if (BinaryPrimitives.ReadInt32LittleEndian(d.AsSpan(i)) == value) hits.Add(i);
++        if (hits.Count != 1) throw new InvalidDataException($"officials: reference to cell {what} (index {value}) found {hits.Count} times in the spatial hash, expected once");
++        return hits[0];
++    }
++
++    /// The cells of the top level of MainGrid (one square over the whole world), read from the vanilla persistent level.
++    static HashSet<string> TopGridCells(Options o)
++    {
++        using var provider = Program.Open(o);
++        var hash = provider.LoadPackage(Scenery.PersistentLevel).GetExports().Single(x => x.ExportType == "WorldPartitionRuntimeSpatialHash");
++        static IEnumerable<FStructFallback> Structs(UScriptArray? a) =>
++            a?.Properties.Select(p => (FStructFallback)((StructProperty)p).Value!.StructType) ?? [];
++        var grid = Structs(hash.GetOrDefault<UScriptArray>("StreamingGrids")).Single(g => g.GetOrDefault<FName>("GridName").Text == "MainGrid");
++        var levels = Structs(grid.GetOrDefault<UScriptArray>("GridLevels")).ToList();
++        var topLevel = levels.Last(l => Structs(l.GetOrDefault<UScriptArray>("LayerCells")).Any());
++        return Structs(topLevel.GetOrDefault<UScriptArray>("LayerCells"))
++            .SelectMany(lc => lc.GetOrDefault<UScriptArray>("GridCells")?.Properties ?? [])
++            .Select(p => ((FPackageIndex)p.GenericValue!).Name).ToHashSet();
++    }
++
 +    static int CheckOfficials(string root, JsonNode report, TextWriter w)
 +    {
 +        int fail = 0;
@@ -391,9 +219,383 @@ index 0000000..652383f
 +        {
 +            int e = Enumerable.Range(0, pkg.ExportCount).SingleOrDefault(i => pkg.ExportClass(i) == Scenery.CellExportClass && pkg.ExportName(i) == id, -1);
 +            bool ok = e >= 0 && Scenery.CellState(pkg, pkg.GetExportData(e)).alwaysLoaded && File.Exists(HostPaths.Resolve(root, CellRel(id)));
-+            w.WriteLine($"{(ok ? "PASS" : "FAIL")} officials: cell {id} shipped and always loaded");
++            string grid = "already in the top grid level";
++            if (report[id]?["hash_offset"] is { } off)
++            {
++                int h = Enumerable.Range(0, pkg.ExportCount).Single(i => pkg.ExportClass(i) == "WorldPartitionRuntimeSpatialHash");
++                bool inTop = e >= 0 && BinaryPrimitives.ReadInt32LittleEndian(pkg.GetExportData(h).AsSpan((int)off)) == e + 1;
++                ok &= inTop;
++                grid = inTop ? "referenced in the top grid level" : "NOT in the top grid level";
++            }
++            w.WriteLine($"{(ok ? "PASS" : "FAIL")} officials: cell {id} shipped, always loaded, {grid}");
 +            if (!ok) fail++;
 +        }
 +        return fail;
++    }
++}
+diff --git a/tools/acr-ref/ServicePark.cs b/tools/acr-ref/ServicePark.cs
+new file mode 100644
+index 0000000..8c56271
+--- /dev/null
++++ b/tools/acr-ref/ServicePark.cs
+@@ -0,0 +1,124 @@
++using System.Text.Json.Nodes;
++using CUE4Parse.UE4.Assets.Exports;
++using CUE4Parse.UE4.Objects.Core.Math;
++using CUE4Parse.UE4.Objects.UObject;
++
++namespace AcrRef;
++
++/// [Grand Caunet] `stage-build --service-park 1`: a very small service park at stage.json `service_park` (docs/16).
++///
++/// The service park of Hafren South lives in the persistent level (479 actors tagged ServicePark) at its Welsh place,
++/// outside our scenery. The game shows those actors only on the "Service park" screen and hides them during the stage.
++/// The actors whose root lies within `radius_m` of the ServiceParkTargetPoint (where the car is shown) are moved as one
++/// block: rotated about the vertical so that the car faces stage.json `forward`, put at `target`, each root set on our
++/// ground (stage collision.glb) at its Welsh height above the park floor. The other tagged actors (rest of the park, its
++/// 3 x 3 km ground SM_WalesServiceParkTerrain) are sunk 1 000 m, except the classes whose effect is not hidden with the
++/// actor (ambient sound, rain occlusion volume, PCG exclusion) and the turbines, left in place. Actors already moved by
++/// --characters keep their place. In-place rewrites only (3 location doubles, 1 yaw double): header and size unchanged.
++internal static partial class StageBuild
++{
++    static readonly HashSet<string> ServiceParkKeepClasses = ["BC_MyhTurbineA_C", "BC_PCG_Exclusion_C", "ManagedAmbientSound", "WeatherOcclusionVolume"];
++    // Sunk even near the car: the tyre rack spawns its tyres as actors of their own, which the game does not hide with the
++    // park during the stage (test of the 19th version, 17/11/2026: two tyres floating by the road at the start).
++    static readonly HashSet<string> ServiceParkSinkClasses = ["BC_TiresRack_C"];
++
++    static JsonObject RelocateServicePark(Options o, string legacy, string outRoot, Ir ir, Placement pl)
++    {
++        var stage = JsonNode.Parse(File.ReadAllText(Path.Combine(ir.Dir, "stage.json")))!;
++        var sp = stage["service_park"] as JsonObject ?? throw new InvalidDataException("--service-park 1: stage.json has no service_park");
++        double[] V(string k) => sp[k]!.AsArray().Select(x => x!.GetValue<double>()).ToArray();
++        var target = pl.ToUe(V("target"));
++        var fwd = V("forward");
++        var q0 = pl.ToPhysics(0, 0, 0); var q1 = pl.ToPhysics(fwd[0], 0, fwd[2]);
++        double heading = Math.Atan2(q1.Z - q0.Z, q1.X - q0.X) * 180 / Math.PI;
++        double radius = sp["radius_m"]!.GetValue<double>() * 100;
++
++        var dest = Path.Combine(outRoot, Scenery.Persistent + ".umap");
++        var src = File.Exists(dest) ? dest : HostPaths.Resolve(legacy, Scenery.Persistent);
++        var pkg = new LegacyPackage(src);
++        var (h0, u0) = pkg.Save();
++        using var provider = Program.Open(o);
++        var objs = provider.LoadPackage(Scenery.PersistentLevel).GetExports().ToList();
++        if (objs.Count != pkg.ExportCount || Enumerable.Range(0, objs.Count).Any(i => objs[i].Name != pkg.ExportName(i)))
++            throw new InvalidDataException("service park: CUE4Parse export order differs from the legacy persistent level");
++
++        bool Tagged(UObject a) => a.GetOrDefault<FName[]>("Tags")?.Any(n => n.Text == "ServicePark") == true;
++        var actors = objs.Where(a => a.Outer?.Name.ToString() == "PersistentLevel" && Tagged(a)).ToList();
++        (UObject root, int rc)? Root(UObject a) =>
++            a.TryGetValue(out FPackageIndex r, "RootComponent") && r.IsExport ? (objs[r.Index - 1], r.Index - 1) : null;
++        var tp = actors.Single(a => a.ExportType == "ServiceParkTargetPoint");
++        var (troot, _) = Root(tp) ?? throw new InvalidDataException("service park: target point without root");
++        var hT = troot.GetOrDefault<FVector>("RelativeLocation");
++        double tYaw = troot.TryGetValue(out FRotator tr, "RelativeRotation") ? tr.Yaw : 0;
++        double psi = NormDeg(heading - tYaw), c = Math.Cos(psi * Math.PI / 180), s = Math.Sin(psi * Math.PI / 180);
++        var ours = new SurfaceGrid(Path.Combine(ir.Dir, "collision.glb"), pl);
++
++        var near = new List<(UObject a, UObject root, int rc, FVector l)>();
++        var far = new List<(UObject a, UObject root, int rc, FVector l)>();
++        int kept = 0;
++        foreach (var a in actors)
++        {
++            if (ServiceParkKeepClasses.Contains(a.ExportType)) { kept++; continue; }
++            if (Root(a) is not { } r || !r.root.TryGetValue(out FVector l, "RelativeLocation")) continue;
++            if (r.root.TryGetValue(out FPackageIndex par, "AttachParent") && !par.IsNull) continue;
++            double d = Math.Sqrt((l.X - hT.X) * (l.X - hT.X) + (l.Y - hT.Y) * (l.Y - hT.Y));
++            (d <= radius ? near : far).Add((a, r.root, r.rc, l));
++        }
++        var zs = near.Select(n => (double)n.l.Z).OrderBy(z => z).ToList();
++        double floor = zs[zs.Count / 2];
++        int moved = 0, sunk = 0, skipped = 0;
++        double tz = 0;
++        foreach (var (a, root, rc, l) in near.Concat(far))
++        {
++            var data = (byte[])pkg.GetExportData(rc).Clone();
++            int at;
++            try { at = FindDoubles(data, [l.X, l.Y, l.Z]); }
++            catch (InvalidDataException) { skipped++; continue; }   // already moved (--characters)
++            bool isNear = near.Any(n => n.rc == rc) && !ServiceParkSinkClasses.Contains(a.ExportType);
++            if (!isNear) { WriteDoubles(data, at + 16, l.Z - 100000); pkg.SetExportData(rc, data); sunk++; continue; }
++            double dx = l.X - hT.X, dy = l.Y - hT.Y;
++            double nx = target.X + c * dx - s * dy, ny = target.Y + s * dx + c * dy;
++            double g = (ours.HeightAt(nx / 100, ny / 100) ?? target.Z / 100) * 100;
++            double nz = g + (l.Z - floor);
++            WriteDoubles(data, at, nx, ny, nz);
++            if (root.TryGetValue(out FRotator hr, "RelativeRotation"))
++                WriteDoubles(data, FindDoubles(data, [hr.Pitch, hr.Yaw, hr.Roll]) + 8, NormDeg(hr.Yaw + psi));
++            pkg.SetExportData(rc, data);
++            if (a == tp) tz = nz;
++            moved++;
++        }
++        var (h1, u1) = pkg.Save();
++        if (!h0.AsSpan().SequenceEqual(h1) || u0.Length != u1.Length) throw new InvalidDataException("service park: header or package size changed");
++        if (src != dest)
++        {
++            Directory.CreateDirectory(Path.GetDirectoryName(dest)!);
++            foreach (var ext in new[] { ".ubulk", ".uptnl" })
++                if (File.Exists(Path.ChangeExtension(src, ext))) File.Copy(Path.ChangeExtension(src, ext), Path.ChangeExtension(dest, ext), true);
++        }
++        pkg.SaveTo(dest);
++        Console.WriteLine($"service park: {moved} actors within {F(radius / 100, "0.#")} m of the car moved to UE ({F(target.X, "0")}, {F(target.Y, "0")}, {F(tz, "0")}), " +
++                          $"turned {F(psi, "0.#")} deg (car heading {F(heading, "0.#")}); {sunk} sunk 1000 m, {kept} left in place, {skipped} already moved");
++        return new JsonObject
++        {
++            ["moved"] = moved, ["sunk"] = sunk, ["kept_in_place"] = kept, ["already_moved"] = skipped, ["turn_deg"] = psi,
++            ["target_actor"] = tp.Name, ["target_root"] = troot.Name, ["target_ue"] = new JsonArray(target.X, target.Y, tz),
++        };
++    }
++
++    static int CheckServicePark(string root, JsonNode report, TextWriter w)
++    {
++        var pkg = new LegacyPackage(HostPaths.Resolve(root, Scenery.Persistent));
++        bool ok;
++        try
++        {
++            int a = pkg.FindExport(report["target_actor"]!.GetValue<string>());
++            int r = pkg.FindExport(report["target_root"]!.GetValue<string>(), null, e => pkg.ExportOuter(e) == a + 1);
++            var t = report["target_ue"]!.AsArray().Select(x => x!.GetValue<double>()).ToArray();
++            FindDoubles(pkg.GetExportData(r), t);
++            ok = report["moved"]!.GetValue<int>() > 50;
++        }
++        catch (Exception ex) when (ex is InvalidDataException or InvalidOperationException) { ok = false; }
++        w.WriteLine($"{(ok ? "PASS" : "FAIL")} service park: {report["moved"]} actors moved, car point at its new place, {report["sunk"]} sunk");
++        return ok ? 0 : 1;
++    }
++}
+diff --git a/tools/acr-ref/Splines.cs b/tools/acr-ref/Splines.cs
+index fbe0305..bd25bd5 100644
+--- a/tools/acr-ref/Splines.cs
++++ b/tools/acr-ref/Splines.cs
+@@ -318,6 +318,16 @@ internal static class Splines
+         return r;
+     }
+ 
++    /// [Grand Caunet] one key per spline point (InVal = point index), value per point, interp mode from the template.
++    public static Curve ValuesFloatCurve(IReadOnlyList<double> values, Curve template)
++    {
++        var first = template.Points.Count > 0 ? template.Points[0] : new Point { Out = [0], Arrive = [0], Leave = [0], Mode = CIM_Linear };
++        var c = new Curve { Kind = 'f', Looped = template.Looped, LoopKeyOffset = template.LoopKeyOffset };
++        for (int i = 0; i < values.Count; i++)
++            c.Points.Add(new Point { InVal = i, Out = [values[i]], Arrive = [0], Leave = [0], Mode = first.Mode });
++        return c;
++    }
++
+     public static Curve ConstantFloatCurve(int n, Curve template)
+     {
+         var first = template.Points.Count > 0 ? template.Points[0] : new Point { Out = [0], Arrive = [0], Leave = [0] };
+diff --git a/tools/acr-ref/StageBuild.cs b/tools/acr-ref/StageBuild.cs
+index 60a6e8c..e4325a0 100644
+--- a/tools/acr-ref/StageBuild.cs
++++ b/tools/acr-ref/StageBuild.cs
+@@ -15,7 +15,7 @@ namespace AcrRef;
+ /// Frames: DR2 (x, y, z) metres, Y up, right-handed. ACR physics (x, y, z) metres, Y up = UE (X, Z, Y) / 100, which is
+ /// also right-handed, so DR2 -> physics is a rotation about Y plus a translation (no mirroring):
+ ///   physics = R_y(theta) * (dr2 - c) + t,   with c the DR2 route bbox centre (XZ) and t = (tx, dy, tz).
+-internal static class StageBuild
++internal static partial class StageBuild
+ {
+     // Host limits in physics metres (x = UE X, z = UE Y, y = UE Z). PhysicsWorldBounds of WalesS4HafrenSouth, and the
+     // safe XZ region = forward gameplay cell content bounds grown by its 640 m loading range, intersected with them.
+@@ -63,6 +63,9 @@ internal static class StageBuild
+         public double LengthM, TotalM;
+         public List<double[]> Centre = new();
+         public List<(double distance, double[] crossing, double[] left, double[] right)> Gates = new();
++        // [Grand Caunet] optional racing line (stage.json "ideal_line"), one point per centreline point
++        public List<double[]> Ideal = new();
++        public double[] IdealLeftM = [], IdealRightM = [], IdealSkid = [];
+         public List<(string type, int gate, double distance)> Timing = new();
+         public List<(string type, string name, double[] position)> Triggers = new();
+         public Dictionary<string, string> Materials = new();   // gltf material -> ACR asset path
+@@ -91,6 +94,15 @@ internal static class StageBuild
+             foreach (var m in j["collision"]!["meshes"]!.AsArray())
+                 ir.Materials[m!["gltf_material"]!.GetValue<string>()] = m["acr_asset_path"]!.GetValue<string>();
+             if (ir.Gates.Count != ir.Centre.Count) throw new InvalidDataException("expected one gate per centreline point");
++            if (j["ideal_line"] is JsonObject il)
++            {
++                double[] D(string k) => il[k]!.AsArray().Select(x => x!.GetValue<double>()).ToArray();
++                foreach (var c in il["points"]!.AsArray()) ir.Ideal.Add(V(c));
++                ir.IdealLeftM = D("left_width_m"); ir.IdealRightM = D("right_width_m"); ir.IdealSkid = D("skid_intensity");
++                int n = ir.Centre.Count;
++                if (ir.Ideal.Count != n || ir.IdealLeftM.Length != n || ir.IdealRightM.Length != n || ir.IdealSkid.Length != n)
++                    throw new InvalidDataException("ideal_line: expected one point, widths and skid intensity per centreline point");
++            }
+             return ir;
+         }
+     }
+@@ -213,6 +225,18 @@ internal static class StageBuild
+             report["options"]!["characters"] = true;
+             report["characters"] = Characters.Build(legacy, outRoot, ir.Dir, pl, o);
+         }
++        // [Grand Caunet] --level-wetness <0..1>: base wetness of the host level's weather actor (Weather.cs)
++        if (o.Named.GetValueOrDefault("level-wetness") is { } levelWetness)
++        {
++            report["options"]!["level_wetness"] = levelWetness;
++            report["level_weather"] = Weather.Build(legacy, outRoot, double.Parse(levelWetness, CultureInfo.InvariantCulture), o);
++        }
++        // [Grand Caunet] --service-park 1: a very small service park at stage.json service_park (ServicePark.cs)
++        if (o.Named.GetValueOrDefault("service-park") is "1" or "true")
++            report["service_park"] = RelocateServicePark(o, legacy, outRoot, ir, pl);
++        // [Grand Caunet] --officials: their cells always loaded in the persistent level (Officials.cs)
++        if (o.Named.GetValueOrDefault("officials") is { } officialCells)
++            report["officials_cells"] = AlwaysLoadCells(o, legacy, outRoot, officialCells.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
+ 
+         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(reportPath))!);
+         File.WriteAllText(reportPath, report.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
+@@ -643,7 +667,10 @@ internal static class StageBuild
+ 
+         var splines = new JsonObject();
+         double[] gateS = [];
+-        foreach (var (name, pts) in new[] { ("CenterSpline", centre), ("IdealSpline", centre), ("LeftBorderSpline", left), ("RightBorderSpline", right), ("ContourSpline", contour) })
++        // [Grand Caunet] IdealSpline: the stage's racing line when stage.json has one (the physics plugin's SplinesActor;
++        // the host's line follows the racing line, not the centre), else the centre as before
++        var ideal = ir.Ideal.Count > 0 ? ir.Ideal.Select(pl.ToUe).ToList() : centre;
++        foreach (var (name, pts) in new[] { ("CenterSpline", centre), ("IdealSpline", ideal), ("LeftBorderSpline", left), ("RightBorderSpline", right), ("ContourSpline", contour) })
+         {
+             int e = cell.FindExport(name, "DMSplineComponent");
+             var split = Splines.SplitComponent(cell.GetExportData(e));
+@@ -665,6 +692,18 @@ internal static class StageBuild
+         var md = Splines.ReadMetadata(cell.GetExportData(me));
+         for (int i = 0; i < md.Curves.Length; i++)
+             if (md.Curves[i] is { } hc) md.Curves[i] = Splines.ConstantFloatCurve(centre.Count, hc);
++        if (ir.Ideal.Count > 0)
++        {
++            // [Grand Caunet] LeftWidth / RightWidth (cm) and SkidIntensity per point of the racing line, like the host's
++            var vals = new[] { ir.IdealLeftM.Select(v => v * 100).ToArray(), ir.IdealRightM.Select(v => v * 100).ToArray(), ir.IdealSkid };
++            for (int i = 0; i < 3; i++)
++            {
++                if (md.Curves[i] is not { } hc) throw new InvalidDataException($"host DMSplineMetadata curve {i} absent");
++                md.Curves[i] = Splines.ValuesFloatCurve(vals[i], hc);
++            }
++            r["ideal_line"] = $"{ideal.Count} pts; width L {F(ir.IdealLeftM.Min(), "0.##")}-{F(ir.IdealLeftM.Max(), "0.##")} m, " +
++                              $"R {F(ir.IdealRightM.Min(), "0.##")}-{F(ir.IdealRightM.Max(), "0.##")} m; skid {F(ir.IdealSkid.Min(), "0.##")}-{F(ir.IdealSkid.Max(), "0.##")}";
++        }
+         cell.SetExportData(me, Splines.WriteMetadata(md));
+ 
+         // actors
+@@ -708,12 +747,14 @@ internal static class StageBuild
+             ("PostRaceCamera", postCam, newEnd + hostLine.Project(Loc(objs[postCam])).s - hostEnd),
+         };
+         var actors = new JsonArray();
++        var anchors = new List<(string role, double hostS, double newS)>();   // [Grand Caunet] officials (Officials.cs)
+         foreach (var (role, comp, s0) in plan)
+         {
+             double s = Math.Clamp(s0, minS, maxS);
+             var obj = objs[comp];
+             var hostLoc = Loc(obj);
+-            var (_, lat, upOff, hHead) = hostLine.Project(hostLoc);
++            var (hostS, lat, upOff, hHead) = hostLine.Project(hostLoc);
++            if (role.StartsWith("CompleStart") || role.StartsWith("StartSequenceTrigger") || role.StartsWith("EndSequenceTrigger")) anchors.Add((role, hostS, s));
+             var data = cell.GetExportData(comp);
+             var newLoc = newLine.At(s, lat, upOff, out double nHead);
+             int locAt = FindDoubles(data, Floats(obj, "RelativeLocation"));
+@@ -754,6 +795,9 @@ internal static class StageBuild
+             var dr2 = vopt.Dr2 ? new Dr2Materials(vcfg, ir.Dir, legacy, outRoot, packageRoot) : null;
+             r["visuals"] = Visuals.Build(cell, ir, pl, vcfg, vopt, objectShapes, InPhysicsBounds, dr2);
+         }
++        if (o.Named.GetValueOrDefault("officials") is { } officials)   // [Grand Caunet]
++            r["officials"] = RelocateOfficials(o, legacy, outRoot, ir, pl, officials.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries),
++                                               hostLine, newLine, anchors, minS, maxS);
+         r["actors"] = actors;
+         r["dr2_centre_length_m"] = newLine.Length / 100;
+         foreach (var a in actors) Console.WriteLine($"  {a}");
+@@ -954,6 +998,12 @@ internal static class StageBuild
+                                   report["options"]?["sky_section"]?.GetValue<string>() ?? "nz");
+         if (report["characters"] is { } charactersReport)   // [Grand Caunet]
+             failures += Characters.Check(root, charactersReport, w);
++        if (report["level_weather"] is { } weatherReport)   // [Grand Caunet]
++            failures += Weather.Check(root, weatherReport, w);
++        if (report["service_park"] is { } serviceParkReport)   // [Grand Caunet]
++            failures += CheckServicePark(root, serviceParkReport, w);
++        if (report["officials_cells"] is { } officialsReport)   // [Grand Caunet]
++            failures += CheckOfficials(root, officialsReport, w);
+ 
+         var bpath = HostPaths.Resolve(root, HostPaths.Baked);
+         _ = new LegacyPackage(bpath);
+diff --git a/tools/acr-ref/Weather.cs b/tools/acr-ref/Weather.cs
+new file mode 100644
+index 0000000..d8a8ae8
+--- /dev/null
++++ b/tools/acr-ref/Weather.cs
+@@ -0,0 +1,81 @@
++using System.Globalization;
++using System.Text.Json.Nodes;
++using CUE4Parse.UE4.Assets.Exports;
++using CUE4Parse.UE4.Assets.Objects;
++
++namespace AcrRef;
++
++/// [Grand Caunet] `stage-build --level-wetness <0..1>`: the base wetness of the host level's weather actor.
++///
++/// Hafren South's BC_WeatherActor_C stores weather_data { global_day_time 1559.361, global_wetness 0.1, global_gloominess
++/// 0.45, global_fogginess 0.2, global_gust 0.2 } (floats, in that order, in the actor's export); Munster's weather actor
++/// stores no wetness at all. On a gravel host a damp start is harmless; on a tarmac stage it lowers the friction
++/// (PM_SurfaceTarmacSmooth FrictionReductionConstantWet) and dries slowly at 4 deg C. Same technique as Characters.cs: the
++/// one float is rewritten in place, export sizes, header, names and imports unchanged, the host value read with CUE4Parse.
++internal static class Weather
++{
++    const string ActorClass = "BC_WeatherActor_C";
++
++    static string F(double v) => v.ToString("0.###", CultureInfo.InvariantCulture);
++
++    /// Offset in the actor's export of the float run (day time, wetness), or throws if absent or not unique.
++    static int WetnessAt(byte[] d, float dayTime, float wetness)
++    {
++        var pat = new byte[8];
++        BitConverter.GetBytes(dayTime).CopyTo(pat, 0); BitConverter.GetBytes(wetness).CopyTo(pat, 4);
++        int first = d.AsSpan().IndexOf(pat);
++        if (first < 0) throw new InvalidDataException($"weather: global_day_time {F(dayTime)} followed by global_wetness {F(wetness)} not found");
++        if (d.AsSpan(first + 1).IndexOf(pat) >= 0) throw new InvalidDataException("weather: global_day_time / global_wetness found more than once");
++        return first + 4;
++    }
++
++    public static JsonObject Build(string legacy, string outRoot, double wetness, Options o)
++    {
++        if (wetness is < 0 or > 1) throw new ArgumentException("--level-wetness must be between 0 and 1");
++        var dest = Path.Combine(outRoot, Scenery.Persistent + ".umap");
++        var src = File.Exists(dest) ? dest : HostPaths.Resolve(legacy, Scenery.Persistent);
++        var pkg = new LegacyPackage(src);
++        var (h0, u0) = pkg.Save();
++
++        using var provider = Program.Open(o);
++        var host = provider.LoadPackage(Scenery.PersistentLevel).GetExports().Single(x => x.Class?.Name.ToString() == ActorClass);
++        if (!host.TryGetValue(out FStructFallback wd, "weather_data")
++            || !wd.TryGetValue(out float dayTime, "global_day_time") || !wd.TryGetValue(out float wet0, "global_wetness"))
++            throw new InvalidDataException("weather: the host weather actor has no weather_data.global_day_time / global_wetness (game update?)");
++
++        int actor = pkg.FindExport(host.Name, ActorClass);
++        var data = (byte[])pkg.GetExportData(actor).Clone();
++        int at = WetnessAt(data, dayTime, wet0);
++        BitConverter.GetBytes((float)wetness).CopyTo(data, at);
++        pkg.SetExportData(actor, data);
++        var (h1, u1) = pkg.Save();
++        if (!h0.AsSpan().SequenceEqual(h1) || u0.Length != u1.Length)
++            throw new InvalidDataException("weather: header or package size changed");
++        if (src != dest)
++        {
++            Directory.CreateDirectory(Path.GetDirectoryName(dest)!);
++            foreach (var ext in new[] { ".ubulk", ".uptnl" })
++                if (File.Exists(Path.ChangeExtension(src, ext))) File.Copy(Path.ChangeExtension(src, ext), Path.ChangeExtension(dest, ext), true);
++        }
++        pkg.SaveTo(dest);
++        Console.WriteLine($"weather: {host.Name} global_wetness {F(wet0)} -> {F(wetness)} (byte {at} of its export); header and size unchanged");
++        return new JsonObject { ["actor"] = host.Name, ["day_time"] = dayTime, ["from"] = wet0, ["to"] = wetness, ["offset"] = at };
++    }
++
++    /// stage-check: the weather actor holds the requested wetness after the day time.
++    public static int Check(string root, JsonNode report, TextWriter w)
++    {
++        var pkg = new LegacyPackage(HostPaths.Resolve(root, Scenery.Persistent));
++        bool ok;
++        string why = "";
++        try
++        {
++            var d = pkg.GetExportData(pkg.FindExport(report["actor"]!.GetValue<string>()));
++            WetnessAt(d, report["day_time"]!.GetValue<float>(), (float)report["to"]!.GetValue<double>());
++            ok = true;
++        }
++        catch (Exception ex) when (ex is InvalidDataException or InvalidOperationException) { ok = false; why = $" ({ex.Message})"; }
++        w.WriteLine($"{(ok ? "PASS" : "FAIL")} weather: level weather actor global_wetness {report["from"]} -> {report["to"]}{why}");
++        return ok ? 0 : 1;
 +    }
 +}
