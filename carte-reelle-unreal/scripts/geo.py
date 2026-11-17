@@ -116,6 +116,7 @@ class Contexte:
         else:
             raise SystemExit("ERREUR : ni --zone ni <sortie>/repere.json : lancer d'abord 01_emprise.py --zone zone.json")
         self.repere = rep
+        self.signature = _cle(rep["config"])
         self.cfg = fusion(DEFAUTS, rep["config"])
         self.crs = rep["crs"]
         self.ox, self.oy = rep["origine_proj"]
@@ -164,10 +165,23 @@ class Contexte:
 
     def journal(self, nom: str, donnees: dict) -> Path:
         donnees = {"etape": nom, "date": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                   "duree_s": round(time.time() - self.t0, 1), **donnees}
+                   "duree_s": round(time.time() - self.t0, 1), "signature": self.signature,
+                   "telechargement": {"octets": Compteur.octets, "requetes": Compteur.requetes,
+                                      "lus_en_cache": Compteur.cache}, **donnees}
         p = self.dossier("journaux") / f"{nom}.json"
         p.write_text(json.dumps(donnees, ensure_ascii=False, indent=1, default=_json_defaut), encoding="utf-8")
         return p
+
+    def deja_fait(self, nom: str, fichiers: list[Path], **options) -> dict | None:
+        """Journal de l'étape si elle a déjà tourné pour cette zone avec les mêmes options et que ses
+        sorties existent ; None sinon (ou avec --force)."""
+        p = self.sortie / "journaux" / f"{nom}.json"
+        if self.force or not p.exists() or not all(Path(f).exists() for f in fichiers):
+            return None
+        j = json.loads(p.read_text(encoding="utf-8"))
+        if j.get("signature") != self.signature or j.get("options", {}) != json.loads(json.dumps(options, default=str)):
+            return None
+        return j
 
     def duree(self) -> str:
         return f"{time.time() - self.t0:.0f} s"

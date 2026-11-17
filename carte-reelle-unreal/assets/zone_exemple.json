@@ -2,7 +2,7 @@
  "nom": "exemple_compact",
  "description": "Emprise compacte d'environ 400 m de côté donnée par une bbox WGS84 (lon_min, lat_min, lon_max, lat_max). Pour un polygone : {\"type\": \"polygone\", \"fichier\": \"contour.kml\"} (KML ou GeoJSON, chemin relatif à ce fichier) ou {\"type\": \"polygone\", \"coordonnees\": [[lon, lat], ...]}.",
  "emprise": {"type": "bbox", "bbox": [5.5975, 43.1882, 5.6025, 43.1918]},
- "marge_m": 50,
+ "marge_m": 40,
  "resolution_terrain_m": 1.0,
  "taille_heightmap": "auto",
  "resolution_ortho_m": 0.5,
