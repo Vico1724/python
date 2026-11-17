@@ -1,0 +1,64 @@
+{
+ "description": "proportions des matières de sol du jeu, par point de 50 cm (scripts/15b_sols_du_jeu.py)",
+ "emprise_l93": [
+  914500.0,
+  6239000.0,
+  917500.0,
+  6241500.0
+ ],
+ "pas_m": 0.5,
+ "lignes_colonnes": [
+  5000,
+  6000
+ ],
+ "origine": "coin haut gauche = (x min, y max) ; ligne vers le sud",
+ "couches": [
+  "aiguilles_de_pin",
+  "herbe_haute",
+  "herbe_seche",
+  "terre",
+  "cailloux"
+ ],
+ "matiere_de_fond": "paillis (matière 1 du jeu) = 1 - somme des couches",
+ "parts_moyennes": {
+  "paillis": 0.246,
+  "aiguilles_de_pin": 0.434,
+  "herbe_haute": 0.071,
+  "herbe_seche": 0.146,
+  "terre": 0.057,
+  "cailloux": 0.045
+ },
+ "couleur_1m": {
+  "fichier": "couleur_1m.npy",
+  "pas_m": 1.0,
+  "moyenne_rvb_dans_les_photos": [
+   110.2,
+   103.9,
+   88.9
+  ],
+  "hors_photo": "couleur des environs adoucie sur 40 m, puis moyenne générale",
+  "part_tiree_des_dalles_de_sol_de_l_etape_14": 0.433
+ },
+ "part_couverte_par_les_photos": 0.299,
+ "seuils": {
+  "ndvi_sol_nu": 0.03,
+  "ndvi_vert": 0.15,
+  "ndvi_vigoureux": [
+   0.3,
+   0.42
+  ],
+  "clarte_calcaire": [
+   90.0,
+   130.0
+  ]
+ },
+ "pente_roche_deg": [
+  30.0,
+  48.0
+ ],
+ "part_de_pentes_raides": 0.023,
+ "accotement_m": 1.5,
+ "graine": 20261112,
+ "aires_de_gravier_de_la_zone_de_depart": {},
+ "duree_s": 36
+}

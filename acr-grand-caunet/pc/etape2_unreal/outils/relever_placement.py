@@ -22,7 +22,9 @@ RACINE = KIT.parents[1]
 sys.path.insert(0, str(KIT / "scripts_editeur"))
 import repere_unreal as R  # noqa: E402
 
-RELEVE = KIT / "releves" / "placement_etape1.json"
+RACINE = R.RACINE                     # épreuve (ACR_EPREUVE) ou acr-grand-caunet
+
+RELEVE = R.RELEVE_PLACEMENT
 
 
 def deplacement_m(ancien, neuf):
@@ -54,7 +56,7 @@ def main():
             sys.exit(1 if norme > 0.005 or abs(d[1]) > 0.005 else 0)
     elif a.verifier:
         sys.exit(1)
-    origine = json.loads((RACINE / "export" / "stage_ir" / "grand_caunet" / "stage.json").read_text(encoding="utf-8"))["coordinates"]["origin"]
+    origine = json.loads(R.stage_json().read_text(encoding="utf-8"))["coordinates"]["origin"]
     rep = R.charger_repere()
     pk0 = (rep["x0"], rep["y0"], rep["z0"])
     out = {"source": f"rubrique placement de {a.rapport} (acr-ref stage-build, étape 1), relevée le {time.strftime('%d/%m/%Y %H:%M')} "

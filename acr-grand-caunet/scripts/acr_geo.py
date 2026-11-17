@@ -124,6 +124,13 @@ def wms_tile(layer: str, x0: float, y0: float, x1: float, y1: float, res: float,
     return r.content
 
 
+def ouvrir_csv(path: Path):
+    """Ouvre en texte un CSV écrit par ecrire_csv (10) : .csv.gz au-delà de ~8 Mo, .csv sinon (épreuve courte)."""
+    import gzip
+    gz = Path(path).with_suffix(".csv.gz")
+    return gzip.open(gz, "rt", encoding="utf-8") if gz.exists() else open(Path(path).with_suffix(".csv"), encoding="utf-8")
+
+
 def load_official() -> dict:
     return json.loads(OFFICIAL.read_text(encoding="utf-8"))
 

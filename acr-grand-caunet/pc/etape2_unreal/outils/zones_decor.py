@@ -22,6 +22,8 @@ RACINE = os.path.dirname(os.path.dirname(KIT))
 sys.path.insert(0, os.path.join(KIT, "scripts_editeur"))
 import repere_unreal as R  # noqa: E402
 
+RACINE = str(R.RACINE)                # épreuve (ACR_EPREUVE) ou acr-grand-caunet
+
 MARGE_M = 6.0          # de part et d'autre des bords de chaussée : piquets, parapets, glissières
 RETRAIT_CM = 50.0      # les dalles sont rognées d'autant, pour ne pas mordre sur le terrain voisin de l'étape 1
 
@@ -35,7 +37,7 @@ def main():
     a = ap.parse_args()
     man = json.load(open(a.manifeste, encoding="utf-8"))
     pl = json.load(open(a.placement, encoding="utf-8"))["placement"]
-    org = json.load(open(os.path.join(RACINE, "export", "stage_ir", "grand_caunet", "stage.json"), encoding="utf-8"))["coordinates"]["origin"]
+    org = json.load(open(R.stage_json(), encoding="utf-8"))["coordinates"]["origin"]
     rep = R.charger_repere()
 
     def l93(x, y):

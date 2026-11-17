@@ -75,5 +75,52 @@
     "INTER_JEU"
   ],
   "id_point_arret": "ARRET",
-  "parc_sortie_pk_m": 3746.0
+  "parc_sortie_pk_m": 3746.0,
+  "nom_niveau": "MonteeCeyreste",
+  "pk_essai_e3": 2026.0,
+  "pk_arrivee_controle": 3020.0,
+  "pc": {
+    "nom_conteneur": "zz_acrxs_ceyreste_P",
+    "nom_table": "zz_acrxs_ceyreste_table_9_P",
+    "fichier_noms": "pc/noms-ceyreste.toml",
+    "nom_decor": "cey"
+  },
+  "vues_decor": {
+    "depart_plan_de_masse": [
+      -40,
+      45.0
+    ],
+    "epingle_893": [
+      860,
+      26.0
+    ],
+    "lacets_1517": [
+      1480,
+      30.0
+    ],
+    "ponceau_2026": [
+      1990,
+      38.0
+    ],
+    "arrivee_estimee": [
+      2950,
+      45.0
+    ],
+    "controle_horizon": [
+      2500,
+      [
+        "azimut",
+        215.0,
+        0.012
+      ]
+    ],
+    "controle_raccord": [
+      3650,
+      [
+        "survol",
+        230.0,
+        140.0
+      ]
+    ]
+  }
 }

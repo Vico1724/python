@@ -39,7 +39,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-from acr_geo import FIG, OUT, REF, ROOT, fichier_ref
+from acr_geo import FIG, OUT, REF, ROOT, fichier_ref, ouvrir_csv, param
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -309,7 +309,7 @@ def figurants(eye, vers, ref):
             larg = max(min(dia * 1.1, h * 1.4), h * 0.7)
         out.append([*G[i], h, larg, rng.uniform(0, math.pi), typ])
     n_arbres = len(out)
-    with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
+    with ouvrir_csv(OUT / "arbustes.csv") as f:
         rows = list(csv.DictReader(f))
     B = np.array([[float(r["x_l93"]), float(r["y_l93"]), float(r["z_sol_m"]), float(r["hauteur_m"]), float(r["diametre_m"])]
                   for r in rows])
@@ -450,7 +450,10 @@ RENDER_JS = """const { chromium } = require('playwright');
 
 def temps_video(pk):
     """Temps (s) de la vidéo de référence v2 au PK donné (table du relevé vidéo, interpolée)."""
-    t = json.loads((fichier_ref("releve_video.json")).read_text(encoding="utf-8"))["table_temps_pk"]["v2"]
+    f = fichier_ref("releve_video.json")
+    if not f.exists():          # épreuve sans relevé vidéo
+        return None
+    t = json.loads(f.read_text(encoding="utf-8"))["table_temps_pk"]["v2"]
     pts = [(t["depart"]["t_s"], t["depart"]["pk_m"])] + [(r["t_s"], r["pk_m"]) for r in t["reperes"]] + \
           [(t["arrivee"]["t_s"], t["arrivee"]["pk_m"])]
     pts.sort()
@@ -460,6 +463,9 @@ def temps_video(pk):
 def choix_vues(ch):
     """PK des six vues. Pinède : fenêtre de la D3D la plus dense en pins à moins de 20 m ;
     montée de la D1 : fenêtre la plus dégagée (le moins d'arbres à moins de 25 m) en montée."""
+    vues = param("vues_decor")              # autre épreuve : {nom: [pk, visée]} (visée : m, ou [mode, a, b])
+    if vues:
+        return {k: (v[0], tuple(v[1]) if isinstance(v[1], list) else v[1]) for k, v in vues.items()}
     with open(OUT / "arbres.csv", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     pk = np.array([float(r["pk_m"]) for r in rows])
@@ -565,7 +571,7 @@ def main():
             (d / "vue.json").write_text(json.dumps(V), encoding="utf-8")
             info[nom] = {"pk_oeil": pk, "pk_vise": pk + visee if visee else None, "oeil_gltf": np.round(eye, 2).tolist(),
                          "vise_gltf": np.round(at, 2).tolist(), "arbres": n_arb, "arbustes": int(len(arb) - n_arb),
-                         "temps_video_v2_s": round(temps_video(pk), 1)}
+                         "temps_video_v2_s": (lambda t: round(t, 1) if t is not None else None)(temps_video(pk))}
             print(nom, info[nom], flush=True)
         ok = rendus(noms, tmp, communs)
         if ok:

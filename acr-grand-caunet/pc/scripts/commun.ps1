@@ -19,6 +19,25 @@ $script:IdSpeciale = 'grand_caunet_rally_01_route_0'                            
 $script:NomConteneur = 'zz_acrxs_grandcaunet_P'                                  # nom des 3 fichiers du mod
 $script:Projet = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path           # racine du dépôt acr-grand-caunet
 
+# --- épreuve construite : le Grand Caunet par défaut. Une autre épreuve qui réutilise ce kit (par exemple la Montée
+# historique de Ceyreste, dossier acr-montee-ceyreste) est désignée par la variable d'environnement ACR_EPREUVE ; ses
+# noms sont lus dans son epreuve.json (clés stage_id, id_lieu et pc.*). Sans la variable, rien ne change.
+$script:Epreuve = $script:Projet
+$script:LieuIr = 'grand_caunet'
+$script:FichierNoms = Join-Path $script:Projet 'pc\config\noms-grand-caunet.toml'
+$script:NomTable = 'zz_acrxs_grandcaunet_table_9_P'
+if ($env:ACR_EPREUVE) {
+    $script:Epreuve = (Resolve-Path $env:ACR_EPREUVE).Path
+    $e = Get-Content (Join-Path $script:Epreuve 'epreuve.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+    $script:IdSpeciale = $e.stage_id
+    $script:LieuIr = $e.id_lieu
+    $script:NomConteneur = $e.pc.nom_conteneur
+    $script:NomTable = $e.pc.nom_table
+    $script:FichierNoms = Join-Path $script:Epreuve $e.pc.fichier_noms
+    Write-Host "Épreuve : $($e.nom) ($script:Epreuve)" -ForegroundColor Cyan
+}
+$script:DossierIr = Join-Path $script:Epreuve "export\stage_ir\$($script:LieuIr)"
+
 # --- journal ----------------------------------------------------------------------------------------------------------
 function Start-Journal([string]$Travail, [string]$Nom) {
     $dir = Join-Path $Travail 'journal'

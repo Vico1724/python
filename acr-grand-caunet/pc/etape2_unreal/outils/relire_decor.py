@@ -34,7 +34,10 @@ import numpy as np
 from PIL import Image
 
 KIT = Path(__file__).resolve().parents[1]
-RACINE = KIT.parents[1]
+sys.path.insert(0, str(KIT / "scripts_editeur"))
+import repere_unreal as R  # noqa: E402
+
+RACINE = R.RACINE                     # épreuve (ACR_EPREUVE) ou acr-grand-caunet
 CELLULE = "1LS8FPM8JIMX697U3QIPKC01K"
 MASQUE_DU_JEU = "acr/Content/Environments/MonteCarloS1Bollene/TerrainMasks/T_Bollene1001_M1.uasset"
 
@@ -219,7 +222,7 @@ def main():
 
     erreurs, bilan = [], {}
     liste = [l.strip() for l in ref("list", jeu=seul).splitlines() if l.strip().startswith("acr/")]
-    hors = [l for l in liste if "/Environments/GrandCaunet/" not in l and CELLULE not in l]
+    hors = [l for l in liste if f"/Environments/{R.NOM_NIVEAU}/" not in l and CELLULE not in l]
     bilan["conteneur"] = {"fichiers": len(liste), "hors_de_notre_dossier": len(hors)}
     if hors:
         erreurs.append(f"fichiers livrés hors de notre dossier : {hors[:3]}")

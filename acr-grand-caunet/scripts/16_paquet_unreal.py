@@ -55,7 +55,7 @@ from PIL import Image
 from scipy.spatial import cKDTree
 
 import regles_arbres
-from acr_geo import FIG, OUT, REF, ROOT, fichier_ref, param
+from acr_geo import FIG, OUT, REF, ROOT, fichier_ref, param, ouvrir_csv
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -74,7 +74,7 @@ def reglages_du_sol():
             r[k].update(c.get(k, {}))
     return r if any(r.values()) else None
 KIT = ROOT / "pc" / "etape2_unreal"
-NOM = "GrandCaunet"
+NOM = param("nom_niveau", "GrandCaunet")
 UE = f"/Game/Environments/{NOM}"
 NIVEAU = f"/Game/Levels/{NOM}"
 GRILLE0 = (913500.0, 6240500.0)     # coin sud-ouest commun des grilles de dalles (Lambert-93)
@@ -110,7 +110,7 @@ FALAISE_ROCHE = {"pente_deg": 48.0, "a_m": 2000.0, "uv_m": 17.5, "pente_bord_deg
 # (strates) sont retirés, la teinte est moins claire et moins couvrante, et elle n'est plus posée au-delà du relief à
 # 5 m (6 km environ) : le relief à 25 m ne montre pas les falaises, les seuils abaissés teintaient des versants entiers.
 TRONCON = 200.0                       # m de PK par tronçon de route et d'ouvrages
-PK_E3 = 1653.0                        # pont à parapets de pierre : la dalle qui le contient
+PK_E3 = float(param("pk_essai_e3", 1653.0))                       # pont à parapets de pierre : la dalle qui le contient
 PK_E4 = (1600.0, 1800.0)              # 200 m autour de ce pont
 SEED = 16
 M_SIMPLE = "/Game/Materials/General/Masters/M_Simple"
@@ -239,7 +239,8 @@ class Axes:
 
 def points_de_controle(ch, ref):
     out = []
-    for nom, pk in (("départ (PK 0)", 0.0), ("arrivée (PK 6736)", 6736.0)):
+    pk_arr = float(param("pk_arrivee_controle", 6736.0))
+    for nom, pk in (("départ (PK 0)", 0.0), (f"arrivée (PK {pk_arr:.0f})", pk_arr)):
         i = int(np.argmin(np.abs(ch["pk"] - pk)))
         x, y, z = (float(v) for v in ch["A"][i])
         g = m08.to_gltf(np.array([[x, y, z]]), ref)[0].astype(float)
@@ -620,7 +621,8 @@ class Placement:
     (pc/etape2_unreal/releves/placement_etape1.json, tenu à jour par outils/relever_placement.py)."""
 
     def __init__(self, ref):
-        d = json.loads((KIT / "releves" / "placement_etape1.json").read_text(encoding="utf-8"))
+        f = KIT / "releves" / "placement_etape1.json" if ROOT == KIT.parents[1] else ROOT / "pc" / "releves" / "placement_etape1.json"
+        d = json.loads(f.read_text(encoding="utf-8"))   # placement propre à l'épreuve (relevé après sa route physique)
         self.p = d["placement"]
         o = json.loads((ROOT / "export" / "stage_ir" / param("id_lieu", "grand_caunet") / "stage.json").read_text(encoding="utf-8"))["coordinates"]["origin"]
         self.ox, self.oy = o["lambert93_x_m"], o["lambert93_y_m"]
@@ -1983,7 +1985,7 @@ def instances(P, ref, sol, ruban, pkf, args):
         if loin_buissons:
             table("garrigue", loin_buissons, lambda r: BUISSONS["maillage"], lambda r: float(r["hauteur_m"]), ["diametre_m"], sol_loin=sol_loin,
                   reglages=lambda chemin: {"distances_de_disparition_cm": ARBRES_LOIN["buissons"]["disparition_cm"], "ombre_dynamique": False})
-    with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
+    with ouvrir_csv(OUT / "arbustes.csv") as f:
         arbustes = list(csv.DictReader(f))
     buissons_jeu = args.buissons == "jeu" and not P.echantillon
     if buissons_jeu:
