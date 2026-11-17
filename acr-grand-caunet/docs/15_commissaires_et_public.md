@@ -1,5 +1,7 @@
 # 15. Commissaires et public : comment le jeu les place, comment en mettre chez nous
 
+> **Mise à jour du 17/11/2026.** La méthode B est faite pour les officiels du départ (cellule A0I1) et de l'arrivée (0QY7) dans la dix-neuvième version : `docs/14`, section 16.2 (retouche 0006, `Officials.cs`).
+
 Étude du 14/11/2026, en lecture seule. Rien n'a été modifié dans le jeu, dans `Z:\acrxs\acr-extrastages` ni dans le projet Unreal. Les deux scripts d'essai sont dans le dossier de travail de la session (voir l'annexe).
 
 ## En bref

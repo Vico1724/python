@@ -304,7 +304,7 @@ def garde_en_zone_ouverte(cle):
 #   - pour le sous-bois de bord, une bande de 1 m autour des murs et parapets le long de la route
 #     (data/reference/ouvrages_parapets.json), reconstitués comme 11_route_ouvrages.py les pose.
 MARGE_BATI_M = 2.0                  # même valeur que MARGE_BATI de 10_semis_arbres.py
-MARGE_CONSTRUCTION_M = 1.0
+MARGE_CONSTRUCTION_M = 2.0          # 1 m jusqu'à la 17 : un tronc de pin à 1,5 m du portail le traversait (essai du 16/11/2026)
 MARGE_MUR_M = 1.0
 _BATI = {}
 
@@ -376,6 +376,29 @@ def constructions_zone_depart(racine):
     return out
 
 
+PARC_RAYON_M = 11.0                 # tente de la voiture et son mobilier (acteurs à moins de 8 m, ~15 x 14 m)
+
+
+def parc_assistance(racine):
+    """Emprise Lambert-93 du parc d'assistance réduit (export/stage_ir/grand_caunet/stage.json → service_park, posé par
+    la retouche 0006 : docs/16) : un disque de PARC_RAYON_M autour du point de la voiture. Les acteurs du parc n'ont pas de
+    collision ; sans ce dégagement, les arbres du parking traverseraient les tentes sur l'écran du parc."""
+    import json
+    from pathlib import Path
+
+    import shapely
+    f = Path(racine) / "export" / "stage_ir" / "grand_caunet" / "stage.json"
+    if not f.exists():
+        return []
+    st = json.loads(f.read_text(encoding="utf-8"))
+    sp = st.get("service_park")
+    if not sp:
+        return []
+    o = st["coordinates"]["origin"]
+    x, _, z = sp["target"]
+    return [shapely.Point(o["lambert93_x_m"] + x, o["lambert93_y_m"] - z).buffer(PARC_RAYON_M)]
+
+
 def murs_le_long_de_la_route(racine):
     """Emprises Lambert-93 des murs et parapets de data/reference/ouvrages_parapets.json (« ouvrages » et
     « parapets_hors_tablier ») : du bord de chaussée + decalage_m à + decalage_m + epaisseur_m, entre leurs PK, du côté
@@ -436,7 +459,8 @@ def emprises_interdites(racine):
     if cle not in _BATI:
         brut = {"bâtiments BD TOPO": (batiments_bd_topo(racine), MARGE_BATI_M),
                 "constructions de la zone de départ": (constructions_zone_depart(racine), MARGE_CONSTRUCTION_M),
-                "murs et parapets": (murs_le_long_de_la_route(racine), MARGE_MUR_M)}
+                "murs et parapets": (murs_le_long_de_la_route(racine), MARGE_MUR_M),
+                "parc d'assistance": (parc_assistance(racine), 0.0)}
         _BATI[cle] = {}
         for nom, (geoms, marge) in brut.items():
             if geoms:

@@ -1905,6 +1905,13 @@ def instances(P, ref, sol, ruban, pkf, args):
 
     with open(OUT / "arbres.csv", encoding="utf-8") as f:
         arbres = list(csv.DictReader(f))
+    # Essai de la dix-septième version (16/11/2026, captures de la zone de départ) : un tronc de pin dans le portail et le
+    # pilier de l'entrée de propriété. Le semis principal n'écartait que les bâtiments BD TOPO ; ses troncs s'écartent
+    # désormais aussi des constructions de la zone de départ et des murs le long de la route (+ 1 m), comme le sous-bois.
+    if arbres:
+        k_ = hors_du_bati(np.array([float(r["x_l93"]) for r in arbres]), np.array([float(r["y_l93"]) for r in arbres]),
+                          np.ones(len(arbres), bool), "arbres du semis", murs=True)
+        arbres = [r for r, k in zip(arbres, k_) if k]
     if args.sous_bois and not P.echantillon and args.pk_min is None:
         arbres += sous_bois_de_bord(ref, arbres)
         arbres += fourre_des_versants(arbres)
@@ -2073,6 +2080,9 @@ def herbes_du_bord(P, ref, ch, pkf, sol, ruban, args):
     if f_ann.exists():
         interdit += annexes_l93()
     interdit += [g_ for g_, _ in regles_arbres.emprises_degagees(ROOT)]         # aires de terre : pas de touffes
+    # essai de la 17 (16/11/2026) : des touffes sur la rampe béton de la zone de départ ; ni sur les constructions de la
+    # zone de départ (rampe, murs, portail, bâtiments), ni dans le parc d'assistance
+    interdit += regles_arbres.constructions_zone_depart(ROOT) + regles_arbres.parc_assistance(ROOT)
     zone = shapely.union_all(interdit)
     shapely.prepare(zone)
     dist = shapely.distance(zone, shapely.points(xy[:, 0], xy[:, 1]))

@@ -36,7 +36,8 @@ if (Get-Process -Name 'acr', 'acr-Win64-Shipping' -ErrorAction SilentlyContinue)
     "ROUTE PHYSIQUE NON CONSTRUITE : le jeu tourne (à refaire jeu fermé : pc\scripts\4_construire.ps1 -Asphalte)"
 } else {
     $j1 = [IO.Path]::ChangeExtension($Journal, '.etape1.log')
-    pwsh -ExecutionPolicy Bypass -Command "& 'pc\scripts\4_construire.ps1' -Noms -Ciel -Asphalte -Personnages -CellulesDecor '1LS8FPM8JIMX697U3QIPKC01K' -ExclureVisuels 'Z:\acrxs\unreal\hybride\zones_complet.json'" *> $j1
+    # -CellulesOfficiels : officiels du départ (A0I1) et de l'arrivée (0QY7) de Hafren, reportés chez nous (docs\15, méthode B)
+    pwsh -ExecutionPolicy Bypass -Command "& 'pc\scripts\4_construire.ps1' -Noms -Ciel -Asphalte -Personnages -CellulesDecor '1LS8FPM8JIMX697U3QIPKC01K' -ExclureVisuels 'Z:\acrxs\unreal\hybride\zones_complet.json' -CellulesOfficiels 'A0I1JHQ2458PSST2XD0UTWQ2I','0QY7AIYF1F7BYQ1BH0V2NX22R'" *> $j1
     "route physique : code $LASTEXITCODE ; lignes FAIL : $((Select-String -Path $j1 -Pattern '^FAIL|ÉCHEC' | Measure-Object).Count)"
     Select-String -Path $j1 -Pattern 'notre conteneur passe devant|autres identiques|^FAIL|ÉCHEC' | Select-Object -Last 4 | ForEach-Object { Court $_.Line }
     python pc\etape2_unreal\outils\relever_placement.py 2>&1 | Select-Object -Last 2 | ForEach-Object { Court "$_" }

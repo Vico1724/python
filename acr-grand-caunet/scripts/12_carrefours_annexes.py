@@ -669,7 +669,10 @@ def zd_matieres(px):
                         "rough": 0.95},
         "enduit_maison": {"jpeg": tex_enduit_vieilli(n, ENDUIT_MAISON_SRGB, 23, nuances=0.05, sale=0.07, mousse=0.15),
                           "rough": 0.93},                                                # façades des maisons
-        "enduit_blanc": {"jpeg": m11.tex_enduit(n, ENDUIT_BLANC_SRGB, seed=17), "rough": 0.92},   # rampe, cabanon
+        # rampe, cabanon. Essai de la 17 (16/11/2026) : le crépi crème presque uni de m11 rendait le mur de la rampe comme
+        # un panneau lisse et bleuté à l'ombre ; enduit vieilli comme les maisons (nuances, salissures, lichen)
+        "enduit_blanc": {"jpeg": tex_enduit_vieilli(n, ENDUIT_BLANC_SRGB, 17, nuances=0.07, sale=0.11, mousse=0.18),
+                         "rough": 0.93},
         "tuile": {"jpeg": tex_tuiles(n), "rough": 0.85},                                  # tuiles canal
         "portail_blanc": {"jpeg": tex_tole(n, (0.87, 0.86, 0.82), lames=0.25), "rough": 0.75},   # portail laqué
         "pierre_ocre": {"jpeg": tex_pierre_ocre(n), "rough": 0.95},                       # monolithe

@@ -286,3 +286,49 @@ Retour du directeur : encore trop de débris (feuilles mortes, « taches au sol 
 - **Commissaires** : ceux du parc sont déplacés (méthode A). Les officiels animés de la séquence de départ et d'arrivée sont dans deux cellules cachées du jeu (méthode B, `docs/15_commissaires_et_public.md`) ; proposé plus tard.
 
 **Dix-huitième version, installée le 16 novembre à 23 h 15** : construite en 83 min, route physique sans échec, table relue conforme (surface Tarmac, pneus TarmacSnow, météo MonteCarlo, 6,737 km, les 47 autres lignes identiques), relecture du décor conforme. L'éditeur Unreal se ferme sur une erreur d'accès (code -1073741819) après la construction, comme dans plusieurs versions précédentes, sans effet sur le résultat. La dix-septième est gardée sous `sol_jeu_vu_le_16_11`. Jamais vue en jeu.
+
+## 16. Essai de la dix-huitième version (17 novembre) : adhérence, officiels, parc, zone de départ
+
+Retour du directeur : les effets au sol sont bons ; la voiture sous-vire toujours, « comme si l'asphalte n'avait pas assez de grip » (la température affichée était encore de 4 °C ; la changer à la main n'a presque rien apporté) ; demande d'intégrer le parc d'assistance (« très réduit et sommaire, sur la route avant la spéciale si besoin ») et les commissaires animés ; défauts graphiques de la zone de départ (mur mal raccordé, arbre au travers d'un mur).
+
+### 16.1 Enquête sur l'adhérence
+
+Comparaison de notre route physique avec Munster (spéciale asphalte du jeu), dans les données du jeu (`acr-ref export`, analyses dans `Z:\acrxs\construction\phys_cmp`) :
+
+| Point | Munster | Nous | Verdict |
+|---|---|---|---|
+| Matière physique de la chaussée | PM_SurfaceTarmacSmooth | la même | identique |
+| Couleurs physiques (canaux lus par la matière, dont « débris ») | une valeur par collisionneur, (0,0,0,1) | la même | identique |
+| Autre matière au-dessus de l'asphalte (herbe, gravier) | — | 8 m² de gravier à 1-4 cm au-dessus, sur 50 800 m² | négligeable |
+| Rugosité (écart à la surface lissée sur 1 m) | 10 mm | 4 mm | la nôtre est plus lisse |
+| Dévers | vers l'intérieur | vers l'intérieur, 6,5 à 7 % sous 60 m de rayon (relevé laser) | réaliste |
+| Ligne de la table des variantes (surface, pneus, usure, secteurs) | Tarmac, TarmacSnow | les mêmes | identique |
+| **Ligne idéale (IdealSpline)** | suit la trajectoire : 0,6 à 0,8 m vers l'intérieur des virages (médiane), couloir de 150 à 330 cm de chaque côté sur une demi-chaussée de 2,2 m, intensité de gomme (SkidIntensity) 0,2 en médiane, 0,7 sous 30 m de rayon | **notre axe**, couloir fixe de 150 cm de chaque côté sur une demi-chaussée de 3,3 m, **SkidIntensity nulle partout** | **écart** |
+| **Humidité de base du niveau** (acteur météo) | aucune | **0,1** (celle de Hafren Sud, niveau hôte) | **écart** |
+| Température de référence du lieu (DT_Tracks) | 30 °C | 5 °C (pays de Galles ; Bollène aussi 5 °C) | à comparer plutôt avec Bollène |
+
+La ligne idéale appartient au module physique du jeu : l'acteur qui la porte (SplinesActor : FastLane, MainSpline, IdealSpline…) est construit dans dmphysics (`acr.exe`, fonction en 0x1450455F0), et les réglages physiques globaux (`DA_PhysicsGlobalSettings`) prévoient une largeur de ligne idéale, un bonus de gomme sur la trajectoire (`MarblesGrooveK` 0,08) et des « billes » qui retirent de l'adhérence hors trajectoire. Notre constructeur recopiait l'axe dans la ligne idéale : dans un virage pris à la corde, la voiture sortait du couloir propre et ne profitait d'aucune gomme. C'est la seule différence de physique trouvée qui explique un manque d'adhérence partout, surtout en virage.
+
+**Corrections (retouche `pc/patches/0006-ligne-ideale.patch` du constructeur, `scripts/09_export_stage_ir.py`) :**
+
+- **Ligne idéale** : `ligne_ideale()` calcule une trajectoire à courbure minimale entre les bords de chaussée, à 1,2 m au moins des bords, rappelée vers l'axe dans les lignes droites, écart plafonné à 2,5 m (carrefour du Lion d'Or). Résultat : écart à l'axe médian 0,4 m (Munster 0,47), 1,9 m vers l'intérieur sous 30 m de rayon (chaussée de 6,5 m contre 4,4 m à Munster), couloir jusqu'à 20 cm des bords (150 à 340 cm), SkidIntensity selon le rayon comme Munster et Hafren (médiane 0,24). Écrite dans `stage.json → ideal_line`, lue par le constructeur.
+- **Humidité de base** : `--level-wetness 0` (défaut de `4_construire.ps1 -HumiditeNiveau`) remet à 0 le `global_wetness` de l'acteur météo du niveau persistant (un flottant réécrit sur place).
+
+Si le sous-virage persiste : comparer avec **Bollène** (même température de référence, 5 °C) plutôt qu'avec Munster (30 °C) ; puis essayer un départ « adhérence optimale ».
+
+### 16.2 Officiels animés du départ et de l'arrivée (méthode B de `docs/15`)
+
+Option `--officials` (`4_construire.ps1 -CellulesOfficiels`, passée par `7_tout_refaire.ps1`) : les cellules `A0I1…` (départ) et `0QY7…` (arrivée) de Hafren Sud sont extraites, gardées dans le sens aller et rendues toujours chargées ; chaque acteur est reporté le long de notre route à la même distance de son repère (point d'apparition de la voiture, déclencheur de départ, zone d'arrêt), à la même distance du **bord** de la route (notre chaussée est plus large), posé sur notre sol (au plus 25 cm au-dessus), tourné avec la route. Départ : l'officiel assis (Doc) et 2 commissaires au point d'apparition, le commissaire au bâton (séquence de départ, avec ses déclencheurs « Start » et « ComeCloser ») et 3 commissaires à la ligne. Arrivée : l'officiel au portable, le commissaire d'arrêt, 5 commissaires, 6 groupes de public et leurs bruits. Les portiques gallois « Rally Wales » sont enfoncés de 1 000 m.
+
+### 16.3 Parc d'assistance réduit
+
+Option `--service-park 1` (automatique quand `stage.json → service_park` existe) : les 164 acteurs du parc à moins de 8 m du point de la voiture (sa tente, son mobilier) sont posés au PK −47, à l'embouchure du parking du Grand Caunet (3 m à gauche de l'axe), voiture dans l'axe de la route ; le reste du parc gallois (295 acteurs) et son sol de 3 × 3 km sont enfoncés de 1 000 m ; son ambiance sonore, l'occultation de la pluie, l'exclusion PCG et les éoliennes restent en place. Le jeu cache le parc pendant la spéciale : il ne gêne pas la route. Arbres, arbustes et herbes sont écartés d'un disque de 11 m autour de la voiture (`regles_arbres.parc_assistance`).
+
+### 16.4 Zone de départ
+
+- Tronc de pin dans le portail : les grands arbres du semis s'écartent désormais des constructions de la zone de départ et des murs de bord de route (seul le sous-bois le faisait) ; marge portée de 1 à 2 m.
+- Mur de la rampe rendu comme un panneau lisse et bleuté : enduit vieilli (nuances, salissures, lichen) au lieu du crépi crème uni.
+- Touffes d'herbe sur la rampe béton : les constructions de la zone de départ sont retirées de l'emprise des herbes.
+
+**Dix-neuvième version, installée le 17 novembre** : construite en 83 min, route physique sans échec (ligne idéale, humidité 0, parc et officiels relus PASS), table conforme, relecture du décor conforme ; 49 arbres du semis écartés des murs et constructions. La dix-huitième est gardée sous `sol_jeu_vu_le_17_11`. Jamais vue en jeu.
+

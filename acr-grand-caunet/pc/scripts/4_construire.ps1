@@ -26,6 +26,12 @@
 .PARAMETER Personnages  déplace sur la spéciale les 4 commissaires et 6 spectateurs du parc d'assistance de Hafren South
                       (niveau persistant), aux places de stage.json → characters (retouche 0005, --characters 1 ;
                       docs\15_commissaires_et_public.md)
+.PARAMETER HumiditeNiveau  humidité de base de l'acteur météo du niveau hôte (Hafren South : 0,1, Munster : aucune) ;
+                      0 par défaut, '' pour garder celle de Hafren (retouche 0006, --level-wetness ; docs\14, section 16).
+                      La ligne idéale (stage.json → ideal_line) est lue par la même retouche, sans option.
+.PARAMETER CellulesOfficiels  cellules de Hafren South dont les officiels sont reportés à notre départ et à notre arrivée
+                      (A0I1… départ, 0QY7… arrivée ; méthode B de docs\15) : extraites, gardées dans le sens aller, rendues
+                      toujours chargées, acteurs replacés le long de notre route (retouche 0006, --officials)
 
 .EXAMPLE
   pwsh -ExecutionPolicy Bypass -File pc\scripts\4_construire.ps1
@@ -35,7 +41,9 @@ param(
     [string[]]$CellulesDecor = @(),
     [string]$ExclureVisuels,
     [switch]$Textures, [switch]$Noms, [switch]$Longueur, [switch]$Asphalte, [switch]$Ciel, [switch]$GarderDecor, [switch]$SansObstacles,
-    [switch]$Personnages
+    [switch]$Personnages,
+    [string]$HumiditeNiveau = '0',
+    [string[]]$CellulesOfficiels = @()
 )
 . "$PSScriptRoot\commun.ps1"
 $ErrorActionPreference = 'Stop'
@@ -86,6 +94,7 @@ $hote = [ordered]@{
     strings    = 'acr\Content\Data\Localization\ContentTexts\ST_Track'
 }
 $filtre = @{ persistent = 'WalesS4HafrenSouth.umap' }
+foreach ($c in $CellulesOfficiels) { $hote["officiels_$c"] = "acr\Content\Levels\WalesS4HafrenSouth\_Generated_\$c" }
 $legacy = Join-Path $work 'legacy-vanilla'
 if (-not (Test-VanillaStamp $legacy)) { Remove-Item -Recurse -Force $legacy -ErrorAction SilentlyContinue }
 foreach ($k in $hote.Keys) {
@@ -140,7 +149,7 @@ if (-not $GarderDecor) {
         # Voie hybride (pc\etape2_unreal\PROTOCOLE.md § 0 quater) : ces cellules de Hafren restent chargées dans la
         # variante aller. Leur contenu gallois est remplacé par notre décor, cuit par Unreal au même chemin et livré
         # dans un conteneur à part (zz_gc_*_P). Sans ce conteneur, elles montreraient le terrain et les arbres gallois.
-        $garder = @('22VG0QIP9ATUQI633K86KWPFP') + $CellulesDecor | ForEach-Object { "`"$_`"" }
+        $garder = @('22VG0QIP9ATUQI633K86KWPFP') + $CellulesDecor + $CellulesOfficiels | ForEach-Object { "`"$_`"" }
         $texte = (Get-Content $scenery -Raw) -replace '(?m)^keep = \[[^\]]*\]', "keep = [$($garder -join ', ')]"
         if ($texte -notmatch [regex]::Escape($CellulesDecor[0])) { Echec "ligne « keep » introuvable dans $scenery" }
         $scenery = Join-Path $work 'scenery-hybride.toml'
@@ -159,6 +168,29 @@ if ($Personnages) {
     if (-not (Test-Path (Join-Path $src 'tools\acr-ref\Characters.cs'))) { Echec "-Personnages : retouche 0005-personnages absente de $src : relancer 2_recuperer_acrxs.ps1" }
     $a += @('--characters', '1')
     Ok "personnages : $($stage.characters.items.Count) commissaires et spectateurs à déplacer"
+}
+# retouche 0006 (essai de la 17, sous-virage) : ligne idéale de stage.json et humidité de base du niveau hôte
+$avec0006 = Test-Path (Join-Path $src 'tools\acr-ref\Weather.cs')
+if ($stage.ideal_line) {
+    if (-not $avec0006) { Echec "stage.json a une ligne idéale mais la retouche 0006-ligne-ideale est absente de $src : relancer 2_recuperer_acrxs.ps1" }
+    Ok ("ligne idéale : {0} points, écart à l'axe médian {1} m" -f $stage.ideal_line.points.Count, $stage.ideal_line.bilan.ecart_axe_m.mediane)
+} else { Attention "stage.json sans ligne idéale : le constructeur y mettra l'axe (relancer scripts\tout_lancer.py --seulement 9)" }
+if ($stage.service_park) {
+    # retouche 0006 : parc d'assistance très réduit (tente de la voiture) avant le départ (docs\16, 17/11/2026)
+    if (-not $avec0006) { Echec "stage.json a un parc d'assistance mais la retouche 0006-ligne-ideale est absente de $src" }
+    $a += @('--service-park', '1')
+    Ok "parc d'assistance : acteurs à moins de $($stage.service_park.radius_m) m de la voiture, au PK $($stage.service_park.pk_m)"
+}
+if ($CellulesOfficiels) {
+    if (-not $avec0006) { Echec "-CellulesOfficiels : retouche 0006-ligne-ideale absente de $src : relancer 2_recuperer_acrxs.ps1" }
+    if (-not $CellulesDecor -or $GarderDecor) { Echec "-CellulesOfficiels demande la voie hybride (-CellulesDecor) : la liste « keep » est écrite là" }
+    $a += @('--officials', ($CellulesOfficiels -join ','))
+    Ok "officiels de départ et d'arrivée : cellules $($CellulesOfficiels -join ', ')"
+}
+if ($HumiditeNiveau -ne '') {
+    if (-not $avec0006) { Echec "-HumiditeNiveau : retouche 0006-ligne-ideale absente de $src : relancer 2_recuperer_acrxs.ps1" }
+    $a += @('--level-wetness', $HumiditeNiveau)
+    Ok "humidité de base du niveau : $HumiditeNiveau (Hafren South : 0,1)"
 }
 Push-Location $src
 try { Lancer $acrRef $a "construction (stage-build) ; ses contrôles hors jeu sont dans le journal" } finally { Pop-Location }

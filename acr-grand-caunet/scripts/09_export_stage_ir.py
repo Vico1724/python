@@ -984,6 +984,123 @@ def appliquer_retouches(vir, cfg, pk_fin):
     return vir, out
 
 
+# --- ligne idéale (IdealSpline du jeu) ---------------------------------------------------
+# Essai de la dix-septième version (16/11/2026) : sous-virage et manque d'adhérence par rapport à Munster, même
+# voiture, mêmes réglages, même adhérence de départ ; la température changée à la main n'y faisait presque rien.
+# Enquête du 17/11/2026 (docs/14, section 16) : la matière, les couleurs physiques, le recouvrement par d'autres
+# matières, la rugosité, les dévers et la ligne de la table des variantes sont ceux d'une spéciale asphalte du jeu.
+# Seul écart de physique : la ligne idéale. Le module physique du jeu (dmphysics) construit l'acteur qui la porte
+# (SplinesActor : IdealSpline et ses métadonnées LeftWidth, RightWidth, SkidIntensity), et ses réglages globaux
+# (DA_PhysicsGlobalSettings) prévoient une largeur de ligne idéale, un bonus de gomme sur la trajectoire
+# (MarblesGrooveK 0,08) et des « billes » hors trajectoire. Sur Munster et Hafren, la ligne idéale suit la
+# trajectoire (0,6 à 0,8 m vers l'intérieur des virages en médiane, jusqu'à 1,7 m), son couloir couvre presque toute
+# la chaussée (150 à 340 cm de chaque côté) et SkidIntensity vaut 0,2 en médiane, 0,6 à 0,7 sous 30 m de rayon. Le
+# constructeur, lui, y recopiait notre axe, avec 150 cm de chaque côté et SkidIntensity nulle : sur une chaussée de
+# 6,5 m, la trajectoire d'un virage sortait du couloir. On calcule donc une vraie trajectoire, que le constructeur
+# retouché (pc/patches/0006-ligne-ideale.patch) écrit dans IdealSpline.
+IDEALE = {
+    "marge_bord_m": 1.2,            # demi-largeur d'une voiture (0,95 m) et 0,25 m de garde jusqu'au bord de chaussée
+    "ecart_max_m": 2.5,             # écart à l'axe plafonné (carrefour du Lion d'Or : chaussée de plus de 12 m)
+    "pas_m": 2.0,                   # résolution du calcul (lignes de la chaussée prises un mètre sur deux)
+    "rappel_axe": 3e-4,             # poids du rappel vers l'axe : garde la ligne au milieu des lignes droites
+    "couloir_garde_m": 0.2,         # le couloir s'arrête à 20 cm du bord de chaussée
+    "couloir_m": (1.5, 3.4),        # bornes du couloir de chaque côté, comme les spéciales du jeu (150 à 338 cm)
+    # SkidIntensity selon le rayon de la trajectoire : moyennes relevées sur Munster et Hafren Sud
+    "gomme_rayon_m": (15.0, 30.0, 60.0, 120.0, 300.0, 1e9),
+    "gomme": (0.8, 0.65, 0.4, 0.25, 0.17, 0.2),
+    "gomme_lissage_m": 20.0,
+}
+
+
+def ligne_ideale(G, D, dist, idx):
+    """Trajectoire entre les bords G et D (repère de l'IR, un point par mètre de chaussée) : courbure minimale, à
+    IDEALE['marge_bord_m'] des bords au moins, rappelée vers l'axe dans les lignes droites. Renvoie, aux rangs idx
+    (les portes), les points de la ligne, les largeurs du couloir de part et d'autre (m) et SkidIntensity."""
+    from scipy import sparse
+    from scipy.optimize import lsq_linear
+    P = IDEALE
+    pas = max(1, int(round(P["pas_m"])))
+    rows = np.arange(0, len(G), pas)
+    if rows[-1] != len(G) - 1:
+        rows = np.append(rows, len(G) - 1)
+    g, d = G[rows][:, [0, 2]], D[rows][:, [0, 2]]
+    v = d - g
+    w = np.linalg.norm(v, axis=1)
+    n = len(rows)
+    lo = np.clip(np.maximum(P["marge_bord_m"] / np.maximum(w, 1e-6), 0.5 - P["ecart_max_m"] / np.maximum(w, 1e-6)), 0.0, 0.5)
+    hi = 1.0 - lo
+    # P_i = g_i + t_i v_i : la seconde différence est linéaire en t ; plus un rappel (t - 0,5) en mètres
+    r = np.arange(1, n - 1)
+    lignes, cols, vals = [], [], []
+    for comp in (0, 1):
+        base = (r - 1) * 2 + comp
+        for k, c in ((-1, 1.0), (0, -2.0), (1, 1.0)):
+            lignes.append(base); cols.append(r + k); vals.append(c * v[r + k, comp])
+    A2 = sparse.csr_matrix((np.concatenate(vals), (np.concatenate(lignes), np.concatenate(cols))), shape=(2 * (n - 2), n))
+    b2 = -(g[r - 1] - 2 * g[r] + g[r + 1]).reshape(-1)
+    lam = math.sqrt(P["rappel_axe"])
+    A3 = sparse.diags(lam * w)
+    b3 = lam * w * 0.5
+    A = sparse.vstack([A2, A3]).tocsr()
+    b = np.concatenate([b2, b3])
+    lo_, hi_ = lo.copy(), np.maximum(hi, lo + 1e-9)
+    t = lsq_linear(A, b, bounds=(lo_, hi_), lsmr_tol="auto", max_iter=5000).x
+    t_all = np.interp(np.arange(len(G)), rows, t)
+    L = G + t_all[:, None] * (D - G)
+    # rayon de la trajectoire (cap sur ±5 m) et SkidIntensity lissée
+    s = dist
+    xy = L[:, [0, 2]]
+    cap = np.unwrap(np.arctan2(*np.gradient(xy, axis=0).T[::-1]))
+    k_ = np.abs(np.gradient(cap) / np.maximum(np.gradient(s), 1e-6))
+    k_ = np.convolve(k_, np.ones(11) / 11, mode="same")
+    rayon = 1.0 / np.maximum(k_, 1e-9)
+    gomme = np.interp(np.log(rayon), np.log(P["gomme_rayon_m"]), P["gomme"])
+    sig = P["gomme_lissage_m"]
+    noyau = np.exp(-0.5 * (np.arange(-3 * sig, 3 * sig + 1) / sig) ** 2)
+    gomme = np.convolve(np.pad(gomme, len(noyau) // 2, mode="edge"), noyau / noyau.sum(), mode="valid")
+    larg = np.linalg.norm((D - G)[:, [0, 2]], axis=1)
+    gauche = np.clip(t_all * larg - P["couloir_garde_m"], *P["couloir_m"])
+    droite = np.clip((1 - t_all) * larg - P["couloir_garde_m"], *P["couloir_m"])
+    ecart = (t_all - 0.5) * larg                       # > 0 : vers le bord droit
+    tourne = np.sign(np.gradient(cap))                 # > 0 : virage à droite (cap de l'est vers le sud, Z vers le sud)
+    vers_int = tourne * ecart
+    bilan = {"marge_bord_m": P["marge_bord_m"], "rappel_axe": P["rappel_axe"],
+             "ecart_axe_m": {"mediane": round(float(np.median(np.abs(ecart))), 2),
+                             "p90": round(float(np.percentile(np.abs(ecart), 90)), 2),
+                             "max": round(float(np.abs(ecart).max()), 2)},
+             "vers_interieur_m_selon_rayon": {}, "gomme_mediane": round(float(np.median(gomme)), 2)}
+    for a, b_ in ((0, 30), (30, 60), (60, 120), (120, 300)):
+        m = (rayon >= a) & (rayon < b_)
+        if m.any():
+            bilan["vers_interieur_m_selon_rayon"][f"{a}-{b_}"] = round(float(np.median(vers_int[m])), 2)
+    return {"points": L[idx], "gauche_m": gauche[idx], "droite_m": droite[idx], "gomme": gomme[idx], "bilan": bilan}
+
+
+# --- parc d'assistance (retouche 0006, --service-park) -------------------------------------
+# Essai de la dix-septième version (16/11/2026) : l'écran « Parc d'assistance » s'affiche, mais le parc est resté à sa
+# place galloise, hors de notre décor (docs/16). Demande du directeur (17/11/2026) : « un parc d'assistance très réduit et
+# sommaire, sur la route avant la spéciale si besoin ». On ne déplace que la tente de la voiture et ce qui l'entoure
+# (acteurs du parc à moins de PARC['rayon_m'] du point où la voiture est exposée : 169 acteurs, ~15 x 14 m), posés à
+# l'embouchure du parking du Grand Caunet (gauche, PK -68 à -26), voiture dans l'axe de la route. Le reste du parc gallois
+# et son grand sol (SM_WalesServiceParkTerrain, 3 x 3 km) sont enfoncés de 1 000 m. Le jeu cache tout le parc pendant
+# la spéciale (docs/16, § 1.2) : rien ne gêne la route.
+PARC = {"pk_m": -47.0, "vers_la_gauche_m": 3.0, "rayon_m": 8.0}
+
+
+def parc_assistance(ch, A, G):
+    pk = ch["pk"]
+    i = int(np.argmin(np.abs(pk - PARC["pk_m"])))
+    g = G[i] - A[i]
+    g[1] = 0.0
+    g /= np.linalg.norm(g)
+    f = A[min(i + 5, len(A) - 1)] - A[max(i - 5, 0)]
+    f[1] = 0.0
+    f /= np.linalg.norm(f)
+    return {"source": "scripts/09_export_stage_ir.py, PARC (demande du 17/11/2026 : parc très réduit, avant la spéciale)",
+            "pk_m": PARC["pk_m"], "target": r3(A[i] + PARC["vers_la_gauche_m"] * g), "forward": r3(f, 5),
+            "radius_m": PARC["rayon_m"]}
+
+
 # --- stage.json --------------------------------------------------------------------------
 def construire(ch, ref, prims, deck, obst, rap_sol):
     pk = ch["pk"]
@@ -1008,6 +1125,7 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
     idx = portes_adaptees(sorted(garde), [A, G, D], dist)
     g_of_row = {int(i): k for k, i in enumerate(idx)}
     cen, gl, gr, gdist = A[idx], G[idx], D[idx], dist[idx]
+    ideale = ligne_ideale(G, D, dist, idx)
 
     gd_at_pk = lambda p: float(np.interp(p, pk, dist))                                         # noqa: E731
     pos_at_pk = lambda p: np.array([np.interp(p, pk, A[:, k]) for k in range(3)])               # noqa: E731
@@ -1066,6 +1184,16 @@ def construire(ch, ref, prims, deck, obst, rap_sol):
         "gates": [{"id": k, "distance": round(float(gdist[k]), 3), "crossing": r3(cen[k]), "left": r3(gl[k]),
                    "right": r3(gr[k]), "width": round(float(largeur[k]), 2), "pk_m": round(float(pk[i]), 1)}
                   for k, i in enumerate(idx)],
+        # extension du projet, lue par le constructeur retouché (pc/patches/0006-ligne-ideale.patch) : un point par porte
+        "ideal_line": {
+            "source": "scripts/09_export_stage_ir.py, ligne_ideale() : courbure minimale entre les bords, voir IDEALE",
+            "points": [r3(p) for p in ideale["points"]],
+            "left_width_m": [round(float(x), 3) for x in ideale["gauche_m"]],
+            "right_width_m": [round(float(x), 3) for x in ideale["droite_m"]],
+            "skid_intensity": [round(float(x), 3) for x in ideale["gomme"]],
+            "bilan": ideale["bilan"],
+        },
+        "service_park": parc_assistance(ch, A, G),      # extension du projet (retouche 0006, --service-park)
         "timing": timing,
         "pacenotes": {
             "source": "BROUILLON généré par scripts/09_export_stage_ir.py à partir de la courbure de l'axe précis "

@@ -1,5 +1,7 @@
 # 16. Le parc d'assistance : pourquoi il n'apparaît pas, comment en avoir un
 
+> **Mise à jour du 17/11/2026.** L'essai de la dix-septième version a tranché : cas (b), l'écran du parc s'affiche mais le parc est resté au pays de Galles. À la demande du directeur (« très réduit et sommaire, sur la route avant la spéciale si besoin »), la dix-neuvième version pose la seule tente de la voiture et son mobilier (164 acteurs à moins de 8 m) au PK −47, à l'entrée du parking ; le reste est enfoncé. Voir `docs/14`, section 16.3 (retouche 0006, `ServicePark.cs`).
+
 *15 novembre 2026. Étude en lecture seule, faite pendant que le directeur jouait. Rien n'a été modifié dans le jeu, dans `Z:\acrxs\acr-extrastages`, dans le projet Unreal ni dans les scripts du décor. Aucune construction et aucune installation n'ont été lancées. Les scripts d'essai sont dans le dossier de travail de la session (annexe).*
 
 **Constat du directeur.** « Quand je charge la carte, je n'ai aucun parc d'assistance chargé. » Ses vidéos d'essai (13, 14 et 15/11) sont toutes en **Essais libres** : le bandeau du chronomètre affiche « FP ».
