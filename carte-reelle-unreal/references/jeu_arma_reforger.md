@@ -1,6 +1,6 @@
 # Arma Reforger : livrer une carte réelle (Enfusion / Workbench, ce n'est pas Unreal)
 
-Expérience vécue : carte « Hangar » / La Ciotat (terrain de 4 096 m), 11 au 17/11/2026, jeu 1.9.0.37. La chaîne de DONNÉES (contour, LiDAR, ortho, vecteurs, arbres) est celle des projets Unreal ; seul le compilateur final change : au lieu d'un niveau Unreal, on écrit des fichiers texte (couches) et des tuiles de terrain que le Workbench charge.
+Source : carte « Hangar » / La Ciotat (terrain de 4 096 m), 11 au 17/11/2026, jeu 1.9.0.37. La chaîne de DONNÉES (contour, LiDAR, ortho, vecteurs, arbres) est celle des projets Unreal ; seul le compilateur final change : au lieu d'un niveau Unreal, on écrit des fichiers texte (couches) et des tuiles de terrain que le Workbench charge.
 Balises : **[vu]** = constaté ; **[déduit]** ; **[NV]** = non vérifié.
 
 ## Table des matières

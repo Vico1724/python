@@ -1,6 +1,6 @@
 # Assetto Corsa Rally (ACR) : livrer une spéciale réelle comme mod
 
-Expérience vécue : projet « Le Grand Caunet » (spéciale asphalte de 6,7 km, Bouches-du-Rhône), 10 au 17/11/2026, 19 à 21 versions construites, 14 essais en jeu jugés. Ce fichier complète `modding_par_jeu.md` §3 (état des outils et du jeu) ; il ne le répète pas.
+Source : projet « Le Grand Caunet » (spéciale asphalte de 6,7 km, Bouches-du-Rhône), 10 au 17/11/2026, 19 à 21 versions construites, 14 essais en jeu jugés. Complète `modding_par_jeu.md` §3 (état des outils et du jeu).
 Balises : **[vu]** = jugé bon en jeu par le joueur ; **[19+]** = présent dans les versions 19 à 21, jamais vues en jeu (ce sont des paris) ; **[lu]** = relevé dans les fichiers du jeu, non jugeable à l'œil ; **[déduit]** = inférence ; **[non vérifié]**.
 Conventions : `<ATELIER>` = dossier de travail Windows (même disque que le jeu), `<JEU>` = dossier d'installation, « le joueur » = la personne qui juge. Jeu : early access, Unreal 5.6.1 (moteur compilé par le studio, `+UE5-acr`), build Steam 25170642 ; le jeu n'écrit pas de journal par défaut.
 

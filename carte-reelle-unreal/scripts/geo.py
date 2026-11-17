@@ -540,7 +540,8 @@ def echantillonner(a: np.ndarray, tr, x, y) -> np.ndarray:
     from scipy import ndimage as ndi
     c = (np.asarray(x, float) - tr.c) / tr.a - 0.5
     r = (np.asarray(y, float) - tr.f) / tr.e - 0.5
-    return ndi.map_coordinates(np.nan_to_num(a, nan=0.0), [np.atleast_1d(r), np.atleast_1d(c)], order=1, mode="nearest")
+    return ndi.map_coordinates(np.nan_to_num(a, nan=0.0).astype(np.float64), [np.atleast_1d(r), np.atleast_1d(c)],
+                               order=1, mode="nearest")
 
 
 class Relief:

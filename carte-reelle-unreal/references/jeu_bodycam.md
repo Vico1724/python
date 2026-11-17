@@ -1,6 +1,6 @@
 # Bodycam : livrer une carte réelle via le kit communautaire (état au 17/11/2026 : bloquée)
 
-Expérience vécue : carte « La Ciotat » (zone de 2,83 ha) et carte « Hangar », 12 au 17/11/2026. Complète `modding_par_jeu.md` §4 (état du jeu et des outils, URLs du kit et de l'importateur : non répétées ici).
+Source : carte « La Ciotat » (zone de 2,83 ha) et carte « Hangar », 12 au 17/11/2026. Complète `modding_par_jeu.md` §4 (état du jeu et des outils, URLs du kit et de l'importateur : non répétées ici).
 Balises : **[vu]** = constaté en jeu ou par contrôle relu ; **[déduit]** ; **[non vérifié]** ; **[NV-cause]** = cause avancée, non prouvée.
 
 ## Table des matières
