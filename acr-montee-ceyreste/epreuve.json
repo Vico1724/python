@@ -1,5 +1,5 @@
 {
-  "_note": "Paramètres de l'épreuve lus par la chaîne de acr-grand-caunet/scripts (acr_geo.param) quand ACR_EPREUVE désigne ce dossier. Toute clé absente prend la valeur du Grand Caunet.",
+  "_note": "Paramètres de l'épreuve lus par scripts/ (acr_geo.param) et par le kit PC (pc/scripts/commun.ps1, pc/etape2_unreal/scripts_editeur/repere_unreal.py). Toute clé absente prend la valeur d'origine (Grand Caunet) codée dans les scripts.",
   "dossier": "acr-montee-ceyreste",
   "nom": "Montée historique de Ceyreste",
   "nom_trace": "Montée historique de Ceyreste (D3, Plan de Masse - Grand Caunet)",
@@ -15,14 +15,6 @@
     "D3"
   ],
   "methode_calage": "aucun PK officiel publié : PK 0 = projection du départ retenu (carrefour du Plan de Masse) sur l'axe BD TOPO de la D3 ; arrivée = PK de la longueur retenue (3,0 km, estimée) ; PK en distance horizontale",
-  "references_partagees": [
-    "matieres_du_jeu.json",
-    "catalogue_jeu_25170642.txt.gz",
-    "acr_paks_build_25170642.csv",
-    "aspect_chaussee.json",
-    "marquage_route.json",
-    "ressources_cc0.json"
-  ],
   "titre_carte": "Montée historique de Ceyreste - D3, Plan de Masse -> Grand Caunet - tracé sur BD TOPO, fond BD ORTHO (IGN) - arrivée ESTIMÉE",
   "titre_profil": "Montée historique de Ceyreste - profil en long (LiDAR HD IGN, 0,5 m) - arrivée estimée au PK 3000",
   "annotations_carte": [
@@ -79,12 +71,6 @@
   "nom_niveau": "MonteeCeyreste",
   "pk_essai_e3": 2026.0,
   "pk_arrivee_controle": 3020.0,
-  "pc": {
-    "nom_conteneur": "zz_acrxs_ceyreste_P",
-    "nom_table": "zz_acrxs_ceyreste_table_9_P",
-    "fichier_noms": "pc/noms-ceyreste.toml",
-    "nom_decor": "cey"
-  },
   "vues_decor": {
     "depart_plan_de_masse": [
       -40,
@@ -122,5 +108,13 @@
         140.0
       ]
     ]
+  },
+  "pc": {
+    "nom_conteneur": "zz_acrxs_ceyreste_P",
+    "nom_table": "zz_acrxs_ceyreste_table_9_P",
+    "prefixe_decor": "zz_cey",
+    "nom_decor": "cey",
+    "fichier_noms": "pc/config/noms-ceyreste.toml",
+    "atelier_par_defaut": "Z:\\acrxs_ceyreste"
   }
 }

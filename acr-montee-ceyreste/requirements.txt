@@ -1,0 +1,10 @@
+numpy
+scipy
+requests
+pyproj
+shapely>=2.1
+rasterio
+matplotlib
+pillow
+scikit-image
+opencv-python-headless

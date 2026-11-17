@@ -13,13 +13,13 @@
    -4.510000228881836
   ],
   "arbres": 5147,
-  "arbustes": 1634,
+  "arbustes": 1628,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_depart_plan_de_masse.png",
-  "taille_mo": 1.15,
+  "taille_mo": 1.17,
   "controle_image": {
-   "pixels_noirs_pct": 0.11,
-   "luminance_moyenne": 95.0
+   "pixels_noirs_pct": 0.1,
+   "luminance_moyenne": 95.8
   }
  },
  "epingle_893": {
@@ -36,13 +36,13 @@
    -480.44000244140625
   ],
   "arbres": 3566,
-  "arbustes": 1283,
+  "arbustes": 1311,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_epingle_893.png",
   "taille_mo": 1.19,
   "controle_image": {
    "pixels_noirs_pct": 0.21,
-   "luminance_moyenne": 88.4
+   "luminance_moyenne": 88.1
   }
  },
  "lacets_1517": {
@@ -58,14 +58,14 @@
    70.3499984741211,
    -765.530029296875
   ],
-  "arbres": 5355,
-  "arbustes": 2781,
+  "arbres": 5354,
+  "arbustes": 2780,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_lacets_1517.png",
   "taille_mo": 0.62,
   "controle_image": {
-   "pixels_noirs_pct": 0.27,
-   "luminance_moyenne": 69.1
+   "pixels_noirs_pct": 0.23,
+   "luminance_moyenne": 70.3
   }
  },
  "ponceau_2026": {
@@ -82,13 +82,13 @@
    -816.8900146484375
   ],
   "arbres": 4528,
-  "arbustes": 2969,
+  "arbustes": 2909,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_ponceau_2026.png",
   "taille_mo": 0.61,
   "controle_image": {
-   "pixels_noirs_pct": 0.26,
-   "luminance_moyenne": 71.6
+   "pixels_noirs_pct": 0.33,
+   "luminance_moyenne": 72.0
   }
  },
  "arrivee_estimee": {
@@ -105,13 +105,13 @@
    -1168.0400390625
   ],
   "arbres": 4569,
-  "arbustes": 4039,
+  "arbustes": 4110,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_arrivee_estimee.png",
   "taille_mo": 1.24,
   "controle_image": {
-   "pixels_noirs_pct": 0.11,
-   "luminance_moyenne": 88.7
+   "pixels_noirs_pct": 0.1,
+   "luminance_moyenne": 90.6
   }
  },
  "controle_horizon": {
@@ -127,13 +127,13 @@
    136.49000549316406,
    -185.88999938964844
   ],
-  "arbres": 5476,
-  "arbustes": 3970,
+  "arbres": 5475,
+  "arbustes": 3943,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_controle_horizon.png",
   "taille_mo": 1.23,
   "controle_image": {
-   "pixels_noirs_pct": 0.34,
+   "pixels_noirs_pct": 0.32,
    "luminance_moyenne": 72.2
   }
  },
@@ -141,23 +141,23 @@
   "pk_oeil": 3650,
   "pk_vise": null,
   "oeil_gltf": [
-   1697.989990234375,
+   1697.949951171875,
    315.4599914550781,
-   -1047.050048828125
+   -1047.030029296875
   ],
   "vise_gltf": [
-   1717.6600341796875,
+   1717.6800537109375,
    155.4600067138672,
-   -1451.5400390625
+   -1451.52001953125
   ],
-  "arbres": 4656,
-  "arbustes": 1739,
+  "arbres": 4655,
+  "arbustes": 1737,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_controle_raccord.png",
   "taille_mo": 0.62,
   "controle_image": {
    "pixels_noirs_pct": 0.0,
-   "luminance_moyenne": 90.0
+   "luminance_moyenne": 90.1
   }
  }
 }

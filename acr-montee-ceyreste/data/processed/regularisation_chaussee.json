@@ -28,11 +28,6 @@
    "source": "interpole"
   },
   {
-   "pk_debut": 2415,
-   "pk_fin": 2415,
-   "source": "lidar+ortho"
-  },
-  {
    "pk_debut": 2928,
    "pk_fin": 2939,
    "source": "ortho"
@@ -42,23 +37,23 @@
   "interpole": {
    "points": 771,
    "axe": {
-    "moyen_m": 0.029,
+    "moyen_m": 0.028,
     "max_m": 0.314
    },
    "gauche": {
-    "moyen_m": 0.103,
-    "max_m": 0.344
+    "moyen_m": 0.104,
+    "max_m": 0.392
    },
    "droite": {
-    "moyen_m": 0.107,
-    "max_m": 0.371
+    "moyen_m": 0.106,
+    "max_m": 0.314
    }
   },
   "lidar": {
-   "points": 2757,
+   "points": 2756,
    "axe": {
-    "moyen_m": 0.025,
-    "max_m": 0.195
+    "moyen_m": 0.024,
+    "max_m": 0.197
    },
    "gauche": {
     "moyen_m": 0.093,
@@ -70,13 +65,13 @@
    }
   },
   "lidar+ortho": {
-   "points": 340,
+   "points": 341,
    "axe": {
     "moyen_m": 0.034,
     "max_m": 0.148
    },
    "gauche": {
-    "moyen_m": 0.09,
+    "moyen_m": 0.089,
     "max_m": 0.199
    },
    "droite": {
@@ -88,55 +83,55 @@
    "points": 51,
    "axe": {
     "moyen_m": 0.052,
-    "max_m": 0.199
+    "max_m": 0.198
    },
    "gauche": {
-    "moyen_m": 0.133,
-    "max_m": 0.394
+    "moyen_m": 0.127,
+    "max_m": 0.344
    },
    "droite": {
-    "moyen_m": 0.102,
+    "moyen_m": 0.103,
     "max_m": 0.287
    }
   }
  },
  "deplacement_max_m": {
   "axe": 0.314,
-  "gauche": 0.394,
-  "droite": 0.371
+  "gauche": 0.392,
+  "droite": 0.314
  },
  "cap_avant_hors_manuel": {
   "axe": {
-   "cassures_sup_5_deg": 11,
+   "cassures_sup_5_deg": 12,
    "ecart_type_deg": 0.82,
    "max_deg": 6.55
   },
   "gauche": {
-   "cassures_sup_5_deg": 66,
+   "cassures_sup_5_deg": 68,
    "ecart_type_deg": 1.19,
    "max_deg": 9.14
   },
   "droite": {
    "cassures_sup_5_deg": 52,
-   "ecart_type_deg": 1.17,
+   "ecart_type_deg": 1.16,
    "max_deg": 9.51
   }
  },
  "cap_apres_hors_manuel": {
   "axe": {
    "cassures_sup_5_deg": 0,
-   "ecart_type_deg": 0.63,
-   "max_deg": 4.44
+   "ecart_type_deg": 0.64,
+   "max_deg": 4.52
   },
   "gauche": {
-   "cassures_sup_5_deg": 0,
-   "ecart_type_deg": 0.64,
-   "max_deg": 4.99
+   "cassures_sup_5_deg": 1,
+   "ecart_type_deg": 0.66,
+   "max_deg": 5.1
   },
   "droite": {
    "cassures_sup_5_deg": 4,
-   "ecart_type_deg": 0.67,
-   "max_deg": 6.03
+   "ecart_type_deg": 0.68,
+   "max_deg": 6.16
   }
  },
  "virages": {
@@ -144,8 +139,8 @@
   "nombre_apres": 39,
   "nets_avant": 40,
   "nets_apres": 36,
-  "controles_sur_le_rayon": 31,
-  "pres_d_une_cassure": 8,
+  "controles_sur_le_rayon": 32,
+  "pres_d_une_cassure": 7,
   "ecart_de_rayon_median_pct": 0.8,
   "ecart_de_rayon_max_pct": 8.0,
   "detail": [
@@ -308,9 +303,9 @@
     "sens": "gauche",
     "cap_avant_deg": 195.0,
     "cap_apres_deg": 195.1,
-    "rayon_avant_m": 15.4,
-    "rayon_apres_m": 15.5,
-    "ecart_rayon_pct": 0.2,
+    "rayon_avant_m": 15.6,
+    "rayon_apres_m": 15.6,
+    "ecart_rayon_pct": 0.1,
     "pres_d_une_cassure": false,
     "franc": true
    },
@@ -341,8 +336,8 @@
     "sens": "droite",
     "cap_avant_deg": -19.6,
     "cap_apres_deg": -19.6,
-    "rayon_avant_m": 41.8,
-    "rayon_apres_m": 41.9,
+    "rayon_avant_m": 41.7,
+    "rayon_apres_m": 41.8,
     "ecart_rayon_pct": 0.3,
     "pres_d_une_cassure": false,
     "franc": true
@@ -352,7 +347,7 @@
     "sens": "droite",
     "cap_avant_deg": -13.1,
     "cap_apres_deg": -12.4,
-    "rayon_avant_m": 40.2,
+    "rayon_avant_m": 40.1,
     "rayon_apres_m": 36.9,
     "ecart_rayon_pct": -8.0,
     "pres_d_une_cassure": false,
@@ -362,9 +357,9 @@
     "pk": 2064,
     "sens": "droite",
     "cap_avant_deg": -14.7,
-    "cap_apres_deg": -14.6,
-    "rayon_avant_m": 29.0,
-    "rayon_apres_m": 29.2,
+    "cap_apres_deg": -14.7,
+    "rayon_avant_m": 29.1,
+    "rayon_apres_m": 29.3,
     "ecart_rayon_pct": 0.8,
     "pres_d_une_cassure": false,
     "franc": true
@@ -381,10 +376,10 @@
     "franc": true
    },
    {
-    "pk": 2173,
+    "pk": 2172,
     "sens": "droite",
-    "cap_avant_deg": -100.8,
-    "cap_apres_deg": -100.8,
+    "cap_avant_deg": -100.9,
+    "cap_apres_deg": -100.9,
     "rayon_avant_m": 19.2,
     "rayon_apres_m": 19.4,
     "ecart_rayon_pct": 0.9,
@@ -406,20 +401,20 @@
     "pk": 2376,
     "sens": "droite",
     "cap_avant_deg": -160.7,
-    "cap_apres_deg": -160.6,
-    "rayon_avant_m": 27.4,
-    "rayon_apres_m": 28.6,
-    "ecart_rayon_pct": 4.6,
-    "pres_d_une_cassure": true,
+    "cap_apres_deg": -160.5,
+    "rayon_avant_m": 27.6,
+    "rayon_apres_m": 28.4,
+    "ecart_rayon_pct": 2.8,
+    "pres_d_une_cassure": false,
     "franc": true
    },
    {
     "pk": 2567,
     "sens": "droite",
-    "cap_avant_deg": -50.7,
-    "cap_apres_deg": -50.7,
-    "rayon_avant_m": 30.6,
-    "rayon_apres_m": 31.3,
+    "cap_avant_deg": -50.8,
+    "cap_apres_deg": -50.8,
+    "rayon_avant_m": 30.7,
+    "rayon_apres_m": 31.4,
     "ecart_rayon_pct": 2.3,
     "pres_d_une_cassure": false,
     "franc": true
@@ -429,9 +424,9 @@
     "sens": "gauche",
     "cap_avant_deg": 12.5,
     "cap_apres_deg": 12.5,
-    "rayon_avant_m": 56.7,
+    "rayon_avant_m": 56.8,
     "rayon_apres_m": 56.4,
-    "ecart_rayon_pct": -0.5,
+    "ecart_rayon_pct": -0.8,
     "pres_d_une_cassure": false,
     "franc": true
    },
@@ -440,9 +435,9 @@
     "sens": "gauche",
     "cap_avant_deg": 86.1,
     "cap_apres_deg": 86.1,
-    "rayon_avant_m": 23.6,
-    "rayon_apres_m": 23.6,
-    "ecart_rayon_pct": 0.2,
+    "rayon_avant_m": 23.4,
+    "rayon_apres_m": 23.4,
+    "ecart_rayon_pct": 0.3,
     "pres_d_une_cassure": false,
     "franc": true
    },
@@ -450,10 +445,10 @@
     "pk": 2741,
     "sens": "droite",
     "cap_avant_deg": -36.6,
-    "cap_apres_deg": -36.6,
-    "rayon_avant_m": 39.1,
-    "rayon_apres_m": 40.2,
-    "ecart_rayon_pct": 2.8,
+    "cap_apres_deg": -36.7,
+    "rayon_avant_m": 39.9,
+    "rayon_apres_m": 41.0,
+    "ecart_rayon_pct": 2.6,
     "pres_d_une_cassure": false,
     "franc": true
    },
@@ -462,8 +457,8 @@
     "sens": "droite",
     "cap_avant_deg": -29.8,
     "cap_apres_deg": -29.9,
-    "rayon_avant_m": 35.6,
-    "rayon_apres_m": 36.4,
+    "rayon_avant_m": 35.5,
+    "rayon_apres_m": 36.3,
     "ecart_rayon_pct": 2.2,
     "pres_d_une_cassure": false,
     "franc": true
@@ -474,8 +469,8 @@
     "cap_avant_deg": 104.1,
     "cap_apres_deg": 104.0,
     "rayon_avant_m": 21.5,
-    "rayon_apres_m": 21.3,
-    "ecart_rayon_pct": -0.5,
+    "rayon_apres_m": 21.4,
+    "ecart_rayon_pct": -0.6,
     "pres_d_une_cassure": true,
     "franc": true
    },
@@ -495,8 +490,8 @@
     "sens": "droite",
     "cap_avant_deg": -40.7,
     "cap_apres_deg": -40.6,
-    "rayon_avant_m": 41.6,
-    "rayon_apres_m": 42.7,
+    "rayon_avant_m": 41.4,
+    "rayon_apres_m": 42.5,
     "ecart_rayon_pct": 2.6,
     "pres_d_une_cassure": false,
     "franc": true
@@ -505,7 +500,7 @@
     "pk": 3256,
     "sens": "gauche",
     "cap_avant_deg": 33.9,
-    "cap_apres_deg": 33.9,
+    "cap_apres_deg": 34.0,
     "rayon_avant_m": 20.7,
     "rayon_apres_m": 20.8,
     "ecart_rayon_pct": 0.6,
@@ -513,13 +508,13 @@
     "franc": true
    },
    {
-    "pk": 3294,
+    "pk": 3293,
     "sens": "droite",
-    "cap_avant_deg": -13.2,
-    "cap_apres_deg": -13.2,
-    "rayon_avant_m": 50.3,
-    "rayon_apres_m": 50.5,
-    "ecart_rayon_pct": 0.4,
+    "cap_avant_deg": -12.8,
+    "cap_apres_deg": -12.8,
+    "rayon_avant_m": 49.6,
+    "rayon_apres_m": 50.0,
+    "ecart_rayon_pct": 0.7,
     "pres_d_une_cassure": false,
     "franc": true
    },
@@ -528,8 +523,8 @@
     "sens": "droite",
     "cap_avant_deg": -41.1,
     "cap_apres_deg": -41.1,
-    "rayon_avant_m": 38.3,
-    "rayon_apres_m": 38.5,
+    "rayon_avant_m": 38.1,
+    "rayon_apres_m": 38.4,
     "ecart_rayon_pct": 0.6,
     "pres_d_une_cassure": false,
     "franc": true
@@ -537,11 +532,11 @@
    {
     "pk": 3402,
     "sens": "gauche",
-    "cap_avant_deg": 40.0,
-    "cap_apres_deg": 40.0,
+    "cap_avant_deg": 40.3,
+    "cap_apres_deg": 40.3,
     "rayon_avant_m": 27.0,
     "rayon_apres_m": 27.3,
-    "ecart_rayon_pct": 1.4,
+    "ecart_rayon_pct": 1.3,
     "pres_d_une_cassure": false,
     "franc": true
    },
@@ -550,9 +545,9 @@
     "sens": "droite",
     "cap_avant_deg": -27.3,
     "cap_apres_deg": -27.3,
-    "rayon_avant_m": 64.6,
-    "rayon_apres_m": 65.2,
-    "ecart_rayon_pct": 0.9,
+    "rayon_avant_m": 64.8,
+    "rayon_apres_m": 65.3,
+    "ecart_rayon_pct": 0.8,
     "pres_d_une_cassure": false,
     "franc": true
    },
@@ -561,7 +556,7 @@
     "sens": "droite",
     "cap_avant_deg": -14.0,
     "cap_apres_deg": -13.9,
-    "rayon_avant_m": 49.5,
+    "rayon_avant_m": 49.6,
     "rayon_apres_m": 50.2,
     "ecart_rayon_pct": 1.4,
     "pres_d_une_cassure": false,
@@ -572,17 +567,17 @@
     "sens": "gauche",
     "cap_avant_deg": 25.8,
     "cap_apres_deg": 25.7,
-    "rayon_avant_m": 58.5,
+    "rayon_avant_m": 58.3,
     "rayon_apres_m": 58.6,
-    "ecart_rayon_pct": 0.2,
+    "ecart_rayon_pct": 0.4,
     "pres_d_une_cassure": false,
     "franc": true
    }
   ]
  },
  "longueur_es_m": {
-  "avant": 3020.35,
-  "apres": 3019.62
+  "avant": 3020.36,
+  "apres": 3019.63
  },
  "largeur_m": {
   "mediane_avant": 7.27,
@@ -650,36 +645,36 @@
   "lambda_devers": 1000.0,
   "tolerance_devers_pct": 2.0,
   "deplacement_axe_m": {
-   "moyen": 0.003,
-   "max": 0.035
+   "moyen": 0.0031,
+   "max": 0.034
   },
   "deplacement_bords_m": {
-   "moyen": 0.0079,
+   "moyen": 0.008,
    "max": 0.234
   },
   "acceleration_verticale_a_90_kmh_g": {
    "axe_avant": [
-    0.196,
+    0.197,
     1.67,
     "maximum au PK 3021"
    ],
    "axe_apres": [
-    0.092,
+    0.093,
     0.53,
     "maximum au PK 457"
    ],
    "bord_gauche_avant": [
-    0.411,
+    0.413,
     3.6,
     "maximum au PK 2041"
    ],
    "bord_gauche_apres": [
-    0.167,
+    0.166,
     1.09,
     "maximum au PK 422"
    ],
    "bord_droit_avant": [
-    0.368,
+    0.369,
     4.11,
     "maximum au PK 202"
    ],
@@ -690,7 +685,7 @@
    ]
   },
   "devers_aberrants": {
-   "metres": 57,
+   "metres": 63,
    "troncons": [
     [
      -45,
@@ -727,6 +722,10 @@
     [
      2661,
      2666
+    ],
+    [
+     2918,
+     2923
     ]
    ]
   }

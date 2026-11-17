@@ -54,13 +54,13 @@
     200
    ]
   ],
-  "sommets": 740596,
-  "triangles": 1479560,
+  "sommets": 740594,
+  "triangles": 1479556,
   "dalles": 255,
   "bord": {
-   "boucles_de_bord": 3,
+   "boucles_de_bord": 5,
    "sommets_bord_exterieur": 1137,
-   "aretes_de_bord_total": 8973
+   "aretes_de_bord_total": 8976
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -72,7 +72,7 @@
    "m_par_px_max": 10.94
   },
   "relecture": {
-   "taille_mo": 58.62,
+   "taille_mo": 59.22,
    "maillages": 255,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,
@@ -128,7 +128,7 @@
   "bord": {
    "boucles_de_bord": 3,
    "sommets_bord_exterieur": 569,
-   "aretes_de_bord_total": 8388
+   "aretes_de_bord_total": 8389
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -163,5 +163,5 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 508
+ "duree_s": 124
 }

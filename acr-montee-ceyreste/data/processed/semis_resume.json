@@ -16,17 +16,17 @@
   "vegetation_basse_0.4_2m_ha": 5.6
  },
  "arbres": {
-  "nombre": 17902,
+  "nombre": 17900,
   "rejets": {
    "apex_passe_1": 11982,
-   "apex_passes_2_3_couvert_restant": 9823,
-   "houppier_trop_petit_1m2_ou_3m2_en_passes_2_3": 3796,
+   "apex_passes_2_3_couvert_restant": 9822,
+   "houppier_trop_petit_1m2_ou_3m2_en_passes_2_3": 3797,
    "mineral_ndvi_moyen_inf_-0.05_et_moins_de_15pct_pixels_verts": 107,
    "apex_au_dessus_de_la_chaussee_tronc_reporte_au_bord": 77
   },
   "par_passe": {
    "apex (passe 1)": 11807,
-   "couvert restant (passes 2-3)": 6095
+   "couvert restant (passes 2-3)": 6093
   },
   "a_moins_de_40m": 4816,
   "a_moins_de_15m": 1231,
@@ -41,7 +41,7 @@
     "4-6": 3161,
     "6-8": 2856,
     "8-10": 1233,
-    "10-12": 1396,
+    "10-12": 1394,
     "12-14": 2219,
     "14-16": 2166,
     "16-18": 1330,
@@ -58,53 +58,53 @@
   },
   "par_essence": {
    "pin d'Alep": {
-    "nombre": 13509,
-    "pct": 75.5,
-    "hauteur_mediane_m": 11.6
+    "nombre": 13504,
+    "pct": 75.4,
+    "hauteur_mediane_m": 11.7
    },
    "chêne vert": {
-    "nombre": 2886,
-    "pct": 16.1,
+    "nombre": 2901,
+    "pct": 16.2,
     "hauteur_mediane_m": 5.6
    },
    "olivier": {
-    "nombre": 572,
-    "pct": 3.2,
-    "hauteur_mediane_m": 4.4
+    "nombre": 585,
+    "pct": 3.3,
+    "hauteur_mediane_m": 4.3
    },
    "cyprès": {
-    "nombre": 532,
-    "pct": 3.0,
+    "nombre": 525,
+    "pct": 2.9,
     "hauteur_mediane_m": 6.1
    },
    "chêne pubescent": {
-    "nombre": 403,
-    "pct": 2.3,
-    "hauteur_mediane_m": 5.7
+    "nombre": 385,
+    "pct": 2.2,
+    "hauteur_mediane_m": 5.9
    }
   },
   "par_famille_jeu": {
-   "Foliage/Trees/AleppoPine": 13509,
-   "Foliage/Trees/Smoketree": 1617,
-   "Foliage/Trees/BlackmapleMonteCarlo": 1269,
-   "Foliage/Trees/Olivetree": 572,
-   "Foliage/Trees/Cypress": 532,
-   "Foliage/Trees/Blackmaple": 403
+   "Foliage/Trees/AleppoPine": 13504,
+   "Foliage/Trees/Smoketree": 1626,
+   "Foliage/Trees/BlackmapleMonteCarlo": 1275,
+   "Foliage/Trees/Olivetree": 585,
+   "Foliage/Trees/Cypress": 525,
+   "Foliage/Trees/Blackmaple": 385
   }
  },
  "arbustes": {
-  "nombre": 31516,
+  "nombre": 31548,
   "par_famille_jeu": {
-   "Foliage/Trees/Boxthorn": 21228,
-   "Foliage/GroundCover/BroomCreeper": 10288
+   "Foliage/Trees/Boxthorn": 21239,
+   "Foliage/GroundCover/BroomCreeper": 10309
   },
-  "densite_par_ha_de_vegetation_basse": 5629
+  "densite_par_ha_de_vegetation_basse": 5635
  },
  "par_type_de_formation": {
   "Forêt fermée de pin d'Alep pur": {
    "surface_ha": 66.7,
-   "arbres": 14579,
-   "arbres_par_ha": 219,
+   "arbres": 14578,
+   "arbres_par_ha": 218,
    "couvert_sup_2m_pct": 79.3,
    "part_couvert_dans_houppiers_pct": 89.4,
    "hauteur_mediane_m": 10.9,
@@ -116,11 +116,11 @@
   },
   "Forêt fermée à mélange de feuillus prépondérants et conifères": {
    "surface_ha": 2.0,
-   "arbres": 467,
-   "arbres_par_ha": 232,
+   "arbres": 466,
+   "arbres_par_ha": 231,
    "couvert_sup_2m_pct": 85.0,
    "part_couvert_dans_houppiers_pct": 89.3,
-   "hauteur_mediane_m": 8.3,
+   "hauteur_mediane_m": 8.2,
    "essences_tirees_pct": {
     "chêne vert": 50,
     "pin d'Alep": 40,
@@ -135,9 +135,9 @@
    "part_couvert_dans_houppiers_pct": 91.4,
    "hauteur_mediane_m": 11.8,
    "essences_tirees_pct": {
-    "pin d'Alep": 77,
+    "pin d'Alep": 83,
     "chêne vert": 15,
-    "chêne pubescent": 8
+    "chêne pubescent": 2
    }
   },
   "hors forêt : haie (BD TOPO, 4 m)": {
@@ -148,7 +148,7 @@
    "part_couvert_dans_houppiers_pct": 87.4,
    "hauteur_mediane_m": 6.2,
    "essences_tirees_pct": {
-    "cyprès": 39,
+    "cyprès": 38,
     "chêne vert": 28,
     "pin d'Alep": 23,
     "chêne pubescent": 11
@@ -162,8 +162,8 @@
    "part_couvert_dans_houppiers_pct": 78.6,
    "hauteur_mediane_m": 4.6,
    "essences_tirees_pct": {
-    "chêne vert": 28,
-    "olivier": 27,
+    "olivier": 28,
+    "chêne vert": 27,
     "pin d'Alep": 26,
     "cyprès": 19
    }
@@ -176,8 +176,8 @@
    "part_couvert_dans_houppiers_pct": 85.8,
    "hauteur_mediane_m": 12.1,
    "essences_tirees_pct": {
-    "pin d'Alep": 62,
-    "chêne vert": 34,
+    "pin d'Alep": 66,
+    "chêne vert": 32,
     "chêne pubescent": 3
    }
   }
@@ -425,7 +425,7 @@
  ],
  "fichiers": [
   "data/processed/arbres.csv",
-  "data/processed/arbustes.csv"
+  "data/processed/arbustes.csv.gz"
  ],
  "extraits_planche": [
   {

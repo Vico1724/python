@@ -8,20 +8,20 @@
   },
   "distances": {
     "croissantes": true,
-    "pas_min_m": 0.69,
-    "pas_median_m": 9.53,
+    "pas_min_m": 0.68,
+    "pas_median_m": 9.73,
     "pas_max_m": 10.08
   },
   "longueur_competitive": {
-    "length_m": 3024.38,
-    "distance_finish_moins_start": 3024.38,
+    "length_m": 3024.39,
+    "distance_finish_moins_start": 3024.39,
     "polyligne_portes_3d_m": 3022.52,
     "pk_arrivee_plan_m": 3020.5
   },
   "gauche_droite": {
-    "portes": 534,
-    "droite_du_cote_cross_f_Y": 534,
-    "gauche_du_cote_oppose": 534,
+    "portes": 533,
+    "droite_du_cote_cross_f_Y": 533,
+    "gauche_du_cote_oppose": 533,
     "demi_largeur_droite_min_m": 2.42,
     "demi_largeur_gauche_min_m": 2.41,
     "width_coherente": true
@@ -31,62 +31,62 @@
     "coherents": 27
   },
   "sol_sous_portes": {
-    "portes": 534,
+    "portes": 533,
     "sans_sol": 0,
     "max_abs_dy_m": 0.0,
     "moyenne_abs_dy_m": 0.0,
     "hors_ponts": {
-      "portes": 534,
+      "portes": 533,
       "max_abs_dy_m": 0.0
     }
   },
   "sol_le_long_de_l_axe_tous_les_m": {
-    "echantillons": 4275,
+    "echantillons": 4274,
     "sans_sol": 0,
-    "max_abs_dy_a_la_corde_m": 0.042
+    "max_abs_dy_a_la_corde_m": 0.038
   },
   "sol_aux_bords_95pct": {
-    "points": 1068,
+    "points": 1066,
     "sans_sol": 0,
     "max_abs_dy_m": 0.0,
     "p99_abs_dy_m": 0.0
   },
   "sol_5m_au_dela_des_bords": {
-    "points": 1068,
+    "points": 1066,
     "sans_sol": 0
   },
   "sol_30cm_au_dela_des_bords": {
-    "points": 1068,
+    "points": 1066,
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 367477,
+    "triangles": 367474,
     "par_code": {
       "TSD+": 15672,
-      "DBK+": 46887,
-      "GRS+": 304918
+      "DBK+": 46878,
+      "GRS+": 304924
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 367477
+    "triangles_annonces_dans_stage_json": 367474
   },
   "obstacles": {
-    "instances": 1433,
+    "instances": 1432,
     "gabarits": 3,
     "formes": {
       "box": 1007,
-      "cylinder": 426
+      "cylinder": 425
     },
     "parois": {
       "PM_WallRock": 989,
       "PM_WallConcrete": 18,
-      "PM_WallWoodTreeTrunks": 426
+      "PM_WallWoodTreeTrunks": 425
     },
     "parois_absentes_du_catalogue": [],
-    "penetration_max_dans_la_chaussee_m": 0.047,
+    "penetration_max_dans_la_chaussee_m": 0.046,
     "intrusions_plus_de_30_cm": 0,
     "sommets_source_hors_paves_max_m": 0.001,
     "retires_sur_la_chaussee": 1,
-    "objects_collision_triangles": 24012
+    "objects_collision_triangles": 23984
   },
   "annexes": {
     "points_testes": 0,
