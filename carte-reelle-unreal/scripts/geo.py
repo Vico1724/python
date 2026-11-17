@@ -43,6 +43,7 @@ COUCHE_ORTHO = "HR.ORTHOIMAGERY.ORTHOPHOTOS"                                  # 
 COUCHE_IRC = "ORTHOIMAGERY.ORTHOPHOTOS.IRC"                                   # infrarouge couleur (PIR, R, V)
 PANORAMAX = "https://api.panoramax.xyz/api/search"
 # Overpass : le serveur principal est souvent saturé ; on essaie les miroirs publics dans l'ordre.
+# Ordre constaté en novembre 2026 : le miroir mail.ru répondait quand overpass-api.de était saturé.
 OVERPASS = ["https://overpass-api.de/api/interpreter",
             "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
             "https://overpass.kumi.systems/api/interpreter",
@@ -348,7 +349,7 @@ def _cle(*parts) -> str:
 
 
 def requete(url: str, params: dict | None = None, data: dict | None = None, essais: int = 4,
-            delai: int = 180, accepte=None) -> requests.Response:
+            delai=180, accepte=None) -> requests.Response:
     """GET (ou POST si data) avec reprises 2, 4, 8 s sur erreur réseau ou 5xx/429."""
     dernier = None
     for i in range(essais):
@@ -452,7 +453,7 @@ def wfs_couche(cache: Path, typename: str, bbox_lonlat, srs: str = "EPSG:2154", 
     return list(feats.values())
 
 
-def overpass(cache: Path, requete_ql: str, delai: int = 90) -> tuple[dict | None, str]:
+def overpass(cache: Path, requete_ql: str, delai: int = 60) -> tuple[dict | None, str]:
     """Interroge Overpass (miroirs successifs). Renvoie (réponse, serveur) ou (None, raison)."""
     cle = _cle(requete_ql)
     p = cache / "osm" / f"{cle}.json"
@@ -460,18 +461,21 @@ def overpass(cache: Path, requete_ql: str, delai: int = 90) -> tuple[dict | None
         Compteur.cache += 1
         return json.loads(p.read_text(encoding="utf-8")), "cache"
     raisons = []
-    for url in OVERPASS:
-        try:
-            r = requete(url, data={"data": requete_ql}, essais=1, delai=delai,
-                        accepte=lambda r: "json" in r.headers.get("content-type", ""))
-            d = r.json()
-            p.parent.mkdir(parents=True, exist_ok=True)
-            p.write_text(json.dumps(d), encoding="utf-8")
-            Compteur.octets += len(r.content)
-            Compteur.requetes += 1
-            return d, url
-        except Exception as e:      # serveur saturé ou injoignable : miroir suivant
-            raisons.append(f"{url.split('/')[2]} : {str(e)[:80]}")
+    # Les miroirs renvoient souvent des 504 passagers : deux tours sur la liste, connexion limitée à 10 s.
+    for tour in range(2):
+        for url in OVERPASS:
+            try:
+                r = requete(url, data={"data": requete_ql}, essais=1, delai=(10, delai),
+                            accepte=lambda r: "json" in r.headers.get("content-type", ""))
+                d = r.json()
+                p.parent.mkdir(parents=True, exist_ok=True)
+                p.write_text(json.dumps(d), encoding="utf-8")
+                Compteur.octets += len(r.content)
+                Compteur.requetes += 1
+                return d, url
+            except Exception as e:      # serveur saturé ou injoignable : miroir suivant
+                raisons.append(f"{url.split('/')[2]} : {str(e)[:80]}")
+        time.sleep(5)
     return None, " ; ".join(raisons)
 
 

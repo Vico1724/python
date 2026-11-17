@@ -89,7 +89,7 @@ def requete_osm(bbox_lonlat):
     s, o, n, e = bbox_lonlat[1], bbox_lonlat[0], bbox_lonlat[3], bbox_lonlat[2]
     bb = f"({s:.6f},{o:.6f},{n:.6f},{e:.6f})"
     parts = "".join(f"{q}{bb};" for filtre, _ in OSM.values() for q in filtre.split(";"))
-    return f"[out:json][timeout:90];({parts});out geom tags;"
+    return f"[out:json][timeout:50];({parts});out geom tags;"
 
 
 def geom_osm(el):
