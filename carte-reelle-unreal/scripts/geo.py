@@ -20,6 +20,7 @@ import hashlib
 import io
 import json
 import math
+import sys
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -425,10 +426,10 @@ def wms_mosaique(cache: Path, couche: str, bornes, res: float, fmt="image/geotif
         else:
             im = np.asarray(Image.open(io.BytesIO(b)).convert("RGB"))
             out[:, r:r + h, c:c + w] = np.moveaxis(im, -1, 0)[:bandes]
-        if progres:
-            print(f"\r  {progres} : dalle {k}/{len(dalles)}", end="", flush=True)
-    if progres:
-        print("\r" + " " * 60 + "\r", end="", flush=True)
+        if progres and sys.stderr.isatty():          # progression visible en console seulement
+            print(f"\r  {progres} : dalle {k}/{len(dalles)}", end="", flush=True, file=sys.stderr)
+    if progres and sys.stderr.isatty():
+        print("\r" + " " * 60 + "\r", end="", flush=True, file=sys.stderr)
     return out
 
 
