@@ -15,14 +15,12 @@ douceur au MNT sur MARGE_M. Le raccord à la chaussée reste celui de 08_modele_
 Lu par 08_modele_3d.py (MNT.z : terrain du décor et de la physique, donc 09, 12, 14) et par mobilier.py
 (Route.z_terrain : altitude des objets posés au bord de la route).
 """
-import sys
 import json
 from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+RACINE = Path(__file__).resolve().parents[1]
 MARGE_M = 3.0            # raccord au MNT autour de l'emprise
 ECART_MAX_M = 0.12       # points écartés de l'ajustement du plan (bourrelet, creux)
 NOTES = ("parking du Grand Caunet", "accès nord du parking")
@@ -49,8 +47,8 @@ def zones():
     from shapely.geometry import Polygon
     import mobilier
     _zones = []
-    fz = fichier_ref("zone_depart.json")
-    fa = fichier_ref("aires_et_pistes.json")
+    fz = RACINE / "data" / "reference" / "zone_depart.json"
+    fa = RACINE / "data" / "reference" / "aires_et_pistes.json"
     fm = RACINE / "data" / "raw" / "mnt_lidarhd_50cm.tif"
     if not (fz.exists() and fa.exists() and fm.exists()):
         return _zones

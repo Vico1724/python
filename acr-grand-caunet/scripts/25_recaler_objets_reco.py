@@ -26,7 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import calage_reco  # noqa: E402
 
-from acr_geo import REF  # noqa: E402  data/reference de l'épreuve
+REF = Path(__file__).resolve().parents[1] / "data" / "reference"
 CARREFOUR = (3600.0, 3712.0)
 DEJA = ("déplacé le 13/11/2026", "glissée de")
 

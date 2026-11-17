@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
-from acr_geo import FIG, LAYER_ORTHO, OUT, l93, load_official, longueur_es, param, wms_tile
+from acr_geo import FIG, LAYER_ORTHO, OUT, l93, load_official, longueur_es, wms_tile
 
 INK, INK2, MUTED, GRID, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#fcfcfb"
 BLUE, ORANGE = "#2a78d6", "#eb6834"
@@ -51,9 +51,9 @@ def carte(off, prof, cal):
     fig, ax = plt.subplots(figsize=(13, 13 * (y1 - y0) / (x1 - x0) + 0.6))
     ax.imshow(ortho(x0, y0, x1, y1, 2.0), extent=(x0, x1, y0, y1))
     st = (prof["pk_m"] >= 0) & (prof["pk_m"] <= L)
-    ax.plot(prof["x_l93"], prof["y_l93"], color="white", lw=1.2, ls=(0, (3, 2)), label=param("legende_liaison", "liaison (CH, point stop)"))
+    ax.plot(prof["x_l93"], prof["y_l93"], color="white", lw=1.2, ls=(0, (3, 2)), label="liaison (CH, point stop)")
     ax.plot(prof["x_l93"][st], prof["y_l93"][st], color="white", lw=4.5)
-    ax.plot(prof["x_l93"][st], prof["y_l93"][st], color=ORANGE, lw=2.6, label=param("legende_es", "ES chronométrée (6,702 km)"))
+    ax.plot(prof["x_l93"][st], prof["y_l93"][st], color=ORANGE, lw=2.6, label="ES chronométrée (6,702 km)")
     for k in range(1000, int(L), 1000):
         x, y = at(prof, k)
         ax.plot(x, y, "o", ms=6, mfc="white", mec=INK, mew=1)
@@ -71,9 +71,8 @@ def carte(off, prof, cal):
             ax.annotate("CH" if p["role"] == "controle_horaire" else "STOP", (x, y),
                         xytext=(-28, 6) if p["role"] == "controle_horaire" else (7, 5),
                         textcoords="offset points", color=INK, fontsize=9, path_effects=HALO)
-    for txt, k, dx, dy in param("annotations_carte", (("D3D\nForêt de Font-Blanche", 1500, -150, 0),
-                                                       ("Le Lion d'Or\n(carrefour D3D / D1)", 3619, 20, 12),
-                                                       ("D1 vers Roquefort-la-Bédoule", 5200, -60, 22))):
+    for txt, k, dx, dy in (("D3D\nForêt de Font-Blanche", 1500, -150, 0), ("Le Lion d'Or\n(carrefour D3D / D1)", 3619, 20, 12),
+                           ("D1 vers Roquefort-la-Bédoule", 5200, -60, 22)):
         x, y = at(prof, k)
         ax.annotate(txt, (x, y), xytext=(dx, dy), textcoords="offset points", color=INK, fontsize=9,
                     style="italic", path_effects=HALO, ha="left")
@@ -84,8 +83,7 @@ def carte(off, prof, cal):
                 weight="bold", path_effects=HALO, arrowprops=dict(arrowstyle="<-", color=INK, lw=1.8))
     ax.set_xlim(x0, x1), ax.set_ylim(y0, y1), ax.set_axis_off()
     ax.legend(loc="lower right", frameon=True, facecolor="white", framealpha=0.9, edgecolor="none")
-    ax.set_title(param("titre_carte", "ES Le Grand Caunet - Sainte-Baume Rallye 2026 - tracé reconstitué sur BD TOPO, "
-                                      "fond BD ORTHO (IGN)"),
+    ax.set_title("ES Le Grand Caunet - Sainte-Baume Rallye 2026 - tracé reconstitué sur BD TOPO, fond BD ORTHO (IGN)",
                  color=INK, fontsize=12, loc="left")
     fig.savefig(FIG / "carte_generale.png", dpi=110, bbox_inches="tight")
     plt.close(fig)
@@ -114,7 +112,7 @@ def profil(off, prof, bridges):
         a1.annotate(f"{name} {zi:.0f} m", (k, zi), xytext=(8 if ha == "left" else -8, 8),
                     textcoords="offset points", ha=ha, color=INK, weight="bold")
     i = z.argmin()
-    a1.annotate(f"point bas {z[i]:.0f} m" + param("note_point_bas", "\n(Le Lion d'Or)"), (pk[i], z[i]), xytext=(70, -4), textcoords="offset points",
+    a1.annotate(f"point bas {z[i]:.0f} m\n(Le Lion d'Or)", (pk[i], z[i]), xytext=(70, -4), textcoords="offset points",
                 ha="left", va="center", color=INK)
     bx = [(float(b["pk_debut_m"]) + float(b["pk_fin_m"])) / 2 for b in bridges
           if b["dans_es"] == "True" and float(b["hauteur_sous_tablier_m"]) >= 1]
@@ -123,7 +121,7 @@ def profil(off, prof, bridges):
     a1.set_ylabel("altitude de la chaussée (m)")
     a1.set_ylim(z.min() - 12, z.max() + 14)
     a1.grid(axis="y", color=GRID, lw=0.8)
-    a1.set_title(param("titre_profil", "ES Le Grand Caunet - profil en long (LiDAR HD IGN, 0,5 m)"), color=INK, loc="left", fontsize=12)
+    a1.set_title("ES Le Grand Caunet - profil en long (LiDAR HD IGN, 0,5 m)", color=INK, loc="left", fontsize=12)
     a2.axhline(0, color="#c3c2b7", lw=1)
     a2.fill_between(pk, sl, 0, color=BLUE, alpha=0.25, lw=0)
     a2.plot(pk, sl, color=BLUE, lw=1)
@@ -149,7 +147,7 @@ def zoom(off, prof, cal, name, ids, key, pk_line):
         ax.annotate(f"{k}", (x, y), xytext=(4, 4), textcoords="offset points", color="white", fontsize=7,
                     path_effects=[pe.withStroke(linewidth=2, foreground=INK)])
     ax.plot(cx, cy, "s", ms=11, mfc=ORANGE, mec="white", mew=2, label=f"ligne retenue (PK {pk_line:.0f})")
-    for i in [i for i in ids if i in pts]:
+    for i in ids:
         ax.plot(*pts[i], "X", ms=11, mfc="white", mec=INK, mew=1.2)
         ax.annotate(f"{i} (coordonnée imprimée)", pts[i], xytext=(8, 8), textcoords="offset points",
                     color=INK, fontsize=9, path_effects=HALO)

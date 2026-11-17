@@ -35,7 +35,7 @@ $work = Join-Path $Travail 'construction'
 $paks = Get-Paks $Jeu
 $vanilla = Join-Path $work 'vanilla\acr\Content\Paks'
 $table = 'acr/Content/Data/Database/Main/TrackSelection/DT_TracksVariants.uasset'
-$nom = $script:NomTable
+$nom = 'zz_acrxs_grandcaunet_table_9_P'
 
 function New-Vue([string]$racine, [System.IO.FileInfo[]]$fichiers) {
     if (Test-Path $racine) { [IO.Directory]::Delete($racine, $true) }

@@ -19,13 +19,12 @@ from xml.sax.saxutils import escape
 
 import numpy as np
 
-from acr_geo import OUT, RAW, REF, cumdist, param, l93, load_official, project_on_line, wgs, write_geojson, fichier_ref
+from acr_geo import OUT, RAW, REF, cumdist, l93, load_official, project_on_line, wgs, write_geojson
 
 # L'ES emprunte la D3D puis la D1 (carte officielle + avis de fermeture de routes) ;
 # la D3 ne sert qu'à l'approche du CH. On n'accroche les points officiels qu'à ces
 # routes : sinon un point imprimé à 5 décimales peut tomber sur une piste voisine.
-STAGE_ROADS = set(param("routes", ["D3D", "D1", "D3"]))   # epreuve.json : routes de l'épreuve
-NOM = param("nom_trace", "ES Le Grand Caunet 2026")
+STAGE_ROADS = {"D3D", "D1", "D3"}
 KEEP = ("cleabs", "cpx_numero", "nature", "largeur_de_chaussee", "nombre_de_voies",
         "sens_de_circulation", "importance", "nom_collaboratif_gauche",
         "precision_planimetrique", "precision_altimetrique",
@@ -130,14 +129,11 @@ def main():
     # l'écart médian sur les 9 points intermédiaires.
     proj = {p["id"]: project_on_line(axis[:, :2], l93(p["lon"], p["lat"])) for p in pts}
     inter = [p for p in pts if p["role"] == "intermediaire"]
-    if inter:
-        s0_cal = float(np.median([proj[p["id"]][0] - p["pk_km"] * 1000 for p in inter]))
-    else:   # épreuve sans PK officiels intermédiaires : l'origine est la projection du départ retenu
-        s0_cal = proj["DEPART"][0]
+    s0_cal = float(np.median([proj[p["id"]][0] - p["pk_km"] * 1000 for p in inter]))
     # Lignes retenues (data/reference/lignes_es.json) : le PK 0 du projet est la ligne de
     # départ réelle, décalée par rapport à l'origine des PK officiels ; l'arrivée garde
     # sa position dans le calage officiel.
-    lignes = json.loads((fichier_ref("lignes_es.json")).read_text(encoding="utf-8"))
+    lignes = json.loads((REF / "lignes_es.json").read_text(encoding="utf-8"))
     dec = lignes["depart"]["decalage_par_rapport_au_calage_pk_m"]
     s0 = s0_cal + dec
     pk = s - s0
@@ -154,7 +150,7 @@ def main():
                      "ecart_pk_m": round(si - s0 - p["pk_km"] * 1000, 1),
                      "ecart_lateral_m": round(d, 1)})
     # résidus du calage officiel (hors décalage du départ retenu)
-    res = np.array([r["ecart_pk_m"] for r in rows if r["role"] == "intermediaire"] or [-dec]) + dec
+    res = np.array([r["ecart_pk_m"] for r in rows if r["role"] == "intermediaire"]) + dec
 
     def at(k):
         x, y = (float(np.interp(k, pk, axis[:, c])) for c in (0, 1))
@@ -162,9 +158,9 @@ def main():
         return {"pk_m": k, "lat": round(lat, 6), "lon": round(lon, 6), "x_l93": round(x, 1), "y_l93": round(y, 1)}
 
     (OUT / "calage_es.json").write_text(json.dumps({
-        "methode": param("methode_calage", "calage officiel = médiane des écarts sur les 9 points intermédiaires de la "
-                                           "carte ; PK 0 du projet = ligne de départ retenue (lignes_es.json), décalée "
-                                           "de ce calage ; PK mesurés en distance horizontale sur l'axe BD TOPO"),
+        "methode": "calage officiel = médiane des écarts sur les 9 points intermédiaires de la carte ; "
+                   "PK 0 du projet = ligne de départ retenue (lignes_es.json), décalée de ce calage ; "
+                   "PK mesurés en distance horizontale sur l'axe BD TOPO",
         "decalage_depart_par_rapport_au_calage_officiel_m": dec,
         "longueur_officielle_m": L_off,
         "longueur_entre_lignes_axe_bdtopo_m": L,
@@ -204,30 +200,29 @@ def main():
 
     i0, i1 = np.searchsorted(pk, 0.0), np.searchsorted(pk, L)
     feats = [
-        {"type": "Feature", "properties": {"name": param("nom_secteur", "ES Le Grand Caunet - secteur chronométré"),
-                                           "longueur_officielle_m": round(L_off), "longueur_axe_m": L},
+        {"type": "Feature", "properties": {"name": "ES Le Grand Caunet - secteur chronométré",
+                                           "longueur_officielle_m": 6702, "longueur_axe_m": L},
          "geometry": {"type": "LineString", "coordinates": ll(axis[i0:i1])}},
         {"type": "Feature", "properties": {"name": "Tracé complet (CH -> fin de zone fermée)"},
          "geometry": {"type": "LineString", "coordinates": ll(axis)}},
     ] + [{"type": "Feature", "properties": {k: r[k] for k in ("id", "role", "pk_officiel_m", "pk_mesure_m")}
           | {"label": p["label"]},
           "geometry": {"type": "Point", "coordinates": [p["lon"], p["lat"]]}} for p, r in zip(pts, rows)]
-    write_geojson(OUT / "trace_es.geojson", feats, NOM)
+    write_geojson(OUT / "trace_es.geojson", feats, "ES Le Grand Caunet 2026")
 
     trk = "".join(f'<trkpt lat="{la}" lon="{lo}"><ele>{z}</ele></trkpt>' for lo, la, z in ll(axis))
     wpt = "".join(f'<wpt lat="{p["lat"]}" lon="{p["lon"]}"><name>{escape(p["id"])}</name>'
                   f'<desc>{escape(p["label"])}</desc></wpt>' for p in pts)
     (OUT / "trace_es.gpx").write_text(
-        '<?xml version="1.0" encoding="UTF-8"?><gpx version="1.1" creator="' + param("dossier", "acr-grand-caunet") + '" '
+        '<?xml version="1.0" encoding="UTF-8"?><gpx version="1.1" creator="acr-grand-caunet" '
         'xmlns="http://www.topografix.com/GPX/1/1">' + wpt +
-        f"<trk><name>{escape(NOM)}</name><trkseg>{trk}</trkseg></trk></gpx>", encoding="utf-8")
+        f"<trk><name>ES Le Grand Caunet 2026</name><trkseg>{trk}</trkseg></trk></gpx>", encoding="utf-8")
     coords = " ".join(f"{lo},{la},{z}" for lo, la, z in ll(axis))
     pm = "".join(f"<Placemark><name>{escape(p['id'])}</name><description>{escape(p['label'])}</description>"
                  f"<Point><coordinates>{p['lon']},{p['lat']},0</coordinates></Point></Placemark>" for p in pts)
     (OUT / "trace_es.kml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document>'
-        f"<name>{escape(NOM)}</name><Placemark>"
-        "<name>Tracé</name><Style><LineStyle>"
+        "<name>ES Le Grand Caunet 2026</name><Placemark><name>Tracé</name><Style><LineStyle>"
         "<color>ff0000ff</color><width>4</width></LineStyle></Style><LineString><tessellate>1</tessellate>"
         f"<coordinates>{coords}</coordinates></LineString></Placemark>{pm}</Document></kml>", encoding="utf-8")
 

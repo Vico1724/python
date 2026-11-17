@@ -55,14 +55,14 @@ from PIL import Image
 from scipy.spatial import cKDTree
 
 import regles_arbres
-from acr_geo import FIG, OUT, REF, ROOT, fichier_ref, param, ouvrir_csv
+from acr_geo import FIG, OUT, REF, ROOT
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(m08)
 
 MOD = ROOT / "modele"
-_f = fichier_ref("matieres_du_jeu.json")
+_f = ROOT / "data" / "reference" / "matieres_du_jeu.json"
 MATIERES = json.loads(_f.read_text(encoding="utf-8")) if _f.exists() else {}       # matières du jeu choisies le 13/11/2026
 
 
@@ -74,7 +74,7 @@ def reglages_du_sol():
             r[k].update(c.get(k, {}))
     return r if any(r.values()) else None
 KIT = ROOT / "pc" / "etape2_unreal"
-NOM = param("nom_niveau", "GrandCaunet")
+NOM = "GrandCaunet"
 UE = f"/Game/Environments/{NOM}"
 NIVEAU = f"/Game/Levels/{NOM}"
 GRILLE0 = (913500.0, 6240500.0)     # coin sud-ouest commun des grilles de dalles (Lambert-93)
@@ -110,7 +110,7 @@ FALAISE_ROCHE = {"pente_deg": 48.0, "a_m": 2000.0, "uv_m": 17.5, "pente_bord_deg
 # (strates) sont retirés, la teinte est moins claire et moins couvrante, et elle n'est plus posée au-delà du relief à
 # 5 m (6 km environ) : le relief à 25 m ne montre pas les falaises, les seuils abaissés teintaient des versants entiers.
 TRONCON = 200.0                       # m de PK par tronçon de route et d'ouvrages
-PK_E3 = float(param("pk_essai_e3", 1653.0))                       # pont à parapets de pierre : la dalle qui le contient
+PK_E3 = 1653.0                        # pont à parapets de pierre : la dalle qui le contient
 PK_E4 = (1600.0, 1800.0)              # 200 m autour de ce pont
 SEED = 16
 M_SIMPLE = "/Game/Materials/General/Masters/M_Simple"
@@ -239,8 +239,7 @@ class Axes:
 
 def points_de_controle(ch, ref):
     out = []
-    pk_arr = float(param("pk_arrivee_controle", 6736.0))
-    for nom, pk in (("départ (PK 0)", 0.0), (f"arrivée (PK {pk_arr:.0f})", pk_arr)):
+    for nom, pk in (("départ (PK 0)", 0.0), ("arrivée (PK 6736)", 6736.0)):
         i = int(np.argmin(np.abs(ch["pk"] - pk)))
         x, y, z = (float(v) for v in ch["A"][i])
         g = m08.to_gltf(np.array([[x, y, z]]), ref)[0].astype(float)
@@ -621,10 +620,9 @@ class Placement:
     (pc/etape2_unreal/releves/placement_etape1.json, tenu à jour par outils/relever_placement.py)."""
 
     def __init__(self, ref):
-        f = KIT / "releves" / "placement_etape1.json" if ROOT == KIT.parents[1] else ROOT / "pc" / "releves" / "placement_etape1.json"
-        d = json.loads(f.read_text(encoding="utf-8"))   # placement propre à l'épreuve (relevé après sa route physique)
+        d = json.loads((KIT / "releves" / "placement_etape1.json").read_text(encoding="utf-8"))
         self.p = d["placement"]
-        o = json.loads((ROOT / "export" / "stage_ir" / param("id_lieu", "grand_caunet") / "stage.json").read_text(encoding="utf-8"))["coordinates"]["origin"]
+        o = json.loads((ROOT / "export" / "stage_ir" / "grand_caunet" / "stage.json").read_text(encoding="utf-8"))["coordinates"]["origin"]
         self.ox, self.oy = o["lambert93_x_m"], o["lambert93_y_m"]
         self.x0, self.y0 = ref["x0"], ref["y0"]
         t = math.radians(self.p["theta_deg"])
@@ -715,7 +713,7 @@ BORD = {"pas_m": 0.25, "mord_m": (0.03, 0.42), "dehors_m": 0.6, "au_dessus_m": 0
 
 def bande_de_bord(ch, ref):
     """(pos glTF, normales, triangles) de la bande de sol qui mord sur chaque bord de l'enrobé."""
-    f = fichier_ref("ouvrages_parapets.json")
+    f = REF / "ouvrages_parapets.json"
     murs = {"gauche": [], "droite": []}
     if f.exists():                      # contre un parapet ou un mur au ras du bord, la bande s'arrête au pied du mur
         cfg = json.loads(f.read_text(encoding="utf-8"))
@@ -1985,7 +1983,7 @@ def instances(P, ref, sol, ruban, pkf, args):
         if loin_buissons:
             table("garrigue", loin_buissons, lambda r: BUISSONS["maillage"], lambda r: float(r["hauteur_m"]), ["diametre_m"], sol_loin=sol_loin,
                   reglages=lambda chemin: {"distances_de_disparition_cm": ARBRES_LOIN["buissons"]["disparition_cm"], "ombre_dynamique": False})
-    with ouvrir_csv(OUT / "arbustes.csv") as f:
+    with gzip.open(OUT / "arbustes.csv.gz", "rt", encoding="utf-8") as f:
         arbustes = list(csv.DictReader(f))
     buissons_jeu = args.buissons == "jeu" and not P.echantillon
     if buissons_jeu:
@@ -2022,7 +2020,7 @@ def glissieres_du_jeu(P, ref, ch, pkf, args):
     glissière (data/reference/glissieres.json), à la place de nos lisses unies. Lu dans le jeu le 12/11/2026 : module
     de 4 m le long de +X, lisse côté +Y (à droite du sens de pose), poteaux derrière, tous les 2 m ; un maillage de
     début, un de milieu, un de fin. La physique ne change pas : elle vient des boîtes de l'étape 1, sur la même ligne."""
-    cfg = json.loads((fichier_ref("glissieres.json")).read_text(encoding="utf-8"))
+    cfg = json.loads((REF / "glissieres.json").read_text(encoding="utf-8"))
     dec = cfg["geometrie"]["decalage_depuis_bord_m"]["valeur"]
     M = GLISSIERE["module_m"]
     rangs = {"debut": [], "milieu": [], "fin": []}
@@ -2517,7 +2515,7 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
             s += Lt["recouvrement"] * L
     # 2. aires (gravillons ou terre sur le bord de l'enrobé) et débouchés de chemins
     Ai, Db = DETAILS["aires"], DETAILS["debouches"]
-    emprises = json.loads((fichier_ref("aires_et_pistes.json")).read_text(encoding="utf-8"))["emprises"]
+    emprises = json.loads((REF / "aires_et_pistes.json").read_text(encoding="utf-8"))["emprises"]
     aires = {}
     # (seulement les aires qui touchent l'enrobé : pas les places dégagées à quelques mètres du bord)
     for e in sorted((e for e in emprises if e["genre"] == "aire" and e["decalage_m"] <= 1.5), key=lambda e: e["pk_debut_m"]):
@@ -3105,7 +3103,7 @@ def parois_rocheuses(P, ref, sol):
         sur le terrain, jupe à 40 cm sous terre ; aucun sommet visible au-dessus du vide ;
       - la roche s'efface là où le terrain est plat, s'arrête à la hauteur relevée ou là où le talus cesse de monter.
     """
-    f = fichier_ref("parois_rocheuses.json")
+    f = ROOT / "data" / "reference" / "parois_rocheuses.json"
     if not f.exists():
         return 0
     import mobilier
@@ -3115,7 +3113,7 @@ def parois_rocheuses(P, ref, sol):
     materiau_roche(P)
     # parapets et murs du même côté : la roche, allongée de quelques mètres au-delà du relevé, ne doit pas mordre dessus
     murs = []
-    ouvrages = json.loads(fichier_ref("ouvrages_parapets.json").read_text(encoding="utf-8"))
+    ouvrages = json.loads((ROOT / "data" / "reference" / "ouvrages_parapets.json").read_text(encoding="utf-8"))
     for o in ouvrages["parapets_hors_tablier"] + ouvrages["ouvrages"]:
         for c in ("gauche", "droite"):
             m = o.get(c)

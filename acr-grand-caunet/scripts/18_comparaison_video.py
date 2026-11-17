@@ -26,8 +26,7 @@ import cv2
 import numpy as np
 from scipy.signal import savgol_filter
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+RACINE = Path(__file__).resolve().parents[1]
 SEUIL_DEG = 12.0
 LARGEUR = 384
 

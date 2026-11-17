@@ -49,7 +49,7 @@ param(
 $ErrorActionPreference = 'Stop'
 if (-not $Jeu) { $Jeu = $script:JeuParDefaut }
 if (-not $Travail) { $Travail = $script:TravailParDefaut }
-if (-not $Ir) { $Ir = $script:DossierIr }
+if (-not $Ir) { $Ir = Join-Path $script:Projet 'export\stage_ir\grand_caunet' }
 Start-Journal $Travail '4_construire'
 Assert-Jeu $Jeu
 $src = Get-Source $Travail
@@ -160,7 +160,7 @@ if (-not $GarderDecor) {
     $a += @('--scenery', $scenery, '--scenery-actor-hidden', '1')                                                   # build.ps1 l.168-171
 }
 if ($Textures -and $visuels) { $a += @('--visuals-textured', '1') }
-if ($Noms) { $a += @('--names', $script:FichierNoms) }
+if ($Noms) { $a += @('--names', (Join-Path $script:Projet 'pc\config\noms-grand-caunet.toml')) }
 if ($Ciel) { $a += @('--sky', (Join-Path $cfg 'sky.toml'), '--sky-section', 'france') }
 if ($Personnages) {
     # retouche 0005 : position et lacet des 10 personnages du niveau persistant réécrits sur place (Characters.cs)

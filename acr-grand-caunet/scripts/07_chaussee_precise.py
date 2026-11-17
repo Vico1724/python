@@ -55,20 +55,19 @@ from scipy.ndimage import (gaussian_filter1d, grey_closing, map_coordinates, med
 from scipy.signal import savgol_filter
 from shapely.geometry import LineString, Point, box
 
-from acr_geo import FIG, OUT, RAW, ROOT, cumdist, resample, wgs, wms_tile, write_geojson, fichier_ref, param
+from acr_geo import FIG, OUT, RAW, ROOT, cumdist, resample, wgs, wms_tile, write_geojson
 
 LAYER_IRC = "ORTHOIMAGERY.ORTHOPHOTOS.IRC"   # ortho infrarouge couleur 20 cm (PIR, R, V)
 TILE = 500
-PK_MIN, PK_MAX = param("pk_bdtopo_traites", (-200.0, 7460.0))  # PK BD TOPO traités : du début de l'axe (CH) au point stop + marge
+PK_MIN, PK_MAX = -200.0, 7460.0   # PK BD TOPO traités : du début de l'axe (CH) au point stop + marge
 def _pk_stop() -> float:
     """PK du point stop officiel sur l'axe BD TOPO (points_officiels_recales.csv)."""
     with open(OUT / "points_officiels_recales.csv", encoding="utf-8") as f:
-        return next(float(r["pk_mesure_m"]) for r in csv.DictReader(f) if r["id"] == param("id_point_fin", "STOP"))
+        return next(float(r["pk_mesure_m"]) for r in csv.DictReader(f) if r["id"] == "STOP")
 
 
 PK_STOP_BDTOPO = _pk_stop()
-SORTIE_APRES_STOP = float(param("sortie_apres_fin_m", 60.0))
-NOM_COURT = param("nom_court", "ES Le Grand Caunet")   # titres des figures         # m conservés après le point stop
+SORTIE_APRES_STOP = 60.0          # m conservés après le point stop
 
 DT, HALF = 0.25, 15.0             # profils en travers : pas et demi-largeur (m)
 T = np.arange(-HALF, HALF + DT / 2, DT)   # t > 0 : à droite dans le sens de marche
@@ -86,7 +85,7 @@ INK, INK2, MUTED, GRID, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#
 BLUE, ORANGE, GREEN, RED = "#2a78d6", "#eb6834", "#2f9e5b", "#d03b3b"
 SRC_COLORS = {"lidar+ortho": GREEN, "lidar": BLUE, "ortho": ORANGE, "interpole": RED, "manuel": "#8a4fd0",
               "video": "#c2477f"}
-CORRECTIONS = fichier_ref("chaussee_corrections.json")
+CORRECTIONS = ROOT / "data" / "reference" / "chaussee_corrections.json"
 RACCORD = 10.0                    # m : raccord progressif aux extrémités d'une zone corrigée
 plt.rcParams.update({"font.size": 9, "axes.edgecolor": "#c3c2b7", "axes.labelcolor": INK2,
                      "xtick.color": MUTED, "ytick.color": MUTED, "figure.facecolor": SURFACE,
@@ -573,8 +572,6 @@ def planche(R, old_xy, pk, axe, gl, dr, src, picks, h, name, dpi, grille=(2, 4),
     """Extraits d'ortho RVB (2h x 2h m) centrés sur le nouvel axe, avec les tracés superposés."""
     nl, nc = grille
     fig, axs = plt.subplots(nl, nc, figsize=(4 * nc, 4.8 * nl))
-    for ax in axs.flat[len(picks):]:     # cases sans extrait (épreuve courte)
-        ax.set_axis_off()
     px = round(2 * h / 0.2)
     halo = [pe.withStroke(linewidth=2.6, foreground=INK)]
     for ax, (k, label) in zip(axs.flat, picks):
@@ -602,7 +599,7 @@ def planche(R, old_xy, pk, axe, gl, dr, src, picks, h, name, dpi, grille=(2, 4),
     leg = fig.legend(h_, l_, loc="lower center", ncol=5, frameon=True, facecolor="#9a9990", edgecolor="none")
     for t in leg.get_texts():
         t.set_color("white")
-    fig.suptitle(titre or f"{NOM_COURT} - bords de chaussée détectés (LiDAR HD + ortho IRC), fond BD ORTHO "
+    fig.suptitle(titre or f"ES Le Grand Caunet - bords de chaussée détectés (LiDAR HD + ortho IRC), fond BD ORTHO "
                  f"20 cm, extraits de {2 * h:.0f} m - PK sur le nouvel axe", x=0.01, ha="left", color=INK, fontsize=11)
     fig.tight_layout(rect=(0, 0.09 / nl, 1, 1 - 0.06 / nl), h_pad=3.0)
     path = FIG3 / name
@@ -673,7 +670,7 @@ def largeur_avant_apres(pk, avant, apres, video, corr_l, L):
     ax.set_ylabel("largeur de chaussée (m)")
     ax.grid(axis="y", color=GRID, lw=0.8)
     ax.legend(loc="upper right", ncol=3, frameon=False, fontsize=8)
-    ax.set_title(f"{NOM_COURT} - largeur avant et après les corrections du relevé vidéo",
+    ax.set_title("ES Le Grand Caunet - largeur avant et après les corrections du relevé vidéo",
                  loc="left", color=INK, fontsize=11)
     fig.savefig(FIG3 / "largeur_avant_apres.png", dpi=110, bbox_inches="tight")
     plt.close(fig)
@@ -694,7 +691,7 @@ def courbes(pk, width, offset, src, bridges, L):
     hs = [plt.Rectangle((0, 0), 1, 1, color=c) for c in SRC_COLORS.values()] + [plt.Rectangle((0, 0), 1, 1, color=GRID)]
     a1.legend(hs, [f"source : {k}" for k in SRC_COLORS] + ["pont / ponceau"], loc="upper right", ncol=5,
               frameon=False, fontsize=8)
-    a1.set_title(f"{NOM_COURT} - largeur mesurée et décalage du nouvel axe par rapport à la BD TOPO",
+    a1.set_title("ES Le Grand Caunet - largeur mesurée et décalage du nouvel axe par rapport à la BD TOPO",
                  loc="left", color=INK, fontsize=11)
     a2.fill_between(pk, offset, 0, color=BLUE, alpha=0.25, lw=0)
     a2.plot(pk, offset, color=BLUE, lw=0.9)
@@ -877,7 +874,7 @@ def main():
                     f"(point stop au PK {pk_stop:.0f} du nouvel axe)")
     q = {
         "longueur_depart_arrivee_m": round(float(L), 1),
-        "longueur_officielle_m": round(json.loads((OUT / "calage_es.json").read_text(encoding="utf-8"))["longueur_officielle_m"]),
+        "longueur_officielle_m": 6702,
         "largeur_m": {"mediane": round(float(np.median(W)), 2), "p5": round(float(np.percentile(W, 5)), 2),
                       "p95": round(float(np.percentile(W, 95)), 2)},
         "part_lineaire_par_source_pct": {k: round(float((S == k).mean() * 100), 1) for k in SRC_COLORS},
@@ -967,12 +964,10 @@ def main():
         far_bridge &= (pk < a - 40) | (pk > b + 40)
     dense = int(np.argmax(np.where((pk > 100) & (pk < L - 100) & far_bridge, cover, 0)))
     picks = [(pk[dense], f"couvert dense ({cover[dense] * 100:.0f} % de la chaussée sous les arbres)"),
-             (pk[imax], f"décalage BD TOPO max ({abs(off[imax]):.1f} m)"), *[tuple(e) for e in param("extraits_chaussee", [(3620.0, "carrefour du Lion d'Or")])]]
+             (pk[imax], f"décalage BD TOPO max ({abs(off[imax]):.1f} m)"), (3620.0, "carrefour du Lion d'Or")]
     b5 = max(spans, key=lambda ab: ab[1] - ab[0]) if spans else (5500, 5540)
     picks.append(((b5[0] + b5[1]) / 2, "pont (plus long ouvrage)"))
     for k in (400, 1300, 2300, 4700, 6400, 5100, 2900):
-        if k > L:                 # épreuve plus courte que le Grand Caunet : pas d'extrait au-delà de l'arrivée
-            continue
         if len(picks) == 8:
             break
         if all(abs(k - p) > 250 for p, _ in picks):
@@ -980,8 +975,7 @@ def main():
     picks.sort()
     planche(R, old_xy, pk, A, G, D, src, picks, 40, "planche_extraits.png", 110)
     planche(R, old_xy, pk, A, G, D, src, picks, 15, "planche_zooms_30m.png", 110)
-    ext = [(pk[0] + 30, param("libelle_debut_axe", "approche : contrôle horaire, carrefour D3 / D3D")),
-           (float(param("pk_extrait_approche", -90.0)), param("libelle_approche", "approche : parking")),
+    ext = [(pk[0] + 30, "approche : contrôle horaire, carrefour D3 / D3D"), (-90.0, "approche : parking"),
            (0.0, "départ"), (L, "arrivée"), (pk_stop, "point stop"), (pk[-1] - 25, "fin de la sortie (stop + 60 m)")]
     planche(R, old_xy, pk, A, G, D, src, ext, 30, "planche_extremites.png", 95, grille=(2, 3),
             titre="Extrémités : approche (avant départ) et sortie (après arrivée), extraits de 60 m - PK sur le nouvel axe")

@@ -21,34 +21,9 @@ Deux façons de placer le décor :
 """
 import json
 import math
-import os
 from pathlib import Path
 
-# Racine de l'épreuve. Le kit sert au Grand Caunet (défaut) et à toute épreuve qui le réutilise : la variable
-# d'environnement ACR_EPREUVE désigne alors son dossier (epreuve.json, modele/, export/, paquet_unreal/, data/).
-# L'éditeur Unreal lancé depuis ce shell hérite de la variable. Sans elle, rien ne change.
-CODE = Path(__file__).resolve().parents[3]
-RACINE = Path(os.environ["ACR_EPREUVE"]).resolve() if os.environ.get("ACR_EPREUVE") else CODE
-_EP = (json.loads((RACINE / "epreuve.json").read_text(encoding="utf-8"))
-       if RACINE != CODE and (RACINE / "epreuve.json").exists() else {})
-LIEU = _EP.get("id_lieu", "grand_caunet")                 # dossier export/stage_ir/<LIEU>
-NOM_NIVEAU = _EP.get("nom_niveau", "GrandCaunet")         # /Game/Environments/<NOM_NIVEAU>, Saved/<NOM_NIVEAU>
-# relevé du placement de la route physique : propre à chaque épreuve
-RELEVE_PLACEMENT = (CODE / "pc" / "etape2_unreal" / "releves" / "placement_etape1.json" if RACINE == CODE
-                    else RACINE / "pc" / "releves" / "placement_etape1.json")
-
-
-def stage_json():
-    """export/stage_ir/<lieu>/stage.json de l'épreuve."""
-    return RACINE / "export" / "stage_ir" / LIEU / "stage.json"
-
-
-def reference(nom):
-    """data/reference/<nom> de l'épreuve ; à défaut, celui du Grand Caunet s'il est déclaré partagé (epreuve.json)."""
-    p = RACINE / "data" / "reference" / nom
-    if p.exists() or RACINE == CODE or nom not in _EP.get("references_partagees", []):
-        return p
-    return CODE / "data" / "reference" / nom
+RACINE = Path(__file__).resolve().parents[3]
 
 
 def charger_repere(chemin=None):

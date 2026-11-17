@@ -72,7 +72,7 @@ foreach ($e in @("bin\retoc\bin\retoc.exe", "bin\acr-ref\acr-ref.exe")) {
 }
 $u = Get-Usmap $Travail
 if (Test-Path $u) { Ok "fichier de correspondance présent : $u ($([math]::Round((Get-Item $u).Length / 1KB)) Ko)" } else { Write-Host "  fichier de correspondance (.usmap) pas encore produit (3_usmap.ps1)" }
-$ir = $script:DossierIr
+$ir = Join-Path $script:Projet 'export\stage_ir\grand_caunet'
 foreach ($f in 'stage.json', 'collision.glb') {
     if (Test-Path (Join-Path $ir $f)) { Ok "export : $f" } else { Pb "export : $f absent de $ir (voir LISEZMOI, « si l'export manque »)" }
 }

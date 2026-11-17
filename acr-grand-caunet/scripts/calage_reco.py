@@ -8,8 +8,6 @@ from pathlib import Path
 
 import numpy as np
 
-from acr_geo import fichier_ref
-
 _R = None
 
 
@@ -17,7 +15,7 @@ def corrige(pk):
     """PK réel pour un PK lu sur la vidéo de reconnaissance (nombre ou tableau)."""
     global _R
     if _R is None:
-        f = fichier_ref("calage_reco_reperes.json")
+        f = Path(__file__).resolve().parents[1] / "data" / "reference" / "calage_reco_reperes.json"
         _R = np.array([[r[0], r[1]] for r in json.loads(f.read_text(encoding="utf-8"))["reperes"]], float)
     pk = np.asarray(pk, float)
     return pk + np.interp(pk, _R[:, 0], _R[:, 1])

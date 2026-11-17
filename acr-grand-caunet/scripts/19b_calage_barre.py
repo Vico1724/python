@@ -18,7 +18,6 @@ route (data/processed/chaussee_precise.csv).
 Usage : python -P scripts/19b_calage_barre.py <vidéo du jeu> <nom> [--a 31.5 --b 6696.4]
 À lancer avec « python -P » depuis un dossier neutre si la vidéo est un fichier téléchargé.
 """
-import sys
 import argparse
 import json
 from pathlib import Path
@@ -26,8 +25,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+RACINE = Path(__file__).resolve().parents[1]
 BARRE = {"x": (612.0, 1307.0), "y": (52.0, 57.0), "largeur_de_reference": 1920.0, "blanc": 228}
 
 

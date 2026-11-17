@@ -302,7 +302,7 @@ def v_poser_decalque(mi, pos, rotation, demi_taille_cm, couleur, ordre, label, d
 
 
 def v_dossier_saved():
-    return os.path.join(unreal.Paths.project_saved_dir(), R.NOM_NIVEAU)
+    return os.path.join(unreal.Paths.project_saved_dir(), "GrandCaunet")
 
 
 # =====================================================================================================
@@ -356,7 +356,9 @@ class Construction:
         self.placement = self.origine_ir = None
         if a.placement:
             self.placement = json.load(open(a.placement, encoding="utf-8"))["placement"]
-            self.origine_ir = json.load(open(R.stage_json(), encoding="utf-8"))["coordinates"]["origin"]   # épreuve
+            racine = os.path.abspath(os.path.join(KIT, "..", ".."))
+            self.origine_ir = json.load(open(os.path.join(racine, "export", "stage_ir", "grand_caunet", "stage.json"),
+                                             encoding="utf-8"))["coordinates"]["origin"]
             self.rep = R.charger_repere()
             # le sol « façon jeu » est découpé d'après le placement : le paquet et la pose doivent utiliser le même
             sol = self.man.get("sol", {}).get("placement")

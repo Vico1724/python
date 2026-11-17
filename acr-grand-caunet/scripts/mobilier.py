@@ -9,7 +9,6 @@ Chaque objet rendu par `objets()` est un dictionnaire : type, maillage_jeu, x, y
 terrain, ou du bord de chaussée si le terrain n'est pas connu), pk, cote, dir (vecteur unitaire est / nord du sens de
 la course en ce point), lacet_relatif_deg, collision (ou None), source.
 """
-import sys
 import csv
 import json
 import math
@@ -17,9 +16,8 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
-FICHIER = fichier_ref("mobilier_bord_de_route.json")
+RACINE = Path(__file__).resolve().parents[1]
+FICHIER = RACINE / "data" / "reference" / "mobilier_bord_de_route.json"
 CREUX_MAX_M = 1.5
 PORTEE_MIN_M = 30.0
 
