@@ -1,0 +1,15 @@
+{
+ "nom": "exemple_couloir",
+ "description": "Couloir de 200 m de large le long d'environ 1 km de route. Le tracé peut aussi venir d'un fichier : {\"type\": \"trace\", \"fichier\": \"trace.gpx\", \"largeur_couloir_m\": 200} (GPX, KML ou GeoJSON, chemin relatif à ce fichier).",
+ "emprise": {"type": "trace", "largeur_couloir_m": 200,
+             "coordonnees": [[5.595076, 43.199434], [5.596733, 43.198537], [5.597431, 43.198037], [5.598063, 43.197376],
+                             [5.599137, 43.195843], [5.600173, 43.194635], [5.601277, 43.193773], [5.602721, 43.193018]]},
+ "marge_m": 30,
+ "resolution_terrain_m": 1.0,
+ "taille_heightmap": "auto",
+ "resolution_ortho_m": 0.5,
+ "lointain": {"rayon_m": 3000, "pas_m": 25, "texture_px": 2048},
+ "vegetation": {"methode": "auto"},
+ "photos_rue": {"vignettes": false},
+ "osm": true
+}
