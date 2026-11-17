@@ -1,0 +1,25 @@
+{
+  "methode": "aucun PK officiel publié : PK 0 = projection du départ retenu (carrefour du Plan de Masse) sur l'axe BD TOPO de la D3 ; arrivée = PK de la longueur retenue (3,0 km, estimée) ; PK en distance horizontale",
+  "decalage_depart_par_rapport_au_calage_officiel_m": 0,
+  "longueur_officielle_m": 3000.0,
+  "longueur_entre_lignes_axe_bdtopo_m": 3000,
+  "depart_cale": {
+    "pk_m": 0.0,
+    "lat": 43.223129,
+    "lon": 5.649044,
+    "x_l93": 915326.0,
+    "y_l93": 6239603.8
+  },
+  "arrivee_calee": {
+    "pk_m": 3000,
+    "lat": 43.233432,
+    "lon": 5.662952,
+    "x_l93": 916417.4,
+    "y_l93": 6240786.5
+  },
+  "ecart_type_residus_intermediaires_m": 0.0,
+  "residu_max_intermediaires_m": 0.0,
+  "arrivee_imprimee_pk_mesure_m": 2999.7,
+  "depart_imprime_ecart_lateral_m": 0.4,
+  "incertitude_position_lignes_m": 15
+}

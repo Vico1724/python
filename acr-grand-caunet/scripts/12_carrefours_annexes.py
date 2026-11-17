@@ -43,7 +43,7 @@ from PIL import Image
 from scipy.spatial import Delaunay, cKDTree
 from shapely.geometry import LineString, Point, Polygon, mapping
 
-from acr_geo import FIG, OUT, REF, ROOT, TO_WGS, write_geojson
+from acr_geo import FIG, OUT, REF, ROOT, TO_WGS, write_geojson, ref
 
 _spec = importlib.util.spec_from_file_location("route_ouvrages", Path(__file__).with_name("11_route_ouvrages.py"))
 m11 = importlib.util.module_from_spec(_spec)
@@ -993,7 +993,7 @@ def _barriere(e, mnt, ref):
 def constructions_depart(ch, mnt, ref):
     """Section « constructions de la zone de départ » : maillages du décor (à ajouter à annexes.glb), volumes de collision
     (annexes_collision.glb), bilan et éléments du plan de contrôle."""
-    f = REF / "zone_depart.json"
+    f = ref("zone_depart.json")
     if not f.exists():
         return [], [], {}, []
     cfg = json.loads(f.read_text(encoding="utf-8")).get("constructions", [])
@@ -1261,7 +1261,7 @@ def prolongement(e, mnt, ruban, deja, ref, cle, k):
 # --- programme principal ---------------------------------------------------------------------------------
 def main():
     t0 = time.time()
-    cfg = json.loads((REF / "carrefours_annexes.json").read_text(encoding="utf-8"))
+    cfg = json.loads((ref("carrefours_annexes.json")).read_text(encoding="utf-8"))
     ch = m08.chaussee()
     mnt = m08.MNT()
     ref = json.loads((MOD / "repere.json").read_text(encoding="utf-8"))

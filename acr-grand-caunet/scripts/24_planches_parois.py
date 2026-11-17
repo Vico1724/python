@@ -13,6 +13,7 @@ Usage (vidéo = fichier téléchargé : lancer avec « python -P » depuis un do
                                             [--zones fichier.json]   (zones en plus : [{"pk": [a, b], "cote": "gauche"}])
 Sortie : figures/reco_parois/paroi_NN_<pk début>-<pk fin>_<côté>_p<k>.jpg (hors dépôt) et index.json.
 """
+import sys
 import argparse
 import json
 from pathlib import Path
@@ -20,7 +21,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-RACINE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 
 
 def main():
@@ -33,7 +35,7 @@ def main():
     ap.add_argument("--zones")
     a = ap.parse_args()
     tab = np.array(json.loads((RACINE / "data" / "processed" / "calage_reco.json").read_text(encoding="utf-8"))["table_t_s_pk_m"])
-    parois = json.loads((RACINE / "data" / "reference" / "parois_rocheuses.json").read_text(encoding="utf-8"))["parois"]
+    parois = json.loads((ref("parois_rocheuses.json")).read_text(encoding="utf-8"))["parois"]
     zones = [{"pk": [e["pk_debut_m"], e["pk_fin_m"]], "cote": e["cote"], "genre": e["genre"], "hauteur_m": e["hauteur_m"]} for e in parois]
     if a.zones:
         zones += json.loads(Path(a.zones).read_text(encoding="utf-8"))

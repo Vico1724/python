@@ -20,6 +20,7 @@ Usage : python scripts/19_calage_video.py <vidéo> --nom reco [--reperes data/re
                                           [--planches 20]   (planches d'images tous les 20 m, dans figures/<nom>/)
 Sorties : data/processed/calage_<nom>.json (table t_s -> pk_m, échelle, résidus).
 """
+import sys
 import argparse
 import csv
 import importlib.util
@@ -29,7 +30,8 @@ from pathlib import Path
 import numpy as np
 from scipy.signal import savgol_filter
 
-RACINE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 PAS_S = 0.2
 V_MAX = 32.0            # m/s
 SIGMA_DEG = 0.7         # écart admis entre rotation vue et changement de cap, par pas

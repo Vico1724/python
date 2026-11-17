@@ -36,7 +36,7 @@ from PIL import Image
 from scipy.spatial import cKDTree
 from shapely.geometry import LineString, Polygon
 
-from acr_geo import FIG, OUT, REF, ROOT, l93
+from acr_geo import FIG, OUT, REF, ROOT, l93, ref
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
@@ -457,7 +457,7 @@ def marquage(ch, ref, rg, cfg, decks, ruban):
 def aspect_chaussee(ch, ref, rg, ruban):
     """Pièces d'enrobé plus sombres et fissures pontées (data/reference/aspect_chaussee.json), en bandes minces
     posées sur l'enrobé, sous le marquage. Rend deux maillages (« reprise », « fissure ») et un bilan."""
-    f = REF / "aspect_chaussee.json"
+    f = ref("aspect_chaussee.json")
     if not f.exists():
         return [], {}
     cfg = json.loads(f.read_text(encoding="utf-8"))
@@ -523,7 +523,7 @@ def aspect_chaussee(ch, ref, rg, ruban):
 
 # --- ouvrages ------------------------------------------------------------------------------
 def config_ouvrages(ch, deck):
-    cfg = json.loads((REF / "ouvrages_parapets.json").read_text(encoding="utf-8"))
+    cfg = json.loads((ref("ouvrages_parapets.json")).read_text(encoding="utf-8"))
     dflt = cfg["valeurs_par_defaut"]
     out = []
     for a, b in m08.runs(deck):
@@ -605,7 +605,7 @@ def glissieres(rg, ref, mnt, ch):
     """Glissières simples (data/reference/glissieres.json) : lisse à deux ondes (deux bandes en
     saillie et un creux), poteaux tous les pas_poteaux_m, posés à decalage_depuis_bord_m du bord.
     Renvoie (pièces de rendu par matériau, boîtes de collision, bilan)."""
-    cfg = json.loads((REF / "glissieres.json").read_text(encoding="utf-8"))
+    cfg = json.loads((ref("glissieres.json")).read_text(encoding="utf-8"))
     g = {k: v["valeur"] for k, v in cfg["geometrie"].items()}
     H, hl, sa, pas, sp, dec, anc = (g[k] for k in ("hauteur_haut_lisse_m", "hauteur_lisse_m", "saillie_ondes_m", "pas_poteaux_m",
                                                    "section_poteau_m", "decalage_depuis_bord_m", "ancrage_poteaux_m"))
@@ -894,7 +894,7 @@ def main():
               "on garde repere.json (celui du terrain)")
     rg = Rangs(ch)
     decks, prol = config_ouvrages(ch, deck)
-    cfg_m = json.loads((REF / "marquage_route.json").read_text(encoding="utf-8"))
+    cfg_m = json.loads((ref("marquage_route.json")).read_text(encoding="utf-8"))
     print(f"chaussée : {len(ch['pk'])} rangs, PK {ch['pk'][0]:.0f} à {ch['pk'][-1]:.0f} ; {len(decks)} tabliers")
 
     # --- route habillée
@@ -943,7 +943,7 @@ def main():
                 meshes_ouv.append(fusion(pcs["chaperon"], f"parapet_{nom}_{cote}_chaperon", "chaperon"))
         tableau.append(ligne)
     # parapets hors tablier (relevé vidéo) : pied descendu jusqu'au terrain
-    cfg_par = json.loads((REF / "ouvrages_parapets.json").read_text(encoding="utf-8"))
+    cfg_par = json.loads((ref("ouvrages_parapets.json")).read_text(encoding="utf-8"))
     hors, noms_hors = [], set()
     for e in cfg_par.get("parapets_hors_tablier", []):
         for cote in ("gauche", "droite"):

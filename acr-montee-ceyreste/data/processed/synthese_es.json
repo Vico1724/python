@@ -1,0 +1,43 @@
+{
+  "longueur_officielle_m": 3000.0,
+  "longueur_entre_lignes_axe_bdtopo_m": 3000,
+  "longueur_3d_mesuree_m": 3003.8,
+  "altitude_depart_m": 213.8,
+  "altitude_arrivee_m": 365.6,
+  "altitude_max_m": 365.6,
+  "pk_altitude_max_m": 3000,
+  "altitude_min_m": 213.6,
+  "pk_altitude_min_m": 452,
+  "denivele_positif_m": 155,
+  "denivele_negatif_m": 3,
+  "pente_moyenne_pct": 5.06,
+  "pente_max_montee_pct": 11.8,
+  "pente_max_descente_pct": -4.1,
+  "part_du_parcours_pente_sup_12pct": 0.0,
+  "nombre_virages": 31,
+  "virages_par_categorie": {
+    "1": 8,
+    "2": 7,
+    "3": 6,
+    "4": 2,
+    "épingle": 8
+  },
+  "virage_le_plus_serre": {
+    "n": 13,
+    "pk_corde_m": 893,
+    "sens": "droite",
+    "rayon_mini_m": 9,
+    "angle_deg": 198
+  },
+  "plus_longue_portion_sans_virage_m": {
+    "longueur": 265,
+    "de_pk": 928,
+    "a_pk": 1193
+  },
+  "largeur_chaussee_bdtopo_m_par_longueur": {
+    "D3 - 7 m": 3001
+  },
+  "ouvrages_dans_es": 2,
+  "ecart_moyen_lissage_altitude_cm": 0.7,
+  "avertissement": "rayons et catégories indicatifs (axe BD TOPO, précision 2,5 m) ; à affiner en phase 3"
+}

@@ -1,0 +1,13 @@
+{
+  "note": "Position des lignes. Aucune ligne n'est publiée : départ au carrefour du Plan de Masse (estimé), arrivée au PK 3000 (hypothèse 3,0 km). À vérifier sur une vidéo embarquée d'une édition récente.",
+  "depart": {
+    "decalage_par_rapport_au_calage_pk_m": 0,
+    "source": "articles de presse (départ « au Plan de Masse ») ; ligne placée au carrefour, faute de vidéo",
+    "incertitude_m": 50
+  },
+  "arrivee": {
+    "pk_dans_le_calage_officiel_m": 3000,
+    "source": "longueur annoncée par l'organisateur (3 km) ; variantes 3,1 et 3,5 km",
+    "incertitude_m": 500
+  }
+}

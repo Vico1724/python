@@ -20,9 +20,9 @@ from pathlib import Path
 
 import numpy as np
 
-RACINE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-FICHIER = RACINE / "data" / "reference" / "parois_rocheuses.json"
+from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
+FICHIER = ref("parois_rocheuses.json")
 REGLE = {"pas_m": 2.0, "au_bord_m": (1.0, 2.0, 3.0, 4.0), "glissement_max_m": 30, "cout_par_m": 0.004, "note_suffisante": 0.9,
          "gain_min": 0.1, "note_tres_basse": 0.5, "part_de_hauteur_pour_allonger": 0.8, "jeu_entre_voisines_m": 2.0}
 

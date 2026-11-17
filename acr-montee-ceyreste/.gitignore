@@ -1,0 +1,13 @@
+# Téléchargements bruts volumineux : régénérables par la chaîne (scripts/lancer.py)
+data/raw/
+__pycache__/
+*.pyc
+modele/terrain.glb
+modele/lointain.glb
+modele/terrain_sol.glb
+modele/textures_sol/
+modele/sols_jeu/*.npz
+modele/sols_jeu/*.npy
+paquet_unreal/
+paquet_unreal_*/
+figures/apercu_lointain/

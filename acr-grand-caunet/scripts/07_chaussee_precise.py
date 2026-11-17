@@ -55,7 +55,7 @@ from scipy.ndimage import (gaussian_filter1d, grey_closing, map_coordinates, med
 from scipy.signal import savgol_filter
 from shapely.geometry import LineString, Point, box
 
-from acr_geo import FIG, OUT, RAW, ROOT, cumdist, resample, wgs, wms_tile, write_geojson
+from acr_geo import FIG, OUT, RAW, ROOT, cumdist, resample, wgs, wms_tile, write_geojson, ref
 
 LAYER_IRC = "ORTHOIMAGERY.ORTHOPHOTOS.IRC"   # ortho infrarouge couleur 20 cm (PIR, R, V)
 TILE = 500
@@ -85,7 +85,7 @@ INK, INK2, MUTED, GRID, SURFACE = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#
 BLUE, ORANGE, GREEN, RED = "#2a78d6", "#eb6834", "#2f9e5b", "#d03b3b"
 SRC_COLORS = {"lidar+ortho": GREEN, "lidar": BLUE, "ortho": ORANGE, "interpole": RED, "manuel": "#8a4fd0",
               "video": "#c2477f"}
-CORRECTIONS = ROOT / "data" / "reference" / "chaussee_corrections.json"
+CORRECTIONS = ref("chaussee_corrections.json")
 RACCORD = 10.0                    # m : raccord progressif aux extrémités d'une zone corrigée
 plt.rcParams.update({"font.size": 9, "axes.edgecolor": "#c3c2b7", "axes.labelcolor": INK2,
                      "xtick.color": MUTED, "ytick.color": MUTED, "figure.facecolor": SURFACE,

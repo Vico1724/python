@@ -24,7 +24,8 @@ from pathlib import Path
 import numpy as np
 from scipy.spatial import ConvexHull
 
-RACINE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 DOSSIER_UE = "/Game/Environments/GrandCaunet/Props"
 UV_M = 2.5                         # même dépliage que les parois (ROCHE["uv_m"] dans 16_paquet_unreal.py)
 # nom : (longueur, largeur, hauteur) en mètres, nombre de sommets tirés, graine, part de cube (0 : galet, 1 : pavé)
@@ -169,7 +170,7 @@ def main():
         d = pos.max(0) - pos.min(0)
         print(f"{nom_ue(nom):24s} {len(tri):3d} faces  {d[0]:.2f} x {d[2]:.2f} x {d[1]:.2f} m (long, large, haut)  {chemin_ue(nom)}")
     if "--types" in sys.argv:
-        f = RACINE / "data" / "reference" / "mobilier_bord_de_route.json"
+        f = ref("mobilier_bord_de_route.json")
         o = json.loads(f.read_text(encoding="utf-8"))
         anciens = {k: v for k, v in o["types"].items() if k.startswith("rocher_")}
         if anciens and not all(v.get("maillage_du_projet") for v in anciens.values()):

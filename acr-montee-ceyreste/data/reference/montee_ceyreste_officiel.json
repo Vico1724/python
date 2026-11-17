@@ -1,0 +1,26 @@
+{
+  "epreuve": "Montée historique de Ceyreste (démonstration sur route fermée, sans chronométrage ni classement)",
+  "organisateur": "Phocéa Productions, avec l'Écurie Soleil Classic et la municipalité de Ceyreste",
+  "editions": "1re en 2015 (déduit : 2e le 22/05/2016) ; 10e le 12/04/2026 ; 11e annoncée le 11/04/2027",
+  "longueur_officielle_km": 3.0,
+  "longueur_note": "ESTIMÉE. Aucun plan ni PK publié. Longueurs annoncées : 3,1 km (2017), 3,5 km (2018, 2023), 3 km (2022 ; fiche 2026-2027 de l'agenda). Retenu : 3,0 km, chiffre le plus récent de la fiche de l'organisateur. Variante 3,5 km couverte par le modèle (zone fermée jusqu'au carrefour D3/D3D, PK 3746).",
+  "revetement": "asphalte",
+  "route": "D3 (route du Grand Caunet), sens montant : Plan de Masse -> Grand Caunet",
+  "source": {
+    "pages": [
+      "https://www.newsclassicracing.com/La-6e-montee-historique-de",
+      "https://www.newsclassicracing.com/La-5e-montee-historique-de,10339",
+      "http://ecuriesoleilclassic.fr/montee-historique-de-ceyreste-2/",
+      "https://www.agendaautomoto.fr/montee-historique-de-ceyreste/",
+      "https://nominatim.openstreetmap.org (arrêt de bus « Plan-de-Masse », Voie Romaine, OSM nœud 6431686998)"
+    ],
+    "consulte_le": "2026-11-17",
+    "note": "Aucune coordonnée n'est publiée par l'organisateur. DEPART : carrefour D3 / Voie Romaine / route du Caunet au droit de l'arrêt « Plan-de-Masse » (certain : départ « au Plan de Masse » ; position de la ligne : estimée, ±50 m). ARRIVEE : position calculée sur l'axe BD TOPO au PK 3000 (estimée). FIN_ZONE : carrefour D3/D3D au Grand Caunet (fin de route utile, raccord avec le projet Grand Caunet)."
+  },
+  "points": [
+    {"id": "APPROCHE", "pk_km": -0.150, "lat": 43.22221, "lon": 5.64776, "role": "liaison", "label": "Approche depuis le village (D3, route du Caunet), 150 m sous le départ - position calculée"},
+    {"id": "DEPART", "pk_km": 0.000, "lat": 43.22313, "lon": 5.64904, "role": "depart", "label": "Départ - carrefour du Plan de Masse (D3 / Voie Romaine) - ligne estimée"},
+    {"id": "ARRIVEE", "pk_km": 3.000, "lat": 43.23343, "lon": 5.66295, "role": "arrivee", "label": "Arrivée retenue (hypothèse 3,0 km) - position calculée au PK 3000"},
+    {"id": "FIN_ZONE", "pk_km": 3.746, "lat": 43.23445, "lon": 5.67170, "role": "fin_zone", "label": "Carrefour D3/D3D au Grand Caunet : fin de la route modélisée, raccord avec le projet Grand Caunet (PK -0.183 de l'ES)"}
+  ]
+}

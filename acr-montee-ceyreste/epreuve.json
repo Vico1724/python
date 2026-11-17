@@ -1,0 +1,45 @@
+{
+  "_note": "Paramètres de l'épreuve lus par la chaîne de acr-grand-caunet/scripts (acr_geo.param) quand ACR_EPREUVE désigne ce dossier. Toute clé absente prend la valeur du Grand Caunet.",
+  "dossier": "acr-montee-ceyreste",
+  "nom": "Montée historique de Ceyreste",
+  "nom_trace": "Montée historique de Ceyreste (D3, Plan de Masse - Grand Caunet)",
+  "nom_secteur": "Montée historique de Ceyreste - montée (hypothèse 3,0 km)",
+  "fichier_officiel": "montee_ceyreste_officiel.json",
+  "bbox_lonlat": [
+    5.63,
+    43.208,
+    5.69,
+    43.248
+  ],
+  "routes": [
+    "D3"
+  ],
+  "methode_calage": "aucun PK officiel publié : PK 0 = projection du départ retenu (carrefour du Plan de Masse) sur l'axe BD TOPO de la D3 ; arrivée = PK de la longueur retenue (3,0 km, estimée) ; PK en distance horizontale",
+  "references_partagees": [
+    "matieres_du_jeu.json",
+    "catalogue_jeu_25170642.txt.gz",
+    "acr_paks_build_25170642.csv",
+    "aspect_chaussee.json",
+    "marquage_route.json",
+    "ressources_cc0.json"
+  ],
+  "titre_carte": "Montée historique de Ceyreste - D3, Plan de Masse -> Grand Caunet - tracé sur BD TOPO, fond BD ORTHO (IGN) - arrivée ESTIMÉE",
+  "titre_profil": "Montée historique de Ceyreste - profil en long (LiDAR HD IGN, 0,5 m) - arrivée estimée au PK 3000",
+  "annotations_carte": [
+    [
+      "D3 - route du Grand Caunet",
+      1700,
+      15,
+      -12
+    ],
+    [
+      "carrefour D3 / D3D\n(Grand Caunet, PK 3746)",
+      3746,
+      -150,
+      -40
+    ]
+  ],
+  "note_point_bas": "",
+  "legende_liaison": "route fermée hors montée (approche, PK 3000 -> 3746)",
+  "legende_es": "montée retenue (3,0 km, arrivée estimée)"
+}

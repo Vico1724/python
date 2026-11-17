@@ -55,14 +55,14 @@ from PIL import Image
 from scipy.spatial import cKDTree
 
 import regles_arbres
-from acr_geo import FIG, OUT, REF, ROOT
+from acr_geo import FIG, OUT, REF, ROOT, ref
 
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(m08)
 
 MOD = ROOT / "modele"
-_f = ROOT / "data" / "reference" / "matieres_du_jeu.json"
+_f = ref("matieres_du_jeu.json")
 MATIERES = json.loads(_f.read_text(encoding="utf-8")) if _f.exists() else {}       # matières du jeu choisies le 13/11/2026
 
 
@@ -713,7 +713,7 @@ BORD = {"pas_m": 0.25, "mord_m": (0.03, 0.42), "dehors_m": 0.6, "au_dessus_m": 0
 
 def bande_de_bord(ch, ref):
     """(pos glTF, normales, triangles) de la bande de sol qui mord sur chaque bord de l'enrobé."""
-    f = REF / "ouvrages_parapets.json"
+    f = ref("ouvrages_parapets.json")
     murs = {"gauche": [], "droite": []}
     if f.exists():                      # contre un parapet ou un mur au ras du bord, la bande s'arrête au pied du mur
         cfg = json.loads(f.read_text(encoding="utf-8"))
@@ -2020,7 +2020,7 @@ def glissieres_du_jeu(P, ref, ch, pkf, args):
     glissière (data/reference/glissieres.json), à la place de nos lisses unies. Lu dans le jeu le 12/11/2026 : module
     de 4 m le long de +X, lisse côté +Y (à droite du sens de pose), poteaux derrière, tous les 2 m ; un maillage de
     début, un de milieu, un de fin. La physique ne change pas : elle vient des boîtes de l'étape 1, sur la même ligne."""
-    cfg = json.loads((REF / "glissieres.json").read_text(encoding="utf-8"))
+    cfg = json.loads((ref("glissieres.json")).read_text(encoding="utf-8"))
     dec = cfg["geometrie"]["decalage_depuis_bord_m"]["valeur"]
     M = GLISSIERE["module_m"]
     rangs = {"debut": [], "milieu": [], "fin": []}
@@ -2515,7 +2515,7 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
             s += Lt["recouvrement"] * L
     # 2. aires (gravillons ou terre sur le bord de l'enrobé) et débouchés de chemins
     Ai, Db = DETAILS["aires"], DETAILS["debouches"]
-    emprises = json.loads((REF / "aires_et_pistes.json").read_text(encoding="utf-8"))["emprises"]
+    emprises = json.loads((ref("aires_et_pistes.json")).read_text(encoding="utf-8"))["emprises"]
     aires = {}
     # (seulement les aires qui touchent l'enrobé : pas les places dégagées à quelques mètres du bord)
     for e in sorted((e for e in emprises if e["genre"] == "aire" and e["decalage_m"] <= 1.5), key=lambda e: e["pk_debut_m"]):
@@ -3103,7 +3103,7 @@ def parois_rocheuses(P, ref, sol):
         sur le terrain, jupe à 40 cm sous terre ; aucun sommet visible au-dessus du vide ;
       - la roche s'efface là où le terrain est plat, s'arrête à la hauteur relevée ou là où le talus cesse de monter.
     """
-    f = ROOT / "data" / "reference" / "parois_rocheuses.json"
+    f = ref("parois_rocheuses.json")
     if not f.exists():
         return 0
     import mobilier
@@ -3113,7 +3113,7 @@ def parois_rocheuses(P, ref, sol):
     materiau_roche(P)
     # parapets et murs du même côté : la roche, allongée de quelques mètres au-delà du relevé, ne doit pas mordre dessus
     murs = []
-    ouvrages = json.loads((ROOT / "data" / "reference" / "ouvrages_parapets.json").read_text(encoding="utf-8"))
+    ouvrages = json.loads(ref("ouvrages_parapets.json").read_text(encoding="utf-8"))
     for o in ouvrages["parapets_hors_tablier"] + ouvrages["ouvrages"]:
         for c in ("gauche", "droite"):
             m = o.get(c)

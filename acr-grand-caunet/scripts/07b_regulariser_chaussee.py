@@ -36,6 +36,7 @@ s'il existe, il peut donc être relancé sans cumuler les lissages.
 
 Usage : python scripts/07b_regulariser_chaussee.py [--essai]   (--essai : calcule et contrôle sans rien écrire)
 """
+import sys
 import argparse
 import csv
 import json
@@ -47,7 +48,8 @@ from scipy import sparse
 from scipy.signal import savgol_filter
 from scipy.sparse.linalg import spsolve
 
-RACINE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 SORTIE = RACINE / "data" / "processed" / "chaussee_precise.csv"
 BRUT = RACINE / "data" / "processed" / "chaussee_precise_brut.csv"
 

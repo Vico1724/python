@@ -17,8 +17,8 @@ import sys
 import cv2
 import numpy as np
 
-RACINE = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(Path(__file__).resolve().parent))          # « python -P » n'ajoute pas le dossier du script
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from acr_geo import ROOT as RACINE, ref  # noqa: E402  racine de l'épreuve (ACR_EPREUVE), sinon acr-grand-caunet
 import calage_reco  # noqa: E402
 
 

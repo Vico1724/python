@@ -1,0 +1,58 @@
+{
+  "rayon_couloir_m": 300,
+  "couches": {
+    "batiment": 656,
+    "bdforet_formation_vegetale": 11,
+    "construction_lineaire": 15,
+    "construction_ponctuelle": 1,
+    "construction_surfacique": 0,
+    "detail_orographique": 1,
+    "equipement_de_transport": 1,
+    "haie": 16,
+    "lieu_dit_non_habite": 0,
+    "ligne_electrique": 0,
+    "ligne_orographique": 2,
+    "pylone": 0,
+    "reservoir": 2,
+    "surface_hydrographique": 0,
+    "terrain_de_sport": 1,
+    "troncon_de_route": 178,
+    "troncon_hydrographique": 11,
+    "zone_d_activite": 4,
+    "zone_de_vegetation": 76
+  },
+  "batiments": {
+    "a_moins_de_25_m": 36,
+    "a_moins_de_50_m": 97,
+    "a_moins_de_100_m": 239,
+    "a_moins_de_300_m": 656
+  },
+  "bdforet_formation_vegetale_part_dans_100m_pct": {
+    "Forêt fermée de pin dAlep pur": 73.3,
+    "Forêt fermée à mélange de feuillus prépondérants et conifères": 0.8,
+    "Forêt fermée à mélange de conifères prépondérants et feuillus": 0.0
+  },
+  "zone_de_vegetation_part_dans_100m_pct": {
+    "Forêt fermée de conifères": 73.4,
+    "Vigne": 1.6,
+    "Haie": 1.3,
+    "Bois": 0.9,
+    "Forêt fermée mixte": 0.8
+  },
+  "carrefours_dans_es": {
+    "Route à 1 chaussée": 3,
+    "Route empierrée": 8,
+    "Chemin": 3,
+    "Sentier": 1
+  },
+  "hauteur_vegetation_m": {
+    "bande_m": "5 à 30 m de l'axe",
+    "part_couvert_sup_2m_pct": 67,
+    "mediane_des_arbres_m": 11.7,
+    "p90_des_arbres_m": 16.8,
+    "max_m": 22.7
+  },
+  "communes_longueur_axe_complet_m": {
+    "Ceyreste (13023)": 3896
+  }
+}
