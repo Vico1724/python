@@ -374,3 +374,9 @@ Vérifications faites avec le code du build 18 repris de git, sur les mêmes don
 - les troncs de la physique ne diffèrent qu'entre les PK −165 et −86.
 
 **Vingt et unième version, installée le 17 novembre** : la vingtième, avec les arbres du build 18 au-delà du PK +30 (section 17.5). Construite en 83 min. Route physique ALL PASS (officiels, parc d'assistance, ligne idéale de 932 points), table conforme, relecture du décor conforme. Le journal confirme 73 512 sujets du build 18 et 1 677 sujets de la zone de départ, ainsi que 1 153 troncs dans la physique. La vingtième, jamais vue en jeu, est gardée sous `sol_jeu_cycle20_du_17_11`. Pour l'essai, mettre « Adhérence de départ » sur Optimale. Jamais vue en jeu.
+
+**Vingt-deuxième version, installée le 17 novembre au soir** : la vingt et unième, rangée dans son propre rallye (`docs/19_rallye_propre.md`).
+- Au menu Essai libre, le rallye « Sainte Baume Rallye » porte le drapeau français, une plaque faite avec les logos du roadbook et une photographie aérienne en fond. Il contient la spéciale « Le Grand Caunet ». Le pays de Galles ne garde que Hafren Sud inverse.
+- Le conteneur des tables livre cinq tables, relues conformes. Le décor a été recuit avec la plaque et le fond (relecture conforme). La route physique est celle du build 21.
+- En parallèle : `docs/18_asphalte_parametres_non_reglables.md` recense ce qui agit sur l'adhérence de l'asphalte.
+- La vingt et unième est gardée sous `sol_jeu_cycle21_du_17_11`. La vingt-deuxième n'a jamais été vue en jeu.

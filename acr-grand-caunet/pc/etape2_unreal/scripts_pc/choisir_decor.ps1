@@ -2,8 +2,11 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (vingt et unième, du 17/11/2026 à 16 h 06) : la vingtième, avec les
-                         arbres du build 18 hors de la zone de départ (au-delà du PK +30) ; jamais vue en jeu
+    sol_jeu              version courante (vingt-deuxième, du 17/11/2026 à 20 h 17) : la vingt et unième, rangée
+                         dans son propre rallye « Sainte Baume Rallye » (logo du roadbook, drapeau français) ;
+                         jamais vue en jeu
+    sol_jeu_cycle21_du_17_11  vingt et unième version (17/11/2026 à 16 h 06) : arbres du build 18 hors de la zone de
+                         départ ; jamais vue en jeu
     sol_jeu_cycle20_du_17_11  vingtième version (17/11/2026 à 13 h 10) : officiels chargés partout (grille), parc
                          d'assistance au milieu du parking, ligne idéale plus marquée, houppiers écartés de tous les
                          murs ; jamais vue en jeu
@@ -88,4 +91,4 @@ New-Item -ItemType Directory -Force $mods | Out-Null
 $lot = @(Get-ChildItem $choix.FullName 'zz_*_P.*')          # le décor et, s'il est rangé avec lui, le mod de l'étape 1
 foreach ($f in $lot) { Copy-Item $f.FullName (Join-Path $mods $f.Name) -Force }
 if (-not ($lot.Name -like 'zz_acrxs_*')) { Attention "cette version n'a pas de mod de l'étape 1 rangé avec elle : celui en place est gardé" }
-Ok "décor « $Decor » installé ($($lot.Count) fichiers). Lancer le jeu (Steam hors ligne), Pays de Galles > Hafren South, Free Practice."
+Ok "décor « $Decor » installé ($($lot.Count) fichiers). Lancer le jeu (Steam hors ligne), Free Practice, rallye « Sainte Baume Rallye » > Le Grand Caunet (avant le build 22 : Pays de Galles > Hafren South)."

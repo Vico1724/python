@@ -67,3 +67,11 @@ Chaque ligne a coûté au moins une version au Grand Caunet. Référence entre p
 - Toute nouvelle règle de placement mérite un contrôle chiffré (degrés comparés à des mètres jusqu'à la v12 ; arbustes dans les bâtiments jusqu'à la v11).
 - Avant de supprimer un objet relevé, relire la vidéo : le mur de l'épingle du km 4,08 retiré à tort en v7.
 - Une correction locale (zone de départ) ne doit pas changer le reste de la spéciale. Deux pièges : une règle écrite sur « tous les murs » s'applique partout, et tout tirage au sort fait après un filtre (sous-bois, fourré, lacets) se décale sur toute la spéciale dès qu'une seule place change. Le cas s'est produit aux builds 19 et 20, avec un sous-bois différent jusqu'au PK 7 214. Pour figer l'ancien état, tirer la végétation deux fois (anciennes règles, nouvelles) et assembler par PK, puis comparer au code repris de git.
+- Adhérence sur asphalte (docs/18 du Grand Caunet) :
+  - Le niveau d'adhérence de départ (option du joueur) pèse jusqu'à 12 %, et la spéciale ne peut pas l'imposer en essai libre.
+  - La configuration météo de la variante fixe les températures. MonteCarlo est une météo d'hiver (jusqu'à −10 °C, neige tirée 35 % du temps), Alsace une météo d'été.
+  - Le jeu n'a qu'une matière d'asphalte.
+- Rallye propre (docs/19) :
+  - Une variante hôte reste dans le lieu de l'hôte.
+  - Pour lui donner son lieu, livrer DT_Tracks, DT_TracksLocations, les logos et les fonds avec des lignes ajoutées (`acr-ref rally-tables`), en partant des tables d'un mod « registre » s'il en existe un.
+  - Les images se cuisent avec le décor.

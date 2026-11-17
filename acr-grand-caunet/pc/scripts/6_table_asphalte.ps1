@@ -17,11 +17,17 @@
   par pneus_asphalte.py. Sans registre installé, on part de la table du jeu.
   À REFAIRE si le registre est mis à jour ou retiré : notre copie figerait sinon son ancienne table.
 
+  Rallye propre (demande du directeur, 17/11/2026 ; docs/19_rallye_propre.md) : le même conteneur livre aussi les
+  tables des spéciales et des lieux (DT_Tracks, DT_TracksLocations, logos et fonds), où acr-ref rally-tables ajoute le
+  lieu « Le Grand Caunet » et sa spéciale, d'après pc\scripts\rallye_grand_caunet.json ; notre variante quitte
+  Hafren Sud (pays de Galles). Les lignes modèles sont celles de BioBio : sans le registre, -SansRallye.
+
 .EXAMPLE
   pwsh -ExecutionPolicy Bypass -File pc\scripts\6_table_asphalte.ps1 -LongueurKm 6.738
 #>
 param([string]$Jeu, [string]$Travail, [double]$LongueurKm = 6.738, [string]$Ligne = 'WelesS4HafrenSouthFullForward',
-      [string]$Meteo = 'MonteCarlo')   # configuration météo de la ligne (Wales d'origine : 4 °C, essai de la 17) ; '' pour la garder
+      [string]$Meteo = 'MonteCarlo', [switch]$SansRallye,
+      [string]$Rallye = (Join-Path $PSScriptRoot 'rallye_grand_caunet.json'))   # configuration météo de la ligne (Wales d'origine : 4 °C, essai de la 17) ; '' pour la garder
 . "$PSScriptRoot\commun.ps1"
 $ErrorActionPreference = 'Stop'
 if (-not $Jeu) { $Jeu = $script:JeuParDefaut }
@@ -80,19 +86,27 @@ Etape "Extraction et correction de la table"
 $legacy = Join-Path $work 'table_legacy'
 $mod = Join-Path $work 'table_mod'
 foreach ($d in $legacy, $mod) { if (Test-Path $d) { [IO.Directory]::Delete($d, $true) } }
-Lancer $retoc @('to-legacy', '--version', 'UE5_6', '--no-shaders', '--filter', 'DT_TracksVariants', $vue, $legacy) "extraction de la table"
+$tables = @('DT_TracksVariants')
+if (-not $SansRallye) { $tables += @('DT_Tracks', 'DT_TracksLocations', 'DT_TracksLocationsLogos', 'DT_TracksLocationsBackgrounds') }
+Lancer $retoc @('to-legacy', '--version', 'UE5_6', '--no-shaders', '--filter', 'TrackSelection/DT_Tracks', $vue, $legacy) "extraction des tables"
 $rel = 'acr\Content\Data\Database\Main\TrackSelection'
 New-Item -ItemType Directory -Force (Join-Path $mod $rel) | Out-Null
-foreach ($e in 'uasset', 'uexp') {
-    $f = Join-Path $legacy "$rel\DT_TracksVariants.$e"
-    if (-not (Test-Path $f)) { Echec "$f absent après extraction" }
-    Copy-Item $f (Join-Path $mod "$rel\DT_TracksVariants.$e")
+foreach ($t in $tables) {
+    foreach ($e in 'uasset', 'uexp') {
+        $f = Join-Path $legacy "$rel\$t.$e"
+        if (-not (Test-Path $f)) { Echec "$f absent après extraction" }
+        Copy-Item $f (Join-Path $mod "$rel\$t.$e")
+    }
 }
 $p = @((Join-Path $PSScriptRoot 'pneus_asphalte.py'), $mod, '--ligne', $Ligne, '--longueur-km', $LongueurKm.ToString([cultureinfo]::InvariantCulture),
        '--longueur-d-origine-km', ([double]$avant.Length).ToString([cultureinfo]::InvariantCulture))
 if ($suivante) { $p += @('--suivante', $suivante) }
 if ($Meteo) { $p += @('--meteo', $Meteo) }
 Lancer 'python' $p "classement de la ligne en asphalte"
+if (-not $SansRallye) {
+    Lancer $acrRef @('rally-tables', '--game', (Join-Path $work 'vue_registre'), '--usmap', $usmap, '--legacy', $mod, '--config', $Rallye,
+                     '--out', (Join-Path $work 'rallye.json')) "rallye propre (lieu, spéciale, logo, fond)"
+}
 
 Etape "Empaquetage"
 $dist = Join-Path $work 'dist'
@@ -120,8 +134,39 @@ $autresChangees = @($noms | Where-Object { $_ -ne $Ligne -and (($rows.$_ | Conve
 if ($surf -eq 'Tarmac' -and $l.CarSetupDefaultSurfaceType.Row -eq 'Tarmac' -and $l.TireCompounds.Row -eq 'TarmacSnow' -and $sect -eq 'Tarmac,Tarmac,Tarmac' -and $meteoOk -and
     $n0 -eq $n1 -and $autresChangees.Count -eq 0) {
     Ok "notre conteneur passe devant : $etat"
-    Ok "$n1 lignes, les $($n1 - 1) autres identiques à la table de départ"
+    Ok "$n1 lignes, les $($n1 - 1) autres identiques à la table de départ, sauf le renvoi à la spéciale de notre ligne"
     Get-ChildItem $dist "$nom.*" | ForEach-Object { Ok ("{0} ({1:N0} octets)" -f $_.Name, $_.Length) }
 } else {
     Echec "relecture non conforme : $etat ; lignes $n0 -> $n1 ; autres lignes changées : $($autresChangees -join ', ')"
+}
+if (-not $SansRallye) {
+    $cfg = Get-Content $Rallye -Raw -Encoding utf8 | ConvertFrom-Json
+    $lieu, $spe = $cfg.location.row, $cfg.track.row
+    function Read-Table([string]$nomTable, [string]$racine, [string]$sortie) {
+        & $acrRef export "acr/Content/Data/Database/Main/TrackSelection/$nomTable.uasset" --game $racine --usmap $usmap --out $sortie 2>&1 | Out-Null
+        return (Get-Content $sortie -Raw | ConvertFrom-Json)[0].Rows
+    }
+    $vt = Join-Path $work 'vue_table'
+    $ecarts = @()
+    foreach ($t in 'DT_Tracks', 'DT_TracksLocations', 'DT_TracksLocationsLogos', 'DT_TracksLocationsBackgrounds') {
+        New-Vue $vt @(Get-ChildItem $paks -File) | Out-Null
+        $av = Read-Table $t $vt (Join-Path $vt "$t.avant.json")
+        New-Vue $vt $tout | Out-Null
+        $ap = Read-Table $t $vt (Join-Path $vt "$t.json")
+        $nouv = @($ap.PSObject.Properties.Name | Where-Object { $_ -notin @($av.PSObject.Properties.Name) })
+        $chg = @($av.PSObject.Properties.Name | Where-Object { ($av.$_ | ConvertTo-Json -Depth 12 -Compress) -ne ($ap.$_ | ConvertTo-Json -Depth 12 -Compress) })
+        $attendu = if ($t -eq 'DT_Tracks') { @($cfg.track.host) } else { @() }
+        if (($nouv -join ',') -ne $lieu -or ($chg -join ',') -ne ($attendu -join ',')) { $ecarts += "$t : nouvelles $($nouv -join ',') ; changées $($chg -join ',')" }
+        if ($t -eq 'DT_Tracks') { $pisteAp = $ap }
+        if ($t -eq 'DT_TracksLocations') { $lieuAp = $ap.$lieu }
+    }
+    $s = $pisteAp.$spe
+    $hote = @($pisteAp.($cfg.track.host).Variants | ForEach-Object Row)
+    if ($ecarts.Count -eq 0 -and $l.Track.Row -eq $spe -and $s.Location.Row -eq $lieu -and (@($s.Variants | ForEach-Object Row) -join ',') -eq $Ligne -and
+        $Ligne -notin $hote -and (@($lieuAp.Tracks | ForEach-Object Row) -join ',') -eq $spe -and $lieuAp.Country.Row -eq $cfg.location.country) {
+        Ok "rallye propre : lieu « $($lieuAp.Name.CultureInvariantString) » ($($lieuAp.Country.Row), $(@($lieuAp.SurfaceTypesData | ForEach-Object { $_.SurfaceType.Row }) -join ',')), spéciale « $($s.Name.CultureInvariantString) » ($Ligne) ; $($cfg.track.host) garde $($hote -join ', ')"
+        Ok "logo $($lieuAp.Logo.Row), fond $($lieuAp.BackgroundImage.Row) ; météo tirée comme $($s.WeatherTypesDistribution.Row), $($s.OptimalAirTemperature) °C ; les autres lignes inchangées"
+    } else {
+        Echec "rallye propre non conforme : $($ecarts -join ' | ') ; variante -> $($l.Track.Row) ; hôte : $($hote -join ',')"
+    }
 }

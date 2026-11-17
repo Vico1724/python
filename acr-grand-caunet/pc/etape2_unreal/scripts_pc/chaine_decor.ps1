@@ -10,7 +10,8 @@
     2. outils\liste_factices.py puis scripts_editeur\creer_factices.py (matériaux et maillages du jeu, en factices) ;
     3. dossiers Road, Bridges, Props, FarRing, Terrain, Junctions du projet Unreal vidés, cellule du niveau supprimée :
        tout le décor est réimporté ;
-    4. scripts_editeur\construire_niveau.py dans l'éditeur (import, variantes, pose, instances) ;
+    4. scripts_editeur\construire_niveau.py dans l'éditeur (import, variantes, pose, instances), puis
+       outils\images_rallye.py et scripts_editeur\importer_ui.py (logo et fond du rallye propre) ;
     5. scripts_pc\cuire_et_empaqueter.ps1 ;
     6. outils\relire_decor.py : doit finir par « RELECTURE CONFORME ».
   Durée : 55 à 75 minutes. À ne pas lancer deux fois en même temps, ni refaire le paquet pendant qu'elle tourne.
@@ -52,6 +53,10 @@ if (-not (Test-Path $rapport)) { "PAS DE RAPPORT DE CONSTRUCTION"; "FIN DE LA CH
 $r = Get-Content $rapport -Raw -Encoding utf8 | ConvertFrom-Json
 "construction : $($r.maillages) maillages, $($r.variantes) variantes, $($r.acteurs) acteurs, $($r.instances) instances ; bornes différentes : $(@($r.verdicts_bornes.differents).Count) ; alertes : $(@($r.alertes).Count)"
 @($r.alertes) | Select-Object -First 12 | ForEach-Object { "  alerte : " + (Court "$_") }
+# images du rallye propre (docs/19_rallye_propre.md) : logo et fond du lieu, importés dans Environments/GrandCaunet/UI
+python pc\etape2_unreal\outils\images_rallye.py 2>&1 | Select-Object -Last 2
+& "$Moteur\UnrealEditor-Cmd.exe" "$Projet\acr.uproject" -run=pythonscript "-script=$rep/pc/etape2_unreal/scripts_editeur/importer_ui.py" -unattended -nosplash -nop4 -nullrhi 2>&1 | Out-Null
+"importer_ui : code $LASTEXITCODE"
 pwsh -Command "& '$kit\scripts_pc\cuire_et_empaqueter.ps1' -Essai gc -Versionne -Inclure 'Environments/GrandCaunet','Levels/WalesS4HafrenSouth' -Cartes '/Game/Levels/WalesS4HafrenSouth/_Generated_/$Cellule'" 2>&1 | Select-Object -Last 4
 python pc\etape2_unreal\outils\relire_decor.py 2>&1 | Select-String -Pattern '"erreurs"|RELECTURE' -Context 0, 6 |
     ForEach-Object { $_.Line; $_.Context.PostContext } | Select-Object -Last 16 | ForEach-Object { Court "$_" 300 }

@@ -1,0 +1,33 @@
+{
+  "_note": "Rallye propre au Grand Caunet (demande du directeur, 17/11/2026) : lu par acr-ref rally-tables depuis 6_table_asphalte.ps1. Les lignes « template » sont celles du lieu et de la spéciale de BioBio (mod registre installé chez le directeur), dont les textes sont libres ; voir docs/19_rallye_propre.md.",
+  "template_tracks": ["SandoChlBio", "SandoChlBioRev"],
+  "location": {
+    "row": "GrandCaunet",
+    "template": "SandoChile",
+    "template_default_variant": "SandoChlBioFull",
+    "template_logo": "SandoChile",
+    "template_country": "Chile",
+    "template_surface": "Gravel",
+    "name": "Sainte Baume Rallye",
+    "trivia": "Rallye de la Sainte-Baume (ASA Marseille Provence Métropole). Sa spéciale du Grand Caunet (Var) est reconstituée d'après les données publiques de l'IGN (relevé laser LiDAR HD, BD TOPO, photographie aérienne) et les vidéos des reconnaissances. Asphalte, 6,7 km. Essai libre seulement.",
+    "country": "France",
+    "surface": "Tarmac",
+    "logo": { "package": "/Game/Environments/GrandCaunet/UI/T_GrandCaunetLogo", "asset": "T_GrandCaunetLogo" },
+    "background": { "package": "/Game/Environments/GrandCaunet/UI/T_GrandCaunetFond", "asset": "T_GrandCaunetFond" }
+  },
+  "track": {
+    "row": "GrandCaunet",
+    "template": "SandoChlBio",
+    "template_level": "SandoChlBio",
+    "template_location": "SandoChile",
+    "template_variant": "SandoChlBioFull",
+    "template_weather_distribution": "Wales",
+    "template_optimal_air_temperature": 5.0,
+    "name": "Le Grand Caunet",
+    "level": "WelesS4HafrenSouth",
+    "host": "WalesS4HafrenSouth",
+    "variant": "WelesS4HafrenSouthFullForward",
+    "weather_distribution": "Montecarlo",
+    "optimal_air_temperature": 5.0
+  }
+}

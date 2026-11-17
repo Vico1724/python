@@ -1,0 +1,288 @@
+diff --git a/tools/acr-ref/Program.cs b/tools/acr-ref/Program.cs
+index 80223f6..9fc2a6a 100644
+--- a/tools/acr-ref/Program.cs
++++ b/tools/acr-ref/Program.cs
+@@ -61,6 +61,7 @@ internal static class Program
+                 "ground-lod-test" => TerrainCompare.LodTest(opts),
+                 "bounds-probe" => Bounds.Probe(opts),
+                 "stage-fit" => StageFit.Run(opts),
++                "rally-tables" => Rally.Run(opts),
+                 _ => Fail($"unknown command '{args[0]}'"),
+             };
+         }
+@@ -93,6 +94,7 @@ internal static class Program
+           acr-ref stage-build    --ir <work/ir/stage> --legacy <retoc legacy root> --out <mod root> [--report f.json] [--keep-pacenotes 1]
+                                  [--keep-variants 1]   leave DT_TracksVariants unchanged and unshipped (stage-verify: same flag)
+           acr-ref stage-fit      [--ir-root work/ir] [--out work/acr/fit-report.json] [--margin 400] [--max-length 9000] [--filter <regex>]
++          acr-ref rally-tables   --game <view> --legacy <dir with legacy track-selection tables> --config <rally.json> [--out report.json]
+                                  read-only: placement + physics world box per stage (stage-build --bounds 1), long/tall stages flagged
+           acr-ref stage-check    --ir <dir> --legacy <root> --report <f.json> [--out file]   offline collision/raycast/spline checks
+           acr-ref stage-verify   --ir <dir> --game <dir with Paks incl. the built container> [--out file]   CUE4Parse re-read
+diff --git a/tools/acr-ref/Rally.cs b/tools/acr-ref/Rally.cs
+new file mode 100644
+index 0000000..df426b4
+--- /dev/null
++++ b/tools/acr-ref/Rally.cs
+@@ -0,0 +1,262 @@
++using System.Buffers.Binary;
++using System.Text;
++using System.Text.Json.Nodes;
++using CUE4Parse.UE4.Assets.Exports.Engine;
++
++namespace AcrRef;
++
++/// A rally (track location) of its own for a stage built over a host variant.
++///
++/// The game groups variants (DT_TracksVariants) under a track (DT_Tracks), and tracks under a location
++/// (DT_TracksLocations): the location is the "rally" of the menus (name, logo, background, country, surface). A stage
++/// shipped as a host variant sits in the host's rally. This command, on legacy copies of the track-selection tables
++/// (retoc to-legacy), adds a location and a track of their own, moves the variant to the new track and takes it out of
++/// the host track's variant list. Rows are copied from a template row of the same table (the location and track rows of
++/// a mod that already ships its own rally, or the host's), then edited: FName references swapped, the culture-invariant
++/// texts replaced, row-handle array elements removed, one float set. Every edit checks how many matches it found.
++///
++/// Table export data: unversioned DataTable properties, int32 NumRows (located from the first row name, read with
++/// CUE4Parse in --game), then NumRows x (FName row name + unversioned struct), up to the end of the export.
++/// Row handle (Table + Row): 2-byte header 00 05 + FName + FName (18 bytes); arrays: int32 Num, then the elements.
++/// FText, culture invariant: int32 flags, int8 -1, int32 1, FString; string-table entry: int32 flags, int8 11,
++/// FName table, FString key (converted to culture invariant when a template uses it).
++///
++/// acr-ref rally-tables --game <view with the source tables> --usmap <usmap> --legacy <dir> --config <rally.json>
++internal static class Rally
++{
++    const string Dir = "acr/Content/Data/Database/Main/TrackSelection/";
++
++    sealed class Table
++    {
++        public required string Path;
++        public required LegacyPackage Pkg;
++        public required byte[] Prefix;               // export data before NumRows
++        public required List<(string name, byte[] data)> Rows;
++        public int E;
++
++        public int Name(string s) => Pkg.AddExportName(s);
++        public byte[] Row(string name) => Rows.Single(r => r.name == name).data;
++        public void SetRow(string name, byte[] data) { int i = Rows.FindIndex(r => r.name == name); Rows[i] = (name, data); }
++
++        public void Save()
++        {
++            using var ms = new MemoryStream();
++            ms.Write(Prefix);
++            ms.Write(BitConverter.GetBytes(Rows.Count));
++            foreach (var (n, d) in Rows) { ms.Write(BitConverter.GetBytes(Name(n))); ms.Write(BitConverter.GetBytes(0)); ms.Write(d); }
++            Pkg.SetExportData(E, ms.ToArray());
++            Pkg.SaveTo(Path);
++        }
++    }
++
++    static Table Load(CUE4Parse.FileProvider.DefaultFileProvider provider, string legacyRoot, string name)
++    {
++        string game = Dir + name + ".uasset";
++        var dt = provider.LoadPackage(game).GetExports().OfType<UDataTable>().Single();
++        var names = dt.RowMap.Keys.Select(k => k.Text).ToList();
++        string path = System.IO.Path.Combine(legacyRoot, game.Replace('/', System.IO.Path.DirectorySeparatorChar));
++        var pkg = new LegacyPackage(path);
++        int e = Enumerable.Range(0, pkg.ExportCount).Single(i => pkg.ExportClass(i) == "DataTable");
++        var d = pkg.GetExportData(e);
++        int Pair(string s, int from)
++        {
++            int idx = pkg.FindName(s);
++            if (idx < 0) throw new InvalidDataException($"{name}: row name {s} not in the name map");
++            var pat = new byte[8];
++            BinaryPrimitives.WriteInt32LittleEndian(pat, idx);
++            int at = d.AsSpan(from).IndexOf(pat);
++            return at < 0 ? -1 : at + from;
++        }
++        int countAt = -1;
++        for (int i = 0; i + 12 <= d.Length; i++)
++            if (BitConverter.ToInt32(d, i) == names.Count && Pair(names[0], i + 4) == i + 4) { countAt = i; break; }
++        if (countAt < 0) throw new InvalidDataException($"{name}: row count not found");
++        var starts = new List<int> { countAt + 4 };
++        for (int k = 1; k < names.Count; k++)
++        {
++            int s = Pair(names[k], starts[^1] + 10);
++            if (s < 0) throw new InvalidDataException($"{name}: row {names[k]} not found after {names[k - 1]}");
++            starts.Add(s);
++        }
++        starts.Add(d.Length);
++        var rows = new List<(string, byte[])>();
++        for (int k = 0; k < names.Count; k++) rows.Add((names[k], d[(starts[k] + 8)..starts[k + 1]]));
++        return new Table { Path = path, Pkg = pkg, Prefix = d[..countAt], Rows = rows, E = e };
++    }
++
++    static List<int> FindName(Table t, byte[] row, string s)
++    {
++        int idx = t.Pkg.FindName(s);
++        var hits = new List<int>();
++        if (idx < 0) return hits;
++        for (int i = 0; i + 8 <= row.Length; i++)
++            if (BitConverter.ToInt32(row, i) == idx && BitConverter.ToInt32(row, i + 4) == 0) hits.Add(i);
++        return hits;
++    }
++
++    static byte[] SwapName(Table t, byte[] row, string from, string to, int expected, string what)
++    {
++        var hits = FindName(t, row, from);
++        if (hits.Count != expected) throw new InvalidDataException($"{what}: {from} found {hits.Count} times, expected {expected}");
++        var r = (byte[])row.Clone();
++        int idx = t.Name(to);
++        foreach (int h in hits) BinaryPrimitives.WriteInt32LittleEndian(r.AsSpan(h), idx);
++        return r;
++    }
++
++    /// Removes the row-handle array element whose Row is `rowName`; the int32 Num before the array is decremented.
++    static byte[] RemoveHandle(Table t, byte[] row, string rowName, string what)
++    {
++        var hits = FindName(t, row, rowName);
++        if (hits.Count != 1) throw new InvalidDataException($"{what}: {rowName} found {hits.Count} times, expected 1");
++        int elem = hits[0] - 10;                       // header (2) + Table FName (8)
++        int tableIdx = BitConverter.ToInt32(row, elem + 2);
++        bool IsElem(int at) => at >= 0 && at + 18 <= row.Length && row[at] == 0 && row[at + 1] == 5 && BitConverter.ToInt32(row, at + 2) == tableIdx
++                               && BitConverter.ToInt32(row, at + 6) == 0 && BitConverter.ToInt32(row, at + 14) == 0;
++        if (!IsElem(elem)) throw new InvalidDataException($"{what}: {rowName} is not in a row-handle element");
++        int first = elem;
++        while (IsElem(first - 18)) first -= 18;
++        int n = 0;
++        while (IsElem(first + 18 * n)) n++;
++        int countAt = first - 4;
++        if (BitConverter.ToInt32(row, countAt) != n) throw new InvalidDataException($"{what}: array count {BitConverter.ToInt32(row, countAt)} != {n} elements");
++        var r = new List<byte>(row);
++        r.RemoveRange(elem, 18);
++        var a = r.ToArray();
++        BinaryPrimitives.WriteInt32LittleEndian(a.AsSpan(countAt), n - 1);
++        return a;
++    }
++
++    static byte[] FString(string s)
++    {
++        using var ms = new MemoryStream();
++        var w = new BinaryWriter(ms);
++        if (s.All(c => c < 128)) { w.Write(s.Length + 1); w.Write(Encoding.ASCII.GetBytes(s)); w.Write((byte)0); }
++        else { w.Write(-(s.Length + 1)); w.Write(Encoding.Unicode.GetBytes(s)); w.Write((short)0); }
++        return ms.ToArray();
++    }
++
++    static int FStringLength(byte[] d, int at)
++    {
++        int n = BitConverter.ToInt32(d, at);
++        return 4 + (n >= 0 ? n : -2 * n);
++    }
++
++    /// Replaces the n-th FText of the row (culture invariant or string-table entry) by a culture-invariant text.
++    static byte[] SetText(Table t, byte[] row, int nth, string text, string what)
++    {
++        int found = 0;
++        for (int i = 0; i + 9 <= row.Length; i++)
++        {
++            if (BitConverter.ToInt32(row, i) != 0) continue;
++            int len;
++            if (row[i + 4] == 0xFF && BitConverter.ToInt32(row, i + 5) == 1) len = 9 + FStringLength(row, i + 9);
++            else if (row[i + 4] == 11 && i + 17 <= row.Length && BitConverter.ToInt32(row, i + 9) == 0 && IsTextKey(row, i + 13)) len = 13 + FStringLength(row, i + 13);
++            else continue;
++            if (found++ != nth) { i += len - 1; continue; }
++            var nw = new List<byte>();
++            nw.AddRange(row[..i]);
++            nw.AddRange(new byte[] { 0, 0, 0, 0, 0xFF, 1, 0, 0, 0 });
++            nw.AddRange(FString(text));
++            nw.AddRange(row[(i + len)..]);
++            return nw.ToArray();
++        }
++        throw new InvalidDataException($"{what}: text #{nth} not found ({found} texts)");
++    }
++
++    static bool IsTextKey(byte[] d, int at)
++    {
++        int n = BitConverter.ToInt32(d, at);
++        return n > 1 && n < 512 && at + 4 + n <= d.Length && d[at + 4 + n - 1] == 0 && d.Skip(at + 4).Take(n - 1).All(c => c is >= 32 and < 127);
++    }
++
++    static byte[] SetFloat(byte[] row, float from, float to, string what)
++    {
++        var hits = new List<int>();
++        for (int i = 0; i + 4 <= row.Length; i++) if (BitConverter.ToSingle(row, i) == from) hits.Add(i);
++        if (hits.Count != 1) throw new InvalidDataException($"{what}: float {from} found {hits.Count} times, expected 1");
++        var r = (byte[])row.Clone();
++        BinaryPrimitives.WriteSingleLittleEndian(r.AsSpan(hits[0]), to);
++        return r;
++    }
++
++    static byte[] SoftPathRow(Table t, string package, string asset)
++    {
++        var r = new byte[2 + 16 + 4];
++        r[0] = 0; r[1] = 3;
++        BinaryPrimitives.WriteInt32LittleEndian(r.AsSpan(2), t.Name(package));
++        BinaryPrimitives.WriteInt32LittleEndian(r.AsSpan(10), t.Name(asset));
++        return r;
++    }
++
++    static string S(JsonNode n, string k) => n[k]?.GetValue<string>() ?? throw new ArgumentException($"rally config: {k} missing");
++
++    public static int Run(Options o)
++    {
++        string legacy = o.Named.GetValueOrDefault("legacy") ?? throw new ArgumentException("rally-tables needs --legacy");
++        var cfg = JsonNode.Parse(File.ReadAllText(o.Named.GetValueOrDefault("config") ?? throw new ArgumentException("rally-tables needs --config")))!;
++        var loc = cfg["location"]!; var trk = cfg["track"]!;
++        string locRow = S(loc, "row"), trkRow = S(trk, "row"), variant = S(trk, "variant"), host = S(trk, "host"), level = S(trk, "level");
++        using var provider = Program.Open(o);
++        var report = new JsonObject();
++
++        // logos and backgrounds: one soft-path row each
++        foreach (var (table, key) in new[] { ("DT_TracksLocationsLogos", "logo"), ("DT_TracksLocationsBackgrounds", "background") })
++        {
++            var t = Load(provider, legacy, table);
++            if (t.Rows.Any(r => r.name == locRow)) throw new InvalidDataException($"{table}: row {locRow} already there");
++            t.Rows.Add((locRow, SoftPathRow(t, S(loc[key]!, "package"), S(loc[key]!, "asset"))));
++            t.Save();
++            report[table] = $"{t.Rows.Count} rows, + {locRow} -> {S(loc[key]!, "package")}";
++        }
++
++        // location: copy of the template location, one track, our variant by default
++        {
++            var t = Load(provider, legacy, "DT_TracksLocations");
++            string tpl = S(loc, "template");
++            var r = t.Row(tpl);
++            var tplTracks = cfg["template_tracks"]!.AsArray().Select(x => x!.GetValue<string>()).ToList();
++            foreach (var extra in tplTracks.Skip(1)) r = RemoveHandle(t, r, extra, $"location {tpl} Tracks");
++            r = SwapName(t, r, tplTracks[0], trkRow, 1, $"location {tpl} Tracks");
++            r = SwapName(t, r, S(loc, "template_default_variant"), variant, 1, $"location {tpl} DefaultVariant");
++            r = SwapName(t, r, S(loc, "template_logo"), locRow, FindName(t, r, S(loc, "template_logo")).Count, $"location {tpl} Logo/Background");
++            r = SwapName(t, r, S(loc, "template_country"), S(loc, "country"), 1, $"location {tpl} Country");
++            r = SwapName(t, r, S(loc, "template_surface"), S(loc, "surface"), 1, $"location {tpl} SurfaceTypesData");
++            r = SetText(t, r, 0, S(loc, "name"), $"location {tpl} Name");
++            r = SetText(t, r, 1, S(loc, "trivia"), $"location {tpl} HistoryAndTrivia");
++            t.Rows.Add((locRow, r));
++            t.Save();
++            report["DT_TracksLocations"] = $"{t.Rows.Count} rows, + {locRow} (from {tpl}): track {trkRow}, default {variant}, country {S(loc, "country")}, surface {S(loc, "surface")}";
++        }
++
++        // track: copy of the template track; the host track loses the variant
++        {
++            var t = Load(provider, legacy, "DT_Tracks");
++            string tpl = S(trk, "template");
++            var r = t.Row(tpl);
++            r = SwapName(t, r, S(trk, "template_level"), level, 1, $"track {tpl} Asset");
++            r = SwapName(t, r, S(trk, "template_location"), locRow, 1, $"track {tpl} Location");
++            r = SwapName(t, r, S(trk, "template_variant"), variant, 1, $"track {tpl} Variants");
++            r = SwapName(t, r, S(trk, "template_weather_distribution"), S(trk, "weather_distribution"), 1, $"track {tpl} WeatherTypesDistribution");
++            r = SetFloat(r, (float)trk["template_optimal_air_temperature"]!.GetValue<double>(), (float)trk["optimal_air_temperature"]!.GetValue<double>(), $"track {tpl} OptimalAirTemperature");
++            r = SetText(t, r, 0, S(trk, "name"), $"track {tpl} Name");
++            t.Rows.Add((trkRow, r));
++            t.SetRow(host, RemoveHandle(t, t.Row(host), variant, $"track {host} Variants"));
++            t.Save();
++            report["DT_Tracks"] = $"{t.Rows.Count} rows, + {trkRow} (from {tpl}): level {level}, location {locRow}, variant {variant}, weather {S(trk, "weather_distribution")}, " +
++                                  $"{trk["optimal_air_temperature"]} degC; {host} without {variant}";
++        }
++
++        // variant: its Track points to the new track
++        {
++            var t = Load(provider, legacy, "DT_TracksVariants");
++            t.SetRow(variant, SwapName(t, t.Row(variant), host, trkRow, 1, $"variant {variant} Track"));
++            t.Save();
++            report["DT_TracksVariants"] = $"{variant}: Track {host} -> {trkRow}";
++        }
++
++        foreach (var (k, v) in report) Console.WriteLine($"rally: {k}: {v}");
++        if (o.Out is not null) File.WriteAllText(o.Out, report.ToJsonString(new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
++        return 0;
++    }
++}
