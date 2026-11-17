@@ -29,8 +29,8 @@ Le petit conteneur des tables (`zz_acrxs_grandcaunet_table_9_P`, fait par `pc\sc
   - niveau `WelesS4HafrenSouth`, c'est-à-dire celui que nos conteneurs remplacent ;
   - une variante, la nôtre ;
   - mode Essai libre ;
-  - tirage du temps « Montecarlo », comme la météo de la variante ;
-  - `OptimalAirTemperature` à 5 °C, valeur d'Hafren Sud gardée pour ne changer qu'une chose à la fois (voir `docs/18`, § 18.6).
+  - tirage du temps « Alsace », comme la météo de la variante depuis le build 23 (« Montecarlo » au build 22) ;
+  - `OptimalAirTemperature` à 30 °C, comme Munster, depuis le build 23 (5 °C au build 22, valeur d'Hafren Sud ; voir `docs/18`, § 18.6).
 - **Hafren Sud** ne garde que sa variante inverse.
 - **Notre variante** est rattachée à la spéciale `GrandCaunet`.
 

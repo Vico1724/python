@@ -27,7 +27,7 @@
     "level": "WelesS4HafrenSouth",
     "host": "WalesS4HafrenSouth",
     "variant": "WelesS4HafrenSouthFullForward",
-    "weather_distribution": "Montecarlo",
-    "optimal_air_temperature": 5.0
+    "weather_distribution": "Alsace",
+    "optimal_air_temperature": 30.0
   }
 }

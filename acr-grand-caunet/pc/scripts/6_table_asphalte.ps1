@@ -26,7 +26,7 @@
   pwsh -ExecutionPolicy Bypass -File pc\scripts\6_table_asphalte.ps1 -LongueurKm 6.738
 #>
 param([string]$Jeu, [string]$Travail, [double]$LongueurKm = 6.738, [string]$Ligne = 'WelesS4HafrenSouthFullForward',
-      [string]$Meteo = 'MonteCarlo', [switch]$SansRallye,
+      [string]$Meteo = 'Alsace', [switch]$SansRallye,   # Alsace depuis le build 23 (météo d'été ; MonteCarlo = hiver : docs/18)
       [string]$Rallye = (Join-Path $PSScriptRoot 'rallye_grand_caunet.json'))   # configuration météo de la ligne (Wales d'origine : 4 °C, essai de la 17) ; '' pour la garder
 . "$PSScriptRoot\commun.ps1"
 $ErrorActionPreference = 'Stop'

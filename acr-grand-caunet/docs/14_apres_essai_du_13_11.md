@@ -380,3 +380,5 @@ Vérifications faites avec le code du build 18 repris de git, sur les mêmes don
 - Le conteneur des tables livre cinq tables, relues conformes. Le décor a été recuit avec la plaque et le fond (relecture conforme). La route physique est celle du build 21.
 - En parallèle : `docs/18_asphalte_parametres_non_reglables.md` recense ce qui agit sur l'adhérence de l'asphalte.
 - La vingt et unième est gardée sous `sol_jeu_cycle21_du_17_11`. La vingt-deuxième n'a jamais été vue en jeu.
+
+**Vingt-troisième version, installée le 17 novembre au soir** : la vingt-deuxième avec une météo d'été, sur décision du directeur (`docs/18`, § 18.5). La variante passe de la configuration météo MonteCarlo à Alsace (`6_table_asphalte.ps1 -Meteo`, défaut Alsace). Notre spéciale tire son temps comme l'Alsace et prend 30 °C de température de référence, comme Munster (`rallye_grand_caunet.json`). Seul le conteneur des tables change, relu conforme ; le décor et la route physique sont ceux du build 22. La vingt-deuxième est gardée sous `sol_jeu_cycle22_du_17_11`. Jamais vue en jeu.
