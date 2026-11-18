@@ -1,0 +1,14 @@
+type,asset,hauteur_ref_m,rayon_ref_m,echelle,pivot_z_cm,collision,commentaire
+conifere_petit,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,non,témoin gris : remplacer par un pin du jeu
+conifere_moyen,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,non,
+conifere_grand,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,oui,
+feuillu_petit,/Engine/BasicShapes/Sphere,1.0,0.5,hauteur_rayon,50,non,témoin gris : remplacer par un feuillu du jeu
+feuillu_moyen,/Engine/BasicShapes/Sphere,1.0,0.5,hauteur_rayon,50,non,
+feuillu_grand,/Engine/BasicShapes/Sphere,1.0,0.5,hauteur_rayon,50,oui,
+mixte_petit,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,non,
+mixte_moyen,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,non,
+mixte_grand,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,oui,
+indetermine_petit,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,non,
+indetermine_moyen,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,non,
+indetermine_grand,/Engine/BasicShapes/Cone,1.0,0.5,hauteur_rayon,50,oui,
+arbuste,/Engine/BasicShapes/Sphere,1.0,0.5,hauteur_rayon,50,non,

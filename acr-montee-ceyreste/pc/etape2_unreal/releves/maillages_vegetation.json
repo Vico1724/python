@@ -1,0 +1,1195 @@
+{
+ "source": {
+  "jeu": "Assetto Corsa Rally",
+  "version_de_construction": "25170642",
+  "outil": "acr-ref export-many (ACR Extra Stages) sur la vue d'origine, sans mods ni BioBio"
+ },
+ "unite": "cm : [haut au-dessus du pivot, plus grande largeur]",
+ "lecture": "lu par scripts_editeur/attribution.py ; un dossier dont tous les maillages font moins de 30 cm de haut est un couvre-sol en plaques",
+ "dossiers": {
+  "/Game/Foliage/DestructibleTrees/Larch/Larch_03": {
+   "SM_Larch_03_Object001": [
+    214.1,
+    111.8
+   ],
+   "SM_Larch_03_Object002": [
+    98.9,
+    74.0
+   ],
+   "SM_Larch_03_Object003": [
+    76.3,
+    72.7
+   ],
+   "SM_Larch_03_Object004": [
+    52.7,
+    88.7
+   ],
+   "SM_Larch_03_Object005": [
+    54.2,
+    94.9
+   ],
+   "SM_Larch_03_Object006": [
+    53.0,
+    94.5
+   ],
+   "SM_Larch_03_Object007": [
+    75.0,
+    84.3
+   ],
+   "SM_Larch_03_Object008": [
+    80.9,
+    81.3
+   ],
+   "SM_Larch_03_Object009": [
+    79.9,
+    80.9
+   ],
+   "SM_Larch_03_Object010": [
+    103.9,
+    72.0
+   ],
+   "SM_Larch_03_Object011": [
+    113.1,
+    67.2
+   ],
+   "SM_Larch_03_Object012": [
+    104.9,
+    70.2
+   ],
+   "SM_Larch_03_SM_Larch_03": [
+    46.9,
+    80.3
+   ]
+  },
+  "/Game/Foliage/DestructibleTrees/Larch/Larch_04": {
+   "SM_Larch_04_Object001": [
+    348.1,
+    162.9
+   ],
+   "SM_Larch_04_Object002": [
+    189.1,
+    122.7
+   ],
+   "SM_Larch_04_Object003": [
+    156.6,
+    105.7
+   ],
+   "SM_Larch_04_Object004": [
+    117.4,
+    119.2
+   ],
+   "SM_Larch_04_Object005": [
+    91.5,
+    146.9
+   ],
+   "SM_Larch_04_Object006": [
+    68.6,
+    145.0
+   ],
+   "SM_Larch_04_Object007": [
+    67.3,
+    134.4
+   ],
+   "SM_Larch_04_Object008": [
+    62.0,
+    166.5
+   ],
+   "SM_Larch_04_Object009": [
+    92.4,
+    125.7
+   ],
+   "SM_Larch_04_Object010": [
+    86.9,
+    148.7
+   ],
+   "SM_Larch_04_Object011": [
+    91.1,
+    142.8
+   ],
+   "SM_Larch_04_Object012": [
+    137.6,
+    109.2
+   ],
+   "SM_Larch_04_Object013": [
+    121.7,
+    112.5
+   ],
+   "SM_Larch_04_Object014": [
+    118.9,
+    112.1
+   ],
+   "SM_Larch_04_Object015": [
+    164.5,
+    126.7
+   ],
+   "SM_Larch_04_Object016": [
+    157.0,
+    113.9
+   ],
+   "SM_Larch_04_Object017": [
+    160.8,
+    112.3
+   ],
+   "SM_Larch_04_Object018": [
+    187.5,
+    109.1
+   ],
+   "SM_Larch_04_SM_Larch_04": [
+    60.9,
+    156.7
+   ]
+  },
+  "/Game/Foliage/DestructibleTrees/Silverbirch/Silverbirch_07": {
+   "SM_Silverbirch_07_Object001": [
+    171.3,
+    97.7
+   ],
+   "SM_Silverbirch_07_Object002": [
+    47.9,
+    81.9
+   ],
+   "SM_Silverbirch_07_Object003": [
+    57.1,
+    67.9
+   ],
+   "SM_Silverbirch_07_Object004": [
+    69.8,
+    81.4
+   ],
+   "SM_Silverbirch_07_Object005": [
+    49.3,
+    72.3
+   ],
+   "SM_Silverbirch_07_Object006": [
+    96.9,
+    57.6
+   ],
+   "SM_Silverbirch_07_Object007": [
+    88.2,
+    68.9
+   ],
+   "SM_Silverbirch_07_Object008": [
+    100.8,
+    64.9
+   ],
+   "SM_Silverbirch_07_Object009": [
+    104.0,
+    63.8
+   ],
+   "SM_Silverbirch_07_Object010": [
+    27.9,
+    7.9
+   ],
+   "SM_Silverbirch_07_SM_Silverbirch07": [
+    74.4,
+    78.1
+   ]
+  },
+  "/Game/Foliage/DestructibleTrees/Silverbirch/Silverbirch_08": {
+   "SM_Silverbirch_08_Object001": [
+    276.2,
+    182.0
+   ],
+   "SM_Silverbirch_08_Object002": [
+    92.3,
+    102.0
+   ],
+   "SM_Silverbirch_08_Object003": [
+    94.1,
+    102.6
+   ],
+   "SM_Silverbirch_08_Object004": [
+    111.8,
+    97.6
+   ],
+   "SM_Silverbirch_08_Object005": [
+    93.4,
+    107.4
+   ],
+   "SM_Silverbirch_08_Object006": [
+    128.8,
+    107.4
+   ],
+   "SM_Silverbirch_08_Object007": [
+    151.5,
+    103.1
+   ],
+   "SM_Silverbirch_08_Object008": [
+    114.2,
+    110.7
+   ],
+   "SM_Silverbirch_08_Object009": [
+    162.7,
+    104.9
+   ],
+   "SM_Silverbirch_08_Object010": [
+    94.8,
+    8.7
+   ],
+   "SM_Silverbirch_08_SM_Silverbirch08": [
+    167.3,
+    97.9
+   ]
+  },
+  "/Game/Foliage/DestructibleTrees/Spruce/Spruce_07": {
+   "SM_Spruce_07_Object001": [
+    69.0,
+    10.9
+   ],
+   "SM_Spruce_07_Object002": [
+    324.8,
+    140.0
+   ],
+   "SM_Spruce_07_Object003": [
+    202.9,
+    125.3
+   ],
+   "SM_Spruce_07_Object004": [
+    171.3,
+    168.7
+   ],
+   "SM_Spruce_07_SM_Spruce07": [
+    137.6,
+    191.5
+   ]
+  },
+  "/Game/Foliage/FoliageTypes/StaticMeshes": {
+   "SM_Grass01": [
+    13.3,
+    23.3
+   ],
+   "SM_Grass03": [
+    13.5,
+    28.3
+   ],
+   "SM_Grass04": [
+    13.2,
+    23.0
+   ],
+   "SM_Grass09": [
+    22.0,
+    12.5
+   ],
+   "SM_Grass17": [
+    15.7,
+    9.5
+   ]
+  },
+  "/Game/Foliage/GroundCover/BroomCreeper": {
+   "SM_BroomCreeper01": [
+    -0.1,
+    99.5
+   ],
+   "SM_BroomCreeper02": [
+    -0.0,
+    98.6
+   ],
+   "SM_BroomCreeper03": [
+    -0.0,
+    139.6
+   ],
+   "SM_BroomCreeper04": [
+    -0.0,
+    100.6
+   ],
+   "SM_BroomCreeper05": [
+    -0.0,
+    95.1
+   ]
+  },
+  "/Game/Foliage/GroundCover/Citrus": {
+   "SM_Citrus_01": [
+    37.9,
+    69.4
+   ]
+  },
+  "/Game/Foliage/GroundCover/DeadLeaves": {
+   "SM_Dead_Leaves_01": [
+    2.6,
+    41.8
+   ],
+   "SM_Dead_Leaves_02": [
+    3.7,
+    47.8
+   ]
+  },
+  "/Game/Foliage/GroundCover/DryGrass03": {
+   "SM_Drygrass03": [
+    97.1,
+    309.5
+   ]
+  },
+  "/Game/Foliage/GroundCover/DryGrass04": {
+   "SM_Drygrass04": [
+    89.2,
+    235.4
+   ],
+   "SM_Drygrass04a": [
+    39.5,
+    235.4
+   ]
+  },
+  "/Game/Foliage/GroundCover/DryGrass05": {
+   "SM_Drygrass05": [
+    32.5,
+    146.5
+   ]
+  },
+  "/Game/Foliage/GroundCover/DryGrass06": {
+   "SM_Drygrass06": [
+    82.0,
+    152.8
+   ]
+  },
+  "/Game/Foliage/GroundCover/DryGrass07": {
+   "SM_Drygrass07": [
+    171.0,
+    118.0
+   ],
+   "SM_Drygrass08": [
+    137.2,
+    216.2
+   ]
+  },
+  "/Game/Foliage/GroundCover/DryGrass09": {
+   "SM_Drygrass09": [
+    151.3,
+    171.0
+   ]
+  },
+  "/Game/Foliage/GroundCover/FlowerPlant01": {
+   "SM_Flowerplant01": [
+    39.3,
+    90.5
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/BranchDebri": {
+   "SM_BranchDebri_01": [
+    1.6,
+    24.3
+   ],
+   "SM_BranchDebri_02": [
+    0.8,
+    23.4
+   ],
+   "SM_BranchDebri_03": [
+    0.7,
+    27.7
+   ],
+   "SM_BranchDebri_04": [
+    0.9,
+    27.3
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/DryStrawGrass": {
+   "SM_DryStrawGrass_01": [
+    29.9,
+    71.0
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/FieldGrass": {
+   "SM_FieldGrass_01": [
+    27.8,
+    67.1
+   ],
+   "SM_FieldGrass_02": [
+    30.1,
+    17.2
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/GrassClump": {
+   "SM_GrassClump_01": [
+    14.4,
+    75.2
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/GrassTall": {
+   "SM_GrassTall_01": [
+    30.6,
+    60.0
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/HighGrass": {
+   "SM_HighGrass_01": [
+    136.1,
+    165.3
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/PlantDebri": {
+   "SM_PlantDebri_01": [
+    2.4,
+    37.3
+   ],
+   "SM_PlantDebri_02": [
+    1.5,
+    28.8
+   ]
+  },
+  "/Game/Foliage/GroundCover/Greece/Starwort": {
+   "SM_Starwort_01": [
+    52.3,
+    107.6
+   ]
+  },
+  "/Game/Foliage/GroundCover/GreenGrass03": {
+   "SM_Greengrass03": [
+    18.0,
+    148.7
+   ]
+  },
+  "/Game/Foliage/GroundCover/GreenGrassLong02": {
+   "SM_GreengrassLong02": [
+    28.6,
+    92.5
+   ]
+  },
+  "/Game/Foliage/GroundCover/GreenGrassLongExtended01": {
+   "SM_Greengrass_Extended_long_01": [
+    81.7,
+    597.8
+   ]
+  },
+  "/Game/Foliage/GroundCover/IvyCreeper": {
+   "SM_Ivy_01": [
+    36.3,
+    690.6
+   ],
+   "SM_Ivy_03": [
+    36.3,
+    690.6
+   ],
+   "SM_Ivy_04": [
+    36.3,
+    193.8
+   ],
+   "SM_Ivy_05": [
+    7.1,
+    103.1
+   ]
+  },
+  "/Game/Foliage/GroundCover/Ribwort": {
+   "SM_Ribwort_01": [
+    16.1,
+    97.5
+   ]
+  },
+  "/Game/Foliage/GroundCover/Sorrel": {
+   "SM_Sorrel_01": [
+    0.9,
+    110.3
+   ]
+  },
+  "/Game/Foliage/GroundCover/WildGrass": {
+   "SM_WildGrass01": [
+    28.9,
+    99.3
+   ],
+   "SM_WildGrass01Wide": [
+    30.6,
+    388.4
+   ],
+   "SM_WildGrass02": [
+    29.1,
+    99.6
+   ],
+   "SM_WildGrass03": [
+    13.7,
+    61.6
+   ],
+   "SM_WildGrass05": [
+    29.1,
+    99.6
+   ],
+   "SM_WildGrassElatia01Wide": [
+    30.6,
+    388.4
+   ],
+   "SM_WildGrassMonteCarlo01Wide": [
+    30.6,
+    388.4
+   ],
+   "SM_WildGrassServicePark": [
+    29.1,
+    99.6
+   ]
+  },
+  "/Game/Foliage/GroundCover/Willow": {
+   "SM_Willow_01": [
+    50.1,
+    89.1
+   ],
+   "SM_Willow_03a": [
+    66.3,
+    127.9
+   ],
+   "SM_Willow_03b": [
+    49.0,
+    51.3
+   ],
+   "SM_Willow_04a": [
+    143.7,
+    152.1
+   ]
+  },
+  "/Game/Foliage/GroundCover/WillowFlower": {
+   "SM_WillowFlower_01": [
+    41.3,
+    77.7
+   ],
+   "SM_WillowFlower_02": [
+    54.5,
+    83.9
+   ],
+   "SM_WillowFlower_03": [
+    41.3,
+    88.9
+   ],
+   "SM_WillowFlower_04": [
+    42.5,
+    89.6
+   ]
+  },
+  "/Game/Foliage/Trees/AleppoPine": {
+   "SM_AleppoPine01": [
+    1012.0,
+    730.9
+   ],
+   "SM_AleppoPine02": [
+    1588.6,
+    1104.9
+   ],
+   "SM_AleppoPine03": [
+    730.2,
+    581.2
+   ],
+   "SM_AleppoPine04": [
+    1406.1,
+    1058.1
+   ],
+   "SM_AleppoPine05": [
+    900.1,
+    1175.1
+   ],
+   "SM_AleppoPine06": [
+    880.1,
+    1237.9
+   ],
+   "SM_AleppoPine07": [
+    330.7,
+    308.3
+   ],
+   "SM_AleppoPine08": [
+    294.2,
+    172.8
+   ],
+   "SM_AleppoPine09": [
+    664.0,
+    716.6
+   ],
+   "SM_AleppoPine10": [
+    438.7,
+    536.9
+   ],
+   "SM_AleppoPine11": [
+    1316.4,
+    601.7
+   ],
+   "SM_AleppoPine12": [
+    25.2,
+    34.5
+   ],
+   "SM_AleppoPine13": [
+    55.2,
+    68.7
+   ],
+   "SM_AleppoPine14": [
+    1041.4,
+    585.4
+   ],
+   "SM_AleppoPine15": [
+    1316.4,
+    678.8
+   ]
+  },
+  "/Game/Foliage/Trees/BackdropTrees": {
+   "SM_BGBlackmaple_01": [
+    2694.8,
+    1621.0
+   ]
+  },
+  "/Game/Foliage/Trees/Baretree": {
+   "SM_Baretree01": [
+    1759.2,
+    1276.9
+   ],
+   "SM_Baretree02": [
+    2185.4,
+    1032.0
+   ],
+   "SM_Baretree03": [
+    1740.4,
+    1342.9
+   ],
+   "SM_Baretree04": [
+    1529.5,
+    1086.1
+   ],
+   "SM_Baretree05": [
+    1806.0,
+    1515.7
+   ],
+   "SM_Baretree06": [
+    1945.2,
+    1004.4
+   ],
+   "SM_Baretree07": [
+    2353.1,
+    1620.0
+   ],
+   "SM_Baretree08": [
+    2281.3,
+    1220.1
+   ],
+   "SM_Baretree09": [
+    2313.1,
+    1835.1
+   ],
+   "SM_Baretree10": [
+    673.3,
+    1056.8
+   ],
+   "SM_Baretree11": [
+    2676.2,
+    821.9
+   ],
+   "SM_Baretree13": [
+    2147.2,
+    1907.3
+   ]
+  },
+  "/Game/Foliage/Trees/BaretreeB": {
+   "SM_BaretreeB01": [
+    2370.5,
+    1343.5
+   ],
+   "SM_BaretreeB02": [
+    1195.8,
+    579.4
+   ],
+   "SM_BaretreeB03": [
+    1136.6,
+    268.5
+   ]
+  },
+  "/Game/Foliage/Trees/BaretreeCreeper": {
+   "SM_BaretreeCreeper01": [
+    2146.4,
+    930.3
+   ],
+   "SM_BaretreeCreeper02": [
+    1945.2,
+    1004.4
+   ]
+  },
+  "/Game/Foliage/Trees/BaretreeCut": {
+   "SM_BaretreeCut01": [
+    1456.1,
+    813.3
+   ],
+   "SM_BaretreeCut02": [
+    1001.1,
+    298.6
+   ],
+   "SM_BaretreeCut03": [
+    883.4,
+    245.0
+   ]
+  },
+  "/Game/Foliage/Trees/BaretreeWhite": {
+   "SM_BaretreeWhite01": [
+    1759.2,
+    1276.9
+   ],
+   "SM_BaretreeWhite02": [
+    2185.4,
+    1032.0
+   ]
+  },
+  "/Game/Foliage/Trees/BeechBare": {
+   "SM_BeechBare01": [
+    1541.1,
+    1301.6
+   ],
+   "SM_BeechBare02": [
+    600.1,
+    348.3
+   ],
+   "SM_BeechBare03": [
+    600.1,
+    478.0
+   ]
+  },
+  "/Game/Foliage/Trees/Blackmaple": {
+   "SM_Blackmaple01": [
+    1965.7,
+    1224.2
+   ],
+   "SM_Blackmaple02": [
+    1286.0,
+    1194.2
+   ],
+   "SM_Blackmaple03": [
+    1314.0,
+    1404.8
+   ],
+   "SM_Blackmaple04": [
+    87.2,
+    43.3
+   ],
+   "SM_Blackmaple06": [
+    2205.4,
+    1853.2
+   ]
+  },
+  "/Game/Foliage/Trees/BlackmapleMonteCarlo": {
+   "SM_BlackmapleMonteCarlo01": [
+    1965.7,
+    1224.2
+   ],
+   "SM_BlackmapleMonteCarlo02": [
+    1286.0,
+    1194.2
+   ],
+   "SM_BlackmapleMonteCarlo03": [
+    1314.0,
+    1404.8
+   ]
+  },
+  "/Game/Foliage/Trees/Blackpine": {
+   "SM_Blackpine01": [
+    1969.1,
+    809.1
+   ],
+   "SM_Blackpine02": [
+    1883.2,
+    852.5
+   ],
+   "SM_Blackpine03": [
+    1538.4,
+    937.3
+   ],
+   "SM_Blackpine04": [
+    874.2,
+    620.1
+   ],
+   "SM_Blackpine05": [
+    701.9,
+    719.0
+   ],
+   "SM_Blackpine06": [
+    1844.1,
+    753.1
+   ],
+   "SM_Blackpine07": [
+    201.8,
+    211.8
+   ],
+   "SM_Blackpine08": [
+    286.1,
+    249.8
+   ],
+   "SM_Blackpine09": [
+    1874.4,
+    539.4
+   ],
+   "SM_Blackpine10": [
+    2261.7,
+    504.2
+   ]
+  },
+  "/Game/Foliage/Trees/BlackpineMonteCarlo": {
+   "SM_BlackpineMonteCarlo01": [
+    1969.1,
+    809.1
+   ],
+   "SM_BlackpineMonteCarlo02": [
+    1883.2,
+    838.5
+   ],
+   "SM_BlackpineMonteCarlo03": [
+    1538.4,
+    937.3
+   ],
+   "SM_BlackpineMonteCarlo04": [
+    899.8,
+    620.1
+   ],
+   "SM_BlackpineMonteCarlo05": [
+    722.0,
+    719.0
+   ],
+   "SM_BlackpineMonteCarlo06": [
+    1844.1,
+    753.1
+   ],
+   "SM_BlackpineMonteCarlo07": [
+    201.8,
+    211.8
+   ],
+   "SM_BlackpineMonteCarlo08": [
+    286.1,
+    249.8
+   ],
+   "SM_BlackpineMonteCarlo09": [
+    1874.4,
+    539.4
+   ],
+   "SM_BlackpineMonteCarlo11": [
+    392.3,
+    237.6
+   ],
+   "SM_BlackpineMonteCarlo12": [
+    1533.2,
+    979.3
+   ]
+  },
+  "/Game/Foliage/Trees/Boxthorn": {
+   "SM_Boxthorn01": [
+    348.1,
+    385.7
+   ],
+   "SM_Boxthorn02": [
+    541.1,
+    530.9
+   ],
+   "SM_Boxthorn03": [
+    422.8,
+    822.7
+   ],
+   "SM_Boxthorn04": [
+    26.7,
+    34.8
+   ],
+   "SM_Boxthorn05": [
+    1184.0,
+    1130.6
+   ]
+  },
+  "/Game/Foliage/Trees/Cypress": {
+   "SM_Cypress01": [
+    475.5,
+    156.9
+   ],
+   "SM_Cypress02": [
+    773.1,
+    160.4
+   ],
+   "SM_Cypress03": [
+    526.2,
+    397.3
+   ],
+   "SM_Cypress04": [
+    607.6,
+    481.1
+   ]
+  },
+  "/Game/Foliage/Trees/CypressHedge": {
+   "SM_CypressHedge01": [
+    127.9,
+    496.4
+   ]
+  },
+  "/Game/Foliage/Trees/CypressWildMonteCarlo": {
+   "SM_CypressWildMonteCarlo04": [
+    1824.1,
+    796.8
+   ],
+   "SM_CypressWildMonteCarlo05": [
+    485.6,
+    493.3
+   ]
+  },
+  "/Game/Foliage/Trees/Fig": {
+   "SM_Fig01": [
+    894.8,
+    996.5
+   ],
+   "SM_Fig02": [
+    854.4,
+    903.3
+   ]
+  },
+  "/Game/Foliage/Trees/Hedge": {
+   "SM_Hedge01": [
+    82.8,
+    543.4
+   ],
+   "SM_Hedge02": [
+    206.1,
+    678.6
+   ],
+   "SM_Hedge06": [
+    110.0,
+    545.4
+   ],
+   "SM_Hedge07": [
+    76.7,
+    459.9
+   ],
+   "SM_Hedge08": [
+    107.5,
+    561.1
+   ]
+  },
+  "/Game/Foliage/Trees/Larch": {
+   "SM_Larch01": [
+    2043.4,
+    1221.9
+   ],
+   "SM_Larch02": [
+    1884.4,
+    755.7
+   ],
+   "SM_Larch03": [
+    214.1,
+    176.1
+   ],
+   "SM_Larch04": [
+    348.1,
+    304.0
+   ],
+   "SM_Larch05": [
+    2087.4,
+    835.2
+   ],
+   "SM_Larch06": [
+    2054.5,
+    897.3
+   ]
+  },
+  "/Game/Foliage/Trees/LarchBare": {
+   "SM_LarchBare01": [
+    2049.7,
+    833.9
+   ],
+   "SM_LarchBare02": [
+    2080.8,
+    663.0
+   ]
+  },
+  "/Game/Foliage/Trees/LarchWales": {
+   "SM_LarchWales01": [
+    2043.4,
+    1221.9
+   ]
+  },
+  "/Game/Foliage/Trees/Olivetree": {
+   "SM_Olivetree01": [
+    1242.7,
+    1566.0
+   ],
+   "SM_Olivetree02": [
+    1220.1,
+    1782.4
+   ],
+   "SM_Olivetree03": [
+    969.9,
+    995.7
+   ]
+  },
+  "/Game/Foliage/Trees/Silverbirch": {
+   "SM_Silverbirch01": [
+    1815.4,
+    1062.9
+   ],
+   "SM_Silverbirch02": [
+    1820.9,
+    1654.9
+   ],
+   "SM_Silverbirch03": [
+    1702.0,
+    1110.0
+   ],
+   "SM_Silverbirch04": [
+    405.7,
+    518.6
+   ],
+   "SM_Silverbirch06": [
+    1812.9,
+    1634.9
+   ],
+   "SM_Silverbirch07": [
+    171.3,
+    163.7
+   ],
+   "SM_Silverbirch08": [
+    276.2,
+    216.9
+   ],
+   "SM_Silverbirch11": [
+    1021.9,
+    493.1
+   ],
+   "SM_Silverbirch12": [
+    1809.7,
+    808.8
+   ],
+   "SM_Silverbirch13": [
+    1882.4,
+    1210.2
+   ],
+   "SM_Silverbirch14": [
+    1584.2,
+    1181.1
+   ]
+  },
+  "/Game/Foliage/Trees/SilverbirchWales": {
+   "SM_SilverbirchWales07": [
+    171.3,
+    163.7
+   ],
+   "SM_SilverbirchWales08": [
+    276.2,
+    216.9
+   ]
+  },
+  "/Game/Foliage/Trees/Smoketree": {
+   "SM_Smoketree01": [
+    725.3,
+    675.3
+   ],
+   "SM_Smoketree02": [
+    185.1,
+    199.8
+   ],
+   "SM_Smoketree04": [
+    725.3,
+    670.9
+   ],
+   "SM_Smoketree06": [
+    1033.2,
+    798.0
+   ]
+  },
+  "/Game/Foliage/Trees/Spruce": {
+   "SM_Spruce01": [
+    2246.8,
+    901.1
+   ],
+   "SM_Spruce02": [
+    1811.2,
+    615.7
+   ],
+   "SM_Spruce04": [
+    310.5,
+    360.9
+   ],
+   "SM_Spruce05": [
+    1936.3,
+    991.7
+   ],
+   "SM_Spruce06": [
+    1121.8,
+    696.9
+   ],
+   "SM_Spruce07": [
+    324.8,
+    245.9
+   ],
+   "SM_Spruce08": [
+    646.6,
+    442.1
+   ]
+  },
+  "/Game/Foliage/Trees/SpruceHarvested": {
+   "SM_SpruceHarvested01": [
+    1733.9,
+    199.3
+   ],
+   "SM_SpruceHarvested02": [
+    1092.8,
+    125.7
+   ],
+   "SM_SpruceHarvested03": [
+    641.0,
+    88.0
+   ],
+   "SM_SpruceHarvested04": [
+    171.3,
+    688.9
+   ]
+  },
+  "/Game/Foliage/Trees/SpruceMonteCarlo": {
+   "SM_SpruceMonteCarlo01": [
+    2246.8,
+    901.1
+   ],
+   "SM_SpruceMonteCarlo02": [
+    1811.2,
+    615.7
+   ],
+   "SM_SpruceMonteCarlo03": [
+    1824.8,
+    526.5
+   ],
+   "SM_SpruceMonteCarlo04": [
+    310.5,
+    360.9
+   ],
+   "SM_SpruceMonteCarlo05": [
+    1936.3,
+    991.7
+   ],
+   "SM_SpruceMonteCarlo06": [
+    1121.8,
+    696.9
+   ],
+   "SM_SpruceMonteCarlo07": [
+    324.8,
+    245.9
+   ],
+   "SM_SpruceMonteCarlo08": [
+    646.6,
+    442.1
+   ]
+  },
+  "/Game/Foliage/Trees/SpruceWales": {
+   "SM_SpruceWales01": [
+    2246.8,
+    901.1
+   ],
+   "SM_SpruceWales02": [
+    1811.2,
+    615.7
+   ],
+   "SM_SpruceWales03": [
+    1824.8,
+    638.1
+   ],
+   "SM_SpruceWales04": [
+    310.5,
+    360.9
+   ],
+   "SM_SpruceWales05": [
+    1936.3,
+    991.7
+   ],
+   "SM_SpruceWales06": [
+    1121.8,
+    682.7
+   ],
+   "SM_SpruceWales07": [
+    324.8,
+    245.9
+   ],
+   "SM_SpruceWales08": [
+    646.6,
+    442.1
+   ],
+   "SM_SpruceWales09": [
+    1817.4,
+    589.1
+   ]
+  }
+ }
+}

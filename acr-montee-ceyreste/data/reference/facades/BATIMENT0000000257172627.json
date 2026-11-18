@@ -1,0 +1,84 @@
+{
+ "cleabs": "BATIMENT0000000257172627",
+ "pk_m": 3226,
+ "cote": "droite",
+ "niveau": "premier_plan",
+ "images": [
+  {
+   "id": "e4dc1127-8b2f-4214-920f-a9cde4be17f9",
+   "role": "F9 (ouest) en partie, derrière la haie et le grillage (PK 3204), vue rapprochée lue"
+  },
+  {
+   "id": "a133f64e-20c4-457c-86b0-ac0b8d3202a8",
+   "role": "maison blanche à génoise derrière les bambous et le mur enduit (PK 3240)"
+  },
+  {
+   "id": "be182a52-adc3-4153-8ee9-38d2f0450491",
+   "role": "masquée par un grand arbre (PK 3209)"
+  }
+ ],
+ "lidar": "valide (faîtage 4-5 m)",
+ "volumes": [
+  {
+   "nom": "maison",
+   "niveaux": 1,
+   "egout_z": 3.4,
+   "toit": "deux_pans",
+   "faitage": "parallele:F6",
+   "pente": 0.3,
+   "debord_m": 0.3,
+   "genoise_rangs": 2,
+   "sous_face": "tuile",
+   "source": "maison de plain-pied enduite blanc, génoise à deux rangs sous une rive de tuiles canal (e4dc1127, a133f64e) ; égout du LiDAR"
+  }
+ ],
+ "enduit": {
+  "mesure_rgb": [
+   119,
+   108,
+   90
+  ],
+  "clarte": "blanc",
+  "source": "F9 à l'ombre, e4dc1127 (pixels de la vue rectifiée) : blanc cassé"
+ },
+ "toit": {
+  "ortho_rgb": [
+   135,
+   121,
+   109
+  ],
+  "source": "ortho IGN 20 cm (saturation relevée)"
+ },
+ "facades": {
+  "F9": {
+   "vue": true,
+   "images": [
+    "e4dc1127"
+   ],
+   "ouvertures": [
+    {
+     "type": "garage",
+     "x": 7.35,
+     "z": 0.0,
+     "l": 2.15,
+     "h": 2.1,
+     "couleur": "blanc",
+     "source": "e4dc1127, vue F9 graduée (zoom) : panneaux blancs d'une porte de garage sous l'auvent, de 7,35 à 9,5 m ; posée par rapport à l'auvent relevé (6,4 à 9,8 m), donc juste sur le modèle même si l'emprise est décalée de ±1 m sur la photo ; haut sous l'auvent (cinquième passe, 19/11/2026)"
+    }
+   ],
+   "elements": [
+    {
+     "type": "auvent",
+     "x": 6.4,
+     "l": 3.4,
+     "prof": 1.6,
+     "z": 2.5,
+     "source": "auvent de tuiles sur poteaux devant F9 (e4dc1127) ; position le long de F9 à ±1 m (emprise et photo mal superposées)"
+    }
+   ],
+   "note": "une porte de garage blanche sous l'auvent (posée le 19/11/2026, x lu sur la vue graduée) ; le reste de F9 est caché par la haie"
+  }
+ },
+ "abords": "mur de clôture enduit sur la route (posé), rideau de bambous, haie de troènes, grillage vert",
+ "notes": "Autres façades cachées (bambous, mur) : enduit relevé, sans ouverture."
+}

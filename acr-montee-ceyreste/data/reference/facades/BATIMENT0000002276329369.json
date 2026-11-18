@@ -1,0 +1,102 @@
+{
+ "cleabs": "BATIMENT0000002276329369",
+ "pk_m": 2854,
+ "cote": "droite",
+ "niveau": "premier_plan",
+ "images": [
+  {
+   "id": "42e90e63-7198-4578-a4a7-f36ebbce8d62",
+   "role": "F2 (nord, sur la route) de face (PK 2852), vue rapprochée lue"
+  },
+  {
+   "id": "ec8c7730-72ba-4372-a125-2df2866e8507",
+   "role": "F2 et F3 de biais (PK 2847)"
+  },
+  {
+   "id": "0119a756-daec-4a58-aee8-c2caea538d53",
+   "role": "F2 depuis l'aval (PK 2837)"
+  }
+ ],
+ "lidar": "valide sur le toit (4,6 m au-dessus du terrain médian) ; pins au-dessus de l'angle nord-est",
+ "volumes": [
+  {
+   "nom": "bâtisse",
+   "niveaux": 2,
+   "egout_z": 5.6,
+   "toit": "deux_pans",
+   "faitage": "parallele:F2",
+   "pente": 0.2,
+   "debord_m": 0.1,
+   "genoise_rangs": 0,
+   "sous_face": "tuile",
+   "source": "bâtisse ancienne de moellons, toit de tuiles à faible pente, rive de tuiles au-dessus d'un bandeau de ciment neuf (42e90e63) ; égout à 5,6-6 m au-dessus du pied (graduations, LiDAR)"
+  }
+ ],
+ "enduit": {
+  "mesure_rgb": [
+   106,
+   101,
+   90
+  ],
+  "clarte": "moyen",
+  "source": "F2 à l'ombre, enduit à pierre vue sur moellons, 42e90e63 (pixels de la vue rectifiée)"
+ },
+ "soubassement": {
+  "h": 1.2,
+  "mesure_rgb": [
+   65,
+   61,
+   50
+  ],
+  "clarte": "soutenu",
+  "source": "pierre sèche apparente au pied de F2, partie gauche (42e90e63) ; posée sur tout le pourtour faute de vue des autres faces"
+ },
+ "toit": {
+  "ortho_rgb": [
+   172,
+   149,
+   128
+  ],
+  "source": "ortho IGN 20 cm (saturation relevée)"
+ },
+ "facades": {
+  "F2": {
+   "vue": true,
+   "images": [
+    "42e90e63",
+    "ec8c7730",
+    "0119a756"
+   ],
+   "ouvertures": [
+    {
+     "type": "fenetre",
+     "x": 4.6,
+     "z": 3.1,
+     "l": 0.95,
+     "h": 1.45,
+     "volets": "plein",
+     "volet_etat": "ferme",
+     "vantaux": 1,
+     "volet_couleur": "vert",
+     "appui": false,
+     "source": "42e90e63 : volet plein à planches verticales, vert, fermé (un vantail)"
+    },
+    {
+     "type": "fenetre",
+     "x": 7.3,
+     "z": 4.4,
+     "l": 0.8,
+     "h": 0.5,
+     "menuiserie": "blanc",
+     "volets": "aucun",
+     "appui": false,
+     "encadrement": true,
+     "source": "42e90e63 : petit châssis blanc dans une ancienne baie rebouchée (enduit plus clair dessous)"
+    }
+   ],
+   "note": "panneau d'enduit lisse beige à gauche (x < 2,9 m) et bandeau de ciment gris en haut non différenciés (une seule teinte)"
+  }
+ },
+ "abords": "coffret de compteur en béton devant F2, chemin de terre, pins et chênes",
+ "notes": "Façades F0, F1, F3 cachées par la végétation : enduit relevé, sans ouverture. Coffret blanc et câbles sur le poteau devant F2 : non posés (poteau du mobilier)."
+}

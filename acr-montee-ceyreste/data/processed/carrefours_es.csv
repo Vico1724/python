@@ -1,0 +1,22 @@
+pk_m,cote,nature,numero,nom,largeur_m,dans_es
+-139,droite,Route à 1 chaussée,,CHE DES BARTAVELLES,3.5,False
+-44,droite,Route à 1 chaussée,,CHE DES LAVANDES,3.5,False
+-8,droite,Route à 1 chaussée,,,5,False
+26,droite,Route à 1 chaussée,,VOI ROMAINE,7,True
+119,droite,Route empierrée,,,,True
+462,droite,Route empierrée,,,,True
+893,gauche,Chemin,,,,True
+1474,droite,Chemin,,,,True
+1516,droite,Route empierrée,,,,True
+2081,droite,Route à 1 chaussée,,VOI ROMAINE,7,True
+2152,droite,Route à 1 chaussée,,,3,True
+2152,droite,Route empierrée,,,,True
+2600,gauche,Sentier,,,,True
+2680,droite,Route empierrée,,,,True
+2696,droite,Route empierrée,,,,True
+2696,droite,Chemin,,,,True
+2817,droite,Route empierrée,,,,True
+2918,droite,Route empierrée,,,,True
+3235,droite,Route à 1 chaussée,,,3,False
+3375,droite,Route à 1 chaussée,,,3,False
+3746,gauche,Route à 1 chaussée,D3D,,4,False

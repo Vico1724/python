@@ -1,0 +1,61 @@
+diff --git a/tools/acr-ref/ObjectColliders.cs b/tools/acr-ref/ObjectColliders.cs
+index 38eb76a..52a0098 100644
+--- a/tools/acr-ref/ObjectColliders.cs
++++ b/tools/acr-ref/ObjectColliders.cs
+@@ -238,8 +238,9 @@ internal static class ObjectColliders
+         }
+         res.Report["surface_across_road"] = new JsonObject(hist.Select(kv => KeyValuePair.Create(kv.Key,
+             (JsonNode?)string.Join(", ", offs.Select((o, k) => $"{o:0} m: {kv.Value[k]}")))));
+-        var j = JsonNode.Parse(File.ReadAllText(stageJson))!["objects"]!;
+-        var templates = j["templates"]!.AsObject();
++        // [Grand Caunet] `objects` may be null in a stage IR (docs/stage-ir.md); --objects then simply adds nothing
++        var j = JsonNode.Parse(File.ReadAllText(stageJson))!["objects"];
++        var templates = j?["templates"]?.AsObject() ?? new JsonObject();
+         var skipClasses = cfg.Arr("skip", "shape_classes").Cast<string>().ToHashSet();
+         var skipBreaks = cfg.Arr("skip", "breaks_on_impulse").Cast<string>().ToHashSet();
+         var probe = res.Probe = new RoadProbe(road, surfaces, cfg, res.RoadCodes = RoadSurfaces.For(cfg.Arr("road", "surfaces"), surfaces, centreUe));
+@@ -254,7 +255,7 @@ internal static class ObjectColliders
+         double worstKeptPen = 0;
+         void Skip(string why) => skipped[why] = skipped.GetValueOrDefault(why) + 1;
+ 
+-        foreach (var inst in j["instances"]!.AsArray())
++        foreach (var inst in j?["instances"]?.AsArray() ?? [])
+         {
+             instances++;
+             var tname = inst!["template"]!.GetValue<string>();
+diff --git a/tools/acr-ref/VisualObjects.cs b/tools/acr-ref/VisualObjects.cs
+index dc9b05f..33249ac 100644
+--- a/tools/acr-ref/VisualObjects.cs
++++ b/tools/acr-ref/VisualObjects.cs
+@@ -49,7 +49,10 @@ internal static class VisualObjects
+         var counts = Classes.ToDictionary(c => c, _ => 0);
+ 
+         var meshes = new Dictionary<string, Mesh>();
+-        foreach (var g in new Glb(Path.Combine(ir.Dir, "render", "objects.glb")).Primitives(withUv: dr2Materials is not null).GroupBy(p => p.Mesh))
++        // [Grand Caunet] render/objects.glb is optional: without it, every kept collider is drawn as its own shape (proxy)
++        var objectsGlb = Path.Combine(ir.Dir, "render", "objects.glb");
++        var prims = File.Exists(objectsGlb) ? new Glb(objectsGlb).Primitives(withUv: dr2Materials is not null) : Enumerable.Empty<Glb.Primitive>();
++        foreach (var g in prims.GroupBy(p => p.Mesh))
+         {
+             var pos = new List<Vector3>(); var idx = new List<uint>(); var uv = new List<Vector2>(); var triMat = new List<string>();
+             foreach (var p in g)
+@@ -69,8 +72,8 @@ internal static class VisualObjects
+         int dr2Tris = 0, dr2Instances = 0;
+ 
+         var kept = objs.Kept.GroupBy(s => s.Instance).ToDictionary(g => g.Key, g => g.ToList());
+-        var stage = JsonNode.Parse(File.ReadAllText(Path.Combine(ir.Dir, "stage.json")))!["objects"]!;
+-        var templates = stage["templates"]!.AsObject();
++        var stage = JsonNode.Parse(File.ReadAllText(Path.Combine(ir.Dir, "stage.json")))!["objects"];   // [Grand Caunet] may be null
++        var templates = stage?["templates"]?.AsObject() ?? new JsonObject();
+         var treeClasses = cfg.Arr("objects", "tree_shape_classes").Cast<string>().ToHashSet();
+         int instances = 0, outside = 0, noMesh = 0, meshInstances = 0, proxyInstances = 0, notSolid = 0, treeInstances = 0;
+         int alignChecked = 0, misaligned = 0, crownsDrawn = 0, crownsDropped = 0;
+@@ -97,7 +100,7 @@ internal static class VisualObjects
+ 
+         V3 Ue(Vector3 dr2) => pl.ToUe([dr2.X, dr2.Y, dr2.Z]);
+ 
+-        foreach (var inst in stage["instances"]!.AsArray())
++        foreach (var inst in stage?["instances"]?.AsArray() ?? [])
+         {
+             instances++;
+             var tname = inst!["template"]!.GetValue<string>();

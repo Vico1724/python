@@ -1,0 +1,16 @@
+{
+ "cleabs": "BATIMENT0000000257167865",
+ "pk_m": -84, "cote": "droite", "niveau": "premier_plan",
+ "images": [{"id": "63cc1724-4cdb-4182-aaa0-93d2265548c1", "role": "pignon F3 au-dessus du talus (PK -107), vue rapprochée lue"},
+            {"id": "d0bcfced-420c-4a81-abfe-9f4f869bb3ad", "role": "même pignon (PK -112)"},
+            {"id": "31fd6398-d470-40a9-bbb9-333edeb26453", "role": "caché par la clôture grise et le mur de soutènement (PK -62)"}],
+ "lidar": "faîtage LiDAR (6 m) pris sur des arbres ; hauteur lue sur la photo",
+ "volumes": [
+  {"nom": "remise", "niveaux": 1, "egout_z": 2.4, "toit": "deux_pans", "faitage": "parallele:F0", "pente": 0.43, "debord_m": 0.1,
+   "genoise_rangs": 0, "sous_face": "tuile", "source": "remise ancienne, pignon sur F3, toit de tuiles moussu, faîtage à 3,3 m (63cc1724)"}
+ ],
+ "enduit": {"mesure_rgb": [83, 80, 72], "clarte": "moyen", "source": "F3 à l'ombre, 63cc1724 : enduit de ciment gris, non peint"},
+ "toit": {"ortho_rgb": [118, 107, 99], "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve) ; tuiles couvertes de mousse sur 63cc1724"},
+ "facades": {"F3": {"vue": true, "images": ["63cc1724"], "ouvertures": [], "note": "pignon aveugle dans sa partie vue (bas caché par les broussailles)"}},
+ "notes": "Autres façades cachées : enduit relevé, sans ouverture."
+}

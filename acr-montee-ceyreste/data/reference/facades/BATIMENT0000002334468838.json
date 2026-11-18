@@ -1,0 +1,28 @@
+{
+ "cleabs": "BATIMENT0000002334468838",
+ "pk_m": -53, "cote": "droite", "niveau": "premier_plan",
+ "images": [
+  {"id": "627dc7db-8ee6-4d31-8379-5e34af48bbb1", "role": "F6 (nord-ouest) de face au-dessus des restanques (PK -51), vue rapprochée lue"},
+  {"id": "f9160d60-31e7-498d-980b-702102fffa91", "role": "F6 et F5 de biais (PK -46)"},
+  {"id": "4ee3bbf3-31ed-44b0-9ed7-215c677ee716", "role": "F6, F8, F9 depuis l'aval (PK -82)"}
+ ],
+ "lidar": "invalide : maison plus récente que le relevé laser (BD TOPO créée en 2023, LiDAR 2,2 m) ; hauteurs lues sur les photos",
+ "volumes": [
+  {"nom": "corps à étage", "bande": {"face": "F5", "x0": 4.0, "x1": 10.7, "prof": 6.7}, "niveaux": 2, "egout_z": 6.7,
+   "toit": "quatre_pans", "pente": 0.30, "debord_m": 0.45, "genoise_rangs": 0, "sous_face": "blanc",
+   "source": "cube à croupes, débord à sous-face blanche, sans génoise (627dc7db) ; égout à 6,7 m au-dessus du pied (graduations)"},
+  {"nom": "corps bas", "reste": true, "niveaux": 1, "egout_z": 4.6, "toit": "quatre_pans", "pente": 0.30, "debord_m": 0.4,
+   "genoise_rangs": 0, "sous_face": "blanc",
+   "source": "corps de plain-pied à droite du cube (627dc7db, f9160d60 : rive de tuiles sous l'étage) ; hauteur estimée à ±0,5 m"}
+ ],
+ "enduit": {"mesure_rgb": [123, 92, 72], "clarte": "clair", "source": "F6 au soleil, 627dc7db, x 2,2-3,8 m, z 5-6,2 m : enduit saumon (rose orangé)"},
+ "toit": {"ortho_rgb": [177, 148, 128], "source": "ortho IGN 20 cm (saturation relevée) ; tuiles canal rouges neuves (627dc7db)"},
+ "facades": {
+  "F6": {"vue": true, "images": ["627dc7db", "f9160d60"], "ouvertures": [
+    {"type": "fenetre", "x": 1.0, "z": 5.45, "l": 0.9, "h": 1.05, "menuiserie": "anthracite", "volets": "roulant", "volet_couleur": "gris_clair", "roulant_baisse": 0.05, "appui": true, "source": "627dc7db : fenêtre à deux vantaux, menuiserie gris anthracite, coffre de volet roulant clair au-dessus"},
+    {"type": "fenetre", "x": 4.18, "z": 5.45, "l": 1.0, "h": 1.05, "menuiserie": "anthracite", "volets": "roulant", "volet_couleur": "gris_clair", "roulant_baisse": 0.05, "appui": true, "source": "627dc7db"}
+   ], "note": "bas caché par la clôture à lames grises et le mur de béton blanc de la terrasse (posés par 37)"}
+ },
+ "abords": "restanques de pierre sèche plantées de lavandes et d'un olivier, mur de béton blanc et clôture rigide grise occultante (posés par 37)",
+ "notes": "Autres façades du cube et du corps bas cachées par la clôture : enduit relevé, sans ouverture."
+}

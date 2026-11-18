@@ -1,0 +1,56 @@
+{
+ "note": "Usure de la chaussée posée par 44_usure_chaussee.py d'après data/reference/chaussee_releve_50m.json",
+ "par_famille": {
+  "fissure_longitudinale": {
+   "elements": 34,
+   "longueur_m": 748.0
+  },
+  "faiencage": {
+   "elements": 30,
+   "longueur_m": 616.0
+  },
+  "bord_effrite": {
+   "elements": 2,
+   "longueur_m": 60.0
+  },
+  "terre": {
+   "elements": 20,
+   "longueur_m": 543.0
+  },
+  "gravillons": {
+   "elements": 3,
+   "longueur_m": 50.0
+  },
+  "reprise": {
+   "elements": 4,
+   "longueur_m": 71.0
+  },
+  "traces_pneus": {
+   "elements": 15,
+   "longueur_m": 345.0
+  },
+  "fissure_transversale": {
+   "elements": 3,
+   "longueur_m": 3.0
+  },
+  "aiguilles": {
+   "elements": 5,
+   "longueur_m": 255.0
+  },
+  "joint_ponte": {
+   "elements": 3,
+   "longueur_m": 30.0
+  },
+  "raccord": {
+   "elements": 2,
+   "longueur_m": 2.0
+  },
+  "enrobe_recent": {
+   "elements": 1,
+   "longueur_m": 845.0
+  }
+ },
+ "elements": 122,
+ "fichier": "modele/usure_chaussee.glb",
+ "taille_ko": 1440
+}

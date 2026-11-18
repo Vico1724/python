@@ -1,0 +1,738 @@
+{
+ "depart_plan_de_masse": {
+  "pk_oeil": -40,
+  "pk_vise": 5.0,
+  "oeil_gltf": [
+   -14.489999771118164,
+   -0.5899999737739563,
+   37.369998931884766
+  ],
+  "vise_gltf": [
+   2.3399999141693115,
+   1.0099999904632568,
+   -4.5
+  ],
+  "arbres": 5145,
+  "arbustes": 1600,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_depart_plan_de_masse.png",
+  "taille_mo": 1.15,
+  "controle_image": {
+   "pixels_noirs_pct": 0.08,
+   "luminance_moyenne": 100.5
+  }
+ },
+ "epingle_893": {
+  "pk_oeil": 860,
+  "pk_vise": 886.0,
+  "oeil_gltf": [
+   -135.05999755859375,
+   26.100000381469727,
+   -489.30999755859375
+  ],
+  "vise_gltf": [
+   -158.52999877929688,
+   26.969999313354492,
+   -480.44000244140625
+  ],
+  "arbres": 3563,
+  "arbustes": 1298,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_epingle_893.png",
+  "taille_mo": 1.21,
+  "controle_image": {
+   "pixels_noirs_pct": 0.15,
+   "luminance_moyenne": 99.3
+  }
+ },
+ "lacets_1517": {
+  "pk_oeil": 1480,
+  "pk_vise": 1510.0,
+  "oeil_gltf": [
+   321.1000061035156,
+   68.4000015258789,
+   -753.3699951171875
+  ],
+  "vise_gltf": [
+   347.55999755859375,
+   70.33999633789062,
+   -765.530029296875
+  ],
+  "arbres": 5350,
+  "arbustes": 2751,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_lacets_1517.png",
+  "taille_mo": 1.43,
+  "controle_image": {
+   "pixels_noirs_pct": 0.38,
+   "luminance_moyenne": 68.8
+  }
+ },
+ "ponceau_2026": {
+  "pk_oeil": 1990,
+  "pk_vise": 2028.0,
+  "oeil_gltf": [
+   630.8699951171875,
+   97.44000244140625,
+   -827.2100219726562
+  ],
+  "vise_gltf": [
+   667.280029296875,
+   99.0199966430664,
+   -816.8900146484375
+  ],
+  "arbres": 4524,
+  "arbustes": 2887,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_ponceau_2026.png",
+  "taille_mo": 0.61,
+  "controle_image": {
+   "pixels_noirs_pct": 0.27,
+   "luminance_moyenne": 74.2
+  }
+ },
+ "arrivee_estimee": {
+  "pk_oeil": 2950,
+  "pk_vise": 2995.0,
+  "oeil_gltf": [
+   1063.4200439453125,
+   148.5500030517578,
+   -1128.1099853515625
+  ],
+  "vise_gltf": [
+   1071.510009765625,
+   151.0800018310547,
+   -1168.0400390625
+  ],
+  "arbres": 4569,
+  "arbustes": 4098,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_arrivee_estimee.png",
+  "taille_mo": 1.21,
+  "controle_image": {
+   "pixels_noirs_pct": 0.11,
+   "luminance_moyenne": 95.7
+  }
+ },
+ "controle_horizon": {
+  "pk_oeil": 2500,
+  "pk_vise": 3500.0,
+  "oeil_gltf": [
+   694.3499755859375,
+   124.4800033569336,
+   -1005.0399780273438
+  ],
+  "vise_gltf": [
+   120.77999877929688,
+   136.47999572753906,
+   -185.88999938964844
+  ],
+  "arbres": 5471,
+  "arbustes": 3909,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_controle_horizon.png",
+  "taille_mo": 1.23,
+  "controle_image": {
+   "pixels_noirs_pct": 0.38,
+   "luminance_moyenne": 71.1
+  }
+ },
+ "controle_raccord": {
+  "pk_oeil": 3650,
+  "pk_vise": null,
+  "oeil_gltf": [
+   1697.8399658203125,
+   315.4599914550781,
+   -1047.030029296875
+  ],
+  "vise_gltf": [
+   1717.5699462890625,
+   155.4600067138672,
+   -1451.52001953125
+  ],
+  "arbres": 4655,
+  "arbustes": 1709,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_controle_raccord.png",
+  "taille_mo": 0.62,
+  "controle_image": {
+   "pixels_noirs_pct": 0.0,
+   "luminance_moyenne": 90.1
+  }
+ },
+ "village_d3_vers_depart": {
+  "pk_oeil": 0,
+  "pk_vise": null,
+  "oeil_gltf": [
+   -533.4600219726562,
+   -43.02000045776367,
+   311.8399963378906
+  ],
+  "vise_gltf": [
+   -338.8599853515625,
+   -26.639999389648438,
+   222.83999633789062
+  ],
+  "arbres": 2102,
+  "arbustes": 0,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_village_d3_vers_depart.png",
+  "taille_mo": 0.57,
+  "controle_image": {
+   "pixels_noirs_pct": 0.0,
+   "luminance_moyenne": 142.0
+  }
+ },
+ "village_mairie_vers_nord": {
+  "pk_oeil": 0,
+  "pk_vise": null,
+  "oeil_gltf": [
+   -1341.8599853515625,
+   -117.58000183105469,
+   1000.239990234375
+  ],
+  "vise_gltf": [
+   -1124.9599609375,
+   -100.43000030517578,
+   704.1400146484375
+  ],
+  "arbres": 0,
+  "arbustes": 0,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_village_mairie_vers_nord.png",
+  "taille_mo": 0.87,
+  "controle_image": {
+   "pixels_noirs_pct": 0.0,
+   "luminance_moyenne": 135.9
+  }
+ },
+ "ligne_depart_montee": {
+  "pk_oeil": -5,
+  "pk_vise": 35.0,
+  "oeil_gltf": [
+   -0.5299999713897705,
+   0.9399999976158142,
+   5.119999885559082
+  ],
+  "vise_gltf": [
+   11.359999656677246,
+   1.7400000095367432,
+   -32.97999954223633
+  ],
+  "arbres": 5327,
+  "arbustes": 1619,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_ligne_depart_montee.png",
+  "taille_mo": 1.2,
+  "controle_image": {
+   "pixels_noirs_pct": 0.11,
+   "luminance_moyenne": 94.6
+  }
+ },
+ "ligne_depart_vers_village": {
+  "pk_oeil": 15,
+  "pk_vise": -25.0,
+  "oeil_gltf": [
+   6.239999771118164,
+   1.559999942779541,
+   -13.770000457763672
+  ],
+  "vise_gltf": [
+   -7.800000190734863,
+   -0.20999999344348907,
+   23.780000686645508
+  ],
+  "arbres": 1469,
+  "arbustes": 2048,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_ligne_depart_vers_village.png",
+  "taille_mo": 1.09,
+  "controle_image": {
+   "pixels_noirs_pct": 0.04,
+   "luminance_moyenne": 111.8
+  }
+ },
+ "approche_oliveraies_100": {
+  "pk_oeil": 95,
+  "pk_vise": 135.0,
+  "oeil_gltf": [
+   29.979999542236328,
+   3.119999885559082,
+   -89.95999908447266
+  ],
+  "vise_gltf": [
+   41.130001068115234,
+   3.619999885559082,
+   -128.4499969482422
+  ],
+  "arbres": 5639,
+  "arbustes": 1263,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_approche_oliveraies_100.png",
+  "taille_mo": 1.22,
+  "controle_image": {
+   "pixels_noirs_pct": 0.17,
+   "luminance_moyenne": 88.2
+  }
+ },
+ "approche_oliveraies_170": {
+  "pk_oeil": 165,
+  "pk_vise": 200.0,
+  "oeil_gltf": [
+   51.0099983215332,
+   4.210000038146973,
+   -156.63999938964844
+  ],
+  "vise_gltf": [
+   60.20000076293945,
+   3.3499999046325684,
+   -190.5500030517578
+  ],
+  "arbres": 5770,
+  "arbustes": 1182,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_approche_oliveraies_170.png",
+  "taille_mo": 1.18,
+  "controle_image": {
+   "pixels_noirs_pct": 0.38,
+   "luminance_moyenne": 79.2
+  }
+ },
+ "premieres_epingles_700": {
+  "pk_oeil": 690,
+  "pk_vise": 720.0,
+  "oeil_gltf": [
+   -38.7599983215332,
+   17.8799991607666,
+   -481.79998779296875
+  ],
+  "vise_gltf": [
+   -18.399999618530273,
+   19.559999465942383,
+   -503.6300048828125
+  ],
+  "arbres": 4897,
+  "arbustes": 2526,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_premieres_epingles_700.png",
+  "taille_mo": 0.63,
+  "controle_image": {
+   "pixels_noirs_pct": 0.24,
+   "luminance_moyenne": 80.8
+  }
+ },
+ "mur_parapet_1140": {
+  "pk_oeil": 1135,
+  "pk_vise": 1175.0,
+  "oeil_gltf": [
+   26.93000030517578,
+   44.36000061035156,
+   -594.6900024414062
+  ],
+  "vise_gltf": [
+   60.310001373291016,
+   47.0,
+   -616.739990234375
+  ],
+  "arbres": 4852,
+  "arbustes": 2055,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_mur_parapet_1140.png",
+  "taille_mo": 1.29,
+  "controle_image": {
+   "pixels_noirs_pct": 0.1,
+   "luminance_moyenne": 100.7
+  }
+ },
+ "glissiere_2330": {
+  "pk_oeil": 2325,
+  "pk_vise": 2365.0,
+  "oeil_gltf": [
+   651.6599731445312,
+   115.8499984741211,
+   -898.0700073242188
+  ],
+  "vise_gltf": [
+   619.3699951171875,
+   117.12999725341797,
+   -917.7000122070312
+  ],
+  "arbres": 5302,
+  "arbustes": 4496,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_glissiere_2330.png",
+  "taille_mo": 1.34,
+  "controle_image": {
+   "pixels_noirs_pct": 0.3,
+   "luminance_moyenne": 68.0
+  }
+ },
+ "hameau_2840": {
+  "pk_oeil": 2835,
+  "pk_vise": 2870.0,
+  "oeil_gltf": [
+   972.530029296875,
+   142.27000427246094,
+   -1077.9599609375
+  ],
+  "vise_gltf": [
+   1003.1099853515625,
+   143.8000030517578,
+   -1094.260009765625
+  ],
+  "arbres": 4487,
+  "arbustes": 3138,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_hameau_2840.png",
+  "taille_mo": 1.4,
+  "controle_image": {
+   "pixels_noirs_pct": 0.14,
+   "luminance_moyenne": 82.2
+  }
+ },
+ "aerien_bas_du_trace_village": {
+  "pk_oeil": 0,
+  "pk_vise": null,
+  "oeil_gltf": [
+   325.0400085449219,
+   205.52000427246094,
+   -345.8599853515625
+  ],
+  "vise_gltf": [
+   -974.9600219726562,
+   -90.41000366210938,
+   804.1400146484375
+  ],
+  "arbres": 5917,
+  "arbustes": 216,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_aerien_bas_du_trace_village.png",
+  "taille_mo": 1.13,
+  "controle_image": {
+   "pixels_noirs_pct": 0.03,
+   "luminance_moyenne": 111.3
+  }
+ },
+ "chaussee_epingle_1517": {
+  "pk_oeil": 1497,
+  "pk_vise": 1513.0,
+  "oeil_gltf": [
+   338.260009765625,
+   69.62000274658203,
+   -755.9299926757812
+  ],
+  "vise_gltf": [
+   348.6300048828125,
+   70.55999755859375,
+   -768.4400024414062
+  ],
+  "arbres": 5423,
+  "arbustes": 3062,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_chaussee_epingle_1517.png",
+  "taille_mo": 0.62,
+  "controle_image": {
+   "pixels_noirs_pct": 0.28,
+   "luminance_moyenne": 75.0
+  }
+ },
+ "glissiere_rapprochee_505": {
+  "pk_oeil": 503,
+  "pk_vise": 517.0,
+  "oeil_gltf": [
+   -82.52999877929688,
+   4.440000057220459,
+   -346.9599914550781
+  ],
+  "vise_gltf": [
+   -95.5,
+   5.179999828338623,
+   -351.9700012207031
+  ],
+  "arbres": 2901,
+  "arbustes": 1592,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_glissiere_rapprochee_505.png",
+  "taille_mo": 1.31,
+  "controle_image": {
+   "pixels_noirs_pct": 0.3,
+   "luminance_moyenne": 93.4
+  }
+ },
+ "carrefour_2622_traces": {
+  "pk_oeil": 2603,
+  "pk_vise": 2619.0,
+  "oeil_gltf": [
+   787.9400024414062,
+   129.69000244140625,
+   -1010.8200073242188
+  ],
+  "vise_gltf": [
+   801.4000244140625,
+   130.25999450683594,
+   -1002.2100219726562
+  ],
+  "arbres": 5318,
+  "arbustes": 4533,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_carrefour_2622_traces.png",
+  "taille_mo": 1.41,
+  "controle_image": {
+   "pixels_noirs_pct": 0.2,
+   "luminance_moyenne": 81.7
+  }
+ },
+ "depart_mur_droite": {
+  "pk_oeil": -50,
+  "pk_vise": 950.0,
+  "oeil_gltf": [
+   -21.059999465942383,
+   -1.2100000381469727,
+   45.20000076293945
+  ],
+  "vise_gltf": [
+   861.8800048828125,
+   -1.2100000381469727,
+   -424.2699890136719
+  ],
+  "arbres": 5082,
+  "arbustes": 1635,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_depart_mur_droite.png",
+  "taille_mo": 1.29,
+  "controle_image": {
+   "pixels_noirs_pct": 0.14,
+   "luminance_moyenne": 99.8
+  }
+ },
+ "depart_muret_gauche": {
+  "pk_oeil": -20,
+  "pk_vise": 980.0,
+  "oeil_gltf": [
+   -5.480000019073486,
+   0.3199999928474426,
+   19.309999465942383
+  ],
+  "vise_gltf": [
+   -179.1300048828125,
+   0.3199999928474426,
+   1004.1099853515625
+  ],
+  "arbres": 1298,
+  "arbustes": 1942,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_depart_muret_gauche.png",
+  "taille_mo": 1.18,
+  "controle_image": {
+   "pixels_noirs_pct": 0.21,
+   "luminance_moyenne": 102.2
+  }
+ },
+ "approche_parking_m110": {
+  "pk_oeil": -125,
+  "pk_vise": -85.0,
+  "oeil_gltf": [
+   -79.2300033569336,
+   -6.550000190734863,
+   92.54000091552734
+  ],
+  "vise_gltf": [
+   -47.16999816894531,
+   -3.940000057220459,
+   68.56999969482422
+  ],
+  "arbres": 5018,
+  "arbustes": 1601,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_approche_parking_m110.png",
+  "taille_mo": 1.3,
+  "controle_image": {
+   "pixels_noirs_pct": 0.45,
+   "luminance_moyenne": 85.5
+  }
+ },
+ "approche_muret_m70": {
+  "pk_oeil": -85,
+  "pk_vise": -45.0,
+  "oeil_gltf": [
+   -46.779998779296875,
+   -3.6500000953674316,
+   69.0199966430664
+  ],
+  "vise_gltf": [
+   -17.920000076293945,
+   -1.190000057220459,
+   41.16999816894531
+  ],
+  "arbres": 5040,
+  "arbustes": 1528,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_approche_muret_m70.png",
+  "taille_mo": 1.08,
+  "controle_image": {
+   "pixels_noirs_pct": 0.01,
+   "luminance_moyenne": 108.5
+  }
+ },
+ "approche_grillage_250": {
+  "pk_oeil": 235,
+  "pk_vise": 275.0,
+  "oeil_gltf": [
+   42.95000076293945,
+   3.5399999618530273,
+   -218.0
+  ],
+  "vise_gltf": [
+   3.430000066757202,
+   2.819999933242798,
+   -225.0399932861328
+  ],
+  "arbres": 5738,
+  "arbustes": 1731,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_approche_grillage_250.png",
+  "taille_mo": 1.35,
+  "controle_image": {
+   "pixels_noirs_pct": 0.49,
+   "luminance_moyenne": 73.2
+  }
+ },
+ "maison_m122": {
+  "pk_oeil": -140,
+  "pk_vise": -115.0,
+  "oeil_gltf": [
+   -91.4000015258789,
+   -7.550000190734863,
+   101.30000305175781
+  ],
+  "vise_gltf": [
+   -71.3499984741211,
+   -6.159999847412109,
+   86.43000030517578
+  ],
+  "arbres": 5006,
+  "arbustes": 1610,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_maison_m122.png",
+  "taille_mo": 1.31,
+  "controle_image": {
+   "pixels_noirs_pct": 0.32,
+   "luminance_moyenne": 91.3
+  }
+ },
+ "maison_2854": {
+  "pk_oeil": 2830,
+  "pk_vise": 2860.0,
+  "oeil_gltf": [
+   968.2100219726562,
+   142.00999450683594,
+   -1075.3800048828125
+  ],
+  "vise_gltf": [
+   993.8099975585938,
+   143.25999450683594,
+   -1090.81005859375
+  ],
+  "arbres": 4483,
+  "arbustes": 3140,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_maison_2854.png",
+  "taille_mo": 1.41,
+  "controle_image": {
+   "pixels_noirs_pct": 0.13,
+   "luminance_moyenne": 85.2
+  }
+ },
+ "hameau_3200": {
+  "pk_oeil": 3170,
+  "pk_vise": 3210.0,
+  "oeil_gltf": [
+   1234.5,
+   159.14999389648438,
+   -1196.8299560546875
+  ],
+  "vise_gltf": [
+   1274.56005859375,
+   159.7899932861328,
+   -1195.72998046875
+  ],
+  "arbres": 3452,
+  "arbustes": 4083,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_hameau_3200.png",
+  "taille_mo": 1.25,
+  "controle_image": {
+   "pixels_noirs_pct": 0.19,
+   "luminance_moyenne": 81.7
+  }
+ },
+ "soutenement_2120": {
+  "pk_oeil": 2095,
+  "pk_vise": 2130.0,
+  "oeil_gltf": [
+   726.4199829101562,
+   102.93000030517578,
+   -785.739990234375
+  ],
+  "vise_gltf": [
+   738.0,
+   104.98999786376953,
+   -812.2899780273438
+  ],
+  "arbres": 5864,
+  "arbustes": 3134,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_soutenement_2120.png",
+  "taille_mo": 0.6,
+  "controle_image": {
+   "pixels_noirs_pct": 0.0,
+   "luminance_moyenne": 77.1
+  }
+ },
+ "soutenement_2880": {
+  "pk_oeil": 2855,
+  "pk_vise": 2890.0,
+  "oeil_gltf": [
+   989.6400146484375,
+   143.25999450683594,
+   -1088.0400390625
+  ],
+  "vise_gltf": [
+   1022.5499877929688,
+   144.9600067138672,
+   -1097.1700439453125
+  ],
+  "arbres": 4480,
+  "arbustes": 2912,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_soutenement_2880.png",
+  "taille_mo": 1.25,
+  "controle_image": {
+   "pixels_noirs_pct": 0.15,
+   "luminance_moyenne": 76.5
+  }
+ },
+ "soutenement_3510": {
+  "pk_oeil": 3480,
+  "pk_vise": 3520.0,
+  "oeil_gltf": [
+   1518.97998046875,
+   169.88999938964844,
+   -1279.5999755859375
+  ],
+  "vise_gltf": [
+   1558.52001953125,
+   171.25999450683594,
+   -1281.25
+  ],
+  "arbres": 1707,
+  "arbustes": 2303,
+  "temps_video_v2_s": null,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_soutenement_3510.png",
+  "taille_mo": 1.25,
+  "controle_image": {
+   "pixels_noirs_pct": 0.32,
+   "luminance_moyenne": 75.9
+  }
+ }
+}

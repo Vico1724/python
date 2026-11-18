@@ -1,0 +1,72 @@
+osm,objet,pk_m,distance_axe_m,vu_osm,vu_photo,bdtopo_lidar,statut
+,panneau_temporaire,-40,,non,oui,,photo seule
+,panneau_agglomeration_fin,-34,,non,oui,,photo seule
+node/1272628288,traffic_sign=city_limit,-26.4,0.5,oui,"oui (panneau_limitation_vitesse, PK -20)",,OSM + photo
+,panneau_sens_interdit,-15,,non,oui,,photo seule
+,panneau_rond_de_dos,5,,non,oui,,photo seule
+,panneau_limitation_tonnage,5,,non,oui,,photo seule
+node/6431686998,highway=bus_stop,10.2,8.3,oui,"oui (abri_bus, PK 8)",,OSM + photo
+node/4343358548,highway=stop,28.4,3.1,oui,non relevé,,OSM seul
+node/13437590360,barrier=gate,28.8,7.3,oui,non relevé,,OSM seul
+node/10596460574,barrier=gate,35.1,26.0,oui,non relevé,,OSM seul
+node/13248624886,power=pole,35.7,3.4,oui,non relevé,,OSM seul
+node/13248624884,power=pole,61.3,47.6,oui,non relevé,,OSM seul
+node/4343358550,"traffic_sign=FR:A15b,M2[1400];A1d,M2[3000]",86.7,0.1,oui,"oui (panneau_danger, PK 86)",,OSM + photo
+node/13248624887,power=pole,90.1,4.8,oui,non relevé,,OSM seul
+,borne_kilometrique,110,,non,oui,,photo seule
+node/13248624885,power=pole,148.1,5.6,oui,non relevé,,OSM seul
+,panneau_information,750,,non,oui,,photo seule
+node/13437595734,barrier=chain,899.2,8.8,oui,non relevé,,OSM seul
+,balise_virage,902,,non,oui,,photo seule
+,balise_virage,913,,non,oui,,photo seule
+,panneau_de_dos,1300,,non,oui,,photo seule
+,panneau_danger,1300,,non,oui,,photo seule
+,bloc_beton_blanc,1458,,non,oui,,photo seule
+,bacs_dechets,1525,,non,oui,,photo seule
+,barriere_plastique,1621,,non,oui,,photo seule
+,barriere_plastique,1624,,non,oui,,photo seule
+,barriere_plastique,1627,,non,oui,,photo seule
+,barriere_plastique,1630,,non,oui,,photo seule
+,barriere_plastique,1633,,non,oui,,photo seule
+,barriere_plastique,1636,,non,oui,,photo seule
+,barriere_plastique,1639,,non,oui,,photo seule
+,barriere_plastique,1642,,non,oui,,photo seule
+,poteau_bois,1910,,non,oui,,photo seule
+node/13432394605,power=pole,2087.7,10.0,oui,non relevé,,OSM seul
+node/10596409457,highway=give_way,2094.0,3.8,oui,"oui (borne_kilometrique, PK 2111)",,OSM + photo
+node/12156759,barrier=swing_gate,2095.4,9.4,oui,"oui (barriere_tube, PK 2092)",,OSM + photo
+node/10596409500,barrier=gate,2097.0,55.2,oui,"oui (barriere_tube, PK 2092)",,OSM + photo
+node/12168984,barrier=bollard,2101.0,48.9,oui,"oui (barriere_tube, PK 2092)",,OSM + photo
+node/10596409442,barrier=chain,2104.0,57.1,oui,"oui (barriere_tube, PK 2092)",,OSM + photo
+node/13432394606,power=pole,2160.3,5.3,oui,non relevé,,OSM seul
+node/6688345180,highway=stop,2167.8,4.1,oui,non relevé,,OSM seul
+node/13432394607,power=pole,2212.0,16.3,oui,non relevé,,OSM seul
+node/13432394608,power=pole,2221.0,46.6,oui,non relevé,,OSM seul
+node/13432394610,power=pole,2669.1,21.5,oui,non relevé,,OSM seul
+node/13526174268,barrier=gate,2691.0,14.7,oui,non relevé,,OSM seul
+node/13526174296,barrier=gate,2708.7,14.4,oui,non relevé,,OSM seul
+,poteau_incendie,2722,,non,oui,,photo seule
+node/13526174295,barrier=gate,2742.5,19.4,oui,non relevé,,OSM seul
+,panneau_information,2757,,non,oui,,photo seule
+node/13432394613,power=pole,2834.4,57.4,oui,non relevé,,OSM seul
+node/13432394614,power=pole,2905.4,37.6,oui,non relevé,,OSM seul
+node/13432394615,power=pole,2926.5,17.4,oui,non relevé,,OSM seul
+node/10604417246,power=substation,2937.6,24.4,oui,non relevé,,OSM seul
+node/8600296503,highway=give_way,2938.1,4.7,oui,"oui (panneau_cedez_le_passage, PK 2938)",,OSM + photo
+node/13432394617,power=pole,2938.5,23.2,oui,non relevé,,OSM seul
+node/13432394616,power=pole,2948.0,38.2,oui,non relevé,,OSM seul
+node/13432394625,power=pole,3010.8,5.9,oui,non relevé,,OSM seul
+node/13526174353,barrier=chain,3057.3,4.9,oui,non relevé,,OSM seul
+node/13432394626,power=pole,3083.1,7.2,oui,"oui (poteau_bois, PK 3100)",,OSM + photo
+,borne_kilometrique,3112,,non,oui,,photo seule
+node/13432394627,power=pole,3147.4,32.8,oui,non relevé,,OSM seul
+node/13432394628,power=pole,3218.0,29.1,oui,non relevé,,OSM seul
+node/13432394629,power=pole,3297.5,16.4,oui,non relevé,,OSM seul
+node/13432394630,power=pole,3349.6,7.4,oui,non relevé,,OSM seul
+node/13432394631,power=pole,3432.0,4.3,oui,non relevé,,OSM seul
+node/13432394632,power=pole,3495.7,5.0,oui,non relevé,,OSM seul
+node/13432394636,power=pole,3558.9,5.3,oui,non relevé,,OSM seul
+node/13432394633,power=pole,3605.1,5.8,oui,non relevé,,OSM seul
+node/13432394634,power=pole,3678.0,4.9,oui,non relevé,,OSM seul
+node/1272628393,highway=give_way,3768.0,2.7,oui,non relevé,,OSM seul
+node/14125929807,natural=tree,3768.0,56.2,oui,non relevé,,OSM seul

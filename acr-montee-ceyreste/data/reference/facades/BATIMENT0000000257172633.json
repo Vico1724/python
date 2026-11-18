@@ -1,0 +1,28 @@
+{
+ "cleabs": "BATIMENT0000000257172633",
+ "pk_m": 3293.0,
+ "cote": "droite",
+ "niveau": "premier_plan",
+ "images": [
+  {
+   "id": "0d8c8459-71cf-4342-8f53-09262b412a49",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "01b2fdfb-7f9a-4fbd-a365-ae0b74ddea7c",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "af20c5fa-de8c-4ccb-88f0-251eb5766a16",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "3186438c-e4ff-477f-ae1f-587c8b7a8b12",
+   "role": "examinée : bâtiment caché"
+  }
+ ],
+ "lidar": "volume LiDAR de 31_bati.py gardé",
+ "volumes": [],
+ "facades": {},
+ "notes": "derrière une haie de cyprès taillée de 4 m (PK 3293) ; cachée (planche data/raw/panoramax/facades/BATIMENT0000000257172633/planche.jpg regardée). Aucune ouverture ni teinte d'enduit relevable : enduit par défaut, sans ouverture. Toit couvert par la végétation sur l'ortho : tuile par défaut."
+}

@@ -1,0 +1,47 @@
+{
+ "ecart_axe_retenu_bdtopo_m": {
+  "n": 605,
+  "mediane": 0.74,
+  "p95": 2.35,
+  "max": 4.42,
+  "part_sup_0_5_m_pct": 62.6
+ },
+ "ecart_axe_retenu_osm_m": {
+  "n": 605,
+  "mediane": 0.49,
+  "p95": 1.71,
+  "max": 2.96,
+  "part_sup_0_5_m_pct": 49.9
+ },
+ "ecart_axe_retenu_milieu_enrobe_image_m": {
+  "n": 207,
+  "mediane": 0.6,
+  "p95": 2.1,
+  "max": 3.4,
+  "part_sup_0_5_m_pct": 56.0
+ },
+ "ecart_osm_bdtopo_m": {
+  "n": 605,
+  "mediane": 0.83,
+  "p95": 2.66,
+  "max": 4.07,
+  "part_sup_0_5_m_pct": 65.5
+ },
+ "largeur": {
+  "retenue_07_mediane_m": 7.41,
+  "image_mediane_m": 5.4,
+  "image_part_du_lineaire_pct": 32.6,
+  "retenue_07_sur_stations_vues_image_m": 7.55,
+  "ecart_07_moins_image_median_m": 2.4,
+  "bdtopo_largeur_de_chaussee_m": "voir troncons_es.csv",
+  "points_planche": 25
+ },
+ "troncons_ecart_bdtopo_sup_0_5_m": [],
+ "troncons_axe_hors_milieu_enrobe_image_sup_0_5_m": [
+  {
+   "pk_debut": 3333.0,
+   "pk_fin": 3343.0,
+   "ecart_median_m": -1.0
+  }
+ ]
+}

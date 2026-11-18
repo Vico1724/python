@@ -1,0 +1,71 @@
+diff --git a/tools/acr-ref/Program.cs b/tools/acr-ref/Program.cs
+index 70606e7..80223f6 100644
+--- a/tools/acr-ref/Program.cs
++++ b/tools/acr-ref/Program.cs
+@@ -91,6 +91,7 @@ internal static class Program
+ 
+         DR2 stage port (host: Hafren South forward; see docs/decisions.md D6, mods/stage/build.ps1):
+           acr-ref stage-build    --ir <work/ir/stage> --legacy <retoc legacy root> --out <mod root> [--report f.json] [--keep-pacenotes 1]
++                                 [--keep-variants 1]   leave DT_TracksVariants unchanged and unshipped (stage-verify: same flag)
+           acr-ref stage-fit      [--ir-root work/ir] [--out work/acr/fit-report.json] [--margin 400] [--max-length 9000] [--filter <regex>]
+                                  read-only: placement + physics world box per stage (stage-build --bounds 1), long/tall stages flagged
+           acr-ref stage-check    --ir <dir> --legacy <root> --report <f.json> [--out file]   offline collision/raycast/spline checks
+diff --git a/tools/acr-ref/StageBuild.cs b/tools/acr-ref/StageBuild.cs
+index 717afaf..8cad4c3 100644
+--- a/tools/acr-ref/StageBuild.cs
++++ b/tools/acr-ref/StageBuild.cs
+@@ -117,6 +117,9 @@ internal static class StageBuild
+         var reportPath = o.Named.GetValueOrDefault("report") ?? Path.Combine(outRoot, "stage-report.json");
+         bool keepPacenotes = o.Named.GetValueOrDefault("keep-pacenotes") is "1" or "true";
+         bool additive = o.Named.GetValueOrDefault("additive") is "1" or "true";
++        // [Grand Caunet] --keep-variants 1: leave DT_TracksVariants out of the build (the menu keeps Hafren's 4.8 km). That table
++        // is overridden as a whole, so shipping it would hide or be hidden by any other mod that ships it (e.g. a registry).
++        bool keepVariants = o.Named.GetValueOrDefault("keep-variants") is "1" or "true";
+         string? packageRoot = o.Named.GetValueOrDefault("package-root");
+         var report = new JsonObject { ["stage"] = ir.Id, ["name"] = ir.Name, ["host"] = "WalesS4HafrenSouth forward (variant 1/2 \"Afon Bidno - Severn\")" };
+ 
+@@ -143,7 +146,7 @@ internal static class StageBuild
+         {
+             ["objects"] = objectsCfg, ["pacenote_map"] = pacenoteMap, ["respawn"] = respawnMode, ["keep_pacenotes"] = keepPacenotes,
+             ["visuals"] = o.Named.GetValueOrDefault("visuals"), ["ground_offset_m"] = groundOffset,
+-            ["additive"] = additive, ["package_root"] = packageRoot, ["bounds"] = bounds, ["bounds_margin_m"] = bounds ? boundsMargin : null,
++            ["additive"] = additive, ["keep_variants"] = keepVariants, ["package_root"] = packageRoot, ["bounds"] = bounds, ["bounds_margin_m"] = bounds ? boundsMargin : null,
+         };
+         if (o.Named.ContainsKey("visuals"))
+         {
+@@ -179,7 +182,7 @@ internal static class StageBuild
+         TreeInstancer.Reset();
+         if (o.Named.GetValueOrDefault("scenery") is { } treesSceneryCfg) TreeInstancer.Prepare(legacy, Toml.Load(treesSceneryCfg));
+         var cellInfo = BuildCell(o, ir, pl, legacy, outRoot, report, respawnMode, road, objectShapes, packageRoot);
+-        BuildTables(o, ir, legacy, outRoot, keepPacenotes, additive, report, pacenoteMap is null ? null : Toml.Load(pacenoteMap), cellInfo);
++        BuildTables(o, ir, legacy, outRoot, keepPacenotes, additive || keepVariants, report, pacenoteMap is null ? null : Toml.Load(pacenoteMap), cellInfo);
+         if (o.Named.GetValueOrDefault("scenery") is { } sceneryCfg)
+         {
+             report["options"]!["scenery"] = sceneryCfg;
+@@ -902,8 +905,9 @@ internal static class StageBuild
+         void C(bool ok, string what) { w.WriteLine($"{Advisory.Verdict(ok, what, out var bad)} {what}"); if (bad) failures++; }
+ 
+         bool additive = report["options"]?["additive"]?.GetValue<bool>() == true;
+-        if (additive)
+-            C(true, "DT_TracksVariants: skipped (--additive; registry carries Length)");
++        bool keepVariants = report["options"]?["keep_variants"]?.GetValue<bool>() == true;   // [Grand Caunet]
++        if (additive || keepVariants)
++            C(true, $"DT_TracksVariants: skipped ({(additive ? "--additive; registry carries Length" : "--keep-variants; host table not shipped")})");
+         else
+         {
+             var vpath = HostPaths.Resolve(root, HostPaths.Variants);
+diff --git a/tools/acr-ref/StageVerify.cs b/tools/acr-ref/StageVerify.cs
+index b0603cf..ee97ec6 100644
+--- a/tools/acr-ref/StageVerify.cs
++++ b/tools/acr-ref/StageVerify.cs
+@@ -132,6 +132,10 @@ internal static class StageVerify
+             var length = v.GetOrDefault<float>("Length");
+             w.WriteLine($"     DT_TracksVariants {k.Text}: Length {length}");
+         }
++        // [Grand Caunet] built with stage-build --keep-variants 1: the vanilla table (Hafren's 4.8 km) is expected
++        if (o.Named.GetValueOrDefault("keep-variants") is "1" or "true")
++            w.WriteLine($"SKIP a Hafren South variant has Length {Math.Round(ir.LengthM / 1000, 3)} km (--keep-variants: DT_TracksVariants not shipped)");
++        else
+         C(hafren.Any(kv => Math.Abs(kv.Value.GetOrDefault<float>("Length") - Math.Round(ir.LengthM / 1000, 3)) < 1e-3),
+             $"a Hafren South variant has Length {Math.Round(ir.LengthM / 1000, 3)} km");
+ 

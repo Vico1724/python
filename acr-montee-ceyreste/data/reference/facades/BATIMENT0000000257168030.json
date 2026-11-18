@@ -1,0 +1,35 @@
+{
+ "cleabs": "BATIMENT0000000257168030",
+ "pk_m": 33, "cote": "droite", "niveau": "premier_plan",
+ "nature": "abribus « LE PLAN DE MASSE » (ligne de départ)",
+ "images": [
+  {"id": "3bb06c35-353e-4942-a372-ccfb7b85ad3d", "role": "face ouverte F0 de face (PK 23), vue rapprochée lue"},
+  {"id": "8a8d212e-7277-4196-be63-70ad6cc5583f", "role": "F0 et F3 de biais (PK 22)"},
+  {"id": "f067b2d9-c42b-4006-a22d-60a45d6b7a55", "role": "F1 derrière le conteneur à verre (PK 32)"},
+  {"id": "01e282f5-8b20-4158-9990-904d98e554cf", "role": "F1 et F2 (PK 38)"}
+ ],
+ "lidar": "trop petit pour le LiDAR (1,4-2,4 m) ; hauteurs lues sur la photo",
+ "volumes": [
+  {"nom": "abribus", "niveaux": 1, "egout_z": 2.05, "toit": "appentis", "haut": "F2", "pente": 0.22, "debord_m": 0.2,
+   "genoise_rangs": 0, "sous_face": "bois", "ouvert": "F0", "bandeau": "porte_bois",
+   "enduit_interieur": {"mesure_rgb": [206, 186, 146], "clarte": "clair", "source": "intérieur crème à l'ombre, 3bb06c35"},
+   "banc": {"face": "F2", "x": 0.95, "l": 1.45},
+   "source": "abri maçonné ouvert au sud, piédroits blancs, toit d'un pan de tuiles canal anciennes et rouges neuves mêlées, bandeau de bois portant la plaque verte « LE PLAN DE MASSE », banc de béton (3bb06c35) ; égout avant à 2,05 m"}
+ ],
+ "enduit": {"mesure_rgb": [236, 232, 222], "clarte": "blanc", "source": "piédroits au soleil, 3bb06c35 : blanc cassé, salissures rouille au pied"},
+ "toit": {"ortho_rgb": [165, 140, 130], "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve) ; tuiles canal patinées, lichen orange, quelques tuiles neuves rouges (3bb06c35)"},
+ "facades": {
+  "F0": {"vue": true, "images": ["3bb06c35", "8a8d212e"], "ouvertures": [],
+         "note": "face ouverte ; dans l'abri : panneau d'affichage vitré à gauche, mosaïque en carreaux (œuvre de rue) sur le fond, non modélisés"},
+  "F1": {"vue": true, "images": ["f067b2d9", "01e282f5"], "ouvertures": [],
+         "elements": [{"type": "boite", "x": 0.0, "l": 1.6, "h": 1.75, "prof": 1.5, "recul": 0.05, "z": 0.0, "couleur": "gris_clair",
+                       "source": "conteneur à verre gris clair à bandes vertes contre F1 (3bb06c35, f067b2d9) ; bandes non modélisées"}],
+         "note": "mur aveugle enduit blanc, tags"},
+  "F3": {"vue": true, "images": ["8a8d212e"], "ouvertures": [],
+         "elements": [{"type": "boite", "x": 0.4, "l": 0.75, "h": 1.35, "prof": 0.45, "recul": 0.3, "z": 0.0, "couleur": "vert_armoire",
+                       "source": "armoire électrique verte devant F3 (3bb06c35, 8a8d212e)"}]},
+  "F2": {"vue": true, "images": ["01e282f5"], "ouvertures": []}
+ },
+ "abords": "trottoir de béton rouge, laurier-rose en fleurs derrière, poteau béton, panneaux « Voie Romaine » et « dépôt sauvage interdit », poteau d'incendie rouge (déjà posés ou hors relevé)",
+ "notes": "Plaque, affiche et mosaïque non reproduites (texte et œuvre)."
+}

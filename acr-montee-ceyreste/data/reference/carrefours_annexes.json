@@ -1,0 +1,16 @@
+{
+  "note": "Carrefours de la montée dont les voies non empruntées sont fermées. AUCUN CARREFOUR DESSINÉ : ni plan ni relevé (carrefour du Plan de Masse au départ, débouchés de lotissements, carrefour D3/D3D au Grand Caunet). Balisage par défaut repris du Grand Caunet (rubalise, maillages du jeu vérifiés là-bas).",
+  "balisage_par_defaut": {
+    "rubalise": {
+      "decalage_bord_m": 0.6,
+      "pas_poteaux_m": 3.0,
+      "hauteur_m": 1.0,
+      "famille_jeu": "rubalise sur piquets (RallyProps/TapePlasticPoleA + acteur de ruban)",
+      "maillage_jeu": "acr/Content/Props/RallyProps/TapePlasticPoleA/SM_PlasticTapePoleA",
+      "acteur_ruban_jeu": "acr/Content/Data/Environments/Common/BC_NarrowTapeActor"
+    },
+    "distance_min_obstacle_m": 0.8,
+    "remarque": "Décision du directeur (12/11/2026) : piquets et rubalise seulement. Dimensions des maillages du jeu inconnues (catalogue de noms seulement). Sur la vidéo n° 2 (t ≈ 182-186 s), la fermeture réelle est un grillage avertisseur orange à panneaux à chevrons, tendu du pied du grand pin jusqu'au bloc blanc (panneau bleu) au bout du parapet de pierre ; des rubalises bordent les accotements de la D3D."
+  },
+  "carrefours": []
+}

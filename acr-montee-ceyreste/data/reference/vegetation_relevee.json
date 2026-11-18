@@ -1,0 +1,326 @@
+{
+ "note": "Végétation de bord de route et de jardin relevée sur Panoramax (08/09/2025, Région Sud / Immergis, licence Etalab 2.0), sixième passe du 19/11/2026, sur les vues tournées vers la descente de 43_chaussee_releve.py (planches data/raw/panoramax/chaussee/planche_<PK>.jpg) et les planches de façades. Côtés dans le sens de la montée. Lu par 45_vegetation_bord.py : « herbes » = touffes d'herbe sèche sur l'accotement et au pied des murs (densité à l'œil) ; « massifs_mns » = massifs de feuillage (haies libres, lauriers, bambous) posés là où le MNS - MNT du LiDAR est entre h_min et h_max, dans la bande de recul indiquée (la hauteur vient du LiDAR, pas de la photo). Les arbres restent ceux du semis (10), avec les essences de zones_essences_relevees.json. « petits_elements » : bacs à déchets (forme simple : cuve, couvercle, roues), à leur PK (±3 m). Massifs limités à 3,2 m de haut (au-delà, une forme bosselée simple ne ressemble plus à un arbuste : vu sur la planche du PK 3226). Densités et hauteurs des herbes réduites après la planche pk3709_arret (bande d'herbe rendue comme une haie de paille) : 2 à 3 touffes au m², 0,2 à 0,5 m.",
+ "herbes": [
+  {
+   "pk": [
+    100,
+    250
+   ],
+   "cote": "droite",
+   "largeur_m": 1.2,
+   "densite_m2": 2.8,
+   "hauteur_m": [
+    0.17,
+    0.39
+   ],
+   "images": [
+    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
+    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
+    "48a9f912-ca25-48ab-bff3-5a6d42503499"
+   ],
+   "description": "herbe sèche au pied du muret de pierre sèche (oliveraie)"
+  },
+  {
+   "pk": [
+    100,
+    250
+   ],
+   "cote": "gauche",
+   "largeur_m": 1.0,
+   "densite_m2": 2.4,
+   "hauteur_m": [
+    0.17,
+    0.39
+   ],
+   "images": [
+    "9e3f4f93-cd2a-427a-bd84-4fabed39e880",
+    "d7d5855d-a768-4438-9e0e-4872803a797c",
+    "c6b32cb7-6de1-4b07-b419-1d4ef19c2f5f"
+   ],
+   "description": "herbe sèche au pied du muret et des grillages"
+  },
+  {
+   "pk": [
+    250,
+    350
+   ],
+   "cote": "gauche",
+   "largeur_m": 2.0,
+   "densite_m2": 2.4,
+   "hauteur_m": [
+    0.21,
+    0.45
+   ],
+   "images": [
+    "fda1798e-0ef9-44d8-b259-fc48ab601880",
+    "a46dcdfa-8e92-4fec-a90e-5c2e7aaa0adb",
+    "e2b1240a-b648-4cbb-a404-1d53704486e3",
+    "3a53fe19-c46f-4f93-b3f3-e91ef4895db3"
+   ],
+   "description": "herbe sèche et garrigue basse sur l'accotement"
+  },
+  {
+   "pk": [
+    290,
+    350
+   ],
+   "cote": "droite",
+   "largeur_m": 1.0,
+   "densite_m2": 2.0,
+   "hauteur_m": [
+    0.17,
+    0.33
+   ],
+   "images": [
+    "d8f0fa89-bd06-4b83-b10f-a1768f91fadc",
+    "3a53fe19-c46f-4f93-b3f3-e91ef4895db3"
+   ],
+   "description": "herbe sèche au pied du muret"
+  },
+  {
+   "pk": [
+    1985,
+    2110
+   ],
+   "cote": "gauche",
+   "largeur_m": 2.5,
+   "densite_m2": 2.4,
+   "hauteur_m": [
+    0.21,
+    0.45
+   ],
+   "images": [
+    "b6721f3d-3269-4870-bc74-768d6db5bd5a",
+    "b9a4f318-0dd3-4fdf-a9f0-371beba4d0db",
+    "7b885a49-ad02-4340-91ce-e569cb2d91e3",
+    "29a4065a-8333-448d-a578-f7424fc55a7f"
+   ],
+   "description": "herbe sèche sur l'accotement et le talus"
+  },
+  {
+   "pk": [
+    1990,
+    2060
+   ],
+   "cote": "droite",
+   "largeur_m": 1.0,
+   "densite_m2": 2.0,
+   "hauteur_m": [
+    0.17,
+    0.33
+   ],
+   "images": [
+    "b9a4f318-0dd3-4fdf-a9f0-371beba4d0db",
+    "df39fc97-31a6-410e-b5a8-f37ee9f8878e"
+   ],
+   "description": "herbe sèche au bord"
+  },
+  {
+   "pk": [
+    2240,
+    2300
+   ],
+   "cote": "gauche",
+   "largeur_m": 1.2,
+   "densite_m2": 2.4,
+   "hauteur_m": [
+    0.17,
+    0.36
+   ],
+   "images": [
+    "159a7659-f3e6-4333-9632-ba399b5ae793",
+    "0386bf44-6016-44ed-a855-531192ba7d90"
+   ],
+   "description": "herbe et garrigue basse au bord"
+  },
+  {
+   "pk": [
+    2830,
+    2850
+   ],
+   "cote": "droite",
+   "largeur_m": 1.5,
+   "densite_m2": 2.4,
+   "hauteur_m": [
+    0.21,
+    0.39
+   ],
+   "images": [
+    "ec8c7730-72ba-4372-a125-2df2866e8507",
+    "42e90e63-7198-4578-a4a7-f36ebbce8d62"
+   ],
+   "description": "herbe sèche au débouché du chemin"
+  },
+  {
+   "pk": [
+    3360,
+    3400
+   ],
+   "cote": "gauche",
+   "largeur_m": 2.0,
+   "densite_m2": 2.4,
+   "hauteur_m": [
+    0.21,
+    0.45
+   ],
+   "images": [
+    "c31c7d02-49cd-4ac8-929d-1eaa58a8f477",
+    "a0a0bb99-62da-4b88-b264-7eeb6cf6e3d4"
+   ],
+   "description": "herbe sèche sur le talus bas"
+  },
+  {
+   "pk": [
+    3600,
+    3750
+   ],
+   "cote": "gauche",
+   "largeur_m": 1.8,
+   "densite_m2": 2.8,
+   "hauteur_m": [
+    0.21,
+    0.45
+   ],
+   "images": [
+    "dcde5896-00b2-4dad-856b-f4308e86569c",
+    "e48878e8-2389-4a2f-a340-a2f92dcbcf37",
+    "1eeb4efc-c52f-4cb6-b246-a2d0fe30a255"
+   ],
+   "description": "bande d'herbe sèche le long du caniveau à grille"
+  },
+  {
+   "pk": [
+    3620,
+    3750
+   ],
+   "cote": "droite",
+   "largeur_m": 1.5,
+   "densite_m2": 2.4,
+   "hauteur_m": [
+    0.21,
+    0.52
+   ],
+   "images": [
+    "11ee1c29-9530-446c-94ac-f426e48da911",
+    "dcde5896-00b2-4dad-856b-f4308e86569c",
+    "6f20b24e-fff2-4202-a69e-2b54e83bb30f"
+   ],
+   "description": "herbe et ronces au bord de la vigne"
+  }
+ ],
+ "massifs_mns": [
+  {
+   "pk": [
+    3205,
+    3232
+   ],
+   "cote": "droite",
+   "recul_m": [
+    1.0,
+    5.0
+   ],
+   "h_min": 1.5,
+   "h_max": 3.2,
+   "espece": "haie",
+   "images": [
+    "e4dc1127-8b2f-4214-920f-a9cde4be17f9",
+    "f2618881-f993-4206-9a41-82a7d2e64864",
+    "c1fe1998-d9b1-416a-937a-4180e1851087"
+   ],
+   "description": "masse de feuillus et d'arbustes derrière le mur enduit, devant la maison du PK 3226 (la maison n'y est presque pas visible)"
+  },
+  {
+   "pk": [
+    2838,
+    2870
+   ],
+   "cote": "droite",
+   "recul_m": [
+    0.5,
+    6.0
+   ],
+   "h_min": 1.2,
+   "h_max": 3.2,
+   "espece": "haie",
+   "images": [
+    "ec8c7730-72ba-4372-a125-2df2866e8507",
+    "42e90e63-7198-4578-a4a7-f36ebbce8d62",
+    "0119a756-daec-4a58-aee8-c2caea538d53"
+   ],
+   "description": "buissons au bord, devant le hameau"
+  },
+  {
+   "pk": [
+    110,
+    200
+   ],
+   "cote": "gauche",
+   "recul_m": [
+    0.5,
+    6.0
+   ],
+   "h_min": 1.2,
+   "h_max": 3.2,
+   "espece": "haie",
+   "images": [
+    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
+    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3"
+   ],
+   "description": "arbustes verts derrière le muret et le grillage"
+  }
+ ],
+ "petits_elements": [
+  {
+   "genre": "bac",
+   "pk": 1527,
+   "cote": "droite",
+   "recul_m": 1.2,
+   "couleur": [
+    214,
+    180,
+    40
+   ],
+   "images": [
+    "fa96e3fc-4e63-4735-832b-1117897e0fcb",
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e",
+    "0373ab7c-4f27-4163-9fe8-88adea562baf"
+   ],
+   "description": "bac à déchets jaune à l'entrée de la piste"
+  },
+  {
+   "genre": "bac",
+   "pk": 1527.8,
+   "cote": "droite",
+   "recul_m": 1.2,
+   "couleur": [
+    118,
+    72,
+    46
+   ],
+   "images": [
+    "fa96e3fc-4e63-4735-832b-1117897e0fcb",
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e"
+   ],
+   "description": "bac à déchets marron à côté du jaune"
+  },
+  {
+   "genre": "bac",
+   "pk": 2625,
+   "cote": "droite",
+   "recul_m": 2.5,
+   "couleur": [
+    214,
+    186,
+    40
+   ],
+   "images": [
+    "53a09c49-2c66-45a2-9c15-39f22f91755f"
+   ],
+   "description": "bac jaune posé sur une palette au pied d'un poteau de bois"
+  }
+ ],
+ "vu_non_pose": [
+  "bambous du PK 3236-3300 à droite (images a133f64e, 882b8969, 01f6516a, 3226ad6d) : des massifs de 6 m rendus en masses vertes lisses sur la planche pk3226_maison (sixième passe) ; retirés, la hauteur reste portée par le semis (10)",
+  "arbres de 4 à 8 m des jardins (PK 3205-3232) : idem, laissés au semis (zone d'essences « jardin du PK 3226 »)"
+ ]
+}

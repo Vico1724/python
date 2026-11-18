@@ -1,0 +1,181 @@
+{
+ "note": "Surface de la chaussée de la montée, relevée le 18/11/2026 sur Panoramax (images 360° du 08/09/2025, vues plongeantes de la chaussée aux PK listés ; identifiants d'image dans chaque entrée) et sur l'orthophoto 20 cm. ATTENTION : état d'un jour ordinaire de septembre 2025, pas d'un jour de course. Permanent : rapiéçages, fissures, changements d'enrobé (aspect_chaussee.json). Variable : traces de pneus, gomme, aiguilles et terre (ici). Lu par scripts/16_paquet_unreal.py (details_de_chaussee) : les traces de gomme et de pneus ne sont posées que là où ce relevé en montre ; et par scripts/33_export_neutre.py (couche de décalques indépendante du jeu).",
+ "traces": [
+  {
+   "pk": [
+    1500,
+    1530
+   ],
+   "cote": "gauche",
+   "famille": "pneus",
+   "nombre": 3,
+   "intensite": "moyenne",
+   "decalage_m": -1.5,
+   "images": [
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e",
+    "0373ab7c-4f27-4163-9fe8-88adea562baf"
+   ],
+   "description": "arcs noirs de dérapage dans l'épingle du PK 1517, côté intérieur"
+  },
+  {
+   "pk": [
+    2130,
+    2165
+   ],
+   "cote": "axe",
+   "famille": "pneus",
+   "nombre": 3,
+   "intensite": "moyenne",
+   "decalage_m": 0.5,
+   "images": [
+    "f807be2e-75df-4d05-aba2-5a3e2fd62495",
+    "58af6c06-4b49-48db-999f-55d924d6cd3f"
+   ],
+   "description": "arcs noirs dans l'épingle du PK 2150 (enrobé récent)"
+  },
+  {
+   "pk": [
+    2605,
+    2635
+   ],
+   "cote": "axe",
+   "famille": "pneus",
+   "nombre": 5,
+   "intensite": "forte",
+   "decalage_m": 0.0,
+   "hors_virage": true,
+   "images": [
+    "fa486745-bc98-4c71-816e-b50ebca70ecc",
+    "3e944500-2359-4a21-a5b1-73fb3b392925"
+   ],
+   "description": "nombreuses traces noires serpentines et boucles (« donuts ») au carrefour du PK 2622"
+  },
+  {
+   "pk": [
+    1960,
+    1975
+   ],
+   "cote": "axe",
+   "famille": "gomme",
+   "nombre": 1,
+   "intensite": "faible",
+   "decalage_m": 0.3,
+   "hors_virage": true,
+   "images": [
+    "f9517c41-53f0-4ac9-8ad8-76cc7ce7d9d1"
+   ],
+   "description": "traces légères près de l'axe"
+  },
+  {
+   "pk": [
+    2850,
+    2870
+   ],
+   "cote": "droite",
+   "famille": "gomme",
+   "nombre": 1,
+   "intensite": "faible",
+   "decalage_m": 2.0,
+   "hors_virage": true,
+   "images": [
+    "0119a756-daec-4a58-aee8-c2caea538d53"
+   ],
+   "description": "traces sombres légères au bord droit"
+  }
+ ],
+ "bords": [
+  {
+   "pk": [
+    1000,
+    1160
+   ],
+   "cote": "gauche",
+   "famille": "terre",
+   "images": [
+    "f55bd1c8-fe31-441c-be5c-ca884531eef2",
+    "95381ebe-d557-4b89-a794-ec76fca5f277"
+   ],
+   "description": "terre rouge et aiguilles le long du pied du talus"
+  },
+  {
+   "pk": [
+    1630,
+    1655
+   ],
+   "cote": "gauche",
+   "famille": "aiguilles",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "aiguilles et terre rouge au pied du mur-parapet"
+  },
+  {
+   "pk": [
+    2320,
+    2460
+   ],
+   "cote": "gauche",
+   "famille": "aiguilles",
+   "images": [
+    "6343a32b-5b46-42e7-b052-b6a406b3bd1e"
+   ],
+   "description": "aiguilles le long de la glissière"
+  },
+  {
+   "pk": [
+    2930,
+    3000
+   ],
+   "cote": "gauche",
+   "famille": "aiguilles",
+   "images": [
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "8b10df10-9f0e-41b3-be1a-6f68bcca5a3e"
+   ],
+   "description": "aiguilles et terre rouge le long de la glissière"
+  },
+  {
+   "pk": [
+    2195,
+    2215
+   ],
+   "cote": "gauche",
+   "famille": "terre",
+   "images": [
+    "bf335aba-b753-457f-9145-4ccddade4aba"
+   ],
+   "description": "terre rouge et aiguilles à l'intérieur du virage"
+  }
+ ],
+ "non_vu": [
+  "Aucune inscription peinte, flèche ni nom sur la chaussée vus aux 24 points examinés ; regards et plaques non relevés.",
+  "Coulées de terre rouge sur l'enrobé : seulement en bordure (bords ci-dessus), pas de coulée traversante vue.",
+  "Zones humides : aucune (images de septembre, temps sec)."
+ ],
+ "points_examines": [
+  0,
+  300,
+  456,
+  761,
+  883,
+  902,
+  1005,
+  1147,
+  1301,
+  1501,
+  1517,
+  1638,
+  1798,
+  1966,
+  2140,
+  2155,
+  2204,
+  2328,
+  2495,
+  2620,
+  2702,
+  2857,
+  2943,
+  2992
+ ]
+}

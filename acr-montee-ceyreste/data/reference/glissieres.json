@@ -1,0 +1,181 @@
+{
+ "note": "Glissières de la montée, relevées le 18/11/2026 sur Panoramax (scripts/29_releve_panoramax.py, relevé brut data/reference/releve_panoramax_2025.json) et recalées sur le LiDAR HD quand il les voit. Géométrie et noms du jeu repris du Grand Caunet (supposés).",
+ "geometrie": {
+  "hauteur_haut_lisse_m": {
+   "valeur": 0.75,
+   "provenance": "supposé (valeur courante d'une glissière simple, 0,70-0,75 m)"
+  },
+  "hauteur_lisse_m": {
+   "valeur": 0.31,
+   "provenance": "supposé (lisse à deux ondes, ≈ 31 cm)"
+  },
+  "saillie_ondes_m": {
+   "valeur": 0.08,
+   "provenance": "supposé"
+  },
+  "pas_poteaux_m": {
+   "valeur": 4.0,
+   "provenance": "supposé (2 ou 4 m selon le type)"
+  },
+  "section_poteau_m": {
+   "valeur": 0.1,
+   "provenance": "supposé"
+  },
+  "decalage_depuis_bord_m": {
+   "valeur": 0.5,
+   "provenance": "supposé (sur l'accotement, la vidéo montre la lisse à quelques dizaines de cm de la rive)"
+  },
+  "ancrage_poteaux_m": {
+   "valeur": 0.6,
+   "provenance": "supposé (sous le terrain)"
+  }
+ },
+ "jeu": {
+  "materiau_de_choc": [
+   "acr/Content/Data/Gameplay/PhysicalMaterials/PM_GuardrailMetalHF",
+   "acr/Content/Data/Gameplay/PhysicalMaterials/PM_WallMetalGuardrail"
+  ],
+  "maillage_possible": "acr/Content/Props/AlsaceProps/SaverneCityGuardrailA/SM_SaverneCityGuardrailA (glissière urbaine de Saverne, dimensions inconnues)",
+  "evenement_de_choc": "acr/Content/Events/Destruction/Props/FME_ImpactGuardrail",
+  "remarque": "noms vérifiés dans data/reference/catalogue_jeu_25170642.txt.gz"
+ },
+ "troncons": [
+  {
+   "pk_debut_m": 500,
+   "pk_fin_m": 580,
+   "cote": "gauche",
+   "detail": "glissière simple",
+   "confiance_bornes": "±10 m",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d11bb5cc, 615e4eee, 2a7f0fd2, 622676a0, 6da4e77b",
+   "images": [
+    "d11bb5cc-87aa-4ade-8ce5-a65f024b0243",
+    "615e4eee-6a27-4793-b20e-90b49d81b4fc",
+    "2a7f0fd2-9c18-4c02-a157-96132459a10b",
+    "622676a0-704b-4390-ba6f-fa781192b0f8",
+    "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "glissière simple à l'extérieur, au-dessus du vallon (tags sur la lisse, non reproduits)",
+   "pk_photo_m": [
+    500,
+    580
+   ]
+  },
+  {
+   "pk_debut_m": 822,
+   "pk_fin_m": 925,
+   "cote": "gauche",
+   "detail": "glissière simple",
+   "confiance_bornes": "±10 m",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 50965cef, 28a74547, c115545b, 701e21a2, a7c86442, e08dc349",
+   "images": [
+    "50965cef-36aa-4ec8-923d-3fe3184c818b",
+    "28a74547-dedd-49ec-8183-6cd7b349e503",
+    "c115545b-6c4c-4f61-bb87-cab722cb4333",
+    "701e21a2-f493-4b1b-9783-04e05c039078",
+    "a7c86442-b91d-490e-82e8-402383df02f8",
+    "e08dc349-4095-4fef-b37c-76c31dc1b758"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "glissière simple à l'extérieur de l'épingle du PK 893, relayée par un parapet de pierre",
+   "pk_photo_m": [
+    822,
+    925
+   ]
+  },
+  {
+   "pk_debut_m": 1597,
+   "pk_fin_m": 1606,
+   "cote": "gauche",
+   "detail": "glissière simple",
+   "confiance_bornes": "±10 m",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images b2800717",
+   "images": [
+    "b2800717-4b44-43f3-8387-75b4d98d8340"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "faible",
+   "description": "court tronçon de glissière taguée avant le mur-parapet",
+   "pk_photo_m": [
+    1597,
+    1606
+   ]
+  },
+  {
+   "pk_debut_m": 2320,
+   "pk_fin_m": 2455,
+   "cote": "gauche",
+   "detail": "glissière simple",
+   "confiance_bornes": "±10 m",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images a232f421, 6343a32b, 1bf1a857, c1005dca, 7aeeec73, 5f7b4747, 5e0f54d8, f257b290, 51568e3d",
+   "images": [
+    "a232f421-bbe0-46ca-8505-5a575513f688",
+    "6343a32b-5b46-42e7-b052-b6a406b3bd1e",
+    "1bf1a857-b728-4c34-b912-d6642a45a0de",
+    "c1005dca-80b9-4946-a071-a2704faaac73",
+    "7aeeec73-a43a-4943-8e33-27522dd6715e",
+    "5f7b4747-42ac-4b20-9ec2-a6320fa2746a",
+    "5e0f54d8-289d-4c5e-a3ba-8fb584848fed",
+    "f257b290-3350-4e18-8aa2-a54ae32d2bea",
+    "51568e3d-1b01-460f-915a-12dabc03e354"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "glissière simple au-dessus du vallon",
+   "pk_photo_m": [
+    2320,
+    2455
+   ]
+  },
+  {
+   "pk_debut_m": 2655,
+   "pk_fin_m": 2705,
+   "cote": "droite",
+   "detail": "glissière simple",
+   "confiance_bornes": "±10 m",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 76cd2523, 45516cd4, 1e51ca99, f131475a",
+   "images": [
+    "76cd2523-c75a-43a6-a125-36c74c25d66d",
+    "45516cd4-3e7c-46a2-9a75-dba10bbfda0d",
+    "1e51ca99-affe-41f1-bd8b-674f05705165",
+    "f131475a-35a0-407a-953c-3ce215677e8c"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "glissière simple à l'extérieur du virage à gauche, maisons en contrebas",
+   "pk_photo_m": [
+    2655,
+    2705
+   ]
+  },
+  {
+   "pk_debut_m": 2935,
+   "pk_fin_m": 3000,
+   "cote": "gauche",
+   "detail": "glissière simple",
+   "confiance_bornes": "±10 m",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 7a47ca44, 0e847466, 76239e33, 8b10df10",
+   "images": [
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "0e847466-22ae-4418-ac3e-0341cde1bc81",
+    "76239e33-1ebc-434a-92e4-6945ba19f4f7",
+    "8b10df10-9f0e-41b3-be1a-6f68bcca5a3e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "glissière simple à l'extérieur de l'épingle à droite du PK 2950",
+   "pk_photo_m": [
+    2935,
+    3000
+   ]
+  }
+ ]
+}

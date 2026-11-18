@@ -1,0 +1,6 @@
+# Noms affichés pour la variante d'essai (acr-ref stage-build --names ; même forme que config/track-names.toml
+# d'ACR Extra Stages). Utilisé seulement avec 4_construire.ps1 -Noms. La table de textes ST_Track est alors livrée
+# en entier : seules ces deux entrées changent, toutes deux propres à la variante 1/2 de Hafren South.
+[ST_Track]
+TRACK_HAFRENSOUTH_FULL_FORWARD = "Le Grand Caunet (essai)"
+TRACK_HAFRENSOUTH_FULL_FORWARD_SHORT = "Le Grand Caunet"

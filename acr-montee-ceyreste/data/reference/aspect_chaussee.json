@@ -1,0 +1,178 @@
+{
+ "note": "Aspect de la chaussée relevé sur la imagerie Panoramax du 08/09/2025 (relevé du 18/11/2026) : pièces d'enrobé plus sombres, fissures pontées au bitume, raccords. Lu par scripts/11_route_ouvrages.py. Pièces et fissures restent non rendues tant que geometrie.pieces_rendues / fissures_rendues sont faux (refusées en jeu au Grand Caunet, 13/11/2026) : le relevé est gardé pour l'export neutre et un futur matériau.",
+ "geometrie": {
+  "hauteur_piece_m": 0.008,
+  "hauteur_fissure_m": 0.011,
+  "largeur_fissure_m": 0.045,
+  "ondulation_m": 0.22,
+  "part_de_voie_d_une_piece": 0.78,
+  "marge_au_bord_m": 0.2,
+  "couleur_piece_rgb": [
+   0.2,
+   0.2,
+   0.205
+  ],
+  "couleur_fissure_rgb": [
+   0.012,
+   0.012,
+   0.013
+  ],
+  "pieces_rendues": false,
+  "note_du_13_11": "Vu en jeu le 13/11/2026 : les pièces d'enrobé apparaissaient en grands rectangles gris clair et unis, les fissures en faisceaux de lignes grises courbes et le joint d'axe en ligne continue qui serpente : rien de tel dans la réalité. Cause : des bandes de couleur unie posées sur l'enrobé ne peuvent pas passer pour de l'enrobé ou du bitume (la couleur donnée était de plus linéaire, donc bien plus claire à l'écran que prévu). Plus rien de ce fichier n'est rendu ; il reste comme relevé. Piste pour plus tard : le matériau d'asphalte du jeu sait dessiner lui-même des pièces et des fissures (Patches_Enabled, BaseVariation_Enabled) ; deux variantes du jeu les ont activées (AlsaceS2Munster/AsphaltMaterial/MI_MunsterAsphalt1patches, MonteCarloS1Bollene/AsphaltMaterial/MI_BolleneAsphalt1Track1412).",
+  "fissures_rendues": false
+ },
+ "non_rendu": [
+  "Faïençage en réseau (PK 456, 2857) : rendu par 2 ou 3 fissures parallèles seulement.",
+  "Îlot en résine rouge du carrefour du Plan de Masse (PK 0-10, image 89d3561a) : non modélisé."
+ ],
+ "elements": [
+  {
+   "genre": "raccord",
+   "pk": [
+    1852,
+    1858
+   ],
+   "voie": "toute",
+   "releve": "PK ≈ 1855 : passage de l'enrobé ancien gris clair fissuré à un enrobé récent sombre (Panoramax 08/09/2025, vue plongeante de la chaussée, planche 16, image c23d7015)"
+  },
+  {
+   "genre": "raccord",
+   "pk": [
+    2697,
+    2703
+   ],
+   "voie": "toute",
+   "releve": "PK ≈ 2700 : retour à l'enrobé ancien gris clair, faïencé (Panoramax 08/09/2025, vue plongeante de la chaussée, image f131475a)"
+  },
+  {
+   "genre": "piece",
+   "pk": [
+    1295,
+    1325
+   ],
+   "voie": "droite",
+   "releve": "PK 1301 : voie de droite reprise en enrobé plus sombre (Panoramax 08/09/2025, vue plongeante de la chaussée, image 7b2904d1)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    440,
+    470
+   ],
+   "voie": "droite",
+   "nombre": 3,
+   "releve": "PK 456 : faïençage et fissures longitudinales ouvertes (Panoramax 08/09/2025, vue plongeante de la chaussée, image 3a0d33e4)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    440,
+    470
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "releve": "PK 456 : fissure le long de l'axe (Panoramax 08/09/2025, vue plongeante de la chaussée)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    745,
+    790
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 761 : fissures dans la voie de droite (Panoramax 08/09/2025, vue plongeante de la chaussée, image 41cdbd1d)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    870,
+    912
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 883-902 : fissures dans l'épingle (Panoramax 08/09/2025, vue plongeante de la chaussée, images 701e21a2, a7c86442)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    870,
+    912
+   ],
+   "voie": "droite",
+   "nombre": 1,
+   "releve": "PK 883-902 : fissures dans l'épingle (Panoramax 08/09/2025, vue plongeante de la chaussée)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    1140,
+    1165
+   ],
+   "voie": "gauche",
+   "nombre": 1,
+   "releve": "PK 1147 : faïençage léger (Panoramax 08/09/2025, vue plongeante de la chaussée, image 95381ebe)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    1290,
+    1312
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 1301 : fissures longitudinales (Panoramax 08/09/2025, vue plongeante de la chaussée)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    1495,
+    1525
+   ],
+   "voie": "droite",
+   "nombre": 2,
+   "releve": "PK 1501-1517 : fissures dans l'épingle (Panoramax 08/09/2025, vue plongeante de la chaussée, images ca4214f2, 0373ab7c)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    1630,
+    1650
+   ],
+   "voie": "axe",
+   "nombre": 1,
+   "releve": "PK 1638 : fissure (Panoramax 08/09/2025, vue plongeante de la chaussée, image d5c7d0ad)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2700,
+    2725
+   ],
+   "voie": "gauche",
+   "nombre": 2,
+   "releve": "PK 2702 : faïençage de l'enrobé ancien (Panoramax 08/09/2025, vue plongeante de la chaussée)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2840,
+    2880
+   ],
+   "voie": "gauche",
+   "nombre": 3,
+   "releve": "PK 2857 : faïençage fort des deux voies (Panoramax 08/09/2025, vue plongeante de la chaussée, image 0119a756)"
+  },
+  {
+   "genre": "fissure",
+   "pk": [
+    2840,
+    2880
+   ],
+   "voie": "droite",
+   "nombre": 3,
+   "releve": "PK 2857 : faïençage fort (Panoramax 08/09/2025, vue plongeante de la chaussée)"
+  }
+ ],
+ "elements_du_grand_caunet_ecartes": "62 éléments relevés au Grand Caunet (PK de la D3D et de la D1) étaient appliqués à Ceyreste par erreur depuis la copie du 17/11/2026 ; retirés le 18/11/2026."
+}

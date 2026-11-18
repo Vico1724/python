@@ -1,0 +1,5 @@
+# Noms affichés de la variante hôte remplacée (acr-ref stage-build --names), utilisés par pc/scripts/4_construire.ps1 -Noms.
+# Seules les deux entrées de la variante 1/2 de Hafren South changent.
+[ST_Track]
+TRACK_HAFRENSOUTH_FULL_FORWARD = "Montée de Ceyreste (essai)"
+TRACK_HAFRENSOUTH_FULL_FORWARD_SHORT = "Montée de Ceyreste"

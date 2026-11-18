@@ -1,0 +1,97 @@
+{
+  "textures_sol": {
+    "forrest_ground_03": {
+      "role": "aiguilles",
+      "nom": "Forest Ground 03",
+      "auteurs": [
+        "Rob Tuytel"
+      ],
+      "licence": "CC0 1.0 (domaine public), Poly Haven",
+      "page": "https://polyhaven.com/a/forrest_ground_03",
+      "fichiers": {
+        "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forrest_ground_03/forrest_ground_03_diff_2k.jpg",
+        "nor_gl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forrest_ground_03/forrest_ground_03_nor_gl_2k.jpg"
+      },
+      "taille_physique_m": 2.0,
+      "utilisation": "détail fin (couleur et relief) des sous-dalles de la bande route, motif à grande échelle des sols reconstruits (14_textures_sol.py)"
+    },
+    "forest_ground_04": {
+      "role": "litiere",
+      "nom": "Forest Ground 04",
+      "auteurs": [
+        "Rob Tuytel",
+        "Rico Cilliers"
+      ],
+      "licence": "CC0 1.0 (domaine public), Poly Haven",
+      "page": "https://polyhaven.com/a/forest_ground_04",
+      "fichiers": {
+        "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_ground_04/forest_ground_04_diff_2k.jpg",
+        "nor_gl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_ground_04/forest_ground_04_nor_gl_2k.jpg"
+      },
+      "taille_physique_m": 3.15,
+      "utilisation": "détail fin (couleur et relief) des sous-dalles de la bande route, motif à grande échelle des sols reconstruits (14_textures_sol.py)"
+    },
+    "rocks_ground_01": {
+      "role": "cailloux",
+      "nom": "Rocks Ground 01",
+      "auteurs": [
+        "Rob Tuytel"
+      ],
+      "licence": "CC0 1.0 (domaine public), Poly Haven",
+      "page": "https://polyhaven.com/a/rocks_ground_01",
+      "fichiers": {
+        "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocks_ground_01/rocks_ground_01_diff_2k.jpg",
+        "nor_gl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocks_ground_01/rocks_ground_01_nor_gl_2k.jpg"
+      },
+      "taille_physique_m": 2.0,
+      "utilisation": "détail fin (couleur et relief) des sous-dalles de la bande route, motif à grande échelle des sols reconstruits (14_textures_sol.py)"
+    },
+    "withered_grass": {
+      "role": "herbes",
+      "nom": "Withered Grass",
+      "auteurs": [
+        "Charlotte Baglioni"
+      ],
+      "licence": "CC0 1.0 (domaine public), Poly Haven",
+      "page": "https://polyhaven.com/a/withered_grass",
+      "fichiers": {
+        "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/withered_grass/withered_grass_diff_2k.jpg",
+        "nor_gl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/withered_grass/withered_grass_nor_gl_2k.jpg"
+      },
+      "taille_physique_m": 2.0,
+      "utilisation": "détail fin (couleur et relief) des sous-dalles de la bande route, motif à grande échelle des sols reconstruits (14_textures_sol.py)"
+    },
+    "rock_boulder_dry": {
+      "role": "roche",
+      "nom": "Rock Boulder Dry",
+      "auteurs": [
+        "Dimitrios Savva",
+        "Rico Cilliers"
+      ],
+      "licence": "CC0 1.0 (domaine public), Poly Haven",
+      "page": "https://polyhaven.com/a/rock_boulder_dry",
+      "fichiers": {
+        "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_boulder_dry/rock_boulder_dry_diff_2k.jpg",
+        "nor_gl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_boulder_dry/rock_boulder_dry_nor_gl_2k.jpg"
+      },
+      "taille_physique_m": 1.8,
+      "utilisation": "détail fin (couleur et relief) des sous-dalles de la bande route, motif à grande échelle des sols reconstruits (14_textures_sol.py)"
+    },
+    "rock_ground_02": {
+      "role": "gravier",
+      "nom": "Rock Ground 02",
+      "auteurs": [
+        "Rob Tuytel"
+      ],
+      "licence": "CC0 1.0 (domaine public), Poly Haven",
+      "page": "https://polyhaven.com/a/rock_ground_02",
+      "fichiers": {
+        "diff": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_ground_02/rock_ground_02_diff_2k.jpg",
+        "nor_gl": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_ground_02/rock_ground_02_nor_gl_2k.jpg"
+      },
+      "taille_physique_m": 3.0,
+      "utilisation": "détail fin (couleur et relief) des sous-dalles de la bande route, motif à grande échelle des sols reconstruits (14_textures_sol.py)"
+    }
+  },
+  "note": "Seules des ressources CC0 (Poly Haven) ou IGN (Licence Ouverte) sont utilisées."
+}

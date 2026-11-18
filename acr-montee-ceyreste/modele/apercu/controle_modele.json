@@ -1,0 +1,176 @@
+{
+  "repere": {
+    "origine": {
+      "description": "axe de la chaussée au PK 0 (départ de l'ES)",
+      "lambert93_x_m": 915324.96,
+      "lambert93_y_m": 6239604.145,
+      "lon": 5.64903212,
+      "lat": 43.22313267,
+      "altitude_m": 213.693,
+      "systeme_altimetrique": "NGF-IGN69 (altitudes du MNT LiDAR HD)"
+    },
+    "unites": "mètres",
+    "axes": {
+      "X": "est",
+      "Y": "haut (altitude - altitude d'origine)",
+      "Z": "sud (-Z = nord)",
+      "repere": "direct (main droite), convention glTF 2.0 +Y vers le haut"
+    },
+    "passage_lambert93_vers_gltf": "X = x_L93 - x0 ; Y = z - z0 ; Z = -(y_L93 - y0)",
+    "passage_gltf_vers_lambert93": "x_L93 = X + x0 ; y_L93 = y0 - Z ; z = Y + z0",
+    "x0": 915324.96,
+    "y0": 6239604.145,
+    "z0": 213.693,
+    "nord": "nord Lambert-93 (convergence des méridiens d'environ -0,9° ici, non corrigée)"
+  },
+  "complet": {
+    "bandes_m": [
+      [
+        15,
+        1
+      ],
+      [
+        40,
+        2
+      ],
+      [
+        130.0,
+        4
+      ]
+    ],
+    "texture_px_par_dalle": 2048,
+    "terrain": {
+      "sommets": 180455,
+      "triangles": 351113,
+      "dalles": 13,
+      "sommets_de_bord": 7826,
+      "recalage_bords_mnt_m": {
+        "median_abs": 0.009,
+        "p95_abs": 0.056,
+        "max_abs": 0.95
+      }
+    },
+    "relecture": {
+      "route": {
+        "taille_mo": 0.57,
+        "maillages": 1,
+        "sommets": 11757,
+        "triangles": 15672,
+        "nan": false,
+        "bornes_min": [
+          -175.1999969482422,
+          -9.5,
+          -1324.699951171875
+        ],
+        "bornes_max": [
+          1800.300048828125,
+          179.89999389648438,
+          108.4000015258789
+        ],
+        "triangles_normale_vers_le_haut_pct": 100.0
+      },
+      "terrain": {
+        "taille_mo": 19.93,
+        "maillages": 13,
+        "sommets": 181218,
+        "triangles": 351113,
+        "nan": false,
+        "bornes_min": [
+          -301.0,
+          -25.899999618530273,
+          -1447.9000244140625
+        ],
+        "bornes_max": [
+          1927.0,
+          192.39999389648438,
+          232.10000610351562
+        ]
+      },
+      "ecart_bords_route_terrain_hors_ponts": {
+        "bords_testes": 7826,
+        "sommets_partages_pct": 99.911,
+        "ecart_vertical_max_m": 0.004,
+        "ecart_vertical_p99_m": 0.0
+      }
+    }
+  },
+  "apercu": {
+    "bandes_m": [
+      [
+        15,
+        2
+      ],
+      [
+        40,
+        4
+      ],
+      [
+        130.0,
+        8
+      ]
+    ],
+    "texture_px_par_dalle": 512,
+    "terrain": {
+      "sommets": 51362,
+      "triangles": 93563,
+      "dalles": 12,
+      "sommets_de_bord": 7826,
+      "recalage_bords_mnt_m": {
+        "median_abs": 0.009,
+        "p95_abs": 0.056,
+        "max_abs": 0.95
+      }
+    },
+    "relecture": {
+      "route": {
+        "taille_mo": 0.57,
+        "maillages": 1,
+        "sommets": 11757,
+        "triangles": 15672,
+        "nan": false,
+        "bornes_min": [
+          -175.1999969482422,
+          -9.5,
+          -1324.699951171875
+        ],
+        "bornes_max": [
+          1800.300048828125,
+          179.89999389648438,
+          108.4000015258789
+        ],
+        "triangles_normale_vers_le_haut_pct": 100.0
+      },
+      "terrain": {
+        "taille_mo": 3.68,
+        "maillages": 12,
+        "sommets": 51635,
+        "triangles": 93563,
+        "nan": false,
+        "bornes_min": [
+          -301.0,
+          -25.200000762939453,
+          -1443.9000244140625
+        ],
+        "bornes_max": [
+          1923.0,
+          192.3000030517578,
+          228.10000610351562
+        ]
+      },
+      "ecart_bords_route_terrain_hors_ponts": {
+        "bords_testes": 7826,
+        "sommets_partages_pct": 99.962,
+        "ecart_vertical_max_m": 0.001,
+        "ecart_vertical_p99_m": 0.0
+      }
+    }
+  },
+  "rendus_webgl": true,
+  "vues_rapprochees_pk": {
+    "pont": [
+      2024,
+      2029
+    ],
+    "virage": 919
+  }
+}

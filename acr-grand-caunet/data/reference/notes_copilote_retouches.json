@@ -1,0 +1,63 @@
+{
+  "description": "Retouches manuelles des notes du copilote, appliquées par scripts/09_export_stage_ir.py par-dessus les notes calculées d'après la courbure de l'axe. Un virage est repéré par son PK (pk_m, en mètres depuis la ligne de départ) et son sens, jamais par son numéro d'appel : est retenu le virage calculé de même sens dont l'étendue [début, fin], élargie de tolerance_pk_m, contient pk_m (le plus proche s'il y en a plusieurs). Une retouche qui ne trouve pas son virage est signalée et n'est pas appliquée. À modifier à la main : ajouter, retirer ou changer une ligne, puis relancer 09.",
+  "tolerance_pk_m": 30,
+  "actions_possibles": {
+    "supprimer": "retire la note du virage (fausse note, simple inflexion)",
+    "forcer": "impose la sévérité (\"6\" à \"1\", \"square\", \"hairpin\") et/ou le libellé",
+    "modificateur": "ajoute un modificateur que le jeu sait dire ; seul \"dont_cut\" (ne pas couper) passe par leur constructeur",
+    "annoter": "ajoute un libellé (« long », « sur pont »...) que le jeu ne sait pas dire : gardé dans stage.json, sans effet sur l'audio",
+    "ajouter_virage": "ajoute un virage absent du calcul (pk_debut, pk_fin, sens, sévérité)",
+    "danger": "danger à annoncer ; exprimable seulement s'il se ramène à un modificateur d'un virage (categorie ne_pas_couper) ; sinon gardé dans stage.json, pacenotes.dangers_non_exprimables"
+  },
+  "source_par_defaut": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, notes_copilote ; docs/08_releve_video.md)",
+  "retouches": [
+    {"action": "ajouter_virage", "pk_debut": 0, "pk_fin": 25, "sens": "left", "severite": "6", "libelle": "départ, légère gauche", "confiance": "moyenne",
+     "pourquoi": "légère gauche de 18° dès le départ, balise à chevrons à droite ; absente du calcul"},
+
+    {"action": "supprimer", "pk_m": 1122, "sens": "left", "confiance": "moyenne", "pourquoi": "appel 6.1 : 11° seulement, lacet nul sur la vidéo ; faux virage probable"},
+    {"action": "supprimer", "pk_m": 2721, "sens": "left", "confiance": "moyenne", "pourquoi": "appel 15.1 : lacet vidéo quasi nul, calculé sur un tronçon interpolé ; simple inflexion vers le pont"},
+    {"action": "supprimer", "pk_m": 3173, "sens": "left", "confiance": "bonne", "pourquoi": "appel 17.1 : simple inflexion"},
+    {"action": "supprimer", "pk_m": 3227, "sens": "left", "confiance": "bonne", "pourquoi": "appel 17.2 : simple inflexion sur le pont 3229 (le pont reste un danger)"},
+    {"action": "supprimer", "pk_m": 3524, "sens": "left", "confiance": "bonne", "pourquoi": "appel 20.1 : inflexion"},
+
+    {"action": "forcer", "pk_m": 2308, "sens": "left", "severite": "1", "libelle": "gauche 2 long, presque une épingle", "confiance": "moyenne",
+     "pourquoi": "appel 13.1 : 122°, vitesse aussi basse qu'à l'épingle précédente ; « long » n'existe pas dans le vocabulaire utilisable, la sévérité 1 est la plus proche annonce du danger"},
+    {"action": "forcer", "pk_m": 2783, "sens": "right", "severite": "2", "libelle": "droite 2 sur pont, parapets", "confiance": "moyenne",
+     "pourquoi": "appel 15.2 : sévérité 1 tirée d'un axe interpolé sur le pont, probablement trop forte"},
+
+
+    {"action": "annoter", "pk_m": 2148, "sens": "left", "libelle": "étroit, parapet extérieur, dans l'épingle", "confiance": "bonne", "pourquoi": "appel 12.1"},
+    {"action": "annoter", "pk_m": 3640, "sens": "left", "libelle": "au carrefour, prendre la branche de gauche, îlot peint à droite", "confiance": "bonne", "pourquoi": "appel 21.1"},
+    {"action": "annoter", "pk_m": 3856, "sens": "left", "libelle": "très long, glissière extérieure", "confiance": "bonne", "pourquoi": "appel 22.1 : 200 m, 138°"},
+    {"action": "annoter", "pk_m": 5555, "sens": "right", "libelle": "long, sur pont, parapets béton", "confiance": "bonne", "pourquoi": "appel 29.1"},
+    {"action": "annoter", "pk_m": 6006, "sens": "left", "libelle": "long", "confiance": "bonne", "pourquoi": "appel 31.1"},
+
+    {"action": "danger", "pk_m": 1490, "categorie": "gravillons", "libelle": "débouché de piste en terre à gauche", "confiance": "bonne"},
+    {"action": "danger", "pk_m": [1538, 1590], "categorie": "parapet", "libelle": "parapet de pierre extérieur sur tout le gauche 3", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 1550, "categorie": "ne_pas_couper", "libelle": "rocher à l'intérieur du gauche 3", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 1661, "categorie": "pont", "libelle": "pont, parapets des deux côtés", "confiance": "bonne"},
+    {"action": "danger", "pk_m": [2092, 2178], "categorie": "etroit", "libelle": "rétrécissement (≈ 5 m), glissière puis parapet à droite, rocher à gauche", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 2602, "categorie": "pont", "libelle": "petit pont, parapets courts", "confiance": "bonne"},
+    {"action": "danger", "pk_m": [2640, 2670], "categorie": "gravillons", "libelle": "croisement de pistes, gravillons, voiture garée", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 2777, "categorie": "pont", "libelle": "pont étroit dans un droite serré", "confiance": "bonne"},
+    {"action": "danger", "pk_m": [2975, 3000], "categorie": "gravillons", "libelle": "croisement de pistes, public", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 3229, "categorie": "pont", "libelle": "pont, public à droite", "confiance": "bonne"},
+    {"action": "danger", "pk_m": [3340, 3390], "categorie": "public", "libelle": "aire de stationnement à droite, public, barrières en bois", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 3640, "categorie": "ne_pas_couper", "libelle": "Lion d'Or : muret à l'intérieur", "confiance": "bonne"},
+    {"action": "danger", "pk_m": [3615, 3665], "categorie": "carrefour", "libelle": "Lion d'Or : branche de gauche, îlot peint, barrières, public massé, feuilles mortes après", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 4080, "categorie": "ne_pas_couper", "libelle": "épingle droite de la D1, parapet à l'intérieur", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 4360, "categorie": "pont", "libelle": "pont sans axiale, revêtement fissuré", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 4463, "categorie": "pont", "libelle": "pont", "confiance": "bonne"},
+    {"action": "danger", "pk_m": [4500, 5300], "categorie": "revetement", "libelle": "enrobé rapiécé et fissuré, axiale effacée par endroits", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 4572, "categorie": "ponceau", "libelle": "ponceau à parapets de béton bas", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 4672, "categorie": "ponceau", "libelle": "ponceau à parapets de béton bas", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 5037, "categorie": "gravillons", "libelle": "croisement de pistes en terre", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 5554, "categorie": "pont", "libelle": "pont dans le droite 3", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 5662, "categorie": "gravillons", "libelle": "croisement de pistes en terre", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 6110, "categorie": "ponceau", "libelle": "ponceau à parapets de béton dans le droite 3", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 6330, "categorie": "crete", "libelle": "légère crête, seule crête notable, peu marquée", "confiance": "moyenne"},
+    {"action": "danger", "pk_m": 6343, "categorie": "gravillons", "libelle": "débouché de piste à gauche", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 6495, "categorie": "gravillons", "libelle": "croisement de pistes (commissaires)", "confiance": "bonne"},
+    {"action": "danger", "pk_m": 6685, "categorie": "ponceau", "libelle": "ponceau à parapets de béton bas, puis arrivée", "confiance": "bonne"}
+  ]
+}

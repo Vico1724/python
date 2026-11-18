@@ -1,0 +1,26 @@
+{
+ "cleabs": "BATIMENT0000000257168011",
+ "pk_m": -122, "cote": "gauche", "niveau": "premier_plan",
+ "images": [
+  {"id": "8c8f9760-f5fa-414e-b962-262f50ddb8f9", "role": "pignon F0 (sud) derrière le portail de bois et de fer (PK -118), vue rapprochée lue"},
+  {"id": "d0bcfced-420c-4a81-abfe-9f4f869bb3ad", "role": "toit au-dessus du mur de pierre sèche (PK -112)"}
+ ],
+ "lidar": "valide (faîtage 3,6-3,7 m au-dessus du terrain médian)",
+ "volumes": [
+  {"nom": "cabanon", "niveaux": 1, "egout_z": 3.1, "toit": "deux_pans", "faitage": "parallele:F1", "pente": 0.35, "debord_m": 0.25,
+   "genoise_rangs": 0, "sous_face": "tuile", "source": "maisonnette à pignon sur la rue (F0), toit de tuiles canal à deux pans, débord de tuiles sans génoise (8c8f9760)"}
+ ],
+ "enduit": {"mesure_rgb": [205, 186, 166], "clarte": "clair", "source": "pignon F0 au soleil, 8c8f9760 (pixels de la vue rectifiée) : enduit grossier beige gris, salissures"},
+ "toit": {"ortho_rgb": [116, 102, 94], "source": "ortho IGN 20 cm (saturation relevée) ; tuiles canal rouges patinées, noircies (8c8f9760)"},
+ "facades": {
+  "F0": {"vue": true, "images": ["8c8f9760"], "ouvertures": [
+    {"type": "porte", "x": 2.3, "z": 0.4, "l": 1.0, "h": 2.3, "couleur": "gris", "source": "8c8f9760 : porte derrière le portail (vue entre les barreaux) ; bas caché"}
+   ],
+   "elements": [
+    {"type": "auvent", "x": 0.3, "l": 1.9, "prof": 0.45, "z": 3.15, "source": "marquise de tuiles canal sur le pignon (8c8f9760)"}
+   ],
+   "note": "antenne de télévision et coffret électrique sur le pignon, non modélisés ; partie gauche cachée par un laurier-rose"}
+ },
+ "abords": "portail à deux vantaux de bois et fer forgé et pilier enduit rose (posés par 37 comme portail), lauriers-roses",
+ "notes": "Façades F1 à F3 cachées par le mur de pierre et la végétation : enduit relevé, sans ouverture."
+}

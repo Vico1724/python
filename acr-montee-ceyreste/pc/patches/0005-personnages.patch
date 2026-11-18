@@ -1,0 +1,253 @@
+diff --git a/tools/acr-ref/Characters.cs b/tools/acr-ref/Characters.cs
+new file mode 100644
+index 0000000..ab2a0e8
+--- /dev/null
++++ b/tools/acr-ref/Characters.cs
+@@ -0,0 +1,194 @@
++using System.Globalization;
++using System.Text.Json.Nodes;
++using CUE4Parse.UE4.Assets.Exports;
++using CUE4Parse.UE4.Objects.Core.Math;
++
++namespace AcrRef;
++
++/// [Grand Caunet] `stage-build --characters 1`: the marshals and spectators that Hafren South keeps always loaded in its
++/// persistent level (service park, X ~3.25 km, Y ~1.16 km, far outside the stage) are moved onto the stage, at the places
++/// listed in stage.json `characters.items` (actor label, position = feet, forward = gaze, IR frame like the triggers).
++///
++/// Same technique as the start, sectors and stop zone of the gameplay cell (StageBuild.BuildCell): in the export of each
++/// actor's root component (BodySkeletalMesh, a CrowdSkeletalMeshComponent), the three RelativeLocation doubles and the Yaw
++/// double of RelativeRotation are rewritten in place. Export sizes, header, names and imports are unchanged; the respawn
++/// box and the ground decal are attached to the root and follow it; body, clothes and props are attached to the skeleton at
++/// BeginPlay. The host values to look for come from CUE4Parse (the game's own package), as in BuildCell.
++///
++/// Yaw: these skeletal meshes face their component's +Y. Measured on Hafren South's own BC_Marshal_C placed by the studio
++/// within 25 m of the road: (direction to the nearest centreline point) - yaw = +90 deg for 80 of 96 (all within +-45 deg).
++///
++/// Tag: the 10 actors carry Tags = ["ServicePark"], like the 479 service-park actors of the level, and the game shows those only
++/// in the service park (AGameConfigurator::OnServiceParkStateChanged, SetupServiceParkActors(bInServiceParkEnabled),
++/// ServiceParkSetupper.RequiredTag); none of the 92 + 252 stage marshals of Hafren South and Bollene has a tag. Seen in game
++/// on 14/11/2026: moved but not shown. The tag's FName number goes from 0 to 1 ("ServicePark" -> "ServicePark_0"): 4 bytes,
++/// same name index, no header change.
++internal static class Characters
++{
++    const string RootName = "BodySkeletalMesh";
++    const string ServiceParkTag = "ServicePark";
++
++    /// Offset of the actor's Tags element FName ServicePark (array count 1, name index, number) with the given number, or -1;
++    /// throws when it is not unique.
++    static int TagAt(LegacyPackage pkg, byte[] d, int number)
++    {
++        int n = pkg.FindName(ServiceParkTag);
++        if (n < 0) return -1;
++        var pat = new byte[12];
++        BitConverter.GetBytes(1).CopyTo(pat, 0); BitConverter.GetBytes(n).CopyTo(pat, 4); BitConverter.GetBytes(number).CopyTo(pat, 8);
++        int first = d.AsSpan().IndexOf(pat);
++        if (first >= 0 && d.AsSpan(first + 1).IndexOf(pat) >= 0) throw new InvalidDataException($"Tags [{ServiceParkTag}] found more than once");
++        return first < 0 ? -1 : first + 4;
++    }
++    const double MeshFacingDeg = 90;
++
++    /// Actor label (editor name, as in stage.json) -> export name and class in WalesS4HafrenSouth.umap (build of 14/11/2026).
++    /// A game update that renames them makes the build stop here with a clear message.
++    static readonly Dictionary<string, (string Export, string Class)> Known = new()
++    {
++        ["BC_HighResCrowd"] = ("BC_HighResCrowd_C_UAID_04421A0DCF0D139D02_3d3e525db80efa5b_1644464790", "BC_HighResCrowd_C"),
++        ["BC_HighResCrowd2"] = ("BC_HighResCrowd_C_UAID_04421A0DCF0D139D02_3d3e525db80efa5b_1647577791", "BC_HighResCrowd_C"),
++        ["BC_HighResCrowd3"] = ("BC_HighResCrowd_C_UAID_04421A0DCF0D139D02_3d3e525db80efa5b_1651290792", "BC_HighResCrowd_C"),
++        ["BC_HighResCrowd4"] = ("BC_HighResCrowd_C_UAID_04421A0DCF0D139D02_3d3e525db80efa5b_1756948793", "BC_HighResCrowd_C"),
++        ["BC_HighResCrowd5"] = ("BC_HighResCrowd_C_UAID_04421A0DCF0D139D02_3d3e525db80efa5b_1791494794", "BC_HighResCrowd_C"),
++        ["BC_HighResCrowd6"] = ("BC_HighResCrowd_C_UAID_04421A0DCF0D139D02_3d3e525db80efa5b_1794817795", "BC_HighResCrowd_C"),
++        ["BC_Marshal110"] = ("BC_Marshal_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1603956609", "BC_Marshal_C"),
++        ["BC_Marshal111"] = ("BC_Marshal_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1655590610", "BC_Marshal_C"),
++        ["BC_Marshal112"] = ("BC_Marshal_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1659462611", "BC_Marshal_C"),
++        ["BC_Marshal113"] = ("BC_Marshal_C_UAID_04421A0DCF0D129D02_3d3e525db80efa5b_1794298613", "BC_Marshal_C"),
++    };
++
++    static string F(double v, string fmt = "0.##") => v.ToString(fmt, CultureInfo.InvariantCulture);
++
++    static int Root(LegacyPackage pkg, string export, string? cls)
++    {
++        int a = pkg.FindExport(export, cls);
++        return pkg.FindExport(RootName, null, e => pkg.ExportOuter(e) == a + 1);
++    }
++
++    public static JsonObject Build(string legacy, string outRoot, string irDir, StageBuild.Placement pl, Options o)
++    {
++        var stage = JsonNode.Parse(File.ReadAllText(Path.Combine(irDir, "stage.json")))!;
++        var items = stage["characters"]?["items"] as JsonArray
++            ?? throw new InvalidDataException("--characters 1: stage.json has no characters.items");
++        var dest = Path.Combine(outRoot, Scenery.Persistent + ".umap");
++        var src = File.Exists(dest) ? dest : HostPaths.Resolve(legacy, Scenery.Persistent);
++        var pkg = new LegacyPackage(src);
++        var (h0, u0) = pkg.Save();
++        var before = Enumerable.Range(0, pkg.ExportCount).Select(e => (byte[])pkg.GetExportData(e).Clone()).ToArray();
++
++        using var provider = Program.Open(o);
++        var exports = provider.LoadPackage(Scenery.PersistentLevel).GetExports().ToList();
++
++        var moved = new JsonArray();
++        var comps = new HashSet<int>();
++        var actors = new HashSet<int>();
++        foreach (var it in items)
++        {
++            string label = it!["actor"]!.GetValue<string>();
++            if (!Known.TryGetValue(label, out var k))
++                throw new InvalidDataException($"characters: unknown actor {label} (known: {string.Join(", ", Known.Keys)})");
++            int actor = pkg.FindExport(k.Export, k.Class);
++            int c = Root(pkg, k.Export, k.Class);
++            if (!comps.Add(c)) throw new InvalidDataException($"characters: {label} listed twice");
++            var host = exports.Single(x => x.Name == RootName && x.Outer?.Name.ToString() == k.Export);
++            if (!host.TryGetValue(out FVector hl, "RelativeLocation") || !host.TryGetValue(out FRotator hr, "RelativeRotation"))
++                throw new InvalidDataException($"characters: {label} root has no stored RelativeLocation / RelativeRotation");
++            double[] pos = it["position"]!.AsArray().Select(v => v!.GetValue<double>()).ToArray();
++            double[] fwd = it["forward"]!.AsArray().Select(v => v!.GetValue<double>()).ToArray();
++            var ue = pl.ToUe(pos);
++            // gaze direction through the same placement (rotation about Y), then UE heading = atan2(UE Y, UE X) = atan2(phys z, phys x)
++            var p0 = pl.ToPhysics(0, 0, 0);
++            var p1 = pl.ToPhysics(fwd[0], 0, fwd[2]);
++            double heading = Math.Atan2(p1.Z - p0.Z, p1.X - p0.X) * 180 / Math.PI;
++            double yaw = StageBuild.NormDeg(heading - MeshFacingDeg);
++
++            var data = (byte[])pkg.GetExportData(c).Clone();
++            int locAt = StageBuild.FindDoubles(data, [hl.X, hl.Y, hl.Z]);
++            int rotAt = StageBuild.FindDoubles(data, [hr.Pitch, hr.Yaw, hr.Roll]);
++            StageBuild.WriteDoubles(data, locAt, ue.X, ue.Y, ue.Z);
++            StageBuild.WriteDoubles(data, rotAt + 8, yaw);
++            pkg.SetExportData(c, data);
++            var ad = (byte[])pkg.GetExportData(actor).Clone();
++            int tagAt = TagAt(pkg, ad, 0);
++            if (tagAt < 0) throw new InvalidDataException($"characters: {label} has no Tags [{ServiceParkTag}] (game update?)");
++            BitConverter.GetBytes(1).CopyTo(ad, tagAt + 4);
++            pkg.SetExportData(actor, ad);
++            actors.Add(actor);
++            moved.Add(new JsonObject
++            {
++                ["actor"] = label, ["export"] = k.Export, ["class"] = k.Class, ["root_export"] = c,
++                ["role"] = it["role"]?.GetValue<string>(), ["pk_m"] = it["pk_m"]?.GetValue<double>(),
++                ["from_ue"] = new JsonArray((double)hl.X, (double)hl.Y, (double)hl.Z), ["from_yaw"] = (double)hr.Yaw,
++                ["to_ue"] = new JsonArray(ue.X, ue.Y, ue.Z), ["pitch"] = (double)hr.Pitch, ["yaw"] = yaw, ["roll"] = (double)hr.Roll, ["tag"] = "ServicePark -> ServicePark_0",
++            });
++            Console.WriteLine($"  character {label}: UE ({F(hl.X, "0")}, {F(hl.Y, "0")}, {F(hl.Z, "0")}) yaw {F(hr.Yaw, "0.#")} -> " +
++                              $"({F(ue.X, "0")}, {F(ue.Y, "0")}, {F(ue.Z, "0")}) yaw {F(yaw, "0.#")}  [{it["role"]?.GetValue<string>()}]");
++        }
++
++        // self-check: same header and package size; the only bytes changed are 32 per moved root (3 location doubles + yaw)
++        var (h1, u1) = pkg.Save();
++        int changed = 0, otherExports = 0;
++        for (int e = 0; e < pkg.ExportCount; e++)
++        {
++            var a = before[e]; var b = pkg.GetExportData(e);
++            if (a.Length != b.Length) throw new InvalidDataException($"characters: export {e} changed size");
++            int n = 0;
++            for (int i = 0; i < a.Length; i++) if (a[i] != b[i]) n++;
++            if (n > 0 && !comps.Contains(e) && !actors.Contains(e)) otherExports++;
++            changed += n;
++        }
++        if (!h0.AsSpan().SequenceEqual(h1) || u0.Length != u1.Length || otherExports > 0 || changed > 32 * comps.Count + 4 * actors.Count)
++            throw new InvalidDataException($"characters: unexpected change (header same {h0.AsSpan().SequenceEqual(h1)}, uexp {u0.Length} -> {u1.Length} bytes, " +
++                                           $"{otherExports} other exports changed, {changed} bytes changed)");
++        if (src != dest)
++        {
++            Directory.CreateDirectory(Path.GetDirectoryName(dest)!);
++            foreach (var ext in new[] { ".ubulk", ".uptnl" })
++                if (File.Exists(Path.ChangeExtension(src, ext))) File.Copy(Path.ChangeExtension(src, ext), Path.ChangeExtension(dest, ext), true);
++        }
++        pkg.SaveTo(dest);
++        Console.WriteLine($"characters: {comps.Count} service-park actors of the persistent level moved and untagged (ServicePark -> ServicePark_0); header and size unchanged, {changed} bytes rewritten in {comps.Count + actors.Count} exports");
++        return new JsonObject { ["moved"] = moved, ["bytes_changed"] = changed, ["exports_changed"] = comps.Count + actors.Count, ["header_unchanged"] = true, ["uexp_bytes"] = u1.Length, ["source"] = Path.GetFileName(src) };
++    }
++
++    /// stage-check: every moved root holds its new location and rotation once, and its host location no more.
++    public static int Check(string root, JsonNode report, TextWriter w)
++    {
++        int failures = 0;
++        void C(bool ok, string what) { w.WriteLine($"{(ok ? "PASS" : "FAIL")} {what}"); if (!ok) failures++; }
++        var pkg = new LegacyPackage(HostPaths.Resolve(root, Scenery.Persistent));
++        var moved = report["moved"]!.AsArray();
++        var bad = new List<string>();
++        foreach (var m in moved)
++        {
++            string label = m!["actor"]!.GetValue<string>();
++            static double N(JsonNode? n) => double.Parse(n!.ToJsonString(), CultureInfo.InvariantCulture);
++            double[] V(string key) => m[key]!.AsArray().Select(N).ToArray();
++            try
++            {
++                // by name only: after a retoc round trip the class of these exports reads as UnknownExport
++                var d = pkg.GetExportData(Root(pkg, m["export"]!.GetValue<string>(), null));
++                StageBuild.FindDoubles(d, V("to_ue"));
++                StageBuild.FindDoubles(d, [N(m["pitch"]), N(m["yaw"]), N(m["roll"])]);
++                try { StageBuild.FindDoubles(d, V("from_ue")); bad.Add($"{label}: host location still present"); }
++                catch (InvalidDataException) { }
++                if (m["tag"] is not null)
++                {
++                    var ad = pkg.GetExportData(pkg.FindExport(m["export"]!.GetValue<string>()));
++                    if (TagAt(pkg, ad, 0) >= 0) bad.Add($"{label}: still tagged {ServiceParkTag}");
++                    else if (TagAt(pkg, ad, 1) < 0) bad.Add($"{label}: tag {ServiceParkTag}_0 not found");
++                }
++            }
++            catch (Exception ex) when (ex is InvalidDataException or InvalidOperationException) { bad.Add($"{label}: {ex.Message}"); }
++        }
++        C(bad.Count == 0 && moved.Count > 0,
++          $"characters: {moved.Count - bad.Count} of {moved.Count} persistent-level marshals / spectators at their stage place and heading, none tagged ServicePark" +
++          (bad.Count > 0 ? $" ({string.Join("; ", bad)})" : ""));
++        // the build's own byte comparison (Build): only the 10 roots and the 10 actors changed, header and package size identical
++        int nEx = report["exports_changed"]?.GetValue<int>() ?? -1, by = report["bytes_changed"]?.GetValue<int>() ?? -1;
++        C(report["header_unchanged"]?.GetValue<bool>() == true && nEx == 2 * moved.Count && by > 0 && by <= 36 * moved.Count,
++          $"characters: build compared the persistent level before / after: header and size identical, {by} bytes changed, all in the {nEx} exports of the moved actors and their roots");
++        return failures;
++    }
++}
+diff --git a/tools/acr-ref/StageBuild.cs b/tools/acr-ref/StageBuild.cs
+index 8cad4c3..60a6e8c 100644
+--- a/tools/acr-ref/StageBuild.cs
++++ b/tools/acr-ref/StageBuild.cs
+@@ -206,6 +206,13 @@ internal static class StageBuild
+         }
+         if (bounds)
+             report["bounds"] = Bounds.Build(legacy, outRoot, pl.World!, o);
++        // [Grand Caunet] --characters 1: the persistent level's service-park marshals and spectators moved to stage.json
++        // characters (Characters.cs). Last of the persistent-level edits (scenery, sky, bounds), which it builds on.
++        if (o.Named.GetValueOrDefault("characters") is "1" or "true")
++        {
++            report["options"]!["characters"] = true;
++            report["characters"] = Characters.Build(legacy, outRoot, ir.Dir, pl, o);
++        }
+ 
+         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(reportPath))!);
+         File.WriteAllText(reportPath, report.ToJsonString(new JsonSerializerOptions { WriteIndented = true }));
+@@ -764,14 +771,14 @@ internal static class StageBuild
+         return new CellInfo(gateS, centre, PolyToSpline(SGate(start.gate)), PolyToSpline(SGate(finish.gate)), PolyToSpline(sm(newEnd) * 100));
+     }
+ 
+-    static double NormDeg(double d) { d %= 360; return d > 180 ? d - 360 : d <= -180 ? d + 360 : d; }
++    internal static double NormDeg(double d) { d %= 360; return d > 180 ? d - 360 : d <= -180 ? d + 360 : d; }
+ 
+     static V3 Loc(UObject o) => o.TryGetValue(out FVector v, "RelativeLocation") ? new V3(v.X, v.Y, v.Z)
+         : throw new InvalidDataException($"{o.Name} has no RelativeLocation");
+     static double[] Floats(UObject o, string prop) => o.TryGetValue(out FVector v, prop) ? [v.X, v.Y, v.Z] : throw new InvalidDataException($"{o.Name} has no {prop}");
+ 
+     /// Offset of the unique run of doubles whose float casts equal the given (float) values.
+-    static int FindDoubles(byte[] d, double[] vals)
++    internal static int FindDoubles(byte[] d, double[] vals)
+     {
+         var hits = new List<int>();
+         for (int i = 0; i + vals.Length * 8 <= d.Length; i++)
+@@ -784,7 +791,7 @@ internal static class StageBuild
+         return hits[0];
+     }
+ 
+-    static void WriteDoubles(byte[] d, int at, params double[] v)
++    internal static void WriteDoubles(byte[] d, int at, params double[] v)
+     {
+         for (int k = 0; k < v.Length; k++) BitConverter.GetBytes(v[k]).CopyTo(d, at + k * 8);
+     }
+@@ -945,6 +952,8 @@ internal static class StageBuild
+         if (report["options"]?["sky"]?.GetValue<string>() is { } skyCheckCfg)
+             failures += Sky.Check(root, Toml.Load(skyCheckCfg), new Options(), w,
+                                   report["options"]?["sky_section"]?.GetValue<string>() ?? "nz");
++        if (report["characters"] is { } charactersReport)   // [Grand Caunet]
++            failures += Characters.Check(root, charactersReport, w);
+ 
+         var bpath = HostPaths.Resolve(root, HostPaths.Baked);
+         _ = new LegacyPackage(bpath);

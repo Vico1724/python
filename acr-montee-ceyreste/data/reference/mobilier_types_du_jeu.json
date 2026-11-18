@@ -1,0 +1,133 @@
+{
+ "panneau_danger": {
+  "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraDangerA",
+  "description": "triangle de danger du jeu (autre danger), sur mât",
+  "lacet_relatif_deg": 90,
+  "enfoncement_m": 0.0,
+  "bornes_cm": {
+   "min": [
+    -45,
+    -4,
+    -50
+   ],
+   "max": [
+    45,
+    4,
+    289
+   ]
+  }
+ },
+ "panneau_virage_droite": {
+  "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraRightTurnA1",
+  "description": "triangle de danger « virage à droite »",
+  "lacet_relatif_deg": 90,
+  "enfoncement_m": 0.0,
+  "bornes_cm": {
+   "min": [
+    -42,
+    -4,
+    -50
+   ],
+   "max": [
+    42,
+    4,
+    284
+   ]
+  }
+ },
+ "balise_virage": {
+  "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraCurveMarkerD",
+  "description": "balise de virage à chevrons, 1,2 m de large",
+  "lacet_relatif_deg": 90,
+  "enfoncement_m": 0.0,
+  "bornes_cm": {
+   "min": [
+    -60,
+    -3,
+    -20
+   ],
+   "max": [
+    60,
+    4,
+    102
+   ]
+  }
+ },
+ "borne_kilometrique": {
+  "maillage_jeu": "/Game/Props/FranceTrafficSigns/MileMarkerA/SM_MileMarkerA",
+  "description": "plaque kilométrique jaune et blanche",
+  "lacet_relatif_deg": 90,
+  "enfoncement_m": 0.0,
+  "bornes_cm": {
+   "min": [
+    -45,
+    -4,
+    -25
+   ],
+   "max": [
+    4,
+    4,
+    99
+   ]
+  }
+ },
+ "poteau_bois": {
+  "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
+  "description": "poteau de bois simple de 6,9 m (SM_MonPylonC11, vu en jeu comme un fût de bois sombre). Jusqu'au 13/11/2026 : SM_FraMunPylonA, rendu en « mât métallique bleu-gris à longue potence, allure de lampadaire » (relevé du quatrième essai, PK 6120)",
+  "lacet_relatif_deg": 0,
+  "bornes_cm": {
+   "min": [
+    -10,
+    -30,
+    -40
+   ],
+   "max": [
+    10,
+    30,
+    690
+   ]
+  },
+  "collision": {
+   "forme": "cylinder",
+   "paroi": "PM_WallWoodPole",
+   "diametre_m": 0.25,
+   "hauteur_m": 3.5,
+   "enfoui_m": 0.4
+  },
+  "cable": {
+   "hauteur_m": 6.6,
+   "ecarts_m": [
+    -0.25,
+    0.0,
+    0.25
+   ]
+  },
+  "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
+  "enfoncement_m": 0.0
+ },
+ "barriere_plastique": {
+  "maillage_jeu": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+  "description": "séparateur plastique rouge et blanc de 1,5 m",
+  "lacet_relatif_deg": 0,
+  "bornes_cm": {
+   "min": [
+    -76,
+    -27,
+    0
+   ],
+   "max": [
+    76,
+    27,
+    81
+   ]
+  },
+  "collision": {
+   "forme": "box",
+   "paroi": "PM_WallPlasticBarrier",
+   "largeur_m": 0.55,
+   "hauteur_m": 0.8,
+   "longueur_m": 1.5,
+   "enfoui_m": 0.0
+  }
+ }
+}

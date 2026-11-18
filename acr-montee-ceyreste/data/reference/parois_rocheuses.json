@@ -1,0 +1,699 @@
+{
+ "genres": {
+  "lite": "roche en place, front continu et raide : maillage de roche (16_paquet_unreal.py)",
+  "eboulis": "rocaille : talus incliné de pierres, de roche brisée et de terre ; pas de maillage, sol peint en pierraille (15b) et pierres semées (16)"
+ },
+ "note": "Parois et talus rocheux du bord de la montée, relevés le 18/11/2026 sur Panoramax (scripts/29_releve_panoramax.py) et recalés sur le LiDAR HD (montée du MNT d'au moins 1 m entre 0,5 et 3 m du bord).",
+ "parois": [
+  {
+   "pk_debut_m": 225.0,
+   "pk_fin_m": 257.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 8801585d, b654d53a",
+   "images": [
+    "8801585d-b9e4-45e3-ba15-433c18a46e7c",
+    "b654d53a-aadc-4535-a569-1d7d61580b00"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus taillé dans le calcaire lité clair",
+   "pk_photo_m": [
+    230,
+    260
+   ]
+  },
+  {
+   "pk_debut_m": 389.0,
+   "pk_fin_m": 430.0,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 1d316dff, 2ba2815f",
+   "images": [
+    "1d316dff-635b-4cf3-9a1d-5cf6eabe5bd1",
+    "2ba2815f-d0d2-4e26-a810-856f55733ac6"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus taillé, terre rouge et bancs calcaires",
+   "pk_photo_m": [
+    390,
+    430
+   ]
+  },
+  {
+   "pk_debut_m": 485.0,
+   "pk_fin_m": 545.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images f481ecf0, d11bb5cc, 615e4eee",
+   "images": [
+    "f481ecf0-d21c-40e1-8c67-926b1a04e3a0",
+    "d11bb5cc-87aa-4ade-8ce5-a65f024b0243",
+    "615e4eee-6a27-4793-b20e-90b49d81b4fc"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus de terre rouge à bancs calcaires",
+   "pk_photo_m": [
+    480,
+    545
+   ]
+  },
+  {
+   "pk_debut_m": 545.0,
+   "pk_fin_m": 575.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 622676a0, 6da4e77b",
+   "images": [
+    "622676a0-704b-4390-ba6f-fa781192b0f8",
+    "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "affleurement de calcaire gris en gros bancs",
+   "pk_photo_m": [
+    545,
+    575
+   ]
+  },
+  {
+   "pk_debut_m": 585.0,
+   "pk_fin_m": 700.0,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 7f430736, c03fc96f, ad907fae, c6c9a241, bcbd25d7, 2763dc33",
+   "images": [
+    "7f430736-cd30-404e-9689-93f59d3695d5",
+    "c03fc96f-6817-4a15-9807-db769a6442a1",
+    "ad907fae-51c8-414e-a884-ad1cf7604094",
+    "c6c9a241-64db-493a-9de8-dac6270d6108",
+    "bcbd25d7-8df9-47ac-8678-f4e4ce6eb38f",
+    "2763dc33-7985-4150-b8a1-a4f71595abe8"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "paroi taillée continue de calcaire lité brun-gris, restanque au sommet",
+   "pk_photo_m": [
+    585,
+    700
+   ]
+  },
+  {
+   "pk_debut_m": 700.0,
+   "pk_fin_m": 720.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images bf283b0a, 39a25600",
+   "images": [
+    "bf283b0a-4b4a-4801-a0ea-744bd878ce4c",
+    "39a25600-040f-4ee7-b419-bb0f381d527f"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "front de calcaire gris massif",
+   "pk_photo_m": [
+    700,
+    725
+   ]
+  },
+  {
+   "pk_debut_m": 752.0,
+   "pk_fin_m": 801.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 56289bbe, 41cdbd1d, 94dcff86, 44ca4d2d, 05229626",
+   "images": [
+    "56289bbe-3e00-4cee-a36a-78ee562941dd",
+    "41cdbd1d-d4ea-4aad-b0d2-5eb16141851e",
+    "94dcff86-24cc-4ebc-b548-1f2b8f07e2b7",
+    "44ca4d2d-d23f-4512-aff2-fafd748cf88c",
+    "05229626-ceab-44b1-844b-443aed843ba3"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "grand talus rocheux de calcaire blanc-gris, blocs et affleurements",
+   "pk_photo_m": [
+    740,
+    835
+   ]
+  },
+  {
+   "pk_debut_m": 999.0,
+   "pk_fin_m": 1061.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    0.5,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images f55bd1c8, 0a73c4a5, 2de9a9e3, 9cec2f58, 06d9112e, e96ef4bf",
+   "images": [
+    "f55bd1c8-fe31-441c-be5c-ca884531eef2",
+    "0a73c4a5-17e5-454e-9001-a920c1f9a716",
+    "2de9a9e3-2e32-4e91-a6c1-97e8fc523180",
+    "9cec2f58-fa6e-4ada-a8fb-6dd7a767137f",
+    "06d9112e-b3bc-4774-aa36-0994a0258f9b",
+    "e96ef4bf-f608-4a48-a9bd-f3767a42aa51"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "garrigue sur calcaire blanc affleurant",
+   "pk_photo_m": [
+    995,
+    1100
+   ]
+  },
+  {
+   "pk_debut_m": 1100.0,
+   "pk_fin_m": 1125.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images ccd22b75, e34f1aff",
+   "images": [
+    "ccd22b75-47f1-42ac-9739-a158e73c172f",
+    "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "paroi taillée de calcaire lité clair",
+   "pk_photo_m": [
+    1100,
+    1125
+   ]
+  },
+  {
+   "pk_debut_m": 1130.0,
+   "pk_fin_m": 1250.0,
+   "cote": "gauche",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 3a533cfd, 95381ebe, e8cbf415, 8e34b254, b4d7dc6b, 37024d81, c3131ad3",
+   "images": [
+    "3a533cfd-51cc-41dc-9609-245ddaa35bae",
+    "95381ebe-d557-4b89-a794-ec76fca5f277",
+    "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619",
+    "8e34b254-5d2a-4368-8a17-0fe3fccdb14a",
+    "b4d7dc6b-15c0-4819-bee3-4f787f3204a6",
+    "37024d81-25d9-4110-8edd-8bd65ebde10b",
+    "c3131ad3-6b31-4d60-9468-d4421bc7233f"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "paroi de calcaire crème à ocre en bancs, blocs au pied",
+   "pk_photo_m": [
+    1130,
+    1250
+   ]
+  },
+  {
+   "pk_debut_m": 1250.0,
+   "pk_fin_m": 1345.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    3.0,
+    5.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images a8df3bc2, b21fa319, b354335c, 7b2904d1, 4f05c439",
+   "images": [
+    "a8df3bc2-9925-46af-8a05-a30a0d00a646",
+    "b21fa319-d304-473b-82c3-5eb7f6e2f321",
+    "b354335c-75eb-43bc-8592-ae60c3285bce",
+    "7b2904d1-c24d-4b40-8a37-122e9f578269",
+    "4f05c439-db8c-4b33-94aa-5b63cc0d6d60"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "grande paroi verticale de calcaire massif gris-rosé",
+   "pk_photo_m": [
+    1250,
+    1345
+   ]
+  },
+  {
+   "pk_debut_m": 1385.0,
+   "pk_fin_m": 1444.0,
+   "cote": "gauche",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 163245a2, 01e02642, a44a1d50",
+   "images": [
+    "163245a2-4e36-49e9-a730-3fef7888f7da",
+    "01e02642-d659-4478-896d-250fde7d2efb",
+    "a44a1d50-e84b-4707-a5b6-5511d6faa35d"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "paroi de calcaire massif ocre-crème",
+   "pk_photo_m": [
+    1385,
+    1430
+   ]
+  },
+  {
+   "pk_debut_m": 1505,
+   "pk_fin_m": 1560,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images ca4214f2, fa96e3fc, ea1367d6",
+   "images": [
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e",
+    "fa96e3fc-4e63-4735-832b-1117897e0fcb",
+    "ea1367d6-4e8c-4229-bde4-7809adc76bc6"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "paroi taillée de calcaire lité brun-ocre",
+   "pk_photo_m": [
+    1505,
+    1560
+   ]
+  },
+  {
+   "pk_debut_m": 1565.0,
+   "pk_fin_m": 1595.0,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 96977cc9, f6d9857c",
+   "images": [
+    "96977cc9-2d73-4869-bb8d-6aa0d9cb4842",
+    "f6d9857c-3b3b-4413-9f6d-70ff0db8d366"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "paroi taillée de calcaire lité",
+   "pk_photo_m": [
+    1565,
+    1595
+   ]
+  },
+  {
+   "pk_debut_m": 1630.0,
+   "pk_fin_m": 1703.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad, 37dd8072, 7aba00df, 1d6eb5bc",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508",
+    "37dd8072-f561-4dca-8877-d3fe6979db68",
+    "7aba00df-5acd-4b03-a153-b8fa58b6fd89",
+    "1d6eb5bc-ea4f-4dd1-afe1-7cd6017a9b6f"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus rocheux lité brun",
+   "pk_photo_m": [
+    1630,
+    1700
+   ]
+  },
+  {
+   "pk_debut_m": 1701.0,
+   "pk_fin_m": 1738.0,
+   "cote": "gauche",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 5736dfa1, ae90d863",
+   "images": [
+    "5736dfa1-cecc-419d-b7ca-e4e1c2925b58",
+    "ae90d863-c8ee-4e80-8af0-c988155e4c90"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "paroi taillée de calcaire lité ocre",
+   "pk_photo_m": [
+    1700,
+    1735
+   ]
+  },
+  {
+   "pk_debut_m": 1775.0,
+   "pk_fin_m": 1790.0,
+   "cote": "gauche",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 82934593",
+   "images": [
+    "82934593-a9fd-4afd-883f-189fedfb3cb6"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "bancs calcaires ocre dans le talus de terre rouge",
+   "pk_photo_m": [
+    1775,
+    1790
+   ]
+  },
+  {
+   "pk_debut_m": 1865.0,
+   "pk_fin_m": 1885.0,
+   "cote": "gauche",
+   "decalage_m": 0.7,
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 34e70fc8",
+   "images": [
+    "34e70fc8-a7ce-4aab-924c-001f133fffed"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "bancs calcaires dans le talus",
+   "pk_photo_m": [
+    1865,
+    1885
+   ]
+  },
+  {
+   "pk_debut_m": 1945.0,
+   "pk_fin_m": 2002.0,
+   "cote": "gauche",
+   "decalage_m": 0.95,
+   "hauteur_m": [
+    0.5,
+    1.5
+   ],
+   "genre": "eboulis",
+   "raide": false,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 95f08c29, f9517c41, 047a72e3",
+   "images": [
+    "95f08c29-a9ef-4a12-a61c-89319d77e2b9",
+    "f9517c41-53f0-4ac9-8ad8-76cc7ce7d9d1",
+    "047a72e3-2e0c-42c7-a2cd-99883262f9d4"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "bancs calcaires bas dans le talus",
+   "pk_photo_m": [
+    1945,
+    1990
+   ]
+  },
+  {
+   "pk_debut_m": 2185,
+   "pk_fin_m": 2260,
+   "cote": "droite",
+   "decalage_m": 1.0,
+   "hauteur_m": [
+    1.5,
+    3.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images ae8122b3, bf335aba, b12a5cd9, 39135d28, c2d0ce1b",
+   "images": [
+    "ae8122b3-d92a-4ce9-a0a7-8b996212deda",
+    "bf335aba-b753-457f-9145-4ccddade4aba",
+    "b12a5cd9-ab88-429b-9113-0f12817e5d72",
+    "39135d28-faff-4695-9fac-60d73387858b",
+    "c2d0ce1b-86aa-4613-b314-318df2215bc8"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "talus taillé de calcaire lité",
+   "pk_photo_m": [
+    2185,
+    2260
+   ]
+  },
+  {
+   "pk_debut_m": 2260.0,
+   "pk_fin_m": 2328.0,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 159a7659, 0386bf44, 421cb4d6, a232f421",
+   "images": [
+    "159a7659-f3e6-4333-9632-ba399b5ae793",
+    "0386bf44-6016-44ed-a855-531192ba7d90",
+    "421cb4d6-24c7-40db-ae42-1d00ce2a5036",
+    "a232f421-bbe0-46ca-8505-5a575513f688"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus taillé de calcaire lité gris-brun, restanques au-dessus",
+   "pk_photo_m": [
+    2260,
+    2320
+   ]
+  },
+  {
+   "pk_debut_m": 2515.0,
+   "pk_fin_m": 2605.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 2ec4785e, a8e57708, 2ae9d661, 3e944500, f4152a33",
+   "images": [
+    "2ec4785e-e74b-4b2e-b7c7-44798a666406",
+    "a8e57708-59e5-44d2-bdde-22d10eb2985b",
+    "2ae9d661-0659-42d7-b252-4e7df302400b",
+    "3e944500-2359-4a21-a5b1-73fb3b392925",
+    "f4152a33-3e18-4e09-9f17-ce5d61d0ec69"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus taillé de calcaire lité brun",
+   "pk_photo_m": [
+    2515,
+    2600
+   ]
+  },
+  {
+   "pk_debut_m": 2946.0,
+   "pk_fin_m": 3020.0,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 7a47ca44, 0e847466, 76239e33, 8b10df10, a00d17d5",
+   "images": [
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "0e847466-22ae-4418-ac3e-0341cde1bc81",
+    "76239e33-1ebc-434a-92e4-6945ba19f4f7",
+    "8b10df10-9f0e-41b3-be1a-6f68bcca5a3e",
+    "a00d17d5-e4f8-4295-9d3c-a61d8bfae986"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus taillé de calcaire lité",
+   "pk_photo_m": [
+    2945,
+    3020
+   ]
+  },
+  {
+   "pk_debut_m": 3276.0,
+   "pk_fin_m": 3377.0,
+   "cote": "droite",
+   "decalage_m": 1.45,
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images fa24a98d, 81fc91ee, af20c5fa, e7e0c1a0, 442e05e3",
+   "images": [
+    "fa24a98d-f3a4-4d66-957f-a791057c7145",
+    "81fc91ee-5179-4a8d-8f1f-93fa8697c287",
+    "af20c5fa-de8c-4ccb-88f0-251eb5766a16",
+    "e7e0c1a0-d488-4049-a649-5a905d0e831a",
+    "442e05e3-8419-45f0-ab95-d1b898b31dc9"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus de calcaire lité couvert de lierre",
+   "pk_photo_m": [
+    3285,
+    3370
+   ]
+  },
+  {
+   "pk_debut_m": 3415.0,
+   "pk_fin_m": 3500.0,
+   "cote": "droite",
+   "decalage_m": 1.2,
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "genre": "lite",
+   "raide": true,
+   "couleur": "",
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 30cf4a1a, 9c78e331, f6a0068f, c4ae4f77, 2acaab65",
+   "images": [
+    "30cf4a1a-b576-4408-91c6-72beff270791",
+    "9c78e331-0ced-4679-abc0-17570824bc8d",
+    "f6a0068f-5e48-4d34-84bd-b691d49274f3",
+    "c4ae4f77-1018-4808-bb2e-b8f41d3c87ff",
+    "2acaab65-e87b-4fa8-b655-3411e867a15e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "confiance": "moyenne",
+   "description": "talus taillé de calcaire lité brun",
+   "pk_photo_m": [
+    3415,
+    3500
+   ]
+  }
+ ]
+}

@@ -1,0 +1,261 @@
+{
+  "_note": "Paramètres de l'épreuve lus par scripts/ (acr_geo.param) et par le kit PC (pc/scripts/commun.ps1, pc/etape2_unreal/scripts_editeur/repere_unreal.py). Toute clé absente prend la valeur d'origine (Grand Caunet) codée dans les scripts.",
+  "dossier": "acr-montee-ceyreste",
+  "nom": "Montée historique de Ceyreste",
+  "nom_trace": "Montée historique de Ceyreste (D3, Plan de Masse - Grand Caunet)",
+  "nom_secteur": "Montée historique de Ceyreste - montée (hypothèse 3,0 km)",
+  "fichier_officiel": "montee_ceyreste_officiel.json",
+  "bbox_lonlat": [
+    5.63,
+    43.208,
+    5.69,
+    43.248
+  ],
+  "routes": [
+    "D3"
+  ],
+  "methode_calage": "aucun PK officiel publié : PK 0 = projection du départ retenu (carrefour du Plan de Masse) sur l'axe BD TOPO de la D3 ; arrivée = PK de la longueur retenue (3,0 km, estimée) ; PK en distance horizontale",
+  "titre_carte": "Montée historique de Ceyreste - D3, Plan de Masse -> Grand Caunet - tracé sur BD TOPO, fond BD ORTHO (IGN) - arrivée ESTIMÉE",
+  "titre_profil": "Montée historique de Ceyreste - profil en long (LiDAR HD IGN, 0,5 m) - arrivée estimée au PK 3000",
+  "annotations_carte": [
+    [
+      "D3 - route du Grand Caunet",
+      1700,
+      15,
+      -12
+    ],
+    [
+      "carrefour D3 / D3D\n(Grand Caunet, PK 3746)",
+      3746,
+      -150,
+      -40
+    ]
+  ],
+  "note_point_bas": "",
+  "legende_liaison": "route fermée hors montée (approche, PK 3000 -> 3746)",
+  "legende_es": "montée retenue (3,0 km, arrivée estimée)",
+  "pk_bdtopo_traites": [
+    -160.0,
+    3760.0
+  ],
+  "id_point_fin": "FIN_ZONE",
+  "sortie_apres_fin_m": 0.0,
+  "extraits_chaussee": [
+    [
+      893.0,
+      "épingle la plus serrée (rayon BD TOPO 9 m)"
+    ],
+    [
+      2650.0,
+      "extrait courant"
+    ]
+  ],
+  "libelle_debut_axe": "approche : D3 depuis le village",
+  "pk_extrait_approche": -60.0,
+  "libelle_approche": "approche : carrefour du Plan de Masse",
+  "nom_court": "Montée historique de Ceyreste",
+  "pk_zone_ouverte": [
+    2700,
+    3746
+  ],
+  "nom_zone_ouverte": "Zone ouverte avant le Grand Caunet",
+  "id_lieu": "ceyreste",
+  "stage_id": "ceyreste_rally_01_route_0",
+  "nom_stage": "Montée de Ceyreste",
+  "nom_lieu": "Ceyreste, Bouches-du-Rhône, France",
+  "temps_intermediaires": [
+    "INTER_JEU"
+  ],
+  "id_point_arret": "ARRET",
+  "parc_sortie_pk_m": 3746.0,
+  "nom_niveau": "MonteeCeyreste",
+  "pk_essai_e3": 2026.0,
+  "pk_arrivee_controle": 3020.0,
+  "vues_decor": {
+    "depart_plan_de_masse": [
+      -40,
+      45.0
+    ],
+    "epingle_893": [
+      860,
+      26.0
+    ],
+    "lacets_1517": [
+      1480,
+      30.0
+    ],
+    "ponceau_2026": [
+      1990,
+      38.0
+    ],
+    "arrivee_estimee": [
+      2950,
+      45.0
+    ],
+    "controle_horizon": [
+      2500,
+      [
+        "azimut",
+        215.0,
+        0.012
+      ]
+    ],
+    "controle_raccord": [
+      3650,
+      [
+        "survol",
+        230.0,
+        140.0
+      ]
+    ],
+    "village_d3_vers_depart": [
+      0,
+      [
+        "l93",
+        914791.5,
+        6239292.3,
+        1.6,
+        914986.1,
+        6239381.3,
+        2.0
+      ]
+    ],
+    "village_mairie_vers_nord": [
+      0,
+      [
+        "l93",
+        913983.1,
+        6238603.9,
+        14.0,
+        914200.0,
+        6238900.0,
+        4.0
+      ]
+    ],
+    "ligne_depart_montee": [
+      -5,
+      40.0
+    ],
+    "ligne_depart_vers_village": [
+      15,
+      -40.0
+    ],
+    "approche_oliveraies_100": [
+      95,
+      40.0
+    ],
+    "approche_oliveraies_170": [
+      165,
+      35.0
+    ],
+    "premieres_epingles_700": [
+      690,
+      30.0
+    ],
+    "mur_parapet_1140": [
+      1135,
+      40.0
+    ],
+    "glissiere_2330": [
+      2325,
+      40.0
+    ],
+    "hameau_2840": [
+      2835,
+      35.0
+    ],
+    "aerien_bas_du_trace_village": [
+      0,
+      [
+        "l93",
+        915650.0,
+        6239950.0,
+        160.0,
+        914350.0,
+        6238800.0,
+        0.0
+      ]
+    ],
+    "chaussee_epingle_1517": [
+      1497,
+      16.0
+    ],
+    "glissiere_rapprochee_505": [
+      503,
+      14.0
+    ],
+    "carrefour_2622_traces": [
+      2603,
+      16.0
+    ],
+    "depart_mur_droite": [
+      -50,
+      [
+        "azimut",
+        62.0,
+        0.0
+      ]
+    ],
+    "depart_muret_gauche": [
+      -20,
+      [
+        "azimut",
+        190.0,
+        0.0
+      ]
+    ],
+    "approche_parking_m110": [
+      -125,
+      40.0
+    ],
+    "approche_muret_m70": [
+      -85,
+      40.0
+    ],
+    "approche_grillage_250": [
+      235,
+      40.0
+    ],
+    "maison_m122": [
+      -140,
+      25.0
+    ],
+    "maison_2854": [
+      2830,
+      30.0
+    ],
+    "hameau_3200": [
+      3170,
+      40.0
+    ],
+    "soutenement_2120": [
+      2095,
+      35.0
+    ],
+    "soutenement_2880": [
+      2855,
+      35.0
+    ],
+    "soutenement_3510": [
+      3480,
+      40.0
+    ]
+  },
+  "pc": {
+    "nom_conteneur": "zz_acrxs_ceyreste_P",
+    "nom_table": "zz_acrxs_ceyreste_table_9_P",
+    "prefixe_decor": "zz_cey",
+    "nom_decor": "cey",
+    "fichier_noms": "pc/config/noms-ceyreste.toml",
+    "atelier_par_defaut": "Z:\\acrxs_ceyreste"
+  },
+  "accotement": {
+    "parts": {
+      "terre": 0.6,
+      "herbe_seche": 0.3
+    },
+    "source": "Panoramax, Région Sud, 08/09/2025 (planches de scripts/26_photos_rue.py, PK 240-2600) : accotements de terre rouge nue, souvent en bourrelet, avec herbe sèche clairsemée ; pas d'herbe verte rase. Images de fin d'été : en avril (date de l'épreuve) l'herbe peut être plus verte, non vérifié.",
+    "date": "2026-11-18"
+  },
+  "murs_bd_topo_remplaces_par_releve": true
+}

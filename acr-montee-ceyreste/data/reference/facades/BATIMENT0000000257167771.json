@@ -1,0 +1,11 @@
+{
+ "cleabs": "BATIMENT0000000257167771",
+ "pk_m": -149, "cote": "gauche", "niveau": "premier_plan",
+ "images": [{"id": "0978ecd2-f339-4c7a-a6b7-d826701d1e04", "role": "toit et pignon au-dessus du mur de clôture et du portail bleu (PK -142)"},
+            {"id": "b415a70e-555d-4e62-93c4-797284d00028", "role": "masqué par la haie de bignones"}],
+ "lidar": "valide (faîtage 4,4-4,9 m, maison 2,5 m sous la route)",
+ "enduit": {"rgb": [199, 180, 155], "source": "pignon au soleil au-dessus du mur, 0978ecd2 (pixels de la vue rectifiée) : enduit beige"},
+ "toit": {"ortho_rgb": [131, 117, 105], "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve) ; tuiles canal brun rouge patinées sur 0978ecd2"},
+ "facades": {},
+ "notes": "Maison en contrebas, derrière un mur de clôture enduit et un portail plein bleu (déjà posés par 37) : seuls le toit à deux pans, une souche de cheminée et le haut d'un pignon se voient. Volume LiDAR gardé ; aucune ouverture posée (aucune vue)."
+}

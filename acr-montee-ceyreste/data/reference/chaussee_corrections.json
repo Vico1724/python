@@ -1,0 +1,30 @@
+{
+ "note": "Corrections des bords de chaussée de la montée, appliquées par scripts/07_chaussee_precise.py (rubrique « largeurs », même format que le Grand Caunet). Contrôle du 18/11/2026 (scripts/27_verif_trace.py, docs/03_affinage_reel.md) : sur 19 points où l'enrobé est dégagé, la largeur calculée par 07 (médiane 7,6 m) est celle de l'enrobé, lignes de rive comprises plus 0,2 à 0,5 m d'accotement revêtu ; la distance entre lignes de rive vaut 6,95 m en médiane (6,0 à 7,6 m ; 9,0 m dans l'épingle du PK 2226). La surestimation d'environ 1 m soupçonnée n'est donc PAS confirmée hors des débouchés : aucune correction générale. Deux corrections, mesurées : l'axe et le bord gauche au PK 444-468, et une largeur minimale de 6,4 m là où le LiDAR, sous les pins, sous-estimait la chaussée (jusqu'à 1,5 m de moins).",
+ "zones": [],
+ "largeurs": [
+  {
+   "id_releve": "verif_2026_11_18_pk451",
+   "pk_debut": 444,
+   "pk_fin": 468,
+   "cote": "gauche",
+   "largeur_m": 7.7,
+   "mode": "fixe",
+   "source": "orthophoto IGN 20 cm, bandes redressées graduées (figures/affinage/verif_largeur_bandes_1.jpg, n° 4, et verif_axe_zooms.jpg) : ligne de rive gauche à -2,5 m, axe peint à +1,0 m, rive droite à +4,4 m de l'axe calculé ; enrobé de -2,9 à +4,8 m. Panoramax (images fef444f3, 3a0d33e4) : mur de pierre au bord droit, accotement de gravier à gauche.",
+   "confiance": "moyenne",
+   "remarque": "La largeur calculée (9,5 m, interpolée sur un débouché) comprenait le gravier de l'accotement gauche ; l'axe retenu passait 1,0 à 1,2 m à gauche de l'axe peint. Bord droit conservé ; l'axe devient le milieu des deux bords."
+  },
+  {
+   "id_releve": "verif_2026_11_18_minimum",
+   "pk_debut": -150,
+   "pk_fin": 3768,
+   "cote": "symetrique",
+   "largeur_m": 6.4,
+   "mode": "minimum",
+   "source": "orthophoto IGN 20 cm (bandes redressées graduées) : distance entre lignes de rive mesurée en 19 points dégagés, 6,0 à 7,6 m (médiane 6,95 m), enrobé 0,2 à 0,5 m au-delà de chaque rive ; sous les pins, lignes visibles aux PK 1050 (axe à 0, rive droite à +2,9 m), 1860 (rive gauche à -2,6 m, axe à +0,3 m) et 1960 (rives à -2,7 et +3,1 m), où 07 ne donnait que 5,0 à 5,6 m. Panoramax (08/09/2025) : deux voies et axiale discontinue sur toute la montée.",
+   "confiance": "moyenne",
+   "remarque": "Sous le couvert des pins, le LiDAR ne voyait qu'une partie de la plate-forme : tronçons à moins de 6 m (PK 814-837, 942-963, 1028-1073, 1798-2004, 2300-2370, 3167-3216, minimum 4,8 m). Ils sont portés au minimum de 6,4 m, centrés sur l'axe calculé ; les tronçons plus larges ne bougent pas."
+  }
+ ],
+ "note_largeurs": "Pas d'autre correction : dans les épingles (PK 880-905, 1510-1525) la largeur de 07 (7,6 à 9,1 m) est conforme à l'enrobé visible là où il n'est pas à l'ombre ; ailleurs (72 % du linéaire sous les pins) aucune mesure indépendante ne contredit le LiDAR.",
+ "largeurs_ecartees": []
+}

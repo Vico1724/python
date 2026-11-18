@@ -1,0 +1,11 @@
+# Chaîne carte-reelle-unreal (Python 3.10 ou plus). Installation : python -m pip install -r requirements.txt
+numpy
+scipy
+requests
+pyproj
+shapely>=2.1
+rasterio
+pillow
+scikit-image
+trimesh
+mapbox-earcut

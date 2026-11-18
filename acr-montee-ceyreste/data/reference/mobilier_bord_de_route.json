@@ -1,0 +1,563 @@
+{
+ "note": "Mobilier de bord de route de la montée, relevé le 18/11/2026 sur Panoramax (scripts/29_releve_panoramax.py). Types et maillages du jeu repris du Grand Caunet (vérifiés là-bas). PK approximatifs (±10 m). Les objets sans maillage du jeu sont listés dans non_poses ; les substituts sont signalés par « substitut ».",
+ "types": {
+  "panneau_danger": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraDangerA",
+   "description": "triangle de danger du jeu (autre danger), sur mât",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -50
+    ],
+    "max": [
+     45,
+     4,
+     289
+    ]
+   }
+  },
+  "panneau_virage_droite": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraRightTurnA1",
+   "description": "triangle de danger « virage à droite »",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -42,
+     -4,
+     -50
+    ],
+    "max": [
+     42,
+     4,
+     284
+    ]
+   }
+  },
+  "balise_virage": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraCurveMarkerD",
+   "description": "balise de virage à chevrons, 1,2 m de large",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -60,
+     -3,
+     -20
+    ],
+    "max": [
+     60,
+     4,
+     102
+    ]
+   }
+  },
+  "borne_kilometrique": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/MileMarkerA/SM_MileMarkerA",
+   "description": "plaque kilométrique jaune et blanche",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -25
+    ],
+    "max": [
+     4,
+     4,
+     99
+    ]
+   }
+  },
+  "poteau_bois": {
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
+   "description": "poteau de bois simple de 6,9 m (SM_MonPylonC11, vu en jeu comme un fût de bois sombre). Jusqu'au 13/11/2026 : SM_FraMunPylonA, rendu en « mât métallique bleu-gris à longue potence, allure de lampadaire » (relevé du quatrième essai, PK 6120)",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {
+    "min": [
+     -10,
+     -30,
+     -40
+    ],
+    "max": [
+     10,
+     30,
+     690
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallWoodPole",
+    "diametre_m": 0.25,
+    "hauteur_m": 3.5,
+    "enfoui_m": 0.4
+   },
+   "cable": {
+    "hauteur_m": 6.6,
+    "ecarts_m": [
+     -0.25,
+     0.0,
+     0.25
+    ]
+   },
+   "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
+   "enfoncement_m": 0.0
+  },
+  "barriere_plastique": {
+   "maillage_jeu": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+   "description": "séparateur plastique rouge et blanc de 1,5 m",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {
+    "min": [
+     -76,
+     -27,
+     0
+    ],
+    "max": [
+     76,
+     27,
+     81
+    ]
+   },
+   "collision": {
+    "forme": "box",
+    "paroi": "PM_WallPlasticBarrier",
+    "largeur_m": 0.55,
+    "hauteur_m": 0.8,
+    "longueur_m": 1.5,
+    "enfoui_m": 0.0
+   }
+  }
+ },
+ "lignes_electriques": [],
+ "objets": [
+  {
+   "type": "panneau_danger",
+   "pk_m": 86,
+   "cote": "droite",
+   "decalage_m": 0.9,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c03d3e1e, edfd08bf",
+   "images": [
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+    "edfd08bf-b5be-4304-b6ca-e922d593570e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "A15b « passage d'animaux sauvages » + panonceau M2 « 4,6 km » (photo HD lisible ; OSM indique M2[1400], non conforme à la photo de 2025)",
+   "substitut": "triangle de danger générique du jeu (pictogramme différent)"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 86,
+   "cote": "droite",
+   "decalage_m": 0.9,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c03d3e1e, edfd08bf",
+   "images": [
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+    "edfd08bf-b5be-4304-b6ca-e922d593570e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "A15b « passage d'animaux sauvages » + panonceau M2 « 4,6 km » (photo HD lisible ; OSM indique M2[1400], non conforme à la photo de 2025)",
+   "substitut": "triangle de danger générique du jeu (aucun A1d dans le jeu ; SM_TrafficSignFraRightTurnA1 montrerait un virage à droite)"
+  },
+  {
+   "type": "balise_virage",
+   "pk_m": 902,
+   "cote": "gauche",
+   "decalage_m": 1.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 701e21a2, a7c86442, c115545b",
+   "images": [
+    "701e21a2-f493-4b1b-9783-04e05c039078",
+    "a7c86442-b91d-490e-82e8-402383df02f8",
+    "c115545b-6c4c-4f61-bb87-cab722cb4333"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "balise J4 à chevrons blancs sur fond bleu derrière la glissière"
+  },
+  {
+   "type": "balise_virage",
+   "pk_m": 913,
+   "cote": "gauche",
+   "decalage_m": 1.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images a7c86442",
+   "images": [
+    "a7c86442-b91d-490e-82e8-402383df02f8"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "seconde balise J4, derrière la glissière"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 2111,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 654381ef",
+   "images": [
+    "654381ef-c9df-44fe-be60-115059afe974"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "borne de point de repère « D3 ▸ 7 » (PR 7), plaquette jaune et blanche au sol"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 3112,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 1f995965",
+   "images": [
+    "1f995965-1442-4ab7-a79c-577cad1a7f04"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "plaquette jaune et blanche sur piquet, probablement le PR 8 (texte non lu)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 1910,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images ed761789",
+   "images": [
+    "ed761789-b762-44d0-a4f6-7ed2b35d8e2e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "poteau bois double (ligne)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3100,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 1f995965",
+   "images": [
+    "1f995965-1442-4ab7-a79c-577cad1a7f04"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "poteau bois avec coffrets et miroir convexe (miroir non rendu)"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 110,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images fa1351a2",
+   "images": [
+    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "plaquette « PR 5 » jaune et blanche sur piquet ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 1300,
+   "cote": "gauche",
+   "decalage_m": 0.9,
+   "lacet_en_plus_deg": 180.0,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 4f05c439, b354335c",
+   "images": [
+    "4f05c439-db8c-4b33-94aa-5b63cc0d6d60",
+    "b354335c-75eb-43bc-8592-ae60c3285bce"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "A14 « autres dangers » + panonceau jaune temporaire « CHAUSSÉE DÉFORMÉE », face aux descendants, au pied de la paroi (c'est le triangle vu de dos en montée) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "substitut": "triangle A14 du jeu (SM_TrafficSignFraDangerA) ; panonceau jaune non rendu"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1621,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1624,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1627,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1630,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1633,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1636,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1639,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "barriere_plastique",
+   "pk_m": 1642,
+   "cote": "gauche",
+   "decalage_m": 0.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d5c7d0ad",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 148.1,
+   "cote": "droite",
+   "decalage_m": 2.1,
+   "source": "OpenStreetMap node/13248624885 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 90.1,
+   "cote": "droite",
+   "decalage_m": 1.6,
+   "source": "OpenStreetMap node/13248624887 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 2160.3,
+   "cote": "gauche",
+   "decalage_m": 1.7,
+   "source": "OpenStreetMap node/13432394606 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3010.8,
+   "cote": "droite",
+   "decalage_m": 2.6,
+   "source": "OpenStreetMap node/13432394625 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3083.1,
+   "cote": "droite",
+   "decalage_m": 3.4,
+   "source": "OpenStreetMap node/13432394626 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3349.6,
+   "cote": "gauche",
+   "decalage_m": 4.2,
+   "source": "OpenStreetMap node/13432394630 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3432.0,
+   "cote": "gauche",
+   "decalage_m": 1.0,
+   "source": "OpenStreetMap node/13432394631 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3495.7,
+   "cote": "droite",
+   "decalage_m": 1.8,
+   "source": "OpenStreetMap node/13432394632 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3605.1,
+   "cote": "droite",
+   "decalage_m": 2.1,
+   "source": "OpenStreetMap node/13432394633 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3678.0,
+   "cote": "droite",
+   "decalage_m": 1.3,
+   "source": "OpenStreetMap node/13432394634 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3558.9,
+   "cote": "droite",
+   "decalage_m": 1.4,
+   "source": "OpenStreetMap node/13432394636 (power=pole), © contributeurs OSM, ODbL",
+   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
+   "confiance": "faible",
+   "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 1113,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images e34f1aff",
+   "images": [
+    "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+   ],
+   "statut": "vu sur Panoramax (sixième passe, 19/11/2026)",
+   "positionnement": "approximatif (photo, PK ±5 m)",
+   "confiance": "moyenne",
+   "description": "plaquette « D3 6 » (PR 6) sur piquet, au pied de la paroi ; rectangles blancs peints sur les deux rives au même PK"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 3672,
+   "cote": "gauche",
+   "decalage_m": 0.9,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images dcde5896",
+   "images": [
+    "dcde5896-00b2-4dad-856b-f4308e86569c"
+   ],
+   "statut": "vu sur Panoramax (sixième passe, 19/11/2026)",
+   "positionnement": "approximatif (photo, PK ±5 m)",
+   "confiance": "moyenne",
+   "description": "A15b « passage d'animaux sauvages » au-dessus d'un A1c, face aux descendants (le jeu n'a qu'un triangle générique)",
+   "lacet_en_plus_deg": 180.0
+  }
+ ],
+ "non_poses": [
+  "EB20 « CEYRESTE » barré (sortie d'agglomération) sur portique tubulaire vert (PK ≈ -34, droite) : aucun maillage du jeu ; images f9160d60",
+  "panneau jaune temporaire d'information (plan de carrefour modifié) (PK ≈ -40, droite) : aucun maillage du jeu ; temporaire ; images f9160d60",
+  "deux panneaux ronds vus de dos (pour les descendants), sur la bordure (PK ≈ 5, gauche) : face non lue ; images f72ed2c1, 89d3561a",
+  "B1 sens interdit à l'entrée d'une voie latérale (PK ≈ -15, droite) : aucun maillage du jeu relevé ; images f72ed2c1",
+  "abri de l'arrêt « Plan-de-Masse » (petite construction à toit de tuiles) et marquage BUS (PK ≈ 8, droite) : à construire (volume simple) : à décider ; images 89d3561a, edfc17c0",
+  "petit panneau d'information bleu et blanc sur piquet, non lu (PK ≈ 750, droite) : texte non lu ; aucun maillage équivalent ; images 56289bbe",
+  "triangle vu de dos (pour les descendants) au pied de la paroi (PK ≈ 1300, gauche) : remplacé par l'entrée A14 lue de face (PK 1300) ; images b354335c, 7b2904d1",
+  "bloc ou muret de béton peint en blanc (~0,6 x 5 m) à l'entrée d'une piste (PK ≈ 1458, gauche) : pas de modèle ; à poser en muret béton court si souhaité ; images d14edaba, 73b0f159",
+  "deux bacs à déchets (jaune, marron) et petit panneau blanc et vert à l'entrée de la piste (PK ≈ 1525, droite) : aucun maillage du jeu relevé ; images ca4214f2, 0373ab7c",
+  "poteau d'incendie rouge (PK ≈ 2722, droite) : aucun maillage du jeu relevé ; images e599d8e3",
+  "panneau d'information bleu et blanc sur mât (pictogrammes, « 1 km »), non lu en entier (PK ≈ 2757, droite) : texte non lu ; images 14d74c4b",
+  "barrière blanche en tube métallique au carrefour de la Voie Romaine (PK ≈ 2092, droite) : pas de maillage relevé ; lisse à poser si souhaité ; images 0cd7702a, 6ab59068",
+  "B13 « 19 t » (interdit aux véhicules de plus de 19 t) sur mât, face aux descendants ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026 (PK ≈ 5, gauche) : aucun panneau rond d'interdiction dans le jeu ; images edfc17c0",
+  "B14 « 50 » sur mât, face aux descendants (entrée d'agglomération, vu de loin, PK ±15 m) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026 (PK ≈ -20, gauche) : aucun panneau de limitation dans le jeu ; images edfc17c0",
+  "AB3a « cédez le passage » sur la voie latérale (OSM node/8600296503 : highway=give_way) (PK ≈ 2938, droite) : aucun AB3a dans le jeu ; images 7a47ca44, 9f14e86c",
+  "barrière d'accès OSM node/13437590360 (barrier=gate) au PK ≈ 29, à 7 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
+  "barrière d'accès OSM node/13437595734 (barrier=chain) au PK ≈ 899, à 9 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
+  "barrière d'accès OSM node/12156759 (barrier=swing_gate) au PK ≈ 2095, à 9 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
+  "barrière d'accès OSM node/13526174268 (barrier=gate) au PK ≈ 2691, à 15 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
+  "barrière d'accès OSM node/13526174296 (barrier=gate) au PK ≈ 2709, à 14 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
+  "barrière d'accès OSM node/13526174353 (barrier=chain) au PK ≈ 3057, à 5 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
+  "poteau de bois OSM node/13248624886 (PK 35,7, droite) retiré le 19/11/2026 : c'est le poteau de béton à transformateur vu sur 89d3561a et bfbe2896, posé par 41_carrefour_depart.py (beton_transfo)"
+ ]
+}

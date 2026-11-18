@@ -1,0 +1,336 @@
+{
+ "date": "2026-11-18",
+ "itineraire": {
+  "longueur_m": 2870,
+  "salle_polyvalente_a_mairie_m": 1137,
+  "mairie_au_depart_modelise_m": 1733,
+  "troncons": [
+   {
+    "route": "",
+    "nom": "",
+    "longueur_m": 25,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "",
+    "longueur_m": 35,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "CHE DES PEUPLIERS",
+    "longueur_m": 6,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "CHE DES PEUPLIERS",
+    "longueur_m": 17,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "CHE DES PEUPLIERS",
+    "longueur_m": 102,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "Chemin Chemin des Tilleuls",
+    "longueur_m": 13,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "Chemin Chemin des Tilleuls",
+    "longueur_m": 73,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "Chemin Chemin des Tilleuls",
+    "longueur_m": 51,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "Chemin Chemin des Tilleuls",
+    "longueur_m": 58,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 21,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 30,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 71,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 80,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 7,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 40,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 22,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "",
+    "nom": "AV EUGENE JULIEN",
+    "longueur_m": 25,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "AV EUGENE JULIEN",
+    "longueur_m": 107,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "AV EUGENE JULIEN",
+    "longueur_m": 32,
+    "largeur_bdtopo_m": 4
+   },
+   {
+    "route": "",
+    "nom": "",
+    "longueur_m": 77,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "",
+    "longueur_m": 68,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "",
+    "longueur_m": 86,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "D3",
+    "nom": "BD ALPHONSE DAVID",
+    "longueur_m": 14,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "",
+    "nom": "PL DU GENERAL DE GAULLE",
+    "longueur_m": 14,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "PL DU GENERAL DE GAULLE",
+    "longueur_m": 31,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 32,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 51,
+    "largeur_bdtopo_m": 3
+   },
+   {
+    "route": "D3",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 95,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 82,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "",
+    "longueur_m": 18,
+    "largeur_bdtopo_m": 3.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 75,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 50,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 31,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "BD LOUIS JULIEN",
+    "longueur_m": 81,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 41,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 46,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 68,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 41,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 42,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 77,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 129,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 7,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 162,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 136,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 65,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 60,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 64,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 133,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 36,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 15,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 42,
+    "largeur_bdtopo_m": 5.5
+   },
+   {
+    "route": "D3",
+    "nom": "RTE DU CAUNET",
+    "longueur_m": 85,
+    "largeur_bdtopo_m": 5.5
+   }
+  ]
+ },
+ "option_a_decor_lointain": {
+  "batiments": 976,
+  "surface_au_sol_m2": 74038,
+  "regle": "à moins de 1,5 km du départ, à plus de 150 m de l'axe, vus (ligne de vue MNT 2 m) depuis au moins un des PK -149, 0, 150, 300",
+  "route_ajoutee_m": 0,
+  "emprise_jouable": "inchangée"
+ },
+ "option_b_village_parcourable": {
+  "batiments": 961,
+  "surface_au_sol_m2": 61519,
+  "regle": "à moins de 40 m de l'itinéraire, ou à moins de 250 m de la mairie, ou de 120 m de la salle polyvalente",
+  "route_ajoutee_m": 2870,
+  "emprise_jouable": "étendue vers le village (à décider)"
+ }
+}

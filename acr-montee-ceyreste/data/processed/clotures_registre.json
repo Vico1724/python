@@ -1,0 +1,2256 @@
+{
+"note": "registre de la troisième passe (18/11/2026) : chaque tronçon de 50 m, chaque côté, examiné sur les planches de 36 ; « rien » = examiné, sans mur ni clôture au bord",
+"bilan": {
+"troncons": 156,
+"examines": 156,
+"sans_image": 0
+},
+"troncons": [
+{
+"pk": [
+-150,
+-100
+],
+"cote": "gauche",
+"etat": "haie_taillee, mur/parapet (passes 1-2), pilier, portail",
+"images": [
+"0978ecd2",
+"ec130e15",
+"d7f1c7f8",
+"d0bcfced",
+"63cc1724",
+"a9ef2aa0"
+]
+},
+{
+"pk": [
+-150,
+-100
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"0978ecd2",
+"ec130e15",
+"d7f1c7f8",
+"d0bcfced",
+"63cc1724",
+"a9ef2aa0"
+]
+},
+{
+"pk": [
+-100,
+-50
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2), mur_enduit, muret_occultant",
+"images": [
+"63cc1724",
+"a9ef2aa0",
+"c0e0148f",
+"4ee3bbf3",
+"1093d878",
+"a251d23e",
+"31fd6398",
+"034118cd",
+"f9160d60"
+]
+},
+{
+"pk": [
+-100,
+-50
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"63cc1724",
+"a9ef2aa0",
+"c0e0148f",
+"4ee3bbf3",
+"1093d878",
+"a251d23e",
+"31fd6398",
+"034118cd",
+"f9160d60"
+]
+},
+{
+"pk": [
+-50,
+0
+],
+"cote": "gauche",
+"etat": "grillage, mur/parapet (passes 1-2), muret_occultant",
+"images": [
+"034118cd",
+"f9160d60",
+"ee1447e9",
+"b0467d52",
+"09174137",
+"f72ed2c1",
+"43f093e4",
+"89d3561a"
+]
+},
+{
+"pk": [
+-50,
+0
+],
+"cote": "droite",
+"etat": "pierre_seche",
+"images": [
+"034118cd",
+"f9160d60",
+"ee1447e9",
+"b0467d52",
+"09174137",
+"f72ed2c1",
+"43f093e4",
+"89d3561a"
+]
+},
+{
+"pk": [
+0,
+50
+],
+"cote": "gauche",
+"etat": "grillage, mur/parapet (passes 1-2), muret_grillage, pilier, portail",
+"images": [
+"89d3561a",
+"7de216e6",
+"edfc17c0",
+"bfbe2896",
+"f58e2a31",
+"67266380",
+"712bdb9f",
+"a83cbe3a",
+"c469075c",
+"0a79aab0"
+]
+},
+{
+"pk": [
+0,
+50
+],
+"cote": "droite",
+"etat": "muret_grillage, pierre_seche",
+"images": [
+"89d3561a",
+"7de216e6",
+"edfc17c0",
+"bfbe2896",
+"f58e2a31",
+"67266380",
+"712bdb9f",
+"a83cbe3a",
+"c469075c",
+"0a79aab0"
+]
+},
+{
+"pk": [
+50,
+100
+],
+"cote": "gauche",
+"etat": "muret_grillage",
+"images": [
+"a83cbe3a",
+"c469075c",
+"0a79aab0",
+"c03d3e1e",
+"edfd08bf",
+"c559b2b8"
+]
+},
+{
+"pk": [
+50,
+100
+],
+"cote": "droite",
+"etat": "muret_grillage",
+"images": [
+"a83cbe3a",
+"c469075c",
+"0a79aab0",
+"c03d3e1e",
+"edfd08bf",
+"c559b2b8"
+]
+},
+{
+"pk": [
+100,
+150
+],
+"cote": "gauche",
+"etat": "muret_grillage",
+"images": [
+"c559b2b8",
+"fa1351a2",
+"b046281f",
+"9e3f4f93"
+]
+},
+{
+"pk": [
+100,
+150
+],
+"cote": "droite",
+"etat": "muret_grillage, pilier, portail",
+"images": [
+"c559b2b8",
+"fa1351a2",
+"b046281f",
+"9e3f4f93"
+]
+},
+{
+"pk": [
+150,
+200
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2), muret_grillage",
+"images": [
+"9e3f4f93",
+"48a9f912",
+"d7d5855d",
+"c6b32cb7",
+"3c96316d"
+]
+},
+{
+"pk": [
+150,
+200
+],
+"cote": "droite",
+"etat": "grillage_occultant, mur/parapet (passes 1-2), muret_grillage",
+"images": [
+"9e3f4f93",
+"48a9f912",
+"d7d5855d",
+"c6b32cb7",
+"3c96316d"
+]
+},
+{
+"pk": [
+200,
+250
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"3c96316d",
+"8801585d",
+"b654d53a",
+"619b5f76"
+]
+},
+{
+"pk": [
+200,
+250
+],
+"cote": "droite",
+"etat": "grillage, mur/parapet (passes 1-2), mur_enduit, talus rocheux",
+"images": [
+"3c96316d",
+"8801585d",
+"b654d53a",
+"619b5f76"
+]
+},
+{
+"pk": [
+250,
+300
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"619b5f76",
+"fda1798e",
+"a46dcdfa",
+"e2b1240a"
+]
+},
+{
+"pk": [
+250,
+300
+],
+"cote": "droite",
+"etat": "grillage, mur_enduit, muret_grillage, talus rocheux",
+"images": [
+"619b5f76",
+"fda1798e",
+"a46dcdfa",
+"e2b1240a"
+]
+},
+{
+"pk": [
+300,
+350
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"e2b1240a",
+"d8f0fa89",
+"3a53fe19",
+"306c6cbb"
+]
+},
+{
+"pk": [
+300,
+350
+],
+"cote": "droite",
+"etat": "muret_grillage",
+"images": [
+"e2b1240a",
+"d8f0fa89",
+"3a53fe19",
+"306c6cbb"
+]
+},
+{
+"pk": [
+350,
+400
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"306c6cbb",
+"e2ac9454",
+"706a42a6",
+"1d316dff"
+]
+},
+{
+"pk": [
+350,
+400
+],
+"cote": "droite",
+"etat": "grillage, muret_grillage, talus rocheux",
+"images": [
+"306c6cbb",
+"e2ac9454",
+"706a42a6",
+"1d316dff"
+]
+},
+{
+"pk": [
+400,
+450
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"1d316dff",
+"2ba2815f",
+"b6cc01c3",
+"fef444f3",
+"3a0d33e4"
+]
+},
+{
+"pk": [
+400,
+450
+],
+"cote": "droite",
+"etat": "grillage, mur/parapet (passes 1-2), talus rocheux",
+"images": [
+"1d316dff",
+"2ba2815f",
+"b6cc01c3",
+"fef444f3",
+"3a0d33e4"
+]
+},
+{
+"pk": [
+450,
+500
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"3a0d33e4",
+"340a1a43",
+"f481ecf0",
+"d11bb5cc"
+]
+},
+{
+"pk": [
+450,
+500
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), pierre_seche, pilier, portail, talus rocheux",
+"images": [
+"3a0d33e4",
+"340a1a43",
+"f481ecf0",
+"d11bb5cc"
+]
+},
+{
+"pk": [
+500,
+550
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"d11bb5cc",
+"615e4eee",
+"2a7f0fd2",
+"622676a0"
+]
+},
+{
+"pk": [
+500,
+550
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"d11bb5cc",
+"615e4eee",
+"2a7f0fd2",
+"622676a0"
+]
+},
+{
+"pk": [
+550,
+600
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"622676a0",
+"6da4e77b",
+"3e2bfee7",
+"7f430736"
+]
+},
+{
+"pk": [
+550,
+600
+],
+"cote": "droite",
+"etat": "pierre_seche, talus rocheux",
+"images": [
+"622676a0",
+"6da4e77b",
+"3e2bfee7",
+"7f430736"
+]
+},
+{
+"pk": [
+600,
+650
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"7f430736",
+"c03fc96f",
+"ad907fae",
+"c6c9a241"
+]
+},
+{
+"pk": [
+600,
+650
+],
+"cote": "droite",
+"etat": "pierre_seche, talus rocheux",
+"images": [
+"7f430736",
+"c03fc96f",
+"ad907fae",
+"c6c9a241"
+]
+},
+{
+"pk": [
+650,
+700
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"c6c9a241",
+"bcbd25d7",
+"2763dc33",
+"bf283b0a"
+]
+},
+{
+"pk": [
+650,
+700
+],
+"cote": "droite",
+"etat": "pierre_seche, talus rocheux",
+"images": [
+"c6c9a241",
+"bcbd25d7",
+"2763dc33",
+"bf283b0a"
+]
+},
+{
+"pk": [
+700,
+750
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"bf283b0a",
+"39a25600",
+"d76073e0",
+"56289bbe"
+]
+},
+{
+"pk": [
+700,
+750
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"bf283b0a",
+"39a25600",
+"d76073e0",
+"56289bbe"
+]
+},
+{
+"pk": [
+750,
+800
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"56289bbe",
+"41cdbd1d",
+"94dcff86",
+"44ca4d2d",
+"05229626"
+]
+},
+{
+"pk": [
+750,
+800
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"56289bbe",
+"41cdbd1d",
+"94dcff86",
+"44ca4d2d",
+"05229626"
+]
+},
+{
+"pk": [
+800,
+850
+],
+"cote": "gauche",
+"etat": "glissière, mur/parapet (passes 1-2)",
+"images": [
+"05229626",
+"50965cef",
+"28a74547",
+"b89c3981"
+]
+},
+{
+"pk": [
+800,
+850
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"05229626",
+"50965cef",
+"28a74547",
+"b89c3981"
+]
+},
+{
+"pk": [
+850,
+900
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"b89c3981",
+"c115545b",
+"701e21a2",
+"a7c86442"
+]
+},
+{
+"pk": [
+850,
+900
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"b89c3981",
+"c115545b",
+"701e21a2",
+"a7c86442"
+]
+},
+{
+"pk": [
+900,
+950
+],
+"cote": "gauche",
+"etat": "glissière, mur/parapet (passes 1-2)",
+"images": [
+"a7c86442",
+"e08dc349",
+"e47ebc0d",
+"cc032824"
+]
+},
+{
+"pk": [
+900,
+950
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"a7c86442",
+"e08dc349",
+"e47ebc0d",
+"cc032824"
+]
+},
+{
+"pk": [
+950,
+1000
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2), talus rocheux",
+"images": [
+"cc032824",
+"db9665d5",
+"56cc8bf8",
+"f55bd1c8"
+]
+},
+{
+"pk": [
+950,
+1000
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"cc032824",
+"db9665d5",
+"56cc8bf8",
+"f55bd1c8"
+]
+},
+{
+"pk": [
+1000,
+1050
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"f55bd1c8",
+"0a73c4a5",
+"2de9a9e3",
+"9cec2f58"
+]
+},
+{
+"pk": [
+1000,
+1050
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"f55bd1c8",
+"0a73c4a5",
+"2de9a9e3",
+"9cec2f58"
+]
+},
+{
+"pk": [
+1050,
+1100
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"9cec2f58",
+"06d9112e",
+"e96ef4bf",
+"ccd22b75"
+]
+},
+{
+"pk": [
+1050,
+1100
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"9cec2f58",
+"06d9112e",
+"e96ef4bf",
+"ccd22b75"
+]
+},
+{
+"pk": [
+1100,
+1150
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"ccd22b75",
+"e34f1aff",
+"3a533cfd",
+"95381ebe"
+]
+},
+{
+"pk": [
+1100,
+1150
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"ccd22b75",
+"e34f1aff",
+"3a533cfd",
+"95381ebe"
+]
+},
+{
+"pk": [
+1150,
+1200
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"95381ebe",
+"e8cbf415",
+"652f5917",
+"8e34b254"
+]
+},
+{
+"pk": [
+1150,
+1200
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"95381ebe",
+"e8cbf415",
+"652f5917",
+"8e34b254"
+]
+},
+{
+"pk": [
+1200,
+1250
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"8e34b254",
+"b4d7dc6b",
+"37024d81",
+"c3131ad3",
+"a8df3bc2"
+]
+},
+{
+"pk": [
+1200,
+1250
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"8e34b254",
+"b4d7dc6b",
+"37024d81",
+"c3131ad3",
+"a8df3bc2"
+]
+},
+{
+"pk": [
+1250,
+1300
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"a8df3bc2",
+"b21fa319",
+"b354335c",
+"7b2904d1"
+]
+},
+{
+"pk": [
+1250,
+1300
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"a8df3bc2",
+"b21fa319",
+"b354335c",
+"7b2904d1"
+]
+},
+{
+"pk": [
+1300,
+1350
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"7b2904d1",
+"4f05c439",
+"ebb65d2c",
+"84b2659a"
+]
+},
+{
+"pk": [
+1300,
+1350
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"7b2904d1",
+"4f05c439",
+"ebb65d2c",
+"84b2659a"
+]
+},
+{
+"pk": [
+1350,
+1400
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"84b2659a",
+"91917926",
+"b5f0178a",
+"163245a2"
+]
+},
+{
+"pk": [
+1350,
+1400
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"84b2659a",
+"91917926",
+"b5f0178a",
+"163245a2"
+]
+},
+{
+"pk": [
+1400,
+1450
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"163245a2",
+"01e02642",
+"a44a1d50",
+"d14edaba",
+"73b0f159"
+]
+},
+{
+"pk": [
+1400,
+1450
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"163245a2",
+"01e02642",
+"a44a1d50",
+"d14edaba",
+"73b0f159"
+]
+},
+{
+"pk": [
+1450,
+1500
+],
+"cote": "gauche",
+"etat": "bloc_beton",
+"images": [
+"73b0f159",
+"1ccd2732",
+"de034b0d",
+"ca4214f2"
+]
+},
+{
+"pk": [
+1450,
+1500
+],
+"cote": "droite",
+"etat": "pierre_seche",
+"images": [
+"73b0f159",
+"1ccd2732",
+"de034b0d",
+"ca4214f2"
+]
+},
+{
+"pk": [
+1500,
+1550
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"ca4214f2",
+"0373ab7c",
+"fa96e3fc",
+"ea1367d6"
+]
+},
+{
+"pk": [
+1500,
+1550
+],
+"cote": "droite",
+"etat": "pierre_seche, talus rocheux",
+"images": [
+"ca4214f2",
+"0373ab7c",
+"fa96e3fc",
+"ea1367d6"
+]
+},
+{
+"pk": [
+1550,
+1600
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"ea1367d6",
+"96977cc9",
+"f6d9857c",
+"b2800717"
+]
+},
+{
+"pk": [
+1550,
+1600
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"ea1367d6",
+"96977cc9",
+"f6d9857c",
+"b2800717"
+]
+},
+{
+"pk": [
+1600,
+1650
+],
+"cote": "gauche",
+"etat": "glissière, mur/parapet (passes 1-2)",
+"images": [
+"b2800717",
+"29bb5b34",
+"d5c7d0ad",
+"37dd8072"
+]
+},
+{
+"pk": [
+1600,
+1650
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"b2800717",
+"29bb5b34",
+"d5c7d0ad",
+"37dd8072"
+]
+},
+{
+"pk": [
+1650,
+1700
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"37dd8072",
+"7aba00df",
+"1d6eb5bc",
+"5736dfa1"
+]
+},
+{
+"pk": [
+1650,
+1700
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"37dd8072",
+"7aba00df",
+"1d6eb5bc",
+"5736dfa1"
+]
+},
+{
+"pk": [
+1700,
+1750
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"5736dfa1",
+"ae90d863",
+"d6d61b50",
+"353cfa11"
+]
+},
+{
+"pk": [
+1700,
+1750
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"5736dfa1",
+"ae90d863",
+"d6d61b50",
+"353cfa11"
+]
+},
+{
+"pk": [
+1750,
+1800
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"353cfa11",
+"f2c7d5f0",
+"82934593",
+"8a84aa4b"
+]
+},
+{
+"pk": [
+1750,
+1800
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"353cfa11",
+"f2c7d5f0",
+"82934593",
+"8a84aa4b"
+]
+},
+{
+"pk": [
+1800,
+1850
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"8a84aa4b",
+"c23d7015",
+"073e0167",
+"3fa3871c"
+]
+},
+{
+"pk": [
+1800,
+1850
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"8a84aa4b",
+"c23d7015",
+"073e0167",
+"3fa3871c"
+]
+},
+{
+"pk": [
+1850,
+1900
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"3fa3871c",
+"1d5fd50b",
+"34e70fc8",
+"4ce5a421",
+"ed761789"
+]
+},
+{
+"pk": [
+1850,
+1900
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"3fa3871c",
+"1d5fd50b",
+"34e70fc8",
+"4ce5a421",
+"ed761789"
+]
+},
+{
+"pk": [
+1900,
+1950
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"ed761789",
+"69fb0466",
+"119cd40a",
+"95f08c29"
+]
+},
+{
+"pk": [
+1900,
+1950
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"ed761789",
+"69fb0466",
+"119cd40a",
+"95f08c29"
+]
+},
+{
+"pk": [
+1950,
+2000
+],
+"cote": "gauche",
+"etat": "talus rocheux",
+"images": [
+"95f08c29",
+"f9517c41",
+"047a72e3",
+"1ec01bbe"
+]
+},
+{
+"pk": [
+1950,
+2000
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"95f08c29",
+"f9517c41",
+"047a72e3",
+"1ec01bbe"
+]
+},
+{
+"pk": [
+2000,
+2050
+],
+"cote": "gauche",
+"etat": "pilier, talus rocheux",
+"images": [
+"1ec01bbe",
+"b6721f3d",
+"b9a4f318",
+"7b885a49"
+]
+},
+{
+"pk": [
+2000,
+2050
+],
+"cote": "droite",
+"etat": "haie_taillee",
+"images": [
+"1ec01bbe",
+"b6721f3d",
+"b9a4f318",
+"7b885a49"
+]
+},
+{
+"pk": [
+2050,
+2100
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"7b885a49",
+"29a4065a",
+"6ab59068",
+"0cd7702a"
+]
+},
+{
+"pk": [
+2050,
+2100
+],
+"cote": "droite",
+"etat": "barriere_tube, grillage, pierre_seche, pilier",
+"images": [
+"7b885a49",
+"29a4065a",
+"6ab59068",
+"0cd7702a"
+]
+},
+{
+"pk": [
+2100,
+2150
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"654381ef",
+"60d008eb",
+"f807be2e",
+"58af6c06"
+]
+},
+{
+"pk": [
+2100,
+2150
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), pierre_seche",
+"images": [
+"654381ef",
+"60d008eb",
+"f807be2e",
+"58af6c06"
+]
+},
+{
+"pk": [
+2150,
+2200
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"58af6c06",
+"b67a78d5",
+"ae8122b3",
+"bf335aba"
+]
+},
+{
+"pk": [
+2150,
+2200
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), pierre_seche, talus rocheux",
+"images": [
+"58af6c06",
+"b67a78d5",
+"ae8122b3",
+"bf335aba"
+]
+},
+{
+"pk": [
+2200,
+2250
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"bf335aba",
+"b12a5cd9",
+"39135d28",
+"c2d0ce1b"
+]
+},
+{
+"pk": [
+2200,
+2250
+],
+"cote": "droite",
+"etat": "pierre_seche, talus rocheux",
+"images": [
+"bf335aba",
+"b12a5cd9",
+"39135d28",
+"c2d0ce1b"
+]
+},
+{
+"pk": [
+2250,
+2300
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"c2d0ce1b",
+"159a7659",
+"0386bf44",
+"421cb4d6"
+]
+},
+{
+"pk": [
+2250,
+2300
+],
+"cote": "droite",
+"etat": "grillage, pierre_seche, talus rocheux",
+"images": [
+"c2d0ce1b",
+"159a7659",
+"0386bf44",
+"421cb4d6"
+]
+},
+{
+"pk": [
+2300,
+2350
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"421cb4d6",
+"a232f421",
+"6343a32b",
+"1bf1a857"
+]
+},
+{
+"pk": [
+2300,
+2350
+],
+"cote": "droite",
+"etat": "grillage, pierre_seche, talus rocheux",
+"images": [
+"421cb4d6",
+"a232f421",
+"6343a32b",
+"1bf1a857"
+]
+},
+{
+"pk": [
+2350,
+2400
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"1bf1a857",
+"c1005dca",
+"7aeeec73",
+"5f7b4747"
+]
+},
+{
+"pk": [
+2350,
+2400
+],
+"cote": "droite",
+"etat": "grillage, pierre_seche",
+"images": [
+"1bf1a857",
+"c1005dca",
+"7aeeec73",
+"5f7b4747"
+]
+},
+{
+"pk": [
+2400,
+2450
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"5f7b4747",
+"5e0f54d8",
+"f257b290",
+"51568e3d"
+]
+},
+{
+"pk": [
+2400,
+2450
+],
+"cote": "droite",
+"etat": "pierre_seche",
+"images": [
+"5f7b4747",
+"5e0f54d8",
+"f257b290",
+"51568e3d"
+]
+},
+{
+"pk": [
+2450,
+2500
+],
+"cote": "gauche",
+"etat": "glissière, mur/parapet (passes 1-2)",
+"images": [
+"51568e3d",
+"7eef7b5c",
+"0bc5836c",
+"c7c78864"
+]
+},
+{
+"pk": [
+2450,
+2500
+],
+"cote": "droite",
+"etat": "pierre_seche",
+"images": [
+"51568e3d",
+"7eef7b5c",
+"0bc5836c",
+"c7c78864"
+]
+},
+{
+"pk": [
+2500,
+2550
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"c7c78864",
+"8d5c9409",
+"2ec4785e",
+"a8e57708"
+]
+},
+{
+"pk": [
+2500,
+2550
+],
+"cote": "droite",
+"etat": "pierre_seche, talus rocheux",
+"images": [
+"c7c78864",
+"8d5c9409",
+"2ec4785e",
+"a8e57708"
+]
+},
+{
+"pk": [
+2550,
+2600
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"2ae9d661",
+"3e944500",
+"f4152a33",
+"c2c25c2e"
+]
+},
+{
+"pk": [
+2550,
+2600
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"2ae9d661",
+"3e944500",
+"f4152a33",
+"c2c25c2e"
+]
+},
+{
+"pk": [
+2600,
+2650
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"c2c25c2e",
+"fa486745",
+"53a09c49",
+"76cd2523"
+]
+},
+{
+"pk": [
+2600,
+2650
+],
+"cote": "droite",
+"etat": "pierre_seche, talus rocheux",
+"images": [
+"c2c25c2e",
+"fa486745",
+"53a09c49",
+"76cd2523"
+]
+},
+{
+"pk": [
+2650,
+2700
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"76cd2523",
+"45516cd4",
+"1e51ca99",
+"f131475a"
+]
+},
+{
+"pk": [
+2650,
+2700
+],
+"cote": "droite",
+"etat": "glissière, pierre_seche",
+"images": [
+"76cd2523",
+"45516cd4",
+"1e51ca99",
+"f131475a"
+]
+},
+{
+"pk": [
+2700,
+2750
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"f131475a",
+"e599d8e3",
+"373ff645",
+"14d74c4b"
+]
+},
+{
+"pk": [
+2700,
+2750
+],
+"cote": "droite",
+"etat": "boites_aux_lettres, glissière",
+"images": [
+"f131475a",
+"e599d8e3",
+"373ff645",
+"14d74c4b"
+]
+},
+{
+"pk": [
+2750,
+2800
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"14d74c4b",
+"bf5e0dfc",
+"b0ba55b5",
+"af4c60ef"
+]
+},
+{
+"pk": [
+2750,
+2800
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"14d74c4b",
+"bf5e0dfc",
+"b0ba55b5",
+"af4c60ef"
+]
+},
+{
+"pk": [
+2800,
+2850
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"af4c60ef",
+"948616e9",
+"09972c6a",
+"5ef148c3",
+"0119a756"
+]
+},
+{
+"pk": [
+2800,
+2850
+],
+"cote": "droite",
+"etat": "pierre_seche, pilier, portail",
+"images": [
+"af4c60ef",
+"948616e9",
+"09972c6a",
+"5ef148c3",
+"0119a756"
+]
+},
+{
+"pk": [
+2850,
+2900
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"5ef148c3",
+"0119a756",
+"6a88e7fa",
+"905fc8fa"
+]
+},
+{
+"pk": [
+2850,
+2900
+],
+"cote": "droite",
+"etat": "grillage_occultant, mur/parapet (passes 1-2), pierre_seche",
+"images": [
+"5ef148c3",
+"0119a756",
+"6a88e7fa",
+"905fc8fa"
+]
+},
+{
+"pk": [
+2900,
+2950
+],
+"cote": "gauche",
+"etat": "glissière, mur/parapet (passes 1-2)",
+"images": [
+"905fc8fa",
+"3693681f",
+"9f14e86c",
+"7a47ca44"
+]
+},
+{
+"pk": [
+2900,
+2950
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), talus rocheux",
+"images": [
+"905fc8fa",
+"3693681f",
+"9f14e86c",
+"7a47ca44"
+]
+},
+{
+"pk": [
+2950,
+3000
+],
+"cote": "gauche",
+"etat": "glissière",
+"images": [
+"7a47ca44",
+"0e847466",
+"76239e33",
+"8b10df10",
+"a00d17d5"
+]
+},
+{
+"pk": [
+2950,
+3000
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"7a47ca44",
+"0e847466",
+"76239e33",
+"8b10df10",
+"a00d17d5"
+]
+},
+{
+"pk": [
+3000,
+3050
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"8b10df10",
+"a00d17d5",
+"d7623aaf",
+"85200ce6",
+"94af0b8a"
+]
+},
+{
+"pk": [
+3000,
+3050
+],
+"cote": "droite",
+"etat": "grillage, talus rocheux",
+"images": [
+"8b10df10",
+"a00d17d5",
+"d7623aaf",
+"85200ce6",
+"94af0b8a"
+]
+},
+{
+"pk": [
+3050,
+3100
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"94af0b8a",
+"a49c1261",
+"a6ff84a8",
+"1f995965"
+]
+},
+{
+"pk": [
+3050,
+3100
+],
+"cote": "droite",
+"etat": "grillage",
+"images": [
+"94af0b8a",
+"a49c1261",
+"a6ff84a8",
+"1f995965"
+]
+},
+{
+"pk": [
+3100,
+3150
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"1f995965",
+"2540de5a",
+"532958a0",
+"978841a8"
+]
+},
+{
+"pk": [
+3100,
+3150
+],
+"cote": "droite",
+"etat": "grillage, mur/parapet (passes 1-2), mur_enduit, portail",
+"images": [
+"1f995965",
+"2540de5a",
+"532958a0",
+"978841a8"
+]
+},
+{
+"pk": [
+3150,
+3200
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"978841a8",
+"5a111766",
+"726829e6",
+"c9f46809"
+]
+},
+{
+"pk": [
+3150,
+3200
+],
+"cote": "droite",
+"etat": "grillage, mur/parapet (passes 1-2), pilier, portail",
+"images": [
+"978841a8",
+"5a111766",
+"726829e6",
+"c9f46809"
+]
+},
+{
+"pk": [
+3200,
+3250
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2), pierre_seche",
+"images": [
+"c9f46809",
+"be182a52",
+"c1fe1998",
+"a133f64e",
+"06ea7f53"
+]
+},
+{
+"pk": [
+3200,
+3250
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), mur_enduit, muret_grillage",
+"images": [
+"c9f46809",
+"be182a52",
+"c1fe1998",
+"a133f64e",
+"06ea7f53"
+]
+},
+{
+"pk": [
+3250,
+3300
+],
+"cote": "gauche",
+"etat": "mur/parapet (passes 1-2)",
+"images": [
+"06ea7f53",
+"4ca4c4ec",
+"fa24a98d",
+"81fc91ee"
+]
+},
+{
+"pk": [
+3250,
+3300
+],
+"cote": "droite",
+"etat": "haie_taillee, mur_enduit, pierre_seche, portail, talus rocheux",
+"images": [
+"06ea7f53",
+"4ca4c4ec",
+"fa24a98d",
+"81fc91ee"
+]
+},
+{
+"pk": [
+3300,
+3350
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"81fc91ee",
+"af20c5fa",
+"e7e0c1a0",
+"442e05e3"
+]
+},
+{
+"pk": [
+3300,
+3350
+],
+"cote": "droite",
+"etat": "talus rocheux",
+"images": [
+"81fc91ee",
+"af20c5fa",
+"e7e0c1a0",
+"442e05e3"
+]
+},
+{
+"pk": [
+3350,
+3400
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"442e05e3",
+"c6718930",
+"a0a0bb99",
+"32cb1b1c"
+]
+},
+{
+"pk": [
+3350,
+3400
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), pierre_seche, talus rocheux",
+"images": [
+"442e05e3",
+"c6718930",
+"a0a0bb99",
+"32cb1b1c"
+]
+},
+{
+"pk": [
+3400,
+3450
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"32cb1b1c",
+"30cf4a1a",
+"9c78e331",
+"f6a0068f"
+]
+},
+{
+"pk": [
+3400,
+3450
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), pierre_seche, talus rocheux",
+"images": [
+"32cb1b1c",
+"30cf4a1a",
+"9c78e331",
+"f6a0068f"
+]
+},
+{
+"pk": [
+3450,
+3500
+],
+"cote": "gauche",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"f6a0068f",
+"c4ae4f77",
+"2acaab65",
+"f1c411df"
+]
+},
+{
+"pk": [
+3450,
+3500
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), talus rocheux",
+"images": [
+"f6a0068f",
+"c4ae4f77",
+"2acaab65",
+"f1c411df"
+]
+},
+{
+"pk": [
+3500,
+3550
+],
+"cote": "gauche",
+"etat": "grillage",
+"images": [
+"f1c411df",
+"635c5f76",
+"5e36c019",
+"a4a603b8",
+"566faba1"
+]
+},
+{
+"pk": [
+3500,
+3550
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), pierre_seche",
+"images": [
+"f1c411df",
+"635c5f76",
+"5e36c019",
+"a4a603b8",
+"566faba1"
+]
+},
+{
+"pk": [
+3550,
+3600
+],
+"cote": "gauche",
+"etat": "grillage",
+"images": [
+"566faba1",
+"0a2d4774",
+"7f9703b7",
+"55590307"
+]
+},
+{
+"pk": [
+3550,
+3600
+],
+"cote": "droite",
+"etat": "mur/parapet (passes 1-2), pierre_seche, portail",
+"images": [
+"566faba1",
+"0a2d4774",
+"7f9703b7",
+"55590307"
+]
+},
+{
+"pk": [
+3600,
+3650
+],
+"cote": "gauche",
+"etat": "grillage, mur/parapet (passes 1-2)",
+"images": [
+"55590307",
+"6f422c65",
+"f4d3e1b2",
+"3293697d"
+]
+},
+{
+"pk": [
+3600,
+3650
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"55590307",
+"6f422c65",
+"f4d3e1b2",
+"3293697d"
+]
+},
+{
+"pk": [
+3650,
+3700
+],
+"cote": "gauche",
+"etat": "caniveau, mur/parapet (passes 1-2)",
+"images": [
+"3293697d",
+"11ee1c29",
+"dcde5896",
+"6f20b24e"
+]
+},
+{
+"pk": [
+3650,
+3700
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"3293697d",
+"11ee1c29",
+"dcde5896",
+"6f20b24e"
+]
+},
+{
+"pk": [
+3700,
+3750
+],
+"cote": "gauche",
+"etat": "caniveau, muret_occultant",
+"images": [
+"6f20b24e",
+"e48878e8",
+"1eeb4efc",
+"f5e338ef",
+"c8ff5bd3"
+]
+},
+{
+"pk": [
+3700,
+3750
+],
+"cote": "droite",
+"etat": "rien (talus nu, fossé ou végétation)",
+"images": [
+"6f20b24e",
+"e48878e8",
+"1eeb4efc",
+"f5e338ef",
+"c8ff5bd3"
+]
+}
+]
+}

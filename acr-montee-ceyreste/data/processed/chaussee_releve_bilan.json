@@ -1,0 +1,22 @@
+{
+ "troncons": 73,
+ "troncons_manquants": [],
+ "elements_par_genre": {
+  "fissure_longitudinale": 34,
+  "faiencage": 30,
+  "bord_effrite": 2,
+  "terre": 20,
+  "gravillons": 3,
+  "reprise": 4,
+  "traces_pneus": 15,
+  "fissure_transversale": 3,
+  "aiguilles": 5,
+  "joint_ponte": 3,
+  "raccord": 2,
+  "marquage:rectangle_pr": 2,
+  "marquage:rive_continue": 1,
+  "marquage:ligne_cedez": 1,
+  "marquage:zone_hachuree_retiree": 1
+ },
+ "elements_sans_image_valide": []
+}
