@@ -2,8 +2,11 @@
 <#
 .SYNOPSIS
   Installe dans <jeu>\acr\Content\Paks\~mods l'une des versions du décor gardées dans Z:\acrxs\unreal\dist :
-    sol_jeu              version courante (vingt-troisième, 17/11/2026 au soir) : la vingt-deuxième, avec la
-                         météo Alsace (été) et 30 °C de température de référence ; jamais vue en jeu
+    sol_jeu              version courante (vingt-quatrième, 18/11/2026 à 1 h 48) : foule de l'arrivée retirée,
+                         officiels hors de la chaussée, mur et rampe de la zone de départ, logo officiel du rallye ;
+                         jamais vue en jeu
+    sol_jeu_cycle23_du_17_11  vingt-troisième version (17/11/2026 au soir) : la vingt-deuxième, avec la météo Alsace
+                         (été) et 30 °C de température de référence
     sol_jeu_cycle22_du_17_11  vingt-deuxième version (17/11/2026 à 20 h 17) : rallye propre « Sainte Baume Rallye »
                          (logo du roadbook, drapeau français), météo MonteCarlo ; jamais vue en jeu
     sol_jeu_cycle21_du_17_11  vingt et unième version (17/11/2026 à 16 h 06) : arbres du build 18 hors de la zone de

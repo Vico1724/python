@@ -382,3 +382,42 @@ Vérifications faites avec le code du build 18 repris de git, sur les mêmes don
 - La vingt et unième est gardée sous `sol_jeu_cycle21_du_17_11`. La vingt-deuxième n'a jamais été vue en jeu.
 
 **Vingt-troisième version, installée le 17 novembre au soir** : la vingt-deuxième avec une météo d'été, sur décision du directeur (`docs/18`, § 18.5). La variante passe de la configuration météo MonteCarlo à Alsace (`6_table_asphalte.ps1 -Meteo`, défaut Alsace). Notre spéciale tire son temps comme l'Alsace et prend 30 °C de température de référence, comme Munster (`rallye_grand_caunet.json`). Seul le conteneur des tables change, relu conforme ; le décor et la route physique sont ceux du build 22. La vingt-deuxième est gardée sous `sol_jeu_cycle22_du_17_11`. Jamais vue en jeu.
+
+**Vingt-quatrième version, installée le 18 novembre au matin** : corrections de l'essai de la vingt-deuxième (section 18). Construite en 86 min. Route physique ALL PASS : les six générateurs de foule de l'arrivée enfoncés de 1 000 m, tous les officiels à 0,6 m au moins hors de la chaussée (sauf le commissaire du STOP), parc d'assistance et officiels chargés. Zone de départ : mur de soutènement prolongé jusqu'au monolithe, rampe en `beton_rampe`. Logo : la plaque officielle du rallye sans le rond du numéro. Table conforme (météo Alsace, 30 °C), relecture du décor conforme. La vingt-troisième est gardée sous `sol_jeu_cycle23_du_17_11`. Jamais vue en jeu.
+
+## 18. Essai de la vingt-deuxième version (17 novembre au soir, captures `Essaiev22`)
+
+Retour du directeur :
+- « pas mal de bugs au niveau du placement des commissaires et du public » ;
+- à la zone de départ, un mur manquant et « une sorte de bande blanche allant vers le portail » ;
+- un logo du rallye fourni, à reprendre (supprimer le rond blanc, améliorer la qualité) ;
+- feu vert pour la météo Alsace et la température de référence à 30 °C.
+
+### 18.1 Public et commissaires de l'arrivée
+
+Les captures montrent, à l'arrivée et dans la zone du STOP :
+- des rangées droites de spectateurs qui flottent au-dessus du talus ou s'enfoncent dans l'herbe ;
+- une rangée en travers de la route juste après le panneau ARRIVÉE ;
+- des commissaires sur la chaussée.
+
+**Cause.** La cellule d'arrivée galloise (0QY7) contient six générateurs de foule (`BC_CrowdSystemSpawnerBakedActor_C`). Chacun fige ses personnages autour de lui, à plat, comme sur la piste forestière large du pays de Galles. Déplacés en bloc vers notre route étroite entre deux talus, ils débordent ou flottent. L'un d'eux n'a pas de rotation enregistrée : il est resté orienté comme au pays de Galles, en travers de notre route. Les commissaires qui étaient sur la piste galloise, à 1,2 à 1,7 m de son axe, ont été reportés à l'échelle, donc sur notre chaussée plus large.
+
+**Correction** (`Officials.cs`, retouche `pc\patches\0008-officiels-arrivee.patch`) :
+- les générateurs de foule sont enfoncés de 1 000 m, comme les portiques gallois. Le public de l'arrivée reste celui que nous plaçons nous-mêmes (méthode A, `docs/15`) ;
+- tout officiel se tient à 0,6 m au moins au-delà du bord de notre chaussée. Seul le commissaire du STOP fait exception, car il se tient sur la route dans le jeu lui-même.
+
+### 18.2 Zone de départ
+
+- **Mur manquant.** Le mur de soutènement sud du parking commençait à 6 m du monolithe. La capture Street View 6 le montre partant du monolithe, à droite du portail. Un premier point est ajouté au bout nord du monolithe (`data/reference/zone_depart.json`).
+- **Bande blanche.** C'est la rampe en béton de l'entrée de la propriété : elle avait la texture du béton banché très clair des ponceaux. Elle a maintenant sa propre matière, `beton_rampe`, un béton gris beige sali comme sur la capture 6 (`scripts/12_carrefours_annexes.py`).
+
+### 18.3 Logo du rallye
+
+Le logo est la plaque officielle du Sainte-Baume Rallye 2026, fournie par le directeur (`pc\etape2_unreal\ui\source\saintebaume26.webp`, 500 × 225). `pc\etape2_unreal\outils\logo_sainte_baume.py` la traite ainsi :
+- agrandissement × 4 avec débruitage et accentuation ;
+- suppression du rond blanc du numéro et de la bosse qu'il faisait dans le contour ;
+- prolongement du dégradé du panneau gauche, et reprise de la photo à droite ;
+- liseré redessiné ;
+- réduction au format des plaques du jeu (485 × 218).
+
+Un vrai gain de définition, au-delà de l'image fournie, demanderait un outil d'agrandissement par apprentissage, à installer avec l'accord du directeur. Le format du jeu (485 × 218) est de toute façon plus petit que l'image fournie.

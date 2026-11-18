@@ -1,6 +1,7 @@
 """Images du rallye propre au Grand Caunet (demande du directeur, 17/11/2026 ; docs/19_rallye_propre.md).
 
-- T_GrandCaunetLogo.png (485 x 218, fond transparent) : la plaque du rallye, au format des plaques du jeu
+- T_GrandCaunetLogo.png (485 x 218, fond transparent) : depuis le build 24, la plaque officielle du rallye fournie par le
+  directeur (logo_sainte_baume.py). Au build 22 : la plaque du rallye, au format des plaques du jeu
   (T_RallyWales : 485 x 218). Demande du directeur (17/11/2026) : les logos du rallye de la Sainte-Baume, pris dans
   son roadbook (Roadbook SBRC 2026.pdf, bandeau d'en-tête des pages, image et masque recomposés :
   ui/source/bandeau_roadbook_sbr2026.png) : titre « SAINTE BAUME RALLYE », logo de l'ASA Marseille Provence
@@ -117,7 +118,13 @@ def fond_aerien(pk_m=4080.0, decalage_nord_m=70.0):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    plaque().save(OUT / "T_GrandCaunetLogo.png")
+    # logo : la plaque officielle du Sainte-Baume Rallye 2026 fournie par le directeur le 18/11/2026, sans le rond du
+    # numéro (logo_sainte_baume.py) ; plaque() (logos du bandeau du roadbook) reste pour mémoire (build 22)
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("logo_sainte_baume", Path(__file__).with_name("logo_sainte_baume.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    m.main()
     fond_aerien().save(OUT / "T_GrandCaunetFond.png")
     for n in ("T_GrandCaunetLogo.png", "T_GrandCaunetFond.png"):
         print(f"écrit : {OUT / n} ({Image.open(OUT / n).size[0]} x {Image.open(OUT / n).size[1]})")

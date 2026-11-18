@@ -673,6 +673,10 @@ def zd_matieres(px):
         # un panneau lisse et bleuté à l'ombre ; enduit vieilli comme les maisons (nuances, salissures, lichen)
         "enduit_blanc": {"jpeg": tex_enduit_vieilli(n, ENDUIT_BLANC_SRGB, 17, nuances=0.07, sale=0.11, mousse=0.18),
                          "rough": 0.93},
+        # rampe de l'entrée de la propriété (essai de la 22, 17/11/2026 : le béton clair des ponceaux la rendait blanche) :
+        # béton gris beige sali, comme sur la capture 6
+        "beton_rampe": {"jpeg": tex_enduit_vieilli(n, (0.56, 0.54, 0.49), 29, nuances=0.08, sale=0.18, mousse=0.08),
+                        "rough": 0.95},
         "tuile": {"jpeg": tex_tuiles(n), "rough": 0.85},                                  # tuiles canal
         "portail_blanc": {"jpeg": tex_tole(n, (0.87, 0.86, 0.82), lames=0.25), "rough": 0.75},   # portail laqué
         "pierre_ocre": {"jpeg": tex_pierre_ocre(n), "rough": 0.95},                       # monolithe

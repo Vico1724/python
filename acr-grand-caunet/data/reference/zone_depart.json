@@ -1748,6 +1748,10 @@
    "type": "mur",
    "polyligne_l93": [
     [
+     917031.8,
+     6240962.8
+    ],
+    [
      917036.0,
      6240967.0
     ],
@@ -1772,7 +1776,8 @@
    "teinte": "après l'essai de la douzième version (14/11/2026) : enduit ocre brun sali à voiles de lichen, sans les tags rouges (l'image se répète tous les 2 m) (captures 6, 7, 9 : médiane sRGB 87, 72, 44 à 86, 77, 55), au lieu de l'enduit gris clair du long mur",
    "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : captures 6, 7, 9 ; tracé lu sur l'orthophoto (± 2 m)",
    "note": "parking ≈ 1 m plus haut que la cour au sud : ≈ 1,9 m vu de la rampe et de la route, ≈ 0,9 m vu du parking",
-   "confiance": "moyenne"
+   "confiance": "moyenne",
+   "revision": "essai de la vingt-deuxième version (17/11/2026, directeur : « un mur manquant ») : le mur commençait à 6 m du monolithe ; la capture 6 le montre partant du monolithe, à droite du portail : premier point ajouté au bout nord du monolithe"
   },
   {
    "nom": "mur blanc le long de la rampe",
@@ -1836,10 +1841,11 @@
      6240961.6
     ]
    ],
-   "materiau": "beton",
+   "materiau": "beton_rampe",
    "source": "Street View géolocalisé, octobre 2025 (data/reference/zone_depart.json) : capture 6 ; contour lu sur une vue rasante et sur l'orthophoto (± 3 m)",
    "note": "dalle posée sur le terrain (le MNT rend la pente vers le portail) ; décor seul, sans collision ; la bande de gravier du PK -72 est une aire",
-   "confiance": "moyenne"
+   "confiance": "moyenne",
+   "revision": "essai de la vingt-deuxième version (17/11/2026, directeur : « une sorte de bande blanche allant vers le portail ») : le béton banché clair des ponceaux (valeur 0,70) sortait presque blanc et lisse ; béton gris beige sali (beton_rampe), comme la capture 6"
   },
   {
    "nom": "pilier d'angle en pierre",
