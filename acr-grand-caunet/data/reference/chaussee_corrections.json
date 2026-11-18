@@ -1,0 +1,793 @@
+{
+ "note": "Corrections manuelles des bords de chaussée, appliquées par scripts/07_chaussee_precise.py après le calcul automatique. Coordonnées Lambert-93 (EPSG:2154), en mètres, dans le sens de marche (gauche / droite). PK dans le repère courant (PK 0 = ligne de départ retenue). Dans chaque zone, les bords sont lus à l'intersection de la normale à l'axe automatique avec ces polylignes, raccordés progressivement sur 10 m aux extrémités, puis l'axe est recalculé comme milieu des deux bords et les stations y sont réparties régulièrement (les PK hors zones ne bougent pas).",
+ "zones": [
+  {
+   "nom": "approche : carrefour D3 / D3D et ligne droite jusqu'au parking",
+   "pk_debut": -170,
+   "pk_fin": -58,
+   "bord_gauche": [
+    [
+     917137,
+     6240943.8
+    ],
+    [
+     917130,
+     6240943.6
+    ],
+    [
+     917125,
+     6240943.8
+    ],
+    [
+     917120,
+     6240943.8
+    ],
+    [
+     917115,
+     6240944.0
+    ],
+    [
+     917110,
+     6240944.5
+    ],
+    [
+     917105,
+     6240945.4
+    ],
+    [
+     917100,
+     6240946.3
+    ],
+    [
+     917095,
+     6240947.3
+    ],
+    [
+     917090,
+     6240948.5
+    ],
+    [
+     917085,
+     6240949.8
+    ],
+    [
+     917080,
+     6240950.6
+    ],
+    [
+     917075,
+     6240951.3
+    ],
+    [
+     917070,
+     6240952.2
+    ],
+    [
+     917065,
+     6240953.7
+    ],
+    [
+     917060,
+     6240955.4
+    ],
+    [
+     917057,
+     6240956.6
+    ],
+    [
+     917053.5,
+     6240958.3
+    ],
+    [
+     917048.5,
+     6240960.8
+    ],
+    [
+     917043.5,
+     6240963.3
+    ],
+    [
+     917039.5,
+     6240966.0
+    ],
+    [
+     917036.6,
+     6240969.6
+    ],
+    [
+     917033.6,
+     6240973.1
+    ],
+    [
+     917031,
+     6240976.5
+    ]
+   ],
+   "bord_droit": [
+    [
+     917137,
+     6240950.3
+    ],
+    [
+     917130,
+     6240949.8
+    ],
+    [
+     917125,
+     6240949.6
+    ],
+    [
+     917120,
+     6240949.5
+    ],
+    [
+     917115,
+     6240949.8
+    ],
+    [
+     917110,
+     6240950.4
+    ],
+    [
+     917105,
+     6240951.3
+    ],
+    [
+     917100,
+     6240952.4
+    ],
+    [
+     917095,
+     6240953.2
+    ],
+    [
+     917090,
+     6240954.0
+    ],
+    [
+     917085,
+     6240955.2
+    ],
+    [
+     917080,
+     6240956.5
+    ],
+    [
+     917075,
+     6240958.0
+    ],
+    [
+     917070,
+     6240959.3
+    ],
+    [
+     917065,
+     6240960.8
+    ],
+    [
+     917060,
+     6240962.3
+    ],
+    [
+     917055,
+     6240964.6
+    ],
+    [
+     917050,
+     6240967.3
+    ],
+    [
+     917047,
+     6240969.4
+    ],
+    [
+     917044,
+     6240972.0
+    ],
+    [
+     917041.3,
+     6240975.0
+    ],
+    [
+     917039,
+     6240977.8
+    ],
+    [
+     917037,
+     6240980.5
+    ]
+   ],
+   "source": "numérisation manuelle sur BD ORTHO 20 cm (IGN), extraits quadrillés tous les 5 m en Lambert-93 ; vidéo embarquée 2025 n° 2 consultée pour la compréhension des lieux",
+   "remarque": "bord droit (nord) : limite visible de l'asphalte. Bord gauche : bordure de l'îlot du carrefour puis limite visible de l'asphalte jusqu'à x = 917057 ; au-delà (PK -80 à -58, début du parking), bord gauche reconstruit par symétrie par rapport à la ligne médiane visible (demi-largeur 3,4 m), la limite route / parking n'étant pas lisible. PK -58 à +40 : route sous les arbres sur l'ortho, laissée au calcul automatique (non tranché)."
+  },
+  {
+   "nom": "carrefour du Lion d'Or : patte d'oie, branche de gauche ; bord droit fermant la branche de droite",
+   "pk_debut": 3596,
+   "pk_fin": 3702,
+   "bord_gauche": [
+    [
+     916767.72,
+     6243516.02
+    ],
+    [
+     916765.95,
+     6243518.44
+    ],
+    [
+     916764.16,
+     6243520.84
+    ],
+    [
+     916762.45,
+     6243523.31
+    ],
+    [
+     916760.76,
+     6243525.79
+    ],
+    [
+     916759.04,
+     6243528.3
+    ],
+    [
+     916757.34,
+     6243530.78
+    ],
+    [
+     916755.64,
+     6243533.17
+    ],
+    [
+     916753.87,
+     6243535.7
+    ],
+    [
+     916751.96,
+     6243538.09
+    ],
+    [
+     916749.95,
+     6243540.25
+    ],
+    [
+     916748.84,
+     6243541.44
+    ],
+    [
+     916746.94,
+     6243543.03
+    ],
+    [
+     916744.93,
+     6243544.32
+    ],
+    [
+     916742.85,
+     6243545.67
+    ],
+    [
+     916741.03,
+     6243546.87
+    ],
+    [
+     916739.31,
+     6243548.06
+    ],
+    [
+     916737.54,
+     6243549.4
+    ],
+    [
+     916735.8,
+     6243550.87
+    ],
+    [
+     916733.49,
+     6243552.29
+    ],
+    [
+     916731.63,
+     6243553.36
+    ],
+    [
+     916729.31,
+     6243554.31
+    ],
+    [
+     916727.04,
+     6243554.97
+    ],
+    [
+     916724.46,
+     6243555.61
+    ],
+    [
+     916721.53,
+     6243555.88
+    ],
+    [
+     916718.35,
+     6243556.17
+    ],
+    [
+     916715.52,
+     6243556.41
+    ],
+    [
+     916712.72,
+     6243556.75
+    ],
+    [
+     916709.96,
+     6243557.34
+    ],
+    [
+     916707.41,
+     6243558.11
+    ],
+    [
+     916703.35,
+     6243559.94
+    ],
+    [
+     916700.78,
+     6243562.22
+    ],
+    [
+     916698.47,
+     6243564.28
+    ],
+    [
+     916696.02,
+     6243566.72
+    ],
+    [
+     916693.93,
+     6243569.32
+    ],
+    [
+     916692.14,
+     6243571.71
+    ],
+    [
+     916691.54,
+     6243572.48
+    ]
+   ],
+   "bord_droit": [
+    [
+     916771.8,
+     6243518.8
+    ],
+    [
+     916769.56,
+     6243522.11
+    ],
+    [
+     916767.34,
+     6243525.44
+    ],
+    [
+     916765.1,
+     6243528.73
+    ],
+    [
+     916762.96,
+     6243532.02
+    ],
+    [
+     916759.54,
+     6243539.14
+    ],
+    [
+     916756.5,
+     6243546.5
+    ],
+    [
+     916754.2,
+     6243549.5
+    ],
+    [
+     916752.3,
+     6243552.0
+    ],
+    [
+     916750.2,
+     6243555.0
+    ],
+    [
+     916749.0,
+     6243558.3
+    ],
+    [
+     916735.3,
+     6243569.6
+    ],
+    [
+     916732.5,
+     6243568.8
+    ],
+    [
+     916730.0,
+     6243567.4
+    ],
+    [
+     916727.5,
+     6243566.2
+    ],
+    [
+     916725.0,
+     6243565.2
+    ],
+    [
+     916722.5,
+     6243564.3
+    ],
+    [
+     916720.0,
+     6243563.9
+    ],
+    [
+     916717.5,
+     6243564.0
+    ],
+    [
+     916715.0,
+     6243564.6
+    ],
+    [
+     916712.5,
+     6243565.8
+    ],
+    [
+     916710.0,
+     6243567.2
+    ],
+    [
+     916707.5,
+     6243568.4
+    ],
+    [
+     916705.0,
+     6243569.4
+    ],
+    [
+     916702.92,
+     6243570.56
+    ],
+    [
+     916700.37,
+     6243573.15
+    ],
+    [
+     916697.96,
+     6243576.14
+    ]
+   ],
+   "source": "bord gauche : limite de la plate-forme plane du relevé laser (pied du talus), inchangé. Bord droit (12/11/2026) : nuage de points LiDAR HD classé IGN (dalle 0916_6244, ~50 pts/m²), coupes du sol, intensité (marquage) et points non classés / pont ; vues aérienne, plan et Street View d'octobre 2025 fournies par le directeur ; vidéo embarquée n° 2 (t ≈ 182-186 s)",
+   "remarque": "La D3D débouche sur une patte d'oie au sommet de l'épingle de la D1 ; une zone hachurée peinte (≈ 14 x 2,7 m, de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0) sépare la branche de gauche (D1 vers l'ouest, empruntée) de la branche de droite (D1 vers le nord), qui longe à l'est un parapet de pierre (bout sud vers x = 916749 ; y = 6243558) puis passe sur un ponceau (x = 916736,5 à 916745 ; y = 6243573 à 6243579). Pas d'îlot : la bosse prise pour un îlot est ce parapet. Bord droit : bord est de l'enrobé de la D3D jusqu'au bout du parapet de pierre (bloc blanc et panneau bleu sur la vidéo), puis ligne de fermeture droite jusqu'au pied du grand pin à la pointe du terre-plein (tracé du grillage orange de la vidéo, à ±2 m), puis bord du terre-plein (rupture de pente du relevé laser) jusqu'au bord nord de la D1 ouest. La zone hachurée et l'entrée de la branche de droite devant la fermeture font partie de la chaussée. Précision : 0,5 m le long du parapet et du terre-plein, 2 m pour la ligne de fermeture (position du grillage estimée sur la vidéo).",
+   "lissage_axe_m": 8
+  }
+ ],
+ "largeurs": [
+  {
+   "id_releve": "depart",
+   "pk_debut": -60,
+   "pk_fin": -5,
+   "cote": "gauche",
+   "largeur_m": 6.6,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "faible",
+   "remarque": "Appliquée bien que de confiance faible : la largeur calculée sous les arbres (8 à 9,5 m) comprend le dégagement où stationnent les secours ; la vidéo de nuit montre une route ordinaire à deux voies. Bord droit conservé. Les stations de la zone manuelle de l'approche (jusqu'au PK -58) ne sont pas touchées."
+  },
+  {
+   "id_releve": "depart",
+   "pk_debut": -5,
+   "pk_fin": 10,
+   "cote": "gauche",
+   "largeur_m": 7.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "À la ligne, route à deux voies d'environ 7 m ; le dégagement de gauche (≈ 3 m, PK -30 à +5) est à modéliser à part, hors chaussée."
+  },
+  {
+   "id_releve": "313-319",
+   "pk_debut": 313,
+   "pk_fin": 319,
+   "cote": "symetrique",
+   "largeur_m": 7.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "faible",
+   "remarque": "Appliquée bien que de confiance faible : 8,3 à 8,6 m calculés, manifestement trop large pour une route à deux voies marquée."
+  },
+  {
+   "id_releve": "487-537",
+   "pk_debut": 487,
+   "pk_fin": 537,
+   "cote": "gauche",
+   "largeur_m": 7.3,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Bord intérieur (gauche) ramené ; le calcul atteignait le plafond de 9,5 m."
+  },
+  {
+   "id_releve": "675-739",
+   "pk_debut": 675,
+   "pk_fin": 739,
+   "cote": "droite",
+   "largeur_m": 7.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Accotement herbeux à l'intérieur du droite 3 compté à tort comme chaussée."
+  },
+  {
+   "id_releve": "1473-1499",
+   "pk_debut": 1470,
+   "pk_fin": 1500,
+   "cote": "symetrique",
+   "largeur_m": 6.2,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Remplace la rampe 5,3 → 7,9 m (bord interpolé) ; débouché en terre à gauche 1490-1505 hors chaussée."
+  },
+  {
+   "id_releve": "1639-1693",
+   "pk_debut": 1645,
+   "pk_fin": 1675,
+   "cote": "symetrique",
+   "largeur_m": 7.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Pont 1661 : bords au pied des parapets."
+  },
+  {
+   "id_releve": "1639-1693",
+   "pk_debut": 1675,
+   "pk_fin": 1693,
+   "cote": "symetrique",
+   "largeur_m": 6.5,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Sortie du pont 1661."
+  },
+  {
+   "id_releve": "1926-1980",
+   "pk_debut": 1926,
+   "pk_fin": 1980,
+   "cote": "gauche",
+   "largeur_m": 6.6,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Bord droit au pied de la glissière conservé ; aire en terre à gauche (1960-1975) hors chaussée."
+  },
+  {
+   "id_releve": "2092-2178",
+   "pk_debut": 2092,
+   "pk_fin": 2178,
+   "cote": "gauche",
+   "largeur_m": 4.9,
+   "mode": "minimum",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Rétrécissement réel (≈ 5 m entre glissière, parapet et rocher) conservé : seuls les points sous 4,9 m sont relevés à 4,9 m, côté rocher."
+  },
+  {
+   "id_releve": "2453-2464",
+   "pk_debut": 2453,
+   "pk_fin": 2464,
+   "cote": "droite",
+   "largeur_m": 6.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Accotement plat compté à tort (−2,3 m sur le bord droit)."
+  },
+  {
+   "id_releve": "2760-2789",
+   "pk_debut": 2760,
+   "pk_fin": 2789,
+   "cote": "symetrique",
+   "largeur_m": 6.8,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Pont 2777 : deux voies complètes entre les parapets (4,7 m interpolés auparavant)."
+  },
+  {
+   "id_releve": "3104-3109",
+   "pk_debut": 3104,
+   "pk_fin": 3109,
+   "cote": "gauche",
+   "largeur_m": 5.8,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Largeur du relevé (5,8 m) retenue, mais appliquée au bord GAUCHE et non au bord droit proposé par le relevé : sur l'ortho 20 cm, le bord droit calculé suit exactement la ligne de rive blanche et les dés blancs du côté droit ; le bord gauche, sous les arbres, n'est pas vérifiable. À revoir si un autre indice contredit ce choix."
+  },
+  {
+   "id_releve": "3356-3399",
+   "pk_debut": 3356,
+   "pk_fin": 3399,
+   "cote": "droite",
+   "largeur_m": 6.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Bord droit élargi le long de l'aire de stationnement (4,3 m calculés)."
+  },
+  {
+   "id_releve": "3424-3456",
+   "pk_debut": 3424,
+   "pk_fin": 3456,
+   "cote": "symetrique",
+   "largeur_m": 6.6,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Remplace la rampe 7,35 → 5,2 m (pont et débouché interpolés)."
+  },
+  {
+   "id_releve": "3907-3976",
+   "pk_debut": 3907,
+   "pk_fin": 3976,
+   "cote": "gauche",
+   "largeur_m": 7.3,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "faible",
+   "remarque": "Appliquée bien que de confiance faible : 8,3 à 9,2 m calculés, manifestement trop large."
+  },
+  {
+   "id_releve": "4325-4375",
+   "pk_debut": 4325,
+   "pk_fin": 4375,
+   "cote": "symetrique",
+   "largeur_m": 6.5,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Pont 4360 : 6,5 m constants (supprime le pic à 9,1 m et le creux à 4,8 m)."
+  },
+  {
+   "id_releve": "4565-4585",
+   "pk_debut": 4565,
+   "pk_fin": 4585,
+   "cote": "symetrique",
+   "largeur_m": 5.8,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Ponceau à parapets de béton (4,3 m interpolés auparavant)."
+  },
+  {
+   "id_releve": "4670-4690",
+   "pk_debut": 4670,
+   "pk_fin": 4690,
+   "cote": "symetrique",
+   "largeur_m": 6.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Ponceau à parapets de béton."
+  },
+  {
+   "id_releve": "4726-4780",
+   "pk_debut": 4726,
+   "pk_fin": 4780,
+   "cote": "droite",
+   "largeur_m": 6.8,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Accotement compté à tort (jusqu'à −1,5 m sur le bord droit)."
+  },
+  {
+   "id_releve": "4942-4983",
+   "pk_debut": 4942,
+   "pk_fin": 4983,
+   "cote": "droite",
+   "largeur_m": 6.8,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Accotement compté à tort (jusqu'à −2,7 m sur le bord droit)."
+  },
+  {
+   "id_releve": "5631-5637",
+   "pk_debut": 5631,
+   "pk_fin": 5637,
+   "cote": "droite",
+   "largeur_m": 7.0,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "faible",
+   "remarque": "Appliquée bien que de confiance faible : 8,3 à 8,4 m calculés, manifestement trop large."
+  },
+  {
+   "id_releve": "6100-6125",
+   "pk_debut": 6100,
+   "pk_fin": 6125,
+   "cote": "symetrique",
+   "largeur_m": 6.3,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "Ponceau à parapets de béton dans le droite 3 (4,25 m calculés)."
+  },
+  {
+   "id_releve": "6391-6399",
+   "pk_debut": 6391,
+   "pk_fin": 6399,
+   "cote": "symetrique",
+   "largeur_m": 6.5,
+   "mode": "fixe",
+   "source": "relevé vidéo du 11/11/2026 (data/reference/releve_video.json, docs/08_releve_video.md), mesure sur la vidéo n° 2 à ±15 %",
+   "confiance": "moyenne",
+   "remarque": "8,3 à 8,5 m calculés."
+  }
+ ],
+ "note_largeurs": "Corrections de largeur, appliquées par scripts/07_chaussee_precise.py après les zones ci-dessus (dont les stations ne sont jamais touchées). Pour chaque entrée, le ou les bords désignés par « cote » (gauche, droite ou symetrique) sont déplacés le long de la normale à l'axe pour atteindre largeur_m ; mode « fixe » (largeur imposée), « minimum » ou « maximum » (seules les stations hors de la borne sont corrigées). Le raccord se fait sur 10 m au-delà de chaque extrémité. Les entrées de confiance faible ne sont appliquées que si la largeur calculée est manifestement fausse (plus de 8 m sur une route à deux voies marquée).",
+ "largeurs_ecartees": [
+  {
+   "id_releve": "451-473",
+   "motif": "confiance faible, écart faible (7,1-7,7 m contre 6,8 m) : largeur calculée plausible"
+  },
+  {
+   "id_releve": "1584-1602",
+   "motif": "confiance faible ; 4,8-5,0 m reste plausible sur cette route étroite"
+  },
+  {
+   "id_releve": "1742-1747",
+   "motif": "confiance faible ; 4,9 m plausible"
+  },
+  {
+   "id_releve": "2735-2757",
+   "motif": "le relevé ne propose aucune correction (cohérent)"
+  },
+  {
+   "id_releve": "3331-3345",
+   "motif": "confiance faible ; 4,6-5,0 m plausible"
+  },
+  {
+   "id_releve": "3577-3600",
+   "motif": "confiance faible, et contiguë à la zone du Lion d'Or (non modifiée)"
+  },
+  {
+   "id_releve": "4060-4117",
+   "motif": "le relevé propose de conserver (épingle)"
+  },
+  {
+   "id_releve": "4188-4196",
+   "motif": "confiance faible ; 4,9-5,0 m plausible"
+  },
+  {
+   "id_releve": "4417-4446",
+   "motif": "confiance faible, 6,3-7,6 m plausible"
+  },
+  {
+   "id_releve": "5528-5548",
+   "motif": "confiance faible, 5,5-6,2 m plausible"
+  },
+  {
+   "id_releve": "5881-5890",
+   "motif": "confiance faible ; 4,6-5,0 m plausible"
+  },
+  {
+   "id_releve": "6322-6334",
+   "motif": "confiance faible et débouché : l'élargissement est en partie réel"
+  },
+  {
+   "id_releve": "6450-6470",
+   "motif": "le relevé propose de conserver"
+  }
+ ]
+}

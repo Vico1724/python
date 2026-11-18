@@ -1,0 +1,38 @@
+{
+  "_lisez_moi": "Gabarit de speciales/<id>/speciale.json. Proposé le 17/11/2026, lu par aucun script tant que les généralisations (references/generalisations.md § 2) ne sont pas faites. Valeurs d'exemple : celles du Grand Caunet.",
+  "id": "grand_caunet",
+  "id_stage_ir": "grand_caunet_rally_01_route_0",
+  "nom": "Le Grand Caunet",
+  "nom_court": "GC",
+  "rallye": "Sainte-Baume Rallye",
+  "annee": 2026,
+  "es": "7 et 10",
+  "revetement": "asphalte",
+  "saison": "automne",
+  "routes_bd_topo": ["D3D", "D1", "D3"],
+  "points_officiels": "data/reference/es_grand_caunet_2026_officiel.json",
+  "lignes": "data/reference/lignes_es.json",
+  "intermediaires_chrono": ["INTER2", "INTER6"],
+  "longueur_menu_km": 6.738,
+  "emprise_lonlat": [5.610, 43.225, 5.685, 43.268],
+  "videos": {
+    "reconnaissance": "../reconnaissance/reconnaissance_es_le_grand_caunet.mp4",
+    "course": null
+  },
+  "streetview": "speciales/grand_caunet/streetview/",
+  "options": {
+    "personnages": true,
+    "officiels": true,
+    "parc_assistance": {"actif": true, "pk_m": -47.0, "vers_la_gauche_m": 3.0, "rayon_m": 8.0},
+    "noms_au_menu": true,
+    "ciel_local": true,
+    "asphalte": true,
+    "humidite_niveau": 0.0,
+    "meteo": "MonteCarlo"
+  },
+  "controles": {
+    "pk_apercus": [0, 1650, 2200, 3080, 3640, 4080, 5530, 6500, 6720],
+    "pk_essai_e4": [1600, 1800]
+  },
+  "hote": "hote_hafren_south.json"
+}

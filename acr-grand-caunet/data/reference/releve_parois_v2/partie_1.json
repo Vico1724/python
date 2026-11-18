@@ -1,0 +1,108 @@
+{
+ "source": "relecture des planches figures/reco_parois (vidéo de reconnaissance), zones 1 à 25, 51 planches lues ; PK = ceux écrits sur les images ; début et fin lus quand l'objet sort du champ par le bord gauche de l'image",
+ "zones": [
+  {"numero": 1, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 262, "pk_fin_m": 292, "nature": "rocaille", "hauteur_m": [0.5, 1.2], "pente": "inclinée", "pied_au_bord_m": 1.5, "couleur": "blanc-gris", "vegetation": "garrigue basse, chênes verts derrière", "confiance": "moyenne"},
+    {"pk_debut_m": 292, "pk_fin_m": 333, "nature": "rien", "hauteur_m": [0, 0.3], "pente": "douce", "pied_au_bord_m": 0, "couleur": "vert (herbe)", "vegetation": "accotement d'herbe à l'intérieur de l'épingle", "confiance": "moyenne"}
+   ], "remarque": "Pas de paroi de 1,5 à 2 m entre 270 et 330 : seulement un talus bas de pierres blanches avant l'épingle, puis de l'herbe à l'intérieur du virage (intérieur peu visible entre 300 et 324, caméra tournée vers l'extérieur). La paroi claire signalée est celle qui commence au PK 333 (zone 2)."},
+  {"numero": 2, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 333, "pk_fin_m": 350, "nature": "paroi", "hauteur_m": [1.5, 2.0], "pente": "raide", "pied_au_bord_m": 0.8, "couleur": "gris clair, lits de calcaire", "vegetation": "chênes et pins au-dessus", "confiance": "moyenne"},
+    {"pk_debut_m": 350, "pk_fin_m": 372, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "blanc-gris", "vegetation": "touffes de garrigue, chênes au-dessus", "confiance": "bonne"},
+    {"pk_debut_m": 372, "pk_fin_m": 396, "nature": "rocaille", "hauteur_m": [0.4, 1.0], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "blanc-gris et brun (feuilles)", "vegetation": "sous-bois de chênes", "confiance": "bonne"}
+   ], "remarque": "Début 12 m plus tôt que relevé (333 au lieu de 345) ; les 15 premiers mètres sont une vraie paroi de 1,5 à 2 m, plus haute que relevé. Fin vers 396, conforme."},
+  {"numero": 3, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 516, "pk_fin_m": 535, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "brun et gris", "vegetation": "chênes, feuilles mortes", "confiance": "moyenne"},
+    {"pk_debut_m": 535, "pk_fin_m": 575, "nature": "rocaille", "hauteur_m": [0.4, 0.8], "pente": "douce", "pied_au_bord_m": 1.0, "couleur": "brun (feuilles) avec pierres grises", "vegetation": "sous-bois de chênes", "confiance": "moyenne"}
+   ], "remarque": "Le talus est plus haut au début (1 à 1,5 m entre 516 et 535) que relevé ; ensuite talus bas de terre et de pierres qui se prolonge sans coupure jusqu'à la zone 4."},
+  {"numero": 4, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 575, "pk_fin_m": 583, "nature": "rocaille", "hauteur_m": [0.8, 1.2], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "gris-beige", "vegetation": "garrigue", "confiance": "moyenne"},
+    {"pk_debut_m": 583, "pk_fin_m": 612, "nature": "paroi", "hauteur_m": [1.5, 2.0], "pente": "raide", "pied_au_bord_m": 0.6, "couleur": "gris-beige, lits minces de calcaire (aspect de mur en pierre sèche)", "vegetation": "garrigue et pins au-dessus", "confiance": "bonne"}
+   ], "remarque": "La paroi proprement dite ne commence qu'au PK 583 (relevé : 555, soit 28 m trop tôt) et finit vers 612 à l'entrée de l'épingle (relevé : 622). Entre 555 et 575 il n'y a que le talus bas de la zone 3. Un cycliste masque le pied vers 591-597."},
+  {"numero": 5, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 658, "pk_fin_m": 668, "nature": "rocaille", "hauteur_m": [0.8, 1.5], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "brun et gris", "vegetation": "garrigue", "confiance": "faible"},
+    {"pk_debut_m": 668, "pk_fin_m": 731, "nature": "paroi", "hauteur_m": [1.5, 2.5], "pente": "raide", "pied_au_bord_m": 1.0, "couleur": "blanc-gris, calcaire lité puis en gros blocs", "vegetation": "versant de garrigue rocheuse au-dessus, pins épars, lierre par endroits", "confiance": "bonne"},
+    {"pk_debut_m": 731, "pk_fin_m": 755, "nature": "rocaille", "hauteur_m": [1.0, 1.8], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "blanc-gris et brun", "vegetation": "garrigue, pins", "confiance": "bonne"}
+   ], "remarque": "Paroi à l'extérieur d'une courbe à droite, vue longtemps de face : début à hauteur de la voiture vers 668 (relevé 680), fin de la paroi raide vers 731 (relevé 745) ; au-delà c'est un éboulis incliné. Hauteur maxi 2,5 m vers 710-722 (gros blocs)."},
+  {"numero": 6, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 755, "pk_fin_m": 795, "nature": "rocaille", "hauteur_m": [0.5, 1.0], "pente": "douce", "pied_au_bord_m": 0.8, "couleur": "blanc-gris, blocs épars et dalles", "vegetation": "garrigue basse, pins", "confiance": "bonne"},
+    {"pk_debut_m": 795, "pk_fin_m": 808, "nature": "rocaille", "hauteur_m": [0.5, 1.0], "pente": "inclinée", "pied_au_bord_m": 2.5, "couleur": "blanc-gris", "vegetation": "bande d'herbe au pied, garrigue au-dessus", "confiance": "moyenne"}
+   ], "remarque": "Conforme au relevé pour la nature et la hauteur ; vers 795-808 le talus recule derrière une bande d'herbe de 2 à 3 m. Continuité directe avec la zone 7."},
+  {"numero": 7, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 808, "pk_fin_m": 847, "nature": "rocaille", "hauteur_m": [1.2, 2.0], "pente": "raide", "pied_au_bord_m": 0.8, "couleur": "blanc-gris", "vegetation": "garrigue et chênes verts au-dessus", "confiance": "moyenne"}
+   ], "remarque": "Roche brisée en gros blocs, pente de 55 à 65° : à la limite entre rocaille et paroi. Commence 12 m plus tôt que relevé (808) et monte à 2 m, plus haut que relevé (1 à 1,5 m)."},
+  {"numero": 8, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 847, "pk_fin_m": 874, "nature": "paroi", "hauteur_m": [1.5, 2.0], "pente": "raide", "pied_au_bord_m": 0.5, "couleur": "blanc-gris, blocs massifs", "vegetation": "chênes au-dessus", "confiance": "bonne"}
+   ], "remarque": "Conforme en emplacement (847-874 contre 855-878) ; hauteur un peu plus forte (jusqu'à 2 m). Au-delà de 874, herbe à l'intérieur du virage à gauche."},
+  {"numero": 9, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 920, "pk_fin_m": 944, "nature": "rien", "hauteur_m": [0, 0.3], "pente": "douce", "pied_au_bord_m": 0, "couleur": "vert et gris", "vegetation": "accotement d'herbe, quelques pierres, bornes blanches", "confiance": "moyenne"},
+    {"pk_debut_m": 944, "pk_fin_m": 962, "nature": "rocaille", "hauteur_m": [0.5, 1.0], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "blanc-gris", "vegetation": "garrigue, pins", "confiance": "bonne"}
+   ], "remarque": "Pas de talus continu de 1,5 à 2 m entre 940 et 960 : pierraille basse (0,5 à 1 m) qui ne prend de la hauteur qu'après 962 (zone 10). Avant 920, côté gauche hors champ (courbe à gauche)."},
+  {"numero": 10, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 962, "pk_fin_m": 972, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "blanc-gris", "vegetation": "garrigue", "confiance": "bonne"},
+    {"pk_debut_m": 972, "pk_fin_m": 1034, "nature": "paroi", "hauteur_m": [1.5, 2.0], "pente": "raide", "pied_au_bord_m": 0.6, "couleur": "gris-beige, lits minces de calcaire, teinte rousse vers 1026-1032", "vegetation": "talus de garrigue et de pierres au-dessus, pins", "confiance": "bonne"},
+    {"pk_debut_m": 1034, "pk_fin_m": 1075, "nature": "rocaille", "hauteur_m": [0.5, 1.0], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "gris et vert", "vegetation": "herbe et garrigue mêlées", "confiance": "bonne"}
+   ], "remarque": "Emplacement conforme ; hauteur de la partie centrale un peu sous-estimée (1,5 à 2 m lus contre 1 à 1,5 m). Le talus bas se prolonge sans coupure jusqu'à la zone 11."},
+  {"numero": 11, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1075, "pk_fin_m": 1088, "nature": "rocaille", "hauteur_m": [0.8, 1.2], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "gris et ocre", "vegetation": "garrigue", "confiance": "moyenne"},
+    {"pk_debut_m": 1088, "pk_fin_m": 1122, "nature": "paroi", "hauteur_m": [1.5, 2.5], "pente": "raide", "pied_au_bord_m": 0.6, "couleur": "gris et ocre, roche fracturée verticalement", "vegetation": "arbustes roux et chênes au-dessus", "confiance": "bonne"}
+   ], "remarque": "Début vers 1088 (relevé 1095), fin vers 1122 par un pilier isolé (relevé 1135, soit 13 m trop loin). Maxi 2,5 m vers 1101-1107. Une voiture croisée masque le pied vers 1101-1111."},
+  {"numero": 12, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1122, "pk_fin_m": 1162, "nature": "rocaille", "hauteur_m": [0.8, 1.2], "pente": "inclinée", "pied_au_bord_m": 1.5, "couleur": "blanc-gris, banc rocheux bas et blocs", "vegetation": "bande d'herbe au pied, garrigue et pins au-dessus", "confiance": "bonne"}
+   ], "remarque": "Commence dès 1122 (relevé 1135) et s'arrête à 1162 où la paroi de la zone 13 prend le relais (relevé 1175)."},
+  {"numero": 13, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1162, "pk_fin_m": 1186, "nature": "paroi", "hauteur_m": [1.5, 2.2], "pente": "raide", "pied_au_bord_m": 0.6, "couleur": "gris-beige, calcaire lité", "vegetation": "garrigue et pins au-dessus", "confiance": "bonne"},
+    {"pk_debut_m": 1186, "pk_fin_m": 1196, "nature": "rocaille", "hauteur_m": [0.6, 1.0], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "gris", "vegetation": "chênes", "confiance": "moyenne"},
+    {"pk_debut_m": 1196, "pk_fin_m": 1220, "nature": "rien", "hauteur_m": [0, 0.2], "pente": "douce", "pied_au_bord_m": 0, "couleur": "terre beige", "vegetation": "terre-plein et départ de piste sous les chênes", "confiance": "bonne"}
+   ], "remarque": "Paroi décalée de 18 m vers l'amont par rapport au relevé : 1162-1186 lus contre 1180-1205. Au PK 1196-1220 il n'y a plus de talus mais un terre-plein de terre."},
+  {"numero": 14, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1222, "pk_fin_m": 1258, "nature": "terre", "hauteur_m": [0.5, 1.0], "pente": "douce", "pied_au_bord_m": 1.0, "couleur": "brun (feuilles mortes)", "vegetation": "sous-bois de chênes et pins", "confiance": "moyenne"},
+    {"pk_debut_m": 1258, "pk_fin_m": 1306, "nature": "rocaille", "hauteur_m": [0.8, 1.5], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "beige-ocre et blanc", "vegetation": "garrigue, pins sur le versant", "confiance": "bonne"},
+    {"pk_debut_m": 1306, "pk_fin_m": 1318, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "blanc-gris, gros affleurements", "vegetation": "garrigue", "confiance": "moyenne"}
+   ], "remarque": "Hauteur nettement sous-estimée par le relevé (0,3 à 0,6 m) : le talus fait 0,8 à 1,5 m. Il est précédé, dès 1222, d'un talus de terre et de feuilles non relevé."},
+  {"numero": 15, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1318, "pk_fin_m": 1338, "nature": "paroi", "hauteur_m": [1.0, 1.5], "pente": "raide", "pied_au_bord_m": 0.8, "couleur": "gris et ocre, banc rocheux", "vegetation": "tapis de garrigue vert-jaune au-dessus", "confiance": "bonne"}
+   ], "remarque": "Petit banc rocheux vertical ; conforme au relevé à 5 m près (1318-1338 contre 1322-1345), hauteur jusqu'à 1,5 m."},
+  {"numero": 16, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1338, "pk_fin_m": 1366, "nature": "rocaille", "hauteur_m": [0.8, 1.2], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "gris-beige, blocs", "vegetation": "garrigue, pins", "confiance": "bonne"},
+    {"pk_debut_m": 1366, "pk_fin_m": 1396, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "brun-rouge (terre et feuilles) avec pierres", "vegetation": "pins et chênes au-dessus", "confiance": "moyenne"},
+    {"pk_debut_m": 1396, "pk_fin_m": 1430, "nature": "terre", "hauteur_m": [0.5, 1.0], "pente": "douce", "pied_au_bord_m": 1.0, "couleur": "brun et vert", "vegetation": "herbe, feuilles, pins", "confiance": "moyenne"}
+   ], "remarque": "Emplacement conforme ; hauteur un peu plus forte au milieu (jusqu'à 1,5 m). Après 1396 le talus devient de la terre et se prolonge au moins jusqu'à 1430 (fin des vues). Un cycliste masque en partie le pied vers 1387-1393."},
+  {"numero": 17, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1572, "pk_fin_m": 1608, "nature": "rocaille", "hauteur_m": [0.8, 1.5], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "gris et ocre", "vegetation": "herbe et chênes verts au-dessus", "confiance": "bonne"},
+    {"pk_debut_m": 1608, "pk_fin_m": 1638, "nature": "paroi", "hauteur_m": [1.5, 2.0], "pente": "raide", "pied_au_bord_m": 0.5, "couleur": "gris-beige, roche litée très fracturée", "vegetation": "talus d'herbe au-dessus, chêne en tête", "confiance": "bonne"}
+   ], "remarque": "Fin 13 m plus loin que relevé (1638 contre 1625) et hauteur presque double sur la seconde moitié (1,5 à 2 m contre 1 à 1,2 m). Avant 1572, côté gauche hors champ (épingle à gauche, la caméra ne montre que le parapet de droite). Après 1638 : accotement plat puis parapet à gauche."},
+  {"numero": 18, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1644, "pk_fin_m": 1665, "nature": "rien", "hauteur_m": [0, 0.3], "pente": "douce", "pied_au_bord_m": 0, "couleur": "gris (parapet de pierre)", "vegetation": "parapet maçonné au bord, garrigue rocheuse derrière", "confiance": "bonne"},
+    {"pk_debut_m": 1665, "pk_fin_m": 1700, "nature": "paroi", "hauteur_m": [1.5, 2.0], "pente": "raide", "pied_au_bord_m": 1.0, "couleur": "blanc-gris, roche massive en place, un bloc ocre vers 1692", "vegetation": "pins et garrigue au-dessus", "confiance": "moyenne"},
+    {"pk_debut_m": 1700, "pk_fin_m": 1725, "nature": "rocaille", "hauteur_m": [0.5, 1.0], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "blanc-gris et vert", "vegetation": "garrigue, pins", "confiance": "moyenne"}
+   ], "remarque": "Ce n'est pas un talus de rocaille continu de 1650 à 1720 : parapet de pierre jusqu'à 1665 environ, puis affleurement de roche massive (plutôt paroi irrégulière que rocaille) de 1665 à 1700, puis rocaille basse. Une voiture croisée masque le pied vers 1698-1704."},
+  {"numero": 19, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1725, "pk_fin_m": 1755, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "raide", "pied_au_bord_m": 0.5, "couleur": "ocre et beige, blocs empilés", "vegetation": "terre et garrigue au-dessus, chênes", "confiance": "moyenne"}
+   ], "remarque": "Emplacement et hauteur conformes ; je lis des blocs ocre empilés, raides, plutôt qu'une paroi lisse. Après 1755 le côté gauche sort du champ (épingle à gauche) : fin supposée vers 1755."},
+  {"numero": 20, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1794, "pk_fin_m": 1826, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "ocre et brun", "vegetation": "garrigue, chênes", "confiance": "bonne"},
+    {"pk_debut_m": 1826, "pk_fin_m": 1851, "nature": "rocaille", "hauteur_m": [1.5, 2.0], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "brun-rouge, terre et pierres", "vegetation": "herbe et chênes au-dessus", "confiance": "bonne"},
+    {"pk_debut_m": 1851, "pk_fin_m": 1863, "nature": "rocaille", "hauteur_m": [0.8, 1.0], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "brun et gris", "vegetation": "chêne en tête", "confiance": "moyenne"},
+    {"pk_debut_m": 1863, "pk_fin_m": 1877, "nature": "rien", "hauteur_m": [0, 0.2], "pente": "douce", "pied_au_bord_m": 0, "couleur": "terre beige", "vegetation": "débouché d'une piste de terre", "confiance": "bonne"}
+   ], "remarque": "Emplacement conforme (début lisible dès 1794, avant cela le côté gauche est hors champ dans l'épingle) ; hauteur jusqu'à 2 m entre 1826 et 1851. Le talus s'arrête au débouché d'une piste vers 1863."},
+  {"numero": 21, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1877, "pk_fin_m": 1894, "nature": "rocaille", "hauteur_m": [0.5, 0.8], "pente": "douce", "pied_au_bord_m": 1.0, "couleur": "brun et gris", "vegetation": "herbe, garrigue, pins", "confiance": "moyenne"},
+    {"pk_debut_m": 1894, "pk_fin_m": 1913, "nature": "rocaille", "hauteur_m": [1.0, 1.5], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "brun et ocre, affleurement ocre en fin", "vegetation": "garrigue, pins", "confiance": "bonne"},
+    {"pk_debut_m": 1913, "pk_fin_m": 1930, "nature": "rien", "hauteur_m": [0, 0.3], "pente": "douce", "pied_au_bord_m": 0, "couleur": "terre beige", "vegetation": "surlargeur de terre (voiture garée)", "confiance": "moyenne"}
+   ], "remarque": "Hauteur sous-estimée par le relevé sur 1894-1913 (1 à 1,5 m lus contre 0,5 à 0,8 m). De 1913 à 1930, surlargeur de terre ; une voiture garée masque le fond vers 1921-1927."},
+  {"numero": 22, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1930, "pk_fin_m": 1956, "nature": "rocaille", "hauteur_m": [0.5, 1.0], "pente": "inclinée", "pied_au_bord_m": 1.0, "couleur": "gris-beige et vert", "vegetation": "herbe et garrigue, chênes verts", "confiance": "moyenne"}
+   ], "remarque": "Conforme. Vers 1950-1953, un petit ouvrage clair en béton (tête de buse ou bordure) au pied du talus, à vérifier."},
+  {"numero": 23, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1956, "pk_fin_m": 1968, "nature": "rocaille", "hauteur_m": [1.0, 1.2], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "ocre-rose et blanc", "vegetation": "garrigue, arbustes roux", "confiance": "bonne"},
+    {"pk_debut_m": 1968, "pk_fin_m": 1980, "nature": "paroi", "hauteur_m": [1.3, 1.6], "pente": "raide", "pied_au_bord_m": 0.5, "couleur": "blancs (blocs dressés) sur fond ocre-rouge", "vegetation": "garrigue et pin au-dessus", "confiance": "bonne"},
+    {"pk_debut_m": 1980, "pk_fin_m": 1998, "nature": "rien", "hauteur_m": [0, 0.3], "pente": "douce", "pied_au_bord_m": 0, "couleur": "gravier clair", "vegetation": "surlargeur gravillonnée, départ de chemin, panneau", "confiance": "bonne"}
+   ], "remarque": "Conforme en emplacement ; les blocs dressés blancs montent à 1,5 m environ et s'arrêtent net vers 1980 devant une surlargeur de gravier."},
+  {"numero": 24, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 1998, "pk_fin_m": 2016, "nature": "rocaille", "hauteur_m": [0.8, 1.3], "pente": "inclinée", "pied_au_bord_m": 0.8, "couleur": "gris-blanc, blocs sur terre brune", "vegetation": "chênes verts et grand pin au-dessus", "confiance": "bonne"}
+   ], "remarque": "Conforme. Je ne vois pas de coupure entre cette zone et la zone 25 : le talus de blocs est continu de 1998 à 2036 environ."},
+  {"numero": 25, "cote": "gauche", "troncons": [
+    {"pk_debut_m": 2016, "pk_fin_m": 2036, "nature": "rocaille", "hauteur_m": [1.2, 1.5], "pente": "raide", "pied_au_bord_m": 0.5, "couleur": "blanc-gris, gros blocs", "vegetation": "pin et garrigue au-dessus", "confiance": "moyenne"}
+   ], "remarque": "Début 8 m plus tôt que relevé (continuité avec la zone 24), hauteur un peu plus forte (1,2 à 1,5 m). De 2038 à 2050 le côté gauche est hors champ (courbe à gauche) ; un talus rocheux réapparaît à gauche vers 2054-2060, hors zone."}
+ ]
+}

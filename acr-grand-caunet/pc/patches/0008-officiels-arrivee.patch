@@ -1,0 +1,30 @@
+diff --git a/tools/acr-ref/Officials.cs b/tools/acr-ref/Officials.cs
+index 2b953f4..56098c4 100644
+--- a/tools/acr-ref/Officials.cs
++++ b/tools/acr-ref/Officials.cs
+@@ -27,7 +27,16 @@ namespace AcrRef;
+ /// (Scenery.WithAlwaysLoaded); they must also be kept in the forward layers (scenery.toml keep).
+ internal static partial class StageBuild
+ {
+-    internal const string OfficialsSinkDefault = "BC_GantryWales_C";
++    /// Sunk by default: the Welsh gantries, and the finish crowd spawners. Grand Caunet, test of build 22 (17/11/2026): a
++    /// spawner bakes its people around it on the flat Welsh forest track; carried to our narrow road between banks, its
++    /// rows stood on the road, floated above the bank or sank into it, and the one without a stored rotation lay across
++    /// the road after the finish. The crowd of our finish is placed by --characters instead (docs/15, method A).
++    internal const string OfficialsSinkDefault = "BC_GantryWales_C,BC_CrowdSystemSpawnerBakedActor_C";
++    /// Officials that stand on the road in the game itself (the stop marshal at the stop board) keep their scaled
++    /// lateral; every other one stands at least this far beyond our road edge (build 22: marshals of the stop zone,
++    /// on the Welsh road at 1.2 to 1.7 m from its axis, ended up on our wider road).
++    const double OffRoadMarginCm = 60;
++    static bool StandsOnRoad(string cls) => cls.Contains("StopMarshal", StringComparison.Ordinal);
+     const double HostHalfWidthM = 1.9;      // Hafren South: median half-width between its border splines (1.88 m left, 1.90 m right)
+     const double MaxAboveGroundCm = 25;
+ 
+@@ -85,6 +94,7 @@ internal static partial class StageBuild
+                 // lateral: same distance to the road edge as in Wales (our road is wider than Hafren's); on the host road, scaled
+                 double half = OurHalfWidthCm(ir, newLine, s), hostHalf = HostHalfWidthM * 100;
+                 double nlat = Math.Abs(lat) > hostHalf ? Math.Sign(lat) * (Math.Abs(lat) - hostHalf + half) : lat * half / hostHalf;
++                if (!StandsOnRoad(cls) && Math.Abs(nlat) < half + OffRoadMarginCm) nlat = (nlat < 0 ? -1 : 1) * (half + OffRoadMarginCm);
+                 var nl = newLine.At(s, nlat, up, out double nHead);
+                 // height: same height above the ground as in Wales (host BakedData -> our collision.glb), never below our
+                 // ground and at most MaxAboveGroundCm above it (a ditch or a bank under the host actor would make it float)

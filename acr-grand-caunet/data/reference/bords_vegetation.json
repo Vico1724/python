@@ -1,0 +1,119 @@
+{
+ "note": "Nature du bord de route, là où le relevé laser ne suffit pas à la dire : le laser mesure le dessus de la végétation, pas ce qu'il y a dessous, et il est plus ancien que la reconnaissance. Lu par scripts/regles_arbres.py (bords_vegetation), utilisé par 16_paquet_unreal.py (sous-bois, haies, arbres du décor) et par 09_export_stage_ir.py (troncs de la physique). Hors de ces zones, règle générale tirée du même relevé : une bande d'herbe de 2 à 3 m, puis un fourré dense. PK à ±20 m (une paire tous les 40 m).",
+ "genres": {
+  "haie_au_ras": "haie dense et irrégulière de 3 à 5 m à moins d'un mètre de la chaussée (effet de couloir)",
+  "ouvert": "plateau ou pré ouvert : pas de sous-bois au bord, un arbre sur quatre gardé à moins de 16 m du bord",
+  "clair": "sous-bois clair ou accotement dégagé : pas de buissons au bord, les arbres restent",
+  "pinede_claire": "pinède à hauts troncs nus : très peu de sous-bois"
+ },
+ "zones": [
+  {
+   "pk": [
+    5075,
+    5445
+   ],
+   "cote": "les deux",
+   "genre": "haie_au_ras",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 5080 à 5440, « haies de 3 à 5 m à moins de 1 m de la chaussée », alors que le jeu montrait 3 à 5 m d'herbe puis des arbres alignés ; confirmé par le relevé laser (végétation de 3 à 6 m dès 1 à 2 m du bord, rien au-delà de 8 m)"
+  },
+  {
+   "pk": [
+    225,
+    275
+   ],
+   "cote": "droite",
+   "genre": "clair",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 240, large accotement d'herbe rase (3 m) avant les chênes"
+  },
+  {
+   "pk": [
+    1300,
+    1350
+   ],
+   "cote": "droite",
+   "genre": "ouvert",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 1320, intérieur du virage dégagé (herbe sur 3 à 4 m, buissons bas), masqué en jeu par un mur de buissons de 6 m"
+  },
+  {
+   "pk": [
+    1385,
+    1425
+   ],
+   "cote": "droite",
+   "genre": "clair",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 1400, sous-bois ouvert sous un gros pin"
+  },
+  {
+   "pk": [
+    1900,
+    1950
+   ],
+   "cote": "droite",
+   "genre": "clair",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 1920, arbres fins à troncs visibles, accotement couvert de feuilles"
+  },
+  {
+   "pk": [
+    3585,
+    3625
+   ],
+   "cote": "gauche",
+   "genre": "clair",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 3600, talus de feuilles mortes, chênes espacés, sous-bois clair"
+  },
+  {
+   "pk": [
+    4260,
+    4320
+   ],
+   "cote": "droite",
+   "genre": "ouvert",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 4280, accotement d'herbe, garrigue ouverte, arbres épars"
+  },
+  {
+   "pk": [
+    4470,
+    4930
+   ],
+   "cote": "les deux",
+   "genre": "pinede_claire",
+   "source": "relevé du quatrième essai (data/reference/releve_essai_13_11_v4/) : pinède à hauts troncs nus, rendue alors en feuillus touffus"
+  },
+  {
+   "pk": [
+    5775,
+    5910
+   ],
+   "cote": "les deux",
+   "genre": "ouvert",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 5800 à 5880, plateau ouvert, chênes isolés, pré, là où le jeu montrait deux haies de 8 m"
+  },
+  {
+   "pk": [
+    6140,
+    6230
+   ],
+   "cote": "droite",
+   "genre": "ouvert",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 6160 et 6200, pierraille rase, un pin isolé, deux chênes bas en retrait"
+  },
+  {
+   "pk": [
+    6385,
+    6500
+   ],
+   "cote": "les deux",
+   "genre": "ouvert",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 6400 à 6480, pré ouvert, garrigue rase, aire de stationnement derrière le parapet"
+  },
+  {
+   "pk": [
+    6650,
+    6740
+   ],
+   "cote": "les deux",
+   "genre": "ouvert",
+   "source": "relevé du sixième essai (data/reference/releve_essai_13_11_v6/), paires jeu / reconnaissance : PK 6680, garrigue ouverte, grand chêne isolé"
+  }
+ ]
+}

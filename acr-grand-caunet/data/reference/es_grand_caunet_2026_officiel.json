@@ -1,0 +1,31 @@
+{
+  "rallye": "Sainte-Baume Rallye 2026 (Rallye National de la Sainte-Baume, ASA Marseille Provence Métropole)",
+  "dates": "12 au 14 novembre 2026",
+  "epreuve": "E.S. 7, 10 - Le Grand Caunet",
+  "longueur_officielle_km": 6.702,
+  "revetement": "asphalte",
+  "source": {
+    "document": "E.S. 7, 10 Le Grand Caunet.pdf (carte officielle de l'organisateur, créée le 01/06/2026)",
+    "url": "https://www.asamarseille.net/_files/ugd/9182aa_41df9636588e4853a0d318e1d1db217b.pdf",
+    "page": "https://www.asamarseille.net/sainte-baume-rallycircuit-engagements",
+    "consulte_le": "2026-11-10",
+    "note": "Coordonnées recopiées telles qu'imprimées sur la carte (degrés décimaux WGS84, 5 décimales, soit ~1 m de résolution). PK en kilomètres depuis le départ de l'ES."
+  },
+  "points": [
+    {"id": "PK-0.183", "pk_km": -0.183, "lat": 43.23462, "lon": 5.67186, "role": "liaison", "label": "Point d'approche avant le CH (route D3, côté camp du Castellet)"},
+    {"id": "CH",       "pk_km": -0.105, "lat": 43.23485, "lon": 5.67076, "role": "controle_horaire", "label": "Contrôle horaire (C.H.)"},
+    {"id": "DEPART",   "pk_km": 0.000,  "lat": 43.23643, "lon": 5.67042, "role": "depart", "label": "Départ de l'ES (D.E.S.) - Le Grand Caunet"},
+    {"id": "INTER1",   "pk_km": 1.485,  "lat": 43.24311, "lon": 5.66103, "role": "intermediaire", "label": "Point intermédiaire 1 - zone public 2"},
+    {"id": "INTER2",   "pk_km": 2.650,  "lat": 43.25149, "lon": 5.66627, "role": "intermediaire", "label": "Point intermédiaire 2"},
+    {"id": "INTER3",   "pk_km": 2.987,  "lat": 43.25294, "lon": 5.66938, "role": "intermediaire", "label": "Point intermédiaire 3"},
+    {"id": "INTER4",   "pk_km": 3.192,  "lat": 43.25469, "lon": 5.66995, "role": "intermediaire", "label": "Point intermédiaire 4"},
+    {"id": "INTER5",   "pk_km": 3.619,  "lat": 43.25820, "lon": 5.66810, "role": "intermediaire", "label": "Point intermédiaire 5 - carrefour D3D/D1 - zone public 3"},
+    {"id": "INTER6",   "pk_km": 5.003,  "lat": 43.25730, "lon": 5.65471, "role": "intermediaire", "label": "Point intermédiaire 6"},
+    {"id": "INTER7",   "pk_km": 5.416,  "lat": 43.25642, "lon": 5.64990, "role": "intermediaire", "label": "Point intermédiaire 7"},
+    {"id": "INTER8",   "pk_km": 5.620,  "lat": 43.25721, "lon": 5.64829, "role": "intermediaire", "label": "Point intermédiaire 8 - zone public 4"},
+    {"id": "INTER9",   "pk_km": 6.483,  "lat": 43.25765, "lon": 5.64023, "role": "intermediaire", "label": "Point intermédiaire 9"},
+    {"id": "ARRIVEE",  "pk_km": 6.702,  "lat": 43.25739, "lon": 5.63739, "role": "arrivee", "label": "Arrivée lancée de l'ES (A.E.S.)"},
+    {"id": "STOP",     "pk_km": 7.263,  "lat": 43.25418, "lon": 5.63303, "role": "point_stop", "label": "Point stop (C.P.S.)"},
+    {"id": "PK8.020",  "pk_km": 8.020,  "lat": 43.25263, "lon": 5.62564, "role": "liaison", "label": "Fin de zone fermée (signaleur, Roquefort-la-Bédoule)"}
+  ]
+}
