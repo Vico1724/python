@@ -597,7 +597,20 @@ def cmd_depart_4():
     _, _, cap = P26.projeter(pk, x, y, float(r["x_l93"]), float(r["y_l93"]))
     specs = {f"depart_{n}": (r["id"][:8], cap + d, 0.0, 80.0, f"zone de départ, {n}") for n, d in
              (("montee", 0), ("droite", 90), ("descente", 180), ("gauche", 270))}
-    planches_libres(specs, FIG / "affinage" / "facades")
+    dest = FIG / "affinage" / "facades"
+    planches_libres(specs, dest)
+    # synthèse : les quatre planches côte à côte (photo en haut, rendu en bas), versionnée ; les quatre planches seules
+    # ne le sont pas (elles sont dans la synthèse)
+    ims = [Image.open(dest / f"{n}.jpg") for n in specs]
+    w = 600
+    ims = [im.resize((w, int(im.size[1] * w / im.size[0])), Image.LANCZOS) for im in ims]
+    pl = Image.new("RGB", (4 * w + 30, ims[0].size[1]), (255, 255, 255))
+    for k, im in enumerate(ims):
+        pl.paste(im, (k * (w + 10), 0))
+    pl.save(dest / "depart_synthese_4_directions.jpg", quality=86)
+    for n in specs:
+        (dest / f"{n}.jpg").unlink()
+    print("écrit", dest / "depart_synthese_4_directions.jpg")
 
 
 def cmd_profil(cle):

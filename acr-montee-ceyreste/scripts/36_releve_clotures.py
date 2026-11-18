@@ -263,7 +263,7 @@ def verser():
         ponctuel = e["type"] in ("pilier", "boites_aux_lettres") or b - a < 4
         # Essai automatique (élément photo de 4 m et plus) : limite cadastrale pour ce qui ferme une propriété, marche
         # du MNT pour un mur ou une restanque. N'est retenu que si la source concorde avec la lecture photo (± tol).
-        essais = [pl] if pl != "photo" else ([] if ponctuel else (["lidar", "cadastre"] if e["type"] == "pierre_seche"
+        essais = [] if pl == "trace_releve" else [pl] if pl != "photo" else ([] if ponctuel else (["lidar", "cadastre"] if e["type"] == "pierre_seche"
                                                                    else ["cadastre"]))
         tol_def = 2.5 if pl == "cadastre" else 1.5
         for src in essais:
@@ -292,10 +292,19 @@ def verser():
                     calage = "au mètre (marche du MNT LiDAR HD, existence vue sur photo)"
                     bilan["cale_lidar"] += 1
                     break
-        if not calage.startswith("au mètre"):
-            bilan["photo"] += 1
         recul_v = np.maximum(recul_v, 0.25)            # jamais sur la chaussée (limite cadastrale dans l'enrobé)
         xy, zb = B.point(pks, cote, recul_v)
+        if pl == "trace_releve":
+            # pied relevé ailleurs (carrefour du départ : marche du MNT derrière une voie latérale, que le recul au bord
+            # de la chaussée de la spéciale ne sait pas décrire ; data/reference/depart_carrefour.json, clé « mur »)
+            rr = json.loads((REF / e["trace_releve"]).read_text(encoding="utf-8"))
+            xy = np.asarray(rr["mur"]["pied"], float) + np.asarray(rr["origine_l93"], float)
+            dE = np.hypot(*(xy[:, None, :] - B.E[cote][None, :, :2]).transpose(2, 0, 1)).min(1)
+            recul_v = dE
+            calage = "au mètre (pied relevé sur la marche du MNT LiDAR HD, " + e["trace_releve"] + ", existence vue sur photo)"
+            bilan["cale_lidar"] += 1
+        if not calage.startswith("au mètre"):
+            bilan["photo"] += 1
         s = dict(e)
         s.update({"calage": calage, "trace_l93": np.round(xy, 2).tolist(), "recul_applique_m":
                   [round(float(np.min(recul_v)), 2), round(float(np.max(recul_v)), 2)],
@@ -348,7 +357,9 @@ def corriger_ouvrages(corr):
                     if c["action"] == "retirer":
                         continue
                     e["pk_debut_m"], e["pk_fin_m"] = c["pk"]; p["pk_photo_m"] = c["pk"]
-                    p["statut"] = f"{p.get('statut', '')} ; bornes corrigées le 18/11/2026 (troisième passe) : {c['raison']}"
+                    note = f" ; bornes corrigées le 18/11/2026 (troisième passe) : {c['raison']}"
+                    if note not in p.get("statut", ""):                  # idempotent (relances de verser)
+                        p["statut"] = f"{p.get('statut', '')}{note}"
             garde.append(e)
         ouv["parapets_hors_tablier"] = garde
         if c["action"] == "bornes":                      # rejouable : la correction est maintenant la référence

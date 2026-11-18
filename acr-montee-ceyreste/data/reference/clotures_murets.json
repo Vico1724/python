@@ -193,9 +193,10 @@
     "1093d878",
     "a251d23e"
    ],
-   "description": "mur enduit couvert de vigne vierge, au fond du parking puis rejoignant la route",
+   "description": "mur enduit couvert de vigne vierge, au fond du parking puis rejoignant la route ; posé couvert de vigne vierge (cinquième passe, 19/11/2026 : il était rendu en enduit uni, 1093d878)",
    "teinte": "enduit_beige",
    "confiance": "moyenne",
+   "couvert": "vigne_vierge",
    "calage": "au mètre (limite cadastrale, existence vue sur photo)",
    "trace_l93": [
     [
@@ -9358,211 +9359,153 @@
    "id": "mur_D_-15",
    "type": "pierre_seche",
    "pk_debut_m": -15,
-   "pk_fin_m": 30,
+   "pk_fin_m": 42,
    "cote": "droite",
-   "hauteur_m": 1.6,
+   "hauteur_m": 2.5,
    "recul_m": 4.5,
-   "placement": "cadastre",
+   "placement": "trace_releve",
    "images": [
     "f72ed2c1",
     "43f093e4",
     "89d3561a",
-    "7de216e6"
+    "7de216e6",
+    "f58e2a31",
+    "bfbe2896"
    ],
-   "description": "mur de pierre le long de la voie laterale parallele, haie au-dessus",
-   "tolerance_cadastre_m": 3.0,
-   "calage": "photo (cadastre non concordant : 54 % des PK)",
+   "description": "mur de soutènement de pierre sèche le long de la voie latérale et de la Voie Romaine, jardins au-dessus (haies, bougainvillier) ; pied relevé sur la marche du MNT LiDAR (data/reference/depart_carrefour.json, cinquième passe du 19/11/2026 : il était posé à 4,5 m du bord, au milieu de la voie latérale) ; hauteur 2,5 m lue par projection graduée sur 89d3561a (droite)",
+   "trace_releve": "depart_carrefour.json",
+   "calage": "au mètre (pied relevé sur la marche du MNT LiDAR HD, depart_carrefour.json, existence vue sur photo)",
    "trace_l93": [
     [
-     915327.77,
-     6239587.12
+     915325.56,
+     6239587.38
     ],
     [
-     915328.13,
-     6239588.08
+     915326.51,
+     6239589.16
     ],
     [
-     915328.47,
-     6239589.05
+     915327.36,
+     6239591.01
     ],
     [
-     915328.82,
-     6239590.03
+     915328.15,
+     6239592.89
     ],
     [
-     915329.14,
-     6239590.98
+     915329.1,
+     6239594.67
     ],
     [
-     915329.45,
-     6239591.94
+     915330.0,
+     6239596.48
     ],
     [
-     915329.75,
-     6239592.9
+     915330.75,
+     6239598.41
     ],
     [
-     915330.04,
-     6239593.86
+     915331.64,
+     6239600.22
     ],
     [
-     915330.32,
-     6239594.83
+     915332.69,
+     6239601.93
     ],
     [
-     915330.6,
-     6239595.78
+     915333.9,
+     6239603.52
     ],
     [
-     915330.89,
-     6239596.76
+     915335.15,
+     6239605.09
     ],
     [
-     915331.2,
-     6239597.74
+     915336.26,
+     6239606.76
     ],
     [
-     915331.51,
-     6239598.71
+     915337.46,
+     6239608.35
     ],
     [
-     915331.82,
-     6239599.67
+     915338.77,
+     6239609.88
     ],
     [
-     915332.14,
-     6239600.63
+     915340.13,
+     6239611.37
     ],
     [
-     915332.47,
-     6239601.58
+     915341.53,
+     6239612.82
     ],
     [
-     915332.8,
-     6239602.5
+     915342.84,
+     6239614.35
     ],
     [
-     915333.14,
-     6239603.46
+     915344.15,
+     6239615.88
     ],
     [
-     915333.48,
-     6239604.38
+     915345.45,
+     6239617.4
     ],
     [
-     915333.83,
-     6239605.32
+     915346.71,
+     6239618.96
     ],
     [
-     915334.18,
-     6239606.24
+     915347.96,
+     6239620.52
     ],
     [
-     915334.53,
-     6239607.16
+     915349.22,
+     6239622.09
     ],
     [
-     915334.89,
-     6239608.09
+     915350.58,
+     6239623.58
     ],
     [
-     915335.25,
-     6239609.0
+     915351.94,
+     6239625.07
     ],
     [
-     915335.62,
-     6239609.93
+     915353.09,
+     6239626.7
     ],
     [
-     915335.99,
-     6239610.86
+     915354.24,
+     6239628.33
     ],
     [
-     915336.36,
-     6239611.8
+     915355.5,
+     6239629.9
     ],
     [
-     915336.74,
-     6239612.77
+     915356.75,
+     6239631.46
     ],
     [
-     915337.11,
-     6239613.72
+     915357.96,
+     6239633.06
     ],
     [
-     915337.49,
-     6239614.71
+     915359.06,
+     6239634.73
     ],
     [
-     915337.87,
-     6239615.72
-    ],
-    [
-     915338.24,
-     6239616.76
-    ],
-    [
-     915338.61,
-     6239617.81
-    ],
-    [
-     915338.97,
-     6239618.88
-    ],
-    [
-     915339.31,
-     6239619.93
-    ],
-    [
-     915339.65,
-     6239620.99
-    ],
-    [
-     915339.96,
-     6239622.02
-    ],
-    [
-     915340.27,
-     6239623.03
-    ],
-    [
-     915340.55,
-     6239624.0
-    ],
-    [
-     915340.82,
-     6239624.93
-    ],
-    [
-     915341.09,
-     6239625.84
-    ],
-    [
-     915341.34,
-     6239626.73
-    ],
-    [
-     915341.59,
-     6239627.55
-    ],
-    [
-     915341.83,
-     6239628.38
-    ],
-    [
-     915342.06,
-     6239629.16
-    ],
-    [
-     915342.3,
-     6239629.95
+     915360.16,
+     6239636.4
     ]
    ],
    "recul_applique_m": [
-    4.5,
-    4.5
+    2.39,
+    19.39
    ],
-   "longueur_m": 45.3
+   "longueur_m": 60.4
   }
  ],
  "ponctuels": [
@@ -9657,7 +9600,7 @@
  ],
  "bilan_calage": {
   "cale_cadastre": 19,
-  "cale_lidar": 11,
-  "photo": 51
+  "cale_lidar": 12,
+  "photo": 50
  }
 }

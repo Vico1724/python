@@ -116,8 +116,8 @@ def face_commons(code):
 # (id, code, PK, côté, face, panonceau, largeur plaque m, bas de plaque m, nb de mâts, images)
 PANNEAUX = [
     ("EB20_m28", "EB20", -28, "droite", "eb20", None, 1.3, 2.3, 2, ["f9160d60", "ee1447e9"]),
-    ("B14_m20", "B14", -20, "gauche", "B14", None, 0.7, 1.3, 1, ["edfc17c0"]),
-    ("B13_5", "B13", 5, "gauche", "B13", None, 0.7, 1.3, 1, ["edfc17c0"]),
+    # B14 « 50 » et B13 « 19 t » : posés depuis le 19/11/2026 par 41_carrefour_depart.py (positions par visées croisées,
+    # depart.glb, qui va aussi dans l'export neutre) ; ils étaient ici aux PK -20 et 5, lus de loin
     ("A15b_86", "A15b", 86, "droite", "A15b", "4,6 km", 1.0, 1.4, 1, ["c03d3e1e", "edfd08bf"]),
     ("A1d_86", "A1d", 86.5, "droite", "A1d", "3 km", 1.0, 2.9, 0, ["c03d3e1e", "edfd08bf"]),
     ("PR5_110", "PR", 110, "gauche", "PR5", None, 0.25, 0.5, 1, ["c559b2b8"]),

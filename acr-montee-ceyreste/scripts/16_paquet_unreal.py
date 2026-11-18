@@ -3699,7 +3699,11 @@ def main():
     # Murs, murets, clôtures, portails, haies et panneaux du départ (37_clotures.py, troisième passe du 18/11/2026) :
     # acteurs StaticMesh comme le bâti, famille « clotures » (Fences/Meshes) ; collision par 09 (clotures_collision.glb)
     clot = lire_glb(MOD / "clotures.glb") if (MOD / "clotures.glb").exists() else []
-    mats = materiaux_modele(P, [route, ouvr, annx, bali, bati, vill, clot], f"{UE}/Shared/Textures",
+    # Carrefour du départ (41_carrefour_depart.py, cinquième passe du 19/11/2026) : voie latérale, îlots et trottoir
+    # rouges, marquage, panneaux, poteaux et lignes, coffrets, végétation des jardins ; acteurs StaticMesh, famille
+    # « depart » (StartJunction/Meshes) ; sol de roulage et obstacles par 09 (depart_collision.glb)
+    dep = lire_glb(MOD / "depart.glb") if (MOD / "depart.glb").exists() else []
+    mats = materiaux_modele(P, [route, ouvr, annx, bali, bati, vill, clot, dep], f"{UE}/Shared/Textures",
                             f"{UE}/Shared/Materials", "")
     mi = lambda mat: mats[mat]                                            # noqa: E731
     chaussee = [m for m in route if m["mat"]["nom"] == "enrobe"]
@@ -3713,7 +3717,8 @@ def main():
             "balisage": par_troncon(P, pkf, bali, "Tape", "balisage", f"{UE}/Props/Meshes", mi, args),
             "batiments": par_troncon(P, pkf, bati, "Building", "batiments", f"{UE}/Buildings/Meshes", mi, args),
             "village": par_troncon(P, pkf, vill, "Village", "village", f"{UE}/Village/Meshes", mi, args),
-            "clotures": par_troncon(P, pkf, clot, "Fence", "clotures", f"{UE}/Fences/Meshes", mi, args)}
+            "clotures": par_troncon(P, pkf, clot, "Fence", "clotures", f"{UE}/Fences/Meshes", mi, args),
+            "depart": par_troncon(P, pkf, dep, "StartJunction", "depart", f"{UE}/StartJunction/Meshes", mi, args)}
     print("anneau lointain…", flush=True)
     n_loin = lointain(P, ref, args, pkf)
     print("instances…", flush=True)

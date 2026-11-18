@@ -14,6 +14,14 @@ douceur au MNT sur MARGE_M. Le raccord à la chaussée reste celui de 08_modele_
 
 Lu par 08_modele_3d.py (MNT.z : terrain du décor et de la physique, donc 09, 12, 14) et par mobilier.py
 (Route.z_terrain : altitude des objets posés au bord de la route).
+
+Plateformes du carrefour du départ (cinquième passe, 19/11/2026) : voie latérale, trottoir et îlots, de la chaussée au
+pied du mur de pierre (data/reference/depart_carrefour.json, lu par scripts/41_carrefour_depart.py.plateformes). Sur
+la planche figures/affinage/facades/depart_synthese_4_directions.jpg, le terrain de 08 (grille de 1 m sur le MNT 0,5 m)
+formait devant le mur un talus de 1 à 2 m qui couvrait le trottoir : le MNT lisse en pente la marche de 4 m du mur.
+Dans l'emprise, le terrain est une surface du second degré ajustée au MNT (points du talus écartés, comme pour le
+parking), sans raccord au-dehors (MARGE 0) ; 08 ajoute au pied du mur une ligne de rupture (points_de_rupture) et
+retire les nœuds de sa grille à moins de 0,6 m du pied : la marche tient dans l'épaisseur du mur (0,5 m).
 """
 import sys
 import json
@@ -90,16 +98,97 @@ def zones():
     return _zones
 
 
+_plates = None
+
+
+def plateformes():
+    """[{nom, poly (préparé), rupture (N, 2) pied du mur, coef (6) surface z = f(x - x0, y - y0), origine}]"""
+    global _plates
+    if _plates is not None:
+        return _plates
+    _plates = []
+    fr = fichier_ref("depart_carrefour.json")
+    fm = RACINE / "data" / "raw" / "mnt_lidarhd_50cm.tif"
+    if not (fr.exists() and fm.exists()):
+        return _plates
+    import importlib.util
+    import shapely
+    import rasterio
+    from rasterio.windows import from_bounds
+    s = importlib.util.spec_from_file_location("m41_plates", Path(__file__).resolve().parent / "41_carrefour_depart.py")
+    m41 = importlib.util.module_from_spec(s); s.loader.exec_module(m41)
+    for p in m41.plateformes():
+        poly = p["poly"]
+        with rasterio.open(fm) as src:
+            b = poly.bounds
+            w = from_bounds(b[0] - 1, b[1] - 1, b[2] + 1, b[3] + 1, src.transform)
+            a = src.read(1, window=w).astype(float)
+            t = src.window_transform(w)
+        ii, jj = np.indices(a.shape)
+        xs, ys = t.c + (jj + 0.5) * t.a, t.f + (ii + 0.5) * t.e
+        dans = shapely.contains_xy(poly.buffer(-0.3), xs, ys) & (a > -1000)
+        x, y, z = xs[dans], ys[dans], a[dans]
+        x0, y0 = float(x.mean()), float(y.mean())
+        X, Y = x - x0, y - y0
+        garde = np.ones(len(z), bool)
+        for _ in range(5):
+            A = np.column_stack([np.ones(garde.sum()), X[garde], Y[garde], X[garde] ** 2, X[garde] * Y[garde], Y[garde] ** 2])
+            coef = np.linalg.lstsq(A, z[garde], rcond=None)[0]
+            res = z - (coef[0] + coef[1] * X + coef[2] * Y + coef[3] * X ** 2 + coef[4] * X * Y + coef[5] * Y ** 2)
+            garde = res <= max(0.08, float(np.percentile(np.abs(res), 70)))       # talus du mur : au-dessus, écarté
+        shapely.prepare(poly)
+        _plates.append({"nom": p["nom"], "poly": poly, "rupture": p["rupture"], "coef": coef, "origine": (x0, y0),
+                        "points_gardes": int(garde.sum()), "points": int(len(z)),
+                        "ecart_mnt_m": [round(float(res[garde].min()), 2), round(float(res[garde].max()), 2)]})
+    return _plates
+
+
+def z_plateforme(k, x, y):
+    c = k["coef"]; X = np.asarray(x, float) - k["origine"][0]; Y = np.asarray(y, float) - k["origine"][1]
+    return c[0] + c[1] * X + c[2] * Y + c[3] * X ** 2 + c[4] * X * Y + c[5] * Y ** 2
+
+
+def points_de_rupture(mnt_z, pas=0.4):
+    """Points (N, 3) à ajouter au terrain de 08 le long du pied du mur de chaque plateforme : devant le pied et 0,1 m
+    derrière (niveau de la plateforme), 0,55 m derrière (MNT 1 m derrière le pied : sous le dessus du mur, que
+    37_clotures.py met à 0,15 m au-dessus de ce point). Et la ligne (shapely) autour de laquelle 08 retire ses nœuds."""
+    import shapely
+    out, lignes = [], []
+    for k in plateformes():
+        P = np.asarray(k["rupture"], float)
+        L = shapely.LineString(P).segmentize(pas)
+        Q = np.asarray(L.coords)
+        t = np.gradient(Q, axis=0); t /= np.maximum(np.linalg.norm(t, axis=1, keepdims=True), 1e-9)
+        n_voie = np.column_stack([-t[:, 1], t[:, 0]])          # pied donné du sud-ouest au nord-est : la voie à gauche
+        for o, haut in ((-0.05, False), (0.1, False), (0.55, True)):
+            R = Q - n_voie * o
+            if haut:
+                Rm = Q - n_voie * 1.0
+                z = np.asarray(mnt_z(Rm[:, 0], Rm[:, 1]), float)
+                z = np.maximum(z, z_plateforme(k, R[:, 0], R[:, 1]))
+            else:
+                z = z_plateforme(k, R[:, 0], R[:, 1])
+            out.append(np.column_stack([R, z]))
+        lignes.append(L)
+    if not out:
+        return np.zeros((0, 3)), None
+    return np.vstack(out), shapely.union_all(lignes)
+
+
 def aplanir(x, y, z):
     """Altitudes `z` (MNT) aux points (x, y) Lambert-93, remplacées par le plan dans les emprises aplanies et raccordées
     sur MARGE_M autour. Tableaux numpy ou scalaires ; renvoie un tableau de même forme que z."""
     zs = zones()
     z = np.asarray(z, float)
-    if not zs:
+    if not zs and not plateformes():
         return z
     import shapely
     x, y = np.broadcast_to(np.asarray(x, float), z.shape), np.broadcast_to(np.asarray(y, float), z.shape)
     out = z.copy()
+    for k in plateformes():
+        dans = shapely.contains_xy(k["poly"], x, y)
+        if dans.any():
+            out[dans] = z_plateforme(k, x[dans], y[dans])
     for k in zs:
         pres = shapely.contains_xy(k["large"], x, y)
         if not pres.any():

@@ -109,6 +109,19 @@ def tex_haie(px=256, seed=5):
     return Image.fromarray(np.clip(rgb, 0, 255).astype(np.uint8))
 
 
+def tex_vigne_vierge(px=256, seed=9):
+    """Enduit beige couvert aux trois quarts de vigne vierge : feuilles rouges, orangées et vertes en taches (1093d878)."""
+    rng = np.random.default_rng(seed)
+    fond = np.asarray(tex_cc0("white_plaster_rough_01", TEINTES["enduit_beige"], px)).astype(float)
+    cou = np.asarray(Image.fromarray((rng.random((px // 8, px // 8)) * 255).astype(np.uint8)).resize((px, px), Image.BICUBIC)).astype(float) / 255
+    couvre = (cou > 0.3)[..., None]
+    f = np.asarray(Image.fromarray((rng.random((px // 4, px // 4)) * 255).astype(np.uint8)).resize((px, px), Image.NEAREST)).astype(float) / 255
+    teintes = np.where((f < 0.45)[..., None], [150, 34, 30], np.where((f < 0.7)[..., None], [186, 92, 40], [70, 92, 46]))
+    feuilles = np.asarray(Image.fromarray(teintes.astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.8))).astype(float)
+    feuilles *= 0.7 + 0.5 * rng.random((px, px, 1))
+    return Image.fromarray(np.clip(np.where(couvre, feuilles, fond), 0, 255).astype(np.uint8))
+
+
 def tex_unie(c, px=8):
     return Image.new("RGB", (px, px), tuple(c))
 
@@ -334,6 +347,8 @@ def construire(e, T, ref):
         out.append((fusion([ruban(P2, n, -0.03, ep + 0.03, top2 - 0.08, top2, ref, 2.0)], f"{nom}_couronnement", "pierre_couronnement"), None))
     elif ty == "mur_enduit":
         mat = {"blanc": "enduit_blanc", "enduit_rose": "enduit_rose"}.get(e.get("teinte"), "enduit_beige")
+        if e.get("couvert") == "vigne_vierge":       # mur couvert de vigne vierge rouge et verte (1093d878, PK -77)
+            mat = "vigne_vierge"
         P2, zb2, top2 = pied_de_mur(P, n, T, h, 0.25)
         out.append((fusion([ruban(P2, n, 0, 0.25, zb2 - PIED, top2 - 0.06, ref, 2.0)], f"{nom}_corps", mat), ("beton", (P2, n, 0, 0.25, zb2 - PIED, top2))))
         out.append((fusion([ruban(P2, n, -0.03, 0.28, top2 - 0.06, top2, ref, 1.0)], f"{nom}_chaperon", mat), None))
@@ -404,18 +419,48 @@ def panneau(e, B, T, ref):
         L, H, hb = 1.3, 0.5, 1.6        # plaque 1,3 x 0,5 m, bas à 1,6 m, portique de deux tubes verts
         tex = "plaque_EB20"
     elif m == "KD_jaune":
-        L, H, hb = 0.8, 1.1, 0.7; tex = "plaque_jaune"
+        L, H, hb = 0.8, 0.8, 1.0; tex = "plaque_jaune"   # b0467d52 : carré jaune sur piquet de bois
     elif m == "plaques_rue":
         L, H, hb = 0.7, 0.45, 2.0; tex = "plaque_rue"
     else:
         L, H, hb = 3.0, 1.5, 1.5; tex = "plaque_affichage"
+    if m in ("EB20", "KD_jaune"):
+        # Panneaux d'agglomération et panneau temporaire : face aux usagers, en travers de la route (cinquième passe du
+        # 19/11/2026 ; ils étaient posés parallèles à la route). Plaque de P0 vers l'extérieur ; l'EB20 (sortie,
+        # barré) regarde la montée, l'EB10 (entrée, « CEYRESTE ») la descente, lu sur 43f093e4.
+        nx = nn[0]
+        P0 = P0 + nx * 0.2
+        for s in ((0.08, L - 0.08) if m == "EB20" else (L / 2,)):
+            c = P0 + nx * s
+            out.append((fusion([ruban(np.array([c - nx * 0.03, c + nx * 0.03]), np.array([t, t]), -0.03, 0.03, np.full(2, zz - PIED),
+                                      np.full(2, zz + hb + H + 0.1), ref, 1.0)], f"{e['id']}_mat{len(out)}", "poteau_vert" if m == "EB20" else "tube_gris"), None))
+        Q = np.array([P0, P0 + nx * L])
+        faces_ = [(Q, -0.045, -0.035, tex)] + ([(Q[::-1], 0.035, 0.045, "plaque_EB10")] if m == "EB20" else [])
+        for QQ, o0, o1, tx in faces_:
+            pl = ruban(QQ, np.array([t, t]), o0, o1, np.full(2, zz + hb), np.full(2, zz + hb + H), ref, L)
+            pl["uv"] = uv_plaque(pl, ref, QQ[0], (QQ[1] - QQ[0]) / L, L, zz + hb, H)
+            out.append((fusion([pl], f"{e['id']}_plaque_{tx}", tx), None))
+        return out
     for s in (-L / 2 + 0.05, L / 2 - 0.05) if m in ("EB20", "affichage") else (0.0,):
         c = P0 + t * s
         out.append((fusion([ruban(np.array([c - t * 0.03, c + t * 0.03]), nn, -0.03, 0.03, np.full(2, zz - PIED),
                                   np.full(2, zz + hb + H + 0.1), ref, 1.0)], f"{e['id']}_mat{len(out)}", "poteau_vert" if m == "EB20" else "tube_gris"), None))
     Q = np.array([P0 - t * L / 2, P0 + t * L / 2])
-    out.append((fusion([ruban(Q, nn, -0.06, -0.04, np.full(2, zz + hb), np.full(2, zz + hb + H), ref, L)], f"{e['id']}_plaque", tex), None))
+    pl = ruban(Q, nn, -0.06, -0.04, np.full(2, zz + hb), np.full(2, zz + hb + H), ref, L)
+    r = np.array([nn[0][1], -nn[0][0]])                  # droite de qui regarde la plaque depuis la route
+    pl["uv"] = uv_plaque(pl, ref, P0 - r * L / 2, r, L, zz + hb, H)
+    out.append((fusion([pl], f"{e['id']}_plaque", tex), None))
     return out
+
+
+def uv_plaque(m, ref, a, t, L, z0, H):
+    """UV d'une plaque : u le long de t depuis a (0 à 1), v de haut (0) en bas (1) ; jusqu'au 19/11/2026 les UV en
+    mètres / L montraient une bande retournée de l'image."""
+    G = m["pos"].astype(np.float64)
+    x = G[:, 0] + ref["x0"]; y = ref["y0"] - G[:, 2]; z = G[:, 1] + ref["z0"]
+    u = ((x - a[0]) * t[0] + (y - a[1]) * t[1]) / L
+    v = 1.0 - (z - z0) / H
+    return np.column_stack([u, v]).astype(np.float32)
 
 
 def plaques():
@@ -429,8 +474,21 @@ def plaques():
     d.rectangle([6, 6, 513, 193], outline=(200, 20, 30), width=10)
     d.text((260, 100), "CEYRESTE", fill=(20, 20, 20), font=f, anchor="mm")
     d.line([(20, 185), (500, 15)], fill=(200, 20, 30), width=16)
-    jaune = Image.new("RGB", (160, 220), (240, 200, 20)); d = ImageDraw.Draw(jaune)
-    d.rectangle([4, 4, 155, 215], outline=(20, 20, 20), width=4)
+    jaune = Image.new("RGB", (240, 240), (240, 200, 20)); d = ImageDraw.Draw(jaune)
+    d.rectangle([4, 4, 235, 235], outline=(20, 20, 20), width=4)
+    # texte et flèches lus sur b0467d52 (19/11/2026) : « CARREFOUR MODIFIÉ », flèches, sens interdit « SAUF BUS »
+    fj = ImageFont.truetype("DejaVuSans-Bold.ttf", 24) if f is not fs else fs
+    d.text((120, 30), "CARREFOUR", fill=(20, 20, 20), font=fj, anchor="mm")
+    d.text((120, 58), "MODIFIÉ", fill=(20, 20, 20), font=fj, anchor="mm")
+    d.line([(45, 110), (45, 200)], fill=(20, 20, 20), width=7); d.polygon([(33, 200), (57, 200), (45, 220)], fill=(20, 20, 20))
+    d.line([(95, 220), (95, 95)], fill=(20, 20, 20), width=8); d.polygon([(82, 100), (108, 100), (95, 78)], fill=(20, 20, 20))
+    d.line([(95, 140), (150, 140)], fill=(20, 20, 20), width=7); d.polygon([(150, 128), (150, 152), (170, 140)], fill=(20, 20, 20))
+    d.line([(95, 200), (150, 160)], fill=(20, 20, 20), width=7)
+    d.ellipse([170, 150, 210, 190], fill=(200, 20, 30)); d.rectangle([176, 165, 204, 175], fill=(250, 250, 250))
+    d.text((170, 215), "SAUF BUS", fill=(20, 20, 20), font=ImageFont.truetype("DejaVuSans-Bold.ttf", 16) if f is not fs else fs, anchor="mm")
+    e10 = Image.new("RGB", (520, 200), (245, 245, 240)); d = ImageDraw.Draw(e10)
+    d.rectangle([6, 6, 513, 193], outline=(200, 20, 30), width=10)
+    d.text((260, 100), "CEYRESTE", fill=(20, 20, 20), font=f, anchor="mm")
     rue = Image.new("RGB", (280, 180), (30, 70, 150)); d = ImageDraw.Draw(rue)
     for k, txt in enumerate(("Route du", "Grand Caunet", "CD 3")):
         d.text((140, 35 + 50 * k), txt, fill=(240, 240, 240), font=fs, anchor="mm")
@@ -438,7 +496,7 @@ def plaques():
     d.rectangle([0, 0, 299, 149], outline=(60, 60, 60), width=6)
     # Unreal (et 16_paquet_unreal.py) exige des textures en puissances de 2
     p2 = lambda im, w, h: im.resize((w, h), Image.LANCZOS)          # noqa: E731
-    return {"plaque_EB20": p2(eb, 512, 256), "plaque_jaune": p2(jaune, 256, 256), "plaque_rue": p2(rue, 256, 256),
+    return {"plaque_EB20": p2(eb, 512, 256), "plaque_EB10": p2(e10, 512, 256), "plaque_jaune": p2(jaune, 256, 256), "plaque_rue": p2(rue, 256, 256),
             "plaque_affichage": p2(aff, 256, 128)}
 
 
@@ -457,6 +515,7 @@ def matieres():
         "occultant_vert": img(tex_occultant(), dbl=True),
         "occultant_gris": img(tex_occultant((150, 152, 150)), dbl=True),
         "haie": img(tex_haie()),
+        "vigne_vierge": img(tex_vigne_vierge()),
         "poteau_vert": img(tex_unie((52, 86, 58)), rough=0.6),
         "tube_blanc": img(tex_unie((228, 228, 224)), rough=0.5),
         "tube_gris": img(tex_unie((140, 142, 145)), rough=0.5),

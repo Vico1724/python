@@ -67,6 +67,11 @@ class MNT:
         with rasterio.open(RAW / "mnt_lidarhd_50cm.tif") as s:
             self.a, self.inv = s.read(1), ~s.transform
 
+    def z_brut(self, x, y):
+        """MNT LiDAR seul (sans terrains aplanis)."""
+        c, r = self.inv * (np.asarray(x), np.asarray(y))
+        return map_coordinates(self.a, [np.asarray(r) - 0.5, np.asarray(c) - 0.5], order=1, mode="nearest")
+
     def z(self, x, y):
         c, r = self.inv * (np.asarray(x), np.asarray(y))
         z = map_coordinates(self.a, [np.asarray(r) - 0.5, np.asarray(c) - 0.5], order=1, mode="nearest")
@@ -267,7 +272,13 @@ def terrain(ch, ref, deck, mnt, bands, tex_px, quality, ortho):
     d, k = cKDTree(E[:, :2]).query(np.column_stack([gx, gy]))
     w = np.clip(1 - d / BLEND, 0, 1)
     gz = gz + w * dz[k]
-    P = np.vstack([E, np.column_stack([gx, gy, gz])])
+    # pied du mur du carrefour du départ (aplanissements.points_de_rupture, cinquième passe du 19/11/2026) : nœuds de la
+    # grille retirés à moins de 0,6 m, lignes de rupture ajoutées ; la marche de 4 m tient dans l'épaisseur du mur
+    R, ligne = aplanissements.points_de_rupture(mnt.z_brut)
+    if ligne is not None:
+        loin = shapely.distance(ligne, shapely.points(gx, gy)) > 0.6
+        gx, gy, gz = gx[loin], gy[loin], gz[loin]
+    P = np.vstack([E, np.column_stack([gx, gy, gz]), R])
 
     tri = Delaunay(P[:, :2]).simplices
     cx, cy = P[tri, 0].mean(1), P[tri, 1].mean(1)

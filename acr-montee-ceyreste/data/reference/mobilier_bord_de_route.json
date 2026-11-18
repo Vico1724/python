@@ -408,16 +408,6 @@
   },
   {
    "type": "poteau_bois",
-   "pk_m": 35.7,
-   "cote": "droite",
-   "decalage_m": 0.8,
-   "source": "OpenStreetMap node/13248624886 (power=pole), © contributeurs OSM, ODbL",
-   "statut": "OSM seul : non confirmé poteau par poteau sur photo",
-   "confiance": "faible",
-   "positionnement": "OSM (±2-5 m)"
-  },
-  {
-   "type": "poteau_bois",
    "pk_m": 90.1,
    "cote": "droite",
    "decalage_m": 1.6,
@@ -538,6 +528,7 @@
   "barrière d'accès OSM node/12156759 (barrier=swing_gate) au PK ≈ 2095, à 9 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
   "barrière d'accès OSM node/13526174268 (barrier=gate) au PK ≈ 2691, à 15 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
   "barrière d'accès OSM node/13526174296 (barrier=gate) au PK ≈ 2709, à 14 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
-  "barrière d'accès OSM node/13526174353 (barrier=chain) au PK ≈ 3057, à 5 m de l'axe : aucun maillage du jeu (OSM, ODbL)"
+  "barrière d'accès OSM node/13526174353 (barrier=chain) au PK ≈ 3057, à 5 m de l'axe : aucun maillage du jeu (OSM, ODbL)",
+  "poteau de bois OSM node/13248624886 (PK 35,7, droite) retiré le 19/11/2026 : c'est le poteau de béton à transformateur vu sur 89d3561a et bfbe2896, posé par 41_carrefour_depart.py (beton_transfo)"
  ]
 }

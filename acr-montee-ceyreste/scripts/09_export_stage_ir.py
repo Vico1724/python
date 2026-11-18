@@ -101,7 +101,8 @@ OBSTACLES = {
 }
 SOURCES_OBSTACLES = ("ouvrages_collision.glb", "annexes_collision.glb", "balisage_collision.glb",
                      "bati_bord_collision.glb",     # façades des maisons à moins de 15 m de la chaussée (31_bati.py)
-                     "clotures_collision.glb")      # murs, murets, clôtures, haies à moins de 15 m (37_clotures.py)
+                     "clotures_collision.glb",      # murs, murets, clôtures, haies à moins de 15 m (37_clotures.py)
+                     "depart_collision.glb")        # poteaux, mâts, potelets du carrefour du départ (41_carrefour_depart.py)
 CATALOGUE = gzip.open(fichier_ref("catalogue_jeu_25170642.txt.gz"), "rt", encoding="utf-8").read()
 CATALOGUE = "\n".join(f'"{m}"' for m in re.findall(r"PhysicalMaterials/(PM_\w+)\.uasset", CATALOGUE))
 SPLITS = tuple(param("temps_intermediaires", ("INTER2", "INTER6")))                     # points officiels retenus comme temps intermédiaires
@@ -251,6 +252,15 @@ def sol_physique(ch, ref, rapport):
             info["terrain_retire_sous_annexes"] = int(sous.sum())
     else:
         print("modele/annexes_collision.glb absent : pas de surfaces annexes (facultatif)")
+    # voie latérale, trottoir, îlots et parvis du carrefour du départ (41_carrefour_depart.py, cinquième passe du
+    # 19/11/2026) : enrobé (TSD+), 3 cm au-dessus du terrain aplani de 08 (le terrain reste dessous)
+    fd = MOD / "depart_collision.glb"
+    if fd.exists():
+        for nom, mat, p, t in lire_modele(fd):
+            code = next((c for mot, c in SOL_ANNEXES if mot in mat), None)
+            if code is not None:
+                ann[code].append((modele_vers_ir(p, ref), t))
+                info["triangles"][f"{nom} ({mat}, depart_collision.glb)"] = f"{len(t)} -> {code}"
     rapport["annexes"] = info
 
     # accotement : centre du triangle à moins de ACCOTEMENT m (en plan) d'un bord de chaussée

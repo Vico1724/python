@@ -60,30 +60,30 @@
     "sans_sol": 0
   },
   "collision": {
-    "triangles": 366633,
+    "triangles": 368847,
     "par_code": {
-      "TSD+": 15672,
-      "DBK+": 46876,
-      "GRS+": 304085
+      "TSD+": 17734,
+      "DBK+": 46883,
+      "GRS+": 304230
     },
     "ccw_vu_du_dessus": 1.0,
-    "triangles_annonces_dans_stage_json": 366633
+    "triangles_annonces_dans_stage_json": 368847
   },
   "obstacles": {
-    "instances": 7838,
+    "instances": 7866,
     "gabarits": 8,
     "formes": {
-      "box": 7396,
-      "cylinder": 442
+      "box": 7426,
+      "cylinder": 440
     },
     "parois": {
-      "PM_WallRock": 1814,
-      "PM_WallConcrete": 4094,
+      "PM_WallRock": 1829,
+      "PM_WallConcrete": 4097,
       "PM_WallMetalGuardrail": 442,
       "PM_WallBush": 70,
-      "PM_WallBasic": 968,
-      "PM_WallWoodTreeTrunks": 428,
-      "PM_WallWoodPole": 14,
+      "PM_WallBasic": 980,
+      "PM_WallWoodTreeTrunks": 427,
+      "PM_WallWoodPole": 13,
       "PM_WallPlasticBarrier": 8
     },
     "parois_absentes_du_catalogue": [],
@@ -91,7 +91,7 @@
     "intrusions_plus_de_30_cm": 0,
     "sommets_source_hors_paves_max_m": 0.001,
     "retires_sur_la_chaussee": 0,
-    "objects_collision_triangles": 101128
+    "objects_collision_triangles": 101432
   },
   "annexes": {
     "points_testes": 0,
@@ -122,8 +122,8 @@
     "avance_lecture_m": 80.0
   },
   "fichiers_mo": {
-    "collision.glb": 6.81,
-    "objects_collision.glb": 2.01,
-    "stage.json": 3.23
+    "collision.glb": 6.86,
+    "objects_collision.glb": 2.02,
+    "stage.json": 3.24
   }
 }

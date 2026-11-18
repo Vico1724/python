@@ -298,6 +298,12 @@ def detecte(G, ch, axis):
     coeur = G.burn([rb.buffer(-2.5)]).astype(bool)
     bats = [g for g, _ in couche("batiment")]
     bati = G.burn([g.buffer(MARGE_BATI) for g in bats]).astype(bool)
+    # voie latérale, trottoir et îlots du carrefour du départ (41_carrefour_depart.py, terrain aplani) : revêtus, sans
+    # arbre ni arbuste (cinquième passe du 19/11/2026)
+    import aplanissements
+    plates = [k["poly"] for k in aplanissements.plateformes()]
+    if plates:
+        bati |= G.burn([g.buffer(0.2) for g in plates]).astype(bool)
     pousse = (G.hs >= H_ARBRE) & G.valid & ~bati & ~(route & (G.ndvi < NDVI_ARBRE))   # croissance des houppiers
     cand = bande & G.valid & ~bati & ~coeur & ~(route & (G.ndvi < 0.15))
     rc1 = apex(G.hs, cand)

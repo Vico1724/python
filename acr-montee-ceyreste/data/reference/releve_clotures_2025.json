@@ -62,9 +62,10 @@
     "1093d878",
     "a251d23e"
    ],
-   "description": "mur enduit couvert de vigne vierge, au fond du parking puis rejoignant la route",
+   "description": "mur enduit couvert de vigne vierge, au fond du parking puis rejoignant la route ; posé couvert de vigne vierge (cinquième passe, 19/11/2026 : il était rendu en enduit uni, 1093d878)",
    "teinte": "enduit_beige",
-   "confiance": "moyenne"
+   "confiance": "moyenne",
+   "couvert": "vigne_vierge"
   },
   {
    "id": "muret_occultant_G_-64",
@@ -1275,19 +1276,21 @@
    "id": "mur_D_-15",
    "type": "pierre_seche",
    "pk_debut_m": -15,
-   "pk_fin_m": 30,
+   "pk_fin_m": 42,
    "cote": "droite",
-   "hauteur_m": 1.6,
+   "hauteur_m": 2.5,
    "recul_m": 4.5,
-   "placement": "cadastre",
+   "placement": "trace_releve",
    "images": [
     "f72ed2c1",
     "43f093e4",
     "89d3561a",
-    "7de216e6"
+    "7de216e6",
+    "f58e2a31",
+    "bfbe2896"
    ],
-   "description": "mur de pierre le long de la voie laterale parallele, haie au-dessus",
-   "tolerance_cadastre_m": 3.0
+   "description": "mur de soutènement de pierre sèche le long de la voie latérale et de la Voie Romaine, jardins au-dessus (haies, bougainvillier) ; pied relevé sur la marche du MNT LiDAR (data/reference/depart_carrefour.json, cinquième passe du 19/11/2026 : il était posé à 4,5 m du bord, au milieu de la voie latérale) ; hauteur 2,5 m lue par projection graduée sur 89d3561a (droite)",
+   "trace_releve": "depart_carrefour.json"
   }
  ],
  "ponctuels": [

@@ -1,0 +1,1154 @@
+{
+ "note": "Carrefour du départ (Plan de Masse, PK -20 à 40) : voie latérale parallèle (Voie Romaine) et arrêt de bus, îlots rouges, trottoir rouge au pied du mur de pierre, marquage, panneaux, poteaux et lignes, coffrets, potelets, végétation des jardins au-dessus du mur. Relevé de la cinquième passe (19/11/2026). Coordonnées en mètres dans le repère « origine_l93 » (x est, y nord) : point L93 = origine + (x, y). Positions : ortho IGN 20 cm (îlots, trottoir, bord de voie), marche du MNT LiDAR HD 0,5 m (pied du mur), puis contrôlées par projection sur les panoramas cités (scripts/41_carrefour_depart.py controle). Hauteurs : lues sur les panoramas par projection graduée. Lu par scripts/41_carrefour_depart.py (géométrie) et scripts/aplanissements.py (terrain plat jusqu'au pied du mur). Rien n'est posé qui ne soit vu sur une image citée.",
+ "origine_l93": [
+  915000.0,
+  6239000.0
+ ],
+ "source_images": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence Etalab 2.0 (data/reference/photos_rue_panoramax.csv)",
+ "mur": {
+  "id": "mur_D_-15",
+  "pied": [
+   [
+    325.56,
+    587.38
+   ],
+   [
+    326.51,
+    589.16
+   ],
+   [
+    327.36,
+    591.01
+   ],
+   [
+    328.15,
+    592.89
+   ],
+   [
+    329.1,
+    594.67
+   ],
+   [
+    330.0,
+    596.48
+   ],
+   [
+    330.75,
+    598.41
+   ],
+   [
+    331.64,
+    600.22
+   ],
+   [
+    332.69,
+    601.93
+   ],
+   [
+    333.9,
+    603.52
+   ],
+   [
+    335.15,
+    605.09
+   ],
+   [
+    336.26,
+    606.76
+   ],
+   [
+    337.46,
+    608.35
+   ],
+   [
+    338.77,
+    609.88
+   ],
+   [
+    340.13,
+    611.37
+   ],
+   [
+    341.53,
+    612.82
+   ],
+   [
+    342.84,
+    614.35
+   ],
+   [
+    344.15,
+    615.88
+   ],
+   [
+    345.45,
+    617.4
+   ],
+   [
+    346.71,
+    618.96
+   ],
+   [
+    347.96,
+    620.52
+   ],
+   [
+    349.22,
+    622.09
+   ],
+   [
+    350.58,
+    623.58
+   ],
+   [
+    351.94,
+    625.07
+   ],
+   [
+    353.09,
+    626.7
+   ],
+   [
+    354.24,
+    628.33
+   ],
+   [
+    355.5,
+    629.9
+   ],
+   [
+    356.75,
+    631.46
+   ],
+   [
+    357.96,
+    633.06
+   ],
+   [
+    359.06,
+    634.73
+   ],
+   [
+    360.16,
+    636.4
+   ]
+  ],
+  "source": "pied = premier point (en allant vers le mur, tous les 2 m le long) où le MNT LiDAR HD 0,5 m dépasse de 0,25 m le niveau de la voie ; marche de 3,7 à 4,4 m (voie 213,1-215,8 m, jardin 216,1-218,6 m), lissé sur 3 points",
+  "images": [
+   "89d3561a",
+   "f58e2a31",
+   "bfbe2896",
+   "f72ed2c1"
+  ]
+ },
+ "plateformes": [
+  {
+   "nom": "voie latérale, trottoir et îlots du départ",
+   "note": "terrain ramené au niveau de la voie jusqu'au pied du mur (surface du second degré ajustée au MNT dans l'emprise, points du talus écartés) ; ligne de rupture au pied du mur",
+   "polygone": "voie_laterale+trottoir"
+  }
+ ],
+ "surfaces": {
+  "voie_laterale": {
+   "polygone": [
+    [
+     323.9,
+     589.6
+    ],
+    [
+     325.2,
+     593.4
+    ],
+    [
+     326.4,
+     597.3
+    ],
+    [
+     327.6,
+     601.1
+    ],
+    [
+     328.9,
+     604.9
+    ],
+    [
+     330.3,
+     608.7
+    ],
+    [
+     331.8,
+     612.4
+    ],
+    [
+     333.2,
+     616.2
+    ],
+    [
+     334.6,
+     620.1
+    ],
+    [
+     335.9,
+     624.1
+    ],
+    [
+     337.0,
+     627.8
+    ],
+    [
+     338.0,
+     631.3
+    ],
+    [
+     339.6,
+     630.0
+    ],
+    [
+     345.6,
+     628.7
+    ],
+    [
+     348.6,
+     630.6
+    ],
+    [
+     352.2,
+     634.0
+    ],
+    [
+     356.2,
+     637.6
+    ],
+    [
+     361.0,
+     636.6
+    ],
+    [
+     360.16,
+     636.4
+    ],
+    [
+     325.56,
+     587.38
+    ]
+   ],
+   "matiere": "enrobe_neuf",
+   "source": "ortho IGN 20 cm (bord de l'enrobé, abords de l'abri) ; côté mur : jusqu'au pied du mur (le trottoir est posé par-dessus) ; la chaussée de la spéciale est retirée",
+   "images": [
+    "89d3561a",
+    "bfbe2896",
+    "f58e2a31"
+   ]
+  },
+  "trottoir": {
+   "le_long_du_mur": true,
+   "largeur_m": 1.9,
+   "hauteur_m": 0.14,
+   "de_k": 0,
+   "a_k": 27,
+   "matiere": "enrobe_rouge",
+   "source": "trottoir d'enrobé rouge à bordure de béton gris, du coin du mur (entrée de la voie latérale) jusqu'au passage piéton de la Voie Romaine ; largeur lue sur 89d3561a (droite) et l'ortho",
+   "images": [
+    "89d3561a",
+    "f72ed2c1",
+    "bfbe2896"
+   ]
+  },
+  "ilots": [
+   {
+    "id": "ilot_long",
+    "contour_peint": [
+     [
+      328.7,
+      605.5
+     ],
+     [
+      330.0,
+      608.7
+     ],
+     [
+      331.3,
+      612.0
+     ],
+     [
+      332.5,
+      615.3
+     ],
+     [
+      333.7,
+      618.3
+     ],
+     [
+      335.0,
+      620.0
+     ],
+     [
+      336.7,
+      620.5
+     ],
+     [
+      338.3,
+      620.5
+     ],
+     [
+      339.3,
+      620.0
+     ],
+     [
+      339.7,
+      619.0
+     ],
+     [
+      339.0,
+      617.7
+     ],
+     [
+      337.7,
+      615.7
+     ],
+     [
+      336.0,
+      613.3
+     ],
+     [
+      334.0,
+      611.0
+     ],
+     [
+      332.0,
+      608.7
+     ],
+     [
+      330.0,
+      606.7
+     ]
+    ],
+    "bande_peinte_m": 0.35,
+    "hauteur_m": 0.14,
+    "matiere": "enrobe_rouge",
+    "source": "ortho IGN 20 cm (contour blanc) ; îlot d'enrobé rouge surélevé à bordure, liseré blanc peint autour (89d3561a, 07f0e5a1, f58e2a31)",
+    "images": [
+     "89d3561a",
+     "07f0e5a1",
+     "f58e2a31"
+    ]
+   },
+   {
+    "id": "ilot_court",
+    "contour_peint": [
+     [
+      337.0,
+      628.9
+     ],
+     [
+      337.6,
+      628.0
+     ],
+     [
+      342.0,
+      626.4
+     ],
+     [
+      342.5,
+      627.2
+     ],
+     [
+      337.6,
+      629.4
+     ]
+    ],
+    "bande_peinte_m": 0.3,
+    "hauteur_m": 0.12,
+    "matiere": "enrobe_rouge",
+    "source": "contour peint relevé sur bfbe2896 (sol des pixels) ; îlot étroit d'enrobé rouge à liseré blanc dans la bouche de la Voie Romaine, portant le B21",
+    "images": [
+     "bfbe2896",
+     "89d3561a"
+    ]
+   }
+  ],
+  "parvis_abri": {
+   "polygone": [
+    [
+     338.4,
+     632.0
+    ],
+    [
+     339.6,
+     630.0
+    ],
+    [
+     345.6,
+     628.7
+    ],
+    [
+     347.2,
+     629.9
+    ],
+    [
+     346.6,
+     634.4
+    ],
+    [
+     341.5,
+     636.6
+    ],
+    [
+     339.3,
+     636.5
+    ]
+   ],
+   "hauteur_m": 0.14,
+   "matiere": "enrobe_rouge",
+   "source": "parvis d'enrobé rouge à bordure autour de l'abribus (a1884060, bfbe2896, 89d3561a) ; contour : ortho et emprise BD TOPO de l'abri",
+   "images": [
+    "a1884060",
+    "bfbe2896",
+    "89d3561a"
+   ]
+  }
+ },
+ "marquage": [
+  {
+   "id": "bus",
+   "type": "texte",
+   "texte": "BUS",
+   "centre": [
+    330.7,
+    604.2
+   ],
+   "longueur_m": 2.0,
+   "hauteur_lettres_m": 1.0,
+   "cap_lecture_deg": 200,
+   "couleur": "blanc",
+   "source": "« BUS » blanc dans la voie de l'arrêt, lu de la chaussée de la spéciale (lettres vers le mur) ; position par le sol des pixels sur 89d3561a (cap 108)",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  },
+  {
+   "id": "zigzag_arret",
+   "type": "polyligne",
+   "polyligne": [
+    [
+     331.67,
+     603.67
+    ],
+    [
+     330.27,
+     605.45
+    ],
+    [
+     333.81,
+     605.9
+    ],
+    [
+     333.73,
+     610.0
+    ],
+    [
+     336.91,
+     610.08
+    ],
+    [
+     338.3,
+     612.2
+    ]
+   ],
+   "largeur_m": 0.12,
+   "couleur": "jaune",
+   "source": "zigzag jaune de l'arrêt : sommets relevés par le sol des pixels sur 89d3561a (cap 108), prolongé le long de la bordure",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  },
+  {
+   "id": "ligne_jaune_bordure",
+   "type": "ligne",
+   "le_long_du_trottoir": true,
+   "decalage_m": 0.2,
+   "de_k": 12.5,
+   "a_k": 15.5,
+   "trait_m": 0.6,
+   "vide_m": 0.6,
+   "largeur_m": 0.12,
+   "couleur": "jaune",
+   "source": "tirets jaunes le long de la bordure au-delà du zigzag (89d3561a droite)",
+   "images": [
+    "89d3561a"
+   ]
+  },
+  {
+   "id": "cedez_voie_laterale",
+   "type": "ligne",
+   "polyligne": [
+    [
+     339.9,
+     620.7
+    ],
+    [
+     344.3,
+     620.9
+    ]
+   ],
+   "trait_m": 0.5,
+   "vide_m": 0.5,
+   "largeur_m": 0.4,
+   "couleur": "blanc",
+   "source": "ligne de cédez-le-passage (blocs blancs) au débouché de la voie latérale (ortho, 89d3561a, f58e2a31)",
+   "images": [
+    "89d3561a",
+    "f58e2a31"
+   ]
+  },
+  {
+   "id": "cedez_voie_romaine",
+   "type": "ligne",
+   "polyligne": [
+    [
+     338.6,
+     629.9
+    ],
+    [
+     342.6,
+     628.7
+    ]
+   ],
+   "trait_m": 0.5,
+   "vide_m": 0.5,
+   "largeur_m": 0.3,
+   "couleur": "blanc",
+   "source": "tirets blancs de la sortie de la Voie Romaine sur la D3, entre îlot court et parvis (bfbe2896, 89d3561a)",
+   "images": [
+    "bfbe2896",
+    "89d3561a"
+   ]
+  },
+  {
+   "id": "passage_pieton_voie_romaine",
+   "type": "zebra",
+   "de": [
+    349.0,
+    633.2
+   ],
+   "a": [
+    352.6,
+    629.6
+   ],
+   "largeur_m": 2.5,
+   "bande_m": 0.5,
+   "couleur": "blanc",
+   "source": "passage piéton de la Voie Romaine (ortho : bandes ; bfbe2896)",
+   "images": [
+    "bfbe2896"
+   ]
+  }
+ ],
+ "panneaux": [
+  {
+   "id": "directionnel_ilot",
+   "position": [
+    333.3,
+    613.2
+   ],
+   "cap_face_deg": 225,
+   "hauteur_mat_m": 3.65,
+   "socle_m": 0.14,
+   "plaques": [
+    {
+     "forme": "rect",
+     "face": "cartouche_D3",
+     "largeur_m": 0.42,
+     "hauteur_m": 0.22,
+     "bas_m": 3.4
+    },
+    {
+     "forme": "fleche_gauche",
+     "face": "dir_SIGNES",
+     "largeur_m": 1.3,
+     "hauteur_m": 0.26,
+     "bas_m": 3.1,
+     "decalage_m": -0.12
+    },
+    {
+     "forme": "fleche_gauche",
+     "face": "dir_CAUNET",
+     "largeur_m": 1.3,
+     "hauteur_m": 0.26,
+     "bas_m": 2.81,
+     "decalage_m": -0.12
+    },
+    {
+     "forme": "fleche_gauche",
+     "face": "dir_Circuit du Castellet",
+     "largeur_m": 1.3,
+     "hauteur_m": 0.26,
+     "bas_m": 2.52,
+     "decalage_m": -0.12
+    },
+    {
+     "forme": "rect",
+     "face": "plaque_blanche",
+     "largeur_m": 0.4,
+     "hauteur_m": 0.17,
+     "bas_m": 2.28
+    }
+   ],
+   "source": "mât de jalonnement sur l'îlot : cartouche jaune « D 3 », trois flèches blanches à liseré vert « SIGNES », « CAUNET », « Circuit du Castellet » (texte lu), petite plaque blanche dessous (texte non lu : laissée blanche) ; position : intersection des visées 89d3561a, f72ed2c1, f58e2a31 ; hauteurs : 89d3561a",
+   "images": [
+    "89d3561a",
+    "f72ed2c1",
+    "f58e2a31"
+   ]
+  },
+  {
+   "id": "B1_ilot_nord",
+   "position": [
+    337.4,
+    618.4
+   ],
+   "cap_face_deg": 350,
+   "hauteur_mat_m": 2.95,
+   "socle_m": 0.14,
+   "plaques": [
+    {
+     "forme": "rond",
+     "face": "B1",
+     "largeur_m": 0.65,
+     "hauteur_m": 0.65,
+     "bas_m": 2.25
+    }
+   ],
+   "source": "B1 sens interdit au bout nord de l'îlot, face aux descendants (vu de face sur f58e2a31, de dos sur 89d3561a et f72ed2c1) : la voie latérale est à sens unique vers le nord ; position : visées 89d3561a et f72ed2c1",
+   "images": [
+    "f58e2a31",
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  },
+  {
+   "id": "B1_entree_voie_laterale",
+   "position": [
+    330.6,
+    600.7
+   ],
+   "cap_face_deg": 215,
+   "hauteur_mat_m": 2.95,
+   "socle_m": 0.14,
+   "plaques": [
+    {
+     "forme": "rond",
+     "face": "B1",
+     "largeur_m": 0.65,
+     "hauteur_m": 0.65,
+     "bas_m": 2.2
+    },
+    {
+     "forme": "rect",
+     "face": "panonceau_SAUF_BUS",
+     "largeur_m": 0.55,
+     "hauteur_m": 0.25,
+     "bas_m": 1.9
+    }
+   ],
+   "source": "B1 + panonceau « SAUF … BUS » (mot du milieu illisible, non écrit) à l'entrée sud de la voie latérale, sur le trottoir (f72ed2c1 de face ; mât nu sur 89d3561a) ; position : visées 89d3561a et f72ed2c1",
+   "images": [
+    "f72ed2c1",
+    "89d3561a"
+   ]
+  },
+  {
+   "id": "C13a_poteau_bois",
+   "position": [
+    333.7,
+    603.6
+   ],
+   "cap_face_deg": 285,
+   "hauteur_mat_m": 0.0,
+   "socle_m": 0.0,
+   "plaques": [
+    {
+     "forme": "rect",
+     "face": "C13a",
+     "largeur_m": 0.42,
+     "hauteur_m": 0.56,
+     "bas_m": 1.95
+    }
+   ],
+   "source": "C13a « voie sans issue » cloué au poteau de bois devant le mur (89d3561a droite, f72ed2c1)",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ],
+   "sur_poteau": "bois_mur"
+  },
+  {
+   "id": "AB3a_voie_laterale",
+   "position": [
+    344.7,
+    618.1
+   ],
+   "cap_face_deg": 205,
+   "hauteur_mat_m": 2.75,
+   "socle_m": 0.14,
+   "plaques": [
+    {
+     "forme": "triangle_bas",
+     "face": "AB3a",
+     "largeur_m": 0.7,
+     "hauteur_m": 0.62,
+     "bas_m": 2.05
+    }
+   ],
+   "source": "AB3a cédez-le-passage au débouché de la voie latérale, sur le trottoir (89d3561a, f72ed2c1) ; position : visées 89d3561a et f72ed2c1",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  },
+  {
+   "id": "C20a_voie_romaine",
+   "position": [
+    351.5,
+    626.0
+   ],
+   "cap_face_deg": 225,
+   "hauteur_mat_m": 2.7,
+   "socle_m": 0.14,
+   "plaques": [
+    {
+     "forme": "rect",
+     "face": "C20a",
+     "largeur_m": 0.5,
+     "hauteur_m": 0.5,
+     "bas_m": 2.1
+    }
+   ],
+   "source": "C20a passage pour piétons, Voie Romaine côté mur (89d3561a, f72ed2c1, bfbe2896) ; position : visées 89d3561a, f72ed2c1, sol des pixels bfbe2896",
+   "images": [
+    "89d3561a",
+    "f72ed2c1",
+    "bfbe2896"
+   ]
+  },
+  {
+   "id": "B21_ilot_court",
+   "position": [
+    339.6,
+    628.1
+   ],
+   "cap_face_deg": 230,
+   "hauteur_mat_m": 1.85,
+   "socle_m": 0.12,
+   "plaques": [
+    {
+     "forme": "rond",
+     "face": "B21",
+     "largeur_m": 0.45,
+     "hauteur_m": 0.45,
+     "bas_m": 1.38
+    }
+   ],
+   "source": "B21-1 contournement obligatoire par la droite (disque bleu, flèche blanche) sur l'îlot court (bfbe2896) ; position et hauteur : bfbe2896",
+   "images": [
+    "bfbe2896"
+   ]
+  },
+  {
+   "id": "B14_50",
+   "position": [
+    320.6,
+    602.6
+   ],
+   "cap_face_deg": 20,
+   "hauteur_mat_m": 2.95,
+   "socle_m": 0.0,
+   "plaques": [
+    {
+     "forme": "rond",
+     "face": "B14_50",
+     "largeur_m": 0.65,
+     "hauteur_m": 0.65,
+     "bas_m": 2.2
+    }
+   ],
+   "source": "B14 « 50 » face aux descendants, côté champ (89d3561a descente, de dos sur f72ed2c1) ; position : visées f72ed2c1 et f58e2a31 ; remplace B14_m20 de 39_panneaux_neutres.py (PK -20, lu de loin)",
+   "images": [
+    "89d3561a",
+    "f72ed2c1",
+    "f58e2a31"
+   ]
+  },
+  {
+   "id": "B13_19t",
+   "position": [
+    323.8,
+    613.0
+   ],
+   "cap_face_deg": 20,
+   "hauteur_mat_m": 2.95,
+   "socle_m": 0.0,
+   "plaques": [
+    {
+     "forme": "rond",
+     "face": "B13_19t",
+     "largeur_m": 0.65,
+     "hauteur_m": 0.65,
+     "bas_m": 2.2
+    }
+   ],
+   "source": "B13 « 19 t » face aux descendants, côté champ (f58e2a31 de face, f72ed2c1 de dos) ; position : visées f72ed2c1 et f58e2a31 ; remplace B13_5 de 39_panneaux_neutres.py",
+   "images": [
+    "f58e2a31",
+    "f72ed2c1"
+   ]
+  }
+ ],
+ "poteaux": [
+  {
+   "id": "bois_mur",
+   "type": "bois",
+   "position": [
+    333.7,
+    603.6
+   ],
+   "hauteur_m": 8.5,
+   "source": "poteau de bois devant le mur, portant le C13a (89d3561a droite ; visées 89d3561a et f72ed2c1)",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  },
+  {
+   "id": "bois_entree",
+   "type": "bois",
+   "position": [
+    326.8,
+    588.0
+   ],
+   "hauteur_m": 8.0,
+   "source": "poteau de bois au coin du mur, entrée de la voie latérale (89d3561a descente, sol des pixels)",
+   "images": [
+    "89d3561a"
+   ]
+  },
+  {
+   "id": "beton_lampe_lierre",
+   "type": "beton",
+   "position": [
+    325.95,
+    584.0
+   ],
+   "hauteur_m": 9.0,
+   "lampe_cap_deg": 290,
+   "lierre": true,
+   "source": "poteau de béton couvert de lierre, lanterne sur crosse vers la route (89d3561a descente, 432ff6e1)",
+   "images": [
+    "89d3561a",
+    "432ff6e1"
+   ]
+  },
+  {
+   "id": "beton_transfo",
+   "type": "beton",
+   "position": [
+    340.6,
+    638.0
+   ],
+   "hauteur_m": 10.5,
+   "transfo": true,
+   "source": "poteau de béton à transformateur (boîtier gris à 4,5 m) à l'ouest de l'abribus (89d3561a, bfbe2896, a1884060) ; OSM node/13248624886 (power=pole) ; visées 89d3561a et bfbe2896",
+   "images": [
+    "89d3561a",
+    "bfbe2896",
+    "a1884060"
+   ]
+  },
+  {
+   "id": "beton_lampe_abri",
+   "type": "beton",
+   "position": [
+    345.9,
+    633.4
+   ],
+   "hauteur_m": 9.5,
+   "lampe_cap_deg": 250,
+   "source": "poteau de béton à lanterne sur crosse à l'est de l'abribus (89d3561a, bfbe2896) ; visées 89d3561a et bfbe2896",
+   "images": [
+    "89d3561a",
+    "bfbe2896"
+   ]
+  },
+  {
+   "id": "bois_jambe",
+   "type": "bois",
+   "position": [
+    351.8,
+    625.0
+   ],
+   "hauteur_m": 8.0,
+   "jambe_de_force_cap_deg": 200,
+   "source": "poteau de bois et sa jambe de force au pied du mur, Voie Romaine (bfbe2896, sol des pixels)",
+   "images": [
+    "bfbe2896"
+   ]
+  }
+ ],
+ "lignes_aeriennes": [
+  {
+   "de": "bois_mur",
+   "a": "beton_lampe_abri",
+   "fils": 2,
+   "source": "fils du poteau du mur vers le nord-est (89d3561a montée et droite, f72ed2c1)"
+  },
+  {
+   "de": "beton_transfo",
+   "a": "beton_lampe_abri",
+   "fils": 3,
+   "source": "89d3561a, bfbe2896"
+  },
+  {
+   "de": "beton_lampe_abri",
+   "a": "bois_jambe",
+   "fils": 2,
+   "source": "bfbe2896"
+  },
+  {
+   "de": "bois_mur",
+   "a": "bois_entree",
+   "fils": 2,
+   "source": "f72ed2c1, 89d3561a descente"
+  },
+  {
+   "de": "bois_entree",
+   "a": "beton_lampe_lierre",
+   "fils": 2,
+   "source": "89d3561a descente"
+  }
+ ],
+ "coffrets": [
+  {
+   "id": "coffret_mur_1",
+   "position": [
+    332.8,
+    601.8
+   ],
+   "largeur_m": 0.6,
+   "hauteur_m": 0.45,
+   "z_m": 0.2,
+   "couleur": "gris_clair",
+   "dans_le_mur": true,
+   "source": "coffret encastré au pied du mur (89d3561a droite, f72ed2c1)",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  },
+  {
+   "id": "coffret_mur_2",
+   "position": [
+    332.0,
+    600.75
+   ],
+   "largeur_m": 0.6,
+   "hauteur_m": 0.55,
+   "z_m": 0.1,
+   "couleur": "blanc",
+   "dans_le_mur": true,
+   "source": "coffret encastré au pied du mur (89d3561a droite)",
+   "images": [
+    "89d3561a"
+   ]
+  },
+  {
+   "id": "boite_aux_lettres",
+   "position": [
+    349.2,
+    622.1
+   ],
+   "largeur_m": 0.38,
+   "hauteur_m": 0.48,
+   "z_m": 1.0,
+   "couleur": "jaune",
+   "dans_le_mur": true,
+   "source": "boîte aux lettres jaune sur le mur, Voie Romaine (bfbe2896) ; OSM post_box (node/10596460563)",
+   "images": [
+    "bfbe2896"
+   ]
+  }
+ ],
+ "potelets": [
+  {
+   "id": "potelet_vert",
+   "position": [
+    328.6,
+    599.0
+   ],
+   "hauteur_m": 1.0,
+   "source": "potelet vert à bande blanche sur le trottoir (89d3561a droite, f72ed2c1) ; visées des deux images",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  },
+  {
+   "id": "poteau_tordu_ilot_court",
+   "position": [
+    342.4,
+    627.0
+   ],
+   "hauteur_m": 1.3,
+   "inclinaison_deg": 18,
+   "cap_inclinaison_deg": 60,
+   "socle_m": 0.12,
+   "source": "poteau métallique tordu au bout est de l'îlot court (bfbe2896)",
+   "images": [
+    "bfbe2896"
+   ]
+  }
+ ],
+ "vegetation": [
+  {
+   "id": "bougainvillier_jardin",
+   "espece": "bougainvillier",
+   "centre": [
+    340.8,
+    605.5
+   ],
+   "rayon_m": 1.3,
+   "hauteur_m": 3.0,
+   "base": "terrain",
+   "source": "massif fleuri magenta au-dessus du mur, dans le jardin (89d3561a droite, f58e2a31) ; visées des deux images",
+   "images": [
+    "89d3561a",
+    "f58e2a31"
+   ]
+  },
+  {
+   "id": "laurier_rose_abri",
+   "espece": "laurier_rose",
+   "centre": [
+    340.3,
+    634.8
+   ],
+   "rayon_m": 1.2,
+   "hauteur_m": 2.7,
+   "base": "terrain",
+   "source": "laurier-rose à fleurs rouge rosé à l'ouest de l'abribus, contre l'armoire verte (89d3561a, bfbe2896, a1884060, f72ed2c1)",
+   "images": [
+    "89d3561a",
+    "bfbe2896",
+    "a1884060"
+   ]
+  }
+ ],
+ "vu_non_pose": [
+  "poteaux du PK -140 (lanterne sur béton, bois penché) et lanterne sur poteau de bois du PK ≈ 42 droite (c469075c) : vus de loin, position non relevée par visées croisées",
+  "fil électrique partant du poteau à transformateur vers l'ouest, au-dessus de la D3 : poteau d'arrivée hors des images",
+  "jambes de force du grillage du champ (gauche, PK ≈ 1, 89d3561a) : vues à un endroit, espacement non relevé",
+  "plaque jaune à pictogramme au-dessus de l'EB10 et deux plaques d'information dessous : logo et texte non reproduits",
+  "panonceau du B1 d'entrée : mot du milieu illisible (seuls « SAUF » et « BUS » sont écrits)",
+  "texte de la petite plaque blanche du mât de jalonnement : non lu (plaque blanche)",
+  "mosaïque et panneau d'affichage de l'abribus, antennes de télévision : inchangé (quatrième passe)"
+ ],
+ "verification_panneaux_pk_-150_100": [
+  {
+   "pk": "-150 à -100",
+   "sens": "montée et descente",
+   "images": [
+    "0978ecd2",
+    "8c8f9760",
+    "a9ef2aa0",
+    "c0e0148f"
+   ],
+   "vu": "aucun panneau de police ; lanterne sur poteau de béton et poteau de bois penché (PK ≈ -140, droite) ; panneau publicitaire (posé : affichage_G_-97) ; dos de plaque blanche sur un mât à gauche vers -97 (face non lue)",
+   "pose": "rien de nouveau (poteaux de -140 : non posés, voir vu_non_pose)"
+  },
+  {
+   "pk": "-100 à -40",
+   "sens": "montée et descente",
+   "images": [
+    "1093d878",
+    "034118cd",
+    "f9160d60",
+    "a251d23e"
+   ],
+   "vu": "mât de plaques de rue et coffret (posé : plaques_rue_D_-42) ; petit panneau de stationnement interdit sur le mur à vigne vierge (gauche, -70 : non posé, face trop petite pour être lue) ; panneau jaune temporaire (posé)",
+   "pose": "rien de nouveau"
+  },
+  {
+   "pk": "-40 à -20",
+   "sens": "montée et descente",
+   "images": [
+    "f5c5973b",
+    "b0467d52",
+    "90e37a20",
+    "43f093e4"
+   ],
+   "vu": "EB20 (montée) et EB10 « CEYRESTE » (descente) sur le même portique vert ; au-dessus de l'EB10 une plaque jaune à pictogramme (logo, non reproduit) ; dessous deux plaques d'information non lues ; panneau jaune temporaire « CARREFOUR MODIFIÉ … SAUF BUS » (lu sur b0467d52)",
+   "pose": "EB10 au dos de l'EB20 et portique remis en travers de la route (37) ; face du panneau jaune redessinée (37)"
+  },
+  {
+   "pk": "-20 à 40",
+   "sens": "montée et descente",
+   "images": [
+    "f72ed2c1",
+    "89d3561a",
+    "07f0e5a1",
+    "bfbe2896",
+    "f58e2a31",
+    "7de216e6"
+   ],
+   "vu": "B1 + panonceau « SAUF … BUS », C13a, AB3a, C20a, mât de jalonnement (D 3, SIGNES, CAUNET, Circuit du Castellet, petite plaque blanche), B1 au bout nord de l'îlot, B21 sur l'îlot court, B14 « 50 » et B13 « 19 t » face aux descendants",
+   "pose": "tous (panneaux de ce relevé) ; aucune balise J5 vue : le disque blanc vu de dos sur l'îlot (89d3561a) est le dos du B1 nord ; OSM y met un STOP (node/4343358548, highway=stop) : la photo montre un cédez-le-passage (AB3a, tirets), c'est la photo qui est retenue"
+  },
+  {
+   "pk": "40 à 100",
+   "sens": "montée et descente",
+   "images": [
+    "c469075c",
+    "42340ca0",
+    "c559b2b8",
+    "edfd08bf",
+    "fa1351a2"
+   ],
+   "vu": "A15b + M2 et A1d + M2 au PK 86 (posés, mobilier et export neutre) ; ils sont fixés sur un poteau de béton (OSM node/13248624887, posé comme poteau de bois d'après OSM : matière non corrigée) ; rien face aux descendants",
+   "pose": "rien de nouveau"
+  }
+ ],
+ "haie_jardins": {
+  "de_k": 0,
+  "a_k": 29,
+  "recul_derriere_pied_m": [
+   1.8,
+   4.2
+  ],
+  "hauteur_max_m": 3.4,
+  "hauteur_min_m": 0.8,
+  "source": "végétation des jardins au-dessus du mur (haies, arbustes) : hauteur MNS - MNT LiDAR HD dans une bande de 1 à 4 m derrière le pied ; vue sur 89d3561a (droite, montée), f58e2a31, bfbe2896, f72ed2c1",
+  "images": [
+   "89d3561a",
+   "f58e2a31",
+   "bfbe2896",
+   "f72ed2c1"
+  ]
+ },
+ "murets_jardin": [
+  {
+   "id": "muret_blanc_jardin",
+   "de_k": 2.5,
+   "a_k": 13.0,
+   "recul_derriere_pied_m": 1.0,
+   "hauteur_m": 1.0,
+   "grillage_m": 0.9,
+   "teinte": "blanc",
+   "source": "murets enduits blancs à piliers, grillage vert au-dessus, en retrait du haut du mur de pierre (jardin de la maison du PK -18) : 89d3561a (droite), f72ed2c1 ; hauteur lue sur 89d3561a (droite) par rapport au mur de pierre",
+   "images": [
+    "89d3561a",
+    "f72ed2c1"
+   ]
+  }
+ ]
+}

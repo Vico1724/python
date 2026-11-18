@@ -20,40 +20,6 @@
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
-   "id": "B14_m20",
-   "code": "B14",
-   "pk_m": -20,
-   "cote": "gauche",
-   "x_l93": 915314.22,
-   "y_l93": 6239586.86,
-   "z_sol_ngf": 212.34,
-   "bas_plaque_m": 1.3,
-   "largeur_m": 0.7,
-   "panonceau": null,
-   "face": "redessiné (Wikimedia : 429) ; texte « 50 » lu sur la photo",
-   "images": [
-    "edfc17c0"
-   ],
-   "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
-  },
-  {
-   "id": "B13_5",
-   "code": "B13",
-   "pk_m": 5,
-   "cote": "gauche",
-   "x_l93": 915322.59,
-   "y_l93": 6239610.22,
-   "z_sol_ngf": 213.41,
-   "bas_plaque_m": 1.3,
-   "largeur_m": 0.7,
-   "panonceau": null,
-   "face": "redessiné (Wikimedia : 429) ; texte « 19 t » lu sur la photo",
-   "images": [
-    "edfc17c0"
-   ],
-   "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
-  },
-  {
    "id": "A15b_86",
    "code": "A15b",
    "pk_m": 86,

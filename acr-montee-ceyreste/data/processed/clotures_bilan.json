@@ -13,7 +13,7 @@
   "grillage_occultant droite": 36.9,
   "grillage droite": 326.3,
   "mur_enduit droite": 71.6,
-  "pierre_seche droite": 629.5,
+  "pierre_seche droite": 644.6,
   "bloc_beton gauche": 3.8,
   "haie_taillee droite": 47.5,
   "barriere_tube droite": 5.1,
@@ -36,8 +36,8 @@
   "boites_aux_lettres": 1,
   "caniveau": 1
  },
- "cale_au_metre_m": 877.9,
- "photo_m": 942.9,
+ "cale_au_metre_m": 938.3,
+ "photo_m": 897.6,
  "collision": 79,
  "elements": [
   {
@@ -1335,15 +1335,17 @@
    "cote": "droite",
    "pk": [
     -15,
-    30
+    42
    ],
-   "longueur_m": 45.3,
-   "calage": "photo (cadastre non concordant : 54 % des PK)",
+   "longueur_m": 60.4,
+   "calage": "au mètre (pied relevé sur la marche du MNT LiDAR HD, depart_carrefour.json, existence vue sur photo)",
    "images": [
     "f72ed2c1",
     "43f093e4",
     "89d3561a",
-    "7de216e6"
+    "7de216e6",
+    "f58e2a31",
+    "bfbe2896"
    ],
    "collision": true
   }
@@ -1354,6 +1356,6 @@
   "haie": "aucun : SM_CypressHedge01 existe dans le jeu (haie de cyprès) mais ses dimensions ne sont pas relevées",
   "portail": "aucun asset posé : SM_FarmGateA, SM_FraChaGateA/B, SM_FraSavGateB1/B2 existent dans le jeu, dimensions non relevées"
  },
- "maillages": 168,
- "triangles": 19530
+ "maillages": 169,
+ "triangles": 19720
 }

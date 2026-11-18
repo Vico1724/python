@@ -1,0 +1,137 @@
+{
+ "surfaces_m2": {
+  "voie_laterale_enrobe": 324.0,
+  "trottoir": 106.3,
+  "ilot_long": 39.9,
+  "ilot_court": 2.5,
+  "parvis_abri": 50.7
+ },
+ "marquage_m2": {
+  "ilot_long_liseré": 7.5,
+  "ilot_court_liseré": 3.2,
+  "bus": 1.0,
+  "zigzag_arret": 1.4,
+  "ligne_jaune_bordure": 0.4,
+  "cedez_voie_laterale": 1.0,
+  "cedez_voie_romaine": 0.7,
+  "passage_pieton_voie_romaine": 4.0
+ },
+ "panneaux": [
+  {
+   "id": "directionnel_ilot",
+   "plaques": [
+    "cartouche_D3",
+    "dir_SIGNES",
+    "dir_CAUNET",
+    "dir_Circuit du Castellet",
+    "plaque_blanche"
+   ]
+  },
+  {
+   "id": "B1_ilot_nord",
+   "plaques": [
+    "B1"
+   ]
+  },
+  {
+   "id": "B1_entree_voie_laterale",
+   "plaques": [
+    "B1",
+    "panonceau_SAUF_BUS"
+   ]
+  },
+  {
+   "id": "C13a_poteau_bois",
+   "plaques": [
+    "C13a"
+   ]
+  },
+  {
+   "id": "AB3a_voie_laterale",
+   "plaques": [
+    "AB3a"
+   ]
+  },
+  {
+   "id": "C20a_voie_romaine",
+   "plaques": [
+    "C20a"
+   ]
+  },
+  {
+   "id": "B21_ilot_court",
+   "plaques": [
+    "B21"
+   ]
+  },
+  {
+   "id": "B14_50",
+   "plaques": [
+    "B14_50"
+   ]
+  },
+  {
+   "id": "B13_19t",
+   "plaques": [
+    "B13_19t"
+   ]
+  }
+ ],
+ "poteaux": [
+  {
+   "id": "bois_mur",
+   "type": "bois",
+   "hauteur_m": 8.5
+  },
+  {
+   "id": "bois_entree",
+   "type": "bois",
+   "hauteur_m": 8.0
+  },
+  {
+   "id": "beton_lampe_lierre",
+   "type": "beton",
+   "hauteur_m": 9.0
+  },
+  {
+   "id": "beton_transfo",
+   "type": "beton",
+   "hauteur_m": 10.5
+  },
+  {
+   "id": "beton_lampe_abri",
+   "type": "beton",
+   "hauteur_m": 9.5
+  },
+  {
+   "id": "bois_jambe",
+   "type": "bois",
+   "hauteur_m": 8.0
+  }
+ ],
+ "lignes_aeriennes_m": 70.7,
+ "coffrets": 3,
+ "potelets": 2,
+ "massifs": {
+  "haie_jardins (MNS - MNT)": 82,
+  "muret_blanc_jardin (m)": 20.9,
+  "bougainvillier_jardin": 1,
+  "laurier_rose_abri": 1
+ },
+ "vu_non_pose": [
+  "poteaux du PK -140 (lanterne sur béton, bois penché) et lanterne sur poteau de bois du PK ≈ 42 droite (c469075c) : vus de loin, position non relevée par visées croisées",
+  "fil électrique partant du poteau à transformateur vers l'ouest, au-dessus de la D3 : poteau d'arrivée hors des images",
+  "jambes de force du grillage du champ (gauche, PK ≈ 1, 89d3561a) : vues à un endroit, espacement non relevé",
+  "plaque jaune à pictogramme au-dessus de l'EB10 et deux plaques d'information dessous : logo et texte non reproduits",
+  "panonceau du B1 d'entrée : mot du milieu illisible (seuls « SAUF » et « BUS » sont écrits)",
+  "texte de la petite plaque blanche du mât de jalonnement : non lu (plaque blanche)",
+  "mosaïque et panneau d'affichage de l'abribus, antennes de télévision : inchangé (quatrième passe)"
+ ],
+ "maillages": 83,
+ "triangles": 19712,
+ "collision": {
+  "cloture": 12,
+  "beton": 3
+ },
+ "sol_de_roulage_m2": 523.4
+}

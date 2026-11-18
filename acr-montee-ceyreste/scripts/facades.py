@@ -22,6 +22,7 @@ graduations cyan des vues de 40_facades.py).
 from __future__ import annotations
 
 import json
+import zlib
 import math
 
 import numpy as np
@@ -91,7 +92,7 @@ def textures(noms, m11, m12, px=512):
     n = px // 2
     out = {}
     for nom in noms:
-        rng = np.random.default_rng(abs(hash(nom)) % (2 ** 31))
+        rng = np.random.default_rng(zlib.crc32(nom.encode()))     # hash() varie d'un processus à l'autre
         g = (np.arange(n) + 0.5) / n
         uu, vv = np.meshgrid(g, g)                 # u : horizontal (m / 2), v : vertical (m / 2)
         if nom.startswith("enduit_") or nom.startswith("soubassement_"):
@@ -544,6 +545,14 @@ class Batisseur:
                     (((0, l, zb + h * 0.62, zb + h * 0.62 + 0.05),) if typ == "baie" else ()):
                 self.quad(men, [P(s_a, z_a, dm), P(s_b, z_a, dm), P(s_b, z_b, dm), P(s_a, z_b, dm)], n3,
                           [[0, 0], [s_b - s_a, 0], [s_b - s_a, z_b - z_a], [0, z_b - z_a]])
+        # barreaux verticaux devant la baie (« barreaux » : nombre), fer sombre de 2 cm
+        nb = int(o.get("barreaux", 0))
+        if nb and self.detail:
+            dm = d - 0.03 if percee else d - 0.02
+            for k in range(1, nb + 1):
+                s_ = l * k / (nb + 1)
+                self.quad("metal_noir", [P(s_ - 0.01, zb, dm), P(s_ + 0.01, zb, dm), P(s_ + 0.01, zb + h, dm), P(s_ - 0.01, zb + h, dm)], n3,
+                          [[0, 0], [0.02, 0], [0.02, h], [0, h]])
         # volet roulant : tablier abaissé (fraction relevée « roulant_baisse », 0 à 1)
         if vol == "roulant":
             f = float(o.get("roulant_baisse", 0.0))

@@ -40,8 +40,8 @@
     ],
     "texture_px_par_dalle": 2048,
     "terrain": {
-      "sommets": 179988,
-      "triangles": 350961,
+      "sommets": 180455,
+      "triangles": 351113,
       "dalles": 13,
       "sommets_de_bord": 7826,
       "recalage_bords_mnt_m": {
@@ -72,8 +72,8 @@
       "terrain": {
         "taille_mo": 19.93,
         "maillages": 13,
-        "sommets": 181142,
-        "triangles": 350961,
+        "sommets": 181218,
+        "triangles": 351113,
         "nan": false,
         "bornes_min": [
           -301.0,
@@ -111,8 +111,8 @@
     ],
     "texture_px_par_dalle": 512,
     "terrain": {
-      "sommets": 50856,
-      "triangles": 93319,
+      "sommets": 51362,
+      "triangles": 93563,
       "dalles": 12,
       "sommets_de_bord": 7826,
       "recalage_bords_mnt_m": {
@@ -141,10 +141,10 @@
         "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
-        "taille_mo": 3.67,
+        "taille_mo": 3.68,
         "maillages": 12,
-        "sommets": 51513,
-        "triangles": 93319,
+        "sommets": 51635,
+        "triangles": 93563,
         "nan": false,
         "bornes_min": [
           -301.0,
