@@ -44,11 +44,28 @@ Etape "Nos retouches (pc\patches)"
 # le code d'ACR Extra Stages est en LF : on applique donc une copie LF de chaque retouche.
 $patchesLf = Join-Path $Travail 'patches-lf'
 New-Item -ItemType Directory -Force $patchesLf | Out-Null
-foreach ($p in Get-ChildItem (Join-Path $script:Projet 'pc\patches') -Filter '*.patch' | Sort-Object Name) {
+$retouches = @(Get-ChildItem (Join-Path $script:Projet 'pc\patches') -Filter '*.patch' | Sort-Object Name)
+# Rejouable (17/11/2026, constaté au 2e lancement sur le PC) : le test « déjà appliquée » par retrait à blanc échoue
+# pour 0005, dont 0006 retouche ensuite le même fichier (StageBuild.cs). On repart donc toujours de la version
+# étudiée : si les seuls fichiers modifiés sont ceux que touchent nos retouches, ils sont remis à l'origine, puis
+# toute la série est appliquée ; toute autre modification arrête le script.
+$touches = @{}
+foreach ($p in $retouches) {
+    foreach ($m in [regex]::Matches((Get-Content -Raw $p.FullName), '(?m)^diff --git a/(\S+) b/(\S+)')) { $touches[$m.Groups[2].Value] = $true }
+}
+$sales = @(& git -C $src status --porcelain --untracked-files=all | ForEach-Object { @{ Code = $_.Substring(0, 2); Chemin = $_.Substring(3).Trim('"') } })
+$etrangers = @($sales | Where-Object { -not $touches.ContainsKey($_.Chemin) })
+if ($etrangers.Count) { Echec "modifications hors de nos retouches dans $src ($(($etrangers | ForEach-Object { $_.Chemin }) -join ', ')) : le renommer, puis relancer" }
+if ($sales.Count) {
+    foreach ($f in $sales) {
+        if ($f.Code -eq '??') { Remove-Item -Force (Join-Path $src $f.Chemin) }
+        else { & git -C $src checkout --quiet -- $f.Chemin }
+    }
+    Ok "$($sales.Count) fichiers retouchés remis à la version étudiée avant de réappliquer la série"
+}
+foreach ($p in $retouches) {
     $pf = Join-Path $patchesLf $p.Name
     [IO.File]::WriteAllText($pf, ((Get-Content -Raw $p.FullName) -replace "`r`n", "`n"))
-    & git -C $src apply --reverse --check $pf 2>$null
-    if ($LASTEXITCODE -eq 0) { Ok "$($p.Name) déjà appliquée"; continue }
     Lancer 'git' @('-C', $src, 'apply', '--check', $pf) "vérification de $($p.Name)"
     Lancer 'git' @('-C', $src, 'apply', $pf) "application de $($p.Name)"
     Ok "$($p.Name) appliquée"

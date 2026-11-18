@@ -30,6 +30,11 @@ $logiciels = @(
        Test = { $vw = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
                 (Test-Path $vw) -and ($null -ne (& $vw -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath)) };
        Opt = @('--override', '--quiet --wait --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended') },
+    # Constaté le 17/11/2026 sur le PC : Visual Studio Community 2022 déclarait le composant SDK sans en avoir les
+    # bibliothèques ; Rust échouait alors à lier retoc (« linker link.exe not found »). On teste donc le fichier.
+    @{ Nom = 'kit de développement Windows (Windows SDK 10.0.26100)'; Id = 'Microsoft.WindowsSDK.10.0.26100';
+       Test = { @(Get-ChildItem "${env:ProgramFiles(x86)}\Windows Kits\10\Lib\*\um\x64\kernel32.lib" -ErrorAction SilentlyContinue).Count -gt 0 };
+       Opt = @('--silent') },
     @{ Nom = 'Rust (rustup)'; Id = 'Rustlang.Rustup'; Test = { (Test-Commande 'cargo') -or (Test-Path "$HOME\.cargo\bin\cargo.exe") }; Opt = @() }
 )
 
