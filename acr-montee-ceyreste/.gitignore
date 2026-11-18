@@ -12,3 +12,6 @@ paquet_unreal/
 paquet_unreal_*/
 figures/apercu_lointain/
 modele/village.glb
+export/neutre/modeles/
+export/neutre/collisions/
+export/neutre/placements/

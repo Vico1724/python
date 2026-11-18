@@ -1,0 +1,170 @@
+[
+ {
+  "pk": [
+   -140,
+   -30
+  ],
+  "arbres_a_moins_de_20m_par_100m": 56.4,
+  "hauteur_mediane_m": 4.5,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 51.4,
+  "hauteur_mnh_p90_m": 16.5,
+  "essences_pct": {
+   "pin d'Alep": 37,
+   "olivier": 27,
+   "chêne vert": 26,
+   "cyprès": 10
+  }
+ },
+ {
+  "pk": [
+   60,
+   235
+  ],
+  "arbres_a_moins_de_20m_par_100m": 49.1,
+  "hauteur_mediane_m": 7.2,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 55.0,
+  "hauteur_mnh_p90_m": 18.7,
+  "essences_pct": {
+   "olivier": 45,
+   "chêne vert": 30,
+   "pin d'Alep": 24
+  }
+ },
+ {
+  "pk": [
+   250,
+   450
+  ],
+  "arbres_a_moins_de_20m_par_100m": 41.0,
+  "hauteur_mediane_m": 13.9,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 68.1,
+  "hauteur_mnh_p90_m": 16.7,
+  "essences_pct": {
+   "pin d'Alep": 82,
+   "chêne vert": 15,
+   "cyprès": 2,
+   "chêne pubescent": 1
+  }
+ },
+ {
+  "pk": [
+   500,
+   700
+  ],
+  "arbres_a_moins_de_20m_par_100m": 52.5,
+  "hauteur_mediane_m": 13.0,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 74.2,
+  "hauteur_mnh_p90_m": 17.4,
+  "essences_pct": {
+   "pin d'Alep": 87,
+   "chêne vert": 10,
+   "chêne pubescent": 3
+  }
+ },
+ {
+  "pk": [
+   850,
+   950
+  ],
+  "arbres_a_moins_de_20m_par_100m": 33.0,
+  "hauteur_mediane_m": 13.4,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 62.3,
+  "hauteur_mnh_p90_m": 15.3,
+  "essences_pct": {
+   "pin d'Alep": 94,
+   "chêne vert": 6
+  }
+ },
+ {
+  "pk": [
+   1150,
+   1350
+  ],
+  "arbres_a_moins_de_20m_par_100m": 48.5,
+  "hauteur_mediane_m": 9.1,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 56.9,
+  "hauteur_mnh_p90_m": 15.7,
+  "essences_pct": {
+   "pin d'Alep": 84,
+   "chêne vert": 13,
+   "chêne pubescent": 3
+  }
+ },
+ {
+  "pk": [
+   1500,
+   1650
+  ],
+  "arbres_a_moins_de_20m_par_100m": 32.0,
+  "hauteur_mediane_m": 15.2,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 70.7,
+  "hauteur_mnh_p90_m": 18.7,
+  "essences_pct": {
+   "pin d'Alep": 90,
+   "chêne vert": 10
+  }
+ },
+ {
+  "pk": [
+   1800,
+   2000
+  ],
+  "arbres_a_moins_de_20m_par_100m": 43.0,
+  "hauteur_mediane_m": 15.0,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 72.1,
+  "hauteur_mnh_p90_m": 16.8,
+  "essences_pct": {
+   "pin d'Alep": 87,
+   "chêne vert": 10,
+   "chêne pubescent": 2
+  }
+ },
+ {
+  "pk": [
+   2150,
+   2350
+  ],
+  "arbres_a_moins_de_20m_par_100m": 55.0,
+  "hauteur_mediane_m": 8.9,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 68.0,
+  "hauteur_mnh_p90_m": 17.6,
+  "essences_pct": {
+   "pin d'Alep": 74,
+   "chêne vert": 14,
+   "cyprès": 6,
+   "olivier": 5
+  }
+ },
+ {
+  "pk": [
+   2600,
+   2800
+  ],
+  "arbres_a_moins_de_20m_par_100m": 37.0,
+  "hauteur_mediane_m": 15.1,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 62.4,
+  "hauteur_mnh_p90_m": 16.4,
+  "essences_pct": {
+   "pin d'Alep": 74,
+   "chêne vert": 16,
+   "chêne pubescent": 5,
+   "cyprès": 4
+  }
+ },
+ {
+  "pk": [
+   3000,
+   3200
+  ],
+  "arbres_a_moins_de_20m_par_100m": 60.5,
+  "hauteur_mediane_m": 9.6,
+  "couvert_mnh_sup_2m_entre_5_et_20m_pct": 66.9,
+  "hauteur_mnh_p90_m": 15.8,
+  "essences_pct": {
+   "pin d'Alep": 77,
+   "chêne vert": 17,
+   "cyprès": 2,
+   "olivier": 2
+  }
+ }
+]
