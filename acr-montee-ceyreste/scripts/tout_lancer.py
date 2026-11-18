@@ -42,6 +42,8 @@ ETAPES = [
     (11, "11_route_ouvrages.py", "route texturée, marquage, tabliers et parapets", False),
     (12, "12_carrefours_annexes.py", "carrefours : voies fermées, îlot, balisage", False),
     (31, "31_bati.py", "bâti en volumes simples : maisons du bord de route, village vu du départ", False),
+    (37, "37_clotures.py", "murs, murets, clôtures, portails, haies relevés (data/reference/clotures_murets.json)", False),
+    (39, "39_panneaux_neutres.py", "panneaux exacts (mât + plaque) pour l'export neutre", False),
     (10, "10_semis_arbres.py", "semis des arbres et arbustes", False),
     (9, "09_export_stage_ir.py", "export « Stage IR » (ACR Extra Stages)", False),
     (13, "13_paysage_lointain.py", "paysage lointain jusqu'à l'horizon", False),

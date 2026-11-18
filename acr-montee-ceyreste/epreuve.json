@@ -187,6 +187,58 @@
     "carrefour_2622_traces": [
       2603,
       16.0
+    ],
+    "depart_mur_droite": [
+      -50,
+      [
+        "azimut",
+        62.0,
+        0.0
+      ]
+    ],
+    "depart_muret_gauche": [
+      -20,
+      [
+        "azimut",
+        190.0,
+        0.0
+      ]
+    ],
+    "approche_parking_m110": [
+      -125,
+      40.0
+    ],
+    "approche_muret_m70": [
+      -85,
+      40.0
+    ],
+    "approche_grillage_250": [
+      235,
+      40.0
+    ],
+    "maison_m122": [
+      -140,
+      25.0
+    ],
+    "maison_2854": [
+      2830,
+      30.0
+    ],
+    "hameau_3200": [
+      3170,
+      40.0
+    ],
+    "soutenement_2120": [
+      2095,
+      35.0
+    ],
+    "soutenement_2880": [
+      2855,
+      35.0
+    ],
+    "soutenement_3510": [
+      3480,
+      40.0
     ]
   },
   "pc": {

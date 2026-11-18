@@ -56,5 +56,31 @@ def main():
         print("écrit", nom)
 
 
+def avant_apres(nom, planche_avant):
+    """Synthèse photo | rendu avant | rendu après, à partir d'une planche précédente (git show <commit>:...) et de la
+    planche courante : python scripts/35_planches_photo_rendu.py --avant-apres NOM FICHIER_AVANT"""
+    dest = FIG / "affinage" / "photo_rendu"
+    av, ap = Image.open(planche_avant).convert("RGB"), Image.open(dest / f"{nom}.jpg").convert("RGB")
+    ph, ra, rp = av.crop((0, 30, 960, 570)), av.crop((970, 30, 1930, 570)), ap.crop((970, 30, 1930, 570))
+    pl = Image.new("RGB", (2900, 600), (255, 255, 255))
+    for k, im in enumerate((ph, ra, rp)):
+        pl.paste(im, (k * 970, 30))
+    try:
+        fnt = ImageFont.truetype("DejaVuSans.ttf", 16)
+    except OSError:
+        fnt = None
+    d = ImageDraw.Draw(pl)
+    for k, t in enumerate(("PHOTO RÉELLE (Panoramax f9160d60, 08/09/2025)", "RENDU AVANT (passe 2 : ni mur, ni clôture, ni panneau)",
+                           "RENDU APRÈS (passe 3 : murs, muret + grillage occultant, EB20)")):
+        d.text((k * 970 + 6, 6), t, fill=(0, 0, 0), font=fnt)
+    d.text((6, 576), "Photo : Panoramax, Région Sud / Immergis, licence Etalab 2.0. Rendus de contrôle hors jeu (étape 15).",
+           fill=(60, 60, 60), font=fnt)
+    pl.save(dest / f"{nom}_avant_apres.jpg", quality=84)
+    print("écrit", f"{nom}_avant_apres")
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:2] == ["--avant-apres"]:
+        avant_apres(sys.argv[2], sys.argv[3])
+    else:
+        main()

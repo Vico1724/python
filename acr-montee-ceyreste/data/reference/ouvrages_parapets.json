@@ -61,7 +61,8 @@
     "pk_photo_m": [
      -110,
      -95
-    ]
+    ],
+    "couronnement": "pierre"
    },
    "droite": {
     "type": "aucun",
@@ -88,43 +89,17 @@
     "pk_photo_m": [
      -82,
      -50
-    ]
-   },
-   "gauche": {
-    "type": "aucun",
-    "statut": "non relevé de ce côté dans cette entrée"
-   }
-  },
-  {
-   "pk_debut_m": -67.0,
-   "pk_fin_m": -36.0,
-   "route": "D3",
-   "gauche": {
-    "type": "pierre",
-    "hauteur_m": 0.5,
-    "epaisseur_m": 0.45,
-    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 31fd6398, f9160d60",
-    "images": [
-     "31fd6398-d470-40a9-bbb9-333edeb26453",
-     "f9160d60-31e7-498d-980b-702102fffa91"
     ],
-    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
-    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
-    "confiance": "moyenne",
-    "description": "muret de pierre bas surmonté d'un grillage brise-vue (grillage non rendu)",
-    "pk_photo_m": [
-     -65,
-     -45
-    ]
+    "couronnement": "pierre"
    },
-   "droite": {
+   "gauche": {
     "type": "aucun",
     "statut": "non relevé de ce côté dans cette entrée"
    }
   },
   {
-   "pk_debut_m": -20,
-   "pk_fin_m": 100,
+   "pk_debut_m": -27,
+   "pk_fin_m": 22,
    "route": "D3",
    "gauche": {
     "type": "beton",
@@ -138,72 +113,13 @@
      "c469075c-b307-473e-a97a-9d87eb0e4e5a",
      "c03d3e1e-01c3-4870-9de0-4cda19a935b0"
     ],
-    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026) ; bornes corrigées le 18/11/2026 (troisième passe) : la bordure de beton s'arrete au portail du PK 24 ; au-dela muret de pierre (muret_grillage_G_29) ; bornes corrigées le 18/11/2026 (troisième passe) : la bordure de beton s'arrete au portail du PK 24 ; au-dela muret de pierre (muret_grillage_G_29) ; bornes corrigées le 18/11/2026 (troisième passe) : la bordure de beton s'arrete au portail du PK 24 ; au-dela muret de pierre (muret_grillage_G_29) ; bornes corrigées le 18/11/2026 (troisième passe) : la bordure de beton s'arrete au portail du PK 24 ; au-dela muret de pierre (muret_grillage_G_29)",
     "positionnement": "approximatif (photo, PK ±10 m)",
     "confiance": "moyenne",
     "description": "bordure de béton basse le long du champ, grillage derrière (non rendu)",
     "pk_photo_m": [
-     -20,
-     100
-    ]
-   },
-   "droite": {
-    "type": "aucun",
-    "statut": "non relevé de ce côté dans cette entrée"
-   }
-  },
-  {
-   "pk_debut_m": 55.0,
-   "pk_fin_m": 115.0,
-   "route": "D3",
-   "droite": {
-    "type": "pierre",
-    "hauteur_m": 0.6,
-    "epaisseur_m": 0.45,
-    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c03d3e1e, edfd08bf, c559b2b8, fa1351a2, b046281f",
-    "images": [
-     "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
-     "edfd08bf-b5be-4304-b6ca-e922d593570e",
-     "c559b2b8-7e11-4711-bd90-a311b1613650",
-     "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
-     "b046281f-1c4b-4321-a97c-2ffb54f8b5d3"
-    ],
-    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
-    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
-    "confiance": "moyenne",
-    "description": "muret de pierre sèche bas",
-    "pk_photo_m": [
-     55,
-     165
-    ]
-   },
-   "gauche": {
-    "type": "aucun",
-    "statut": "non relevé de ce côté dans cette entrée"
-   }
-  },
-  {
-   "pk_debut_m": 100,
-   "pk_fin_m": 165,
-   "route": "D3",
-   "gauche": {
-    "type": "pierre",
-    "hauteur_m": 0.6,
-    "epaisseur_m": 0.45,
-    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images fa1351a2, b046281f, 9e3f4f93, 48a9f912",
-    "images": [
-     "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
-     "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
-     "9e3f4f93-cd2a-427a-bd84-4fabed39e880",
-     "48a9f912-ca25-48ab-bff3-5a6d42503499"
-    ],
-    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
-    "positionnement": "approximatif (photo, PK ±10 m)",
-    "confiance": "moyenne",
-    "description": "muret de pierre sèche bas, grillage derrière",
-    "pk_photo_m": [
-     100,
-     165
+     -27,
+     22
     ]
    },
    "droite": {
@@ -230,7 +146,8 @@
     "pk_photo_m": [
      185,
      195
-    ]
+    ],
+    "couronnement": "pierre"
    },
    "droite": {
     "type": "aucun",
@@ -257,7 +174,8 @@
     "pk_photo_m": [
      180,
      205
-    ]
+    ],
+    "couronnement": "pierre"
    },
    "gauche": {
     "type": "aucun",
@@ -283,39 +201,11 @@
     "pk_photo_m": [
      200,
      215
-    ]
-   },
-   "droite": {
-    "type": "aucun",
-    "statut": "non relevé de ce côté dans cette entrée"
-   }
-  },
-  {
-   "pk_debut_m": 287.0,
-   "pk_fin_m": 350.0,
-   "route": "D3",
-   "droite": {
-    "type": "beton",
-    "hauteur_m": 0.3,
-    "epaisseur_m": 0.3,
-    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 8801585d, b654d53a, 619b5f76, fda1798e, 3a53fe19",
-    "images": [
-     "8801585d-b9e4-45e3-ba15-433c18a46e7c",
-     "b654d53a-aadc-4535-a569-1d7d61580b00",
-     "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b",
-     "fda1798e-0ef9-44d8-b259-fc48ab601880",
-     "3a53fe19-c46f-4f93-b3f3-e91ef4895db3"
     ],
-    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
-    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
-    "confiance": "moyenne",
-    "description": "bordure maçonnée basse à chaperon de béton en crête de talus, grillage derrière",
-    "pk_photo_m": [
-     225,
-     350
-    ]
+    "couronnement": "pierre",
+    "couronnement_source": "troisième passe (18/11/2026) : couronnement de pierres, sans chaperon de béton, vu sur les planches de 36_releve_clotures.py"
    },
-   "gauche": {
+   "droite": {
     "type": "aucun",
     "statut": "non relevé de ce côté dans cette entrée"
    }
@@ -424,7 +314,9 @@
     "pk_photo_m": [
      925,
      968
-    ]
+    ],
+    "couronnement": "pierre",
+    "couronnement_source": "troisième passe (18/11/2026) : couronnement de pierres, sans chaperon de béton, vu sur les planches de 36_releve_clotures.py"
    },
    "droite": {
     "type": "aucun",
@@ -589,7 +481,8 @@
     "pk_photo_m": [
      2105,
      2140
-    ]
+    ],
+    "couronnement": "pierre"
    },
    "gauche": {
     "type": "aucun",
@@ -616,7 +509,8 @@
     "pk_photo_m": [
      2140,
      2160
-    ]
+    ],
+    "couronnement": "pierre"
    },
    "gauche": {
     "type": "aucun",
@@ -645,7 +539,9 @@
     "pk_photo_m": [
      2458,
      2520
-    ]
+    ],
+    "couronnement": "pierre",
+    "couronnement_source": "troisième passe (18/11/2026) : couronnement de pierres, sans chaperon de béton, vu sur les planches de 36_releve_clotures.py"
    },
    "droite": {
     "type": "aucun",
@@ -700,7 +596,8 @@
     "pk_photo_m": [
      2860,
      2895
-    ]
+    ],
+    "couronnement": "pierre"
    },
    "gauche": {
     "type": "aucun",
@@ -753,7 +650,9 @@
     "pk_photo_m": [
      3100,
      3125
-    ]
+    ],
+    "couronnement": "pierre",
+    "couronnement_source": "troisième passe (18/11/2026) : couronnement de pierres, sans chaperon de béton, vu sur les planches de 36_releve_clotures.py"
    },
    "gauche": {
     "type": "aucun",
@@ -782,7 +681,9 @@
     "pk_photo_m": [
      3130,
      3200
-    ]
+    ],
+    "couronnement": "pierre",
+    "couronnement_source": "troisième passe (18/11/2026) : couronnement de pierres, sans chaperon de béton, vu sur les planches de 36_releve_clotures.py"
    },
    "gauche": {
     "type": "aucun",
@@ -865,7 +766,8 @@
     "pk_photo_m": [
      3375,
      3420
-    ]
+    ],
+    "couronnement": "pierre"
    },
    "gauche": {
     "type": "aucun",
@@ -873,8 +775,8 @@
    }
   },
   {
-   "pk_debut_m": 3500.0,
-   "pk_fin_m": 3562.0,
+   "pk_debut_m": 3488,
+   "pk_fin_m": 3562,
    "route": "D3",
    "droite": {
     "type": "pierre",
@@ -887,14 +789,15 @@
      "5e36c019-364e-4cb7-8286-a6303e9ef4d0",
      "a4a603b8-cb82-4a99-97b6-c6c32e4a53e9"
     ],
-    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026) ; bornes corrigées le 18/11/2026 (troisième passe) : le grand mur commence vers 3488 (f1c411df) ; bornes corrigées le 18/11/2026 (troisième passe) : le grand mur commence vers 3488 (f1c411df) ; bornes corrigées le 18/11/2026 (troisième passe) : le grand mur commence vers 3488 (f1c411df) ; bornes corrigées le 18/11/2026 (troisième passe) : le grand mur commence vers 3488 (f1c411df)",
     "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
     "confiance": "moyenne",
     "description": "grand mur de soutènement en pierre",
     "pk_photo_m": [
-     3500,
-     3560
-    ]
+     3488,
+     3562
+    ],
+    "couronnement": "pierre"
    },
    "gauche": {
     "type": "aucun",

@@ -10,8 +10,8 @@ Régénéré par `python scripts/33_export_neutre.py`, après `16_paquet_unreal.
 
 | Dossier | Contenu |
 |---|---|
-| `modeles/` | Toute la géométrie propre à la carte, en glb autonomes : `terrain_sol.glb` (terrain proche, avec ses images de dalles dans `modeles/textures_sol/`), `lointain.glb`, `route_habillee.glb` (enrobé et marquage), `ouvrages.glb` (murs, murets, parapets, glissières à nous, tabliers), `annexes.glb`, `balisage.glb`, `bati_bord.glb` (maisons du bord de route), `village.glb` (village de Ceyreste), et les maillages fabriqués par le projet que le paquet ACR pose en instances (pierres calcaires, blocs, poteau de béton). |
-| `collisions/` | Collisions séparées : `collision.glb` (sol physique, un primitif par surface) et `objects_collision.glb` (obstacles), tous deux de l'export Stage IR ; `ouvrages_collision.glb`, `annexes_collision.glb`, `bati_bord_collision.glb` (volumes bruts). |
+| `modeles/` | Toute la géométrie propre à la carte, en glb autonomes : `terrain_sol.glb` (terrain proche, avec ses images de dalles dans `modeles/textures_sol/`), `lointain.glb`, `route_habillee.glb` (enrobé et marquage), `ouvrages.glb` (murs, murets, parapets, glissières à nous, tabliers), `annexes.glb`, `balisage.glb`, `bati_bord.glb` (maisons du bord de route), `village.glb` (village de Ceyreste), `clotures.glb` (murs, murets, grillages, toiles, haies, portails, piliers et panneaux du départ de la troisième passe, textures CC0 et calculées, grillage à transparence), `panneaux_neutres.glb` (12 panneaux exacts mât + plaque, voir plus bas), et les maillages fabriqués par le projet que le paquet ACR pose en instances (pierres calcaires, blocs, poteau de béton). |
+| `collisions/` | Collisions séparées : `collision.glb` (sol physique, un primitif par surface) et `objects_collision.glb` (obstacles), tous deux de l'export Stage IR ; `ouvrages_collision.glb`, `annexes_collision.glb`, `bati_bord_collision.glb`, `clotures_collision.glb` (volumes bruts ; matières pierre, beton, cloture, haie). |
 | `placements/` | Un CSV par famille : arbres, arbustes, garrigue, versants, herbes, rocaille, glissières du jeu, mobilier. Colonnes : `type, x_l93, y_l93, z_ngf, x_local_m, y_local_haut_m, z_local_sud_m, cap_deg, echelle, hauteur_m, pk_m, source`. |
 | `correspondance_types.csv` | Pour chaque type : description en clair, maillages ACR utilisés, substitut libre, nature du substitut (réel, forme simple, projet, rien) et nombre posé. |
 | `manifeste.json` | Repère, liste des fichiers avec taille, bornes et nombre de maillages, comptes par famille et par type, licences. |
@@ -51,7 +51,7 @@ D'après `correspondance_types.csv` :
 - **Rien** : véhicules garés.
 
 **Pas encore fait dans cet export :**
-- Panneaux en modèles autonomes texturés depuis les SVG de la signalisation française (Wikimedia Commons, domaine public). La liste des panneaux est dans `data/reference/mobilier_bord_de_route.json` ; les plaques restent à générer.
+- Panneaux : **faits le 18/11/2026** (`scripts/39_panneaux_neutres.py`, `modeles/panneaux_neutres.glb`, placements et source de chaque face dans `data/processed/panneaux_neutres.json`). Faces A15b et A1d : Wikimedia Commons, auteur Roulex_45, **CC BY-SA 3.0** (pas domaine public : citer l'auteur, partager à l'identique) ; les dix autres (EB20, B13, B14, A14 + panonceau, AB3a, J4 ×2, PR 5, 7, 8) **redessinées simplement** (Wikimedia a refusé le téléchargement : « 429 »). Restent sans modèle : B1, panneaux d'information non lus, abri de bus.
 - Couche de décalques de chaussée indépendante du jeu : les traces relevées sont dans `data/reference/chaussee_surface_releve.json` ; elles ne sont pas encore exportées en CSV avec des textures libres (`muddy_tracks` Poly Haven pour les ornières ; pour la gomme, une texture à générer).
 
 ## Contrôle

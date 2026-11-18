@@ -2,7 +2,7 @@
  "verdict": "CONFORME",
  "ecarts": [],
  "alertes": [
-  "arbres : 1281 flottants > 0,3 m et 185 enterrés > 0,5 m sur 31498",
+  "arbres : 1281 flottants > 0,3 m et 185 enterrés > 0,5 m sur 31499",
   "versants : 14985 flottants > 0,3 m et 650 enterrés > 0,5 m sur 91654",
   "garrigue : 1130 flottants > 0,3 m et 453 enterrés > 0,5 m sur 23168",
   "arbustes : 864 flottants > 0,3 m et 469 enterrés > 0,5 m sur 28939",
@@ -18,8 +18,8 @@
    "collisions/annexes_collision.glb"
   ],
   "arbres": {
-   "objets": 31498,
-   "controles": 31498,
+   "objets": 31499,
+   "controles": 31499,
    "ecart_au_mnt_m": {
     "mediane": 0.004,
     "p1": -0.4,

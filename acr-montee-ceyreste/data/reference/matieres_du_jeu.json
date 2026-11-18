@@ -551,6 +551,76 @@
      1.0
     ]
    }
+  },
+  "MI_GC_Pierre_seche": {
+   "parent": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA",
+   "pourquoi": "murs et murets de pierre sèche de la troisième passe (37_clotures.py, 18/11/2026) : mêmes réglages que MI_GC_Pierre (pierre claire de Bollène), pour que murs neufs et parapets aient la même pierre ; dans l'export neutre, texture libre old_stone_wall (Poly Haven, CC0)",
+   "scalaires": {
+    "Mat1_UVTiling": 2.9
+   },
+   "vecteurs": {
+    "Mat1_AlbedoControls": [
+     2.0,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "Mat1_TintMult": [
+     1.0,
+     0.93,
+     0.8,
+     0.0
+    ],
+    "Mat1_ColorVariationTintMult": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Pierre_couronnement": {
+   "parent": "/Game/Props/MonteCarloProps/MonBolStoneWallsA/MI_MonBolStoneWallsA",
+   "pourquoi": "murs et murets de pierre sèche de la troisième passe (37_clotures.py, 18/11/2026) : mêmes réglages que MI_GC_Pierre (pierre claire de Bollène), pour que murs neufs et parapets aient la même pierre ; dans l'export neutre, texture libre old_stone_wall (Poly Haven, CC0)",
+   "scalaires": {
+    "Mat1_UVTiling": 2.9
+   },
+   "vecteurs": {
+    "Mat1_AlbedoControls": [
+     2.0,
+     0.7,
+     1.0,
+     0.0
+    ],
+    "Mat1_TintMult": [
+     1.0,
+     0.93,
+     0.8,
+     0.0
+    ],
+    "Mat1_ColorVariationTintMult": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ],
+    "ColorMult VPW": [
+     0.8,
+     0.8,
+     0.8,
+     0.0
+    ]
+   }
+  },
+  "MI_GC_Grillage": {
+   "herite_de": "/Game/Props/Walls/ChainlinkFenceA/MI_ChainlinkFenceA1",
+   "pourquoi": "grillage simple torsion des clôtures (37_clotures.py, 18/11/2026) : matière ajourée (masquée) du grillage du jeu, posée sur notre géométrie ; l'échelle de la maille (notre dépliage : 0,5 m par unité) est à vérifier en jeu"
   }
  },
  "parametres_des_maitres": {

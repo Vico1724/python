@@ -102,6 +102,33 @@ class MNSproxy:
         return self.rel._z(self.rel.mns, x, y)
 
 
+def forme_du_toit(P, rel):
+    """« quatre_pans » (croupes) ou « deux_pans », lu sur le LiDAR HD 0,5 m : sur la ligne de faîtage (axe long du
+    rectangle minimal), un toit à pignons garde sa hauteur jusqu'à 15 % de la longueur des bouts ; un toit à croupes y
+    descend. Retenu « quatre_pans » si les deux bouts sont plus bas que le milieu d'au moins 0,5 m et de 35 % de la
+    montée attendue. Renvoie (forme, mesure) ; « deux_pans » hors du LiDAR 0,5 m ou si le toit est masqué (arbres)."""
+    if not rel.dedans(rel.mns, *np.asarray(P.exterior.coords).T):
+        return "deux_pans", None
+    R = np.asarray(P.minimum_rotated_rectangle.exterior.coords)[:4]
+    a, b = R[1] - R[0], R[2] - R[1]
+    u = a if np.linalg.norm(a) >= np.linalg.norm(b) else b
+    Lh = np.linalg.norm(u) / 2; u = u / np.linalg.norm(u); v = np.array([-u[1], u[0]])
+    hw = min(np.linalg.norm(a), np.linalg.norm(b)) / 2
+    c = R.mean(0)
+    if hw < 2.5 or Lh < 3.0:
+        return "deux_pans", None
+
+    def h(pt):
+        g = np.array([pt + u * du + v * dv for du in (-0.5, 0, 0.5) for dv in (-0.5, 0, 0.5)])
+        return float(np.median(rel._z(rel.mns, g[:, 0], g[:, 1]) - rel.z(g[:, 0], g[:, 1])))
+    t = Lh * 0.7
+    hc, h1, h2 = h(c), h(c + u * t), h(c - u * t)
+    attendu = PENTE_TOIT * min(hw, (Lh - t) + hw) if Lh - t < hw else 0.0
+    baisse = hc - max(h1, h2)
+    mesure = {"faitage_milieu_m": round(hc, 2), "bouts_m": [round(h1, 2), round(h2, 2)]}
+    return ("quatre_pans" if baisse > max(0.5, 0.35 * PENTE_TOIT * hw) else "deux_pans"), mesure
+
+
 def lire(f):
     out = []
     for ft in json.loads(Path(f).read_text(encoding="utf-8"))["features"]:
@@ -140,7 +167,8 @@ def main():
             c = np.asarray(P.centroid.coords[0])
             dedans05 = rel.dedans(rel.mns, *np.asarray(P.exterior.coords).T)
             h_bd = p.get("hauteur") or p.get("hauteur_bdtopo_m")
-            e = {"polygone_l93": np.asarray(P.exterior.coords)[:-1].tolist(), "toit": "deux_pans", "pente_toit": PENTE_TOIT,
+            forme, mes_toit = forme_du_toit(P, rel)
+            e = {"polygone_l93": np.asarray(P.exterior.coords)[:-1].tolist(), "toit": forme, "pente_toit": PENTE_TOIT,
                  "materiau_murs": "enduit_maison", "materiau_toit": "tuile", "hauteur_bd_topo_m": h_bd,
                  "hauteur_m": None if dedans05 else float(h_bd or 5.5)}
             lot = m12._Lot(ref)
@@ -165,7 +193,8 @@ def main():
                           "cote": "gauche" if (lambda t, v: t[0] * v[1] - t[1] * v[0])(A[min(i + 1, len(A) - 1)] - A[max(i - 1, 0)], c - A[i]) > 0
                           else "droite",
                           "distance_chaussee_m": round(d_ch, 1), "surface_m2": round(P.area, 1),
-                          "hauteur_bdtopo_m": h_bd, "collision": groupe == "bati_bord" and d_ch < RAYON_COLLISION_M, **inf})
+                          "hauteur_bdtopo_m": h_bd, "collision": groupe == "bati_bord" and d_ch < RAYON_COLLISION_M, **inf,
+                          "forme_toit": forme, "forme_toit_mesure_lidar": mes_toit})
     mats = m12.zd_matieres(1024)
     for groupe, ms in lots.items():
         par = {}

@@ -1,0 +1,1359 @@
+{
+ "par_type_et_cote_m": {
+  "haie_taillee gauche": 20.1,
+  "portail gauche": 6.3,
+  "pilier gauche": 0.0,
+  "mur_enduit gauche": 7.9,
+  "muret_occultant gauche": 67.3,
+  "grillage gauche": 92.1,
+  "muret_grillage gauche": 136.4,
+  "muret_grillage droite": 255.3,
+  "pilier droite": 0.0,
+  "portail droite": 22.6,
+  "grillage_occultant droite": 36.9,
+  "grillage droite": 326.3,
+  "mur_enduit droite": 71.6,
+  "pierre_seche droite": 629.5,
+  "bloc_beton gauche": 3.8,
+  "haie_taillee droite": 47.5,
+  "barriere_tube droite": 5.1,
+  "boites_aux_lettres droite": 0.0,
+  "pierre_seche gauche": 22.4,
+  "caniveau gauche": 69.7
+ },
+ "nombre_par_type": {
+  "haie_taillee": 3,
+  "portail": 9,
+  "pilier": 14,
+  "mur_enduit": 4,
+  "muret_occultant": 2,
+  "grillage": 11,
+  "muret_grillage": 6,
+  "grillage_occultant": 2,
+  "pierre_seche": 26,
+  "bloc_beton": 1,
+  "barriere_tube": 1,
+  "boites_aux_lettres": 1,
+  "caniveau": 1
+ },
+ "cale_au_metre_m": 877.9,
+ "photo_m": 942.9,
+ "collision": 79,
+ "elements": [
+  {
+   "id": "haie_G_-141",
+   "type": "haie_taillee",
+   "cote": "gauche",
+   "pk": [
+    -141,
+    -121
+   ],
+   "longueur_m": 20.1,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "0978ecd2",
+    "ec130e15"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_G_-123",
+   "type": "portail",
+   "cote": "gauche",
+   "pk": [
+    -123.5,
+    -120.5
+   ],
+   "longueur_m": 3.1,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "d7f1c7f8"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_G_-120",
+   "type": "pilier",
+   "cote": "gauche",
+   "pk": [
+    -120.5,
+    -120.0
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "d7f1c7f8"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_enduit_G_-72",
+   "type": "mur_enduit",
+   "cote": "gauche",
+   "pk": [
+    -72,
+    -64
+   ],
+   "longueur_m": 7.9,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "4ee3bbf3",
+    "1093d878",
+    "a251d23e"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_occultant_G_-64",
+   "type": "muret_occultant",
+   "cote": "gauche",
+   "pk": [
+    -64,
+    -27
+   ],
+   "longueur_m": 35.4,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "a251d23e",
+    "31fd6398",
+    "034118cd",
+    "f9160d60",
+    "ee1447e9"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_G_-27",
+   "type": "grillage",
+   "cote": "gauche",
+   "pk": [
+    -27,
+    22
+   ],
+   "longueur_m": 48.3,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "b0467d52",
+    "09174137",
+    "f72ed2c1",
+    "43f093e4",
+    "89d3561a",
+    "7de216e6"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_G_22",
+   "type": "pilier",
+   "cote": "gauche",
+   "pk": [
+    22,
+    22.5
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "edfc17c0",
+    "bfbe2896"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_G_24",
+   "type": "pilier",
+   "cote": "gauche",
+   "pk": [
+    24,
+    24.5
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "bfbe2896",
+    "f58e2a31"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_G_24",
+   "type": "portail",
+   "cote": "gauche",
+   "pk": [
+    24.5,
+    27.5
+   ],
+   "longueur_m": 3.2,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "f58e2a31"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_G_27",
+   "type": "pilier",
+   "cote": "gauche",
+   "pk": [
+    27.5,
+    28
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "f58e2a31"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_grillage_G_29",
+   "type": "muret_grillage",
+   "cote": "gauche",
+   "pk": [
+    29,
+    165
+   ],
+   "longueur_m": 136.4,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "f58e2a31",
+    "712bdb9f",
+    "c469075c",
+    "c03d3e1e",
+    "edfd08bf",
+    "c559b2b8",
+    "fa1351a2",
+    "b046281f",
+    "9e3f4f93",
+    "48a9f912"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_grillage_D_35",
+   "type": "muret_grillage",
+   "cote": "droite",
+   "pk": [
+    35,
+    60
+   ],
+   "longueur_m": 25.3,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "712bdb9f",
+    "c469075c"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_grillage_D_60",
+   "type": "muret_grillage",
+   "cote": "droite",
+   "pk": [
+    60,
+    128
+   ],
+   "longueur_m": 68.1,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "c03d3e1e",
+    "edfd08bf",
+    "c559b2b8",
+    "fa1351a2",
+    "b046281f"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_D_128",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    128,
+    128.5
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "b046281f"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_D_128",
+   "type": "portail",
+   "cote": "droite",
+   "pk": [
+    128.5,
+    131
+   ],
+   "longueur_m": 2.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "b046281f"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_D_131",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    131,
+    131.5
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "b046281f"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_grillage_D_131",
+   "type": "muret_grillage",
+   "cote": "droite",
+   "pk": [
+    131.5,
+    160
+   ],
+   "longueur_m": 27.6,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "9e3f4f93",
+    "48a9f912"
+   ],
+   "collision": true
+  },
+  {
+   "id": "occultant_D_162",
+   "type": "grillage_occultant",
+   "cote": "droite",
+   "pk": [
+    162,
+    176
+   ],
+   "longueur_m": 14.4,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "48a9f912",
+    "d7d5855d"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_200",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    200,
+    215
+   ],
+   "longueur_m": 18.3,
+   "calage": "photo (cadastre non concordant : 12 % des PK)",
+   "images": [
+    "c6b32cb7",
+    "3c96316d"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_enduit_D_222",
+   "type": "mur_enduit",
+   "cote": "droite",
+   "pk": [
+    222,
+    256
+   ],
+   "longueur_m": 36.7,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "8801585d",
+    "b654d53a",
+    "619b5f76"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_222",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    222,
+    256
+   ],
+   "longueur_m": 36.7,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "8801585d",
+    "b654d53a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_grillage_D_256",
+   "type": "muret_grillage",
+   "cote": "droite",
+   "pk": [
+    256,
+    385
+   ],
+   "longueur_m": 119.1,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "619b5f76",
+    "fda1798e",
+    "a46dcdfa",
+    "e2b1240a",
+    "d8f0fa89",
+    "3a53fe19",
+    "306c6cbb",
+    "e2ac9454",
+    "706a42a6"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_385",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    385,
+    435
+   ],
+   "longueur_m": 49.5,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "1d316dff",
+    "2ba2815f",
+    "b6cc01c3"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_D_470",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    470,
+    470.6
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "3a0d33e4"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_D_470",
+   "type": "portail",
+   "cote": "droite",
+   "pk": [
+    470.6,
+    473.4
+   ],
+   "longueur_m": 2.6,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "3a0d33e4"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_D_473",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    473.4,
+    474
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "3a0d33e4"
+   ],
+   "collision": true
+  },
+  {
+   "id": "restanque_D_466",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    466,
+    478
+   ],
+   "longueur_m": 18.1,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "340a1a43"
+   ],
+   "collision": true
+  },
+  {
+   "id": "restanque_D_485",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    485,
+    492
+   ],
+   "longueur_m": 7.6,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "f481ecf0"
+   ],
+   "collision": true
+  },
+  {
+   "id": "restanque_D_580",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    580,
+    700
+   ],
+   "longueur_m": 116.5,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "3e2bfee7",
+    "7f430736",
+    "c03fc96f",
+    "ad907fae",
+    "c6c9a241",
+    "bcbd25d7",
+    "2763dc33",
+    "bf283b0a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "bloc_G_1452",
+   "type": "bloc_beton",
+   "cote": "gauche",
+   "pk": [
+    1452,
+    1455.5
+   ],
+   "longueur_m": 3.8,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "d14edaba",
+    "73b0f159"
+   ],
+   "collision": true
+  },
+  {
+   "id": "restanque_D_1490",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    1490,
+    1502
+   ],
+   "longueur_m": 16.6,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "ca4214f2"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_G_2029",
+   "type": "pilier",
+   "cote": "gauche",
+   "pk": [
+    2029,
+    2029.5
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "b9a4f318"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_G_2032",
+   "type": "pilier",
+   "cote": "gauche",
+   "pk": [
+    2032,
+    2032.5
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "b9a4f318"
+   ],
+   "collision": true
+  },
+  {
+   "id": "haie_D_2030",
+   "type": "haie_taillee",
+   "cote": "droite",
+   "pk": [
+    2030,
+    2045
+   ],
+   "longueur_m": 15.2,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "b9a4f318",
+    "7b885a49"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_2052",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    2052,
+    2061
+   ],
+   "longueur_m": 8.8,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "29a4065a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_D_2061",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    2061,
+    2061.6
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "29a4065a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_2062",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2062,
+    2068
+   ],
+   "longueur_m": 5.1,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "29a4065a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_2071",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2071,
+    2075
+   ],
+   "longueur_m": 4.1,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "6ab59068"
+   ],
+   "collision": true
+  },
+  {
+   "id": "barriere_D_2093",
+   "type": "barriere_tube",
+   "cote": "droite",
+   "pk": [
+    2093,
+    2097
+   ],
+   "longueur_m": 5.1,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "0cd7702a",
+    "6ab59068"
+   ],
+   "collision": true
+  },
+  {
+   "id": "restanque_D_2098",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2098,
+    2110
+   ],
+   "longueur_m": 17.7,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "0cd7702a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_2160",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2160,
+    2170
+   ],
+   "longueur_m": 7.8,
+   "calage": "photo (cadastre non concordant : 9 % des PK)",
+   "images": [
+    "58af6c06"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_2172",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2172,
+    2180
+   ],
+   "longueur_m": 6.0,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "b67a78d5"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_2212",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2212,
+    2222
+   ],
+   "longueur_m": 12.9,
+   "calage": "photo (cadastre non concordant : 9 % des PK)",
+   "images": [
+    "b12a5cd9"
+   ],
+   "collision": true
+  },
+  {
+   "id": "restanque_D_2250",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2250,
+    2300
+   ],
+   "longueur_m": 52.1,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "c2d0ce1b",
+    "159a7659",
+    "0386bf44"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_2295",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    2295,
+    2320
+   ],
+   "longueur_m": 24.2,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "421cb4d6",
+    "a232f421"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_2305",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2305,
+    2318
+   ],
+   "longueur_m": 12.6,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "a232f421"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_2322",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2322,
+    2332
+   ],
+   "longueur_m": 9.1,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "6343a32b"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_2330",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    2330,
+    2395
+   ],
+   "longueur_m": 56.7,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "6343a32b",
+    "1bf1a857",
+    "c1005dca",
+    "7aeeec73"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_2392",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2392,
+    2397
+   ],
+   "longueur_m": 4.5,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "5f7b4747"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_2410",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2410,
+    2512
+   ],
+   "longueur_m": 96.1,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "5e0f54d8",
+    "f257b290",
+    "51568e3d",
+    "7eef7b5c",
+    "0bc5836c",
+    "c7c78864",
+    "8d5c9409"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_2625",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2625,
+    2640
+   ],
+   "longueur_m": 15.3,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "fa486745"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_2660",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2660,
+    2690
+   ],
+   "longueur_m": 42.3,
+   "calage": "photo (cadastre non concordant : 52 % des PK)",
+   "images": [
+    "76cd2523"
+   ],
+   "collision": true
+  },
+  {
+   "id": "boites_D_2712",
+   "type": "boites_aux_lettres",
+   "cote": "droite",
+   "pk": [
+    2712,
+    2713
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "f131475a",
+    "e599d8e3"
+   ],
+   "collision": false
+  },
+  {
+   "id": "pilier_D_2802",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    2802,
+    2802.6
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "b0ba55b5",
+    "af4c60ef",
+    "948616e9"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_D_2802",
+   "type": "portail",
+   "cote": "droite",
+   "pk": [
+    2802.6,
+    2806.4
+   ],
+   "longueur_m": 3.1,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "b0ba55b5",
+    "af4c60ef",
+    "948616e9"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_D_2806",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    2806.4,
+    2807
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "948616e9"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_2830",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2830,
+    2840
+   ],
+   "longueur_m": 10.4,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "09972c6a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_2855",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    2855,
+    2869
+   ],
+   "longueur_m": 13.2,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "0119a756"
+   ],
+   "collision": true
+  },
+  {
+   "id": "occultant_D_2870",
+   "type": "grillage_occultant",
+   "cote": "droite",
+   "pk": [
+    2870,
+    2895
+   ],
+   "longueur_m": 22.5,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "6a88e7fa"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_3015",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    3015,
+    3095
+   ],
+   "longueur_m": 76.4,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "d7623aaf",
+    "85200ce6",
+    "94af0b8a",
+    "a49c1261",
+    "a6ff84a8"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_enduit_D_3120",
+   "type": "mur_enduit",
+   "cote": "droite",
+   "pk": [
+    3120,
+    3134
+   ],
+   "longueur_m": 14.2,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "2540de5a",
+    "532958a0"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_D_3124",
+   "type": "portail",
+   "cote": "droite",
+   "pk": [
+    3124,
+    3127.5
+   ],
+   "longueur_m": 3.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "2540de5a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_D_3140",
+   "type": "grillage",
+   "cote": "droite",
+   "pk": [
+    3140,
+    3195
+   ],
+   "longueur_m": 55.7,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "978841a8",
+    "5a111766"
+   ],
+   "collision": true
+  },
+  {
+   "id": "pilier_D_3195",
+   "type": "pilier",
+   "cote": "droite",
+   "pk": [
+    3195,
+    3195.8
+   ],
+   "longueur_m": 0.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "5a111766",
+    "726829e6"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grille_D_3196",
+   "type": "portail",
+   "cote": "droite",
+   "pk": [
+    3195.8,
+    3199.5
+   ],
+   "longueur_m": 3.0,
+   "calage": "photo (±5 m en long, ±1 m en travers)",
+   "images": [
+    "5a111766"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_grillage_D_3200",
+   "type": "muret_grillage",
+   "cote": "droite",
+   "pk": [
+    3200,
+    3215
+   ],
+   "longueur_m": 15.2,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "c9f46809"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_G_3212",
+   "type": "pierre_seche",
+   "cote": "gauche",
+   "pk": [
+    3212,
+    3235
+   ],
+   "longueur_m": 22.4,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "be182a52",
+    "c1fe1998"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_enduit_D_3232",
+   "type": "mur_enduit",
+   "cote": "droite",
+   "pk": [
+    3232,
+    3252
+   ],
+   "longueur_m": 20.7,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "a133f64e",
+    "c1fe1998"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_3255",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    3255,
+    3285
+   ],
+   "longueur_m": 32.3,
+   "calage": "photo (cadastre non concordant : 48 % des PK)",
+   "images": [
+    "06ea7f53",
+    "4ca4c4ec"
+   ],
+   "collision": true
+  },
+  {
+   "id": "haie_D_3255",
+   "type": "haie_taillee",
+   "cote": "droite",
+   "pk": [
+    3255,
+    3285
+   ],
+   "longueur_m": 32.3,
+   "calage": "photo (cadastre non concordant : 48 % des PK)",
+   "images": [
+    "06ea7f53",
+    "4ca4c4ec"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_D_3260",
+   "type": "portail",
+   "cote": "droite",
+   "pk": [
+    3260,
+    3264
+   ],
+   "longueur_m": 4.6,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "06ea7f53"
+   ],
+   "collision": true
+  },
+  {
+   "id": "restanque_D_3365",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    3365,
+    3385
+   ],
+   "longueur_m": 20.5,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "c6718930"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_3410",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    3410,
+    3425
+   ],
+   "longueur_m": 15.7,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "30cf4a1a"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_G_3530",
+   "type": "grillage",
+   "cote": "gauche",
+   "pk": [
+    3530,
+    3560
+   ],
+   "longueur_m": 30.2,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "a4a603b8",
+    "566faba1"
+   ],
+   "collision": true
+  },
+  {
+   "id": "muret_D_3545",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    3545,
+    3565
+   ],
+   "longueur_m": 19.9,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "566faba1"
+   ],
+   "collision": true
+  },
+  {
+   "id": "portail_D_3575",
+   "type": "portail",
+   "cote": "droite",
+   "pk": [
+    3574,
+    3578
+   ],
+   "longueur_m": 4.3,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "0a2d4774"
+   ],
+   "collision": true
+  },
+  {
+   "id": "grillage_G_3595",
+   "type": "grillage",
+   "cote": "gauche",
+   "pk": [
+    3595,
+    3610
+   ],
+   "longueur_m": 13.6,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "55590307"
+   ],
+   "collision": true
+  },
+  {
+   "id": "occultant_G_3715",
+   "type": "muret_occultant",
+   "cote": "gauche",
+   "pk": [
+    3715,
+    3748
+   ],
+   "longueur_m": 31.9,
+   "calage": "au mètre (limite cadastrale, existence vue sur photo)",
+   "images": [
+    "1eeb4efc",
+    "f5e338ef"
+   ],
+   "collision": true
+  },
+  {
+   "id": "caniveau_G_3675",
+   "type": "caniveau",
+   "cote": "gauche",
+   "pk": [
+    3675,
+    3745
+   ],
+   "longueur_m": 69.7,
+   "calage": "photo (cadastre non concordant : 0 % des PK)",
+   "images": [
+    "dcde5896",
+    "6f20b24e",
+    "e48878e8",
+    "1eeb4efc"
+   ],
+   "collision": false
+  },
+  {
+   "id": "mur_D_-43",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    -43,
+    -17
+   ],
+   "longueur_m": 27.8,
+   "calage": "au mètre (marche du MNT LiDAR HD, existence vue sur photo)",
+   "images": [
+    "f9160d60",
+    "ee1447e9",
+    "b0467d52"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_D_-15",
+   "type": "pierre_seche",
+   "cote": "droite",
+   "pk": [
+    -15,
+    30
+   ],
+   "longueur_m": 45.3,
+   "calage": "photo (cadastre non concordant : 54 % des PK)",
+   "images": [
+    "f72ed2c1",
+    "43f093e4",
+    "89d3561a",
+    "7de216e6"
+   ],
+   "collision": true
+  }
+ ],
+ "assets_du_jeu": {
+  "pierre_seche": "matière du jeu MI_MonBolStoneWallsA (pierre claire de Bollène, déjà utilisée par les parapets) sur notre géométrie ; texture libre old_stone_wall dans l'export neutre",
+  "grillage": "matière du jeu MI_ChainlinkFenceA1 (grillage ajouré, masqué) sur notre géométrie ; maillages SM_ChainlinkFenceA1..11 du jeu non utilisés (longueur de module inconnue, à mesurer)",
+  "haie": "aucun : SM_CypressHedge01 existe dans le jeu (haie de cyprès) mais ses dimensions ne sont pas relevées",
+  "portail": "aucun asset posé : SM_FarmGateA, SM_FraChaGateA/B, SM_FraSavGateB1/B2 existent dans le jeu, dimensions non relevées"
+ },
+ "maillages": 168,
+ "triangles": 19530
+}

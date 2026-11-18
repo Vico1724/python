@@ -110,7 +110,7 @@
      "part_reconstruite": 0.879
     }
    ],
-   "duree_s": 19.2
+   "duree_s": 15.5
   },
   {
    "nom": "dalle_915000_6239500",
@@ -369,7 +369,7 @@
      "part_reconstruite": 0.867
     }
    ],
-   "duree_s": 85.1
+   "duree_s": 75.0
   },
   {
    "nom": "dalle_915000_6240000",
@@ -605,7 +605,7 @@
      "part_reconstruite": 0.97
     }
    ],
-   "duree_s": 79.5
+   "duree_s": 70.4
   },
   {
    "nom": "dalle_915000_6240500",
@@ -633,7 +633,7 @@
    "part_reconstruite": 1.0,
    "triangles_hors_bande": 1,
    "sous_dalles": [],
-   "duree_s": 11.5
+   "duree_s": 8.4
   },
   {
    "nom": "dalle_915500_6239500",
@@ -661,7 +661,7 @@
    "part_reconstruite": 0.994,
    "triangles_hors_bande": 150,
    "sous_dalles": [],
-   "duree_s": 8.8
+   "duree_s": 7.4
   },
   {
    "nom": "dalle_915500_6240000",
@@ -897,7 +897,7 @@
      "part_reconstruite": 0.999
     }
    ],
-   "duree_s": 74.5
+   "duree_s": 67.6
   },
   {
    "nom": "dalle_915500_6240500",
@@ -972,7 +972,7 @@
      "part_reconstruite": 0.993
     }
    ],
-   "duree_s": 22.3
+   "duree_s": 20.8
   },
   {
    "nom": "dalle_916000_6240000",
@@ -1047,7 +1047,7 @@
      "part_reconstruite": 0.98
     }
    ],
-   "duree_s": 21.8
+   "duree_s": 20.5
   },
   {
    "nom": "dalle_916000_6240500",
@@ -1352,7 +1352,7 @@
      "part_reconstruite": 1.0
     }
    ],
-   "duree_s": 85.0
+   "duree_s": 80.9
   },
   {
    "nom": "dalle_916500_6240500",
@@ -1588,7 +1588,7 @@
      "part_reconstruite": 0.935
     }
    ],
-   "duree_s": 65.2
+   "duree_s": 61.6
   },
   {
    "nom": "dalle_916500_6241000",
@@ -1616,7 +1616,7 @@
    "part_reconstruite": 0.988,
    "triangles_hors_bande": 341,
    "sous_dalles": [],
-   "duree_s": 7.7
+   "duree_s": 6.8
   },
   {
    "nom": "dalle_917000_6240500",
@@ -1737,7 +1737,7 @@
      "part_reconstruite": 0.627
     }
    ],
-   "duree_s": 34.2
+   "duree_s": 32.4
   },
   {
    "nom": "dalle_917000_6241000",
@@ -1765,7 +1765,7 @@
    "part_reconstruite": 0.609,
    "triangles_hors_bande": 1072,
    "sous_dalles": [],
-   "duree_s": 8.8
+   "duree_s": 7.5
   }
  ],
  "controle": {

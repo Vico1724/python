@@ -208,3 +208,165 @@ Lecture corrigée au PK 86 d'après la photo HD et OSM : le second panneau est u
 - **Écarts réels vus sur les planches** : à corriger au prochain passage, non corrigés ici :
   - pas d'herbe sèche ni de terre rouge dans le rendu de l'accotement (le sol « façon jeu » les porte, le rendu photo non) ;
   - glissière du PK 503 de même hauteur que sur la photo, mais d'un blanc uniforme.
+
+
+## 9. Troisième passe (18/11/2026, soir) : murs, murets, clôtures et ce qui borde la route
+
+*Demande de l'utilisateur (mots exacts) : « Le tacer a l'air fidel il lanque les murret cloture et tout quand même ». Puis (transmis par le coordinateur) : « En decore ok mais les zone visible doivent etre vraiment bien faite ».*
+
+**Rien n'a été vu en jeu ni dans Unreal.** « Vérifié » = sortie regardée (planche, rendu de contrôle de l'étape 15, hors jeu).
+
+### Pourquoi le départ était vide
+
+Constat de l'utilisateur sur `figures/affinage/photo_rendu/depart_plan_de_masse.jpg` : la photo montre un haut mur de pierre à droite, un muret de pierre surmonté d'un grillage vert occultant à gauche, le panneau « CEYRESTE », le rendu rien de tout cela. Trois causes, toutes dans le relevé et sa transcription, aucune dans la plage de PK traitée (la chaîne va bien du PK −149 au PK 3746) :
+
+1. **Bornes fausses de 30 à 40 m dans l'approche.** Le grand mur de droite était noté PK −82 à −50 ; il y en a deux : le mur en gradins (−74 à −50, rendu) et, après la voie latérale, un mur de pierre de 1,8 m de −43 à −17 (relu sur l'agrandissement de l'image `f9160d60`, cap D50), **absent** du relevé. Le muret de gauche était noté −65 à −45 (rendu −67 à −36, 0,5 m de haut) : il va de −64 à −27.
+2. **Clôtures non modélisées.** Le relevé les mentionnait dans ses descriptions (« grillage brise-vue non rendu », « grillage derrière ») mais la chaîne ne savait poser ni grillage, ni toile, ni portail, ni haie ; le muret seul (0,5 m) se confondait avec le talus.
+3. **Panneau d'agglomération non posé** (aucun maillage du jeu ; il est maintenant posé en géométrie générée).
+
+Les deux premières passes lisaient des bandes de 200° à 4 px par degré centrées sur la montée, une image tous les 15 m, en notant surtout les ouvrages. La troisième passe relit **toutes** les images à 6 px par degré, sur 220°, graduées tous les 30° (« G90 » = perpendiculaire à gauche), en tenant un registre par tronçon de 50 m et par côté. 15 images supplémentaires ont été téléchargées dans l'approche (PK −160 à 70) pour y descendre à un pas de 6 à 10 m.
+
+### Méthode
+
+- `scripts/36_releve_clotures.py planches` : 53 planches de 5 bandes (262 images, PK −142 à 3756, aucun écart de plus de 25 m entre deux images ; images prises à plus de 6 m de l'axe écartées), `data/raw/panoramax/planches_clotures/` (non versionné). **Lues par moi, planche par planche** (pas d'outil de sous-agents dans cette session), plus 2 agrandissements (`zoom`) au départ. Relevé brut : `data/reference/releve_clotures_2025.json` (81 éléments en long ou ponctuels d'enceinte, 5 objets ponctuels du départ ; chaque élément cite ses images).
+- `lidar` : signatures par mètre et par côté (`data/processed/clotures_lidar.csv` : marche du MNT, objet mince surélevé MNS − MNT).
+- `cadastre` : limites parcellaires (PCI Etalab, `cadastre.data.gouv.fr`, commune 13023, téléchargé le 18/11/2026, `data/raw/cadastre/`, non versionné) ; recul de la première limite rencontrée au bord de chaussée, tous les mètres (`data/processed/clotures_cadastre.json`).
+- `verser` : un élément vu sur photo est calé **au mètre** si le cadastre (clôtures, murs de propriété) ou la marche du MNT (murs, restanques) le confirme sur au moins 60 % (50 %) de sa longueur, à ±1,5 m (±2,5 m si l'élément a été noté « cadastre ») du recul lu sur la photo ; sinon il garde la position photo (±5 m en long, ±1 m en travers). **Une clôture n'est posée que si une photo la montre.** Sortie : `data/reference/clotures_murets.json` (tracé L93 de chaque élément), registre `data/processed/clotures_registre.json`. Corrections des passes 1-2 (bornes et doublons) dans `ouvrages_parapets.json` et `releve_panoramax_2025.json` (clé `corrections_ouvrages` du relevé brut, rejouable).
+- `scripts/37_clotures.py` : géométrie (voir plus bas). `scripts/38_visibilite.py` : ce que voit le pilote. `scripts/39_panneaux_neutres.py` : panneaux de l'export neutre.
+- OSM (`barrier=*`, 27 objets dans le couloir) : 3 chaînes de pistes (PK 899, 2104, 3057), un portillon (2095), des portails ; recoupés : la barrière tubulaire du PK 2093-2097 est vue sur photo et posée ; les chaînes ne se voient pas sur les photos (non posées).
+- BD TOPO `construction_lineaire` : déjà remplacée par le relevé (passe 1).
+
+### Ce qui a été relevé (troisième passe)
+
+| Type | gauche | droite | total |
+|---|---|---|---|
+| mur ou muret de pierre sèche (soutènement, restanque, muret) | 23 m | 606 m | 629 m |
+| mur maçonné enduit | 8 m | 68 m | 76 m |
+| muret + grillage simple | 136 m | 266 m | 402 m |
+| muret + grillage occultant (toile verte ou bâche grise) | 70 m | — | 70 m |
+| grillage simple seul | 94 m | 333 m | 427 m |
+| grillage occultant seul | — | 39 m | 39 m |
+| haie taillée | 20 m | 45 m | 65 m |
+| portails (8) et piliers (13) | 6 m | 24 m | 30 m |
+| barrière tubulaire de piste, bloc de béton, caniveau, boîtes aux lettres | 74 m | 4 m | 78 m + 1 |
+| **total en long** | **431 m** | **1 385 m** | **1 815 m** |
+
+Calé au mètre : **878 m sur 1 815 (48 %)** (20 éléments par le cadastre, 10 par le LiDAR) ; le reste à la position photo.
+
+**Avant / après (en long, sans les glissières ni les parois rocheuses ; un muret surmonté d'un grillage compte dans les deux colonnes)** :
+
+| | murs et murets (pierre, béton, enduit) | clôtures (grillages, toiles), haies, portails |
+|---|---|---|
+| avant (passes 1-2) | G 628 m, D 674 m : **1 302 m** | **0** |
+| après | G 698 m, D 1 503 m : **2 201 m** | G 326 m, D 707 m : **1 033 m** |
+
+Les murets des passes 1-2 remplacés par un élément composé ou raccourcis (−278 m) sont décomptés ; s'y ajoutent 78 m de caniveau, barrière de piste et bloc de béton, et une batterie de boîtes aux lettres.
+
+### Registre des tronçons examinés (156 tronçons de 50 m × côté, tous avec au moins une image ; « rien » = examiné, sans mur ni clôture au bord)
+
+| PK | gauche | droite |
+|---|---|---|
+| -150 à -100 | haie, mur (p1-2), pilier, portail | rien |
+| -100 à -50 | mur (p1-2), mur enduit, muret+occultant | mur (p1-2) |
+| -50 à 0 | grillage, mur (p1-2), muret+occultant | pierre sèche |
+| 0 à 50 | grillage, mur (p1-2), muret+grillage, pilier, portail | muret+grillage, pierre sèche |
+| 50 à 100 | muret+grillage | muret+grillage |
+| 100 à 150 | muret+grillage | muret+grillage, pilier, portail |
+| 150 à 200 | mur (p1-2), muret+grillage | grillage occultant, mur (p1-2), muret+grillage |
+| 200 à 250 | mur (p1-2) | grillage, mur (p1-2), mur enduit, talus roch. |
+| 250 à 300 | rien | grillage, mur enduit, muret+grillage, talus roch. |
+| 300 à 350 | rien | muret+grillage |
+| 350 à 400 | rien | grillage, muret+grillage, talus roch. |
+| 400 à 450 | rien | grillage, mur (p1-2), talus roch. |
+| 450 à 500 | rien | mur (p1-2), pierre sèche, pilier, portail, talus roch. |
+| 500 à 550 | glissière | talus roch. |
+| 550 à 600 | glissière | pierre sèche, talus roch. |
+| 600 à 650 | rien | pierre sèche, talus roch. |
+| 650 à 700 | rien | pierre sèche, talus roch. |
+| 700 à 750 | mur (p1-2) | talus roch. |
+| 750 à 800 | mur (p1-2) | talus roch. |
+| 800 à 850 | glissière, mur (p1-2) | talus roch. |
+| 850 à 900 | glissière | rien |
+| 900 à 950 | glissière, mur (p1-2) | rien |
+| 950 à 1000 | mur (p1-2), talus roch. | rien |
+| 1000 à 1050 | talus roch. | rien |
+| 1050 à 1100 | talus roch. | rien |
+| 1100 à 1150 | talus roch. | mur (p1-2) |
+| 1150 à 1200 | talus roch. | mur (p1-2) |
+| 1200 à 1250 | talus roch. | mur (p1-2) |
+| 1250 à 1300 | talus roch. | mur (p1-2) |
+| 1300 à 1350 | talus roch. | mur (p1-2) |
+| 1350 à 1400 | talus roch. | rien |
+| 1400 à 1450 | talus roch. | rien |
+| 1450 à 1500 | bloc béton | pierre sèche |
+| 1500 à 1550 | rien | pierre sèche, talus roch. |
+| 1550 à 1600 | glissière | talus roch. |
+| 1600 à 1650 | glissière, mur (p1-2) | talus roch. |
+| 1650 à 1700 | mur (p1-2) | talus roch. |
+| 1700 à 1750 | talus roch. | talus roch. |
+| 1750 à 1800 | talus roch. | rien |
+| 1800 à 1850 | rien | rien |
+| 1850 à 1900 | talus roch. | rien |
+| 1900 à 1950 | talus roch. | rien |
+| 1950 à 2000 | talus roch. | rien |
+| 2000 à 2050 | pilier, talus roch. | haie |
+| 2050 à 2100 | rien | barrière, grillage, pierre sèche, pilier |
+| 2100 à 2150 | rien | mur (p1-2), pierre sèche |
+| 2150 à 2200 | rien | mur (p1-2), pierre sèche, talus roch. |
+| 2200 à 2250 | rien | pierre sèche, talus roch. |
+| 2250 à 2300 | rien | grillage, pierre sèche, talus roch. |
+| 2300 à 2350 | glissière | grillage, pierre sèche, talus roch. |
+| 2350 à 2400 | glissière | grillage, pierre sèche |
+| 2400 à 2450 | glissière | pierre sèche |
+| 2450 à 2500 | glissière, mur (p1-2) | pierre sèche |
+| 2500 à 2550 | mur (p1-2) | pierre sèche, talus roch. |
+| 2550 à 2600 | mur (p1-2) | talus roch. |
+| 2600 à 2650 | rien | pierre sèche, talus roch. |
+| 2650 à 2700 | rien | glissière, pierre sèche |
+| 2700 à 2750 | rien | boîtes aux lettres, glissière |
+| 2750 à 2800 | rien | rien |
+| 2800 à 2850 | rien | pierre sèche, pilier, portail |
+| 2850 à 2900 | rien | grillage occultant, mur (p1-2), pierre sèche |
+| 2900 à 2950 | glissière, mur (p1-2) | mur (p1-2), talus roch. |
+| 2950 à 3000 | glissière | talus roch. |
+| 3000 à 3050 | rien | grillage, talus roch. |
+| 3050 à 3100 | rien | grillage |
+| 3100 à 3150 | rien | grillage, mur (p1-2), mur enduit, portail |
+| 3150 à 3200 | rien | grillage, mur (p1-2), pilier, portail |
+| 3200 à 3250 | mur (p1-2), pierre sèche | mur (p1-2), mur enduit, muret+grillage |
+| 3250 à 3300 | mur (p1-2) | haie, mur enduit, pierre sèche, portail, talus roch. |
+| 3300 à 3350 | rien | talus roch. |
+| 3350 à 3400 | rien | mur (p1-2), pierre sèche, talus roch. |
+| 3400 à 3450 | rien | mur (p1-2), pierre sèche, talus roch. |
+| 3450 à 3500 | rien | mur (p1-2), talus roch. |
+| 3500 à 3550 | grillage | mur (p1-2), pierre sèche |
+| 3550 à 3600 | grillage | mur (p1-2), pierre sèche, portail |
+| 3600 à 3650 | grillage, mur (p1-2) | rien |
+| 3650 à 3700 | caniveau, mur (p1-2) | rien |
+| 3700 à 3750 | caniveau, muret+occultant | rien |
+
+Aucun tronçon sans image. Les 2 tronçons « mur (p1-2) » de gauche entre −50 et 50 sont la bordure de béton basse (passe 1, bornes corrigées −27 à 22).
+
+### Posé dans la carte (`scripts/37_clotures.py`)
+
+- **Formes paramétriques** suivant le terrain (MNT LiDAR 0,5 m), pied enterré de 0,3 m : pierre sèche avec couronnement de pierres plates ; mur enduit avec chaperon ; muret (pierre, béton ou enduit) + poteaux tous les 2,5 m + grillage simple torsion ajouré (texture à transparence) ; idem + toile brise-vue ; grillage seul ; haie taillée ; portail plein ou ajouré ; pilier à chapeau ; barrière tubulaire ; bloc de béton ; boîtes aux lettres ; caniveau. UV en mètres. Un mur de soutènement est posé au **pied** de la montée du terrain (le MNT lisse la marche d'un mur en talus : posé au milieu de la pente, le mur disparaissait dans le terrain, vu sur le rendu du départ) et son dessus dépasse le terrain arrière de 0,15 m.
+- **Matières** : pierre `old_stone_wall` et enduit `white_plaster_rough_01` (Poly Haven, CC0, catalogue du skill), teintées d'après les photos ; grillage, toiles, haie, portails : textures calculées. Dans le paquet Unreal : la pierre sèche prend **la pierre du jeu** (`MI_MonBolStoneWallsA`, comme les parapets : `MI_GC_Pierre_seche`), le grillage **la matière du grillage du jeu** (`MI_ChainlinkFenceA1`, masquée : `MI_GC_Grillage`), les enduits la matière de béton du jeu (comme le bâti). Les maillages de clôture du jeu (`SM_ChainlinkFenceA1..11`, `SM_FenceModular*`, portails `SM_FarmGateA`, `SM_FraChaGateA/B`, haie `SM_CypressHedge01`) existent mais leurs dimensions ne sont pas relevées : **géométrie générée** à la place.
+- **Collision** : 79 éléments à moins de 15 m de la chaussée (`modele/clotures_collision.glb` : pierre → `PM_WallRock`, béton → `PM_WallConcrete`, clôtures et portails → `PM_WallBasic`, haies → `PM_WallBush`), lue par 09.
+- Passes 1-2 : les murs de pierre sèche vus sans chaperon de béton (9 tronçons) ont maintenant un couronnement de pierre (`"couronnement": "pierre"` dans `ouvrages_parapets.json`) ; la pierre de l'aperçu et de l'export neutre est `old_stone_wall` au lieu de la pierre calculée. **Murets du PK 95** (signalés trop hauts et trop clairs) : le muret de 0,6 m à chaperon de béton clair du PK 55-165 est remplacé par un muret de pierre sèche de 0,6 m sans chaperon surmonté de son grillage (vérifié sur `approche_oliveraies_100`).
+- **Départ** : EB20 « CEYRESTE » sur portique vert, panneau jaune temporaire, mât de plaques de rue, panneau d'affichage du parking (PK −97) : mât + plaque générés (faces redessinées : texte lu sur les photos, aucun logo).
+
+### Panneaux exacts pour l'export neutre (`scripts/39_panneaux_neutres.py`)
+
+12 panneaux (EB20, B14 50, B13 19 t, A15b + panonceau 4,6 km, A1d + panonceau 3 km, PR 5, J4 ×2, A14 + panonceau jaune « CHAUSSÉE DÉFORMÉE », PR 7, AB3a, PR 8) : `modele/panneaux_neutres.glb` (un maillage par mât, plaque et panonceau, UV 0-1 sur la face), placements dans `data/processed/panneaux_neutres.json`. Faces A15b et A1d : **Wikimedia Commons, auteur Roulex_45, CC BY-SA 3.0** (téléchargées). Les autres : **redessinées simplement** — Wikimedia a répondu « 429 trop de requêtes » au téléchargement. Le paquet ACR garde ses substituts du jeu.
+
+### Ce que voit le pilote (`scripts/38_visibilite.py`)
+
+Œil à 1,1 m, un point tous les 10 m du PK −149 au PK 3746, voie de droite en montée et autre voie en descente (convoi), ±70°. Relief : MNT LiDAR ; végétation et bâti (MNS − MNT) : arrêtent le rayon après 20 m traversés à moins de 4 m du sol. Résultat : `data/processed/visibilite.json`, `figures/affinage/visibilite.png` (regardée).
+
+| | premier plan (< 30 m) | plan moyen (30-150 m) | lointain | jamais vu |
+|---|---|---|---|---|
+| bâtiments (971 posés) | 30 | 5 | 798 | 138 |
+| éléments de clôture (81) | 81 | 0 | 0 | 0 |
+| terrain (ha, cellules de 20 m à < 400 m) | 16 | 26 | 40 | 210 |
+
+Traitement selon ce classement : **toits** de tous les bâtiments relus sur le LiDAR (croupes si le faîtage descend aux deux bouts : 3 maisons du bord de route et 64 du village en quatre pans, le reste à deux pans), **clôtures, portails, piliers et haies** des 30 maisons de premier plan posés quand une photo les montre. **Non fait** : façades avec ouvertures (portes, fenêtres, volets), génoises, teintes d'enduit par maison, garages et terrasses : les 30 bâtiments de premier plan restent des volumes à toit juste mais **façades nues** (liste dans `visibilite.json`, niveau `premier_plan`). Correction du terrain « en pointes » du village (lointain 5 à 25 m) et contrôle de la silhouette (clocher) : **non faits**.

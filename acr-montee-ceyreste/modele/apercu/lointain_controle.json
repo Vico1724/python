@@ -72,7 +72,7 @@
    "m_par_px_max": 10.94
   },
   "relecture": {
-   "taille_mo": 59.21,
+   "taille_mo": 59.22,
    "maillages": 255,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,
@@ -163,5 +163,5 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 136
+ "duree_s": 129
 }

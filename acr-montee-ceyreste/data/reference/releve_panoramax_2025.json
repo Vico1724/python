@@ -126,21 +126,8 @@
   },
   {
    "categorie": "parapet",
-   "pk_debut_m": -65,
-   "pk_fin_m": -45,
-   "cote": "gauche",
-   "type": "pierre",
-   "hauteur_m": 0.5,
-   "images": [
-    "31fd6398-d470-40a9-bbb9-333edeb26453",
-    "f9160d60-31e7-498d-980b-702102fffa91"
-   ],
-   "description": "muret de pierre bas surmonté d'un grillage brise-vue (grillage non rendu)"
-  },
-  {
-   "categorie": "parapet",
-   "pk_debut_m": -20,
-   "pk_fin_m": 100,
+   "pk_debut_m": -27,
+   "pk_fin_m": 22,
    "cote": "gauche",
    "type": "beton",
    "hauteur_m": 0.3,
@@ -151,38 +138,8 @@
     "c469075c-b307-473e-a97a-9d87eb0e4e5a",
     "c03d3e1e-01c3-4870-9de0-4cda19a935b0"
    ],
-   "description": "bordure de béton basse le long du champ, grillage derrière (non rendu)"
-  },
-  {
-   "categorie": "parapet",
-   "pk_debut_m": 55,
-   "pk_fin_m": 165,
-   "cote": "droite",
-   "type": "pierre",
-   "hauteur_m": 0.6,
-   "images": [
-    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
-    "edfd08bf-b5be-4304-b6ca-e922d593570e",
-    "c559b2b8-7e11-4711-bd90-a311b1613650",
-    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
-    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3"
-   ],
-   "description": "muret de pierre sèche bas"
-  },
-  {
-   "categorie": "parapet",
-   "pk_debut_m": 100,
-   "pk_fin_m": 165,
-   "cote": "gauche",
-   "type": "pierre",
-   "hauteur_m": 0.6,
-   "images": [
-    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
-    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
-    "9e3f4f93-cd2a-427a-bd84-4fabed39e880",
-    "48a9f912-ca25-48ab-bff3-5a6d42503499"
-   ],
-   "description": "muret de pierre sèche bas, grillage derrière"
+   "description": "bordure de béton basse le long du champ, grillage derrière (non rendu)",
+   "pk_photo_corrige": "la bordure de beton s'arrete au portail du PK 24 ; au-dela muret de pierre (muret_grillage_G_29)"
   },
   {
    "categorie": "parapet",
@@ -220,22 +177,6 @@
     "3c96316d-dfd4-4061-a6d5-5eccad8e523a"
    ],
    "description": "muret de pierre"
-  },
-  {
-   "categorie": "parapet",
-   "pk_debut_m": 225,
-   "pk_fin_m": 350,
-   "cote": "droite",
-   "type": "beton",
-   "hauteur_m": 0.3,
-   "images": [
-    "8801585d-b9e4-45e3-ba15-433c18a46e7c",
-    "b654d53a-aadc-4535-a569-1d7d61580b00",
-    "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b",
-    "fda1798e-0ef9-44d8-b259-fc48ab601880",
-    "3a53fe19-c46f-4f93-b3f3-e91ef4895db3"
-   ],
-   "description": "bordure maçonnée basse à chaperon de béton en crête de talus, grillage derrière"
   },
   {
    "categorie": "parapet",
@@ -512,8 +453,8 @@
   },
   {
    "categorie": "parapet",
-   "pk_debut_m": 3500,
-   "pk_fin_m": 3560,
+   "pk_debut_m": 3488,
+   "pk_fin_m": 3562,
    "cote": "droite",
    "type": "pierre",
    "hauteur_m": 2.2,
@@ -523,7 +464,8 @@
     "5e36c019-364e-4cb7-8286-a6303e9ef4d0",
     "a4a603b8-cb82-4a99-97b6-c6c32e4a53e9"
    ],
-   "description": "grand mur de soutènement en pierre"
+   "description": "grand mur de soutènement en pierre",
+   "pk_photo_corrige": "le grand mur commence vers 3488 (f1c411df)"
   },
   {
    "categorie": "parapet",

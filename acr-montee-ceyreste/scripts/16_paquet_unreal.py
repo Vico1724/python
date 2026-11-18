@@ -172,6 +172,9 @@ BUISSONS = {"maillage": "/Game/Foliage/GroundCover/Willow/SM_Willow_03a", "haute
 # (Écrit le 14/11/2026 au matin, et faux :) presque blanc. Le gris médian (135) donnait moitié pierre, moitié mousse brun sombre (la couleur
 # de sommet dose le mélange des deux matières du mur) : murets « brun moussu ou noirs » au relevé du sixième essai.
 MURS_DU_JEU = {"pierre": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
+               # murs de pierre sèche de la troisième passe (37_clotures.py) : même pierre du jeu que les parapets
+               "pierre_seche": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
+               "pierre_couronnement": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
                "pierre_sombre": {"uv": 2.0 / 5.0, "couleur": (0, 0, 0, 255)},
                "beton": {"uv": 2.0 / 3.144, "couleur": None}, "dalle": {"uv": 2.0 / 3.144, "couleur": None},
                "chaperon": {"uv": 2.0 / 3.144, "couleur": None},
@@ -3670,7 +3673,11 @@ def main():
     # départ. Décor seul dans Unreal (la collision des façades proches passe par 09_export_stage_ir.py).
     bati = lire_glb(MOD / "bati_bord.glb") if (MOD / "bati_bord.glb").exists() else []
     vill = lire_glb(MOD / "village.glb") if (MOD / "village.glb").exists() else []
-    mats = materiaux_modele(P, [route, ouvr, annx, bali, bati, vill], f"{UE}/Shared/Textures", f"{UE}/Shared/Materials", "")
+    # Murs, murets, clôtures, portails, haies et panneaux du départ (37_clotures.py, troisième passe du 18/11/2026) :
+    # acteurs StaticMesh comme le bâti, famille « clotures » (Fences/Meshes) ; collision par 09 (clotures_collision.glb)
+    clot = lire_glb(MOD / "clotures.glb") if (MOD / "clotures.glb").exists() else []
+    mats = materiaux_modele(P, [route, ouvr, annx, bali, bati, vill, clot], f"{UE}/Shared/Textures",
+                            f"{UE}/Shared/Materials", "")
     mi = lambda mat: mats[mat]                                            # noqa: E731
     chaussee = [m for m in route if m["mat"]["nom"] == "enrobe"]
     marquage = [m for m in route if m["mat"]["nom"] == "marquage"]
@@ -3682,7 +3689,8 @@ def main():
             "annexes": par_troncon(P, pkf, annx, "Junction", "annexes", f"{UE}/Junctions/Meshes", mi, args),
             "balisage": par_troncon(P, pkf, bali, "Tape", "balisage", f"{UE}/Props/Meshes", mi, args),
             "batiments": par_troncon(P, pkf, bati, "Building", "batiments", f"{UE}/Buildings/Meshes", mi, args),
-            "village": par_troncon(P, pkf, vill, "Village", "village", f"{UE}/Village/Meshes", mi, args)}
+            "village": par_troncon(P, pkf, vill, "Village", "village", f"{UE}/Village/Meshes", mi, args),
+            "clotures": par_troncon(P, pkf, clot, "Fence", "clotures", f"{UE}/Fences/Meshes", mi, args)}
     print("anneau lointain…", flush=True)
     n_loin = lointain(P, ref, args, pkf)
     print("instances…", flush=True)

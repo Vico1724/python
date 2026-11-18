@@ -18,8 +18,8 @@
   "fichier": "figures/phase5/vue_depart_plan_de_masse.png",
   "taille_mo": 1.16,
   "controle_image": {
-   "pixels_noirs_pct": 0.12,
-   "luminance_moyenne": 94.3
+   "pixels_noirs_pct": 0.08,
+   "luminance_moyenne": 92.1
   }
  },
  "epingle_893": {
@@ -62,10 +62,10 @@
   "arbustes": 2809,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_lacets_1517.png",
-  "taille_mo": 1.4,
+  "taille_mo": 1.41,
   "controle_image": {
    "pixels_noirs_pct": 0.37,
-   "luminance_moyenne": 66.0
+   "luminance_moyenne": 65.9
   }
  },
  "ponceau_2026": {
@@ -88,7 +88,7 @@
   "taille_mo": 0.61,
   "controle_image": {
    "pixels_noirs_pct": 0.35,
-   "luminance_moyenne": 68.5
+   "luminance_moyenne": 68.4
   }
  },
  "arrivee_estimee": {
@@ -131,10 +131,10 @@
   "arbustes": 3964,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_controle_horizon.png",
-  "taille_mo": 1.23,
+  "taille_mo": 1.25,
   "controle_image": {
-   "pixels_noirs_pct": 0.31,
-   "luminance_moyenne": 72.5
+   "pixels_noirs_pct": 0.27,
+   "luminance_moyenne": 72.8
   }
  },
  "controle_raccord": {
@@ -180,7 +180,7 @@
   "taille_mo": 0.57,
   "controle_image": {
    "pixels_noirs_pct": 0.0,
-   "luminance_moyenne": 142.4
+   "luminance_moyenne": 142.3
   }
  },
  "village_mairie_vers_nord": {
@@ -223,10 +223,10 @@
   "arbustes": 1624,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_ligne_depart_montee.png",
-  "taille_mo": 1.24,
+  "taille_mo": 1.26,
   "controle_image": {
    "pixels_noirs_pct": 0.14,
-   "luminance_moyenne": 92.7
+   "luminance_moyenne": 92.0
   }
  },
  "ligne_depart_vers_village": {
@@ -246,10 +246,10 @@
   "arbustes": 1990,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_ligne_depart_vers_village.png",
-  "taille_mo": 1.07,
+  "taille_mo": 1.11,
   "controle_image": {
    "pixels_noirs_pct": 0.12,
-   "luminance_moyenne": 108.3
+   "luminance_moyenne": 107.2
   }
  },
  "approche_oliveraies_100": {
@@ -269,10 +269,10 @@
   "arbustes": 1223,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_approche_oliveraies_100.png",
-  "taille_mo": 1.12,
+  "taille_mo": 1.21,
   "controle_image": {
-   "pixels_noirs_pct": 0.18,
-   "luminance_moyenne": 82.5
+   "pixels_noirs_pct": 0.19,
+   "luminance_moyenne": 80.4
   }
  },
  "approche_oliveraies_170": {
@@ -292,10 +292,10 @@
   "arbustes": 1191,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_approche_oliveraies_170.png",
-  "taille_mo": 1.18,
+  "taille_mo": 1.17,
   "controle_image": {
    "pixels_noirs_pct": 0.44,
-   "luminance_moyenne": 75.8
+   "luminance_moyenne": 72.6
   }
  },
  "premieres_epingles_700": {
@@ -315,10 +315,10 @@
   "arbustes": 2488,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_premieres_epingles_700.png",
-  "taille_mo": 0.62,
+  "taille_mo": 0.63,
   "controle_image": {
-   "pixels_noirs_pct": 0.22,
-   "luminance_moyenne": 73.3
+   "pixels_noirs_pct": 0.0,
+   "luminance_moyenne": 73.2
   }
  },
  "mur_parapet_1140": {
@@ -338,10 +338,10 @@
   "arbustes": 2019,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_mur_parapet_1140.png",
-  "taille_mo": 1.26,
+  "taille_mo": 1.28,
   "controle_image": {
    "pixels_noirs_pct": 0.1,
-   "luminance_moyenne": 94.1
+   "luminance_moyenne": 93.6
   }
  },
  "glissiere_2330": {
@@ -361,10 +361,10 @@
   "arbustes": 4477,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_glissiere_2330.png",
-  "taille_mo": 1.24,
+  "taille_mo": 1.34,
   "controle_image": {
-   "pixels_noirs_pct": 0.29,
-   "luminance_moyenne": 68.1
+   "pixels_noirs_pct": 0.28,
+   "luminance_moyenne": 69.7
   }
  },
  "hameau_2840": {
@@ -387,7 +387,7 @@
   "taille_mo": 1.34,
   "controle_image": {
    "pixels_noirs_pct": 0.2,
-   "luminance_moyenne": 79.9
+   "luminance_moyenne": 79.8
   }
  },
  "aerien_bas_du_trace_village": {
@@ -479,7 +479,260 @@
   "taille_mo": 1.4,
   "controle_image": {
    "pixels_noirs_pct": 0.19,
-   "luminance_moyenne": 75.7
+   "luminance_moyenne": 75.8
+  }
+ },
+ "depart_mur_droite": {
+  "pk_oeil": -50,
+  "pk_vise": 950.0,
+  "oeil_gltf": [
+   -21.059999465942383,
+   -1.2100000381469727,
+   45.20000076293945
+  ],
+  "vise_gltf": [
+   861.8800048828125,
+   -1.2100000381469727,
+   -424.2699890136719
+  ],
+  "arbres": 5086,
+  "arbustes": 1716,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_depart_mur_droite.png",
+  "taille_mo": 1.33,
+  "controle_image": {
+   "pixels_noirs_pct": 0.13,
+   "luminance_moyenne": 94.9
+  }
+ },
+ "depart_muret_gauche": {
+  "pk_oeil": -20,
+  "pk_vise": 980.0,
+  "oeil_gltf": [
+   -5.480000019073486,
+   0.3199999928474426,
+   19.309999465942383
+  ],
+  "vise_gltf": [
+   -179.1300048828125,
+   0.3199999928474426,
+   1004.1099853515625
+  ],
+  "arbres": 1302,
+  "arbustes": 1970,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_depart_muret_gauche.png",
+  "taille_mo": 1.2,
+  "controle_image": {
+   "pixels_noirs_pct": 0.05,
+   "luminance_moyenne": 103.9
+  }
+ },
+ "approche_parking_m110": {
+  "pk_oeil": -125,
+  "pk_vise": -85.0,
+  "oeil_gltf": [
+   -79.2300033569336,
+   -6.550000190734863,
+   92.54000091552734
+  ],
+  "vise_gltf": [
+   -47.16999816894531,
+   -3.940000057220459,
+   68.56999969482422
+  ],
+  "arbres": 5022,
+  "arbustes": 1622,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_approche_parking_m110.png",
+  "taille_mo": 1.38,
+  "controle_image": {
+   "pixels_noirs_pct": 0.11,
+   "luminance_moyenne": 92.4
+  }
+ },
+ "approche_muret_m70": {
+  "pk_oeil": -85,
+  "pk_vise": -45.0,
+  "oeil_gltf": [
+   -46.779998779296875,
+   -3.6500000953674316,
+   69.0199966430664
+  ],
+  "vise_gltf": [
+   -17.920000076293945,
+   -1.190000057220459,
+   41.16999816894531
+  ],
+  "arbres": 5044,
+  "arbustes": 1571,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_approche_muret_m70.png",
+  "taille_mo": 1.07,
+  "controle_image": {
+   "pixels_noirs_pct": 0.01,
+   "luminance_moyenne": 111.6
+  }
+ },
+ "approche_grillage_250": {
+  "pk_oeil": 235,
+  "pk_vise": 275.0,
+  "oeil_gltf": [
+   42.95000076293945,
+   3.5399999618530273,
+   -218.0
+  ],
+  "vise_gltf": [
+   3.430000066757202,
+   2.819999933242798,
+   -225.0399932861328
+  ],
+  "arbres": 5742,
+  "arbustes": 1760,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_approche_grillage_250.png",
+  "taille_mo": 1.33,
+  "controle_image": {
+   "pixels_noirs_pct": 0.37,
+   "luminance_moyenne": 67.5
+  }
+ },
+ "maison_m122": {
+  "pk_oeil": -140,
+  "pk_vise": -115.0,
+  "oeil_gltf": [
+   -91.4000015258789,
+   -7.550000190734863,
+   101.30000305175781
+  ],
+  "vise_gltf": [
+   -71.3499984741211,
+   -6.159999847412109,
+   86.43000030517578
+  ],
+  "arbres": 5010,
+  "arbustes": 1635,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_maison_m122.png",
+  "taille_mo": 1.27,
+  "controle_image": {
+   "pixels_noirs_pct": 0.09,
+   "luminance_moyenne": 88.9
+  }
+ },
+ "maison_2854": {
+  "pk_oeil": 2830,
+  "pk_vise": 2860.0,
+  "oeil_gltf": [
+   968.2100219726562,
+   142.00999450683594,
+   -1075.3800048828125
+  ],
+  "vise_gltf": [
+   993.8099975585938,
+   143.25999450683594,
+   -1090.81005859375
+  ],
+  "arbres": 4483,
+  "arbustes": 3124,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_maison_2854.png",
+  "taille_mo": 1.35,
+  "controle_image": {
+   "pixels_noirs_pct": 0.13,
+   "luminance_moyenne": 79.6
+  }
+ },
+ "hameau_3200": {
+  "pk_oeil": 3170,
+  "pk_vise": 3210.0,
+  "oeil_gltf": [
+   1234.5,
+   159.14999389648438,
+   -1196.8299560546875
+  ],
+  "vise_gltf": [
+   1274.56005859375,
+   159.7899932861328,
+   -1195.72998046875
+  ],
+  "arbres": 3452,
+  "arbustes": 4118,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_hameau_3200.png",
+  "taille_mo": 1.26,
+  "controle_image": {
+   "pixels_noirs_pct": 0.18,
+   "luminance_moyenne": 77.3
+  }
+ },
+ "soutenement_2120": {
+  "pk_oeil": 2095,
+  "pk_vise": 2130.0,
+  "oeil_gltf": [
+   726.4199829101562,
+   102.93000030517578,
+   -785.739990234375
+  ],
+  "vise_gltf": [
+   738.0,
+   104.98999786376953,
+   -812.2899780273438
+  ],
+  "arbres": 5864,
+  "arbustes": 3215,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_soutenement_2120.png",
+  "taille_mo": 1.42,
+  "controle_image": {
+   "pixels_noirs_pct": 0.14,
+   "luminance_moyenne": 83.6
+  }
+ },
+ "soutenement_2880": {
+  "pk_oeil": 2855,
+  "pk_vise": 2890.0,
+  "oeil_gltf": [
+   989.6400146484375,
+   143.25999450683594,
+   -1088.0400390625
+  ],
+  "vise_gltf": [
+   1022.5499877929688,
+   144.9600067138672,
+   -1097.1700439453125
+  ],
+  "arbres": 4480,
+  "arbustes": 2929,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_soutenement_2880.png",
+  "taille_mo": 1.38,
+  "controle_image": {
+   "pixels_noirs_pct": 0.2,
+   "luminance_moyenne": 79.3
+  }
+ },
+ "soutenement_3510": {
+  "pk_oeil": 3480,
+  "pk_vise": 3520.0,
+  "oeil_gltf": [
+   1518.97998046875,
+   169.88999938964844,
+   -1279.5999755859375
+  ],
+  "vise_gltf": [
+   1558.52001953125,
+   171.25999450683594,
+   -1281.25
+  ],
+  "arbres": 1707,
+  "arbustes": 2363,
+  "temps_video_v2_s": null,
+  "fichier": "figures/phase5/vue_soutenement_3510.png",
+  "taille_mo": 1.21,
+  "controle_image": {
+   "pixels_noirs_pct": 0.62,
+   "luminance_moyenne": 70.0
   }
  }
 }

@@ -1,0 +1,1423 @@
+{
+ "note": "Releve brut des murs, murets, clotures, portails, haies et objets du bord de route (troisieme passe, 18/11/2026), lu image par image sur les planches de scripts/36_releve_clotures.py (bandes de 220 degres, une image tous les 15 m environ ; images 360 degres Panoramax Region Sud du 08/09/2025, licence Etalab 2.0) et sur des agrandissements. PK de l'objet estime depuis la position de prise de vue (+-5 m), recul = distance au bord de chaussee (+-1 m a l'oeil ; remplacee par la limite cadastrale ou la marche LiDAR quand placement le demande et qu'elles concordent), hauteurs a l'oeil (+-30 %) par comparaison aux voitures, poteaux et panneaux. Identifiants d'images : 8 premiers caracteres (data/reference/photos_rue_panoramax.csv).",
+ "date_releve": "18/11/2026",
+ "date_images": "08/09/2025",
+ "elements": [
+  {
+   "id": "haie_G_-141",
+   "type": "haie_taillee",
+   "pk_debut_m": -141,
+   "pk_fin_m": -121,
+   "cote": "gauche",
+   "hauteur_m": 3.0,
+   "recul_m": 0.8,
+   "placement": "cadastre",
+   "images": [
+    "0978ecd2",
+    "ec130e15"
+   ],
+   "description": "haie taillee haute (laurier, lierre) sur bordure beton basse"
+  },
+  {
+   "id": "portail_G_-123",
+   "type": "portail",
+   "pk_debut_m": -123.5,
+   "pk_fin_m": -120.5,
+   "cote": "gauche",
+   "hauteur_m": 1.8,
+   "recul_m": 1.5,
+   "placement": "photo",
+   "images": [
+    "d7f1c7f8"
+   ],
+   "description": "portail plein bois/metal entre piliers enduits roses",
+   "teinte": "brun"
+  },
+  {
+   "id": "pilier_G_-120",
+   "type": "pilier",
+   "pk_debut_m": -120.5,
+   "pk_fin_m": -120.0,
+   "cote": "gauche",
+   "hauteur_m": 2.0,
+   "recul_m": 1.5,
+   "placement": "photo",
+   "images": [
+    "d7f1c7f8"
+   ],
+   "description": "pilier enduit rose",
+   "teinte": "enduit_rose"
+  },
+  {
+   "id": "mur_enduit_G_-72",
+   "type": "mur_enduit",
+   "pk_debut_m": -72,
+   "pk_fin_m": -64,
+   "cote": "gauche",
+   "hauteur_m": 2.0,
+   "recul_m": 2.0,
+   "placement": "photo",
+   "images": [
+    "4ee3bbf3",
+    "1093d878",
+    "a251d23e"
+   ],
+   "description": "mur enduit couvert de vigne vierge, au fond du parking puis rejoignant la route",
+   "teinte": "enduit_beige",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "muret_occultant_G_-64",
+   "type": "muret_occultant",
+   "pk_debut_m": -64,
+   "pk_fin_m": -27,
+   "cote": "gauche",
+   "hauteur_m": 2.2,
+   "recul_m": 0.8,
+   "placement": "cadastre",
+   "images": [
+    "a251d23e",
+    "31fd6398",
+    "034118cd",
+    "f9160d60",
+    "ee1447e9"
+   ],
+   "description": "muret de pierre 0,6 m a chaperon de pierres plates, grillage simple torsion vert sur poteaux, toile brise-vue verte, total 2,2 m (zoom f9160d60 G45)",
+   "muret_h": 0.6
+  },
+  {
+   "id": "grillage_G_-27",
+   "type": "grillage",
+   "pk_debut_m": -27,
+   "pk_fin_m": 22,
+   "cote": "gauche",
+   "hauteur_m": 1.2,
+   "recul_m": 0.3,
+   "placement": "cadastre",
+   "images": [
+    "b0467d52",
+    "09174137",
+    "f72ed2c1",
+    "43f093e4",
+    "89d3561a",
+    "7de216e6"
+   ],
+   "description": "grillage simple vert 1,2 m sur poteaux metal, derriere la bordure beton (bordure : ouvrages_parapets.json)",
+   "base_sur_muret_m": 0.3
+  },
+  {
+   "id": "pilier_G_22",
+   "type": "pilier",
+   "pk_debut_m": 22,
+   "pk_fin_m": 22.5,
+   "cote": "gauche",
+   "hauteur_m": 1.5,
+   "recul_m": 0.5,
+   "placement": "photo",
+   "images": [
+    "edfc17c0",
+    "bfbe2896"
+   ],
+   "description": "pilier beton blanc",
+   "teinte": "blanc"
+  },
+  {
+   "id": "pilier_G_24",
+   "type": "pilier",
+   "pk_debut_m": 24,
+   "pk_fin_m": 24.5,
+   "cote": "gauche",
+   "hauteur_m": 1.5,
+   "recul_m": 0.5,
+   "placement": "photo",
+   "images": [
+    "bfbe2896",
+    "f58e2a31"
+   ],
+   "description": "pilier carre beton",
+   "teinte": "blanc"
+  },
+  {
+   "id": "portail_G_24",
+   "type": "portail",
+   "pk_debut_m": 24.5,
+   "pk_fin_m": 27.5,
+   "cote": "gauche",
+   "hauteur_m": 1.5,
+   "recul_m": 0.5,
+   "placement": "photo",
+   "images": [
+    "f58e2a31"
+   ],
+   "description": "portail de champ metallique a arche",
+   "teinte": "metal_gris"
+  },
+  {
+   "id": "pilier_G_27",
+   "type": "pilier",
+   "pk_debut_m": 27.5,
+   "pk_fin_m": 28,
+   "cote": "gauche",
+   "hauteur_m": 1.5,
+   "recul_m": 0.5,
+   "placement": "photo",
+   "images": [
+    "f58e2a31"
+   ],
+   "description": "pilier carre beton",
+   "teinte": "blanc"
+  },
+  {
+   "id": "muret_grillage_G_29",
+   "type": "muret_grillage",
+   "pk_debut_m": 29,
+   "pk_fin_m": 165,
+   "cote": "gauche",
+   "hauteur_m": 1.65,
+   "recul_m": 0.3,
+   "placement": "cadastre",
+   "images": [
+    "f58e2a31",
+    "712bdb9f",
+    "c469075c",
+    "c03d3e1e",
+    "edfd08bf",
+    "c559b2b8",
+    "fa1351a2",
+    "b046281f",
+    "9e3f4f93",
+    "48a9f912"
+   ],
+   "description": "muret de pierre seche bas 0,45 m (bordure de pierres de 0,3 m vers 160) surmonte d'un grillage simple 1,2 m, oliveraie derriere",
+   "muret_h": 0.45
+  },
+  {
+   "id": "muret_grillage_D_35",
+   "type": "muret_grillage",
+   "pk_debut_m": 35,
+   "pk_fin_m": 60,
+   "cote": "droite",
+   "hauteur_m": 1.7,
+   "recul_m": 0.4,
+   "placement": "photo",
+   "images": [
+    "712bdb9f",
+    "c469075c"
+   ],
+   "description": "muret beton 0,5 m et grillage 1,2 m sur poteaux",
+   "muret_h": 0.5,
+   "muret": "beton"
+  },
+  {
+   "id": "muret_grillage_D_60",
+   "type": "muret_grillage",
+   "pk_debut_m": 60,
+   "pk_fin_m": 128,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 0.4,
+   "placement": "photo",
+   "images": [
+    "c03d3e1e",
+    "edfd08bf",
+    "c559b2b8",
+    "fa1351a2",
+    "b046281f"
+   ],
+   "description": "muret de pierre seche 0,6 m surmonte d'un grillage 1,2 m (remplace le muret de 0,6 m a chaperon de beton clair du PK 55-165, juge trop haut et trop clair)",
+   "muret_h": 0.6
+  },
+  {
+   "id": "pilier_D_128",
+   "type": "pilier",
+   "pk_debut_m": 128,
+   "pk_fin_m": 128.5,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 0.6,
+   "placement": "photo",
+   "images": [
+    "b046281f"
+   ],
+   "description": "pilier enduit beige",
+   "teinte": "enduit_beige"
+  },
+  {
+   "id": "portail_D_128",
+   "type": "portail",
+   "pk_debut_m": 128.5,
+   "pk_fin_m": 131,
+   "cote": "droite",
+   "hauteur_m": 1.6,
+   "recul_m": 0.6,
+   "placement": "photo",
+   "images": [
+    "b046281f"
+   ],
+   "description": "portail vert a deux vantaux",
+   "teinte": "vert"
+  },
+  {
+   "id": "pilier_D_131",
+   "type": "pilier",
+   "pk_debut_m": 131,
+   "pk_fin_m": 131.5,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 0.6,
+   "placement": "photo",
+   "images": [
+    "b046281f"
+   ],
+   "description": "pilier enduit beige",
+   "teinte": "enduit_beige"
+  },
+  {
+   "id": "muret_grillage_D_131",
+   "type": "muret_grillage",
+   "pk_debut_m": 131.5,
+   "pk_fin_m": 160,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 0.4,
+   "placement": "photo",
+   "images": [
+    "9e3f4f93",
+    "48a9f912"
+   ],
+   "description": "muret de pierre seche 0,6 m et grillage 1,2 m",
+   "muret_h": 0.6
+  },
+  {
+   "id": "occultant_D_162",
+   "type": "grillage_occultant",
+   "pk_debut_m": 162,
+   "pk_fin_m": 176,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 0.5,
+   "placement": "photo",
+   "images": [
+    "48a9f912",
+    "d7d5855d"
+   ],
+   "description": "grillage occultant vert 1,2 m sans muret"
+  },
+  {
+   "id": "grillage_D_200",
+   "type": "grillage",
+   "pk_debut_m": 200,
+   "pk_fin_m": 215,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 2.0,
+   "placement": "photo",
+   "images": [
+    "c6b32cb7",
+    "3c96316d"
+   ],
+   "description": "grillage de champ 1,2 m derriere le muret clair"
+  },
+  {
+   "id": "mur_enduit_D_222",
+   "type": "mur_enduit",
+   "pk_debut_m": 222,
+   "pk_fin_m": 256,
+   "cote": "droite",
+   "hauteur_m": 0.4,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "8801585d",
+    "b654d53a",
+    "619b5f76"
+   ],
+   "description": "muret enduit rose-beige couronnant un talus rocheux d'environ 1 m",
+   "teinte": "enduit_rose"
+  },
+  {
+   "id": "grillage_D_222",
+   "type": "grillage",
+   "pk_debut_m": 222,
+   "pk_fin_m": 256,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "8801585d",
+    "b654d53a"
+   ],
+   "description": "grillage simple sur le muret enduit",
+   "base_sur_muret_m": 0.4
+  },
+  {
+   "id": "muret_grillage_D_256",
+   "type": "muret_grillage",
+   "pk_debut_m": 256,
+   "pk_fin_m": 385,
+   "cote": "droite",
+   "hauteur_m": 1.5,
+   "recul_m": 0.6,
+   "placement": "photo",
+   "images": [
+    "619b5f76",
+    "fda1798e",
+    "a46dcdfa",
+    "e2b1240a",
+    "d8f0fa89",
+    "3a53fe19",
+    "306c6cbb",
+    "e2ac9454",
+    "706a42a6"
+   ],
+   "description": "bordure maconnee rose 0,3 m et grillage simple 1,2 m (remplace la bordure de beton 225-350)",
+   "muret_h": 0.3,
+   "muret": "enduit_rose"
+  },
+  {
+   "id": "grillage_D_385",
+   "type": "grillage",
+   "pk_debut_m": 385,
+   "pk_fin_m": 435,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 3.0,
+   "placement": "photo",
+   "images": [
+    "1d316dff",
+    "2ba2815f",
+    "b6cc01c3"
+   ],
+   "description": "grillage simple en crete du talus rocheux rouge"
+  },
+  {
+   "id": "pilier_D_470",
+   "type": "pilier",
+   "pk_debut_m": 470,
+   "pk_fin_m": 470.6,
+   "cote": "droite",
+   "hauteur_m": 1.3,
+   "recul_m": 0.8,
+   "placement": "photo",
+   "images": [
+    "3a0d33e4"
+   ],
+   "description": "pilier de pierre",
+   "teinte": "pierre"
+  },
+  {
+   "id": "portail_D_470",
+   "type": "portail",
+   "pk_debut_m": 470.6,
+   "pk_fin_m": 473.4,
+   "cote": "droite",
+   "hauteur_m": 1.5,
+   "recul_m": 0.8,
+   "placement": "photo",
+   "images": [
+    "3a0d33e4"
+   ],
+   "description": "portail metallique",
+   "teinte": "metal_gris"
+  },
+  {
+   "id": "pilier_D_473",
+   "type": "pilier",
+   "pk_debut_m": 473.4,
+   "pk_fin_m": 474,
+   "cote": "droite",
+   "hauteur_m": 1.3,
+   "recul_m": 0.8,
+   "placement": "photo",
+   "images": [
+    "3a0d33e4"
+   ],
+   "description": "pilier de pierre",
+   "teinte": "pierre"
+  },
+  {
+   "id": "restanque_D_466",
+   "type": "pierre_seche",
+   "pk_debut_m": 466,
+   "pk_fin_m": 478,
+   "cote": "droite",
+   "hauteur_m": 0.8,
+   "recul_m": 6.0,
+   "placement": "photo",
+   "images": [
+    "340a1a43"
+   ],
+   "description": "restanque de pierre seche ruinee",
+   "confiance": "faible"
+  },
+  {
+   "id": "restanque_D_485",
+   "type": "pierre_seche",
+   "pk_debut_m": 485,
+   "pk_fin_m": 492,
+   "cote": "droite",
+   "hauteur_m": 0.6,
+   "recul_m": 3.5,
+   "placement": "photo",
+   "images": [
+    "f481ecf0"
+   ],
+   "description": "restanque partielle",
+   "confiance": "faible"
+  },
+  {
+   "id": "restanque_D_580",
+   "type": "pierre_seche",
+   "pk_debut_m": 580,
+   "pk_fin_m": 700,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 6.0,
+   "placement": "photo",
+   "images": [
+    "3e2bfee7",
+    "7f430736",
+    "c03fc96f",
+    "ad907fae",
+    "c6c9a241",
+    "bcbd25d7",
+    "2763dc33",
+    "bf283b0a"
+   ],
+   "description": "restanque de pierre seche en crete de paroi, presque continue",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "bloc_G_1452",
+   "type": "bloc_beton",
+   "pk_debut_m": 1452,
+   "pk_fin_m": 1455.5,
+   "cote": "gauche",
+   "hauteur_m": 0.6,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "d14edaba",
+    "73b0f159"
+   ],
+   "description": "bloc de beton blanc barrant l'entree de piste"
+  },
+  {
+   "id": "restanque_D_1490",
+   "type": "pierre_seche",
+   "pk_debut_m": 1490,
+   "pk_fin_m": 1502,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 6.0,
+   "placement": "photo",
+   "images": [
+    "ca4214f2"
+   ],
+   "description": "restanque de pierre seche en crete",
+   "confiance": "faible"
+  },
+  {
+   "id": "pilier_G_2029",
+   "type": "pilier",
+   "pk_debut_m": 2029,
+   "pk_fin_m": 2029.5,
+   "cote": "gauche",
+   "hauteur_m": 1.2,
+   "recul_m": 3.0,
+   "placement": "photo",
+   "images": [
+    "b9a4f318"
+   ],
+   "description": "pilier de pierre a l'entree d'un chemin",
+   "teinte": "pierre"
+  },
+  {
+   "id": "pilier_G_2032",
+   "type": "pilier",
+   "pk_debut_m": 2032,
+   "pk_fin_m": 2032.5,
+   "cote": "gauche",
+   "hauteur_m": 1.2,
+   "recul_m": 3.0,
+   "placement": "photo",
+   "images": [
+    "b9a4f318"
+   ],
+   "description": "pilier de pierre a l'entree d'un chemin",
+   "teinte": "pierre"
+  },
+  {
+   "id": "haie_D_2030",
+   "type": "haie_taillee",
+   "pk_debut_m": 2030,
+   "pk_fin_m": 2045,
+   "cote": "droite",
+   "hauteur_m": 2.0,
+   "recul_m": 2.0,
+   "placement": "photo",
+   "images": [
+    "b9a4f318",
+    "7b885a49"
+   ],
+   "description": "haie d'arbustes (photinia) "
+  },
+  {
+   "id": "grillage_D_2052",
+   "type": "grillage",
+   "pk_debut_m": 2052,
+   "pk_fin_m": 2061,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 1.5,
+   "placement": "photo",
+   "images": [
+    "29a4065a"
+   ],
+   "description": "grillage simple"
+  },
+  {
+   "id": "pilier_D_2061",
+   "type": "pilier",
+   "pk_debut_m": 2061,
+   "pk_fin_m": 2061.6,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "29a4065a"
+   ],
+   "description": "pilier d'entree beton et pierre surmonte d'un pot",
+   "teinte": "pierre"
+  },
+  {
+   "id": "muret_D_2062",
+   "type": "pierre_seche",
+   "pk_debut_m": 2062,
+   "pk_fin_m": 2068,
+   "cote": "droite",
+   "hauteur_m": 0.4,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "29a4065a"
+   ],
+   "description": "muret de pierre bas"
+  },
+  {
+   "id": "muret_D_2071",
+   "type": "pierre_seche",
+   "pk_debut_m": 2071,
+   "pk_fin_m": 2075,
+   "cote": "droite",
+   "hauteur_m": 0.5,
+   "recul_m": 1.5,
+   "placement": "photo",
+   "images": [
+    "6ab59068"
+   ],
+   "description": "muret de pierre bas",
+   "confiance": "faible"
+  },
+  {
+   "id": "barriere_D_2093",
+   "type": "barriere_tube",
+   "pk_debut_m": 2093,
+   "pk_fin_m": 2097,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "0cd7702a",
+    "6ab59068"
+   ],
+   "description": "barriere tubulaire blanche a deux lisses de la piste DFCI (OSM swing_gate 2095), bornes rouges et blanches"
+  },
+  {
+   "id": "restanque_D_2098",
+   "type": "pierre_seche",
+   "pk_debut_m": 2098,
+   "pk_fin_m": 2110,
+   "cote": "droite",
+   "hauteur_m": 0.8,
+   "recul_m": 3.0,
+   "placement": "photo",
+   "images": [
+    "0cd7702a"
+   ],
+   "description": "restanque de pierre seche",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "mur_D_2160",
+   "type": "pierre_seche",
+   "pk_debut_m": 2160,
+   "pk_fin_m": 2170,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "58af6c06"
+   ],
+   "description": "murs de pierre seche au debouche d'un chemin"
+  },
+  {
+   "id": "mur_D_2172",
+   "type": "pierre_seche",
+   "pk_debut_m": 2172,
+   "pk_fin_m": 2180,
+   "cote": "droite",
+   "hauteur_m": 1.5,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "b67a78d5"
+   ],
+   "description": "mur de soutenement de pierre seche au debouche d'un chemin"
+  },
+  {
+   "id": "muret_D_2212",
+   "type": "pierre_seche",
+   "pk_debut_m": 2212,
+   "pk_fin_m": 2222,
+   "cote": "droite",
+   "hauteur_m": 0.6,
+   "recul_m": 0.6,
+   "placement": "photo",
+   "images": [
+    "b12a5cd9"
+   ],
+   "description": "muret de pierre seche au bord"
+  },
+  {
+   "id": "restanque_D_2250",
+   "type": "pierre_seche",
+   "pk_debut_m": 2250,
+   "pk_fin_m": 2300,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 4.5,
+   "placement": "photo",
+   "images": [
+    "c2d0ce1b",
+    "159a7659",
+    "0386bf44"
+   ],
+   "description": "restanques de pierre seche en haut du talus",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "grillage_D_2295",
+   "type": "grillage",
+   "pk_debut_m": 2295,
+   "pk_fin_m": 2320,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 5.5,
+   "placement": "photo",
+   "images": [
+    "421cb4d6",
+    "a232f421"
+   ],
+   "description": "grillage simple en haut du talus"
+  },
+  {
+   "id": "muret_D_2305",
+   "type": "pierre_seche",
+   "pk_debut_m": 2305,
+   "pk_fin_m": 2318,
+   "cote": "droite",
+   "hauteur_m": 0.6,
+   "recul_m": 0.6,
+   "placement": "photo",
+   "images": [
+    "a232f421"
+   ],
+   "description": "muret de pierre seche au pied du talus"
+  },
+  {
+   "id": "muret_D_2322",
+   "type": "pierre_seche",
+   "pk_debut_m": 2322,
+   "pk_fin_m": 2332,
+   "cote": "droite",
+   "hauteur_m": 0.5,
+   "recul_m": 0.6,
+   "placement": "photo",
+   "images": [
+    "6343a32b"
+   ],
+   "description": "muret de pierre seche au pied du talus"
+  },
+  {
+   "id": "grillage_D_2330",
+   "type": "grillage",
+   "pk_debut_m": 2330,
+   "pk_fin_m": 2395,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 2.5,
+   "placement": "photo",
+   "images": [
+    "6343a32b",
+    "1bf1a857",
+    "c1005dca",
+    "7aeeec73"
+   ],
+   "description": "grillage simple 1,2 m sur poteaux espaces, pierres au pied"
+  },
+  {
+   "id": "muret_D_2392",
+   "type": "pierre_seche",
+   "pk_debut_m": 2392,
+   "pk_fin_m": 2397,
+   "cote": "droite",
+   "hauteur_m": 0.6,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "5f7b4747"
+   ],
+   "description": "muret de pierre a l'entree d'une propriete"
+  },
+  {
+   "id": "mur_D_2410",
+   "type": "pierre_seche",
+   "pk_debut_m": 2410,
+   "pk_fin_m": 2512,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 7.5,
+   "placement": "photo",
+   "images": [
+    "5e0f54d8",
+    "f257b290",
+    "51568e3d",
+    "7eef7b5c",
+    "0bc5836c",
+    "c7c78864",
+    "8d5c9409"
+   ],
+   "description": "mur de pierre seche en crete du talus (limite de propriete)",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "mur_D_2625",
+   "type": "pierre_seche",
+   "pk_debut_m": 2625,
+   "pk_fin_m": 2640,
+   "cote": "droite",
+   "hauteur_m": 0.8,
+   "recul_m": 6.0,
+   "placement": "photo",
+   "images": [
+    "fa486745"
+   ],
+   "description": "mur de pierre seche en haut du talus",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "muret_D_2660",
+   "type": "pierre_seche",
+   "pk_debut_m": 2660,
+   "pk_fin_m": 2690,
+   "cote": "droite",
+   "hauteur_m": 0.6,
+   "recul_m": 8.0,
+   "placement": "photo",
+   "images": [
+    "76cd2523"
+   ],
+   "description": "muret de pierre seche derriere la glissiere",
+   "confiance": "faible"
+  },
+  {
+   "id": "boites_D_2712",
+   "type": "boites_aux_lettres",
+   "pk_debut_m": 2712,
+   "pk_fin_m": 2713,
+   "cote": "droite",
+   "hauteur_m": 1.3,
+   "recul_m": 4.0,
+   "placement": "photo",
+   "images": [
+    "f131475a",
+    "e599d8e3"
+   ],
+   "description": "boites aux lettres groupees sur poteau a l'entree du chemin"
+  },
+  {
+   "id": "pilier_D_2802",
+   "type": "pilier",
+   "pk_debut_m": 2802,
+   "pk_fin_m": 2802.6,
+   "cote": "droite",
+   "hauteur_m": 2.0,
+   "recul_m": 8.0,
+   "placement": "photo",
+   "images": [
+    "b0ba55b5",
+    "af4c60ef",
+    "948616e9"
+   ],
+   "description": "pilier enduit blanc",
+   "teinte": "blanc"
+  },
+  {
+   "id": "portail_D_2802",
+   "type": "portail",
+   "pk_debut_m": 2802.6,
+   "pk_fin_m": 2806.4,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 8.0,
+   "placement": "photo",
+   "images": [
+    "b0ba55b5",
+    "af4c60ef",
+    "948616e9"
+   ],
+   "description": "portail plein bleu a deux vantaux au fond d'une rampe",
+   "teinte": "bleu"
+  },
+  {
+   "id": "pilier_D_2806",
+   "type": "pilier",
+   "pk_debut_m": 2806.4,
+   "pk_fin_m": 2807,
+   "cote": "droite",
+   "hauteur_m": 2.0,
+   "recul_m": 8.0,
+   "placement": "photo",
+   "images": [
+    "948616e9"
+   ],
+   "description": "pilier enduit blanc",
+   "teinte": "blanc"
+  },
+  {
+   "id": "mur_D_2830",
+   "type": "pierre_seche",
+   "pk_debut_m": 2830,
+   "pk_fin_m": 2840,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 6.0,
+   "placement": "photo",
+   "images": [
+    "09972c6a"
+   ],
+   "description": "mur de pierre pres de la maison",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "mur_D_2855",
+   "type": "pierre_seche",
+   "pk_debut_m": 2855,
+   "pk_fin_m": 2869,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "0119a756"
+   ],
+   "description": "mur de soutenement de pierre sous la haie"
+  },
+  {
+   "id": "occultant_D_2870",
+   "type": "grillage_occultant",
+   "pk_debut_m": 2870,
+   "pk_fin_m": 2895,
+   "cote": "droite",
+   "hauteur_m": 1.5,
+   "recul_m": 3.0,
+   "placement": "photo",
+   "images": [
+    "6a88e7fa"
+   ],
+   "description": "grillage occultant vert au-dessus du mur de soutenement"
+  },
+  {
+   "id": "grillage_D_3015",
+   "type": "grillage",
+   "pk_debut_m": 3015,
+   "pk_fin_m": 3095,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 3.0,
+   "placement": "photo",
+   "images": [
+    "d7623aaf",
+    "85200ce6",
+    "94af0b8a",
+    "a49c1261",
+    "a6ff84a8"
+   ],
+   "description": "grillage simple 1,2 m sur poteaux de bois et de metal en haut du talus"
+  },
+  {
+   "id": "mur_enduit_D_3120",
+   "type": "mur_enduit",
+   "pk_debut_m": 3120,
+   "pk_fin_m": 3134,
+   "cote": "droite",
+   "hauteur_m": 1.7,
+   "recul_m": 4.0,
+   "placement": "photo",
+   "images": [
+    "2540de5a",
+    "532958a0"
+   ],
+   "description": "murs enduits blancs de deux entrees de propriete",
+   "teinte": "blanc"
+  },
+  {
+   "id": "portail_D_3124",
+   "type": "portail",
+   "pk_debut_m": 3124,
+   "pk_fin_m": 3127.5,
+   "cote": "droite",
+   "hauteur_m": 1.6,
+   "recul_m": 4.5,
+   "placement": "photo",
+   "images": [
+    "2540de5a"
+   ],
+   "description": "portail gris coulissant",
+   "teinte": "metal_gris"
+  },
+  {
+   "id": "grillage_D_3140",
+   "type": "grillage",
+   "pk_debut_m": 3140,
+   "pk_fin_m": 3195,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 0.5,
+   "placement": "photo",
+   "images": [
+    "978841a8",
+    "5a111766"
+   ],
+   "description": "grillage simple au-dessus du mur de pierre",
+   "base_sur_muret_m": 1.0
+  },
+  {
+   "id": "pilier_D_3195",
+   "type": "pilier",
+   "pk_debut_m": 3195,
+   "pk_fin_m": 3195.8,
+   "cote": "droite",
+   "hauteur_m": 2.5,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "5a111766",
+    "726829e6"
+   ],
+   "description": "pilier de pierre",
+   "teinte": "pierre"
+  },
+  {
+   "id": "grille_D_3196",
+   "type": "portail",
+   "pk_debut_m": 3195.8,
+   "pk_fin_m": 3199.5,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "5a111766"
+   ],
+   "description": "grille en fer forge",
+   "teinte": "fer_noir",
+   "ajouree": true
+  },
+  {
+   "id": "muret_grillage_D_3200",
+   "type": "muret_grillage",
+   "pk_debut_m": 3200,
+   "pk_fin_m": 3215,
+   "cote": "droite",
+   "hauteur_m": 2.0,
+   "recul_m": 2.0,
+   "placement": "photo",
+   "images": [
+    "c9f46809"
+   ],
+   "description": "muret de pierre 0,8 m et grillage",
+   "muret_h": 0.8
+  },
+  {
+   "id": "muret_G_3212",
+   "type": "pierre_seche",
+   "pk_debut_m": 3212,
+   "pk_fin_m": 3235,
+   "cote": "gauche",
+   "hauteur_m": 0.7,
+   "recul_m": 0.4,
+   "placement": "photo",
+   "images": [
+    "be182a52",
+    "c1fe1998"
+   ],
+   "description": "muret de pierre (prolonge celui du PK 3235)"
+  },
+  {
+   "id": "mur_enduit_D_3232",
+   "type": "mur_enduit",
+   "pk_debut_m": 3232,
+   "pk_fin_m": 3252,
+   "cote": "droite",
+   "hauteur_m": 1.6,
+   "recul_m": 0.5,
+   "placement": "photo",
+   "images": [
+    "a133f64e",
+    "c1fe1998"
+   ],
+   "description": "mur enduit beige (prolonge celui du PK 3206)",
+   "teinte": "enduit_beige"
+  },
+  {
+   "id": "muret_D_3255",
+   "type": "pierre_seche",
+   "pk_debut_m": 3255,
+   "pk_fin_m": 3285,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 0.8,
+   "placement": "photo",
+   "images": [
+    "06ea7f53",
+    "4ca4c4ec"
+   ],
+   "description": "muret de pierre sous la haie de cypres"
+  },
+  {
+   "id": "haie_D_3255",
+   "type": "haie_taillee",
+   "pk_debut_m": 3255,
+   "pk_fin_m": 3285,
+   "cote": "droite",
+   "hauteur_m": 1.5,
+   "recul_m": 0.8,
+   "placement": "photo",
+   "images": [
+    "06ea7f53",
+    "4ca4c4ec"
+   ],
+   "description": "haie de cypres taillee de 2,5 m au-dessus du muret",
+   "base_sur_muret_m": 1.0
+  },
+  {
+   "id": "portail_D_3260",
+   "type": "portail",
+   "pk_debut_m": 3260,
+   "pk_fin_m": 3264,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 1.0,
+   "placement": "photo",
+   "images": [
+    "06ea7f53"
+   ],
+   "description": "portail metallique gris entre piliers",
+   "teinte": "metal_gris"
+  },
+  {
+   "id": "restanque_D_3365",
+   "type": "pierre_seche",
+   "pk_debut_m": 3365,
+   "pk_fin_m": 3385,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 5.0,
+   "placement": "photo",
+   "images": [
+    "c6718930"
+   ],
+   "description": "restanque de pierre seche",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "mur_D_3410",
+   "type": "pierre_seche",
+   "pk_debut_m": 3410,
+   "pk_fin_m": 3425,
+   "cote": "droite",
+   "hauteur_m": 1.0,
+   "recul_m": 1.5,
+   "placement": "photo",
+   "images": [
+    "30cf4a1a"
+   ],
+   "description": "mur de pierre seche au-dessus d'un talus"
+  },
+  {
+   "id": "grillage_G_3530",
+   "type": "grillage",
+   "pk_debut_m": 3530,
+   "pk_fin_m": 3560,
+   "cote": "gauche",
+   "hauteur_m": 1.2,
+   "recul_m": 8.0,
+   "placement": "photo",
+   "images": [
+    "a4a603b8",
+    "566faba1"
+   ],
+   "description": "grillage simple dans le bois",
+   "confiance": "moyenne"
+  },
+  {
+   "id": "muret_D_3545",
+   "type": "pierre_seche",
+   "pk_debut_m": 3545,
+   "pk_fin_m": 3565,
+   "cote": "droite",
+   "hauteur_m": 0.6,
+   "recul_m": 1.5,
+   "placement": "photo",
+   "images": [
+    "566faba1"
+   ],
+   "description": "muret de pierre seche"
+  },
+  {
+   "id": "portail_D_3575",
+   "type": "portail",
+   "pk_debut_m": 3574,
+   "pk_fin_m": 3578,
+   "cote": "droite",
+   "hauteur_m": 1.2,
+   "recul_m": 3.0,
+   "placement": "photo",
+   "images": [
+    "0a2d4774"
+   ],
+   "description": "portail de champ metallique",
+   "teinte": "metal_gris",
+   "ajouree": true
+  },
+  {
+   "id": "grillage_G_3595",
+   "type": "grillage",
+   "pk_debut_m": 3595,
+   "pk_fin_m": 3610,
+   "cote": "gauche",
+   "hauteur_m": 1.2,
+   "recul_m": 5.0,
+   "placement": "photo",
+   "images": [
+    "55590307"
+   ],
+   "description": "grillage simple"
+  },
+  {
+   "id": "occultant_G_3715",
+   "type": "muret_occultant",
+   "pk_debut_m": 3715,
+   "pk_fin_m": 3748,
+   "cote": "gauche",
+   "hauteur_m": 2.3,
+   "recul_m": 6.0,
+   "placement": "photo",
+   "images": [
+    "1eeb4efc",
+    "f5e338ef"
+   ],
+   "description": "muret de beton 0,5 m et panneaux occultants gris (bache) de 1,8 m",
+   "muret_h": 0.5,
+   "muret": "beton",
+   "teinte": "gris"
+  },
+  {
+   "id": "caniveau_G_3675",
+   "type": "caniveau",
+   "pk_debut_m": 3675,
+   "pk_fin_m": 3745,
+   "cote": "gauche",
+   "hauteur_m": 0.15,
+   "recul_m": 0.2,
+   "placement": "photo",
+   "images": [
+    "dcde5896",
+    "6f20b24e",
+    "e48878e8",
+    "1eeb4efc"
+   ],
+   "description": "caniveau et bordure de beton"
+  },
+  {
+   "id": "mur_D_-43",
+   "type": "pierre_seche",
+   "pk_debut_m": -43,
+   "pk_fin_m": -17,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "recul_m": 2.0,
+   "placement": "lidar",
+   "images": [
+    "f9160d60",
+    "ee1447e9",
+    "b0467d52"
+   ],
+   "description": "mur de soutenement de pierre seche a joints vifs, sans couronnement, jusqu'a l'angle de la voie laterale (zoom f9160d60 D50) ; coffret et mat de plaques de rue devant"
+  },
+  {
+   "id": "mur_D_-15",
+   "type": "pierre_seche",
+   "pk_debut_m": -15,
+   "pk_fin_m": 30,
+   "cote": "droite",
+   "hauteur_m": 1.6,
+   "recul_m": 4.5,
+   "placement": "cadastre",
+   "images": [
+    "f72ed2c1",
+    "43f093e4",
+    "89d3561a",
+    "7de216e6"
+   ],
+   "description": "mur de pierre le long de la voie laterale parallele, haie au-dessus",
+   "tolerance_cadastre_m": 3.0
+  }
+ ],
+ "ponctuels": [
+  {
+   "id": "EB20_D_-28",
+   "type": "panneau",
+   "pk_m": -28,
+   "cote": "droite",
+   "hauteur_m": 2.3,
+   "images": [
+    "f9160d60",
+    "ee1447e9"
+   ],
+   "description": "EB20 sortie d'agglomeration CEYRESTE sur portique tubulaire vert",
+   "modele": "EB20"
+  },
+  {
+   "id": "temporaire_D_-19",
+   "type": "panneau",
+   "pk_m": -19,
+   "cote": "droite",
+   "hauteur_m": 1.8,
+   "images": [
+    "ee1447e9",
+    "b0467d52"
+   ],
+   "description": "panneau jaune temporaire d'information (plan de carrefour)",
+   "modele": "KD_jaune"
+  },
+  {
+   "id": "plaques_rue_D_-42",
+   "type": "panneau",
+   "pk_m": -42,
+   "cote": "droite",
+   "hauteur_m": 2.6,
+   "images": [
+    "f9160d60"
+   ],
+   "description": "mat de plaques de rue bleues (Route du Grand Caunet CD 3, Route du Caunet CD 3, chemin) et coffret gris",
+   "modele": "plaques_rue"
+  },
+  {
+   "id": "affichage_G_-97",
+   "type": "panneau",
+   "pk_m": -97,
+   "cote": "gauche",
+   "hauteur_m": 3.0,
+   "images": [
+    "a9ef2aa0"
+   ],
+   "description": "panneau publicitaire sur deux poteaux, au fond du parking",
+   "modele": "affichage",
+   "recul_m": 12.0
+  },
+  {
+   "id": "regard_D_-40",
+   "type": "regard",
+   "pk_m": -40,
+   "cote": "droite",
+   "hauteur_m": 0.0,
+   "images": [
+    "f9160d60"
+   ],
+   "description": "regard de fonte rond au debouche de la voie laterale",
+   "recul_m": 2.0
+  }
+ ],
+ "corrections_ouvrages": [
+  {
+   "cote": "gauche",
+   "pk_photo": [
+    -65,
+    -45
+   ],
+   "action": "retirer",
+   "raison": "remplace par muret_occultant_G_-64 (muret + grillage + toile, bornes -64 a -27)"
+  },
+  {
+   "cote": "gauche",
+   "pk_photo": [
+    -27,
+    22
+   ],
+   "action": "bornes",
+   "pk": [
+    -27,
+    22
+   ],
+   "raison": "la bordure de beton s'arrete au portail du PK 24 ; au-dela muret de pierre (muret_grillage_G_29)"
+  },
+  {
+   "cote": "droite",
+   "pk_photo": [
+    55,
+    165
+   ],
+   "action": "retirer",
+   "raison": "remplace par muret_grillage_D_60 et D_131 (pierre seche 0,6 m sans chaperon de beton clair : murets du PK 95 signales trop hauts et trop clairs)"
+  },
+  {
+   "cote": "gauche",
+   "pk_photo": [
+    100,
+    165
+   ],
+   "action": "retirer",
+   "raison": "remplace par muret_grillage_G_29"
+  },
+  {
+   "cote": "droite",
+   "pk_photo": [
+    225,
+    350
+   ],
+   "action": "retirer",
+   "raison": "remplace par mur_enduit_D_222 et muret_grillage_D_256"
+  },
+  {
+   "cote": "droite",
+   "pk_photo": [
+    3488,
+    3562
+   ],
+   "action": "bornes",
+   "pk": [
+    3488,
+    3562
+   ],
+   "raison": "le grand mur commence vers 3488 (f1c411df)"
+  }
+ ],
+ "registre_note": "voir registre (genere par 36 verser) : un etat par troncon de 50 m et par cote"
+}

@@ -120,6 +120,19 @@ def tex_pierre(n, seed=5):
     return jpeg(rgb)
 
 
+def tex_pierre_cc0(n):
+    """Pierre des murs : texture libre old_stone_wall (Poly Haven, CC0, data/raw/cc0/, téléchargée le 18/11/2026),
+    éclaircie vers le calcaire gris-beige des photos ; à défaut la pierre calculée (tex_pierre). Seuls l'aperçu et
+    l'export neutre la voient : dans Unreal, la matière « pierre » hérite de la pierre du jeu (matieres_du_jeu.json)."""
+    f = ROOT / "data" / "raw" / "cc0" / "old_stone_wall_diff.jpg"
+    if not f.exists():
+        return tex_pierre(n)
+    a = np.asarray(Image.open(f).convert("RGB").resize((n, n), Image.LANCZOS)).astype(float)
+    lum = a.mean(2, keepdims=True)
+    a = 0.5 * a + 0.5 * lum / max(lum.mean(), 1) * np.array([160.0, 154.0, 142.0])
+    return jpeg(np.clip(a * 1.05 / 255.0, 0, 1))
+
+
 def tex_beton(n, seed=7):
     """Béton banché clair : nuages, grain, joints de banche horizontaux tous les 0,5 m."""
     rng = np.random.default_rng(seed)
@@ -592,6 +605,10 @@ def parapet(rg, ref, cote, s0, s1, p, mnt=None):
         # Couronnement toujours en béton gris. Vu en jeu le 13/11/2026 (quatrième version) : un couronnement blanc faisait
         # des parapets « à lisse et poteaux blanc vif » ; sur la route réelle seuls les dés sont peints en blanc.
         pieces["chaperon"] = [boite(bloc(s, -0.02, t + 0.02, sous, haut), ref)]
+        # "couronnement": "pierre" : mur de pierre sèche couronné de pierres (vu sur Panoramax, troisième passe du
+        # 18/11/2026) : le dessus prend la matière du corps au lieu du chaperon de béton gris clair
+        if p.get("couronnement") == "pierre":
+            pieces["pierre"] += pieces.pop("chaperon")
         if blanc:
             L = s1 - s0
             for c in s0 + (L - np.floor(L / DES_PAS) * DES_PAS) / 2 + np.arange(np.floor(L / DES_PAS) + 1) * DES_PAS:
@@ -990,7 +1007,7 @@ def main():
         mats = {"enrobe": {"jpeg": tex_enrobe(px), "rough": 0.92}, "marquage": {"color": blanc, "rough": 0.6},
                 "reprise": {"color": stats_a.get("couleurs", {}).get("reprise", [0.2, 0.2, 0.2]), "rough": 0.88},
                 "fissure": {"color": stats_a.get("couleurs", {}).get("fissure", [0.06, 0.06, 0.06]), "rough": 0.7},
-                "pierre": {"jpeg": tex_pierre(px // 2), "rough": 0.95}, "beton": {"jpeg": tex_beton(px // 2), "rough": 0.9},
+                "pierre": {"jpeg": tex_pierre_cc0(px // 2), "rough": 0.95}, "beton": {"jpeg": tex_beton(px // 2), "rough": 0.9},
                 "dalle": {"jpeg": tex_beton(px // 2, seed=3), "rough": 0.9},
                 "enduit_clair": {"jpeg": tex_enduit(px // 2), "rough": 0.95},   # même image que dans 12 (même nom de matière)
                 "blanc": {"color": [0.60, 0.585, 0.55], "rough": 0.85}, "chaperon": {"color": [0.62, 0.61, 0.58], "rough": 0.9},

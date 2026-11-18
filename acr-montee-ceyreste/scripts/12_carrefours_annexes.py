@@ -771,7 +771,8 @@ def _batiment(e, lot, mnt, mns, ref):
             H = float(p75) if e.get("hauteur_bd_topo_m") is None else float(min(p75, e["hauteur_bd_topo_m"] + 0.5))
             H, h_src = H, "MNS - MNT, 75e centile (arbres au-dessus du toit), plafonné à BD TOPO + 0,5 m"
         H = max(H, 2.2)
-    deux_pans = e.get("toit", "deux_pans") == "deux_pans"
+    quatre = e.get("toit") == "quatre_pans"       # croupes : 31_bati.py le décide d'après le LiDAR (18/11/2026)
+    deux_pans = e.get("toit", "deux_pans") == "deux_pans" or quatre
     debord = float(e.get("debord_toit_m", 0.3)) if deux_pans else 0.0
     # repère du faîtage : u le long, v en travers
     if e.get("faitage_direction"):
@@ -789,10 +790,16 @@ def _batiment(e, lot, mnt, mns, ref):
     # montée du toit : pente donnée, sans dépasser 45 % de la hauteur ni descendre l'égout sous 2,2 m
     monte = max(min(float(e.get("pente_toit", 0.30)) * hw, 0.45 * H, H - 2.2), 0.0) if deux_pans else 0.0
     pente = monte / hw if hw > 1e-6 else 0.0
-    ligne = (c, v) if deux_pans else None
+    ligne = (c, v) if deux_pans and not quatre else None
+    su = S @ u
+    c = c + u * ((su.min() + su.max()) / 2 - c @ u)                          # milieu du faîtage
+    demi_faitage = max((su.max() - su.min()) / 2 - hw, 0.0) if quatre else None
 
     def z_toit(XY):
-        return z_ref + H - pente * np.abs((np.atleast_2d(XY) - c) @ v)
+        D = np.atleast_2d(XY) - c
+        if quatre:
+            return z_ref + H - pente * np.maximum(np.abs(D @ v), np.abs(D @ u) - demi_faitage)
+        return z_ref + H - pente * np.abs(D @ v)
 
     z_bas = float(mnt.z(*_anneau(P).T).min()) - ZD_ENFOUI
     mm, mt = e.get("materiau_murs", "enduit_maison"), e.get("materiau_toit", "tuile")
@@ -810,13 +817,22 @@ def _batiment(e, lot, mnt, mns, ref):
         cum += L
     # toit : dessus et dessous de chaque pan (triangulation contrainte), rives tout autour
     Rt = shapely.orient_polygons(P.buffer(debord, join_style="mitre")) if debord > 0 else P
-    if deux_pans:
+    if quatre:
+        G_ = 4 * (hw + debord + 50 + demi_faitage)
+        Ra, Rb = c - u * demi_faitage, c + u * demi_faitage
+        regions = [([Ra, Rb, Rb + (u + v) * G_, Ra + (-u + v) * G_], v), ([Ra, Rb, Rb + (u - v) * G_, Ra + (-u - v) * G_], -v),
+                   ([Rb, Rb + (u + v) * G_, Rb + (u - v) * G_], u), ([Ra, Ra + (-u + v) * G_, Ra + (-u - v) * G_], -u)]
+        pans = [Rt.intersection(Polygon(q).buffer(0)) for q, _ in regions]
+        dirs = [d for _, d in regions]
+    elif deux_pans:
         grand = 4 * (hw + debord + 50)
         pans = [Rt.intersection(Polygon([c - u * grand, c + u * grand, c + u * grand + s * v * grand, c - u * grand + s * v * grand]))
                 for s in (1.0, -1.0)]
+        dirs = [v, -v]
     else:
         pans = [Rt]
-    for s, pan in zip((1.0, -1.0), pans):
+        dirs = [v]
+    for dpan, pan in zip(dirs, pans):
         for g in getattr(pan, "geoms", [pan]):
             if g.is_empty or g.geom_type != "Polygon" or g.area < 1e-4:
                 continue
@@ -824,7 +840,7 @@ def _batiment(e, lot, mnt, mns, ref):
                 T = np.asarray(t.exterior.coords)[:3]
                 zt = z_toit(T)
                 # pan s : z = z_ref + H - pente * s * (p - c).v, normale (s * pente * v, 1) (plat : verticale)
-                nh = np.array([s * pente * v[0], s * pente * v[1], 1.0])
+                nh = np.array([pente * dpan[0], pente * dpan[1], 1.0])
                 uvt = np.column_stack([(T - c) @ u, (T - c) @ v])
                 lot.face(mt, np.column_stack([T, zt]), nh, uvt)
                 lot.face(mt, np.column_stack([T, zt - ZD_EP_TOIT]), -nh, uvt)

@@ -175,7 +175,7 @@
   },
   {
    "fichier": "modeles/bati_bord.glb",
-   "taille_mo": 0.19,
+   "taille_mo": 0.2,
    "maillages": 2,
    "images_integrees": 2,
    "bornes_min_m": [
@@ -190,8 +190,24 @@
    ]
   },
   {
+   "fichier": "modeles/clotures.glb",
+   "taille_mo": 2.85,
+   "maillages": 168,
+   "images_integrees": 24,
+   "bornes_min_m": [
+    -100.76,
+    -8.97,
+    -1323.07
+   ],
+   "bornes_max_m": [
+    1775.67,
+    181.41,
+    97.47
+   ]
+  },
+  {
    "fichier": "modeles/lointain.glb",
-   "taille_mo": 59.21,
+   "taille_mo": 59.22,
    "maillages": 255,
    "images_integrees": 255,
    "bornes_min_m": [
@@ -207,8 +223,8 @@
   },
   {
    "fichier": "modeles/ouvrages.glb",
-   "taille_mo": 1.41,
-   "maillages": 64,
+   "taille_mo": 1.3,
+   "maillages": 43,
    "images_integrees": 4,
    "bornes_min_m": [
     -175.9,
@@ -219,6 +235,22 @@
     1699.72,
     176.43,
     86.56
+   ]
+  },
+  {
+   "fichier": "modeles/panneaux_neutres.glb",
+   "taille_mo": 0.33,
+   "maillages": 27,
+   "images_integrees": 16,
+   "bornes_min_m": [
+    -176.18,
+    -1.76,
+    -1212.32
+   ],
+   "bornes_max_m": [
+    1178.53,
+    157.32,
+    28.75
    ]
   },
   {
@@ -255,7 +287,7 @@
   },
   {
    "fichier": "modeles/village.glb",
-   "taille_mo": 3.85,
+   "taille_mo": 3.9,
    "maillages": 2,
    "images_integrees": 2,
    "bornes_min_m": [
@@ -302,6 +334,22 @@
    ]
   },
   {
+   "fichier": "collisions/clotures_collision.glb",
+   "taille_mo": 0.74,
+   "maillages": 4,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -100.74,
+    -8.97,
+    -1323.07
+   ],
+   "bornes_max_m": [
+    1775.64,
+    181.41,
+    97.47
+   ]
+  },
+  {
    "fichier": "collisions/collision.glb",
    "taille_mo": 6.81,
    "maillages": 1,
@@ -319,7 +367,7 @@
   },
   {
    "fichier": "collisions/objects_collision.glb",
-   "taille_mo": 1.53,
+   "taille_mo": 2.01,
    "maillages": 1,
    "images_integrees": 0,
    "bornes_min_m": [
@@ -335,7 +383,7 @@
   },
   {
    "fichier": "collisions/ouvrages_collision.glb",
-   "taille_mo": 0.56,
+   "taille_mo": 0.47,
    "maillages": 3,
    "images_integrees": 0,
    "bornes_min_m": [
@@ -351,7 +399,7 @@
   }
  ],
  "placements": {
-  "arbres": 31498,
+  "arbres": 31499,
   "versants": 100676,
   "garrigue": 23168,
   "arbustes": 28939,
@@ -374,7 +422,7 @@
    "nature_du_substitut": "forme simple"
   },
   "olivier": {
-   "nombre": 632,
+   "nombre": 633,
    "nature_du_substitut": "forme simple"
   },
   "cypres": {
@@ -446,7 +494,7 @@
    "nature_du_substitut": "rien"
   }
  },
- "taille_totale_mo": 224.3,
+ "taille_totale_mo": 228.6,
  "versionne": [
   "manifeste.json",
   "correspondance_types.csv",
