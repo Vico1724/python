@@ -770,6 +770,13 @@ def _batiment(e, lot, mnt, mns, ref):
         else:
             H = float(p75) if e.get("hauteur_bd_topo_m") is None else float(min(p75, e["hauteur_bd_topo_m"] + 0.5))
             H, h_src = H, "MNS - MNT, 75e centile (arbres au-dessus du toit), plafonné à BD TOPO + 0,5 m"
+        # Plafond absolu (cinquième passe, 19/11/2026, contrôle 42_controle_bati.py) : sur un terrain en pente, la hauteur
+        # mesurée au-dessus du terrain local, reportée depuis le terrain médian, mettait le faîtage jusqu'à 1,6 m au-dessus
+        # du point le plus haut du MNS (« maisons un peu plus grandes que la normale ») ; le faîtage ne dépasse plus le
+        # 90e centile du MNS absolu dans l'emprise.
+        z_mns90 = float(np.percentile(mns.z(Q[:, 0], Q[:, 1]), 90))
+        if z_ref + H > z_mns90 + 0.1:
+            H, h_src = z_mns90 + 0.1 - z_ref, h_src + ", plafonné au MNS absolu (90e centile)"
         H = max(H, 2.2)
     quatre = e.get("toit") == "quatre_pans"       # croupes : 31_bati.py le décide d'après le LiDAR (18/11/2026)
     deux_pans = e.get("toit", "deux_pans") == "deux_pans" or quatre

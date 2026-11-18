@@ -68,6 +68,38 @@
    "couvert": "vigne_vierge"
   },
   {
+   "id": "mur_enduit_G_-60",
+   "type": "mur_enduit",
+   "pk_debut_m": -64,
+   "pk_fin_m": -50,
+   "cote": "gauche",
+   "hauteur_m": 2.0,
+   "recul_m": 8.0,
+   "placement": "trace_l93_releve",
+   "trace_l93_releve": [
+    [
+     915275.0,
+     6239556.6
+    ],
+    [
+     915282.5,
+     6239555.2
+    ],
+    [
+     915290.9,
+     6239553.1
+    ]
+   ],
+   "images": [
+    "1093d878",
+    "4ee3bbf3",
+    "a251d23e"
+   ],
+   "teinte": "enduit_beige",
+   "couvert": "vigne_vierge",
+   "description": "mur de clôture enduit couvert de vigne vierge au fond du parking, devant la maison du PK -52 (planche pk-0052 : il couvre le bas de la façade sur la photo, absent du rendu) ; tracé : arête mince du MNS LiDAR (MNS - MNT 1,5 à 2,5 m) et ombre portée sur l'ortho ; cinquième passe, 19/11/2026"
+  },
+  {
    "id": "muret_occultant_G_-64",
    "type": "muret_occultant",
    "pk_debut_m": -64,

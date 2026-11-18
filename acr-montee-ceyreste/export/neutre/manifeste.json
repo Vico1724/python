@@ -175,9 +175,9 @@
   },
   {
    "fichier": "modeles/bati_bord.glb",
-   "taille_mo": 0.78,
-   "maillages": 56,
-   "images_integrees": 56,
+   "taille_mo": 0.79,
+   "maillages": 59,
+   "images_integrees": 59,
    "bornes_min_m": [
     -134.97,
     -12.71,
@@ -191,9 +191,9 @@
   },
   {
    "fichier": "modeles/clotures.glb",
-   "taille_mo": 2.85,
-   "maillages": 168,
-   "images_integrees": 24,
+   "taille_mo": 2.97,
+   "maillages": 171,
+   "images_integrees": 26,
    "bornes_min_m": [
     -100.76,
     -8.97,
@@ -203,6 +203,22 @@
     1775.67,
     181.41,
     97.47
+   ]
+  },
+  {
+   "fichier": "modeles/depart.glb",
+   "taille_mo": 1.4,
+   "maillages": 83,
+   "images_integrees": 36,
+   "bornes_min_m": [
+    -4.66,
+    -0.81,
+    -34.09
+   ],
+   "bornes_max_m": [
+    37.34,
+    11.63,
+    20.44
    ]
   },
   {
@@ -239,12 +255,12 @@
   },
   {
    "fichier": "modeles/panneaux_neutres.glb",
-   "taille_mo": 0.33,
-   "maillages": 27,
-   "images_integrees": 16,
+   "taille_mo": 0.3,
+   "maillages": 23,
+   "images_integrees": 14,
    "bornes_min_m": [
     -176.18,
-    -1.76,
+    -1.25,
     -1212.32
    ],
    "bornes_max_m": [
@@ -319,7 +335,7 @@
   },
   {
    "fichier": "collisions/bati_bord_collision.glb",
-   "taille_mo": 1.43,
+   "taille_mo": 1.37,
    "maillages": 1,
    "images_integrees": 0,
    "bornes_min_m": [
@@ -335,7 +351,7 @@
   },
   {
    "fichier": "collisions/clotures_collision.glb",
-   "taille_mo": 0.74,
+   "taille_mo": 0.75,
    "maillages": 4,
    "images_integrees": 0,
    "bornes_min_m": [
@@ -351,7 +367,7 @@
   },
   {
    "fichier": "collisions/collision.glb",
-   "taille_mo": 6.81,
+   "taille_mo": 6.86,
    "maillages": 1,
    "images_integrees": 0,
    "bornes_min_m": [
@@ -366,8 +382,24 @@
    ]
   },
   {
+   "fichier": "collisions/depart_collision.glb",
+   "taille_mo": 0.08,
+   "maillages": 4,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -4.41,
+    -0.71,
+    -34.01
+   ],
+   "bornes_max_m": [
+    36.04,
+    4.95,
+    20.3
+   ]
+  },
+  {
    "fichier": "collisions/objects_collision.glb",
-   "taille_mo": 2.01,
+   "taille_mo": 1.99,
    "maillages": 1,
    "images_integrees": 0,
    "bornes_min_m": [
@@ -399,34 +431,34 @@
   }
  ],
  "placements": {
-  "arbres": 31499,
+  "arbres": 31506,
   "versants": 100676,
   "garrigue": 23168,
-  "arbustes": 28939,
+  "arbustes": 28872,
   "glissieres": 118,
-  "mobilier": 30,
+  "mobilier": 29,
   "rocaille": 4723,
-  "herbes": 54327
+  "herbes": 54322
  },
  "types": {
   "pin_alep": {
-   "nombre": 78738,
+   "nombre": 78745,
    "nature_du_substitut": "forme simple"
   },
   "chene_vert": {
-   "nombre": 51945,
+   "nombre": 51924,
    "nature_du_substitut": "forme simple"
   },
   "chene_pubescent": {
-   "nombre": 377,
+   "nombre": 396,
    "nature_du_substitut": "forme simple"
   },
   "olivier": {
-   "nombre": 633,
+   "nombre": 646,
    "nature_du_substitut": "forme simple"
   },
   "cypres": {
-   "nombre": 482,
+   "nombre": 471,
    "nature_du_substitut": "forme simple"
   },
   "autre_pin": {
@@ -434,11 +466,11 @@
    "nature_du_substitut": "forme simple"
   },
   "arbuste_garrigue": {
-   "nombre": 4052,
+   "nombre": 4083,
    "nature_du_substitut": "réel"
   },
   "arbuste_bas": {
-   "nombre": 48055,
+   "nombre": 47957,
    "nature_du_substitut": "réel"
   },
   "herbe_verte": {
@@ -446,11 +478,11 @@
    "nature_du_substitut": "forme simple"
   },
   "herbe_seche": {
-   "nombre": 32604,
+   "nombre": 32598,
    "nature_du_substitut": "forme simple"
   },
   "pierre_calcaire": {
-   "nombre": 14503,
+   "nombre": 14504,
    "nature_du_substitut": "projet"
   },
   "glissiere_simple": {
@@ -474,7 +506,7 @@
    "nature_du_substitut": "forme simple"
   },
   "poteau_bois": {
-   "nombre": 14,
+   "nombre": 13,
    "nature_du_substitut": "forme simple"
   },
   "poteau_beton": {
@@ -494,7 +526,7 @@
    "nature_du_substitut": "rien"
   }
  },
- "taille_totale_mo": 229.0,
+ "taille_totale_mo": 230.5,
  "versionne": [
   "manifeste.json",
   "correspondance_types.csv",

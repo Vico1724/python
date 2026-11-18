@@ -3,7 +3,7 @@
   "haie_taillee gauche": 20.1,
   "portail gauche": 6.3,
   "pilier gauche": 0.0,
-  "mur_enduit gauche": 7.9,
+  "mur_enduit gauche": 24.2,
   "muret_occultant gauche": 67.3,
   "grillage gauche": 92.1,
   "muret_grillage gauche": 136.4,
@@ -25,7 +25,7 @@
   "haie_taillee": 3,
   "portail": 9,
   "pilier": 14,
-  "mur_enduit": 4,
+  "mur_enduit": 5,
   "muret_occultant": 2,
   "grillage": 11,
   "muret_grillage": 6,
@@ -36,9 +36,9 @@
   "boites_aux_lettres": 1,
   "caniveau": 1
  },
- "cale_au_metre_m": 938.3,
+ "cale_au_metre_m": 954.6,
  "photo_m": 897.6,
- "collision": 79,
+ "collision": 80,
  "elements": [
   {
    "id": "haie_G_-141",
@@ -99,6 +99,23 @@
    "images": [
     "4ee3bbf3",
     "1093d878",
+    "a251d23e"
+   ],
+   "collision": true
+  },
+  {
+   "id": "mur_enduit_G_-60",
+   "type": "mur_enduit",
+   "cote": "gauche",
+   "pk": [
+    -64,
+    -50
+   ],
+   "longueur_m": 16.3,
+   "calage": "au mètre (tracé relevé sur le MNS LiDAR HD et l'ortho, existence vue sur photo)",
+   "images": [
+    "1093d878",
+    "4ee3bbf3",
     "a251d23e"
    ],
    "collision": true
@@ -1356,6 +1373,6 @@
   "haie": "aucun : SM_CypressHedge01 existe dans le jeu (haie de cyprès) mais ses dimensions ne sont pas relevées",
   "portail": "aucun asset posé : SM_FarmGateA, SM_FraChaGateA/B, SM_FraSavGateB1/B2 existent dans le jeu, dimensions non relevées"
  },
- "maillages": 169,
- "triangles": 19720
+ "maillages": 171,
+ "triangles": 19932
 }

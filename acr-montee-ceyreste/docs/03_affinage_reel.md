@@ -428,3 +428,101 @@ Planches photo réelle / rendu, même position, cap, tangage et champ (sténopé
 ### Paquet et export neutre
 
 Familles inchangées (`batiments`, `village`) ; 78 + 22 maillages ; nouveaux matériaux nommés par teinte (`MI_GC_Enduit_<rrggbb>`, `MI_GC_Tuile_<rrggbb>`…) ou par type (`MI_GC_Volet_persienne_bleu_pale`, `MI_GC_Verre`, `MI_GC_Genoise`…) : noms stables tant que le relevé ne change pas. 16 : `enduit_releve` et `teinte_enduit_du_jeu` (règle des enduits de `matieres_du_jeu.json`). Bâtiments et village du paquet : 3,1 Mo de maillages + 0,8 Mo de textures nouvelles ; `modele/bati_bord.glb` 0,20 → 0,78 Mo (2 718 triangles, 1 628 avant). Export neutre : CONFORME.
+
+## 11. Cinquième passe (19/11/2026) : carrefour du départ, panneaux, poteaux, jardins ; contrôle des maisons
+
+*Demande de l'utilisateur (mots exacts) : « les zones visibles doivent être vraiment bien faites » ; puis, sur les planches de la quatrième passe : « il y a encore des maisons buggées, des trucs pas très bien modélisés, pas très bien intégrés, des textures encore trop répétitives, des maisons un peu plus grandes que la normale peut-être par moment, ou il manque des murets, des éléments devant, des arbres. Ça manque un peu de végétation, de petits éléments, de panneaux, de marquage au sol, de routes abîmées. »*
+
+**Rien n'a été vu en jeu ni dans Unreal.** « Vérifié » = regardé sur une planche photo / rendu de contrôle (étape 15, hors jeu).
+
+### Ce que montrait la planche du départ
+
+`figures/affinage/facades/depart_synthese_4_directions.jpg` (PK 1, montée, droite, descente, gauche) : la photo montre une voie latérale (Voie Romaine) parallèle à la D3 avec son arrêt de bus, séparée par un îlot d'enrobé rouge, un trottoir rouge au pied du mur de pierre, un îlot court dans la bouche de la Voie Romaine, des panneaux, des poteaux et des lignes ; le rendu montrait à la place un talus de terrain et le mur de pierre posé **à 4,5 m du bord, au milieu de la voie latérale** (relevé de la troisième passe : « cadastre non concordant », gardé à la position photo). Cause du talus : le MNT 0,5 m lisse en pente la marche de 4 m du mur (voie 213-216 m, jardins 216-219 m) et la grille de 1 m de 08 l'étale encore.
+
+### Méthode
+
+- Relevé versionné `data/reference/depart_carrefour.json` (repère local, origine L93 915000 / 6239000) : pied du mur (marche du MNT tous les 2 m, 31 points), contours des îlots, de la voie et du parvis (ortho 20 cm), marquage, panneaux, poteaux, lignes, coffrets, potelets, végétation ; chaque objet cite ses images.
+- Positions : visées croisées depuis 2 ou 3 panoramas (azimuts des pixels) et « sol des pixels » ; outil `41_carrefour_depart.py sol IMAGE CAP TANGAGE CHAMP u,v …`. Contrôle : `41_carrefour_depart.py controle IMAGE CAP TANGAGE CHAMP` projette tout le relevé sur la vue (contours, mâts, plaques, pied et hauteurs +1/+2/+3 m du mur) : 89d3561a (cap 40 et 108), f72ed2c1, f58e2a31, bfbe2896 regardées ; écarts de 0,2 à 0,5 m sur les contours proches, de 1 à 2 m sur les objets à plus de 20 m. Hauteur du mur : 2,5 m (lignes graduées sur 89d3561a droite).
+- Géométrie : `scripts/41_carrefour_depart.py` (dans la chaîne après 37) ; surfaces découpées dans les triangles du terrain de 08 (comme 12), 3 cm au-dessus, plafonnées au niveau de la plateforme au pied du mur ; trottoir, îlots et parvis surélevés de 12-14 cm avec bordure de béton ; marquage peint à 1,2 cm ; texte « BUS » vectorisé (contours de lettres, sans transparence) ; plaques de panneaux en forme (disque, triangle, flèche) sans transparence, dos gris ; fûts et crosses ; câbles en chaînette ; massifs de feuillage bosselés.
+- Terrain : `aplanissements.plateformes()` (surface du second degré ajustée au MNT sur la voie, le trottoir et les îlots ; points du talus écartés ; écart au MNT gardé −0,12 à +0,08 m) ; `08_modele_3d.py` retire ses nœuds à moins de 0,6 m du pied du mur et ajoute trois lignes de points (devant, 0,1 m derrière, 0,55 m derrière) : la marche tient dans l'épaisseur du mur. `10_semis_arbres.py` ne sème plus sur la plateforme.
+- Mur : `releve_clotures_2025.json` (mur_D_-15, placement `trace_releve`) reprend le pied du relevé ; `36_releve_clotures.py verser` sait maintenant prendre un tracé relevé (`trace_releve`, `trace_l93_releve`), et ses corrections des passes 1-2 ne se répètent plus à chaque relance (statut de `ouvrages_parapets.json` qui s'allongeait).
+
+### Posé (compté, `data/processed/depart_bilan.json`)
+
+| Famille | Posé |
+|---|---|
+| Surfaces | voie latérale et bouche de la Voie Romaine 312 m² (enrobé neuf) ; trottoir 120 m², îlot long 40 m², îlot court 2,5 m², parvis de l'abribus 51 m² (enrobé rouge, bordures) ; sol de roulage 525 m² (TSD+ dans 09) |
+| Marquage | liserés blancs des deux îlots, « BUS », zigzag jaune et tirets jaunes de l'arrêt, cédez-le-passage de la voie latérale et de la Voie Romaine, passage piéton (≈ 19 m² peints) |
+| Panneaux (9) | mât de jalonnement (cartouche « D 3 », flèches « SIGNES », « CAUNET », « Circuit du Castellet », petite plaque blanche non lue) ; B1 au bout nord de l'îlot ; B1 + panonceau « SAUF … BUS » à l'entrée ; C13a sur poteau de bois ; AB3a ; C20a ; B21 sur l'îlot court ; B14 « 50 » et B13 « 19 t » face aux descendants (ils remplacent B14_m20 et B13_5 de 39, lus de loin aux PK −20 et 5) |
+| Réseaux | 6 poteaux : béton à transformateur (remplace le poteau de bois OSM du PK 35,7), béton à lanterne (abribus), béton à lanterne couvert de lierre (PK −22), bois du mur (porte le C13a), bois de l'entrée, bois à jambe de force (Voie Romaine) ; 5 portées, 71 m de lignes |
+| Petits éléments | 2 coffrets encastrés au pied du mur, boîte aux lettres jaune, potelet vert, poteau tordu de l'îlot court |
+| Jardins | 82 massifs de haie (hauteur MNS − MNT, 1,8 à 4,2 m derrière le pied, plafonnés à 3,4 m), bougainvillier, laurier-rose de l'abribus, 21 m de muret blanc à grillage au-dessus du mur |
+| Autres | EB20 et panneau jaune temporaire remis **en travers** de la route (ils étaient parallèles) ; EB10 « CEYRESTE » au dos de l'EB20 (43f093e4) ; face du panneau jaune redessinée (« CARREFOUR MODIFIÉ », flèches, sens interdit « SAUF BUS », lu sur b0467d52) ; UV des plaques de 37 corrigées (elles montraient une bande retournée de l'image) |
+
+### Panneaux vérifiés du PK −150 au PK 100, dans les deux sens
+
+Balayage de 24 vues (12 en montée, 12 en descente) et zooms ; détail dans `depart_carrefour.json`, clé `verification_panneaux_pk_-150_100`. Tous les panneaux vus sont posés, sauf : plaque jaune à pictogramme au-dessus de l'EB10 et deux plaques d'information dessous (logo et texte non reproduits), petit panneau de stationnement interdit sur le mur à vigne vierge, dos de plaque non lu vers le PK −97. **Aucune balise J5 n'est visible** : le disque blanc vu de dos sur l'îlot est le dos du B1 nord. OSM met un STOP au débouché de la voie latérale (node/4343358548) : la photo montre un cédez-le-passage (AB3a et tirets), c'est la photo qui est retenue. Les A15b et A1d du PK 86 sont fixés sur un poteau de béton (OSM node/13248624887, posé comme poteau de bois : matière non corrigée).
+
+### Vu, non posé
+
+Voir `depart_carrefour.json`, clé `vu_non_pose` : poteaux du PK −140 et lanterne sur poteau de bois du PK ≈ 42 (vus de loin, non positionnés) ; fil du transformateur vers l'ouest (poteau d'arrivée hors images) ; jambes de force du grillage du champ (espacement non relevé) ; texte de la petite plaque du mât et mot du milieu du panonceau (illisibles).
+
+### Vérification par l'image (planche refaite et regardée)
+
+`figures/affinage/facades/depart_synthese_4_directions.jpg` (40_facades.py depart4 compose maintenant la synthèse lui-même) :
+- **montée** : îlot rouge et liserés, voie latérale, mât de jalonnement, AB3a, B14 de dos, abribus, poteaux à lanterne : le carrefour se reconnaît ;
+- **droite** : trottoir rouge à bordure jusqu'au pied du mur, mur de 2,5 m, coffrets, C13a sur le poteau de bois, potelet, « BUS » et zigzag, muret blanc et haies au-dessus ; **le talus a disparu** ;
+- **descente** : B14 « 50 », poteau à lanterne, trottoir, grillage du champ continu jusqu'au loin ;
+- **gauche** : le grillage du champ n'entre pas dans le champ du rendu, alors que la photo le montre à ≈ 4,6 m. Le LiDAR met la bordure de béton et le grillage à 0,5 m du bord de la chaussée (marche de 0,6 m vers le champ), soit à ≈ 2,1 m de la position de la caméra : la pose de la caméra (position GPS du panorama) est en cause, pas le grillage, que la vue de descente montre continu. Non corrigé.
+- Écarts restants vus : haies des jardins plus sombres et plus régulières que les vraies (massifs simples), bougainvillier en masse magenta ; rouge des surfaces plus vif qu'en photo malgré une teinte éteinte (éclairage du rendu).
+
+Planches de la quatrième passe reprises et regardées : `pk-0052_G_257167862_0.jpg` (le mur à vigne vierge couvre maintenant le bas de la maison comme sur la photo ; nouveau mur `mur_enduit_G_-60` tracé sur l'arête du MNS et l'ombre de l'ortho), `pk+3226_D_257172627_0.jpg` (porte de garage blanche sous l'auvent ; **la maison est bien plus visible dans le rendu que sur la photo : le grand arbre et la haie devant ne sont pas posés**), `pk+2061_G_257172596_0.jpg` (fenêtre à barreaux sur le long pan, près du coin des tags, comme sur la photo). Le rendu du PK −140 (silhouette) reste sans route : la caméra est au bout du modèle (PK −149), la route au-delà est l'approche du village, hors emprise jouable (décision 7).
+
+### Contrôle des maisons de premier plan (`scripts/42_controle_bati.py`, `data/processed/controle_bati.json`)
+
+Mesures sur le maillage posé (`bati_bord.glb`, sommets attribués au bâtiment le plus proche) : faîtage (toit seul) au-dessus du pied, contre le 95e centile du MNS ; égout contre le MNS médian d'une bande intérieure ; emprise des murs contre la BD TOPO ; faces retournées (aucune trouvée). **Correction faite** : sur terrain en pente, la hauteur LiDAR mesurée au-dessus du terrain local et reportée depuis le terrain médian mettait le faîtage jusqu'à 1,6 m au-dessus du MNS ; le faîtage est maintenant plafonné au 90e centile du MNS absolu (`12_carrefours_annexes._batiment`, lu par 31) : 7 maisons du bord et 147 du village abaissées. Maison du PK −52 : pente de toit 0,30 → 0,17 (faîtage +1,7 → +0,1 m sur le LiDAR). Textures des façades désormais tirées d'une graine fixe (`facades.py` utilisait `hash()`, qui change d'un processus à l'autre).
+
+| Bâtiment | PK | Faîtage modèle − LiDAR | Emprise murs / BD TOPO | État |
+|---|---|---|---|---|
+| 257167771 | −149 G | −0,2 m | 1,26 | hauteur conforme ; emprise : mesure gonflée par les éléments posés devant (à revoir) |
+| 257167973 | −149 D | +0,1 m | 1,23 | hauteur conforme ; emprise : idem |
+| 257167974 | −149 D | +1,5 m | — | **écart non corrigé** : annexe accolée au 973 (mesure peut-être prise sur le toit voisin) |
+| 257168011 | −122 G | −1,0 m | 1,00 | conforme (plus bas que le LiDAR, arbres au-dessus) |
+| 487997246 | −120 D | −8,1 m | 1,04 | non vérifiable (lauriers-roses au-dessus du toit) |
+| 257167825 | −108 G | −0,1 m | 1,07 | conforme |
+| 487997256 | −106 D | (LiDAR invalide) | 1,00 | non vérifiable au LiDAR (maison plus récente) ; hauteurs photo |
+| 257167865 | −84 D | (LiDAR sur arbres) | — | non vérifiable au LiDAR ; hauteurs photo |
+| 257167866 | −84 D | −0,1 m | — | conforme |
+| 257167861 | −61 G | +1,0 m | — | conforme (à la limite) |
+| 334468838 | −53 D | (LiDAR invalide) | 1,11 | non vérifiable au LiDAR (maison de 2023) ; hauteurs photo |
+| 257167862 | −52 G | +0,1 m | 1,03 | **corrigé** (était +1,7 m) |
+| 257167740 | −18 D | −0,9 m | 1,15 | conforme |
+| 257168051 | −11 D | +1,2 m | — | **écart non corrigé** (petite annexe ; cause non isolée) |
+| 257167736 | −4 D | +0,6 m | — | conforme |
+| 257167737 | 5 D | −0,3 m | 1,12 | conforme |
+| 257168030 | 33 D | +0,3 m | 1,70 | conforme (emprise : banc, conteneur et armoire comptés) |
+| 257172596 | 2061 G | (LiDAR invalide) | 1,00 | non vérifiable au LiDAR (pins) ; hauteurs photo |
+| 276329369 | 2854 D | −5,8 m | 1,00 | conforme (pins au-dessus d'un angle) |
+| 257172553 | 2910 D | −0,2 m | 0,85 | conforme |
+| 257172552 | 2915 D | +0,3 m | 0,79 | conforme |
+| 257172551 | 2917 D | −14,4 m | 0,88 | non vérifiable (arbres) |
+| 356341071 | 3131 D | 0,0 m | 1,00 | conforme |
+| 257172642 | 3181 D | −2,7 m | 1,16 | conforme (ruine ; pins au-dessus) |
+| 257172626 | 3224 D | +1,1 m | — | **écart non corrigé** (abri de 6 m² accolé au 627 ; mesure peut-être prise sur le toit voisin) |
+| 257172627 | 3226 D | −0,2 m | 1,29 | conforme (emprise : poteaux de l'auvent comptés) |
+| 257172633 | 3293 D | −9,3 m | 1,00 | non vérifiable (cyprès sur le toit) |
+| 257172615 | 3308 D | +0,7 m | — | conforme |
+| 257172616 | 3312 D | 0,0 m | — | conforme |
+| 257172651 | 3760 G | −2,2 m | 1,00 | conforme |
+
+« — » : trop peu de faces de mur mesurables. Aucune maison n'est **plus large** que la BD TOPO au-delà de ce qu'expliquent les éléments posés devant (auvent, abri, conteneur). L'assise (pied contre le MNT) n'a pas de résultat sûr : le test automatique compte comme « flottantes » les façades d'étage posées sur un corps bas ; elle n'a été regardée que sur les planches (aucune maison flottante vue au départ ni aux PK −52, 2061, 3226).
+
+### Demandes du retour du 19/11 non traitées dans cette passe
+
+- **Textures répétitives** : seul un décalage d'UV par élément (graine fixe) est fait pour les murs, clôtures et murets de 37 ; la répétition à l'intérieur d'un long mur, des enduits, des tuiles et du sol n'est pas traitée. Dans Unreal, la pierre et les enduits prennent les matériaux du jeu (échelle des textures de 16 inchangée).
+- **Végétation proche** : hors du départ, pas de nouvelle végétation de jardin (le grand arbre et la haie du PK 3226 manquent) ; densité des arbres contrôlée par `32_verif_vegetation.py` (32 à 60 arbres pour 100 m à moins de 20 m, couvert LiDAR > 2 m de 51 à 74 % : inchangé).
+- **Chaussée** : marquage et usure non repris hors du carrefour du départ (les pièces et fissures relevées en § 8 ne sont toujours pas rendues).
+
+### Chaîne et contrôles
+
+`tout_lancer.py --depuis 8 --sans-telechargement -- --sol photo` (code 0), puis 31, 37, 41, 09, 16 relancés après les corrections. Export Stage IR : **0 erreur**, 532 portes, 27 notes sur 27 dans le bon sens, 3 025,37 m, 7 740 obstacles, 0 retiré sur la chaussée ; sol de la voie latérale et des surfaces rouges en TSD+ (2 062 triangles). Paquet : **0 erreur**, 696 maillages (51 de la famille `depart`, 82 `batiments`, 82 `clotures`), 243 414 instances (−66 : plus de semis sur la plateforme). Export neutre : **CONFORME**, 26 glb, 230,5 Mo (non versionné), `depart.glb` et `depart_collision.glb` inclus.

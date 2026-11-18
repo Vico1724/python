@@ -263,7 +263,7 @@ def verser():
         ponctuel = e["type"] in ("pilier", "boites_aux_lettres") or b - a < 4
         # Essai automatique (élément photo de 4 m et plus) : limite cadastrale pour ce qui ferme une propriété, marche
         # du MNT pour un mur ou une restanque. N'est retenu que si la source concorde avec la lecture photo (± tol).
-        essais = [] if pl == "trace_releve" else [pl] if pl != "photo" else ([] if ponctuel else (["lidar", "cadastre"] if e["type"] == "pierre_seche"
+        essais = [] if pl in ("trace_releve", "trace_l93_releve") else [pl] if pl != "photo" else ([] if ponctuel else (["lidar", "cadastre"] if e["type"] == "pierre_seche"
                                                                    else ["cadastre"]))
         tol_def = 2.5 if pl == "cadastre" else 1.5
         for src in essais:
@@ -302,6 +302,12 @@ def verser():
             dE = np.hypot(*(xy[:, None, :] - B.E[cote][None, :, :2]).transpose(2, 0, 1)).min(1)
             recul_v = dE
             calage = "au mètre (pied relevé sur la marche du MNT LiDAR HD, " + e["trace_releve"] + ", existence vue sur photo)"
+            bilan["cale_lidar"] += 1
+        if pl == "trace_l93_releve":
+            # tracé relevé directement en Lambert-93 (arête du MNS LiDAR, ortho), loin du bord de la chaussée
+            xy = np.asarray(e["trace_l93_releve"], float)
+            recul_v = np.hypot(*(xy[:, None, :] - B.E[cote][None, :, :2]).transpose(2, 0, 1)).min(1)
+            calage = "au mètre (tracé relevé sur le MNS LiDAR HD et l'ortho, existence vue sur photo)"
             bilan["cale_lidar"] += 1
         if not calage.startswith("au mètre"):
             bilan["photo"] += 1

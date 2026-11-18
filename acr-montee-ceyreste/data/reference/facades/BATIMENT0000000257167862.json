@@ -1,27 +1,97 @@
 {
  "cleabs": "BATIMENT0000000257167862",
- "pk_m": -52, "cote": "gauche", "niveau": "premier_plan",
+ "pk_m": -52,
+ "cote": "gauche",
+ "niveau": "premier_plan",
  "images": [
-  {"id": "1093d878-a6f6-471c-9c6f-5884a9555949", "role": "F0 (sud) au-dessus du mur couvert de vigne vierge (PK -77), vue rapprochée lue"},
-  {"id": "4ee3bbf3-31ed-44b0-9ed7-215c677ee716", "role": "même vue (PK -82)"},
-  {"id": "f72ed2c1-3a02-42b0-9026-cba741be7dd9", "role": "toits vus par-dessus le terrain vague et la clôture à toile verte (PK -15)"}
+  {
+   "id": "1093d878-a6f6-471c-9c6f-5884a9555949",
+   "role": "F0 (sud) au-dessus du mur couvert de vigne vierge (PK -77), vue rapprochée lue"
+  },
+  {
+   "id": "4ee3bbf3-31ed-44b0-9ed7-215c677ee716",
+   "role": "même vue (PK -82)"
+  },
+  {
+   "id": "f72ed2c1-3a02-42b0-9026-cba741be7dd9",
+   "role": "toits vus par-dessus le terrain vague et la clôture à toile verte (PK -15)"
+  }
  ],
  "lidar": "valide (égout BD TOPO 213,8 m)",
  "volumes": [
-  {"nom": "maison", "niveaux": 1, "egout_z": 5.5, "toit": "deux_pans", "faitage": "parallele:F0", "pente": 0.30, "debord_m": 0.3,
-   "genoise_rangs": 2, "sous_face": "tuile", "source": "égout le long de F0 avec génoise à deux rangs et gouttière, faîtage derrière (1093d878) ; égout à 213,9 m (BD TOPO : toit minimal 213,8 m)"}
+  {
+   "nom": "maison",
+   "niveaux": 1,
+   "egout_z": 5.5,
+   "toit": "deux_pans",
+   "faitage": "parallele:F0",
+   "pente": 0.17,
+   "debord_m": 0.3,
+   "genoise_rangs": 2,
+   "sous_face": "tuile",
+   "source": "égout le long de F0 avec génoise à deux rangs et gouttière, faîtage derrière (1093d878) ; égout à 213,9 m (BD TOPO : toit minimal 213,8 m) ; pente ramenée de 0,30 à 0,17 le 19/11/2026 : avec 0,30 sur ce corps large, le faîtage sortait 1,7 m au-dessus du MNS LiDAR (contrôle 42_controle_bati.py)"
+  }
  ],
- "enduit": {"mesure_rgb": [249, 239, 217], "clarte": "clair", "source": "F0 au soleil sous la génoise, 1093d878 (pixels de la vue rectifiée) ; souches au soleil 249, 220, 186"},
- "toit": {"ortho_rgb": [159, 142, 128], "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve) ; tuiles canal brun rose patinées (1093d878)"},
+ "enduit": {
+  "mesure_rgb": [
+   249,
+   239,
+   217
+  ],
+  "clarte": "clair",
+  "source": "F0 au soleil sous la génoise, 1093d878 (pixels de la vue rectifiée) ; souches au soleil 249, 220, 186"
+ },
+ "toit": {
+  "ortho_rgb": [
+   159,
+   142,
+   128
+  ],
+  "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve) ; tuiles canal brun rose patinées (1093d878)"
+ },
  "facades": {
-  "F0": {"vue": true, "images": ["1093d878"], "ouvertures": [
-    {"type": "fenetre", "x": 2.9, "z": 3.6, "l": 1.5, "h": 1.25, "menuiserie": "blanc", "volets": "aucun", "appui": false,
-     "source": "1093d878 : haut et côtés d'une fenêtre à cadre blanc vus au-dessus du mur ; bas caché (hauteur supposée)"}
-   ], "note": "bas de la façade caché par le mur de clôture couvert de vigne vierge (posé par 37) et un camping-car"}
+  "F0": {
+   "vue": true,
+   "images": [
+    "1093d878"
+   ],
+   "ouvertures": [
+    {
+     "type": "fenetre",
+     "x": 2.9,
+     "z": 3.6,
+     "l": 1.5,
+     "h": 1.25,
+     "menuiserie": "blanc",
+     "volets": "aucun",
+     "appui": false,
+     "source": "1093d878 : haut et côtés d'une fenêtre à cadre blanc vus au-dessus du mur ; bas caché (hauteur supposée)"
+    }
+   ],
+   "note": "bas de la façade caché par le mur de clôture couvert de vigne vierge (posé par 37) et un camping-car"
+  }
  },
  "toiture": [
-  {"type": "cheminee", "face": "F0", "x": 0.9, "recul": 3.8, "l": 0.7, "w": 0.6, "h": 0.6, "source": "souche enduite à chapeau (1093d878)"},
-  {"type": "cheminee", "face": "F0", "x": 3.3, "recul": 4.3, "l": 0.6, "w": 0.6, "h": 0.8, "source": "souche enduite à chapeau, antenne de télévision (1093d878)"}
+  {
+   "type": "cheminee",
+   "face": "F0",
+   "x": 0.9,
+   "recul": 3.8,
+   "l": 0.7,
+   "w": 0.6,
+   "h": 0.6,
+   "source": "souche enduite à chapeau (1093d878)"
+  },
+  {
+   "type": "cheminee",
+   "face": "F0",
+   "x": 3.3,
+   "recul": 4.3,
+   "l": 0.6,
+   "w": 0.6,
+   "h": 0.8,
+   "source": "souche enduite à chapeau, antenne de télévision (1093d878)"
+  }
  ],
  "abords": "mur de clôture enduit couvert de vigne vierge rouge (posé), olivier, panneau de stationnement interdit sur le mur",
  "notes": "Façades nord et ouest cachées : enduit relevé, sans ouverture. Antenne de télévision non modélisée."

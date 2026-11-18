@@ -2,14 +2,14 @@
  "verdict": "CONFORME",
  "ecarts": [],
  "alertes": [
-  "arbres : 1281 flottants > 0,3 m et 185 enterrés > 0,5 m sur 31499",
+  "arbres : 1287 flottants > 0,3 m et 192 enterrés > 0,5 m sur 31506",
   "versants : 14174 flottants > 0,3 m et 740 enterrés > 0,5 m sur 91654",
   "garrigue : 1130 flottants > 0,3 m et 453 enterrés > 0,5 m sur 23168",
-  "arbustes : 864 flottants > 0,3 m et 469 enterrés > 0,5 m sur 28939",
+  "arbustes : 848 flottants > 0,3 m et 447 enterrés > 0,5 m sur 28872",
   "glissieres : 2 flottants > 0,3 m et 0 enterrés > 0,5 m sur 118",
-  "mobilier : 1 flottants > 0,3 m et 0 enterrés > 0,5 m sur 30",
+  "mobilier : 1 flottants > 0,3 m et 0 enterrés > 0,5 m sur 29",
   "rocaille : 100 flottants > 0,3 m et 0 enterrés > 0,5 m sur 4723",
-  "herbes : 79 flottants > 0,3 m et 11 enterrés > 0,5 m sur 54327"
+  "herbes : 81 flottants > 0,3 m et 15 enterrés > 0,5 m sur 54322"
  ],
  "placements": {
   "glb_vides": [
@@ -18,15 +18,15 @@
    "collisions/annexes_collision.glb"
   ],
   "arbres": {
-   "objets": 31499,
-   "controles": 31499,
+   "objets": 31506,
+   "controles": 31506,
    "ecart_au_mnt_m": {
     "mediane": 0.004,
-    "p1": -0.4,
+    "p1": -0.41,
     "p99": 0.63
    },
-   "flottants_sup_0_3_m": 1281,
-   "enterres_sup_0_5_m": 185
+   "flottants_sup_0_3_m": 1287,
+   "enterres_sup_0_5_m": 192
   },
   "versants": {
    "objets": 100676,
@@ -51,15 +51,15 @@
    "enterres_sup_0_5_m": 453
   },
   "arbustes": {
-   "objets": 28939,
-   "controles": 28939,
+   "objets": 28872,
+   "controles": 28872,
    "ecart_au_mnt_m": {
-    "mediane": -0.006,
-    "p1": -0.58,
-    "p99": 0.49
+    "mediane": -0.007,
+    "p1": -0.59,
+    "p99": 0.47
    },
-   "flottants_sup_0_3_m": 864,
-   "enterres_sup_0_5_m": 469
+   "flottants_sup_0_3_m": 848,
+   "enterres_sup_0_5_m": 447
   },
   "glissieres": {
    "objets": 118,
@@ -73,10 +73,10 @@
    "enterres_sup_0_5_m": 0
   },
   "mobilier": {
-   "objets": 30,
-   "controles": 30,
+   "objets": 29,
+   "controles": 29,
    "ecart_au_mnt_m": {
-    "mediane": -0.037,
+    "mediane": -0.044,
     "p1": -0.26,
     "p99": 0.54
    },
@@ -95,15 +95,15 @@
    "enterres_sup_0_5_m": 0
   },
   "herbes": {
-   "objets": 54327,
-   "controles": 54327,
+   "objets": 54322,
+   "controles": 54322,
    "ecart_au_mnt_m": {
     "mediane": -0.029,
     "p1": -0.19,
     "p99": 0.15
    },
-   "flottants_sup_0_3_m": 79,
-   "enterres_sup_0_5_m": 11
+   "flottants_sup_0_3_m": 81,
+   "enterres_sup_0_5_m": 15
   }
  },
  "note": "Les alertes ne bloquent pas : les objets du paquet sont posés sur le terrain lissé du modèle (terrain_sol.glb), pas sur le MNT brut ; un écart de quelques décimètres sur les talus est attendu. controle_paquet.py de carte-reelle-unreal ne s'applique pas (il attend une heightmap de Landscape et son manifeste) : contrôle équivalent. Les objets flottants ou enterrés sont mesurés au MNT LiDAR 0,5 m nu : un objet posé sur un talus de roche, un mur ou un tablier peut s'en écarter légitimement."

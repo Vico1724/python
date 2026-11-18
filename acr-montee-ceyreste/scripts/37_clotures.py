@@ -25,6 +25,7 @@ import importlib.util
 import io
 import json
 import struct
+import zlib
 import sys
 from pathlib import Path
 
@@ -110,11 +111,11 @@ def tex_haie(px=256, seed=5):
 
 
 def tex_vigne_vierge(px=256, seed=9):
-    """Enduit beige couvert aux trois quarts de vigne vierge : feuilles rouges, orangées et vertes en taches (1093d878)."""
+    """Enduit beige couvert à moitié de vigne vierge : feuilles rouges, orangées et vertes en taches (1093d878)."""
     rng = np.random.default_rng(seed)
     fond = np.asarray(tex_cc0("white_plaster_rough_01", TEINTES["enduit_beige"], px)).astype(float)
     cou = np.asarray(Image.fromarray((rng.random((px // 8, px // 8)) * 255).astype(np.uint8)).resize((px, px), Image.BICUBIC)).astype(float) / 255
-    couvre = (cou > 0.3)[..., None]
+    couvre = (cou > 0.5)[..., None]          # la moitié du mur environ (1093d878 : enduit visible entre les rameaux)
     f = np.asarray(Image.fromarray((rng.random((px // 4, px // 4)) * 255).astype(np.uint8)).resize((px, px), Image.NEAREST)).astype(float) / 255
     teintes = np.where((f < 0.45)[..., None], [150, 34, 30], np.where((f < 0.7)[..., None], [186, 92, 40], [70, 92, 46]))
     feuilles = np.asarray(Image.fromarray(teintes.astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.8))).astype(float)
@@ -562,6 +563,13 @@ def main():
              "elements": []}
     for e in doc["elements"]:
         res = construire(e, T, ref)
+        # décalage d'UV propre à chaque élément (graine fixe : son identifiant) : deux murs voisins ne commencent plus sur
+        # la même pierre (répétition visible signalée par l'utilisateur, cinquième passe du 19/11/2026)
+        rng_uv = np.random.default_rng(zlib.crc32(e["id"].encode()))
+        du = rng_uv.random(2).astype(np.float32)
+        for m, _ in res:
+            if m is not None and not str(m["mat"]).startswith(("plaque", "grillage")):
+                m["uv"] = (np.asarray(m["uv"], np.float32) + du).astype(np.float32)
         L = float(e["longueur_m"]) if e["type"] not in ("pilier", "boites_aux_lettres") else 0.0
         k = f"{e['type']} {e['cote']}"
         bilan["par_type_et_cote_m"][k] = round(bilan["par_type_et_cote_m"].get(k, 0) + L, 1)
