@@ -370,3 +370,61 @@ Aucun tronçon sans image. Les 2 tronçons « mur (p1-2) » de gauche entre −5
 | terrain (ha, cellules de 20 m à < 400 m) | 16 | 26 | 40 | 210 |
 
 Traitement selon ce classement : **toits** de tous les bâtiments relus sur le LiDAR (croupes si le faîtage descend aux deux bouts : 3 maisons du bord de route et 64 du village en quatre pans, le reste à deux pans), **clôtures, portails, piliers et haies** des 30 maisons de premier plan posés quand une photo les montre. **Non fait** : façades avec ouvertures (portes, fenêtres, volets), génoises, teintes d'enduit par maison, garages et terrasses : les 30 bâtiments de premier plan restent des volumes à toit juste mais **façades nues** (liste dans `visibilite.json`, niveau `premier_plan`). Correction du terrain « en pointes » du village (lointain 5 à 25 m) et contrôle de la silhouette (clocher) : **non faits**.
+
+## 10. Quatrième passe (19/11/2026) : façades des bâtiments vus de près, village lointain
+
+*Demande de l'utilisateur (mots exacts) : « En decore ok mais les zone visible doivent etre vraiment bien faite ».*
+
+**Rien n'a été vu en jeu ni dans Unreal.** « Vérifié » = sortie regardée (planche photo / rendu de contrôle de l'étape 15, hors jeu). Pas d'outil de sous-agents dans cette session : toutes les images ont été lues par l'agent.
+
+### Méthode (`scripts/40_facades.py`, `scripts/facades.py`)
+
+- `images` : pour chaque bâtiment de premier plan et de plan moyen (`visibilite.json`), score de chaque panorama 2025 (793 référencés) par façade : angle d'incidence, distance, rayons vers 5 points de la façade non arrêtés par le MNS ; 8 images au plus, téléchargées en HD (12 288 × 6 144 ; 74 téléchargées en plus, non versionnées).
+- `vues` : vue rectifiée vers le bâtiment avec l'emprise BD TOPO projetée, façades nommées `F0`, `F1`… (côtés de l'emprise, anneau trigonométrique depuis le sommet sud-ouest), graduées tous les mètres (rouge le long, cyan en hauteur depuis le pied = MNT le plus bas du contour). Correction de la convergence des méridiens (1,92°) entre azimut Panoramax et quadrillage Lambert-93 ; caméra à 2,6 m au-dessus de la chaussée la plus proche (le MNT au point GPS tombait parfois sur un mur). `zoom` : vue serrée d'une façade pour y lire les ouvertures ; `profil` : MNS − MNT le long de chaque façade ; `teinte` : couleur médiane d'un rectangle de façade (avec la chaussée de la même image au soleil et à l'ombre comme référence de gris ; correction écartée quand la chaussée sort colorée) ; `ortho` : teinte médiane du toit sur l'ortho 20 cm.
+- **Teintes** : l'exposition des panoramas n'est pas calibrée ; on garde le rapport des canaux mesuré et l'on fixe la clarté d'après une classe lue sur la photo (`facades.rgb_releve`). Toits : ortho, saturation relevée de 60 % (voile et compression la désaturent).
+- **Relevé** : un fichier par bâtiment, `data/reference/facades/<cleabs>.json` (identifiant BD TOPO stable, images citées par élément, volumes, toit, enduit, ouvertures, éléments, notes). `31_bati.py` le lit et régénère la géométrie ; collision inchangée (façades de `_batiment`).
+- **Géométrie** (`facades.Batisseur`) : emprise découpée en volumes (bandes perpendiculaires à une façade, ou « reste ») ; toit deux pans, croupes, appentis ou plat ; débord, sous-face (enduit, tuile, blanc, bois), rives, faîtières ; génoise de 1 à 3 rangs ; au premier plan, baies percées avec tableaux de 18 cm, vitrage sombre, cadre et meneau, appui saillant, encadrement ; volets battants (vantaux plaqués au mur ou fermés dans la baie, plein ou persiennes), volets roulants (tablier à la fraction relevée) ; soubassement ; auvents, terrasses couvertes, cheminées, conduits, coffrets ; abri ouvert (abribus : piédroits, bandeau, banc, intérieur) ; ruine de pierre sèche (murs de 0,5 m, arases irrégulières). Plan moyen : mêmes ouvertures en aplat. Matières par type, UV en mètres (2 m par répétition) ; textures calculées.
+
+### Résultat par bâtiment (dans l'ordre : zone de départ, puis durée de visibilité)
+
+| Bâtiment | PK | Vu | Posé |
+|---|---|---|---|
+| 487997256 | −106 D | F2, F3 | 2 volumes à croupes (7 m et 4,3 m d'égout ; LiDAR invalide : maison plus récente), enduit blanc, 2 fenêtres d'étage à volets roulants anthracite, 1 baie, conduit inox |
+| 257167825 | −108 G | non | toit (ortho) ; cabanon caché derrière le mur et les oliviers |
+| 487997246 | −120 D | non | toit (ortho) ; caché par les lauriers-roses |
+| 257167737 | 5 D | F11 (haut) | égout 4,6 m, génoise, enduit blanc, auvent de tuiles |
+| 257167771 | −149 G | toit, pignon | enduit beige, toit (ortho) ; façades derrière le mur et le portail bleu |
+| 257167973, 974 | −149 D | non | toits (ortho) |
+| 257167740 | −18 D | F9 | génoise 2 rangs, enduit blanc, baie à 4 persiennes bleu pâle fermées, cheminée |
+| 257167865 | −84 D | F3 (pignon) | remise de 2,4 m d'égout (LiDAR pris sur des arbres), enduit de ciment gris, aveugle |
+| 257167736, 168051, 167866, 167861 | −4, −11, −84, −61 | non | toits (ortho) |
+| 257168011 | −122 G | F0 (pignon) | cabanon, marquise de tuiles, porte derrière le portail |
+| 257167862 | −52 G | F0 (haut) | génoise 2 rangs, enduit crème, fenêtre à cadre blanc, 2 souches |
+| 334468838 | −53 D | F6 | cube à étage à croupes + corps bas (LiDAR invalide : maison de 2023), enduit saumon mesuré, 2 fenêtres anthracite à volets roulants |
+| 257168030 | 33 D | 4 faces | abribus « LE PLAN DE MASSE » : ouvert au sud, appentis de tuiles, bandeau de bois, banc, conteneur à verre et armoire électrique |
+| 257172633 | 3293 D | non | caché par la haie de cyprès ; tuile par défaut (ortho couverte) |
+| 276329369 | 2854 D | F2 | bâtisse de moellons enduits à pierre vue, égout 5,6 m, volet plein vert fermé, petit châssis blanc, soubassement de pierre |
+| 257172615, 616 | 3308, 3312 D | non | toits (ortho) |
+| 257172596 | 2061 G | oui | cabane de planches brunes, appentis de tôle ondulée |
+| 257172642 | 3181 D | oui | ruine de pierre sèche sans toit (corps de 3,6 m, enclos de 2,1 m) |
+| 356341071 | 3131 D | toit | toit (ortho) ; derrière le mur et le portail |
+| 257172553, 551, 552 | 2910-2917 D | toit | toits (ortho) ; derrière la haie de lierre |
+| 257172627 | 3226 D | F9 (partie) | génoise 2 rangs, enduit blanc, auvent sur poteaux |
+| 257172626, 651 | 3224, 3760 | non | toits (ortho, ou défaut) |
+| plan moyen : 257167851, 867, 824, 257172617, 628 | | non | toits (ortho, sauf 628 : défaut) |
+
+Total : **12 bâtiments avec façade relevée, 23 cachés**, **10 ouvertures, 6 volets, 9 éléments**. Vus mais **non posés** (position incertaine ou hors du modèle) : fenêtre à barreaux et tags de la cabane du PK 2061 (emprise BD TOPO décalée de 2-3 m), portes de garage du PK 3226 (±1 m), panneau d'affichage et mosaïque de l'abribus, antennes de télévision, coffret et câbles sur le poteau du PK 2854, claustra du PK 5. Génoise peinte du PK −18 rendue par la génoise de tuiles générique. Abords (végétation de jardin, terrasses, piscines) : **non posés** au-delà des clôtures de la passe 3.
+
+### Village lointain
+
+- **Terrain « en pointes » : cause et correction.** Le maillage lointain (13) passe de 5 à 10 m de pas à partir de 400 m, et au-delà de 450 m ajoute 0,9 × MNH (« hauteur de végétation » du LiDAR HD) pour figurer les cimes. Ce MNH est MNS − MNT : **il contient les bâtiments** (médiane 4 m, 9e décile 6,4 m aux centres des bâtiments du village). Chaque sommet tombé sur un toit ou un arbre de jardin montait de 4 à 10 m, d'où les pointes entre et sous les volumes posés sur le MNT. Correction (`13_paysage_lointain.zone_village`) : dans l'emprise bâtie (tous les bâtiments BD TOPO du village, enveloppe à 40 m, fondu sur 40 m), la surface reste au sol. Ni la triangulation ni l'échelle verticale n'étaient en cause. Vérifié : `figures/phase5/vue_village_mairie_vers_nord.png` (relief lisse, volumes du village dégagés), `vue_aerien_bas_du_trace_village.png`. Reste : la photo aérienne des toits est peinte sur le sol du village (texture du lointain).
+- **Silhouette** (`40_facades.py silhouette`, `figures/affinage/silhouette/village_depuis_pk-0140.jpg`, `-0050`, `+0020`) : depuis ces trois points réels, regard vers l'église (1,7-1,8 km), la photo montre la route, les murs et la végétation proches ; le village est caché (PK −140, −50) ou réduit à quelques toits bas dans la plaine sous les collines (PK 20) ; **le clocher n'est visible sur aucune des trois photos**. Le rendu montre le même relief d'horizon et, au PK 20, les toits du village au même endroit, un peu plus dégagés (végétation figurante moins dense que la réelle). Au PK 20, une maison du bord (PK −4 à −11) sort plus dégagée sur le rendu que sur la photo, où des oliviers la cachent. Au PK −140, le rendu de contrôle ne montre pas la route (caméra au bord du modèle, PK −149) : à reprendre.
+- **Teintes des toits** : 4 teintes mesurées sur l'ortho (`31_bati.teintes_toits_village`, 572 toits sur 936 dans l'ortho, les autres en teinte médiane) au lieu de la tuile rouge orangé uniforme : `tuile_706058`, `a07868`, `b89078`, `c8b098`. Façades du village : enduit beige inchangé (l'ortho ne les montre pas).
+
+### Vérification par l'image
+
+Planches photo réelle / rendu, même position, cap, tangage et champ (sténopé 1 600 × 900 des deux côtés) : `figures/affinage/facades/pk*_<cleabs>_0.jpg` (13 bâtiments vus) et `depart_synthese_4_directions.jpg` (PK 1, montée, droite, descente, gauche). Regardées. Reconnaissables : abribus, maisons des PK −106, −53, −122, 2854, ruine du PK 3181. Moins bien : PK −52 (le mur couvert de vigne vierge est uni dans le rendu), PK −18 et 5 (cachés par les arbres figurants dans le rendu comme dans la réalité), cabane du PK 2061 (tôle rendue claire et lisse). Le rendu de contrôle ne montre que la texture du modèle : dans Unreal, les enduits relevés héritent du béton du jeu (teinte non vérifiée en jeu).
+
+### Paquet et export neutre
+
+Familles inchangées (`batiments`, `village`) ; 78 + 22 maillages ; nouveaux matériaux nommés par teinte (`MI_GC_Enduit_<rrggbb>`, `MI_GC_Tuile_<rrggbb>`…) ou par type (`MI_GC_Volet_persienne_bleu_pale`, `MI_GC_Verre`, `MI_GC_Genoise`…) : noms stables tant que le relevé ne change pas. 16 : `enduit_releve` et `teinte_enduit_du_jeu` (règle des enduits de `matieres_du_jeu.json`). Bâtiments et village du paquet : 3,1 Mo de maillages + 0,8 Mo de textures nouvelles ; `modele/bati_bord.glb` 0,20 → 0,78 Mo (2 718 triangles, 1 628 avant). Export neutre : CONFORME.

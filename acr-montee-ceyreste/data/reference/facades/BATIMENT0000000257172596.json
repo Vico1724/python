@@ -1,0 +1,20 @@
+{
+ "cleabs": "BATIMENT0000000257172596",
+ "pk_m": 2061, "cote": "gauche", "niveau": "premier_plan",
+ "nature": "cabane de bois dans la pinède",
+ "images": [
+  {"id": "58af6c06-4b49-48db-999f-55d924d6cd3f", "role": "cabane vue de trois quarts (PK 2061 environ), vue rapprochée lue"},
+  {"id": "7be50dd1-eac3-4ed8-a91b-0a1042368dff", "role": "même vue, plus loin"}
+ ],
+ "lidar": "invalide (pins de 13 m au-dessus) ; hauteur lue sur la photo",
+ "volumes": [
+  {"nom": "cabane", "niveaux": 1, "egout_z": 2.6, "toit": "appentis", "haut": "F2", "pente": 0.08, "debord_m": 0.45,
+   "genoise_rangs": 0, "sous_face": "bois",
+   "source": "cabane basse en planches, toit d'un pan de tôle ondulée à débord porté par des poteaux (58af6c06) ; égout à 2,3 m environ au-dessus du sol"}
+ ],
+ "enduit": {"materiau": "bardage", "mesure_rgb": [44, 40, 36], "clarte": "sombre", "source": "planches brun sombre à l'ombre, 58af6c06"},
+ "toit": {"materiau": "tole", "rgb": [150, 152, 140], "source": "tôle ondulée gris clair couverte d'aiguilles de pin (58af6c06, au soleil 105, 110, 77 avec les aiguilles)"},
+ "facades": {},
+ "abords": "pinède, sol de terre et d'herbe sèche",
+ "notes": "Une fenêtre à barreaux et des tags vert pâle sont vus, mais l'emprise BD TOPO est décalée de 2 à 3 m de la cabane sur la vue : face porteuse incertaine, ouverture non posée."
+}

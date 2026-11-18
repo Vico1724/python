@@ -1,0 +1,35 @@
+{
+ "cleabs": "BATIMENT0000002487997256",
+ "pk_m": -106, "cote": "droite", "niveau": "premier_plan",
+ "images": [
+  {"id": "e99032a6-2844-488a-ac68-18c8e81c0df4", "role": "F2 de face (PK -87, vers le sud), vue rapprochée lue"},
+  {"id": "d0bcfced-420c-4a81-abfe-9f4f869bb3ad", "role": "F3 de face (PK -112), vue rapprochée lue"},
+  {"id": "c0e0148f-bfb6-4770-b4bc-30f3bda7e1bd", "role": "F2 et F3 de biais (PK -92)"},
+  {"id": "63cc1724-4cdb-4182-aaa0-93d2265548c1", "role": "F3 depuis le pied du talus (PK -107)"}
+ ],
+ "lidar": "MNS invalide ici : le LiDAR HD montre 15 à 16 m d'arbres sur l'emprise (maison plus récente que le relevé laser, identifiant BD TOPO récent) ; hauteurs lues sur les photos, graduations de 1 m",
+ "volumes": [
+  {"nom": "corps principal", "bande": {"face": "F3", "x0": 0.0, "x1": 8.3}, "niveaux": 2, "egout_z": 7.0,
+   "toit": "quatre_pans", "pente": 0.30, "debord_m": 0.5, "genoise_rangs": 0, "sous_face": "enduit",
+   "source": "toit à croupes, débord à sous-face lisse enduite, sans génoise (e99032a6, d0bcfced)"},
+  {"nom": "aile basse", "bande": {"face": "F3", "x0": 8.3, "x1": 12.1}, "niveaux": 1, "egout_z": 4.3,
+   "toit": "quatre_pans", "pente": 0.30, "debord_m": 0.4, "genoise_rangs": 0, "sous_face": "enduit",
+   "source": "corps bas à droite de F3 (d0bcfced) : rive de tuiles au niveau du bas des fenêtres de l'étage ; hauteur estimée à ±0,5 m"}
+ ],
+ "enduit": {"mesure_rgb": [127, 125, 119], "clarte": "blanc", "source": "F2 à l'ombre, e99032a6, x 3-6 m, z 5-6,5 m (40_facades.py teinte) ; blanc légèrement chaud"},
+ "toit": {"ortho_rgb": [180, 151, 131], "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve) (40_facades.py ortho) ; tuiles canal rouge orangé patinées sur les photos"},
+ "facades": {
+  "F2": {"vue": true, "images": ["e99032a6"], "ouvertures": [], "note": "mur aveugle sur toute sa hauteur (e99032a6)"},
+  "F3": {"vue": true, "images": ["d0bcfced", "63cc1724", "e99032a6"], "ouvertures": [
+    {"type": "fenetre", "x": 2.95, "z": 4.8, "l": 0.85, "h": 1.15, "menuiserie": "anthracite", "volets": "roulant", "volet_couleur": "anthracite", "roulant_baisse": 0.1, "appui": true, "source": "d0bcfced"},
+    {"type": "fenetre", "x": 5.1, "z": 4.8, "l": 0.85, "h": 1.15, "menuiserie": "anthracite", "volets": "roulant", "volet_couleur": "anthracite", "roulant_baisse": 0.4, "appui": true, "source": "d0bcfced"},
+    {"type": "baie", "x": 2.9, "z": 2.0, "l": 1.4, "h": 1.3, "menuiserie": "anthracite", "volets": "aucun", "appui": true, "source": "d0bcfced (en partie caché par un olivier)"}
+   ], "note": "corps bas (x > 8,3 m) caché par la végétation : sans ouverture"},
+  "F0": {"vue": false}, "F1": {"vue": false}
+ },
+ "toiture": [
+  {"type": "conduit", "face": "F2", "x": 2.4, "recul": 2.0, "h": 1.0, "couleur": "inox", "source": "conduit de poêle en inox (e99032a6)"}
+ ],
+ "abords": "terrasse bordée d'un muret enduit blanc de 0,5 m sur le mur de pierre sèche (e99032a6, c0e0148f) ; talus en friche, oliviers",
+ "notes": "Façades F0 (SO) et F1 (SE) jamais vues de la route : enduit relevé, sans ouverture."
+}

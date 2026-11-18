@@ -1,0 +1,27 @@
+{
+ "cleabs": "BATIMENT0000000257167740",
+ "pk_m": -18, "cote": "droite", "niveau": "premier_plan",
+ "images": [
+  {"id": "09174137-27ce-4c64-9bc3-eba1e6231d87", "role": "F9 (ouest) de face entre deux oliviers (PK -20), vue rapprochée lue"},
+  {"id": "90e37a20-3f82-44ce-aa1b-dd208ebc0f8d", "role": "F9 de biais (PK -25) ; la tour à génoise peinte et loggia en arc vue à droite est hors de l'emprise (bâtiment voisin)"},
+  {"id": "b0467d52-d12e-4c82-9efd-f6e8c43b56dc", "role": "F9 et F0 de biais derrière un olivier (PK -30)"}
+ ],
+ "lidar": "valide (5,1 m)",
+ "volumes": [
+  {"nom": "maison", "niveaux": 1, "egout_z": 3.8, "toit": "deux_pans", "faitage": "parallele:F9", "pente": 0.30, "debord_m": 0.25,
+   "genoise_rangs": 2, "sous_face": "tuile", "source": "égout horizontal sur F9 avec génoise à deux rangs à arcs peints en ocre et gouttière (09174137) ; égout à 3,8 m au-dessus du pied"}
+ ],
+ "enduit": {"mesure_rgb": [138, 145, 138], "clarte": "blanc", "source": "F9 à l'ombre, 09174137, x 4,2-4,9 m, z 2,3-3,3 m ; crépi écrasé blanc"},
+ "toit": {"ortho_rgb": [144, 118, 106], "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve) ; tuiles canal rouges"},
+ "facades": {
+  "F9": {"vue": true, "images": ["09174137"], "ouvertures": [
+    {"type": "porte_fenetre", "x": 1.67, "z": 0.9, "l": 2.2, "h": 1.97, "menuiserie": "blanc", "volets": "persiennes", "volet_etat": "ferme",
+     "volet_couleur": "bleu_pale", "appui": false, "source": "09174137 : baie à quatre vantaux de persiennes (haut à lames, bas à panneaux) gris bleu pâle, fermés ; bas caché par la haie (hauteur supposée d'une porte-fenêtre)"}
+   ], "note": "reste de la façade nu sur la partie vue ; bas caché par la haie"}
+ },
+ "toiture": [
+  {"type": "cheminee", "face": "F9", "x": 4.95, "recul": 1.0, "l": 0.55, "w": 0.45, "h": 0.6, "source": "souche enduite à chapeau de tuiles rouges (09174137)"}
+ ],
+ "abords": "mur de soutènement de pierre (posé), haie fleurie, deux oliviers devant F9",
+ "notes": "Autres façades cachées (oliviers, haie) : enduit relevé, sans ouverture. Génoise peinte (arcs ocre) rendue par la génoise de tuiles générique."
+}

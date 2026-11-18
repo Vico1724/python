@@ -290,6 +290,35 @@ def triangule(bord, Q, poly, tentatives=6):
     return P, T, len(manque), tentatives
 
 
+_VILLAGE = None
+
+
+def zone_village(x, y):
+    """1 dans l'emprise bâtie du village (tous les bâtiments BD TOPO de data/raw/village/batiment.geojson, téléchargés par
+    28_village.py, à défaut ceux posés par 31_bati.py ; enveloppe à 60 m, fondu sur 40 m), 0 ailleurs."""
+    global _VILLAGE
+    if _VILLAGE is None:
+        f = RAW / "village" / "batiment.geojson"
+        if not f.exists():
+            f = ROOT / "data" / "processed" / "village" / "batiments_option_a_visibles_du_depart.geojson"
+        if not f.exists():
+            _VILLAGE = False
+        else:
+            from acr_geo import TO_L93
+            from shapely.geometry import shape
+            gs = []
+            for ft in json.loads(f.read_text(encoding="utf-8"))["features"]:
+                g = shape(ft["geometry"])
+                gs.append(shapely.transform(g, lambda c: np.column_stack(TO_L93.transform(c[:, 0], c[:, 1]))))
+            z = shapely.union_all([g.buffer(60.0) for g in gs]).buffer(-20.0)
+            shapely.prepare(z)
+            _VILLAGE = z
+    if _VILLAGE is False:
+        return np.zeros(np.shape(x))
+    d = shapely.distance(_VILLAGE, shapely.points(np.asarray(x), np.asarray(y)))
+    return np.clip(1.0 - d / 40.0, 0.0, 1.0)
+
+
 def altitudes(Pxy, dist, nb, bord, src, centre):
     """Altitude des sommets (le bord garde exactement celle de 08)."""
     x, y = Pxy[:, 0], Pxy[:, 1]
@@ -329,6 +358,10 @@ def altitudes(Pxy, dist, nb, bord, src, centre):
     mnh = np.where(src["mnh5"].dedans(x, y), src["mnh5"](x, y), src["mnh25"](x, y))
     mnh = np.clip(np.where(mnh < -1000, 0, mnh), 0, 35)
     t = np.clip((dist - CANOPEE[0]) / (CANOPEE[1] - CANOPEE[0]), 0, 1)
+    # Village de Ceyreste (19/11/2026) : le MNH du LiDAR HD est MNS - MNT, il contient les BÂTIMENTS. Au pas de 10 m,
+    # chaque sommet tombé sur un toit ou un arbre de jardin montait de 4 à 10 m : terrain « en pointes » sous et entre
+    # les volumes du village (31_bati.py, posés sur le MNT). Dans l'emprise du village, la surface reste au sol.
+    t = t * (1.0 - zone_village(x, y))
     z = zg + 0.9 * mnh * t * t * (3 - 2 * t)
     z = np.where(mer, 0.0, z)
     # courbure de la Terre, depuis le centre de l'ES

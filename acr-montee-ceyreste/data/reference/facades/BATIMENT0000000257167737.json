@@ -1,0 +1,23 @@
+{
+ "cleabs": "BATIMENT0000000257167737",
+ "pk_m": 5, "cote": "droite", "niveau": "premier_plan",
+ "images": [
+  {"id": "07f0e5a1-9d64-402b-aeaf-23e8b5ad8fb1", "role": "F11 (ouest) au-dessus du mur de pierre et de la haie (PK 6), vue rapprochée lue"},
+  {"id": "f72ed2c1-3a02-42b0-9026-cba741be7dd9", "role": "masqué par un grand arbre (PK -15)"},
+  {"id": "f067b2d9-c42b-4006-a22d-60a45d6b7a55", "role": "masqué par la haie de lauriers (PK 32)"}
+ ],
+ "lidar": "valide (faîtage 5,5-5,8 m)",
+ "volumes": [
+  {"nom": "maison", "niveaux": 1, "egout_z": 4.6, "toit": "deux_pans", "faitage": "long", "pente": 0.30, "debord_m": 0.3,
+   "genoise_rangs": 1, "sous_face": "tuile", "source": "égout lu sur F11 (07f0e5a1) : rive de tuiles canal au-dessus d'un mur aveugle ; maison de plain-pied surélevée"}
+ ],
+ "enduit": {"mesure_rgb": [145, 149, 145], "clarte": "blanc", "source": "F11 à l'ombre, 07f0e5a1, x 2,2-4 m, z 3,9-4,4 m ; correction par la chaussée écartée (référence bleutée)"},
+ "toit": {"ortho_rgb": [139, 119, 108], "source": "ortho IGN 20 cm (saturation relevée, voir facades.rgb_releve)"},
+ "facades": {
+  "F11": {"vue": true, "images": ["07f0e5a1"], "ouvertures": [],
+          "elements": [{"type": "auvent", "x": 4.2, "l": 2.5, "prof": 2.0, "z": 3.0, "source": "auvent de tuiles au-dessus d'une terrasse fermée d'un claustra de bois (07f0e5a1) ; claustra non modélisé"}],
+          "note": "seule la moitié haute est vue (haie, poteau) : mur aveugle dans cette partie ; bas caché"}
+ },
+ "abords": "mur de pierre sèche de 2 m sur la rue (déjà posé), haie de lauriers et palmier nain, grand olivier, poteau béton",
+ "notes": "Autres façades cachées par le mur, les arbres et la haie sur les 8 images : enduit relevé, sans ouverture."
+}

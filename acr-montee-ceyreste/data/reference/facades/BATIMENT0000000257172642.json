@@ -1,0 +1,21 @@
+{
+ "cleabs": "BATIMENT0000000257172642",
+ "pk_m": 3181, "cote": "droite", "niveau": "premier_plan",
+ "nature": "ruine d'un cabanon de pierre sèche, sans toit",
+ "images": [
+  {"id": "dd38e147-f509-4bc8-86ce-01b937feac1b", "role": "côté nord au-dessus du mur de soutènement (PK 3183)"},
+  {"id": "c9f46809-9adb-4325-91da-c4b7e337736d", "role": "côté nord (PK 3193)"},
+  {"id": "5a111766-5aea-4f98-be65-e7b67d4c850c", "role": "corps haut, côtés nord et est, derrière une grille (PK 3161)"}
+ ],
+ "lidar": "valide (murs de 1,6 à 2,8 m ; pins au-dessus de l'angle sud-est)",
+ "volumes": [
+  {"nom": "corps haut", "bande": {"face": "F8", "x0": 0.0, "x1": 3.5, "prof": 4.3}, "egout_z": 3.6, "ruine": true, "epaisseur_m": 0.55,
+   "source": "corps carré à murs de pierre sèche de 3,5 m environ, sans toit (5a111766, dd38e147)"},
+  {"nom": "enclos", "reste": true, "egout_z": 2.1, "ruine": true, "epaisseur_m": 0.5,
+   "source": "murs de pierre sèche de 2 m environ, arases irrégulières (dd38e147, c9f46809 ; LiDAR 1,6-2,8 m)"}
+ ],
+ "enduit": {"rgb": [150, 140, 122], "source": "sans enduit (pierre sèche) ; teinte sans emploi"},
+ "facades": {},
+ "abords": "mur de soutènement de pierre sèche sur la route (posé), grille, vigne, cyprès",
+ "notes": "Aucune ouverture lisible (murs ruinés). Pierre : texture old_stone_wall (aperçu, export neutre), pierre du jeu dans Unreal (MURS_DU_JEU)."
+}

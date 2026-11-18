@@ -49,6 +49,8 @@ def charger(nom, f):
 
 
 m12 = charger("m12", "12_carrefours_annexes.py")
+import facades as FA  # noqa: E402
+RELEVES = ROOT / "data" / "reference" / "facades"   # relevés façade par façade (40_facades.py, quatrième passe)
 m11, m08 = m12.m11, m12.m08
 MOD = ROOT / "modele"
 RAYON_BORD_M = 25.0          # maisons « du bord de route » (demande du 18/11/2026 : les 36 à moins de 25 m de l'axe)
@@ -140,6 +142,49 @@ def lire(f):
     return out
 
 
+def teintes_toits_village(village):
+    """Palette de 4 teintes de toit du village, mesurées sur l'ortho IGN 20 cm (médiane de chaque toit, saturation relevée
+    comme facades.rgb_releve), et classe de chaque bâtiment (cleabs -> indice). Hors de l'ortho : classe médiane.
+    Avant le 19/11/2026, tous les toits avaient la tuile rouge orangé de 12 (sRGB 176, 97, 61) : village trop rouge vu
+    de la route (figures/affinage/silhouette/)."""
+    import rasterio
+    from rasterio.mask import mask
+    f = RAW / "ortho_20cm.tif"
+    cols = {}
+    with rasterio.open(f) as s:
+        b = s.bounds
+        for p, P in village:
+            c = P.centroid
+            if not (b.left + 5 < c.x < b.right - 5 and b.bottom + 5 < c.y < b.top - 5):
+                continue
+            g = P.buffer(-0.6)
+            if g.is_empty or g.area < 2:
+                continue
+            a, _ = mask(s, [g.__geo_interface__], crop=True, filled=False)
+            a = a[:3].reshape(3, -1)
+            ok = ~np.ma.getmaskarray(a).any(0)
+            v = np.asarray(a)[:, ok].T.astype(float)
+            if len(v) < 20:
+                continue
+            lum = v.mean(1)
+            garde = (v[:, 1] < v[:, 0] * 1.02) & (lum > np.percentile(lum, 20))
+            if garde.sum() < 10:
+                continue
+            cols[str(p.get("cleabs"))] = np.median(v[garde], 0)
+    X = np.array(list(cols.values()))
+    # k-moyennes (4 classes), départ déterministe sur les quantiles de clarté
+    o = np.argsort(X.mean(1))
+    C = X[o[[int(len(o) * q) for q in (0.12, 0.38, 0.62, 0.88)]]].copy()
+    for _ in range(30):
+        k = np.argmin(((X[:, None, :] - C[None]) ** 2).sum(2), 1)
+        C = np.array([X[k == j].mean(0) if (k == j).any() else C[j] for j in range(4)])
+    ordre = np.argsort(C.mean(1)); C = C[ordre]
+    k = np.argmin(((X[:, None, :] - C[None]) ** 2).sum(2), 1)
+    pal = [FA.srgb_hex(FA.rgb_releve({"ortho_rgb": c.tolist()})) for c in C]
+    print("palette des toits du village (ortho) :", pal, np.bincount(k, minlength=4).tolist(), "sur", len(village))
+    return pal, dict(zip(cols.keys(), k.tolist()))
+
+
 def main():
     rel = Relief()
     mnt, mns = MNTproxy(rel), MNSproxy(rel)
@@ -158,6 +203,7 @@ def main():
     village = lire(OUT / "village" / "batiments_option_a_visibles_du_depart.geojson")
     deja = {p.get("cleabs") for p, _ in bord}
     village = [(p, P) for p, P in village if p.get("cleabs") not in deja and P.distance(axe) > 60]
+    palette, teinte_v = teintes_toits_village(village)
     bilan, lots = [], {"bati_bord": [], "village": []}
     coll = []
     for groupe, liste in (("bati_bord", bord), ("village", village)):
@@ -184,6 +230,35 @@ def main():
                 bilan.append({"cleabs": p.get("cleabs"), "groupe": groupe, "non_pose": str(ex)[:120]})
                 continue
             cle = str(p.get("cleabs"))
+            fr = RELEVES / f"{cle}.json"
+            if fr.exists():
+                # bâtiment relevé façade par façade (photos Panoramax 2025) : volumes, toit, ouvertures, volets, génoise…
+                # La collision reste celle de _batiment (façades jusqu'à l'égout).
+                R = FA.charger_releve(fr)
+            if fr.exists() and not R.get("volumes"):
+                # façades cachées (mur, haie, arbres) : volume LiDAR gardé, teintes relevées (enduit vu au-dessus du mur,
+                # toit sur l'ortho), éléments de toit vus (cheminée)
+                ren = {"enduit_maison": f"enduit_{FA.srgb_hex(FA.rgb_releve(R['enduit']))}" if R.get("enduit") else "enduit_maison",
+                       "tuile": f"tuile_{FA.srgb_hex(FA.rgb_releve(R['toit']))}" if R.get("toit") else "tuile"}
+                lot.parts = {ren.get(k, k): v for k, v in lot.parts.items()}
+                inf.update({"releve_facades": fr.relative_to(ROOT).as_posix(), "volumes_releves": 0,
+                            "facades_vues": sorted(k for k, f in R.get("facades", {}).items() if f.get("vue"))})
+            elif fr.exists():
+                lot = m12._Lot(ref)
+                Rg = np.asarray(P.exterior.coords)[:-1]
+                z0 = float(rel.z(Rg[:, 0], Rg[:, 1]).min())
+                B = FA.Batisseur(lot, R, P, FA.faces(P), z0, mnt, detail=R.get("niveau") == "premier_plan")
+                cpt = B.construire()
+                inf.update({"releve_facades": fr.relative_to(ROOT).as_posix(), "volumes_releves": len(R["volumes"]),
+                            **{f"{k}_posees": v for k, v in cpt.items()},
+                            "egout_releve_m": [round(z0 + v["egout_z"] - inf["z_terrain_m"], 2) for v in R["volumes"]],
+                            "facades_vues": sorted(k for k, f in R["facades"].items() if f.get("vue")),
+                            "facades_non_vues": sorted(k for k, f in R["facades"].items() if not f.get("vue"))})
+            if groupe == "village":
+                # teinte de toit d'après l'ortho IGN 20 cm (classe la plus proche d'une palette de 4 teintes mesurées)
+                tv = f"tuile_{palette[teinte_v.get(cle, len(palette) // 2)]}"
+                lot.parts = {(tv if k == "tuile" else k): v for k, v in lot.parts.items()}
+                inf["teinte_toit"] = tv
             lots[groupe] += lot.meshes(f"{groupe}_{cle}")
             d_ch = float(P.distance(ruban))
             i = int(np.argmin(((A - c) ** 2).sum(1)))
@@ -196,6 +271,8 @@ def main():
                           "hauteur_bdtopo_m": h_bd, "collision": groupe == "bati_bord" and d_ch < RAYON_COLLISION_M, **inf,
                           "forme_toit": forme, "forme_toit_mesure_lidar": mes_toit})
     mats = m12.zd_matieres(1024)
+    manquants = sorted({m["mat"] for ms in lots.values() for m in ms} - set(mats))
+    mats.update(FA.textures(manquants, m11, m12, 512))   # 256 px pour 2 m : 8 mm par pixel
     for groupe, ms in lots.items():
         par = {}
         for m in ms:
@@ -218,7 +295,11 @@ def main():
               "bati_bord_tres_visibles": sorted([(b["pk_m"], b["cote"], b["cleabs"]) for b in bilan if b.get("tres_visible")]),
               "village_poses": sum(1 for b in bilan if b.get("groupe") == "village" and "pk_m" in b),
               "non_poses": [b for b in bilan if "non_pose" in b],
-              "hauteur_lidar": sum(1 for b in bilan if "MNS" in str(b.get("hauteur_methode", "")))}
+              "hauteur_lidar": sum(1 for b in bilan if "MNS" in str(b.get("hauteur_methode", ""))),
+              "releves_facades": sum(1 for b in bilan if "releve_facades" in b),
+              "ouvertures_posees": sum(b.get("ouvertures_posees", 0) for b in bilan),
+              "volets_poses": sum(b.get("volets_posees", 0) for b in bilan),
+              "elements_poses": sum(b.get("elements_posees", 0) for b in bilan)}
     (OUT / "bati_bilan.json").write_text(json.dumps({"resume": resume, "batiments": bilan}, ensure_ascii=False, indent=1),
                                          encoding="utf-8")
     print(json.dumps(resume, ensure_ascii=False, indent=1)[:2500])

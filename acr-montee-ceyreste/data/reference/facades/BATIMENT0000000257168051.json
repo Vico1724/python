@@ -1,0 +1,36 @@
+{
+ "cleabs": "BATIMENT0000000257168051",
+ "pk_m": -11.0,
+ "cote": "droite",
+ "niveau": "premier_plan",
+ "images": [
+  {
+   "id": "f9160d60-31e7-498d-980b-702102fffa91",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "f5c5973b-0755-4fbf-92f3-6cdebf4b0245",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "ee1447e9-89d5-4584-9c1e-c06388379be4",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "3bb06c35-353e-4942-a372-ccfb7b85ad3d",
+   "role": "examinée : bâtiment caché"
+  }
+ ],
+ "lidar": "volume LiDAR de 31_bati.py gardé",
+ "volumes": [],
+ "facades": {},
+ "notes": "derrière les oliviers et le mur de pierre (PK -11) ; seule l'arête du toit se devine (planche data/raw/panoramax/facades/BATIMENT0000000257168051/planche.jpg regardée). Aucune ouverture ni teinte d'enduit relevable : enduit par défaut, sans ouverture.",
+ "toit": {
+  "ortho_rgb": [
+   150,
+   133,
+   121
+  ],
+  "source": "ortho IGN 20 cm (saturation relevée)"
+ }
+}

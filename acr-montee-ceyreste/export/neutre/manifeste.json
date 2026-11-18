@@ -175,9 +175,9 @@
   },
   {
    "fichier": "modeles/bati_bord.glb",
-   "taille_mo": 0.2,
-   "maillages": 2,
-   "images_integrees": 2,
+   "taille_mo": 0.78,
+   "maillages": 56,
+   "images_integrees": 56,
    "bornes_min_m": [
     -134.97,
     -12.71,
@@ -287,9 +287,9 @@
   },
   {
    "fichier": "modeles/village.glb",
-   "taille_mo": 3.9,
-   "maillages": 2,
-   "images_integrees": 2,
+   "taille_mo": 3.72,
+   "maillages": 5,
+   "images_integrees": 5,
    "bornes_min_m": [
     -1580.18,
     -122.54,
@@ -494,7 +494,7 @@
    "nature_du_substitut": "rien"
   }
  },
- "taille_totale_mo": 228.6,
+ "taille_totale_mo": 229.0,
  "versionne": [
   "manifeste.json",
   "correspondance_types.csv",

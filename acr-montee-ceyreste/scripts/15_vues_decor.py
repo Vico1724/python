@@ -523,6 +523,14 @@ def main():
         FIG5 / "figurants_arbres.png", optimize=True)
     choix = choix_vues(ch)
     seules = set(sys.argv[1:])
+    sortie_vues = FIG5
+    if "--fichier" in sys.argv:
+        # vues données par un fichier (40_facades.py planches) : {nom: {"oeil_l93": [x, y, z], "vise_l93": [x, y, z],
+        # "fov": degrés verticaux}}, altitudes absolues ; images écrites dans --sortie, sans toucher à vues_decor.json
+        a_ = sys.argv
+        choix = {k: (0.0, v) for k, v in json.loads(Path(a_[a_.index("--fichier") + 1]).read_text(encoding="utf-8")).items()}
+        sortie_vues = Path(a_[a_.index("--sortie") + 1]); sortie_vues.mkdir(parents=True, exist_ok=True)
+        seules = set()
     tmp = Path(tempfile.mkdtemp())
     info = {}
     try:
@@ -541,8 +549,13 @@ def main():
                     os.symlink(MOD / f, d / f)
                 except OSError:                      # Windows sans droit de créer des liens : copie
                     shutil.copy(MOD / f, d / f)
+            fov_v = FOV
             e_l93 = rg.point(np.array([float(pk)]), OEIL_LAT, OEIL_H)
-            if isinstance(visee, tuple) and visee[0] == "l93":           # œil et visée donnés en Lambert-93, hauteur
+            if isinstance(visee, dict):
+                e_l93, a_l93 = np.array([visee["oeil_l93"]]), np.array([visee["vise_l93"]])
+                fov_v = float(visee.get("fov", FOV))
+                visee = 0.0
+            elif isinstance(visee, tuple) and visee[0] == "l93":           # œil et visée donnés en Lambert-93, hauteur
                 # au-dessus du terrain (MNT 2 m du lointain) : vues du village, vues aériennes obliques
                 import rasterio as _rio
                 with _rio.open(ROOT / "data" / "raw" / "lointain" / "mnt_lidarhd_2m.tif") as _s:
@@ -572,7 +585,7 @@ def main():
             arb, n_arb = figurants(eye, vers, ref)
             (d / "arbres.bin").write_bytes(arb.tobytes())
             az, el = math.radians(205), math.radians(30)            # soleil de novembre, début d'après-midi
-            V = {"oeil": eye.tolist(), "vise": at.tolist(), "fov": FOV, "cases": cases, "exposition": 1.15,
+            V = {"oeil": eye.tolist(), "vise": at.tolist(), "fov": fov_v, "cases": cases, "exposition": 1.15,
                  "ciel_horizon": "#e4e8ea", "ciel_zenith": "#b4c4d3", "brume": "#d8dde1", "brume_densite": 0.00005,
                  "hemi_ciel": "#dbe3ea", "hemi_sol": "#7a6c58", "hemi_intensite": 2.0, "soleil_intensite": 1.5,
                  "soleil_dir": [math.sin(az) * math.cos(el), math.sin(el), -math.cos(az) * math.cos(el)],
@@ -586,18 +599,20 @@ def main():
         if ok:
             for nom in noms:
                 im = Image.open(tmp / nom / "rendu.png").convert("RGB")
-                dst = FIG5 / f"vue_{nom}.png"
+                dst = sortie_vues / f"vue_{nom}.png"
                 im.save(dst, optimize=True)
                 if dst.stat().st_size > 1.45e6:
                     im.resize((1280, 720), Image.LANCZOS).save(dst, optimize=True)
                 if dst.stat().st_size > 1.45e6:
                     im.resize((1280, 720), Image.LANCZOS).quantize(256, method=Image.Quantize.MEDIANCUT,
                                                                    dither=Image.Dither.FLOYDSTEINBERG).save(dst, optimize=True)
-                info[nom]["fichier"] = dst.relative_to(ROOT).as_posix()
+                info[nom]["fichier"] = dst.as_posix()
                 info[nom]["taille_mo"] = round(dst.stat().st_size / 1e6, 2)
                 im_chk = np.asarray(Image.open(dst).convert("RGB"))
                 info[nom]["controle_image"] = {"pixels_noirs_pct": round(float((im_chk.sum(2) < 15).mean() * 100), 2),
                                                "luminance_moyenne": round(float(im_chk.mean()), 1)}
+        if sortie_vues != FIG5:
+            return
         old = json.loads((FIG5 / "vues_decor.json").read_text(encoding="utf-8")) if (FIG5 / "vues_decor.json").exists() else {}
         old.update(info)
         (FIG5 / "vues_decor.json").write_text(json.dumps(old, ensure_ascii=False, indent=1), encoding="utf-8")

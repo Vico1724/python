@@ -3,7 +3,7 @@
  "ecarts": [],
  "alertes": [
   "arbres : 1281 flottants > 0,3 m et 185 enterrés > 0,5 m sur 31499",
-  "versants : 14985 flottants > 0,3 m et 650 enterrés > 0,5 m sur 91654",
+  "versants : 14174 flottants > 0,3 m et 740 enterrés > 0,5 m sur 91654",
   "garrigue : 1130 flottants > 0,3 m et 453 enterrés > 0,5 m sur 23168",
   "arbustes : 864 flottants > 0,3 m et 469 enterrés > 0,5 m sur 28939",
   "glissieres : 2 flottants > 0,3 m et 0 enterrés > 0,5 m sur 118",
@@ -32,12 +32,12 @@
    "objets": 100676,
    "controles": 91654,
    "ecart_au_mnt_m": {
-    "mediane": 0.026,
-    "p1": -0.46,
-    "p99": 8.25
+    "mediane": 0.024,
+    "p1": -0.48,
+    "p99": 8.13
    },
-   "flottants_sup_0_3_m": 14985,
-   "enterres_sup_0_5_m": 650
+   "flottants_sup_0_3_m": 14174,
+   "enterres_sup_0_5_m": 740
   },
   "garrigue": {
    "objets": 23168,

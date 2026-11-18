@@ -973,14 +973,35 @@ def par_troncon(P, pkf, meshes, prefixe, famille, dest_mesh, nom_mat, args, grou
                 # l'étaient à leur largeur en travers, au mètre en long) ; couleur de sommet blanche = peinture pleine
                 uv = uv * np.array([0.12 / 1.5, 1.0 / 1.5])
                 couleur = (255, 255, 255, 255)
-            elif mat in MURS_DU_JEU:
+            elif mat in MURS_DU_JEU or enduit_releve(mat):
                 # dépliage ramené à celui des murs du jeu dont la matière est héritée, et leur couleur de sommet
-                uv = uv * MURS_DU_JEU[mat]["uv"]
-                couleur = MURS_DU_JEU[mat]["couleur"]
+                mj = MURS_DU_JEU.get(mat) or MURS_DU_JEU["pierre_seche" if mat == "pierre_seche" else "enduit_maison"]
+                uv = uv * mj["uv"]
+                couleur = mj["couleur"]
         P.maillage(nom, famille, dest_mesh, pos, nrm, uv, tri, nom_mat(mat), essais, pk=pkr,
                    extra={"troncon": kk}, couleur=couleur)
         out.append(nom)
     return out
+
+
+def enduit_releve(mat):
+    """Enduit (ou soubassement) de façade relevé sur les photos (scripts/facades.py) : « enduit_<rrggbb> »."""
+    import re
+    return re.fullmatch(r"(enduit|soubassement)_[0-9a-f]{6}", mat) is not None
+
+
+def teinte_enduit_du_jeu(mat):
+    """Réglages de la variante du béton du jeu pour un enduit relevé « enduit_<rrggbb> » (sRGB), selon la règle des enduits
+    de matieres_du_jeu.json : rapport des canaux en linéaire adouci par la saturation 0,7, clarté relative à celle de
+    l'enduit blanc (canal le plus fort ; 1,7 pour le blanc cassé 0,86, 0,82, 0,72)."""
+    c = np.array([int(mat[-6:][i:i + 2], 16) / 255 for i in (0, 2, 4)])
+    lin = np.where(c <= 0.04045, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
+    t = 1 - 0.7 * (1 - lin / lin.max())
+    alb = round(float(np.clip(1.7 * lin.max() / 0.708, 0.4, 2.0)), 2)
+    tint = [round(float(x), 2) for x in t] + [1.0]
+    return {"herite_de": "/Game/Props/MonteCarloProps/MonBolConcreteWalls/MI_MonBolConcreteWallsA",
+            "vecteurs": {"Mat1_TintMult": tint, "Mat2_TintMult": tint, "Mat1_AlbedoControls": [alb, 0.7, 1.0, 0.0],
+                         "Mat2_AlbedoControls": [alb, 0.7, 1.0, 0.0], "ColorMult VPW": [0.8, 0.8, 0.8, 0.0]}}
 
 
 def materiaux_modele(P, glbs, dest_tex, dest_mat, prefixe_mat):
@@ -996,6 +1017,8 @@ def materiaux_modele(P, glbs, dest_tex, dest_mat, prefixe_mat):
             # Essai de la treizième version (14/11/2026) : nos images de crépi, presque unies et sans relief, sortaient en
             # aplats « maquette » sur la variante modèle de M_Simple.
             r = MATIERES.get("materiaux", {}).get(nom_mi, {})
+            if not r and enduit_releve(mat["nom"]):
+                r = teinte_enduit_du_jeu(mat["nom"])      # enduits relevés façade par façade (40_facades.py)
             if r.get("herite_de") and not P.echantillon:
                 P.materiau_du_jeu(nom_mi, dest_mat, r["herite_de"], {}, {}, ["E3", "E4", "complet"],
                                   note="matière d'un mur du jeu, teintée (matieres_du_jeu.json)",

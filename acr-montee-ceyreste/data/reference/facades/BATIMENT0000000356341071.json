@@ -1,0 +1,36 @@
+{
+ "cleabs": "BATIMENT0000000356341071",
+ "pk_m": 3131.0,
+ "cote": "droite",
+ "niveau": "premier_plan",
+ "images": [
+  {
+   "id": "5a111766-5aea-4f98-be65-e7b67d4c850c",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "3010a9e4-7a95-449d-bf05-ceb3d1160b77",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "1f4cc790-babf-4b22-b35e-40d7b203274e",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "eb21f7db-01d2-4734-998c-e23fa11fd073",
+   "role": "examinée : bâtiment caché"
+  }
+ ],
+ "lidar": "volume LiDAR de 31_bati.py gardé",
+ "volumes": [],
+ "facades": {},
+ "notes": "derrière le mur de clôture enduit et le portail coulissant (PK 3131) ; seul le toit de tuiles dépasse (planche data/raw/panoramax/facades/BATIMENT0000000356341071/planche.jpg regardée). Aucune ouverture ni teinte d'enduit relevable : enduit par défaut, sans ouverture.",
+ "toit": {
+  "ortho_rgb": [
+   176,
+   116,
+   95
+  ],
+  "source": "ortho IGN 20 cm (saturation relevée)"
+ }
+}

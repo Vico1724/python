@@ -176,11 +176,11 @@
   "arbres": 2106,
   "arbustes": 0,
   "temps_video_v2_s": null,
-  "fichier": "figures/phase5/vue_village_d3_vers_depart.png",
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_village_d3_vers_depart.png",
   "taille_mo": 0.57,
   "controle_image": {
    "pixels_noirs_pct": 0.0,
-   "luminance_moyenne": 142.3
+   "luminance_moyenne": 142.4
   }
  },
  "village_mairie_vers_nord": {
@@ -199,11 +199,11 @@
   "arbres": 0,
   "arbustes": 0,
   "temps_video_v2_s": null,
-  "fichier": "figures/phase5/vue_village_mairie_vers_nord.png",
-  "taille_mo": 0.84,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_village_mairie_vers_nord.png",
+  "taille_mo": 0.87,
   "controle_image": {
    "pixels_noirs_pct": 0.0,
-   "luminance_moyenne": 140.8
+   "luminance_moyenne": 135.9
   }
  },
  "ligne_depart_montee": {
@@ -406,11 +406,11 @@
   "arbres": 5921,
   "arbustes": 204,
   "temps_video_v2_s": null,
-  "fichier": "figures/phase5/vue_aerien_bas_du_trace_village.png",
-  "taille_mo": 1.14,
+  "fichier": "/home/user/python/acr-montee-ceyreste/figures/phase5/vue_aerien_bas_du_trace_village.png",
+  "taille_mo": 1.13,
   "controle_image": {
    "pixels_noirs_pct": 0.03,
-   "luminance_moyenne": 110.8
+   "luminance_moyenne": 111.4
   }
  },
  "chaussee_epingle_1517": {

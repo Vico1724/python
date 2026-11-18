@@ -1,0 +1,36 @@
+{
+ "cleabs": "BATIMENT0000002487997246",
+ "pk_m": -120.0,
+ "cote": "droite",
+ "niveau": "premier_plan",
+ "images": [
+  {
+   "id": "0978ecd2-f339-4c7a-a6b7-d826701d1e04",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "b415a70e-555d-4e62-93c4-797284d00028",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "c0e0148f-bfb6-4770-b4bc-30f3bda7e1bd",
+   "role": "examinée : bâtiment caché"
+  },
+  {
+   "id": "ab4d7b0c-3cd4-4021-8968-dc2a43492625",
+   "role": "examinée : bâtiment caché"
+  }
+ ],
+ "lidar": "volume LiDAR de 31_bati.py gardé",
+ "volumes": [],
+ "facades": {},
+ "notes": "maison derrière la haie de lauriers-roses et le portail (PK -120) ; façades cachées sur les 8 images (planche data/raw/panoramax/facades/BATIMENT0000002487997246/planche.jpg regardée). Aucune ouverture ni teinte d'enduit relevable : enduit par défaut, sans ouverture.",
+ "toit": {
+  "ortho_rgb": [
+   181,
+   153,
+   134
+  ],
+  "source": "ortho IGN 20 cm (saturation relevée)"
+ }
+}
