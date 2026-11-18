@@ -64,3 +64,7 @@ Pistes de coexistence, **non validées** : (1) une autre spéciale hôte pour la
 4. **Points techniques** : intermédiaire au PK 1500 et zone d'arrêt au PK 3700, absents de l'épreuve réelle (non chronométrée).
 5. Faut-il viser la coexistence (autre hôte, travail en jeu) ou la bascule suffit-elle ?
 6. Les relevés de site (glissières, murs, parapets, panneaux) attendent une vidéo ou des photos.
+
+## Demandes de l'utilisateur à traiter
+
+- 18/11/2026, mots exacts : « il faudra pense au villange de ceyreste en bas aussi ». À faire : étendre la carte vers le bas pour inclure le village de Ceyreste (approche depuis le village jusqu'au départ du Plan de Masse, bâtiments, rues, salle polyvalente et paddock réel derrière la mairie). Aujourd'hui la carte commence au Plan de Masse et le village n'est pas modélisé. Cela rouvre la décision 3 (parc d'assistance au village plutôt qu'au Grand Caunet). Non commencé.
