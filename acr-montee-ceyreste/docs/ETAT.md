@@ -1,5 +1,7 @@
 # État du projet (18/11/2026)
 
+> **Affinage d'après le réel du 18/11/2026 (cloud)** : tracé et largeur vérifiés, bord de route relevé sur Panoramax (87 objets), chaîne 07 → 16 régénérée. Détail : `docs/03_affinage_reel.md` et § « Affinage du 18/11/2026 » ci-dessous. **Pour le PC : cette régénération change la chaussée (largeur minimale, PK 444-468), les ouvrages, le semis et le paquet ; la « génération retenue » `19e1108` n'est plus la dernière.** Avant la route physique, relancer `tout_lancer.py --depuis 7 -- --sol photo` sur le PC à partir de ce commit (même règle qu'avant : route physique, relevé du placement et décor de la même génération).
+
 **Rien n'a encore tourné dans Unreal ni dans le jeu.** Sur le PC Windows : données régénérées et outils construits (§ PC). Le jeu et Unreal 5.6.1 ne sont pas encore installés.
 
 ## Sur le PC Windows (17-18/11/2026)
@@ -28,6 +30,28 @@ Commandes à lancer **depuis PowerShell**, pas depuis Git Bash : depuis Git Bash
 - **Sensible aux entrées** : une chaussée qui diffère d'au plus 1 mm sur quelques points (arrondi entre machines) fait changer 21 arbres sur 17 900 ; avec le `chaussee_precise.csv` du cloud, l'étape 10 du PC redonne exactement les arbres du cloud (0 différence). Les 13 arbustes d'écart viennent d'ailleurs (couches BD TOPO retéléchargées, qui ont changé), cause précise non isolée.
 - **Écartée** : l'étape 10 lit `stage.json` de la génération précédente (parc d'assistance) ; sans lui, arbres et instances sont identiques.
 - Conséquence : la route physique, le relevé du placement et le décor doivent sortir **de la même génération**, sans retéléchargement entre les trois. Génération retenue : commit `19e1108` pour les fichiers versionnés (comparer avec `git diff --ignore-cr-at-eol`, Python écrivant en CRLF sous Windows) ; empreintes des fichiers non versionnés (terrain, lointain, sols, paquet) dans `F:\acrxs_ceyreste\determinisme\empreintes_B.txt`.
+
+## Affinage du 18/11/2026 (cloud, Linux)
+
+Détail et chiffres : `docs/03_affinage_reel.md`. **Rien n'a été vu en jeu ni dans Unreal.**
+
+| Point | Résultat | Vérifié (sortie regardée) |
+|---|---|---|
+| Axe | à 0,25 m en médiane de la ligne axiale peinte (21 points sur l'ortho 20 cm) ; BD TOPO et OSM s'écartent autant entre eux (0,83 m) que de notre axe (0,74 / 0,49 m) ; seul écart > 0,5 m : PK 444-468 (1,0-1,2 m), **corrigé** | `figures/affinage/verif_trace.png`, `verif_axe_zooms.jpg` |
+| Largeur | surestimation d'1 m **non confirmée** : entre rives 6,93 m (médiane de 20 mesures), enrobé 8,4 m, 07 = 7,6 m aux mêmes points ; au contraire **sous-estimée sous les pins** (4,8-5,6 m) : minimum de 6,4 m imposé (`data/reference/chaussee_corrections.json`) ; médiane inchangée 7,44 m, 5e centile 5,38 → 6,37 m ; contrôles de 07b passés | `verif_largeur_bandes_1..4.jpg` |
+| Relevé du bord de route | Panoramax (Région Sud, 08/09/2025, 360°, Etalab 2.0) sans trou sur tout le parcours ; 87 objets (6 glissières, 32 murs et parapets, 3 têtes de ponceaux, 25 parois, 20 ponctuels), 36 positionnés au mètre par le LiDAR, 51 approximatifs | `figures/affinage/releve_panoramax.png`, 31 planches (non versionnées) |
+| Fichiers de relevé remplis | `glissieres.json`, `ouvrages_parapets.json`, `parois_rocheuses.json`, `mobilier_bord_de_route.json` (+ `releve_panoramax_2025.json`, `photos_rue_panoramax.csv`) ; murs BD TOPO génériques remplacés par le relevé ; marquage : tronçons du Grand Caunet retirés, axiale T3 et rives T2 sur toute la D3 | sortie de 11 relue |
+| Essences | oliveraies et chênes verts du PK 60-235 (relevé Panoramax) : olivier 95, chêne vert 68, pin 46 arbres à moins de 45 m | `arbres.csv` |
+| Accotements (sol « façon jeu ») | terre rouge 60 % et herbe sèche 30 % au lieu de l'herbe verte du Grand Caunet | non regardé (15b sans aperçu dans cette passe) |
+| Chaîne 07 → 16 (`--sol photo`, sans téléchargement) | 15 min 55 s, code 0 ; export : **0 erreur**, 532 portes, 27 notes sur 27 dans le bon sens, 3 025,37 m, demi-largeur minimale 3,16 m (2,41 avant) ; paquet : **0 erreur**, 468 maillages, **243 457 instances** (263 943 avant), 20 parois rocheuses (1 187 m), 4 723 pierres de rocaille | `controle_ceyreste.json`, sortie de 16 |
+| Comparaisons photo / avant / après | 5 planches, PK ≈ 519, 807, 1147, 1286, 2012 : `figures/affinage/comparaison/comparaison_pk_*.jpg` | regardées (voir § suivant) |
+| Village | préparé, rien de construit : deux options chiffrées | `figures/affinage/village_ceyreste.png` |
+
+Baisse des instances (−20 486) : non isolée famille par famille (le manifeste précédent n'est pas versionné) ; causes attendues : herbes et arbustes retirés des parois et des pieds de murs nouvellement posés, chaussée élargie sous les pins (1 953 instances retirées sur la chaussée). À comparer sur le PC avec `manifeste.json` de la génération `19e1108`.
+
+Ce que montrent les planches (aperçu hors jeu, formes seules) : glissière du PK 500-580 et mur-parapet du PK 1120-1188 présents là où la photo les montre ; paroi du PK 1147 rendue en blocs de roche sur le talus (la photo montre des bancs calcaires plus continus) ; têtes du ponceau 2016 plus basses (0,55 m) comme sur la photo. Écarts restants vus : la glissière posée au PK 519 est dessinée comme une lisse unie sur poteaux minces (pas de maillage du jeu), les murs sont des pavés unis (texture de pierre seulement dans le paquet), aucune végétation dans l'aperçu.
+
+Ce qui n'a pas pu être fait ou vérifié : sous-agents de description d'images (outil absent de la session : tout a été lu par l'agent lui-même, avec 20 agrandissements de contrôle) ; déclaration de manifestation (dossier 98930 : erreur 503) et article de La Provence (non chargeable) ; aucune limitation de vitesse vue en montée ; texte de 5 panneaux ; poteaux électriques non comptés ; maisons non posées (voir décision 8).
 
 ## Fait et vérifié dans le cloud (17/11/2026, Linux)
 
@@ -58,16 +82,16 @@ Commandes à lancer **depuis PowerShell**, pas depuis Git Bash : depuis Git Bash
 
 ## Fait, non vérifié
 
-- **Largeur de chaussée** : médiane 7,44 m mesurée (BD TOPO : 7 m) ; sur les planches, les bords détectés passent 1 à 2 m au-delà de l'enrobé visible par endroits (épingle du PK 893, PK 1300, PK 2187) : 72 % du linéaire n'est vu que par le LiDAR, sous les pins. Probablement surestimée d'environ 1 m. À corriger d'après une vidéo (`data/reference/chaussee_corrections.json`, même format que le Grand Caunet).
-- Marquage (axe discontinu, rives) repris du Grand Caunet : l'axe discontinu se voit sur l'ortho, les rives non vérifiées.
+- **Largeur de chaussée** : vérifiée le 18/11/2026 sur l'ortho (voir § Affinage) ; reste non vérifiée sous les pins là où aucune ligne n'est visible (le minimum de 6,4 m y est une borne, pas une mesure).
+- Marquage : axiale et rives discontinues vues partout (Panoramax) ; type des traits mesuré en 4 points seulement.
 - Notes du copilote : brouillon calculé, jamais confronté à une vidéo.
-- Ponceau du PK ≈ 2024 : parapets supposés (béton 0,70 m).
+- Ponceau du PK ≈ 2016 : têtes de béton de 0,55 m vues sur Panoramax ; hauteur à l'œil.
 - Paquet avec sol « façon jeu » (`--sol jeu`) : pas fait ici, il demande le placement relevé sur le PC.
 - Kit PC (`pc/`) : scripts PowerShell et outils adaptés, **jamais exécutés** (pas de Windows ici).
 
 ## Non fait : relevés sans source
 
-Glissières, parapets hors ouvrages, parois rocheuses, mobilier (panneaux, poteaux), carrefours fermés (Plan de Masse, débouchés, D3/D3D), aires et pistes, zone de départ. Les fichiers existent avec des listes vides. Il faut une vidéo embarquée ou des photos (Panoramax couvre la D3).
+Relevés sur Panoramax le 18/11/2026 : glissières, parapets, murs, parois, panneaux et balises (voir § Affinage). Restent vides : carrefours fermés (Plan de Masse, débouchés, D3/D3D), aires et pistes, zone de départ, objets du jour de course (rubalises, public, commissaires, parc de départ).
 
 ## À faire sur le PC
 
@@ -90,8 +114,13 @@ Pistes de coexistence, **non validées** : (1) une autre spéciale hôte pour la
 3. **Parc d'assistance du jeu** : placé sur le parking du Grand Caunet, au bout de la route (le vrai paddock est au village, hors tracé). Le garder, ou le mettre au départ ?
 4. **Points techniques** : intermédiaire au PK 1500 et zone d'arrêt au PK 3700, absents de l'épreuve réelle (non chronométrée).
 5. Faut-il viser la coexistence (autre hôte, travail en jeu) ou la bascule suffit-elle ?
-6. Les relevés de site (glissières, murs, parapets, panneaux) attendent une vidéo ou des photos.
+6. Relevés de site faits sur Panoramax (18/11/2026) ; une vidéo embarquée reste utile pour les lignes et les objets du jour de course.
+7. **Village de Ceyreste** (demande du 18/11) : option A, décor lointain vu du départ (976 bâtiments en volumes simples, emprise jouable inchangée, environ une journée) ; option B, village parcourable (2 870 m de route en plus depuis la salle polyvalente par la mairie, 961 bâtiments, LiDAR à étendre à l'ouest, plusieurs jours et essais, paquet +30-40 %), qui placerait le parc d'assistance au village (décision 3). À choisir.
+8. **Maisons au bord de la route** (36 à moins de 25 m, surtout dans l'approche et au hameau) : volumes simples à toits de tuiles, assets du jeu, ou rien ? Non posées à ce jour.
+9. **Ambiance du jour de course** : rubalises au-dessus des épingles 893, 1517, 2150, 2950 (déduit d'une description générale, pas de photo) : à poser ou non ?
 
 ## Demandes de l'utilisateur à traiter
 
-- 18/11/2026, mots exacts : « il faudra pense au villange de ceyreste en bas aussi ». À faire : étendre la carte vers le bas pour inclure le village de Ceyreste (approche depuis le village jusqu'au départ du Plan de Masse, bâtiments, rues, salle polyvalente et paddock réel derrière la mairie). Aujourd'hui la carte commence au Plan de Masse et le village n'est pas modélisé. Cela rouvre la décision 3 (parc d'assistance au village plutôt qu'au Grand Caunet). Non commencé.
+- 18/11/2026, mots exacts : « il faudra pense au villange de ceyreste en bas aussi ». À faire : étendre la carte vers le bas pour inclure le village de Ceyreste (approche depuis le village jusqu'au départ du Plan de Masse, bâtiments, rues, salle polyvalente et paddock réel derrière la mairie). Aujourd'hui la carte commence au Plan de Masse et le village n'est pas modélisé. Cela rouvre la décision 3 (parc d'assistance au village plutôt qu'au Grand Caunet). **Préparé le 18/11/2026** (`docs/03_affinage_reel.md` § 5, `scripts/28_village.py`) : emprise, itinéraire, bâtiments, deux options chiffrées ; rien de construit, emprise jouable inchangée ; **décision attendue** (décision 7).
+- 18/11/2026, mots exacts : « affine quand meme les eleemnt la carte la route les sols les murret lais maison si ya avec les elements relel verifie le tracer de al route, verifei les panneau aussi pour renforcer l'imretion le paysage au alentours ». **Traité le 18/11/2026** (`docs/03_affinage_reel.md`) : tracé et largeur vérifiés et corrigés, murets, murs, glissières, parois et panneaux relevés sur Panoramax et posés, sols (essences, accotements) ajustés ; maisons non posées (décision 8). Jamais vu en jeu.
+- 18/11/2026, complément transmis (résumé d'un autre assistant, à vérifier) : sources du tracé à lire, ambiance du jour de course. Lu : rien ne change la longueur (3,0 km) ni les lignes ; déclaration de manifestation inaccessible (503) ; ambiance : décision 9.

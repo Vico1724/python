@@ -1,0 +1,1267 @@
+{
+ "note": "Relevé brut du bord de la montée, objet par objet, lu le 18/11/2026 sur les planches de l'imagerie Panoramax (scripts/26_photos_rue.py : une image 360° tous les 15 m, bande de 200° centrée sur le sens de la montée) et sur des vues agrandies pour les panneaux. PK = PK de l'objet estimé depuis la position de prise de vue (±10 m) ; côté dans le sens de la montée. Hauteurs estimées à l'œil (±30 %). Relu par scripts/29_releve_panoramax.py qui recale les bornes sur le LiDAR HD et remplit les fichiers de la chaîne. Images : data/reference/photos_rue_panoramax.csv (identifiant, position, licence etalab-2.0, producteur Région Sud / Immergis).",
+ "date_releve": "2026-11-18",
+ "date_images": "2025-09-08",
+ "releve": [
+  {
+   "categorie": "glissiere",
+   "pk_debut_m": 500,
+   "pk_fin_m": 580,
+   "cote": "gauche",
+   "type": "glissiere_simple",
+   "hauteur_m": 0.75,
+   "images": [
+    "d11bb5cc-87aa-4ade-8ce5-a65f024b0243",
+    "615e4eee-6a27-4793-b20e-90b49d81b4fc",
+    "2a7f0fd2-9c18-4c02-a157-96132459a10b",
+    "622676a0-704b-4390-ba6f-fa781192b0f8",
+    "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e"
+   ],
+   "description": "glissière simple à l'extérieur, au-dessus du vallon (tags sur la lisse, non reproduits)"
+  },
+  {
+   "categorie": "glissiere",
+   "pk_debut_m": 822,
+   "pk_fin_m": 925,
+   "cote": "gauche",
+   "type": "glissiere_simple",
+   "hauteur_m": 0.75,
+   "images": [
+    "50965cef-36aa-4ec8-923d-3fe3184c818b",
+    "28a74547-dedd-49ec-8183-6cd7b349e503",
+    "c115545b-6c4c-4f61-bb87-cab722cb4333",
+    "701e21a2-f493-4b1b-9783-04e05c039078",
+    "a7c86442-b91d-490e-82e8-402383df02f8",
+    "e08dc349-4095-4fef-b37c-76c31dc1b758"
+   ],
+   "description": "glissière simple à l'extérieur de l'épingle du PK 893, relayée par un parapet de pierre"
+  },
+  {
+   "categorie": "glissiere",
+   "pk_debut_m": 1597,
+   "pk_fin_m": 1606,
+   "cote": "gauche",
+   "type": "glissiere_simple",
+   "hauteur_m": 0.75,
+   "images": [
+    "b2800717-4b44-43f3-8387-75b4d98d8340"
+   ],
+   "description": "court tronçon de glissière taguée avant le mur-parapet",
+   "confiance": "faible"
+  },
+  {
+   "categorie": "glissiere",
+   "pk_debut_m": 2320,
+   "pk_fin_m": 2455,
+   "cote": "gauche",
+   "type": "glissiere_simple",
+   "hauteur_m": 0.75,
+   "images": [
+    "a232f421-bbe0-46ca-8505-5a575513f688",
+    "6343a32b-5b46-42e7-b052-b6a406b3bd1e",
+    "1bf1a857-b728-4c34-b912-d6642a45a0de",
+    "c1005dca-80b9-4946-a071-a2704faaac73",
+    "7aeeec73-a43a-4943-8e33-27522dd6715e",
+    "5f7b4747-42ac-4b20-9ec2-a6320fa2746a",
+    "5e0f54d8-289d-4c5e-a3ba-8fb584848fed",
+    "f257b290-3350-4e18-8aa2-a54ae32d2bea",
+    "51568e3d-1b01-460f-915a-12dabc03e354"
+   ],
+   "description": "glissière simple au-dessus du vallon"
+  },
+  {
+   "categorie": "glissiere",
+   "pk_debut_m": 2655,
+   "pk_fin_m": 2705,
+   "cote": "droite",
+   "type": "glissiere_simple",
+   "hauteur_m": 0.75,
+   "images": [
+    "76cd2523-c75a-43a6-a125-36c74c25d66d",
+    "45516cd4-3e7c-46a2-9a75-dba10bbfda0d",
+    "1e51ca99-affe-41f1-bd8b-674f05705165",
+    "f131475a-35a0-407a-953c-3ce215677e8c"
+   ],
+   "description": "glissière simple à l'extérieur du virage à gauche, maisons en contrebas"
+  },
+  {
+   "categorie": "glissiere",
+   "pk_debut_m": 2935,
+   "pk_fin_m": 3000,
+   "cote": "gauche",
+   "type": "glissiere_simple",
+   "hauteur_m": 0.75,
+   "images": [
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "0e847466-22ae-4418-ac3e-0341cde1bc81",
+    "76239e33-1ebc-434a-92e4-6945ba19f4f7",
+    "8b10df10-9f0e-41b3-be1a-6f68bcca5a3e"
+   ],
+   "description": "glissière simple à l'extérieur de l'épingle à droite du PK 2950"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": -110,
+   "pk_fin_m": -95,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 1.3,
+   "images": [
+    "63cc1724-4cdb-4182-aaa0-93d2265548c1"
+   ],
+   "description": "mur de soutènement en pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": -82,
+   "pk_fin_m": -50,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 2.0,
+   "images": [
+    "1093d878-a6f6-471c-9c6f-5884a9555949",
+    "31fd6398-d470-40a9-bbb9-333edeb26453"
+   ],
+   "description": "grand mur de soutènement en pierre (garde-corps au-dessus non rendu)"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": -65,
+   "pk_fin_m": -45,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.5,
+   "images": [
+    "31fd6398-d470-40a9-bbb9-333edeb26453",
+    "f9160d60-31e7-498d-980b-702102fffa91"
+   ],
+   "description": "muret de pierre bas surmonté d'un grillage brise-vue (grillage non rendu)"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": -20,
+   "pk_fin_m": 100,
+   "cote": "gauche",
+   "type": "beton",
+   "hauteur_m": 0.3,
+   "images": [
+    "f72ed2c1-3a02-42b0-9026-cba741be7dd9",
+    "89d3561a-d4cb-4494-a6d1-63e043c02fa5",
+    "edfc17c0-a24f-46e1-857b-1c4a017d6a0a",
+    "c469075c-b307-473e-a97a-9d87eb0e4e5a",
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0"
+   ],
+   "description": "bordure de béton basse le long du champ, grillage derrière (non rendu)"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 55,
+   "pk_fin_m": 165,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 0.6,
+   "images": [
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+    "edfd08bf-b5be-4304-b6ca-e922d593570e",
+    "c559b2b8-7e11-4711-bd90-a311b1613650",
+    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
+    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3"
+   ],
+   "description": "muret de pierre sèche bas"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 100,
+   "pk_fin_m": 165,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.6,
+   "images": [
+    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
+    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
+    "9e3f4f93-cd2a-427a-bd84-4fabed39e880",
+    "48a9f912-ca25-48ab-bff3-5a6d42503499"
+   ],
+   "description": "muret de pierre sèche bas, grillage derrière"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 185,
+   "pk_fin_m": 195,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.7,
+   "images": [
+    "c6b32cb7-6de1-4b07-b419-1d4ef19c2f5f"
+   ],
+   "description": "muret de pierre sèche court"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 180,
+   "pk_fin_m": 205,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 0.7,
+   "images": [
+    "d7d5855d-a768-4438-9e0e-4872803a797c",
+    "c6b32cb7-6de1-4b07-b419-1d4ef19c2f5f"
+   ],
+   "description": "muret de pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 200,
+   "pk_fin_m": 215,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.6,
+   "images": [
+    "3c96316d-dfd4-4061-a6d5-5eccad8e523a"
+   ],
+   "description": "muret de pierre"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 225,
+   "pk_fin_m": 350,
+   "cote": "droite",
+   "type": "beton",
+   "hauteur_m": 0.3,
+   "images": [
+    "8801585d-b9e4-45e3-ba15-433c18a46e7c",
+    "b654d53a-aadc-4535-a569-1d7d61580b00",
+    "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b",
+    "fda1798e-0ef9-44d8-b259-fc48ab601880",
+    "3a53fe19-c46f-4f93-b3f3-e91ef4895db3"
+   ],
+   "description": "bordure maçonnée basse à chaperon de béton en crête de talus, grillage derrière"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 440,
+   "pk_fin_m": 470,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 0.7,
+   "images": [
+    "fef444f3-310a-4079-bc9e-e9c726369d3c",
+    "3a0d33e4-5b84-4c9a-85d2-2e84e38e81fe"
+   ],
+   "description": "mur de pierre maçonné à chaperon à l'extérieur du virage"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 705,
+   "pk_fin_m": 740,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.7,
+   "images": [
+    "39a25600-040f-4ee7-b419-bb0f381d527f",
+    "d76073e0-f42f-45ff-9da2-5eb0f2d4e1a0"
+   ],
+   "description": "mur-parapet de pierre maçonnée à chaperon, extérieur de l'épingle"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 768,
+   "pk_fin_m": 826,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.65,
+   "images": [
+    "94dcff86-24cc-4ebc-b548-1f2b8f07e2b7",
+    "44ca4d2d-d23f-4512-aff2-fafd748cf88c",
+    "05229626-ceab-44b1-844b-443aed843ba3",
+    "50965cef-36aa-4ec8-923d-3fe3184c818b"
+   ],
+   "description": "mur-parapet de moellons calcaires à chaperon"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 925,
+   "pk_fin_m": 968,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.55,
+   "images": [
+    "e08dc349-4095-4fef-b37c-76c31dc1b758",
+    "e47ebc0d-bbab-445e-8fef-b47c1c1fc501",
+    "cc032824-c6c7-4d1b-b4e3-c4720ccdea29"
+   ],
+   "description": "parapet bas de moellons, chaperon de pierres posées de chant"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 1120,
+   "pk_fin_m": 1188,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 0.75,
+   "images": [
+    "3a533cfd-51cc-41dc-9609-245ddaa35bae",
+    "95381ebe-d557-4b89-a794-ec76fca5f277",
+    "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619",
+    "652f5917-8e40-4446-aff3-bba094e629bd"
+   ],
+   "description": "mur-parapet de moellons gris assisés à chaperon, extrémités peintes en blanc"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 1198,
+   "pk_fin_m": 1232,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 0.75,
+   "images": [
+    "b4d7dc6b-15c0-4819-bee3-4f787f3204a6",
+    "37024d81-25d9-4110-8edd-8bd65ebde10b"
+   ],
+   "description": "mur-parapet de moellons, extrémités biseautées peintes en blanc"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 1236,
+   "pk_fin_m": 1265,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 0.75,
+   "images": [
+    "c3131ad3-6b31-4d60-9468-d4421bc7233f"
+   ],
+   "description": "mur-parapet de moellons"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 1288,
+   "pk_fin_m": 1335,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 0.75,
+   "images": [
+    "b354335c-75eb-43bc-8592-ae60c3285bce",
+    "7b2904d1-c24d-4b40-8a37-122e9f578269",
+    "4f05c439-db8c-4b33-94aa-5b63cc0d6d60"
+   ],
+   "description": "mur-parapet de moellons, extrémité amont peinte en blanc"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 1605,
+   "pk_fin_m": 1655,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.7,
+   "images": [
+    "29bb5b34-71bf-458f-9c68-8edf8bfc8ae8",
+    "d5c7d0ad-109c-4d01-9678-235bff014508",
+    "37dd8072-f561-4dca-8877-d3fe6979db68"
+   ],
+   "description": "mur-parapet de moellons ; bandes peintes rouge et blanc sur une partie (non rendues)"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 2105,
+   "pk_fin_m": 2140,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 1.0,
+   "images": [
+    "654381ef-c9df-44fe-be60-115059afe974",
+    "60d008eb-956f-44e6-8a03-c161f2d7e37a"
+   ],
+   "description": "mur de soutènement en pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 2140,
+   "pk_fin_m": 2160,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 1.2,
+   "images": [
+    "f807be2e-75df-4d05-aba2-5a3e2fd62495",
+    "58af6c06-4b49-48db-999f-55d924d6cd3f"
+   ],
+   "description": "mur de soutènement en moellons au pied du talus rocheux"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 2458,
+   "pk_fin_m": 2520,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.45,
+   "images": [
+    "7eef7b5c-c25a-41d3-9238-f3b65fac1e2c",
+    "0bc5836c-8801-43d1-ba09-5aa9e4dc36ba",
+    "c7c78864-599c-48b6-b8a3-6f9cabd641e1",
+    "8d5c9409-f98a-42ff-bac5-fcb69bc677d2"
+   ],
+   "description": "parapet bas de moellons, chaperon de pierres posées de chant"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 2520,
+   "pk_fin_m": 2565,
+   "cote": "gauche",
+   "type": "beton",
+   "hauteur_m": 0.7,
+   "images": [
+    "2ec4785e-e74b-4b2e-b7c7-44798a666406",
+    "a8e57708-59e5-44d2-bdde-22d10eb2985b",
+    "2ae9d661-0659-42d7-b252-4e7df302400b"
+   ],
+   "description": "parapet de béton lisse gris clair à bandes verticales peintes en blanc (bandes non rendues)"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 2860,
+   "pk_fin_m": 2895,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 1.5,
+   "images": [
+    "6a88e7fa-0ab6-41a2-a4e2-809cecf9ce38",
+    "905fc8fa-56ad-4024-9f2d-ea4a75bafb6b"
+   ],
+   "description": "mur de soutènement en moellons couvert de végétation"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 2925,
+   "pk_fin_m": 2935,
+   "cote": "gauche",
+   "type": "beton",
+   "hauteur_m": 0.4,
+   "images": [
+    "9f14e86c-eb58-4952-a81e-16a61f5fc2d0"
+   ],
+   "description": "muret de béton bas",
+   "confiance": "faible"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 3100,
+   "pk_fin_m": 3125,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 1.3,
+   "images": [
+    "1f995965-1442-4ab7-a79c-577cad1a7f04",
+    "2540de5a-41f4-47c6-ba4f-11455f215faa"
+   ],
+   "description": "mur de pierre devant une propriété"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 3130,
+   "pk_fin_m": 3200,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 1.0,
+   "images": [
+    "532958a0-e21d-4286-b4a4-3b7da87f9b17",
+    "978841a8-9ee6-4a6e-9c40-ac837d7d6b7c",
+    "5a111766-5aea-4f98-be65-e7b67d4c850c",
+    "726829e6-420d-40df-9861-b969d4ea6ea5"
+   ],
+   "description": "murets de pierre devant les maisons"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 3205,
+   "pk_fin_m": 3250,
+   "cote": "droite",
+   "type": "enduit",
+   "hauteur_m": 1.8,
+   "images": [
+    "be182a52-adc3-4153-8ee9-38d2f0450491",
+    "c1fe1998-d9b1-416a-937a-4180e1851087",
+    "a133f64e-20c4-457c-86b0-ac0b8d3202a8"
+   ],
+   "description": "mur de clôture enduit beige"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 3215,
+   "pk_fin_m": 3260,
+   "cote": "gauche",
+   "type": "pierre",
+   "hauteur_m": 0.7,
+   "images": [
+    "c1fe1998-d9b1-416a-937a-4180e1851087",
+    "a133f64e-20c4-457c-86b0-ac0b8d3202a8",
+    "06ea7f53-32ec-433e-906c-1abaffff01ce"
+   ],
+   "description": "mur-parapet de moellons calcaires clairs"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 3375,
+   "pk_fin_m": 3420,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 1.8,
+   "images": [
+    "a0a0bb99-62da-4b88-b264-7eeb6cf6e3d4",
+    "32cb1b1c-7dde-4c80-89cc-b113f4065246"
+   ],
+   "description": "mur de soutènement en pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 3500,
+   "pk_fin_m": 3560,
+   "cote": "droite",
+   "type": "pierre",
+   "hauteur_m": 2.2,
+   "images": [
+    "f1c411df-d4a5-4183-9de2-293b31790a3c",
+    "635c5f76-941b-493e-aa44-06e5bcb3c716",
+    "5e36c019-364e-4cb7-8286-a6303e9ef4d0",
+    "a4a603b8-cb82-4a99-97b6-c6c32e4a53e9"
+   ],
+   "description": "grand mur de soutènement en pierre"
+  },
+  {
+   "categorie": "parapet",
+   "pk_debut_m": 3645,
+   "pk_fin_m": 3665,
+   "cote": "gauche",
+   "type": "beton",
+   "hauteur_m": 0.5,
+   "images": [
+    "3293697d-a169-47e9-b400-908c3a1d1242",
+    "11ee1c29-9530-446c-94ac-f426e48da911"
+   ],
+   "description": "tête de ponceau en béton, extrémité peinte en blanc"
+  },
+  {
+   "categorie": "ouvrage",
+   "pk_debut_m": 2009,
+   "pk_fin_m": 2023,
+   "cote": "gauche",
+   "type": "beton",
+   "hauteur_m": 0.55,
+   "images": [
+    "b6721f3d-3269-4870-bc74-768d6db5bd5a",
+    "b9a4f318-0dd3-4fdf-a9f0-371beba4d0db"
+   ],
+   "description": "tête de ponceau en béton bas, tags, extrémité blanche"
+  },
+  {
+   "categorie": "ouvrage",
+   "pk_debut_m": 2009,
+   "pk_fin_m": 2023,
+   "cote": "droite",
+   "type": "beton",
+   "hauteur_m": 0.55,
+   "images": [
+    "b6721f3d-3269-4870-bc74-768d6db5bd5a",
+    "b9a4f318-0dd3-4fdf-a9f0-371beba4d0db"
+   ],
+   "description": "tête de ponceau en béton bas, extrémité peinte en blanc"
+  },
+  {
+   "categorie": "ouvrage",
+   "pk_debut_m": 2906,
+   "pk_fin_m": 2925,
+   "cote": "droite",
+   "type": "beton",
+   "hauteur_m": 0.6,
+   "images": [
+    "3693681f-2e27-41e8-8ab0-6133add7d79d",
+    "9f14e86c-eb58-4952-a81e-16a61f5fc2d0"
+   ],
+   "description": "tête de ponceau en béton gris, ~8 m"
+  },
+  {
+   "categorie": "ouvrage",
+   "pk_debut_m": 2906,
+   "pk_fin_m": 2918,
+   "cote": "gauche",
+   "type": "aucun",
+   "hauteur_m": null,
+   "images": [
+    "3693681f-2e27-41e8-8ab0-6133add7d79d",
+    "9f14e86c-eb58-4952-a81e-16a61f5fc2d0"
+   ],
+   "description": "pas de tête vue à gauche au droit du ponceau (muret bas plus loin, 2925-2935)"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 230,
+   "pk_fin_m": 260,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "images": [
+    "8801585d-b9e4-45e3-ba15-433c18a46e7c",
+    "b654d53a-aadc-4535-a569-1d7d61580b00"
+   ],
+   "description": "talus taillé dans le calcaire lité clair"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 390,
+   "pk_fin_m": 430,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "images": [
+    "1d316dff-635b-4cf3-9a1d-5cf6eabe5bd1",
+    "2ba2815f-d0d2-4e26-a810-856f55733ac6"
+   ],
+   "description": "talus taillé, terre rouge et bancs calcaires"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 480,
+   "pk_fin_m": 545,
+   "cote": "droite",
+   "type": "eboulis",
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "images": [
+    "f481ecf0-d21c-40e1-8c67-926b1a04e3a0",
+    "d11bb5cc-87aa-4ade-8ce5-a65f024b0243",
+    "615e4eee-6a27-4793-b20e-90b49d81b4fc"
+   ],
+   "description": "talus de terre rouge à bancs calcaires"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 545,
+   "pk_fin_m": 575,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "images": [
+    "622676a0-704b-4390-ba6f-fa781192b0f8",
+    "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e"
+   ],
+   "description": "affleurement de calcaire gris en gros bancs"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 585,
+   "pk_fin_m": 700,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "images": [
+    "7f430736-cd30-404e-9689-93f59d3695d5",
+    "c03fc96f-6817-4a15-9807-db769a6442a1",
+    "ad907fae-51c8-414e-a884-ad1cf7604094",
+    "c6c9a241-64db-493a-9de8-dac6270d6108",
+    "bcbd25d7-8df9-47ac-8678-f4e4ce6eb38f",
+    "2763dc33-7985-4150-b8a1-a4f71595abe8"
+   ],
+   "description": "paroi taillée continue de calcaire lité brun-gris, restanque au sommet"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 700,
+   "pk_fin_m": 725,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "images": [
+    "bf283b0a-4b4a-4801-a0ea-744bd878ce4c",
+    "39a25600-040f-4ee7-b419-bb0f381d527f"
+   ],
+   "description": "front de calcaire gris massif"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 740,
+   "pk_fin_m": 835,
+   "cote": "droite",
+   "type": "eboulis",
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "images": [
+    "56289bbe-3e00-4cee-a36a-78ee562941dd",
+    "41cdbd1d-d4ea-4aad-b0d2-5eb16141851e",
+    "94dcff86-24cc-4ebc-b548-1f2b8f07e2b7",
+    "44ca4d2d-d23f-4512-aff2-fafd748cf88c",
+    "05229626-ceab-44b1-844b-443aed843ba3"
+   ],
+   "description": "grand talus rocheux de calcaire blanc-gris, blocs et affleurements"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 995,
+   "pk_fin_m": 1100,
+   "cote": "gauche",
+   "type": "eboulis",
+   "hauteur_m": [
+    0.5,
+    1.5
+   ],
+   "images": [
+    "f55bd1c8-fe31-441c-be5c-ca884531eef2",
+    "0a73c4a5-17e5-454e-9001-a920c1f9a716",
+    "2de9a9e3-2e32-4e91-a6c1-97e8fc523180",
+    "9cec2f58-fa6e-4ada-a8fb-6dd7a767137f",
+    "06d9112e-b3bc-4774-aa36-0994a0258f9b",
+    "e96ef4bf-f608-4a48-a9bd-f3767a42aa51"
+   ],
+   "description": "garrigue sur calcaire blanc affleurant"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1100,
+   "pk_fin_m": 1125,
+   "cote": "gauche",
+   "type": "lite",
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "images": [
+    "ccd22b75-47f1-42ac-9739-a158e73c172f",
+    "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+   ],
+   "description": "paroi taillée de calcaire lité clair"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1130,
+   "pk_fin_m": 1250,
+   "cote": "gauche",
+   "type": "lite",
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "images": [
+    "3a533cfd-51cc-41dc-9609-245ddaa35bae",
+    "95381ebe-d557-4b89-a794-ec76fca5f277",
+    "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619",
+    "8e34b254-5d2a-4368-8a17-0fe3fccdb14a",
+    "b4d7dc6b-15c0-4819-bee3-4f787f3204a6",
+    "37024d81-25d9-4110-8edd-8bd65ebde10b",
+    "c3131ad3-6b31-4d60-9468-d4421bc7233f"
+   ],
+   "description": "paroi de calcaire crème à ocre en bancs, blocs au pied"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1250,
+   "pk_fin_m": 1345,
+   "cote": "gauche",
+   "type": "lite",
+   "hauteur_m": [
+    3.0,
+    5.0
+   ],
+   "images": [
+    "a8df3bc2-9925-46af-8a05-a30a0d00a646",
+    "b21fa319-d304-473b-82c3-5eb7f6e2f321",
+    "b354335c-75eb-43bc-8592-ae60c3285bce",
+    "7b2904d1-c24d-4b40-8a37-122e9f578269",
+    "4f05c439-db8c-4b33-94aa-5b63cc0d6d60"
+   ],
+   "description": "grande paroi verticale de calcaire massif gris-rosé"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1385,
+   "pk_fin_m": 1430,
+   "cote": "gauche",
+   "type": "lite",
+   "hauteur_m": [
+    2.0,
+    4.0
+   ],
+   "images": [
+    "163245a2-4e36-49e9-a730-3fef7888f7da",
+    "01e02642-d659-4478-896d-250fde7d2efb",
+    "a44a1d50-e84b-4707-a5b6-5511d6faa35d"
+   ],
+   "description": "paroi de calcaire massif ocre-crème"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1505,
+   "pk_fin_m": 1560,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "images": [
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e",
+    "fa96e3fc-4e63-4735-832b-1117897e0fcb",
+    "ea1367d6-4e8c-4229-bde4-7809adc76bc6"
+   ],
+   "description": "paroi taillée de calcaire lité brun-ocre"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1565,
+   "pk_fin_m": 1595,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.5,
+    2.0
+   ],
+   "images": [
+    "96977cc9-2d73-4869-bb8d-6aa0d9cb4842",
+    "f6d9857c-3b3b-4413-9f6d-70ff0db8d366"
+   ],
+   "description": "paroi taillée de calcaire lité"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1630,
+   "pk_fin_m": 1700,
+   "cote": "droite",
+   "type": "eboulis",
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508",
+    "37dd8072-f561-4dca-8877-d3fe6979db68",
+    "7aba00df-5acd-4b03-a153-b8fa58b6fd89",
+    "1d6eb5bc-ea4f-4dd1-afe1-7cd6017a9b6f"
+   ],
+   "description": "talus rocheux lité brun"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1700,
+   "pk_fin_m": 1735,
+   "cote": "gauche",
+   "type": "lite",
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "images": [
+    "5736dfa1-cecc-419d-b7ca-e4e1c2925b58",
+    "ae90d863-c8ee-4e80-8af0-c988155e4c90"
+   ],
+   "description": "paroi taillée de calcaire lité ocre"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1775,
+   "pk_fin_m": 1790,
+   "cote": "gauche",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "images": [
+    "82934593-a9fd-4afd-883f-189fedfb3cb6"
+   ],
+   "description": "bancs calcaires ocre dans le talus de terre rouge"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1865,
+   "pk_fin_m": 1885,
+   "cote": "gauche",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    1.5
+   ],
+   "images": [
+    "34e70fc8-a7ce-4aab-924c-001f133fffed"
+   ],
+   "description": "bancs calcaires dans le talus"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 1945,
+   "pk_fin_m": 1990,
+   "cote": "gauche",
+   "type": "eboulis",
+   "hauteur_m": [
+    0.5,
+    1.5
+   ],
+   "images": [
+    "95f08c29-a9ef-4a12-a61c-89319d77e2b9",
+    "f9517c41-53f0-4ac9-8ad8-76cc7ce7d9d1",
+    "047a72e3-2e0c-42c7-a2cd-99883262f9d4"
+   ],
+   "description": "bancs calcaires bas dans le talus"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 2185,
+   "pk_fin_m": 2260,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.5,
+    3.0
+   ],
+   "images": [
+    "ae8122b3-d92a-4ce9-a0a7-8b996212deda",
+    "bf335aba-b753-457f-9145-4ccddade4aba",
+    "b12a5cd9-ab88-429b-9113-0f12817e5d72",
+    "39135d28-faff-4695-9fac-60d73387858b",
+    "c2d0ce1b-86aa-4613-b314-318df2215bc8"
+   ],
+   "description": "talus taillé de calcaire lité"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 2260,
+   "pk_fin_m": 2320,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "images": [
+    "159a7659-f3e6-4333-9632-ba399b5ae793",
+    "0386bf44-6016-44ed-a855-531192ba7d90",
+    "421cb4d6-24c7-40db-ae42-1d00ce2a5036",
+    "a232f421-bbe0-46ca-8505-5a575513f688"
+   ],
+   "description": "talus taillé de calcaire lité gris-brun, restanques au-dessus"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 2515,
+   "pk_fin_m": 2600,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.5,
+    2.5
+   ],
+   "images": [
+    "2ec4785e-e74b-4b2e-b7c7-44798a666406",
+    "a8e57708-59e5-44d2-bdde-22d10eb2985b",
+    "2ae9d661-0659-42d7-b252-4e7df302400b",
+    "3e944500-2359-4a21-a5b1-73fb3b392925",
+    "f4152a33-3e18-4e09-9f17-ce5d61d0ec69"
+   ],
+   "description": "talus taillé de calcaire lité brun"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 2945,
+   "pk_fin_m": 3020,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "images": [
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "0e847466-22ae-4418-ac3e-0341cde1bc81",
+    "76239e33-1ebc-434a-92e4-6945ba19f4f7",
+    "8b10df10-9f0e-41b3-be1a-6f68bcca5a3e",
+    "a00d17d5-e4f8-4295-9d3c-a61d8bfae986"
+   ],
+   "description": "talus taillé de calcaire lité"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 3285,
+   "pk_fin_m": 3370,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    1.0,
+    2.0
+   ],
+   "images": [
+    "fa24a98d-f3a4-4d66-957f-a791057c7145",
+    "81fc91ee-5179-4a8d-8f1f-93fa8697c287",
+    "af20c5fa-de8c-4ccb-88f0-251eb5766a16",
+    "e7e0c1a0-d488-4049-a649-5a905d0e831a",
+    "442e05e3-8419-45f0-ab95-d1b898b31dc9"
+   ],
+   "description": "talus de calcaire lité couvert de lierre"
+  },
+  {
+   "categorie": "paroi",
+   "pk_debut_m": 3415,
+   "pk_fin_m": 3500,
+   "cote": "droite",
+   "type": "lite",
+   "hauteur_m": [
+    2.0,
+    3.0
+   ],
+   "images": [
+    "30cf4a1a-b576-4408-91c6-72beff270791",
+    "9c78e331-0ced-4679-abc0-17570824bc8d",
+    "f6a0068f-5e48-4d34-84bd-b691d49274f3",
+    "c4ae4f77-1018-4808-bb2e-b8f41d3c87ff",
+    "2acaab65-e87b-4fa8-b655-3411e867a15e"
+   ],
+   "description": "talus taillé de calcaire lité brun"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": -34,
+   "cote": "droite",
+   "type": "panneau_agglomeration_fin",
+   "images": [
+    "f9160d60-31e7-498d-980b-702102fffa91"
+   ],
+   "description": "EB20 « CEYRESTE » barré (sortie d'agglomération) sur portique tubulaire vert",
+   "non_pose": "aucun maillage du jeu"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": -40,
+   "cote": "droite",
+   "type": "panneau_temporaire",
+   "images": [
+    "f9160d60-31e7-498d-980b-702102fffa91"
+   ],
+   "description": "panneau jaune temporaire d'information (plan de carrefour modifié)",
+   "non_pose": "aucun maillage du jeu ; temporaire"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 5,
+   "cote": "gauche",
+   "type": "panneau_rond_de_dos",
+   "images": [
+    "f72ed2c1-3a02-42b0-9026-cba741be7dd9",
+    "89d3561a-d4cb-4494-a6d1-63e043c02fa5"
+   ],
+   "description": "deux panneaux ronds vus de dos (pour les descendants), sur la bordure",
+   "non_pose": "face non lue"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": -15,
+   "cote": "droite",
+   "type": "panneau_sens_interdit",
+   "images": [
+    "f72ed2c1-3a02-42b0-9026-cba741be7dd9"
+   ],
+   "description": "B1 sens interdit à l'entrée d'une voie latérale",
+   "non_pose": "aucun maillage du jeu relevé"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 8,
+   "cote": "droite",
+   "type": "abri_bus",
+   "images": [
+    "89d3561a-d4cb-4494-a6d1-63e043c02fa5",
+    "edfc17c0-a24f-46e1-857b-1c4a017d6a0a"
+   ],
+   "description": "abri de l'arrêt « Plan-de-Masse » (petite construction à toit de tuiles) et marquage BUS",
+   "non_pose": "à construire (volume simple) : à décider"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 86,
+   "cote": "droite",
+   "type": "panneau_danger",
+   "images": [
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+    "edfd08bf-b5be-4304-b6ca-e922d593570e"
+   ],
+   "description": "A15b passage d'animaux sauvages + panonceau « 4,6 km » sur poteau béton",
+   "substitut": "triangle de danger générique du jeu (pictogramme différent)"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 86,
+   "cote": "droite",
+   "type": "panneau_virage_droite",
+   "images": [
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+    "edfd08bf-b5be-4304-b6ca-e922d593570e"
+   ],
+   "description": "A1c succession de virages, le premier à droite + panonceau « 3 km », sous le A15b",
+   "substitut": "triangle « virage à droite » du jeu (pas de A1c)",
+   "decalage_pk_m": 0.0
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 750,
+   "cote": "droite",
+   "type": "panneau_information",
+   "images": [
+    "56289bbe-3e00-4cee-a36a-78ee562941dd"
+   ],
+   "description": "petit panneau d'information bleu et blanc sur piquet, non lu",
+   "non_pose": "texte non lu ; aucun maillage équivalent"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 902,
+   "cote": "gauche",
+   "type": "balise_virage",
+   "images": [
+    "701e21a2-f493-4b1b-9783-04e05c039078",
+    "a7c86442-b91d-490e-82e8-402383df02f8",
+    "c115545b-6c4c-4f61-bb87-cab722cb4333"
+   ],
+   "description": "balise J4 à chevrons blancs sur fond bleu derrière la glissière"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 913,
+   "cote": "gauche",
+   "type": "balise_virage",
+   "images": [
+    "a7c86442-b91d-490e-82e8-402383df02f8"
+   ],
+   "description": "seconde balise J4, derrière la glissière"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 1300,
+   "cote": "gauche",
+   "type": "panneau_de_dos",
+   "images": [
+    "b354335c-75eb-43bc-8592-ae60c3285bce",
+    "7b2904d1-c24d-4b40-8a37-122e9f578269"
+   ],
+   "description": "triangle vu de dos (pour les descendants) au pied de la paroi",
+   "non_pose": "face non lue"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 1458,
+   "cote": "gauche",
+   "type": "bloc_beton_blanc",
+   "images": [
+    "d14edaba-55b0-4922-966b-bc556b3f0857",
+    "73b0f159-235b-4c3a-b5fa-c72ed5559385"
+   ],
+   "description": "bloc ou muret de béton peint en blanc (~0,6 x 5 m) à l'entrée d'une piste",
+   "non_pose": "pas de modèle ; à poser en muret béton court si souhaité"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 1525,
+   "cote": "droite",
+   "type": "bacs_dechets",
+   "images": [
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e",
+    "0373ab7c-4f27-4163-9fe8-88adea562baf"
+   ],
+   "description": "deux bacs à déchets (jaune, marron) et petit panneau blanc et vert à l'entrée de la piste",
+   "non_pose": "aucun maillage du jeu relevé"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 2111,
+   "cote": "gauche",
+   "type": "borne_kilometrique",
+   "images": [
+    "654381ef-c9df-44fe-be60-115059afe974"
+   ],
+   "description": "borne de point de repère « D3 ▸ 7 » (PR 7), plaquette jaune et blanche au sol"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 3112,
+   "cote": "gauche",
+   "type": "borne_kilometrique",
+   "images": [
+    "1f995965-1442-4ab7-a79c-577cad1a7f04"
+   ],
+   "description": "plaquette jaune et blanche sur piquet, probablement le PR 8 (texte non lu)",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 2722,
+   "cote": "droite",
+   "type": "poteau_incendie",
+   "images": [
+    "e599d8e3-3d20-4ae9-a426-b79ce3641cee"
+   ],
+   "description": "poteau d'incendie rouge",
+   "non_pose": "aucun maillage du jeu relevé"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 2757,
+   "cote": "droite",
+   "type": "panneau_information",
+   "images": [
+    "14d74c4b-9674-4e93-9873-396e8b20c83a"
+   ],
+   "description": "panneau d'information bleu et blanc sur mât (pictogrammes, « 1 km »), non lu en entier",
+   "non_pose": "texte non lu"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 1910,
+   "cote": "droite",
+   "type": "poteau_bois",
+   "images": [
+    "ed761789-b762-44d0-a4f6-7ed2b35d8e2e"
+   ],
+   "description": "poteau bois double (ligne)"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 3100,
+   "cote": "gauche",
+   "type": "poteau_bois",
+   "images": [
+    "1f995965-1442-4ab7-a79c-577cad1a7f04"
+   ],
+   "description": "poteau bois avec coffrets et miroir convexe (miroir non rendu)"
+  },
+  {
+   "categorie": "ponctuel",
+   "pk_m": 2092,
+   "cote": "droite",
+   "type": "barriere_tube",
+   "images": [
+    "0cd7702a-982b-4d8e-ac30-c57fdeca6b79",
+    "6ab59068-8431-4f86-a68b-3d92e2fd9d75"
+   ],
+   "description": "barrière blanche en tube métallique au carrefour de la Voie Romaine",
+   "non_pose": "pas de maillage relevé ; lisse à poser si souhaité"
+  }
+ ],
+ "non_releve": [
+  "Côté de la route sans image : aucun (793 images 360° à moins de 25 m de l'axe, pas maximal 30 m, une seule collection de 2025, sens descendant ; une collection de 2019, 68 images, non dépouillée).",
+  "Texte de plusieurs panneaux (voir non_poses de mobilier_bord_de_route.json) ; panneaux vus de dos (pour les descendants).",
+  "Poteaux électriques et téléphoniques : vus en nombre (D 2080-2250, 2600-2850, 3040-3760) mais non comptés poteau par poteau ; seuls deux poteaux bois sont posés.",
+  "Clôtures grillagées, portails des propriétés, haies taillées : notés dans les descriptions, non posés (pas de maillage).",
+  "PR 6 (attendu vers le PK 1110) non trouvé sur les images."
+ ]
+}

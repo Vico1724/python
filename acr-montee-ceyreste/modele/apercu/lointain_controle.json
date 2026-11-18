@@ -54,13 +54,13 @@
     200
    ]
   ],
-  "sommets": 740594,
-  "triangles": 1479556,
+  "sommets": 740592,
+  "triangles": 1479552,
   "dalles": 255,
   "bord": {
-   "boucles_de_bord": 4,
+   "boucles_de_bord": 3,
    "sommets_bord_exterieur": 1137,
-   "aretes_de_bord_total": 8974
+   "aretes_de_bord_total": 8965
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -72,18 +72,18 @@
    "m_par_px_max": 10.94
   },
   "relecture": {
-   "taille_mo": 59.22,
+   "taille_mo": 59.21,
    "maillages": 255,
    "nan": false,
    "normales_vers_le_haut_pct": 100.0,
    "uv_hors_0_1": 0,
    "bornes_min": [
-    -30124.80078125,
+    -30125.0,
     -280.0,
     -31195.900390625
    ],
    "bornes_max": [
-    31675.19921875,
+    31675.0,
     902.7999877929688,
     30004.099609375
    ],
@@ -122,13 +122,13 @@
     800
    ]
   ],
-  "sommets": 39104,
-  "triangles": 77523,
+  "sommets": 39101,
+  "triangles": 77519,
   "dalles": 249,
   "bord": {
-   "boucles_de_bord": 3,
-   "sommets_bord_exterieur": 569,
-   "aretes_de_bord_total": 8389
+   "boucles_de_bord": 4,
+   "sommets_bord_exterieur": 567,
+   "aretes_de_bord_total": 8393
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -146,22 +146,22 @@
    "normales_vers_le_haut_pct": 100.0,
    "uv_hors_0_1": 0,
    "bornes_min": [
-    -29724.80078125,
+    -29725.0,
     -279.79998779296875,
     -30795.900390625
    ],
    "bornes_max": [
-    31075.19921875,
+    31075.0,
     883.0,
     30004.099609375
    ],
    "raccord_08": {
-    "sommets_du_bord": 569,
+    "sommets_du_bord": 567,
     "retrouves_a_1mm_pct": 100.0,
     "ecart_max_m": 0.0
    },
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 70
+ "duree_s": 136
 }

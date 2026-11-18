@@ -1,0 +1,248 @@
+{
+ "note": "Mesures à l'œil sur l'orthophoto IGN 20 cm, bandes redressées graduées tous les 0,5 m (scripts/27_verif_trace.py bandes ; figures/affinage/verif_largeur_bandes_*.jpg ; PK 1050, 1860, 1960 sur une planche faite à part pour les tronçons étroits). Décalages en m par rapport à l'axe calculé AVANT l'affinage (> 0 à droite dans le sens de la montée). Précision de lecture ±0,25 m (pixel de 20 cm, flou). None : ligne ou bord invisible (ombre, arbre).",
+ "date": "2026-11-18",
+ "mesures": [
+  {
+   "pk_m": -73,
+   "rive_gauche_m": -3.0,
+   "axe_peint_m": 0.25,
+   "rive_droite_m": 3.4,
+   "bord_enrobe_gauche_m": -3.3,
+   "bord_enrobe_droit_m": 3.6,
+   "entre_rives_m": 6.4,
+   "enrobe_m": 6.9,
+   "largeur_07_avant_m": 6.77
+  },
+  {
+   "pk_m": 10,
+   "rive_gauche_m": -3.5,
+   "axe_peint_m": -0.4,
+   "rive_droite_m": 3.1,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 6.6,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 6.69
+  },
+  {
+   "pk_m": 342,
+   "rive_gauche_m": -2.75,
+   "axe_peint_m": 0.4,
+   "rive_droite_m": 3.75,
+   "bord_enrobe_gauche_m": -4.0,
+   "bord_enrobe_droit_m": 4.4,
+   "entre_rives_m": 6.5,
+   "enrobe_m": 8.4,
+   "largeur_07_avant_m": 7.61
+  },
+  {
+   "pk_m": 451,
+   "rive_gauche_m": -2.5,
+   "axe_peint_m": 1.0,
+   "rive_droite_m": 4.4,
+   "bord_enrobe_gauche_m": -2.9,
+   "bord_enrobe_droit_m": 4.8,
+   "entre_rives_m": 6.9,
+   "enrobe_m": 7.7,
+   "largeur_07_avant_m": 9.5
+  },
+  {
+   "pk_m": 776,
+   "rive_gauche_m": -3.6,
+   "axe_peint_m": 0.1,
+   "rive_droite_m": 3.75,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": 4.0,
+   "entre_rives_m": 7.35,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 7.75
+  },
+  {
+   "pk_m": 876,
+   "rive_gauche_m": -3.9,
+   "axe_peint_m": -0.1,
+   "rive_droite_m": 3.5,
+   "bord_enrobe_gauche_m": -4.6,
+   "bord_enrobe_droit_m": 4.75,
+   "entre_rives_m": 7.4,
+   "enrobe_m": 9.35,
+   "largeur_07_avant_m": 8.69
+  },
+  {
+   "pk_m": 1050,
+   "rive_gauche_m": null,
+   "axe_peint_m": 0.0,
+   "rive_droite_m": 2.9,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": null,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 4.99
+  },
+  {
+   "pk_m": 1156,
+   "rive_gauche_m": -3.5,
+   "axe_peint_m": 0.4,
+   "rive_droite_m": 4.1,
+   "bord_enrobe_gauche_m": -4.4,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 7.6,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 8.05
+  },
+  {
+   "pk_m": 1298,
+   "rive_gauche_m": -3.6,
+   "axe_peint_m": 0.1,
+   "rive_droite_m": 3.75,
+   "bord_enrobe_gauche_m": -4.6,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 7.35,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 8.36
+  },
+  {
+   "pk_m": 1632,
+   "rive_gauche_m": -3.9,
+   "axe_peint_m": -0.4,
+   "rive_droite_m": 3.25,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": 4.25,
+   "entre_rives_m": 7.15,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 7.23
+  },
+  {
+   "pk_m": 1763,
+   "rive_gauche_m": -3.25,
+   "axe_peint_m": 0.25,
+   "rive_droite_m": 3.6,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 6.85,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 6.39
+  },
+  {
+   "pk_m": 1860,
+   "rive_gauche_m": -2.6,
+   "axe_peint_m": 0.3,
+   "rive_droite_m": null,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": null,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 5.13
+  },
+  {
+   "pk_m": 1960,
+   "rive_gauche_m": -2.7,
+   "axe_peint_m": null,
+   "rive_droite_m": 3.1,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 5.8,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 5.59
+  },
+  {
+   "pk_m": 2088,
+   "rive_gauche_m": -3.25,
+   "axe_peint_m": 0.0,
+   "rive_droite_m": 3.75,
+   "bord_enrobe_gauche_m": -4.75,
+   "bord_enrobe_droit_m": 4.75,
+   "entre_rives_m": 7.0,
+   "enrobe_m": 9.5,
+   "largeur_07_avant_m": 8.56
+  },
+  {
+   "pk_m": 2226,
+   "rive_gauche_m": -4.0,
+   "axe_peint_m": 0.25,
+   "rive_droite_m": 5.0,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 9.0,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 9.07
+  },
+  {
+   "pk_m": 2404,
+   "rive_gauche_m": -3.1,
+   "axe_peint_m": 0.25,
+   "rive_droite_m": 3.5,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 6.6,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 6.76
+  },
+  {
+   "pk_m": 2593,
+   "rive_gauche_m": -3.4,
+   "axe_peint_m": 0.1,
+   "rive_droite_m": 3.6,
+   "bord_enrobe_gauche_m": -4.0,
+   "bord_enrobe_droit_m": 4.5,
+   "entre_rives_m": 7.0,
+   "enrobe_m": 8.5,
+   "largeur_07_avant_m": 7.19
+  },
+  {
+   "pk_m": 2744,
+   "rive_gauche_m": -3.4,
+   "axe_peint_m": 0.0,
+   "rive_droite_m": 3.5,
+   "bord_enrobe_gauche_m": -4.6,
+   "bord_enrobe_droit_m": 4.1,
+   "entre_rives_m": 6.9,
+   "enrobe_m": 8.7,
+   "largeur_07_avant_m": 8.06
+  },
+  {
+   "pk_m": 3043,
+   "rive_gauche_m": -3.4,
+   "axe_peint_m": 0.0,
+   "rive_droite_m": 3.4,
+   "bord_enrobe_gauche_m": -4.0,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 6.8,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 6.46
+  },
+  {
+   "pk_m": 3164,
+   "rive_gauche_m": -3.1,
+   "axe_peint_m": -0.1,
+   "rive_droite_m": 2.9,
+   "bord_enrobe_gauche_m": -3.5,
+   "bord_enrobe_droit_m": 3.6,
+   "entre_rives_m": 6.0,
+   "enrobe_m": 7.1,
+   "largeur_07_avant_m": 6.04
+  },
+  {
+   "pk_m": 3286,
+   "rive_gauche_m": -3.45,
+   "axe_peint_m": 0.0,
+   "rive_droite_m": 3.5,
+   "bord_enrobe_gauche_m": null,
+   "bord_enrobe_droit_m": null,
+   "entre_rives_m": 6.95,
+   "enrobe_m": null,
+   "largeur_07_avant_m": 7.57
+  },
+  {
+   "pk_m": 3601,
+   "rive_gauche_m": -3.75,
+   "axe_peint_m": -0.25,
+   "rive_droite_m": 3.4,
+   "bord_enrobe_gauche_m": -4.2,
+   "bord_enrobe_droit_m": 3.9,
+   "entre_rives_m": 7.15,
+   "enrobe_m": 8.1,
+   "largeur_07_avant_m": 7.65
+  }
+ ]
+}

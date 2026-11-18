@@ -1,22 +1,959 @@
 {
-  "note": "Parapets des ouvrages de la montée (D3). AUCUN RELEVÉ : pas de vidéo ni de photo exploitée à ce jour. Le seul ouvrage détecté par le LiDAR (ponceau vers le PK 2010-2042) prend la valeur par défaut, supposée. Types et géométrie repris du Grand Caunet.",
-  "types": {
-    "pierre_des_blancs": "maçonnerie de moellons calcaires gris, dés (potelets) de béton peints en blanc tous les 3 à 4 m et chaperon blanc",
-    "pierre": "maçonnerie de moellons, chaperon de pierre ou de béton gris, sans dés blancs nets",
-    "beton": "béton lisse banché, couleur gris clair",
-    "aucun": "pas de parapet vu de ce côté (talus rocheux ou terrain au niveau de la chaussée)"
+ "note": "Parapets, murs et murets de bord de route de la montée (D3), relevés le 18/11/2026 sur Panoramax (scripts/29_releve_panoramax.py) et recalés sur le LiDAR HD quand il les voit. Les clôtures, garde-corps métalliques et bandes peintes ne sont pas rendus (voir la description de chaque entrée).",
+ "types": {
+  "pierre_des_blancs": "maçonnerie de moellons calcaires gris, dés (potelets) de béton peints en blanc tous les 3 à 4 m et chaperon blanc",
+  "pierre": "maçonnerie de moellons, chaperon de pierre ou de béton gris, sans dés blancs nets",
+  "beton": "béton lisse banché, couleur gris clair",
+  "aucun": "pas de parapet vu de ce côté (talus rocheux ou terrain au niveau de la chaussée)"
+ },
+ "valeurs_par_defaut": {
+  "route_par_defaut": "D3",
+  "D3": {
+   "type": "beton",
+   "hauteur_m": 0.7,
+   "epaisseur_m": 0.3,
+   "statut": "supposé (non relevé à Ceyreste ; valeur de la D1 du Grand Caunet)"
   },
-  "valeurs_par_defaut": {
-    "route_par_defaut": "D3",
-    "D3": {
-      "type": "beton",
-      "hauteur_m": 0.7,
-      "epaisseur_m": 0.3,
-      "statut": "supposé (non relevé à Ceyreste ; valeur de la D1 du Grand Caunet)"
-    },
-    "prolongement_par_defaut_m": 2.0
+  "prolongement_par_defaut_m": 2.0
+ },
+ "ouvrages": [
+  {
+   "pk_centre_m": 2016.0,
+   "route": "D3",
+   "bdtopo_pk": "2009-2023",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.55,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images b6721f3d, b9a4f318",
+    "confiance": "moyenne",
+    "note": "tête basse en béton, tags (non reproduits), extrémité peinte en blanc"
+   },
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.55,
+    "epaisseur_m": 0.3,
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images b6721f3d, b9a4f318",
+    "confiance": "moyenne",
+    "note": "tête basse en béton, extrémité peinte en blanc"
+   }
+  }
+ ],
+ "parapets_hors_tablier": [
+  {
+   "pk_debut_m": -121.0,
+   "pk_fin_m": -91.0,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 1.3,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 63cc1724",
+    "images": [
+     "63cc1724-4cdb-4182-aaa0-93d2265548c1"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "mur de soutènement en pierre sèche",
+    "pk_photo_m": [
+     -110,
+     -95
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
   },
-  "ouvrages": [],
-  "parapets_hors_tablier": [],
-  "a_relever": "murs de soutènement, parapets et têtes de ponceaux : relevé sur vidéo embarquée ou Panoramax (data/reference/panoramax_d3.json)"
+  {
+   "pk_debut_m": -82,
+   "pk_fin_m": -50,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 2.0,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 1093d878, 31fd6398",
+    "images": [
+     "1093d878-a6f6-471c-9c6f-5884a9555949",
+     "31fd6398-d470-40a9-bbb9-333edeb26453"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "grand mur de soutènement en pierre (garde-corps au-dessus non rendu)",
+    "pk_photo_m": [
+     -82,
+     -50
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": -67.0,
+   "pk_fin_m": -36.0,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 31fd6398, f9160d60",
+    "images": [
+     "31fd6398-d470-40a9-bbb9-333edeb26453",
+     "f9160d60-31e7-498d-980b-702102fffa91"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "muret de pierre bas surmonté d'un grillage brise-vue (grillage non rendu)",
+    "pk_photo_m": [
+     -65,
+     -45
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": -20,
+   "pk_fin_m": 100,
+   "route": "D3",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.3,
+    "epaisseur_m": 0.3,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images f72ed2c1, 89d3561a, edfc17c0, c469075c, c03d3e1e",
+    "images": [
+     "f72ed2c1-3a02-42b0-9026-cba741be7dd9",
+     "89d3561a-d4cb-4494-a6d1-63e043c02fa5",
+     "edfc17c0-a24f-46e1-857b-1c4a017d6a0a",
+     "c469075c-b307-473e-a97a-9d87eb0e4e5a",
+     "c03d3e1e-01c3-4870-9de0-4cda19a935b0"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "bordure de béton basse le long du champ, grillage derrière (non rendu)",
+    "pk_photo_m": [
+     -20,
+     100
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 55.0,
+   "pk_fin_m": 115.0,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c03d3e1e, edfd08bf, c559b2b8, fa1351a2, b046281f",
+    "images": [
+     "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+     "edfd08bf-b5be-4304-b6ca-e922d593570e",
+     "c559b2b8-7e11-4711-bd90-a311b1613650",
+     "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
+     "b046281f-1c4b-4321-a97c-2ffb54f8b5d3"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "muret de pierre sèche bas",
+    "pk_photo_m": [
+     55,
+     165
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 100,
+   "pk_fin_m": 165,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images fa1351a2, b046281f, 9e3f4f93, 48a9f912",
+    "images": [
+     "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
+     "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
+     "9e3f4f93-cd2a-427a-bd84-4fabed39e880",
+     "48a9f912-ca25-48ab-bff3-5a6d42503499"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "muret de pierre sèche bas, grillage derrière",
+    "pk_photo_m": [
+     100,
+     165
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 185,
+   "pk_fin_m": 195,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c6b32cb7",
+    "images": [
+     "c6b32cb7-6de1-4b07-b419-1d4ef19c2f5f"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "muret de pierre sèche court",
+    "pk_photo_m": [
+     185,
+     195
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 180,
+   "pk_fin_m": 205,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images d7d5855d, c6b32cb7",
+    "images": [
+     "d7d5855d-a768-4438-9e0e-4872803a797c",
+     "c6b32cb7-6de1-4b07-b419-1d4ef19c2f5f"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "muret de pierre sèche",
+    "pk_photo_m": [
+     180,
+     205
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 195.0,
+   "pk_fin_m": 209.0,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 3c96316d",
+    "images": [
+     "3c96316d-dfd4-4061-a6d5-5eccad8e523a"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "muret de pierre",
+    "pk_photo_m": [
+     200,
+     215
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 287.0,
+   "pk_fin_m": 350.0,
+   "route": "D3",
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.3,
+    "epaisseur_m": 0.3,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 8801585d, b654d53a, 619b5f76, fda1798e, 3a53fe19",
+    "images": [
+     "8801585d-b9e4-45e3-ba15-433c18a46e7c",
+     "b654d53a-aadc-4535-a569-1d7d61580b00",
+     "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b",
+     "fda1798e-0ef9-44d8-b259-fc48ab601880",
+     "3a53fe19-c46f-4f93-b3f3-e91ef4895db3"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "bordure maçonnée basse à chaperon de béton en crête de talus, grillage derrière",
+    "pk_photo_m": [
+     225,
+     350
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 440,
+   "pk_fin_m": 470,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images fef444f3, 3a0d33e4",
+    "images": [
+     "fef444f3-310a-4079-bc9e-e9c726369d3c",
+     "3a0d33e4-5b84-4c9a-85d2-2e84e38e81fe"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur de pierre maçonné à chaperon à l'extérieur du virage",
+    "pk_photo_m": [
+     440,
+     470
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 705,
+   "pk_fin_m": 740,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 39a25600, d76073e0",
+    "images": [
+     "39a25600-040f-4ee7-b419-bb0f381d527f",
+     "d76073e0-f42f-45ff-9da2-5eb0f2d4e1a0"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de pierre maçonnée à chaperon, extérieur de l'épingle",
+    "pk_photo_m": [
+     705,
+     740
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 768,
+   "pk_fin_m": 826,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.65,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 94dcff86, 44ca4d2d, 05229626, 50965cef",
+    "images": [
+     "94dcff86-24cc-4ebc-b548-1f2b8f07e2b7",
+     "44ca4d2d-d23f-4512-aff2-fafd748cf88c",
+     "05229626-ceab-44b1-844b-443aed843ba3",
+     "50965cef-36aa-4ec8-923d-3fe3184c818b"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de moellons calcaires à chaperon",
+    "pk_photo_m": [
+     768,
+     826
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 925,
+   "pk_fin_m": 968,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.55,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images e08dc349, e47ebc0d, cc032824",
+    "images": [
+     "e08dc349-4095-4fef-b37c-76c31dc1b758",
+     "e47ebc0d-bbab-445e-8fef-b47c1c1fc501",
+     "cc032824-c6c7-4d1b-b4e3-c4720ccdea29"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "parapet bas de moellons, chaperon de pierres posées de chant",
+    "pk_photo_m": [
+     925,
+     968
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 1120,
+   "pk_fin_m": 1188,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 3a533cfd, 95381ebe, e8cbf415, 652f5917",
+    "images": [
+     "3a533cfd-51cc-41dc-9609-245ddaa35bae",
+     "95381ebe-d557-4b89-a794-ec76fca5f277",
+     "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619",
+     "652f5917-8e40-4446-aff3-bba094e629bd"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de moellons gris assisés à chaperon, extrémités peintes en blanc",
+    "pk_photo_m": [
+     1120,
+     1188
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 1212.0,
+   "pk_fin_m": 1234.0,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images b4d7dc6b, 37024d81",
+    "images": [
+     "b4d7dc6b-15c0-4819-bee3-4f787f3204a6",
+     "37024d81-25d9-4110-8edd-8bd65ebde10b"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de moellons, extrémités biseautées peintes en blanc",
+    "pk_photo_m": [
+     1198,
+     1232
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 1236,
+   "pk_fin_m": 1265,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c3131ad3",
+    "images": [
+     "c3131ad3-6b31-4d60-9468-d4421bc7233f"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de moellons",
+    "pk_photo_m": [
+     1236,
+     1265
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 1288,
+   "pk_fin_m": 1335,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 0.75,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images b354335c, 7b2904d1, 4f05c439",
+    "images": [
+     "b354335c-75eb-43bc-8592-ae60c3285bce",
+     "7b2904d1-c24d-4b40-8a37-122e9f578269",
+     "4f05c439-db8c-4b33-94aa-5b63cc0d6d60"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de moellons, extrémité amont peinte en blanc",
+    "pk_photo_m": [
+     1288,
+     1335
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 1605,
+   "pk_fin_m": 1655,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 29bb5b34, d5c7d0ad, 37dd8072",
+    "images": [
+     "29bb5b34-71bf-458f-9c68-8edf8bfc8ae8",
+     "d5c7d0ad-109c-4d01-9678-235bff014508",
+     "37dd8072-f561-4dca-8877-d3fe6979db68"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de moellons ; bandes peintes rouge et blanc sur une partie (non rendues)",
+    "pk_photo_m": [
+     1605,
+     1655
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 2105,
+   "pk_fin_m": 2140,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 1.0,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 654381ef, 60d008eb",
+    "images": [
+     "654381ef-c9df-44fe-be60-115059afe974",
+     "60d008eb-956f-44e6-8a03-c161f2d7e37a"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur de soutènement en pierre sèche",
+    "pk_photo_m": [
+     2105,
+     2140
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 2140,
+   "pk_fin_m": 2160,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 1.2,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images f807be2e, 58af6c06",
+    "images": [
+     "f807be2e-75df-4d05-aba2-5a3e2fd62495",
+     "58af6c06-4b49-48db-999f-55d924d6cd3f"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "mur de soutènement en moellons au pied du talus rocheux",
+    "pk_photo_m": [
+     2140,
+     2160
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 2458,
+   "pk_fin_m": 2520,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.45,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 7eef7b5c, 0bc5836c, c7c78864, 8d5c9409",
+    "images": [
+     "7eef7b5c-c25a-41d3-9238-f3b65fac1e2c",
+     "0bc5836c-8801-43d1-ba09-5aa9e4dc36ba",
+     "c7c78864-599c-48b6-b8a3-6f9cabd641e1",
+     "8d5c9409-f98a-42ff-bac5-fcb69bc677d2"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "parapet bas de moellons, chaperon de pierres posées de chant",
+    "pk_photo_m": [
+     2458,
+     2520
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 2520,
+   "pk_fin_m": 2565,
+   "route": "D3",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.3,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 2ec4785e, a8e57708, 2ae9d661",
+    "images": [
+     "2ec4785e-e74b-4b2e-b7c7-44798a666406",
+     "a8e57708-59e5-44d2-bdde-22d10eb2985b",
+     "2ae9d661-0659-42d7-b252-4e7df302400b"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "parapet de béton lisse gris clair à bandes verticales peintes en blanc (bandes non rendues)",
+    "pk_photo_m": [
+     2520,
+     2565
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 2869.0,
+   "pk_fin_m": 2897.0,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 1.5,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 6a88e7fa, 905fc8fa",
+    "images": [
+     "6a88e7fa-0ab6-41a2-a4e2-809cecf9ce38",
+     "905fc8fa-56ad-4024-9f2d-ea4a75bafb6b"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "mur de soutènement en moellons couvert de végétation",
+    "pk_photo_m": [
+     2860,
+     2895
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 2925,
+   "pk_fin_m": 2935,
+   "route": "D3",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.4,
+    "epaisseur_m": 0.3,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 9f14e86c",
+    "images": [
+     "9f14e86c-eb58-4952-a81e-16a61f5fc2d0"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "faible",
+    "description": "muret de béton bas",
+    "pk_photo_m": [
+     2925,
+     2935
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 3103.0,
+   "pk_fin_m": 3122.0,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 1.3,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 1f995965, 2540de5a",
+    "images": [
+     "1f995965-1442-4ab7-a79c-577cad1a7f04",
+     "2540de5a-41f4-47c6-ba4f-11455f215faa"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "mur de pierre devant une propriété",
+    "pk_photo_m": [
+     3100,
+     3125
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 3138.0,
+   "pk_fin_m": 3200.0,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 1.0,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 532958a0, 978841a8, 5a111766, 726829e6",
+    "images": [
+     "532958a0-e21d-4286-b4a4-3b7da87f9b17",
+     "978841a8-9ee6-4a6e-9c40-ac837d7d6b7c",
+     "5a111766-5aea-4f98-be65-e7b67d4c850c",
+     "726829e6-420d-40df-9861-b969d4ea6ea5"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "murets de pierre devant les maisons",
+    "pk_photo_m": [
+     3130,
+     3200
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 3206.0,
+   "pk_fin_m": 3232.0,
+   "route": "D3",
+   "droite": {
+    "type": "enduit",
+    "hauteur_m": 1.8,
+    "epaisseur_m": 0.3,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images be182a52, c1fe1998, a133f64e",
+    "images": [
+     "be182a52-adc3-4153-8ee9-38d2f0450491",
+     "c1fe1998-d9b1-416a-937a-4180e1851087",
+     "a133f64e-20c4-457c-86b0-ac0b8d3202a8"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "mur de clôture enduit beige",
+    "pk_photo_m": [
+     3205,
+     3250
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 3235.0,
+   "pk_fin_m": 3270.0,
+   "route": "D3",
+   "gauche": {
+    "type": "pierre",
+    "hauteur_m": 0.7,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c1fe1998, a133f64e, 06ea7f53",
+    "images": [
+     "c1fe1998-d9b1-416a-937a-4180e1851087",
+     "a133f64e-20c4-457c-86b0-ac0b8d3202a8",
+     "06ea7f53-32ec-433e-906c-1abaffff01ce"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "mur-parapet de moellons calcaires clairs",
+    "pk_photo_m": [
+     3215,
+     3260
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 3386.0,
+   "pk_fin_m": 3420.0,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 1.8,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images a0a0bb99, 32cb1b1c",
+    "images": [
+     "a0a0bb99-62da-4b88-b264-7eeb6cf6e3d4",
+     "32cb1b1c-7dde-4c80-89cc-b113f4065246"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "mur de soutènement en pierre sèche",
+    "pk_photo_m": [
+     3375,
+     3420
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 3500.0,
+   "pk_fin_m": 3562.0,
+   "route": "D3",
+   "droite": {
+    "type": "pierre",
+    "hauteur_m": 2.2,
+    "epaisseur_m": 0.45,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images f1c411df, 635c5f76, 5e36c019, a4a603b8",
+    "images": [
+     "f1c411df-d4a5-4183-9de2-293b31790a3c",
+     "635c5f76-941b-493e-aa44-06e5bcb3c716",
+     "5e36c019-364e-4cb7-8286-a6303e9ef4d0",
+     "a4a603b8-cb82-4a99-97b6-c6c32e4a53e9"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "grand mur de soutènement en pierre",
+    "pk_photo_m": [
+     3500,
+     3560
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 3645,
+   "pk_fin_m": 3665,
+   "route": "D3",
+   "gauche": {
+    "type": "beton",
+    "hauteur_m": 0.5,
+    "epaisseur_m": 0.3,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 3293697d, 11ee1c29",
+    "images": [
+     "3293697d-a169-47e9-b400-908c3a1d1242",
+     "11ee1c29-9530-446c-94ac-f426e48da911"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "approximatif (photo, PK ±10 m)",
+    "confiance": "moyenne",
+    "description": "tête de ponceau en béton, extrémité peinte en blanc",
+    "pk_photo_m": [
+     3645,
+     3665
+    ]
+   },
+   "droite": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  },
+  {
+   "pk_debut_m": 2906.0,
+   "pk_fin_m": 2918.0,
+   "route": "D3",
+   "droite": {
+    "type": "beton",
+    "hauteur_m": 0.6,
+    "epaisseur_m": 0.3,
+    "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 3693681f, 9f14e86c",
+    "images": [
+     "3693681f-2e27-41e8-8ab0-6133add7d79d",
+     "9f14e86c-eb58-4952-a81e-16a61f5fc2d0"
+    ],
+    "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+    "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+    "confiance": "moyenne",
+    "description": "tête de ponceau en béton gris, ~8 m",
+    "pk_photo_m": [
+     2906,
+     2925
+    ]
+   },
+   "gauche": {
+    "type": "aucun",
+    "statut": "non relevé de ce côté dans cette entrée"
+   }
+  }
+ ]
 }

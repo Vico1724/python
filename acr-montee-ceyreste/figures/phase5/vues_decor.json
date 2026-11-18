@@ -3,161 +3,161 @@
   "pk_oeil": -40,
   "pk_vise": 5.0,
   "oeil_gltf": [
-   -14.380000114440918,
+   -14.489999771118164,
    -0.5899999737739563,
    37.369998931884766
   ],
   "vise_gltf": [
-   2.3299999237060547,
-   1.0199999809265137,
-   -4.510000228881836
+   2.3399999141693115,
+   1.0099999904632568,
+   -4.5
   ],
-  "arbres": 5147,
-  "arbustes": 1628,
+  "arbres": 5149,
+  "arbustes": 1648,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_depart_plan_de_masse.png",
-  "taille_mo": 1.17,
+  "taille_mo": 1.15,
   "controle_image": {
-   "pixels_noirs_pct": 0.1,
-   "luminance_moyenne": 95.8
+   "pixels_noirs_pct": 0.12,
+   "luminance_moyenne": 94.4
   }
  },
  "epingle_893": {
   "pk_oeil": 860,
   "pk_vise": 886.0,
   "oeil_gltf": [
-   -134.9499969482422,
+   -135.05999755859375,
    26.100000381469727,
    -489.30999755859375
   ],
   "vise_gltf": [
-   -158.4199981689453,
-   26.979999542236328,
+   -158.52999877929688,
+   26.969999313354492,
    -480.44000244140625
   ],
-  "arbres": 3566,
-  "arbustes": 1311,
+  "arbres": 3567,
+  "arbustes": 1270,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_epingle_893.png",
-  "taille_mo": 1.19,
+  "taille_mo": 1.22,
   "controle_image": {
-   "pixels_noirs_pct": 0.21,
-   "luminance_moyenne": 88.1
+   "pixels_noirs_pct": 0.14,
+   "luminance_moyenne": 92.5
   }
  },
  "lacets_1517": {
   "pk_oeil": 1480,
   "pk_vise": 1510.0,
   "oeil_gltf": [
-   321.2099914550781,
-   68.41000366210938,
+   321.1000061035156,
+   68.4000015258789,
    -753.3699951171875
   ],
   "vise_gltf": [
-   347.6700134277344,
-   70.3499984741211,
+   347.55999755859375,
+   70.33999633789062,
    -765.530029296875
   ],
-  "arbres": 5354,
-  "arbustes": 2780,
+  "arbres": 5350,
+  "arbustes": 2809,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_lacets_1517.png",
-  "taille_mo": 0.62,
+  "taille_mo": 1.4,
   "controle_image": {
-   "pixels_noirs_pct": 0.23,
-   "luminance_moyenne": 70.3
+   "pixels_noirs_pct": 0.37,
+   "luminance_moyenne": 66.0
   }
  },
  "ponceau_2026": {
   "pk_oeil": 1990,
   "pk_vise": 2028.0,
   "oeil_gltf": [
-   630.969970703125,
-   97.45999908447266,
+   630.8699951171875,
+   97.44000244140625,
    -827.2100219726562
   ],
   "vise_gltf": [
-   667.3900146484375,
-   99.02999877929688,
+   667.280029296875,
+   99.0199966430664,
    -816.8900146484375
   ],
-  "arbres": 4528,
-  "arbustes": 2909,
+  "arbres": 4524,
+  "arbustes": 2929,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_ponceau_2026.png",
-  "taille_mo": 0.61,
+  "taille_mo": 0.6,
   "controle_image": {
-   "pixels_noirs_pct": 0.33,
-   "luminance_moyenne": 72.0
+   "pixels_noirs_pct": 0.31,
+   "luminance_moyenne": 68.4
   }
  },
  "arrivee_estimee": {
   "pk_oeil": 2950,
   "pk_vise": 2995.0,
   "oeil_gltf": [
-   1063.530029296875,
+   1063.4200439453125,
    148.5500030517578,
    -1128.1099853515625
   ],
   "vise_gltf": [
-   1071.6199951171875,
+   1071.510009765625,
    151.0800018310547,
    -1168.0400390625
   ],
   "arbres": 4569,
-  "arbustes": 4110,
+  "arbustes": 4111,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_arrivee_estimee.png",
   "taille_mo": 1.24,
   "controle_image": {
    "pixels_noirs_pct": 0.1,
-   "luminance_moyenne": 90.6
+   "luminance_moyenne": 91.3
   }
  },
  "controle_horizon": {
   "pk_oeil": 2500,
   "pk_vise": 3500.0,
   "oeil_gltf": [
-   694.4600219726562,
-   124.48999786376953,
+   694.3499755859375,
+   124.4800033569336,
    -1005.0399780273438
   ],
   "vise_gltf": [
-   120.88999938964844,
-   136.49000549316406,
+   120.77999877929688,
+   136.47999572753906,
    -185.88999938964844
   ],
-  "arbres": 5475,
-  "arbustes": 3943,
+  "arbres": 5471,
+  "arbustes": 3964,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_controle_horizon.png",
   "taille_mo": 1.23,
   "controle_image": {
-   "pixels_noirs_pct": 0.32,
-   "luminance_moyenne": 72.2
+   "pixels_noirs_pct": 0.31,
+   "luminance_moyenne": 72.5
   }
  },
  "controle_raccord": {
   "pk_oeil": 3650,
   "pk_vise": null,
   "oeil_gltf": [
-   1697.949951171875,
+   1697.8399658203125,
    315.4599914550781,
    -1047.030029296875
   ],
   "vise_gltf": [
-   1717.6800537109375,
+   1717.5699462890625,
    155.4600067138672,
    -1451.52001953125
   ],
   "arbres": 4655,
-  "arbustes": 1737,
+  "arbustes": 1727,
   "temps_video_v2_s": null,
   "fichier": "figures/phase5/vue_controle_raccord.png",
   "taille_mo": 0.62,
   "controle_image": {
    "pixels_noirs_pct": 0.0,
-   "luminance_moyenne": 90.1
+   "luminance_moyenne": 90.2
   }
  }
 }

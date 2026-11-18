@@ -8,6 +8,7 @@ Reproduction de la montée historique de Ceyreste (Bouches-du-Rhône) : la D3, �
 |---|---|
 | [`docs/01_trace_et_sources.md`](docs/01_trace_et_sources.md) | tracé retenu, sources, ce qui est certain ou estimé |
 | [`docs/02_reutilisation.md`](docs/02_reutilisation.md) | ce qui vient du Grand Caunet (fichiers, commit), ce qui est neuf ou paramétré |
+| [`docs/03_affinage_reel.md`](docs/03_affinage_reel.md) | vérification du tracé et de la largeur, relevé du bord de route (Panoramax), sols, village (18/11/2026) |
 | [`docs/ETAT.md`](docs/ETAT.md) | fait et vérifié, fait non vérifié, à faire sur le PC, inconnues, coexistence des deux cartes |
 | [`docs/guide_pc.md`](docs/guide_pc.md) | commandes à lancer sur le PC Windows, dans l'ordre |
 
@@ -51,6 +52,7 @@ Durée : environ 30 à 40 minutes la première fois (téléchargements IGN, ~300
 
 - Données géographiques : IGN (LiDAR HD, BD ORTHO, BD TOPO, BD Forêt, RGE ALTI), Licence Ouverte Etalab 2.0.
 - Tracé : articles de presse et fiche de l'organisateur (Phocéa Productions), cités dans `docs/01_trace_et_sources.md`.
+- Imagerie de rue : Panoramax, collection Région Sud / Immergis du 08/09/2025, Licence Ouverte Etalab 2.0 (images non versionnées ; liste dans `data/reference/photos_rue_panoramax.csv` ; extraits dans `figures/affinage/comparaison/`, mention sur chaque planche). OpenStreetMap (ODbL) pour le contrôle de l'axe et le village.
 - Textures : Poly Haven (CC0), crédits dans `data/reference/ressources_cc0.json`.
 - Kit PC : ACR Extra Stages (MIT / Apache-2.0), retouches dans `pc/patches/` sous les mêmes licences.
 - Scripts : repris du projet `acr-grand-caunet` du même dépôt (provenance dans `docs/02_reutilisation.md`).

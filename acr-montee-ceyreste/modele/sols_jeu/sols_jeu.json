@@ -21,11 +21,11 @@
  ],
  "matiere_de_fond": "paillis (matière 1 du jeu) = 1 - somme des couches",
  "parts_moyennes": {
-  "paillis": 0.246,
+  "paillis": 0.247,
   "aiguilles_de_pin": 0.434,
-  "herbe_haute": 0.071,
-  "herbe_seche": 0.146,
-  "terre": 0.057,
+  "herbe_haute": 0.064,
+  "herbe_seche": 0.148,
+  "terre": 0.062,
   "cailloux": 0.045
  },
  "couleur_1m": {
@@ -60,5 +60,5 @@
  "accotement_m": 1.5,
  "graine": 20261112,
  "aires_de_gravier_de_la_zone_de_depart": {},
- "duree_s": 21
+ "duree_s": 43
 }

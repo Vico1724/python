@@ -365,7 +365,34 @@ def zones_essence(G, axis):
     zf = G.burn(pairs)
     z = np.where(zf > 0, zf, z)
     assert hors == len(noms)
+    # Zones relevées sur l'imagerie de rue (data/reference/zones_essences_relevees.json) : elles l'emportent sur la BD
+    # Forêt et les règles par défaut, dans une bande le long de la route (ex. oliveraies du bas de la montée, absentes de
+    # la BD Forêt et de la BD TOPO).
+    zr = zones_relevees()
+    for nom, poly in zr:
+        if nom not in noms:
+            noms.append(nom)
+        z[G.burn([(poly, noms.index(nom) + 1)]) > 0] = noms.index(nom) + 1
     return z, noms, dict(inconnus)
+
+
+def zones_relevees():
+    """[(nom de règle, polygone Lambert-93)] des zones d'essences relevées ; ajoute leurs règles à FORMATIONS."""
+    import csv as _csv
+    from shapely.geometry import LineString as _LS
+    f = fichier_ref("zones_essences_relevees.json")
+    if not f.exists():
+        return []
+    with open(OUT / "chaussee_precise.csv", encoding="utf-8") as fh:
+        R = [(float(r["pk_m"]), float(r["x_axe"]), float(r["y_axe"])) for r in _csv.DictReader(fh)]
+    out = []
+    for zz in json.loads(f.read_text(encoding="utf-8"))["zones"]:
+        nom = "relevé : " + zz["nom"]
+        FORMATIONS[nom] = zz["essences"]
+        pts = [(x, y) for p, x, y in R if zz["pk"][0] <= p <= zz["pk"][1]]
+        if len(pts) >= 2:
+            out.append((nom, _LS(pts).buffer(float(zz["bande_m"]), cap_style="flat")))
+    return out
 
 
 def tirage(rng, regle, h):

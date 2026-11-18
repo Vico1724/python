@@ -676,6 +676,10 @@ def tablier_epais(rg, ref, mnt, d, ep):
 def murs(ch, ref, mnt, rg):
     """Murs de soutènement BD TOPO à moins de MUR_DIST_MAX de l'axe : voile de 0,5 m du pied
     (MNT mini sur ±1,5 m, -0,3 m) à la tête (MNT maxi), 1 m de haut au moins."""
+    if param("murs_bd_topo_remplaces_par_releve", False):
+        # Relevé de photos de rue sur tout le parcours (ouvrages_parapets.json) : il fait foi pour ce qui est posé au bord
+        # de la route ; les murs BD TOPO (position à ±2-3 m, hauteur tirée du MNT) ne sont plus posés en double.
+        return [], [{"note": "murs BD TOPO remplacés par le relevé (epreuve.json : murs_bd_topo_remplaces_par_releve)"}]
     g = json.loads((OUT / "couloir" / "construction_lineaire.geojson").read_text(encoding="utf-8"))
     axe = LineString(ch["A"][:, :2])
     route_poly = shapely.make_valid(Polygon(np.vstack([ch["G"][:, :2], ch["D"][::-1, :2]])))

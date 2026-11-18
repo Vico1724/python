@@ -38,7 +38,7 @@ from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from acr_geo import ROOT as RACINE, fichier_ref  # noqa: E402  racine du projet
+from acr_geo import ROOT as RACINE, fichier_ref, param  # noqa: E402  racine du projet
 RAW, OUT = RACINE / "data" / "raw", RACINE / "modele" / "sols_jeu"
 COUCHES = ["aiguilles_de_pin", "herbe_haute", "herbe_seche", "terre", "cailloux"]      # matières 2 à 6 du jeu
 COULEURS_APERCU = {"paillis": (176, 160, 132), "aiguilles_de_pin": (150, 105, 60), "herbe_haute": (70, 140, 50),
@@ -249,7 +249,12 @@ def main():
     del dist, b1, raide
     for k in COUCHES:
         p[k] *= (1.0 - accot)                   # sous la chaussée et dans le liseré : le fond pierreux seul
-    p["herbe_haute"] += herbe * 0.95
+    # Matière de la bande d'accotement : herbe verte rase au Grand Caunet (reconnaissance) ; à Ceyreste, epreuve.json
+    # « accotement » la remplace (Panoramax du 08/09/2025 : terre rouge nue et herbe sèche clairsemée, bourrelets de terre).
+    acc = param("accotement") or {}
+    parts = acc.get("parts", {"herbe_haute": 0.95})
+    for k, v in parts.items():
+        p[k] += herbe * float(v)
 
     # aires de terre et débouchés de pistes (data/reference/aires_et_pistes.json) : terre claire, ou le fond pierreux seul
     import regles_arbres

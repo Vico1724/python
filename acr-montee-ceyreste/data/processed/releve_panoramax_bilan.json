@@ -1,0 +1,1287 @@
+{
+ "date": "18/11/2026",
+ "objets": [
+  {
+   "categorie": "glissiere",
+   "type": "glissiere_simple",
+   "cote": "gauche",
+   "pk_photo": [
+    500,
+    580
+   ],
+   "pk_retenu": [
+    500,
+    580
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.02,
+   "description": "glissière simple à l'extérieur, au-dessus du vallon (tags sur la lisse, non reproduits)"
+  },
+  {
+   "categorie": "glissiere",
+   "type": "glissiere_simple",
+   "cote": "gauche",
+   "pk_photo": [
+    822,
+    925
+   ],
+   "pk_retenu": [
+    822,
+    925
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.1,
+   "description": "glissière simple à l'extérieur de l'épingle du PK 893, relayée par un parapet de pierre"
+  },
+  {
+   "categorie": "glissiere",
+   "type": "glissiere_simple",
+   "cote": "gauche",
+   "pk_photo": [
+    1597,
+    1606
+   ],
+   "pk_retenu": [
+    1597,
+    1606
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.0,
+   "description": "court tronçon de glissière taguée avant le mur-parapet"
+  },
+  {
+   "categorie": "glissiere",
+   "type": "glissiere_simple",
+   "cote": "gauche",
+   "pk_photo": [
+    2320,
+    2455
+   ],
+   "pk_retenu": [
+    2320,
+    2455
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.08,
+   "description": "glissière simple au-dessus du vallon"
+  },
+  {
+   "categorie": "glissiere",
+   "type": "glissiere_simple",
+   "cote": "droite",
+   "pk_photo": [
+    2655,
+    2705
+   ],
+   "pk_retenu": [
+    2655,
+    2705
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.04,
+   "description": "glissière simple à l'extérieur du virage à gauche, maisons en contrebas"
+  },
+  {
+   "categorie": "glissiere",
+   "type": "glissiere_simple",
+   "cote": "gauche",
+   "pk_photo": [
+    2935,
+    3000
+   ],
+   "pk_retenu": [
+    2935,
+    3000
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.09,
+   "description": "glissière simple à l'extérieur de l'épingle à droite du PK 2950"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    -110,
+    -95
+   ],
+   "pk_retenu": [
+    -121.0,
+    -91.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.75,
+   "description": "mur de soutènement en pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    -82,
+    -50
+   ],
+   "pk_retenu": [
+    -82,
+    -50
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.15,
+   "description": "grand mur de soutènement en pierre (garde-corps au-dessus non rendu)"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    -65,
+    -45
+   ],
+   "pk_retenu": [
+    -67.0,
+    -36.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.67,
+   "description": "muret de pierre bas surmonté d'un grillage brise-vue (grillage non rendu)"
+  },
+  {
+   "categorie": "parapet",
+   "type": "beton",
+   "cote": "gauche",
+   "pk_photo": [
+    -20,
+    100
+   ],
+   "pk_retenu": [
+    -20,
+    100
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.19,
+   "description": "bordure de béton basse le long du champ, grillage derrière (non rendu)"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    55,
+    165
+   ],
+   "pk_retenu": [
+    55.0,
+    115.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.83,
+   "description": "muret de pierre sèche bas"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    100,
+    165
+   ],
+   "pk_retenu": [
+    100,
+    165
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.36,
+   "description": "muret de pierre sèche bas, grillage derrière"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    185,
+    195
+   ],
+   "pk_retenu": [
+    185,
+    195
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.18,
+   "description": "muret de pierre sèche court"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    180,
+    205
+   ],
+   "pk_retenu": [
+    180,
+    205
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.27,
+   "description": "muret de pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    200,
+    215
+   ],
+   "pk_retenu": [
+    195.0,
+    209.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.5,
+   "description": "muret de pierre"
+  },
+  {
+   "categorie": "parapet",
+   "type": "beton",
+   "cote": "droite",
+   "pk_photo": [
+    225,
+    350
+   ],
+   "pk_retenu": [
+    287.0,
+    350.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.79,
+   "description": "bordure maçonnée basse à chaperon de béton en crête de talus, grillage derrière"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    440,
+    470
+   ],
+   "pk_retenu": [
+    440,
+    470
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.1,
+   "description": "mur de pierre maçonné à chaperon à l'extérieur du virage"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    705,
+    740
+   ],
+   "pk_retenu": [
+    705,
+    740
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.28,
+   "description": "mur-parapet de pierre maçonnée à chaperon, extérieur de l'épingle"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    768,
+    826
+   ],
+   "pk_retenu": [
+    768,
+    826
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.39,
+   "description": "mur-parapet de moellons calcaires à chaperon"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    925,
+    968
+   ],
+   "pk_retenu": [
+    925,
+    968
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.59,
+   "description": "parapet bas de moellons, chaperon de pierres posées de chant"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    1120,
+    1188
+   ],
+   "pk_retenu": [
+    1120,
+    1188
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.1,
+   "description": "mur-parapet de moellons gris assisés à chaperon, extrémités peintes en blanc"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    1198,
+    1232
+   ],
+   "pk_retenu": [
+    1212.0,
+    1234.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.57,
+   "description": "mur-parapet de moellons, extrémités biseautées peintes en blanc"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    1236,
+    1265
+   ],
+   "pk_retenu": [
+    1236,
+    1265
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.17,
+   "description": "mur-parapet de moellons"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    1288,
+    1335
+   ],
+   "pk_retenu": [
+    1288,
+    1335
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.5,
+   "description": "mur-parapet de moellons, extrémité amont peinte en blanc"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    1605,
+    1655
+   ],
+   "pk_retenu": [
+    1605,
+    1655
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.47,
+   "description": "mur-parapet de moellons ; bandes peintes rouge et blanc sur une partie (non rendues)"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    2105,
+    2140
+   ],
+   "pk_retenu": [
+    2105,
+    2140
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.11,
+   "description": "mur de soutènement en pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    2140,
+    2160
+   ],
+   "pk_retenu": [
+    2140,
+    2160
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.19,
+   "description": "mur de soutènement en moellons au pied du talus rocheux"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    2458,
+    2520
+   ],
+   "pk_retenu": [
+    2458,
+    2520
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.08,
+   "description": "parapet bas de moellons, chaperon de pierres posées de chant"
+  },
+  {
+   "categorie": "parapet",
+   "type": "beton",
+   "cote": "gauche",
+   "pk_photo": [
+    2520,
+    2565
+   ],
+   "pk_retenu": [
+    2520,
+    2565
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.35,
+   "description": "parapet de béton lisse gris clair à bandes verticales peintes en blanc (bandes non rendues)"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    2860,
+    2895
+   ],
+   "pk_retenu": [
+    2869.0,
+    2897.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.33,
+   "description": "mur de soutènement en moellons couvert de végétation"
+  },
+  {
+   "categorie": "parapet",
+   "type": "beton",
+   "cote": "gauche",
+   "pk_photo": [
+    2925,
+    2935
+   ],
+   "pk_retenu": [
+    2925,
+    2935
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.09,
+   "description": "muret de béton bas"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    3100,
+    3125
+   ],
+   "pk_retenu": [
+    3103.0,
+    3122.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.58,
+   "description": "mur de pierre devant une propriété"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    3130,
+    3200
+   ],
+   "pk_retenu": [
+    3138.0,
+    3200.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.89,
+   "description": "murets de pierre devant les maisons"
+  },
+  {
+   "categorie": "parapet",
+   "type": "enduit",
+   "cote": "droite",
+   "pk_photo": [
+    3205,
+    3250
+   ],
+   "pk_retenu": [
+    3206.0,
+    3232.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.57,
+   "description": "mur de clôture enduit beige"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "gauche",
+   "pk_photo": [
+    3215,
+    3260
+   ],
+   "pk_retenu": [
+    3235.0,
+    3270.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.67,
+   "description": "mur-parapet de moellons calcaires clairs"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    3375,
+    3420
+   ],
+   "pk_retenu": [
+    3386.0,
+    3420.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.83,
+   "description": "mur de soutènement en pierre sèche"
+  },
+  {
+   "categorie": "parapet",
+   "type": "pierre",
+   "cote": "droite",
+   "pk_photo": [
+    3500,
+    3560
+   ],
+   "pk_retenu": [
+    3500.0,
+    3562.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "grand mur de soutènement en pierre"
+  },
+  {
+   "categorie": "parapet",
+   "type": "beton",
+   "cote": "gauche",
+   "pk_photo": [
+    3645,
+    3665
+   ],
+   "pk_retenu": [
+    3645,
+    3665
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.05,
+   "description": "tête de ponceau en béton, extrémité peinte en blanc"
+  },
+  {
+   "categorie": "ouvrage",
+   "type": "beton",
+   "cote": "gauche",
+   "pk_photo": [
+    2009,
+    2023
+   ],
+   "pk_retenu": [
+    2009,
+    2023
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.2,
+   "description": "tête de ponceau en béton bas, tags, extrémité blanche"
+  },
+  {
+   "categorie": "ouvrage",
+   "type": "beton",
+   "cote": "droite",
+   "pk_photo": [
+    2009,
+    2023
+   ],
+   "pk_retenu": [
+    2009,
+    2023
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.0,
+   "description": "tête de ponceau en béton bas, extrémité peinte en blanc"
+  },
+  {
+   "categorie": "ouvrage",
+   "type": "beton",
+   "cote": "droite",
+   "pk_photo": [
+    2906,
+    2925
+   ],
+   "pk_retenu": [
+    2906.0,
+    2918.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de mur ou glissière le long du bord)",
+   "part_signature_lidar": 0.55,
+   "description": "tête de ponceau en béton gris, ~8 m"
+  },
+  {
+   "categorie": "ouvrage",
+   "type": "aucun",
+   "cote": "gauche",
+   "pk_photo": [
+    2906,
+    2918
+   ],
+   "pk_retenu": [
+    2906,
+    2918
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "pas de tête vue à gauche au droit du ponceau (muret bas plus loin, 2925-2935)"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    230,
+    260
+   ],
+   "pk_retenu": [
+    225.0,
+    257.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.9,
+   "description": "talus taillé dans le calcaire lité clair"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    390,
+    430
+   ],
+   "pk_retenu": [
+    389.0,
+    430.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.98,
+   "description": "talus taillé, terre rouge et bancs calcaires"
+  },
+  {
+   "categorie": "paroi",
+   "type": "eboulis",
+   "cote": "droite",
+   "pk_photo": [
+    480,
+    545
+   ],
+   "pk_retenu": [
+    485.0,
+    545.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.86,
+   "description": "talus de terre rouge à bancs calcaires"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    545,
+    575
+   ],
+   "pk_retenu": [
+    545.0,
+    575.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "affleurement de calcaire gris en gros bancs"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    585,
+    700
+   ],
+   "pk_retenu": [
+    585.0,
+    700.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "paroi taillée continue de calcaire lité brun-gris, restanque au sommet"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    700,
+    725
+   ],
+   "pk_retenu": [
+    700.0,
+    720.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.81,
+   "description": "front de calcaire gris massif"
+  },
+  {
+   "categorie": "paroi",
+   "type": "eboulis",
+   "cote": "droite",
+   "pk_photo": [
+    740,
+    835
+   ],
+   "pk_retenu": [
+    752.0,
+    801.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.75,
+   "description": "grand talus rocheux de calcaire blanc-gris, blocs et affleurements"
+  },
+  {
+   "categorie": "paroi",
+   "type": "eboulis",
+   "cote": "gauche",
+   "pk_photo": [
+    995,
+    1100
+   ],
+   "pk_retenu": [
+    999.0,
+    1061.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.77,
+   "description": "garrigue sur calcaire blanc affleurant"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "gauche",
+   "pk_photo": [
+    1100,
+    1125
+   ],
+   "pk_retenu": [
+    1100.0,
+    1125.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "paroi taillée de calcaire lité clair"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "gauche",
+   "pk_photo": [
+    1130,
+    1250
+   ],
+   "pk_retenu": [
+    1130.0,
+    1250.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.98,
+   "description": "paroi de calcaire crème à ocre en bancs, blocs au pied"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "gauche",
+   "pk_photo": [
+    1250,
+    1345
+   ],
+   "pk_retenu": [
+    1250.0,
+    1345.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.99,
+   "description": "grande paroi verticale de calcaire massif gris-rosé"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "gauche",
+   "pk_photo": [
+    1385,
+    1430
+   ],
+   "pk_retenu": [
+    1385.0,
+    1444.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "paroi de calcaire massif ocre-crème"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    1505,
+    1560
+   ],
+   "pk_retenu": [
+    1505,
+    1560
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.32,
+   "description": "paroi taillée de calcaire lité brun-ocre"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    1565,
+    1595
+   ],
+   "pk_retenu": [
+    1565.0,
+    1595.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "paroi taillée de calcaire lité"
+  },
+  {
+   "categorie": "paroi",
+   "type": "eboulis",
+   "cote": "droite",
+   "pk_photo": [
+    1630,
+    1700
+   ],
+   "pk_retenu": [
+    1630.0,
+    1703.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "talus rocheux lité brun"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "gauche",
+   "pk_photo": [
+    1700,
+    1735
+   ],
+   "pk_retenu": [
+    1701.0,
+    1738.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.97,
+   "description": "paroi taillée de calcaire lité ocre"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "gauche",
+   "pk_photo": [
+    1775,
+    1790
+   ],
+   "pk_retenu": [
+    1775.0,
+    1790.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "bancs calcaires ocre dans le talus de terre rouge"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "gauche",
+   "pk_photo": [
+    1865,
+    1885
+   ],
+   "pk_retenu": [
+    1865.0,
+    1885.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "bancs calcaires dans le talus"
+  },
+  {
+   "categorie": "paroi",
+   "type": "eboulis",
+   "cote": "gauche",
+   "pk_photo": [
+    1945,
+    1990
+   ],
+   "pk_retenu": [
+    1945.0,
+    2002.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "bancs calcaires bas dans le talus"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    2185,
+    2260
+   ],
+   "pk_retenu": [
+    2185,
+    2260
+   ],
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": 0.55,
+   "description": "talus taillé de calcaire lité"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    2260,
+    2320
+   ],
+   "pk_retenu": [
+    2260.0,
+    2328.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "talus taillé de calcaire lité gris-brun, restanques au-dessus"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    2515,
+    2600
+   ],
+   "pk_retenu": [
+    2515.0,
+    2605.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "talus taillé de calcaire lité brun"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    2945,
+    3020
+   ],
+   "pk_retenu": [
+    2946.0,
+    3020.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 0.99,
+   "description": "talus taillé de calcaire lité"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    3285,
+    3370
+   ],
+   "pk_retenu": [
+    3276.0,
+    3377.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "talus de calcaire lité couvert de lierre"
+  },
+  {
+   "categorie": "paroi",
+   "type": "lite",
+   "cote": "droite",
+   "pk_photo": [
+    3415,
+    3500
+   ],
+   "pk_retenu": [
+    3415.0,
+    3500.0
+   ],
+   "positionnement": "positionné au mètre (LiDAR HD : signature de talus le long du bord)",
+   "part_signature_lidar": 1.0,
+   "description": "talus taillé de calcaire lité brun"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_agglomeration_fin",
+   "cote": "droite",
+   "pk_photo": -34,
+   "pk_retenu": -34,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "EB20 « CEYRESTE » barré (sortie d'agglomération) sur portique tubulaire vert"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_temporaire",
+   "cote": "droite",
+   "pk_photo": -40,
+   "pk_retenu": -40,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "panneau jaune temporaire d'information (plan de carrefour modifié)"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_rond_de_dos",
+   "cote": "gauche",
+   "pk_photo": 5,
+   "pk_retenu": 5,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "deux panneaux ronds vus de dos (pour les descendants), sur la bordure"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_sens_interdit",
+   "cote": "droite",
+   "pk_photo": -15,
+   "pk_retenu": -15,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "B1 sens interdit à l'entrée d'une voie latérale"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "abri_bus",
+   "cote": "droite",
+   "pk_photo": 8,
+   "pk_retenu": 8,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "abri de l'arrêt « Plan-de-Masse » (petite construction à toit de tuiles) et marquage BUS"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_danger",
+   "cote": "droite",
+   "pk_photo": 86,
+   "pk_retenu": 86,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "A15b passage d'animaux sauvages + panonceau « 4,6 km » sur poteau béton"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_virage_droite",
+   "cote": "droite",
+   "pk_photo": 86,
+   "pk_retenu": 86,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "A1c succession de virages, le premier à droite + panonceau « 3 km », sous le A15b"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_information",
+   "cote": "droite",
+   "pk_photo": 750,
+   "pk_retenu": 750,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "petit panneau d'information bleu et blanc sur piquet, non lu"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "balise_virage",
+   "cote": "gauche",
+   "pk_photo": 902,
+   "pk_retenu": 902,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "balise J4 à chevrons blancs sur fond bleu derrière la glissière"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "balise_virage",
+   "cote": "gauche",
+   "pk_photo": 913,
+   "pk_retenu": 913,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "seconde balise J4, derrière la glissière"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_de_dos",
+   "cote": "gauche",
+   "pk_photo": 1300,
+   "pk_retenu": 1300,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "triangle vu de dos (pour les descendants) au pied de la paroi"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "bloc_beton_blanc",
+   "cote": "gauche",
+   "pk_photo": 1458,
+   "pk_retenu": 1458,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "bloc ou muret de béton peint en blanc (~0,6 x 5 m) à l'entrée d'une piste"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "bacs_dechets",
+   "cote": "droite",
+   "pk_photo": 1525,
+   "pk_retenu": 1525,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "deux bacs à déchets (jaune, marron) et petit panneau blanc et vert à l'entrée de la piste"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "borne_kilometrique",
+   "cote": "gauche",
+   "pk_photo": 2111,
+   "pk_retenu": 2111,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "borne de point de repère « D3 ▸ 7 » (PR 7), plaquette jaune et blanche au sol"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "borne_kilometrique",
+   "cote": "gauche",
+   "pk_photo": 3112,
+   "pk_retenu": 3112,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "plaquette jaune et blanche sur piquet, probablement le PR 8 (texte non lu)"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "poteau_incendie",
+   "cote": "droite",
+   "pk_photo": 2722,
+   "pk_retenu": 2722,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "poteau d'incendie rouge"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_information",
+   "cote": "droite",
+   "pk_photo": 2757,
+   "pk_retenu": 2757,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "panneau d'information bleu et blanc sur mât (pictogrammes, « 1 km »), non lu en entier"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "poteau_bois",
+   "cote": "droite",
+   "pk_photo": 1910,
+   "pk_retenu": 1910,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "poteau bois double (ligne)"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "poteau_bois",
+   "cote": "gauche",
+   "pk_photo": 3100,
+   "pk_retenu": 3100,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "poteau bois avec coffrets et miroir convexe (miroir non rendu)"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_tube",
+   "cote": "droite",
+   "pk_photo": 2092,
+   "pk_retenu": 2092,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "barrière blanche en tube métallique au carrefour de la Voie Romaine"
+  }
+ ],
+ "compte": {
+  "glissiere | approximatif": 6,
+  "parapet | positionné": 13,
+  "parapet | approximatif": 19,
+  "ouvrage | approximatif": 3,
+  "ouvrage | positionné": 1,
+  "paroi | positionné": 23,
+  "paroi | approximatif": 2,
+  "ponctuel | approximatif": 20
+ }
+}

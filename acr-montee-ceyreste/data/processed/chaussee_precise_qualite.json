@@ -3,34 +3,29 @@
   "longueur_officielle_m": 3000,
   "largeur_m": {
     "mediane": 7.44,
-    "p5": 5.38,
-    "p95": 9.4
+    "p5": 6.37,
+    "p95": 9.28
   },
   "part_lineaire_par_source_pct": {
-    "lidar+ortho": 5.8,
-    "lidar": 71.9,
-    "ortho": 0.8,
-    "interpole": 21.4,
+    "lidar+ortho": 4.4,
+    "lidar": 44.3,
+    "ortho": 0.6,
+    "interpole": 16.7,
     "manuel": 0.0,
-    "video": 0.0
+    "video": 33.9
   },
   "decalage_lateral_bdtopo_m": {
     "mediane": 0.74,
-    "p95": 2.32,
+    "p95": 2.39,
     "max": 4.46,
     "pk_max": 2187
   },
   "troncons_interpoles_sup_20m": {
-    "nombre": 8,
+    "nombre": 6,
     "troncons": [
       {
-        "pk_debut": 440,
-        "pk_fin": 465,
-        "motif": "débouché"
-      },
-      {
         "pk_debut": 888,
-        "pk_fin": 929,
+        "pk_fin": 927,
         "motif": "débouché"
       },
       {
@@ -47,11 +42,6 @@
         "pk_debut": 1509,
         "pk_fin": 1549,
         "motif": "débouché"
-      },
-      {
-        "pk_debut": 2010,
-        "pk_fin": 2042,
-        "motif": "pont"
       },
       {
         "pk_debut": 2153,
@@ -79,14 +69,14 @@
       "pk_debut_m": -149.0,
       "pk_fin_m": -1.0,
       "longueur_m": 149,
-      "part_interpolee_pct": 22.1,
+      "part_interpolee_pct": 16.8,
       "troncons_interpoles_sup_20m": []
     },
     "sortie": {
       "pk_debut_m": 3021.0,
       "pk_fin_m": 3768.0,
       "longueur_m": 748,
-      "part_interpolee_pct": 12.2,
+      "part_interpolee_pct": 10.8,
       "troncons_interpoles_sup_20m": [
         [
           3261,
@@ -108,21 +98,52 @@
   "precision_indicative": "bords : ±0,5 m là où l'asphalte est visible ; 1 à 2 m possibles sous les arbres (plate-forme LiDAR incluant un accotement plat) ; axe : bien meilleur que la BD TOPO",
   "corrections_manuelles": [],
   "corrections_largeur_video": {
-    "entrees_appliquees": 0,
-    "stations_dans_les_entrees_par_confiance": {},
-    "stations_touchees_raccords_compris": 0,
-    "entrees": [],
-    "saut_max_aux_raccords_m": 0.0
+    "entrees_appliquees": 2,
+    "stations_dans_les_entrees_par_confiance": {
+      "moyenne": 874
+    },
+    "stations_touchees_raccords_compris": 1417,
+    "entrees": [
+      {
+        "id_releve": "verif_2026_11_18_pk451",
+        "pk_debut": 444,
+        "pk_fin": 468,
+        "cote": "gauche",
+        "largeur_m": 7.7,
+        "confiance": "moyenne",
+        "mode": "fixe",
+        "stations": 25,
+        "largeur_obtenue_m": [
+          7.7,
+          7.89
+        ]
+      },
+      {
+        "id_releve": "verif_2026_11_18_minimum",
+        "pk_debut": -150,
+        "pk_fin": 3768,
+        "cote": "symetrique",
+        "largeur_m": 6.4,
+        "confiance": "moyenne",
+        "mode": "minimum",
+        "stations": 849,
+        "largeur_obtenue_m": [
+          6.27,
+          8.36
+        ]
+      }
+    ],
+    "saut_max_aux_raccords_m": 0.187
   },
   "controles": {
     "largeur_min_max_m": [
-      4.67,
+      6.27,
       9.5
     ],
     "quadrilateres_retournes": {
       "nombre": 0,
       "pk": []
     },
-    "longueur_depart_arrivee_sur_axe_final_m": 3020.3
+    "longueur_depart_arrivee_sur_axe_final_m": 3021.4
   }
 }

@@ -2,11 +2,11 @@
   "repere": {
     "origine": {
       "description": "axe de la chaussée au PK 0 (départ de l'ES)",
-      "lambert93_x_m": 915324.85,
+      "lambert93_x_m": 915324.96,
       "lambert93_y_m": 6239604.145,
-      "lon": 5.64903077,
-      "lat": 43.22313271,
-      "altitude_m": 213.689,
+      "lon": 5.64903212,
+      "lat": 43.22313267,
+      "altitude_m": 213.693,
       "systeme_altimetrique": "NGF-IGN69 (altitudes du MNT LiDAR HD)"
     },
     "unites": "mètres",
@@ -18,9 +18,9 @@
     },
     "passage_lambert93_vers_gltf": "X = x_L93 - x0 ; Y = z - z0 ; Z = -(y_L93 - y0)",
     "passage_gltf_vers_lambert93": "x_L93 = X + x0 ; y_L93 = y0 - Z ; z = Y + z0",
-    "x0": 915324.85,
+    "x0": 915324.96,
     "y0": 6239604.145,
-    "z0": 213.689,
+    "z0": 213.693,
     "nord": "nord Lambert-93 (convergence des méridiens d'environ -0,9° ici, non corrigée)"
   },
   "complet": {
@@ -40,13 +40,13 @@
     ],
     "texture_px_par_dalle": 2048,
     "terrain": {
-      "sommets": 180405,
-      "triangles": 351814,
+      "sommets": 179988,
+      "triangles": 350961,
       "dalles": 13,
       "sommets_de_bord": 7826,
       "recalage_bords_mnt_m": {
-        "median_abs": 0.008,
-        "p95_abs": 0.045,
+        "median_abs": 0.009,
+        "p95_abs": 0.056,
         "max_abs": 0.95
       }
     },
@@ -58,38 +58,38 @@
         "triangles": 15672,
         "nan": false,
         "bornes_min": [
-          -175.10000610351562,
+          -175.1999969482422,
           -9.5,
           -1324.699951171875
         ],
         "bornes_max": [
-          1800.4000244140625,
+          1800.300048828125,
           179.89999389648438,
           108.4000015258789
         ],
         "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
-        "taille_mo": 19.95,
+        "taille_mo": 19.93,
         "maillages": 13,
-        "sommets": 181572,
-        "triangles": 351814,
+        "sommets": 181142,
+        "triangles": 350961,
         "nan": false,
         "bornes_min": [
-          -300.79998779296875,
+          -301.0,
           -25.899999618530273,
           -1447.9000244140625
         ],
         "bornes_max": [
-          1927.199951171875,
+          1927.0,
           192.39999389648438,
           232.10000610351562
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
         "bords_testes": 7826,
-        "sommets_partages_pct": 99.949,
-        "ecart_vertical_max_m": 0.003,
+        "sommets_partages_pct": 99.911,
+        "ecart_vertical_max_m": 0.004,
         "ecart_vertical_p99_m": 0.0
       }
     }
@@ -111,13 +111,13 @@
     ],
     "texture_px_par_dalle": 512,
     "terrain": {
-      "sommets": 50951,
-      "triangles": 93507,
+      "sommets": 50856,
+      "triangles": 93319,
       "dalles": 12,
       "sommets_de_bord": 7826,
       "recalage_bords_mnt_m": {
-        "median_abs": 0.008,
-        "p95_abs": 0.045,
+        "median_abs": 0.009,
+        "p95_abs": 0.056,
         "max_abs": 0.95
       }
     },
@@ -129,43 +129,43 @@
         "triangles": 15672,
         "nan": false,
         "bornes_min": [
-          -175.10000610351562,
+          -175.1999969482422,
           -9.5,
           -1324.699951171875
         ],
         "bornes_max": [
-          1800.4000244140625,
+          1800.300048828125,
           179.89999389648438,
           108.4000015258789
         ],
         "triangles_normale_vers_le_haut_pct": 100.0
       },
       "terrain": {
-        "taille_mo": 3.68,
+        "taille_mo": 3.67,
         "maillages": 12,
-        "sommets": 51607,
-        "triangles": 93507,
+        "sommets": 51513,
+        "triangles": 93319,
         "nan": false,
         "bornes_min": [
-          -300.79998779296875,
+          -301.0,
           -25.200000762939453,
           -1443.9000244140625
         ],
         "bornes_max": [
-          1923.199951171875,
+          1923.0,
           192.3000030517578,
           228.10000610351562
         ]
       },
       "ecart_bords_route_terrain_hors_ponts": {
         "bords_testes": 7826,
-        "sommets_partages_pct": 99.936,
-        "ecart_vertical_max_m": 0.005,
+        "sommets_partages_pct": 99.962,
+        "ecart_vertical_max_m": 0.001,
         "ecart_vertical_p99_m": 0.0
       }
     }
   },
-  "rendus_webgl": false,
+  "rendus_webgl": true,
   "vues_rapprochees_pk": {
     "pont": [
       2024,

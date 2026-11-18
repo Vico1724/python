@@ -1,0 +1,246 @@
+{
+ "note": "Mobilier de bord de route de la montée, relevé le 18/11/2026 sur Panoramax (scripts/29_releve_panoramax.py). Types et maillages du jeu repris du Grand Caunet (vérifiés là-bas). PK approximatifs (±10 m). Les objets sans maillage du jeu sont listés dans non_poses ; les substituts sont signalés par « substitut ».",
+ "types": {
+  "panneau_danger": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraDangerA",
+   "description": "triangle de danger du jeu (autre danger), sur mât",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -50
+    ],
+    "max": [
+     45,
+     4,
+     289
+    ]
+   }
+  },
+  "panneau_virage_droite": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraRightTurnA1",
+   "description": "triangle de danger « virage à droite »",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -42,
+     -4,
+     -50
+    ],
+    "max": [
+     42,
+     4,
+     284
+    ]
+   }
+  },
+  "balise_virage": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/SM_TrafficSignFraCurveMarkerD",
+   "description": "balise de virage à chevrons, 1,2 m de large",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -60,
+     -3,
+     -20
+    ],
+    "max": [
+     60,
+     4,
+     102
+    ]
+   }
+  },
+  "borne_kilometrique": {
+   "maillage_jeu": "/Game/Props/FranceTrafficSigns/MileMarkerA/SM_MileMarkerA",
+   "description": "plaque kilométrique jaune et blanche",
+   "lacet_relatif_deg": 90,
+   "enfoncement_m": 0.0,
+   "bornes_cm": {
+    "min": [
+     -45,
+     -4,
+     -25
+    ],
+    "max": [
+     4,
+     4,
+     99
+    ]
+   }
+  },
+  "poteau_bois": {
+   "maillage_jeu": "/Game/Props/MonteCarloProps/MonPylonC/SM_MonPylonC11",
+   "description": "poteau de bois simple de 6,9 m (SM_MonPylonC11, vu en jeu comme un fût de bois sombre). Jusqu'au 13/11/2026 : SM_FraMunPylonA, rendu en « mât métallique bleu-gris à longue potence, allure de lampadaire » (relevé du quatrième essai, PK 6120)",
+   "lacet_relatif_deg": 0,
+   "bornes_cm": {
+    "min": [
+     -10,
+     -30,
+     -40
+    ],
+    "max": [
+     10,
+     30,
+     690
+    ]
+   },
+   "collision": {
+    "forme": "cylinder",
+    "paroi": "PM_WallWoodPole",
+    "diametre_m": 0.25,
+    "hauteur_m": 3.5,
+    "enfoui_m": 0.4
+   },
+   "cable": {
+    "hauteur_m": 6.6,
+    "ecarts_m": [
+     -0.25,
+     0.0,
+     0.25
+    ]
+   },
+   "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
+   "enfoncement_m": 0.0
+  }
+ },
+ "lignes_electriques": [],
+ "objets": [
+  {
+   "type": "panneau_danger",
+   "pk_m": 86,
+   "cote": "droite",
+   "decalage_m": 0.9,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c03d3e1e, edfd08bf",
+   "images": [
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+    "edfd08bf-b5be-4304-b6ca-e922d593570e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "A15b passage d'animaux sauvages + panonceau « 4,6 km » sur poteau béton",
+   "substitut": "triangle de danger générique du jeu (pictogramme différent)"
+  },
+  {
+   "type": "panneau_virage_droite",
+   "pk_m": 86,
+   "cote": "droite",
+   "decalage_m": 0.9,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images c03d3e1e, edfd08bf",
+   "images": [
+    "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
+    "edfd08bf-b5be-4304-b6ca-e922d593570e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "A1c succession de virages, le premier à droite + panonceau « 3 km », sous le A15b",
+   "substitut": "triangle « virage à droite » du jeu (pas de A1c)"
+  },
+  {
+   "type": "balise_virage",
+   "pk_m": 902,
+   "cote": "gauche",
+   "decalage_m": 1.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 701e21a2, a7c86442, c115545b",
+   "images": [
+    "701e21a2-f493-4b1b-9783-04e05c039078",
+    "a7c86442-b91d-490e-82e8-402383df02f8",
+    "c115545b-6c4c-4f61-bb87-cab722cb4333"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "balise J4 à chevrons blancs sur fond bleu derrière la glissière"
+  },
+  {
+   "type": "balise_virage",
+   "pk_m": 913,
+   "cote": "gauche",
+   "decalage_m": 1.3,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images a7c86442",
+   "images": [
+    "a7c86442-b91d-490e-82e8-402383df02f8"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "seconde balise J4, derrière la glissière"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 2111,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 654381ef",
+   "images": [
+    "654381ef-c9df-44fe-be60-115059afe974"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "borne de point de repère « D3 ▸ 7 » (PR 7), plaquette jaune et blanche au sol"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 3112,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 1f995965",
+   "images": [
+    "1f995965-1442-4ab7-a79c-577cad1a7f04"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "plaquette jaune et blanche sur piquet, probablement le PR 8 (texte non lu)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 1910,
+   "cote": "droite",
+   "decalage_m": 1.5,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images ed761789",
+   "images": [
+    "ed761789-b762-44d0-a4f6-7ed2b35d8e2e"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "poteau bois double (ligne)"
+  },
+  {
+   "type": "poteau_bois",
+   "pk_m": 3100,
+   "cote": "gauche",
+   "decalage_m": 1.5,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images 1f995965",
+   "images": [
+    "1f995965-1442-4ab7-a79c-577cad1a7f04"
+   ],
+   "statut": "vu sur Panoramax (images du 08/09/2025, relevé du 18/11/2026)",
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "confiance": "moyenne",
+   "description": "poteau bois avec coffrets et miroir convexe (miroir non rendu)"
+  }
+ ],
+ "non_poses": [
+  "EB20 « CEYRESTE » barré (sortie d'agglomération) sur portique tubulaire vert (PK ≈ -34, droite) : aucun maillage du jeu ; images f9160d60",
+  "panneau jaune temporaire d'information (plan de carrefour modifié) (PK ≈ -40, droite) : aucun maillage du jeu ; temporaire ; images f9160d60",
+  "deux panneaux ronds vus de dos (pour les descendants), sur la bordure (PK ≈ 5, gauche) : face non lue ; images f72ed2c1, 89d3561a",
+  "B1 sens interdit à l'entrée d'une voie latérale (PK ≈ -15, droite) : aucun maillage du jeu relevé ; images f72ed2c1",
+  "abri de l'arrêt « Plan-de-Masse » (petite construction à toit de tuiles) et marquage BUS (PK ≈ 8, droite) : à construire (volume simple) : à décider ; images 89d3561a, edfc17c0",
+  "petit panneau d'information bleu et blanc sur piquet, non lu (PK ≈ 750, droite) : texte non lu ; aucun maillage équivalent ; images 56289bbe",
+  "triangle vu de dos (pour les descendants) au pied de la paroi (PK ≈ 1300, gauche) : face non lue ; images b354335c, 7b2904d1",
+  "bloc ou muret de béton peint en blanc (~0,6 x 5 m) à l'entrée d'une piste (PK ≈ 1458, gauche) : pas de modèle ; à poser en muret béton court si souhaité ; images d14edaba, 73b0f159",
+  "deux bacs à déchets (jaune, marron) et petit panneau blanc et vert à l'entrée de la piste (PK ≈ 1525, droite) : aucun maillage du jeu relevé ; images ca4214f2, 0373ab7c",
+  "poteau d'incendie rouge (PK ≈ 2722, droite) : aucun maillage du jeu relevé ; images e599d8e3",
+  "panneau d'information bleu et blanc sur mât (pictogrammes, « 1 km »), non lu en entier (PK ≈ 2757, droite) : texte non lu ; images 14d74c4b",
+  "barrière blanche en tube métallique au carrefour de la Voie Romaine (PK ≈ 2092, droite) : pas de maillage relevé ; lisse à poser si souhaité ; images 0cd7702a, 6ab59068"
+ ]
+}

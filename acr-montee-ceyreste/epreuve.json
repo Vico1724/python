@@ -116,5 +116,14 @@
     "nom_decor": "cey",
     "fichier_noms": "pc/config/noms-ceyreste.toml",
     "atelier_par_defaut": "Z:\\acrxs_ceyreste"
-  }
+  },
+  "accotement": {
+    "parts": {
+      "terre": 0.6,
+      "herbe_seche": 0.3
+    },
+    "source": "Panoramax, Région Sud, 08/09/2025 (planches de scripts/26_photos_rue.py, PK 240-2600) : accotements de terre rouge nue, souvent en bourrelet, avec herbe sèche clairsemée ; pas d'herbe verte rase. Images de fin d'été : en avril (date de l'épreuve) l'herbe peut être plus verte, non vérifié.",
+    "date": "2026-11-18"
+  },
+  "murs_bd_topo_remplaces_par_releve": true
 }
