@@ -27,7 +27,7 @@ Commandes à lancer **depuis PowerShell**, pas depuis Git Bash : depuis Git Bash
 - **Déterministe sur des entrées identiques** : deux passes 02 → 16 sur les mêmes téléchargements donnent le même paquet (263 943 instances, mêmes arbres, même semis) ; seuls diffèrent la date, la durée et l'en-tête gzip de `arbustes.csv.gz`. Le code de l'étape 16 n'est pas en cause.
 - **Sensible aux entrées** : une chaussée qui diffère d'au plus 1 mm sur quelques points (arrondi entre machines) fait changer 21 arbres sur 17 900 ; avec le `chaussee_precise.csv` du cloud, l'étape 10 du PC redonne exactement les arbres du cloud (0 différence). Les 13 arbustes d'écart viennent d'ailleurs (couches BD TOPO retéléchargées, qui ont changé), cause précise non isolée.
 - **Écartée** : l'étape 10 lit `stage.json` de la génération précédente (parc d'assistance) ; sans lui, arbres et instances sont identiques.
-- Conséquence : la route physique, le relevé du placement et le décor doivent sortir **de la même génération**, sans retéléchargement entre les trois. Génération retenue : empreintes dans `F:\acrxs_ceyreste\determinisme\empreintes_B.txt`.
+- Conséquence : la route physique, le relevé du placement et le décor doivent sortir **de la même génération**, sans retéléchargement entre les trois. Génération retenue : commit `19e1108` pour les fichiers versionnés (comparer avec `git diff --ignore-cr-at-eol`, Python écrivant en CRLF sous Windows) ; empreintes des fichiers non versionnés (terrain, lointain, sols, paquet) dans `F:\acrxs_ceyreste\determinisme\empreintes_B.txt`.
 
 ## Fait et vérifié dans le cloud (17/11/2026, Linux)
 
