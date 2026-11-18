@@ -3649,7 +3649,11 @@ def main():
     if glissieres_jeu:
         ouvr = [m for m in ouvr if not m["mat"]["nom"].startswith("glissiere")]
     bali = lire_glb(MOD / "balisage.glb")
-    mats = materiaux_modele(P, [route, ouvr, annx, bali], f"{UE}/Shared/Textures", f"{UE}/Shared/Materials", "")
+    # Bâti en volumes simples (scripts/31_bati.py, 18/11/2026) : maisons du bord de route et village de Ceyreste vu du
+    # départ. Décor seul dans Unreal (la collision des façades proches passe par 09_export_stage_ir.py).
+    bati = lire_glb(MOD / "bati_bord.glb") if (MOD / "bati_bord.glb").exists() else []
+    vill = lire_glb(MOD / "village.glb") if (MOD / "village.glb").exists() else []
+    mats = materiaux_modele(P, [route, ouvr, annx, bali, bati, vill], f"{UE}/Shared/Textures", f"{UE}/Shared/Materials", "")
     mi = lambda mat: mats[mat]                                            # noqa: E731
     chaussee = [m for m in route if m["mat"]["nom"] == "enrobe"]
     marquage = [m for m in route if m["mat"]["nom"] == "marquage"]
@@ -3659,7 +3663,9 @@ def main():
             "aspect": par_troncon(P, pkf, aspect, "RoadWear", "route", f"{UE}/Road/Meshes", mi, args),
             "ouvrages": par_troncon(P, pkf, ouvr, "Bridge", "ouvrages", f"{UE}/Bridges/Meshes", mi, args),
             "annexes": par_troncon(P, pkf, annx, "Junction", "annexes", f"{UE}/Junctions/Meshes", mi, args),
-            "balisage": par_troncon(P, pkf, bali, "Tape", "balisage", f"{UE}/Props/Meshes", mi, args)}
+            "balisage": par_troncon(P, pkf, bali, "Tape", "balisage", f"{UE}/Props/Meshes", mi, args),
+            "batiments": par_troncon(P, pkf, bati, "Building", "batiments", f"{UE}/Buildings/Meshes", mi, args),
+            "village": par_troncon(P, pkf, vill, "Village", "village", f"{UE}/Village/Meshes", mi, args)}
     print("anneau lointain…", flush=True)
     n_loin = lointain(P, ref, args, pkf)
     print("instances…", flush=True)

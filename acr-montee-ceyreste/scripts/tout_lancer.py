@@ -41,6 +41,7 @@ ETAPES = [
     (8, "08_modele_3d.py", "modèle 3D : route et terrain texturé", False),
     (11, "11_route_ouvrages.py", "route texturée, marquage, tabliers et parapets", False),
     (12, "12_carrefours_annexes.py", "carrefours : voies fermées, îlot, balisage", False),
+    (31, "31_bati.py", "bâti en volumes simples : maisons du bord de route, village vu du départ", False),
     (10, "10_semis_arbres.py", "semis des arbres et arbustes", False),
     (9, "09_export_stage_ir.py", "export « Stage IR » (ACR Extra Stages)", False),
     (13, "13_paysage_lointain.py", "paysage lointain jusqu'à l'horizon", False),

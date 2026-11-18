@@ -528,6 +528,7 @@ def main():
     try:
         (tmp / "rendu.js").write_text(RENDER_JS, encoding="utf-8")
         communs = ["route_habillee.glb", "ouvrages.glb", "annexes.glb", "balisage.glb"]
+        communs += [f for f in ("bati_bord.glb", "village.glb") if (MOD / f).exists()]       # 31_bati.py
         noms = [n for n in choix if not seules or n in seules]
         for nom in noms:
             pk, visee = choix[nom]
@@ -541,7 +542,15 @@ def main():
                 except OSError:                      # Windows sans droit de créer des liens : copie
                     shutil.copy(MOD / f, d / f)
             e_l93 = rg.point(np.array([float(pk)]), OEIL_LAT, OEIL_H)
-            if isinstance(visee, tuple) and visee[0] == "azimut":        # regard horizontal vers un azimut
+            if isinstance(visee, tuple) and visee[0] == "l93":           # œil et visée donnés en Lambert-93, hauteur
+                # au-dessus du terrain (MNT 2 m du lointain) : vues du village, vues aériennes obliques
+                import rasterio as _rio
+                with _rio.open(ROOT / "data" / "raw" / "lointain" / "mnt_lidarhd_2m.tif") as _s:
+                    _z = lambda x, y: float(next(_s.sample([(x, y)]))[0])          # noqa: E731
+                    e_l93 = np.array([[visee[1], visee[2], _z(visee[1], visee[2]) + visee[3]]])
+                    a_l93 = np.array([[visee[4], visee[5], _z(visee[4], visee[5]) + visee[6]]])
+                visee = 0.0
+            elif isinstance(visee, tuple) and visee[0] == "azimut":        # regard horizontal vers un azimut
                 az_v = math.radians(visee[1])
                 a_l93 = e_l93 + np.array([[1000 * math.sin(az_v), 1000 * math.cos(az_v), 1000 * visee[2]]])
                 visee = 1000.0

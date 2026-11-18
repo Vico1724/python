@@ -96,7 +96,8 @@ OBSTACLES = {
     # catalogue du jeu et dans leur config/surface-map.toml (« sArmco »)
     "metal_glissiere": ("PM_WallMetalGuardrail", "box", "gc_glissiere"),
 }
-SOURCES_OBSTACLES = ("ouvrages_collision.glb", "annexes_collision.glb", "balisage_collision.glb")
+SOURCES_OBSTACLES = ("ouvrages_collision.glb", "annexes_collision.glb", "balisage_collision.glb",
+                     "bati_bord_collision.glb")     # façades des maisons à moins de 15 m de la chaussée (31_bati.py)
 CATALOGUE = gzip.open(fichier_ref("catalogue_jeu_25170642.txt.gz"), "rt", encoding="utf-8").read()
 CATALOGUE = "\n".join(f'"{m}"' for m in re.findall(r"PhysicalMaterials/(PM_\w+)\.uasset", CATALOGUE))
 SPLITS = tuple(param("temps_intermediaires", ("INTER2", "INTER6")))                     # points officiels retenus comme temps intermédiaires

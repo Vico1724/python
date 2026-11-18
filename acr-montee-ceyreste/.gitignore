@@ -11,3 +11,4 @@ modele/sols_jeu/*.npy
 paquet_unreal/
 paquet_unreal_*/
 figures/apercu_lointain/
+modele/village.glb
