@@ -104,5 +104,30 @@
   },
   "maillage_jeu_jusqu_au_13_11_nuit": "/Game/Props/AlsaceProps/FraMunPylonA/SM_FraMunPylonA",
   "enfoncement_m": 0.0
+ },
+ "barriere_plastique": {
+  "maillage_jeu": "/Game/Props/RallyProps/PlasticBarrierA/SM_PlasticBarrierAFix",
+  "description": "séparateur plastique rouge et blanc de 1,5 m",
+  "lacet_relatif_deg": 0,
+  "bornes_cm": {
+   "min": [
+    -76,
+    -27,
+    0
+   ],
+   "max": [
+    76,
+    27,
+    81
+   ]
+  },
+  "collision": {
+   "forme": "box",
+   "paroi": "PM_WallPlasticBarrier",
+   "largeur_m": 0.55,
+   "hauteur_m": 0.8,
+   "longueur_m": 1.5,
+   "enfoui_m": 0.0
+  }
  }
 }

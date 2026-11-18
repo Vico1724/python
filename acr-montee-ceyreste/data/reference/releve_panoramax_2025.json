@@ -358,7 +358,7 @@
     "d5c7d0ad-109c-4d01-9678-235bff014508",
     "37dd8072-f561-4dca-8877-d3fe6979db68"
    ],
-   "description": "mur-parapet de moellons ; bandes peintes rouge et blanc sur une partie (non rendues)"
+   "description": "mur-parapet de moellons à chaperon (les « bandes rouge et blanc » du premier passage sont des séparateurs en plastique posés devant : voir l'objet barriere_plastique)"
   },
   {
    "categorie": "parapet",
@@ -1096,21 +1096,23 @@
     "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
     "edfd08bf-b5be-4304-b6ca-e922d593570e"
    ],
-   "description": "A15b passage d'animaux sauvages + panonceau « 4,6 km » sur poteau béton",
-   "substitut": "triangle de danger générique du jeu (pictogramme différent)"
+   "description": "A15b « passage d'animaux sauvages » + panonceau M2 « 4,6 km » (photo HD lisible ; OSM indique M2[1400], non conforme à la photo de 2025)",
+   "substitut": "triangle de danger générique du jeu (pictogramme différent)",
+   "osm": "node/4343358550"
   },
   {
    "categorie": "ponctuel",
    "pk_m": 86,
    "cote": "droite",
-   "type": "panneau_virage_droite",
+   "type": "panneau_danger",
    "images": [
     "c03d3e1e-01c3-4870-9de0-4cda19a935b0",
     "edfd08bf-b5be-4304-b6ca-e922d593570e"
    ],
-   "description": "A1c succession de virages, le premier à droite + panonceau « 3 km », sous le A15b",
-   "substitut": "triangle « virage à droite » du jeu (pas de A1c)",
-   "decalage_pk_m": 0.0
+   "description": "A15b « passage d'animaux sauvages » + panonceau M2 « 4,6 km » (photo HD lisible ; OSM indique M2[1400], non conforme à la photo de 2025)",
+   "substitut": "triangle de danger générique du jeu (aucun A1d dans le jeu ; SM_TrafficSignFraRightTurnA1 montrerait un virage à droite)",
+   "decalage_pk_m": 0.0,
+   "osm": "node/4343358550"
   },
   {
    "categorie": "ponctuel",
@@ -1155,7 +1157,7 @@
     "7b2904d1-c24d-4b40-8a37-122e9f578269"
    ],
    "description": "triangle vu de dos (pour les descendants) au pied de la paroi",
-   "non_pose": "face non lue"
+   "non_pose": "remplacé par l'entrée A14 lue de face (PK 1300)"
   },
   {
    "categorie": "ponctuel",
@@ -1255,6 +1257,152 @@
    ],
    "description": "barrière blanche en tube métallique au carrefour de la Voie Romaine",
    "non_pose": "pas de maillage relevé ; lisse à poser si souhaité"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_limitation_tonnage",
+   "pk_m": 5,
+   "cote": "gauche",
+   "images": [
+    "edfc17c0-a24f-46e1-857b-1c4a017d6a0a"
+   ],
+   "description": "B13 « 19 t » (interdit aux véhicules de plus de 19 t) sur mât, face aux descendants ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "non_pose": "aucun panneau rond d'interdiction dans le jeu"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_limitation_vitesse",
+   "pk_m": -20,
+   "cote": "gauche",
+   "images": [
+    "edfc17c0-a24f-46e1-857b-1c4a017d6a0a"
+   ],
+   "description": "B14 « 50 » sur mât, face aux descendants (entrée d'agglomération, vu de loin, PK ±15 m) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "non_pose": "aucun panneau de limitation dans le jeu",
+   "confiance": "faible"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "borne_kilometrique",
+   "pk_m": 110,
+   "cote": "gauche",
+   "images": [
+    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd"
+   ],
+   "description": "plaquette « PR 5 » jaune et blanche sur piquet ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_danger",
+   "pk_m": 1300,
+   "cote": "gauche",
+   "images": [
+    "4f05c439-db8c-4b33-94aa-5b63cc0d6d60",
+    "b354335c-75eb-43bc-8592-ae60c3285bce"
+   ],
+   "description": "A14 « autres dangers » + panonceau jaune temporaire « CHAUSSÉE DÉFORMÉE », face aux descendants, au pied de la paroi (c'est le triangle vu de dos en montée) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "lacet_en_plus_deg": 180.0,
+   "substitut": "triangle A14 du jeu (SM_TrafficSignFraDangerA) ; panonceau jaune non rendu"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_cedez_le_passage",
+   "pk_m": 2938,
+   "cote": "droite",
+   "images": [
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "9f14e86c-eb58-4952-a81e-16a61f5fc2d0"
+   ],
+   "description": "AB3a « cédez le passage » sur la voie latérale (OSM node/8600296503 : highway=give_way)",
+   "non_pose": "aucun AB3a dans le jeu"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1621,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1624,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1627,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1630,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1633,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1636,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1639,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "pk_m": 1642,
+   "cote": "gauche",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508"
+   ],
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026",
+   "confiance": "moyenne"
   }
  ],
  "non_releve": [

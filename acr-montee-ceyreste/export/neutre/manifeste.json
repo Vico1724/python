@@ -1,0 +1,457 @@
+{
+ "format": "export neutre montée de Ceyreste, version 1",
+ "date": "2026-11-18",
+ "repere": {
+  "origine": {
+   "lambert93_x_m": 915324.96,
+   "lambert93_y_m": 6239604.145,
+   "altitude_ngf_m": 213.693,
+   "description": "axe de la chaussée au PK 0 (ligne de départ estimée)"
+  },
+  "glb": "mètres ; X = est, Y = haut, Z = sud (glTF 2.0, main droite) ; X = x_L93 - x0, Y = z - z0, Z = -(y_L93 - y0) ; les sommets sont en coordonnées absolues du repère (aucun nœud transformé)",
+  "vers_unreal": "UE_cm = 100 * (X, Z, Y) : X est, Y sud, Z haut (vérifié pour le paquet ACR par une mire d'axes, voir le manifeste du paquet)",
+  "placements": "x_l93, y_l93 (Lambert-93, EPSG:2154), z_ngf (NGF-IGN69) ; x_local_m, y_local_haut_m, z_local_sud_m dans le repère des glb ; cap_deg : direction de l'axe +X du maillage d'origine, en degrés depuis le nord dans le sens horaire (= 90 + lacet du paquet ACR)"
+ },
+ "fichiers": [
+  {
+   "fichier": "modeles/SM_GrandCaunetBlocA.glb",
+   "taille_mo": 0.01,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.5,
+    0.0,
+    -0.43
+   ],
+   "bornes_max_m": [
+    0.5,
+    0.36,
+    0.43
+   ]
+  },
+  {
+   "fichier": "modeles/SM_GrandCaunetBlocB.glb",
+   "taille_mo": 0.01,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.5,
+    0.0,
+    -0.4
+   ],
+   "bornes_max_m": [
+    0.5,
+    0.62,
+    0.4
+   ]
+  },
+  {
+   "fichier": "modeles/SM_GrandCaunetBlocC.glb",
+   "taille_mo": 0.01,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.5,
+    0.0,
+    -0.37
+   ],
+   "bornes_max_m": [
+    0.5,
+    0.92,
+    0.37
+   ]
+  },
+  {
+   "fichier": "modeles/SM_GrandCaunetPoteauBeton.glb",
+   "taille_mo": 0.01,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.55,
+    0.0,
+    -0.1
+   ],
+   "bornes_max_m": [
+    0.55,
+    8.2,
+    0.1
+   ]
+  },
+  {
+   "fichier": "modeles/SM_GrandCaunetStoneA.glb",
+   "taille_mo": 0.0,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.5,
+    0.0,
+    -0.39
+   ],
+   "bornes_max_m": [
+    0.5,
+    0.55,
+    0.39
+   ]
+  },
+  {
+   "fichier": "modeles/SM_GrandCaunetStoneB.glb",
+   "taille_mo": 0.0,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.5,
+    0.0,
+    -0.36
+   ],
+   "bornes_max_m": [
+    0.5,
+    0.3,
+    0.36
+   ]
+  },
+  {
+   "fichier": "modeles/SM_GrandCaunetStoneC.glb",
+   "taille_mo": 0.0,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.5,
+    0.0,
+    -0.26
+   ],
+   "bornes_max_m": [
+    0.5,
+    0.42,
+    0.26
+   ]
+  },
+  {
+   "fichier": "modeles/SM_GrandCaunetStoneD.glb",
+   "taille_mo": 0.0,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -0.5,
+    0.0,
+    -0.45
+   ],
+   "bornes_max_m": [
+    0.5,
+    0.78,
+    0.45
+   ]
+  },
+  {
+   "fichier": "modeles/annexes.glb",
+   "taille_mo": 0.0,
+   "maillages": 0,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    Infinity,
+    Infinity,
+    Infinity
+   ],
+   "bornes_max_m": [
+    -Infinity,
+    -Infinity,
+    -Infinity
+   ]
+  },
+  {
+   "fichier": "modeles/balisage.glb",
+   "taille_mo": 0.0,
+   "maillages": 0,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    Infinity,
+    Infinity,
+    Infinity
+   ],
+   "bornes_max_m": [
+    -Infinity,
+    -Infinity,
+    -Infinity
+   ]
+  },
+  {
+   "fichier": "modeles/bati_bord.glb",
+   "taille_mo": 0.19,
+   "maillages": 2,
+   "images_integrees": 2,
+   "bornes_min_m": [
+    -134.97,
+    -12.71,
+    -1337.39
+   ],
+   "bornes_max_m": [
+    1786.48,
+    185.0,
+    137.97
+   ]
+  },
+  {
+   "fichier": "modeles/lointain.glb",
+   "taille_mo": 59.21,
+   "maillages": 255,
+   "images_integrees": 255,
+   "bornes_min_m": [
+    -30124.96,
+    -279.97,
+    -31195.86
+   ],
+   "bornes_max_m": [
+    31675.04,
+    902.76,
+    30004.14
+   ]
+  },
+  {
+   "fichier": "modeles/ouvrages.glb",
+   "taille_mo": 1.41,
+   "maillages": 64,
+   "images_integrees": 4,
+   "bornes_min_m": [
+    -175.9,
+    -7.78,
+    -1292.57
+   ],
+   "bornes_max_m": [
+    1699.72,
+    176.43,
+    86.56
+   ]
+  },
+  {
+   "fichier": "modeles/route_habillee.glb",
+   "taille_mo": 1.46,
+   "maillages": 2,
+   "images_integrees": 1,
+   "bornes_min_m": [
+    -175.24,
+    -9.53,
+    -1324.68
+   ],
+   "bornes_max_m": [
+    1800.28,
+    179.94,
+    108.4
+   ]
+  },
+  {
+   "fichier": "modeles/terrain_sol.glb",
+   "taille_mo": 8.2,
+   "maillages": 71,
+   "images_integrees": 142,
+   "bornes_min_m": [
+    -300.96,
+    -25.87,
+    -1447.85
+   ],
+   "bornes_max_m": [
+    1927.04,
+    192.38,
+    232.15
+   ]
+  },
+  {
+   "fichier": "modeles/village.glb",
+   "taille_mo": 3.85,
+   "maillages": 2,
+   "images_integrees": 2,
+   "bornes_min_m": [
+    -1580.18,
+    -122.54,
+    -437.77
+   ],
+   "bornes_max_m": [
+    250.16,
+    110.26,
+    874.61
+   ]
+  },
+  {
+   "fichier": "collisions/annexes_collision.glb",
+   "taille_mo": 0.0,
+   "maillages": 0,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    Infinity,
+    Infinity,
+    Infinity
+   ],
+   "bornes_max_m": [
+    -Infinity,
+    -Infinity,
+    -Infinity
+   ]
+  },
+  {
+   "fichier": "collisions/bati_bord_collision.glb",
+   "taille_mo": 1.43,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -134.56,
+    -12.71,
+    -1337.05
+   ],
+   "bornes_max_m": [
+    1786.14,
+    184.26,
+    137.55
+   ]
+  },
+  {
+   "fichier": "collisions/collision.glb",
+   "taille_mo": 6.81,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -300.96,
+    187.82,
+    -1447.85
+   ],
+   "bornes_max_m": [
+    1927.04,
+    406.07,
+    232.15
+   ]
+  },
+  {
+   "fichier": "collisions/objects_collision.glb",
+   "taille_mo": 1.53,
+   "maillages": 1,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -176.94,
+    200.99,
+    -1337.05
+   ],
+   "bornes_max_m": [
+    1786.14,
+    397.96,
+    137.55
+   ]
+  },
+  {
+   "fichier": "collisions/ouvrages_collision.glb",
+   "taille_mo": 0.56,
+   "maillages": 3,
+   "images_integrees": 0,
+   "bornes_min_m": [
+    -175.94,
+    -7.78,
+    -1292.57
+   ],
+   "bornes_max_m": [
+    1699.72,
+    176.48,
+    86.54
+   ]
+  }
+ ],
+ "placements": {
+  "arbres": 31498,
+  "versants": 100676,
+  "garrigue": 23168,
+  "arbustes": 28939,
+  "glissieres": 118,
+  "mobilier": 30,
+  "rocaille": 4723,
+  "herbes": 54327
+ },
+ "types": {
+  "pin_alep": {
+   "nombre": 78738,
+   "nature_du_substitut": "forme simple"
+  },
+  "chene_vert": {
+   "nombre": 51945,
+   "nature_du_substitut": "forme simple"
+  },
+  "chene_pubescent": {
+   "nombre": 377,
+   "nature_du_substitut": "forme simple"
+  },
+  "olivier": {
+   "nombre": 632,
+   "nature_du_substitut": "forme simple"
+  },
+  "cypres": {
+   "nombre": 482,
+   "nature_du_substitut": "forme simple"
+  },
+  "autre_pin": {
+   "nombre": 0,
+   "nature_du_substitut": "forme simple"
+  },
+  "arbuste_garrigue": {
+   "nombre": 4052,
+   "nature_du_substitut": "réel"
+  },
+  "arbuste_bas": {
+   "nombre": 48055,
+   "nature_du_substitut": "réel"
+  },
+  "herbe_verte": {
+   "nombre": 11943,
+   "nature_du_substitut": "forme simple"
+  },
+  "herbe_seche": {
+   "nombre": 32604,
+   "nature_du_substitut": "forme simple"
+  },
+  "pierre_calcaire": {
+   "nombre": 14503,
+   "nature_du_substitut": "projet"
+  },
+  "glissiere_simple": {
+   "nombre": 118,
+   "nature_du_substitut": "projet"
+  },
+  "panneau_danger": {
+   "nombre": 3,
+   "nature_du_substitut": "forme simple"
+  },
+  "panneau_virage_droite": {
+   "nombre": 0,
+   "nature_du_substitut": "forme simple"
+  },
+  "balise_virage": {
+   "nombre": 2,
+   "nature_du_substitut": "forme simple"
+  },
+  "borne_kilometrique": {
+   "nombre": 3,
+   "nature_du_substitut": "forme simple"
+  },
+  "poteau_bois": {
+   "nombre": 14,
+   "nature_du_substitut": "forme simple"
+  },
+  "poteau_beton": {
+   "nombre": 0,
+   "nature_du_substitut": "projet"
+  },
+  "bloc_calcaire": {
+   "nombre": 0,
+   "nature_du_substitut": "projet"
+  },
+  "vehicule": {
+   "nombre": 0,
+   "nature_du_substitut": "rien"
+  },
+  "autre_objet_du_jeu": {
+   "nombre": 8,
+   "nature_du_substitut": "rien"
+  }
+ },
+ "taille_totale_mo": 224.3,
+ "versionne": [
+  "manifeste.json",
+  "correspondance_types.csv",
+  "controle.json"
+ ],
+ "regenere": "python scripts/33_export_neutre.py (après 16_paquet_unreal.py)",
+ "licences": "géométrie et placements : données IGN (Licence Ouverte Etalab 2.0), relevés du projet ; textures Poly Haven CC0 et images IGN ; aucun asset du jeu"
+}

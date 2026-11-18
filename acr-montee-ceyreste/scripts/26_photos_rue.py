@@ -207,7 +207,7 @@ if __name__ == "__main__":
         Image.fromarray(im).save(out, quality=90); print(out)
 
 
-def planches(par_planche=8, champ=200.0, haut=20.0, bas=-32.0, largeur=800):
+def planches(par_planche=8, champ=200.0, haut=20.0, bas=-32.0, largeur=800, sens_descente=False, un_sur=1):
     """Planches de relevé : pour chaque image retenue, une bande équirectangulaire de `champ` degrés centrée sur le
     sens de la montée (gauche de la route à gauche), de `haut` à `bas` degrés d'élévation. Numérotées par PK."""
     from PIL import Image, ImageDraw
@@ -218,7 +218,9 @@ def planches(par_planche=8, champ=200.0, haut=20.0, bas=-32.0, largeur=800):
     ids = json.loads(fr.read_text()) if fr.exists() else [p.stem for p in DOSSIER.glob("*.jpg")]
     ids = [i for i in ids if i in L and (DOSSIER / f"{i}.jpg").exists()]
     ids.sort(key=lambda i: float(L[i]["pk_m"]))
-    dpl = DOSSIER / "planches"; dpl.mkdir(exist_ok=True)
+    ids = ids[::un_sur]
+    # sens_descente : bandes tournées vers le bas de la route, pour lire de face les panneaux destinés aux descendants
+    dpl = DOSSIER / ("planches_descente" if sens_descente else "planches"); dpl.mkdir(exist_ok=True)
     index = []
     bandes = []
     for i in ids:
@@ -227,6 +229,7 @@ def planches(par_planche=8, champ=200.0, haut=20.0, bas=-32.0, largeur=800):
         if not cache.exists():
             eq = Image.open(DOSSIER / f"{i}.jpg"); W, H = eq.size
             _, _, cap = projeter(pk, x, y, float(r["x_l93"]), float(r["y_l93"]))
+            cap = (cap + 180.0) % 360.0 if sens_descente else cap
             # colonne du cap `cap` : le centre de l'image (W/2) regarde azimut_deg
             c = (W / 2 + (cap - float(r["azimut_deg"])) / 360 * W) % W
             x0 = int(c - champ / 360 * W / 2); x1 = int(c + champ / 360 * W / 2)
@@ -245,8 +248,8 @@ def planches(par_planche=8, champ=200.0, haut=20.0, bas=-32.0, largeur=800):
             ox, oy = (q % 2) * (largeur + 6), (q // 2) * h
             pl.paste(b, (ox, oy + 16))
             n = k + q
-            d.text((ox + 4, oy + 2), f"[{n}] PK {float(L[i]['pk_m']):.0f}   G <-  (montée au centre)  -> D   "
-                                     f"id {i[:8]}", fill=(255, 255, 0))
+            d.text((ox + 4, oy + 2), f"[{n}] PK {float(L[i]['pk_m']):.0f}   " + ("vers le BAS : D montée <- -> G montée   " if sens_descente else "G <-  (montée au centre)  -> D   ") +
+                   f"id {i[:8]}", fill=(255, 255, 0))
             index.append({"n": n, "pk_m": float(L[i]["pk_m"]), "id": i, "planche": k // par_planche + 1})
         pl.save(dpl / f"planche_{k // par_planche + 1:02d}.jpg", quality=85)
     (dpl / "index.json").write_text(json.dumps(index, indent=0), encoding="utf-8")
@@ -254,4 +257,4 @@ def planches(par_planche=8, champ=200.0, haut=20.0, bas=-32.0, largeur=800):
 
 
 if __name__ == "__main__" and sys.argv[1:2] == ["planches"]:
-    planches()
+    planches(sens_descente="--descente" in sys.argv, un_sur=2 if "--descente" in sys.argv else 1)

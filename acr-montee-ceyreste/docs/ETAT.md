@@ -31,6 +31,42 @@ Commandes à lancer **depuis PowerShell**, pas depuis Git Bash : depuis Git Bash
 - **Écartée** : l'étape 10 lit `stage.json` de la génération précédente (parc d'assistance) ; sans lui, arbres et instances sont identiques.
 - Conséquence : la route physique, le relevé du placement et le décor doivent sortir **de la même génération**, sans retéléchargement entre les trois. Génération retenue : commit `19e1108` pour les fichiers versionnés (comparer avec `git diff --ignore-cr-at-eol`, Python écrivant en CRLF sous Windows) ; empreintes des fichiers non versionnés (terrain, lointain, sols, paquet) dans `F:\acrxs_ceyreste\determinisme\empreintes_B.txt`.
 
+## Deuxième passe du 18/11/2026 : bâti, décor, chaussée, OSM, export neutre (cloud)
+
+Détail : `docs/03_affinage_reel.md` § 8 et `docs/04_reutilisation_autre_jeu.md`. **Rien n'a été vu en jeu ni dans Unreal.**
+
+**Choix par défaut, NON CONFIRMÉS par l'utilisateur** (pour avancer à moindre coût, réversibles) :
+- décision 7 : option A, village en décor lointain (936 bâtiments en volumes simples, sans collision ; emprise jouable inchangée) ;
+- décision 8 : 35 maisons du bord de route en volumes simples, avec collision pour les 21 à moins de 15 m de la chaussée ;
+- décision 9 : rubalises, public et commissaires non posés (aucune photo d'édition passée trouvée, deux recherches).
+
+**Où se trouve chaque élément :**
+- **présent dans le paquet `paquet_unreal/` et importable tel quel** (familles lues de façon générique par `construire_niveau.py` : acteurs StaticMesh par dossier de destination, groupes d'instances par maillage du jeu) : familles `batiments` et `village` (`Buildings/Meshes`, `Village/Meshes`) ; murs, parapets, glissières, ponceaux (`ouvrages`) ; parois rocheuses ; rocaille ; 30 objets de mobilier (14 poteaux, 8 séparateurs en plastique, 3 triangles, 3 bornes, 2 balises J4) ; décalques de chaussée redosés ;
+- **présent, mais demandant une étape côté PC** : les maillages du jeu nouvellement désignés par le mobilier (`SM_PlasticBarrierAFix`, `SM_TrafficSignFraDangerA`, `SM_MileMarkerA`, `SM_TrafficSignFraCurveMarkerD`, `SM_MonPylonC11`) n'existent dans le projet Unreal que comme factices. Il faut relancer `outils/liste_factices.py` puis `creer_factices.py`, qui les lisent de façon générique dans `mobilier_bord_de_route.json`. Aucun changement de code à faire côté PC, d'après la lecture de `construire_niveau.py` (l. 377-386, 594-640, 722-757) et de `liste_factices.py` (l. 213-220) ;
+- **visible seulement dans les aperçus** : rien de ce qui est posé. Les arbres des vues `figures/phase5/` sont des figurants calculés, pas ceux du jeu.
+
+### À faire par la session du PC
+
+1. Récupérer ce commit, puis relancer `tout_lancer.py --depuis 7 -- --sol photo`. La nouvelle étape 31 (bâti) est dans la liste, entre 12 et 10. Elle demande `data/raw/lointain/mnt_lidarhd_2m.tif` (déjà téléchargé par 13).
+2. Relancer `liste_factices.py` puis `creer_factices.py` (voir ci-dessus).
+3. Comparer `manifeste.json` avec celui de la génération `19e1108` (voir la note sur les instances).
+4. Optionnel : `python scripts/33_export_neutre.py` produit l'export neutre (environ 1 Go, non versionné).
+
+**Instances.** Génération `19e1108` refaite dans le cloud : 238 666. Passe 1 de l'affinage : 243 457. Passe 2 : voir le compte rendu de 16. Par famille, de `19e1108` à la passe 1 :
+
+| Famille | Écart |
+|---|---|
+| rocaille (pierres au pied des parois, nouvelle famille) | +4 723 |
+| glissières du jeu | +118 |
+| mobilier | +8 |
+| arbres | +7 |
+| arbustes | +37 |
+| garrigue | −78 |
+| versants | −35 |
+| herbes | +11 |
+
+**La « baisse de 263 943 à 243 457 » n'en est pas une** : le même commit `19e1108`, refait ici, donne 238 666, soit 25 277 de moins que sur le PC. L'écart vient de la machine, pas de l'affinage. Cause probable : des familles dont le nombre dépend de fichiers non versionnés présents sur le PC (sols « façon jeu », herbes) ; non isolée.
+
 ## Affinage du 18/11/2026 (cloud, Linux)
 
 Détail et chiffres : `docs/03_affinage_reel.md`. **Rien n'a été vu en jeu ni dans Unreal.**
@@ -115,12 +151,13 @@ Pistes de coexistence, **non validées** : (1) une autre spéciale hôte pour la
 4. **Points techniques** : intermédiaire au PK 1500 et zone d'arrêt au PK 3700, absents de l'épreuve réelle (non chronométrée).
 5. Faut-il viser la coexistence (autre hôte, travail en jeu) ou la bascule suffit-elle ?
 6. Relevés de site faits sur Panoramax (18/11/2026) ; une vidéo embarquée reste utile pour les lignes et les objets du jour de course.
-7. **Village de Ceyreste** (demande du 18/11) : option A, décor lointain vu du départ (976 bâtiments en volumes simples, emprise jouable inchangée, environ une journée) ; option B, village parcourable (2 870 m de route en plus depuis la salle polyvalente par la mairie, 961 bâtiments, LiDAR à étendre à l'ouest, plusieurs jours et essais, paquet +30-40 %), qui placerait le parc d'assistance au village (décision 3). À choisir.
-8. **Maisons au bord de la route** (36 à moins de 25 m, surtout dans l'approche et au hameau) : volumes simples à toits de tuiles, assets du jeu, ou rien ? Non posées à ce jour.
+7. **Village de Ceyreste** (demande du 18/11 ; choix par défaut appliqué : option A) : option A, décor lointain vu du départ (976 bâtiments en volumes simples, emprise jouable inchangée, environ une journée) ; option B, village parcourable (2 870 m de route en plus depuis la salle polyvalente par la mairie, 961 bâtiments, LiDAR à étendre à l'ouest, plusieurs jours et essais, paquet +30-40 %), qui placerait le parc d'assistance au village (décision 3). À choisir.
+8. **Maisons au bord de la route** : posées en volumes simples (choix par défaut) ; à remplacer par des assets ? Les 10 plus visibles sont listées dans `03_affinage_reel.md` § 8.
 9. **Ambiance du jour de course** : rubalises au-dessus des épingles 893, 1517, 2150, 2950 (déduit d'une description générale, pas de photo) : à poser ou non ?
 
 ## Demandes de l'utilisateur à traiter
 
 - 18/11/2026, mots exacts : « il faudra pense au villange de ceyreste en bas aussi ». À faire : étendre la carte vers le bas pour inclure le village de Ceyreste (approche depuis le village jusqu'au départ du Plan de Masse, bâtiments, rues, salle polyvalente et paddock réel derrière la mairie). Aujourd'hui la carte commence au Plan de Masse et le village n'est pas modélisé. Cela rouvre la décision 3 (parc d'assistance au village plutôt qu'au Grand Caunet). **Préparé le 18/11/2026** (`docs/03_affinage_reel.md` § 5, `scripts/28_village.py`) : emprise, itinéraire, bâtiments, deux options chiffrées ; rien de construit, emprise jouable inchangée ; **décision attendue** (décision 7).
 - 18/11/2026, mots exacts : « affine quand meme les eleemnt la carte la route les sols les murret lais maison si ya avec les elements relel verifie le tracer de al route, verifei les panneau aussi pour renforcer l'imretion le paysage au alentours ». **Traité le 18/11/2026** (`docs/03_affinage_reel.md`) : tracé et largeur vérifiés et corrigés, murets, murs, glissières, parois et panneaux relevés sur Panoramax et posés, sols (essences, accotements) ajustés ; maisons non posées (décision 8). Jamais vu en jeu.
+- 18/11/2026, mots exacts : « queque screen coté ceyreste aussi stp pense a bien contnuer le decore les arbre aussi a palcer les torn 'abre tout ce genre de chsoes » ; « pour tout les objet on reste sur batimetn et tout ca peut etre le top mais si possible de les avoir meme dans la carte unreal c'est encore mieux » ; « dans le sens ou au moins si on veut reuse cette carte dans un autre jeu on a tout les mdoel » ; « Pense bien à intégrer tout ce qui va être barrière, etc., des troncs, aussi sur la route, des fois il y a des traces de pneus, etc., tout ça, il faut l'intégrer, parce que ça montre, c'est aussi ça l'essence de cette route » ; « Tous les panneaux et tout, il faut bien tout le temps penser à tout. C'est pour ça que la script OpenStreetMap est très important. » **Traités le 18/11/2026** (deuxième passe ci-dessus) ; restent : troncs couchés et souches (aucun vu, rien posé), panneaux sans maillage du jeu, modèles de panneaux de l'export neutre, couche de décalques neutre.
 - 18/11/2026, complément transmis (résumé d'un autre assistant, à vérifier) : sources du tracé à lire, ambiance du jour de course. Lu : rien ne change la longueur (3,0 km) ni les lignes ; déclaration de manifestation inaccessible (503) ; ambiance : décision 9.

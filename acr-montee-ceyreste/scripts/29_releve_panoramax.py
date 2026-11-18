@@ -175,8 +175,34 @@ def main():
                             f"{', '.join(i[:8] for i in imgs)}")
                 continue
             obj.append({"type": e["type"], "pk_m": e["pk_m"], "cote": e["cote"],
-                        "decalage_m": {"balise_virage": 1.3, "borne_kilometrique": 0.6, "poteau_bois": 1.5}.get(e["type"], 0.9),
+                        "decalage_m": {"balise_virage": 1.3, "borne_kilometrique": 0.6, "poteau_bois": 1.5,
+                                         "barriere_plastique": 0.3}.get(e["type"], 0.9),
+                        **({"lacet_en_plus_deg": e["lacet_en_plus_deg"]} if "lacet_en_plus_deg" in e else {}),
                         **com, **({"substitut": e["substitut"]} if e.get("substitut") else {})})
+    # --- objets OSM non relevés sur photo (data/processed/osm_couloir.geojson, scripts/34_osm.py) : poteaux à moins de
+    # 10 m de l'axe (vus en nombre sur les photos mais non comptés un par un) posés et marqués « OSM seul » ; chaînes et
+    # barrières d'accès listées non posées (aucun maillage du jeu)
+    fo = OUT / "osm_couloir.geojson"
+    if fo.exists():
+        for f in json.loads(fo.read_text(encoding="utf-8"))["features"]:
+            q = f["properties"]
+            if q.get("zone") != "route" or f["geometry"]["type"] != "Point" or q.get("pk_m") is None:
+                continue
+            if q.get("power") == "pole" and q["distance_axe_m"] < 10 and not any(
+                    o["type"] == "poteau_bois" and abs(o["pk_m"] - q["pk_m"]) < 15 for o in obj):
+                i = int(np.argmin(np.abs(bord.pk - q["pk_m"])))
+                A, Eg = bord.A[i, :2], bord.E["gauche"][i, :2]
+                xy = np.array(f["geometry"]["coordinates"][:2])
+                cote = "gauche" if np.dot(xy - A, Eg - A) > 0 else "droite"
+                dec = max(float(np.linalg.norm(xy - bord.E[cote][i, :2])), 0.8)
+                obj.append({"type": "poteau_bois", "pk_m": round(q["pk_m"], 1), "cote": cote, "decalage_m": round(dec, 1),
+                            "source": f"OpenStreetMap {q['osm']} (power=pole), © contributeurs OSM, ODbL",
+                            "statut": "OSM seul : non confirmé poteau par poteau sur photo", "confiance": "faible",
+                            "positionnement": "OSM (±2-5 m)"})
+                bilan["compte"]["ponctuel | OSM seul"] = bilan["compte"].get("ponctuel | OSM seul", 0) + 1
+            elif q.get("barrier") in ("chain", "gate", "swing_gate", "lift_gate") and q["distance_axe_m"] < 15:
+                nonp.append(f"barrière d'accès OSM {q['osm']} (barrier={q['barrier']}) au PK ≈ {q['pk_m']:.0f}, à "
+                            f"{q['distance_axe_m']:.0f} m de l'axe : aucun maillage du jeu (OSM, ODbL)")
     # --- écriture dans les fichiers de la chaîne
     def maj(nom, fn):
         f = REF / nom

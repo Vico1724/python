@@ -19371,13 +19371,13 @@
    "shape_classes": null
   },
   "corridor_m": 130.0,
-  "instances_total": 5828,
-  "instances_in_corridor": 5828,
+  "instances_total": 5848,
+  "instances_in_corridor": 5848,
   "cloth_instances_skipped": 0,
   "unknown_shape_kinds": [],
   "collision": {
    "file": "objects_collision.glb",
-   "triangles": 76800,
+   "triangles": 77232,
    "meshes": [
     {
      "gltf_material": "PM_WallConcrete",
@@ -19392,6 +19392,12 @@
      "primitives": 442
     },
     {
+     "gltf_material": "PM_WallPlasticBarrier",
+     "acr_physical_material": "PM_WallPlasticBarrier",
+     "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_WallPlasticBarrier",
+     "primitives": 8
+    },
+    {
      "gltf_material": "PM_WallRock",
      "acr_physical_material": "PM_WallRock",
      "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_WallRock",
@@ -19401,7 +19407,7 @@
      "gltf_material": "PM_WallWoodPole",
      "acr_physical_material": "PM_WallWoodPole",
      "acr_asset_path": "/Game/Data/Gameplay/PhysicalMaterials/PM_WallWoodPole",
-     "primitives": 2
+     "primitives": 14
     },
     {
      "gltf_material": "PM_WallWoodTreeTrunks",
@@ -19456,6 +19462,15 @@
     "dr2_core_material": null,
     "acr_wall": [
      "PM_WallWoodPole"
+    ],
+    "templates": 1
+   },
+   {
+    "shape_class": "gc_barriere_plastique",
+    "dr2_material": null,
+    "dr2_core_material": null,
+    "acr_wall": [
+     "PM_WallPlasticBarrier"
     ],
     "templates": 1
    }
@@ -19677,6 +19692,51 @@
         "shape_class": "gc_poteau_bois",
         "dr2_material": null,
         "acr_wall": "PM_WallWoodPole",
+        "breaks_on_impulse": null,
+        "mesh_file": null
+       }
+      ]
+     }
+    ]
+   },
+   "gc_barriere_plastique": {
+    "source": "data/reference/mobilier_bord_de_route.json",
+    "renderables": [],
+    "inactive_subentities": 0,
+    "constraints": 0,
+    "bodies": [
+     {
+      "sub_entity": "gc_barriere_plastique",
+      "static": true,
+      "renderable": null,
+      "shapes": [
+       {
+        "id": "gc_barriere_plastique_col_shape",
+        "kind": "box",
+        "dimensions": {
+         "width": 1.0,
+         "height": 1.0,
+         "length": 1.0,
+         "shell": 0.0
+        },
+        "transform": {
+         "position": [
+          0.0,
+          0.5,
+          0.0
+         ],
+         "rotation": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+         ],
+         "scale": null,
+         "matrix": null
+        },
+        "shape_class": "gc_barriere_plastique",
+        "dr2_material": null,
+        "acr_wall": "PM_WallPlasticBarrier",
         "breaks_on_impulse": null,
         "mesh_file": null
        }
@@ -165385,6 +165445,506 @@
      ],
      "matrix": null
     }
+   },
+   {
+    "id": "gc_barriere_plastique_5828",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      275.17,
+      291.169,
+      -819.26
+     ],
+     "rotation": [
+      0.0,
+      0.984363,
+      0.0,
+      0.176151
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_barriere_plastique_5829",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      276.368,
+      291.212,
+      -822.36
+     ],
+     "rotation": [
+      0.0,
+      0.981453,
+      0.0,
+      0.191704
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_barriere_plastique_5830",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      277.619,
+      291.631,
+      -825.331
+     ],
+     "rotation": [
+      0.0,
+      0.975194,
+      0.0,
+      0.221351
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_barriere_plastique_5831",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      279.091,
+      291.809,
+      -828.192
+     ],
+     "rotation": [
+      0.0,
+      0.964906,
+      0.0,
+      0.262594
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_barriere_plastique_5832",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      280.839,
+      292.04,
+      -831.041
+     ],
+     "rotation": [
+      0.0,
+      0.955818,
+      0.0,
+      0.293958
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_barriere_plastique_5833",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      282.882,
+      292.209,
+      -833.803
+     ],
+     "rotation": [
+      0.0,
+      0.939363,
+      0.0,
+      0.342923
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_barriere_plastique_5834",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      285.325,
+      292.465,
+      -836.291
+     ],
+     "rotation": [
+      0.0,
+      0.909431,
+      0.0,
+      0.415855
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_barriere_plastique_5835",
+    "template": "gc_barriere_plastique",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      288.198,
+      292.679,
+      -838.381
+     ],
+     "rotation": [
+      0.0,
+      0.874745,
+      0.0,
+      0.484583
+     ],
+     "scale": [
+      0.55,
+      0.8,
+      1.5
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5836",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      49.751,
+      217.007,
+      -139.487
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5837",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      15.499,
+      214.447,
+      -32.086
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5838",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      31.935,
+      215.96,
+      -84.052
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5839",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      712.344,
+      318.964,
+      -832.392
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5840",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1087.056,
+      366.284,
+      -1172.698
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5841",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1150.398,
+      369.318,
+      -1202.107
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5842",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1393.736,
+      376.372,
+      -1263.855
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5843",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1470.558,
+      380.31,
+      -1272.744
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5844",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1534.848,
+      384.425,
+      -1277.473
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5845",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1643.786,
+      387.104,
+      -1267.193
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5846",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1714.63,
+      389.619,
+      -1287.447
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
+   },
+   {
+    "id": "gc_poteau_bois_5847",
+    "template": "gc_poteau_bois",
+    "kind": "basic",
+    "tag": null,
+    "transform": {
+     "position": [
+      1596.288,
+      385.802,
+      -1270.885
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ],
+     "scale": [
+      0.25,
+      3.5,
+      0.25
+     ],
+     "matrix": null
+    }
    }
   ]
  },
@@ -165453,7 +166013,8 @@
     "collision_metal_glissiere (metal_glissiere)": "442 box -> PM_WallMetalGuardrail",
     "bati_bord_beton_collision (beton)": "3637 box -> PM_WallConcrete",
     "troncs d'arbres": "427 cylinder -> PM_WallWoodTreeTrunks",
-    "mobilier : poteau_bois": "2 -> PM_WallWoodPole"
+    "mobilier : poteau_bois": "14 -> PM_WallWoodPole",
+    "mobilier : barriere_plastique": "8 -> PM_WallPlasticBarrier"
    },
    "non_exportes": {},
    "retires_sur_la_chaussee": []

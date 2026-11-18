@@ -227,14 +227,18 @@ def main():
 
 def controler(fichiers, lignes_par_fam, x0, y0, z0):
     ecarts, mesures = [], {}
+    vides = []
     for f in fichiers:
         if not (DEST / f["fichier"]).exists():
             ecarts.append(f"absent : {f['fichier']}")
-        if not np.isfinite(f["bornes_min_m"]).all():
+        elif f["maillages"] == 0:
+            vides.append(f["fichier"])            # glb vide (aucun carrefour dessiné à Ceyreste) : pas un écart
+        elif not np.isfinite(f["bornes_min_m"]).all():
             ecarts.append(f"bornes illisibles : {f['fichier']}")
-    # emprise : tout dans un carré de 25 km autour de l'origine (lointain compris)
+    mesures["glb_vides"] = vides
+    # emprise : tout dans un carré de 35 km autour de l'origine (lointain jusqu'à l'horizon compris)
     for f in fichiers:
-        if max(map(abs, f["bornes_min_m"] + f["bornes_max_m"])) > 25000:
+        if f["maillages"] and max(map(abs, f["bornes_min_m"] + f["bornes_max_m"])) > 35000:
             ecarts.append(f"hors emprise : {f['fichier']}")
     if not (DEST / "modeles" / "textures_sol").exists():
         ecarts.append("modeles/textures_sol absent : terrain_sol.glb sans ses images")
@@ -246,14 +250,18 @@ def controler(fichiers, lignes_par_fam, x0, y0, z0):
         dans = (x > b.left) & (x < b.right) & (y > b.bottom) & (y < b.top)
         c, l = inv * (x[dans], y[dans])
         zt = map_coordinates(Z, [l - 0.5, c - 0.5], order=1, mode="nearest")
-        d = z[dans] - zt
+        d = (z[dans] - zt)[zt > -1000]                     # trous du MNT (valeur absente) écartés
         mesures[fam] = {"objets": len(L), "controles": int(dans.sum()),
                         "ecart_au_mnt_m": {"mediane": round(float(np.median(d)), 3) if len(d) else None,
                                            "p1": round(float(np.percentile(d, 1)), 2) if len(d) else None,
                                            "p99": round(float(np.percentile(d, 99)), 2) if len(d) else None},
                         "flottants_sup_0_3_m": int((d > 0.3).sum()), "enterres_sup_0_5_m": int((d < -0.5).sum())}
-    return {"verdict": "CONFORME" if not ecarts else "NON CONFORME", "ecarts": ecarts, "placements": mesures,
-            "note": "controle_paquet.py de carte-reelle-unreal ne s'applique pas (il attend une heightmap de Landscape et "
+    alertes = [f"{fam} : {m['flottants_sup_0_3_m']} flottants > 0,3 m et {m['enterres_sup_0_5_m']} enterrés > 0,5 m sur "
+               f"{m['controles']}" for fam, m in mesures.items() if isinstance(m, dict) and m.get("controles")]
+    return {"verdict": "CONFORME" if not ecarts else "NON CONFORME", "ecarts": ecarts, "alertes": alertes,
+            "placements": mesures,
+            "note": "Les alertes ne bloquent pas : les objets du paquet sont posés sur le terrain lissé du modèle (terrain_sol.glb), "
+                    "pas sur le MNT brut ; un écart de quelques décimètres sur les talus est attendu. controle_paquet.py de carte-reelle-unreal ne s'applique pas (il attend une heightmap de Landscape et "
                     "son manifeste) : contrôle équivalent. Les objets flottants ou enterrés sont mesurés au MNT LiDAR 0,5 m "
                     "nu : un objet posé sur un talus de roche, un mur ou un tablier peut s'en écarter légitimement."}
 

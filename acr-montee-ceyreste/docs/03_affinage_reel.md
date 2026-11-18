@@ -104,3 +104,107 @@ Nouveaux scripts (hors chaîne 01-16, à relancer à la main) : `26_photos_rue.p
 - Panoramax, collection Région Sud / Immergis du 08/09/2025, Licence Ouverte Etalab 2.0 — https://api.panoramax.xyz/api
 - OpenStreetMap (axe de la D3, salle polyvalente), ODbL — via Overpass et Nominatim, 18/11/2026.
 - Lus pour le tracé (complément de l'utilisateur) : la fiche Agenda Auto Moto (déjà citée) redit 3 km entre Ceyreste et le Grand Caunet ; la déclaration de manifestation (declaration-manifestations.gouv.fr, dossier 98930) a répondu « 503 » et n'a pas pu être lue ; l'article de La Provence (10 ans) n'a pas pu être chargé ; Climbfinder « col du Grand Caunet » part de La Ciotat (11,7 km, 423 m) et ne recoupe pas la montée ; aucune autre source ne situe l'arrivée. **3,0 km et l'arrivée estimée sont gardés.**
+
+## 8. Deuxième passe (18/11/2026, après-midi) : décor qui continue, bâti, chaussée, OpenStreetMap, export neutre
+
+Demandes de l'utilisateur (mots exacts, transmises par le coordinateur) :
+- « queque screen coté ceyreste aussi stp pense a bien contnuer le decore les arbre aussi a palcer les torn 'abre tout ce genre de chsoes » ;
+- « pour tout les objet on reste sur batimetn et tout ca peut etre le top mais si possible de les avoir meme dans la carte unreal c'est encore mieux » ;
+- « dans le sens ou au moins si on veut reuse cette carte dans un autre jeu on a tout les mdoel » ;
+- « Pense bien à intégrer tout ce qui va être barrière, etc., des troncs, aussi sur la route, des fois il y a des traces de pneus, etc., tout ça, il faut l'intégrer, parce que ça montre, c'est aussi ça l'essence de cette route » ;
+- « Tous les panneaux et tout, il faut bien tout le temps penser à tout. C'est pour ça que la script OpenStreetMap est très important. »
+
+Les choix ci-dessous sont des **choix par défaut, non confirmés par l'utilisateur** (décisions 7 à 9 de `ETAT.md`).
+
+### Bâti (`scripts/31_bati.py`)
+
+- **Maisons du bord de route** : 35 posées (36 à moins de 25 m ; une emprise cadastrale mordait sur la chaussée et n'est pas posée). Murs extrudés et toit à deux pans (pente 30 %, débord 0,3 m), en crépi beige et tuiles canal (matières `enduit_maison` et `tuile`). C'est la fonction des bâtiments de la zone de départ du Grand Caunet. Hauteur : faîtage relu sur le LiDAR (MNS − MNT). Au PK 3293, une haie couvrait le toit : la hauteur y vient de la BD TOPO + 1 m.
+- **Collision** : façades des 21 maisons à moins de 15 m de la chaussée (`bati_bord_collision.glb`, lu par 09 comme obstacle `PM_WallConcrete`).
+- **Les 10 plus visibles depuis la route**, à remplacer en premier par des assets : PK −122 G, −106 D, −53 D, −52 G, 33 D, 2854 D, 2910 D, 3181 D, 3226 D, 3293 D. Les identifiants BD TOPO sont dans `data/processed/bati_bilan.json`.
+- **Village (option A)** : 936 bâtiments en volumes simples (`village.glb`, sans collision). Emprise jouable inchangée.
+- **Dans le paquet Unreal** : familles `batiments` (14 maillages, 1 616 triangles) et `village` (12 maillages, 45 710 triangles). Ce sont des acteurs StaticMesh nommés `SM_MonteeCeyresteBuilding_<Matière>_<tronçon>` et `SM_MonteeCeyresteVillage_…`, avec un matériau par type (`MI_GC_Enduit_maison`, `MI_GC_Tuile`), des UV en mètres (une répétition tous les 2 m) et des normales par face. Le pivot est au centre de la base. Les noms ne changent pas d'une génération à l'autre tant que le découpage en tronçons de 200 m ne change pas.
+- **Non fait** : clôtures et portails des propriétés (pas de maillage ; listés dans les descriptions du relevé), teintes de façade mesurées sur les photos (beige uniforme supposé).
+
+### Végétation (contrôle `scripts/32_verif_vegetation.py`)
+
+Contrôle sur onze secteurs, comparé aux photos (planche d'abords, 8 vues latérales) et au MNH du LiDAR : `data/processed/verif_vegetation_secteurs.json`.
+- **Densité et hauteur** : de 32 à 60 arbres pour 100 m à moins de 20 m de l'axe ; couvert LiDAR > 2 m de 51 à 74 % ; hauteur médiane de 9 à 15 m en pinède. Cohérent avec les photos : pinède d'Alep claire sur sous-bois dense de chênes kermès et verts.
+- **Essences** : pin d'Alep de 74 à 94 % en pinède ; oliveraies du bas (relevé de la première passe) ; cyprès près des maisons (10 % dans l'approche, 6 % au PK 2150-2350). Aucune règle n'a été changée dans cette passe : rien ne diverge assez des photos.
+- **Arbres isolés au bord de la route** : déjà placés à l'apex LiDAR (méthode du semis : un tronc par maximum local du MNH, reporté au bord + 0,8 m quand il surplombe la chaussée). 81 surplombs sont reportés ainsi.
+- **Troncs, souches, branches au sol** : les photos montrent très peu de bois au sol en bord de route (débroussaillement DFCI). Aucun tronc couché, aucune pile de bois ni souche nette n'a été relevé aux points examinés. **Rien n'est posé** : le jeu a des maillages (`Props/Nature/WoodLog`, `TreeStump*`, `DeadBranches*`, `Foliage/GroundCover/Greece/BranchDebri`), mais aucune position réelle ne les justifie.
+- **Garrigue** : romarin, ciste, genêt et kermès n'ont pas d'équivalent dans le jeu (le catalogue n'a que `BroomCreeper`, rendu noir en jeu). La garrigue reste rendue par `Willow` et `Boxthorn`, comme avant.
+
+### Surface de la chaussée
+
+- **Relevé** sur 24 vues plongeantes de la chaussée : `data/reference/chaussee_surface_releve.json` et `aspect_chaussee.json`. Les 62 éléments de `aspect_chaussee.json` repris par erreur du Grand Caunet sont retirés.
+- **Permanent** :
+  - passage à un enrobé récent sombre du PK ≈ 1855 à ≈ 2700 ;
+  - faïençage fort aux PK 456 et 2857 ;
+  - fissures dans les épingles 883-902 et 1501-1517 ;
+  - voie de droite reprise au PK 1301.
+- **Variable** :
+  - arcs noirs de dérapage dans les épingles 1517 et 2150 ;
+  - traces serpentines et « donuts » au carrefour du PK 2622 ;
+  - aiguilles et terre rouge le long des glissières et des pieds de talus.
+- **Réserve** : les photos datent du 08/09/2025, un jour ordinaire, pas un jour de course.
+- **Dans le paquet** : la gomme et les traces de pneus ne sont plus posées que dans les virages où les photos en montrent (épingles 1517 et 2150), plus les traces hors virage relevées (PK 2622, 1965, 2860). Avant, toutes les épingles et tous les virages serrés en avaient. Les décalques n'ont ni collision ni effet sur l'adhérence : le sol physique reste celui de la route.
+- **Pièces et fissures** : relevées mais non rendues, car les bandes de couleur unie avaient été refusées en jeu au Grand Caunet.
+- **Aucune inscription peinte vue sur la chaussée.**
+
+### Panneaux : passe dans le sens de la descente
+
+`scripts/26_photos_rue.py planches --descente` produit 16 planches tournées vers le bas (une image sur deux) : les panneaux destinés aux descendants s'y lisent de face. Trouvés en plus :
+- B13 « 19 t » au PK 5 ;
+- B14 « 50 » au PK ≈ −20 ;
+- borne PR 5 au PK 110 ;
+- **A14 + panonceau jaune temporaire « CHAUSSÉE DÉFORMÉE »** au PK 1300 : c'est le triangle vu de dos en montée ;
+- AB3a sur la voie latérale du PK 2938 ;
+- une rangée de **8 séparateurs en plastique rouges et blancs** devant le mur-parapet du PK 1620-1645. Au premier passage, je les avais pris pour des bandes peintes.
+
+Lecture corrigée au PK 86 d'après la photo HD et OSM : le second panneau est un **A1d** (premier virage à gauche, panonceau 3 km), pas un A1c ; il est posé en triangle générique. La planche 16 (PK 3663-3756, après l'arrivée) n'a pas été lue.
+
+### OpenStreetMap (`scripts/34_osm.py`)
+
+- Overpass a été injoignable toute la journée (délais et coupures sur quatre miroirs). Le script se replie sur l'API OSM v0.6 (`/map`, par dalles) et met le résultat en cache : 7 974 éléments, dont 1 519 dans le couloir ou l'approche du village. Bilan par clé : `data/processed/osm_bilan.json`.
+- Recoupement en trois colonnes (`data/processed/osm_croisement.csv`) : 10 objets vus dans OSM et sur photo, 36 dans OSM seul (dont 24 poteaux), 25 sur photo seule. Ce recoupement est automatique, sur le PK seul à ±20 m et un type compatible : il est indicatif.
+- **Posé d'après OSM seul** : 12 poteaux électriques à moins de 10 m de l'axe, marqués « OSM seul », confiance faible.
+- **Listé, non posé** : chaînes et barrières d'accès des pistes (PK 899, 2095, 3057 ; pas de maillage du jeu).
+- La colonne BD TOPO / LiDAR n'est remplie que pour les objets en long (murs, parois : première passe), pas pour les objets ponctuels.
+- **Clés absentes de `carte-reelle-unreal/scripts/04_vecteurs.py`** (le script du skill n'a pas été modifié ; la liste est à vérifier contre son code) : `traffic_sign`, `traffic_calming`, `crossing`, `highway=give_way|stop|milestone|street_lamp`, `barrier=*` (seulement une partie), `power=pole|minor_line`, `man_made`, `natural=tree|tree_row|cliff|rock|scree`, `roof:shape`, `roof:material`, `building:levels`, `tracktype`, `access`.
+
+### Grille « ne rien oublier »
+
+| Famille | Sources consultées | Relevé | Posé | Manque, et pourquoi |
+|---|---|---|---|---|
+| Signalisation verticale | Panoramax montée + descente, OSM | 17 panneaux et balises (A15b, A1d, A14+panonceau, J4 ×2, PR 5, 7, 8, EB20, B13, B14, B1, AB3a, 2 panneaux d'information, 1 de dos) | 7 (triangles génériques du jeu, J4, bornes) | EB20, B13, B14, B1, AB3a, panneaux d'information : aucun maillage du jeu ; texte de 2 panneaux d'information non lu |
+| Signalisation horizontale | ortho, Panoramax | axiale T3, rives T2, cédez-le-passage peint des voies latérales | axiale et rives | lignes des voies latérales, îlot rouge du Plan de Masse |
+| Retenue | Panoramax, LiDAR | 6 glissières, 32 murs et parapets, 3 têtes de ponceaux, 8 séparateurs en plastique | tout | état (rouille, tags) non rendu |
+| Clôtures et accès | Panoramax, OSM | grillages, portails, chaînes DFCI (OSM : 3 chaînes, 6 portails) | rien | pas de maillage ; listés |
+| Réseaux aériens | Panoramax, OSM | 26 poteaux (OSM), lignes vues | 14 poteaux en bois (2 photo, 12 OSM) | câbles non tirés, matière (bois ou béton) non vérifiée poteau par poteau |
+| Mobilier | Panoramax, OSM | abri de bus, bacs, poteau d'incendie, barrière en tube, bloc blanc | rien | pas de maillage du jeu |
+| Bâti | BD TOPO, LiDAR, Panoramax | 35 maisons au bord, 936 au village | tout, en volumes simples | façades et menuiseries |
+| Végétation remarquable | LiDAR, Panoramax | oliveraies, cyprès, arbres en surplomb | par le semis | troncs couchés et souches : aucun vu |
+| Surface de chaussée | Panoramax, ortho | 2 changements d'enrobé, 13 zones de fissures, 5 zones de traces, 5 bords souillés | traces (décalques) | pièces et fissures (refusées en jeu au Grand Caunet) |
+| Bas-côtés | Panoramax | terre rouge, herbe sèche, cunettes | règle de sol (sol « façon jeu ») | cunettes en béton |
+| Ouvrages hydrauliques | BD TOPO, LiDAR, Panoramax | 2 ponceaux | têtes en béton | regards et grilles non relevés |
+| Éléments de course | recherche web | rien de situé | rien | aucune photo ni vidéo d'édition passée trouvée (deux recherches) |
+
+### Vues produites (rendu de contrôle de l'étape 15, hors jeu) et ce qu'elles montrent
+
+- **Vues** : `figures/phase5/vue_*.png`, 21 au total.
+  - Depuis le village : `village_d3_vers_depart`, `village_mairie_vers_nord`.
+  - Ligne de départ : `ligne_depart_montee`, `ligne_depart_vers_village`.
+  - Approche : `approche_oliveraies_100`, `approche_oliveraies_170`.
+  - Plus haut : `premieres_epingles_700`, `mur_parapet_1140`, `glissiere_2330`, `hameau_2840`.
+  - Vues rapprochées : `chaussee_epingle_1517`, `glissiere_rapprochee_505`, `carrefour_2622_traces`.
+  - Aérienne oblique : `aerien_bas_du_trace_village`.
+- **Planches photo réelle / rendu** : `figures/affinage/photo_rendu/*.jpg` (15 vues) ; **planches photo / aperçu des formes avant / après** : `figures/affinage/comparaison/*.jpg` (12).
+- **Regardées. Défauts propres au rendu, à ne pas lire comme l'aspect en jeu :**
+  - arbres figurants (silhouettes calculées par 15, pas les arbres du jeu) : l'oliveraie y paraît en pins sombres ;
+  - enrobé uniformément sombre, alors que l'enrobé réel est gris clair sauf de 1855 à 2700 ; les décalques (traces, terre) n'apparaissent pas dans ce rendu, ils n'existent que dans le paquet Unreal ;
+  - accotements peints par la photo aérienne étirée ;
+  - au village, le terrain est le lointain grossier (5 à 25 m), en pointes : `village_d3_vers_depart` et surtout `village_mairie_vers_nord` sont à prendre comme un contrôle de l'implantation des volumes, pas comme une vue du village ;
+  - les murets bas du PK 95 sortent plus hauts et plus clairs que sur la photo (chaperon de béton gris).
+- **Écarts réels vus sur les planches** : à corriger au prochain passage, non corrigés ici :
+  - pas d'herbe sèche ni de terre rouge dans le rendu de l'accotement (le sol « façon jeu » les porte, le rendu photo non) ;
+  - glissière du PK 503 de même hauteur que sur la photo, mais d'un blanc uniforme.

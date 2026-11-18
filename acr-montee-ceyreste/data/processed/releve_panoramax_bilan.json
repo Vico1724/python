@@ -399,7 +399,7 @@
    ],
    "positionnement": "approximatif (photo, PK ±10 m)",
    "part_signature_lidar": 0.47,
-   "description": "mur-parapet de moellons ; bandes peintes rouge et blanc sur une partie (non rendues)"
+   "description": "mur-parapet de moellons à chaperon (les « bandes rouge et blanc » du premier passage sont des séparateurs en plastique posés devant : voir l'objet barriere_plastique)"
   },
   {
    "categorie": "parapet",
@@ -1131,17 +1131,17 @@
    "pk_retenu": 86,
    "positionnement": "approximatif (photo, PK ±10 m)",
    "part_signature_lidar": null,
-   "description": "A15b passage d'animaux sauvages + panonceau « 4,6 km » sur poteau béton"
+   "description": "A15b « passage d'animaux sauvages » + panonceau M2 « 4,6 km » (photo HD lisible ; OSM indique M2[1400], non conforme à la photo de 2025)"
   },
   {
    "categorie": "ponctuel",
-   "type": "panneau_virage_droite",
+   "type": "panneau_danger",
    "cote": "droite",
    "pk_photo": 86,
    "pk_retenu": 86,
    "positionnement": "approximatif (photo, PK ±10 m)",
    "part_signature_lidar": null,
-   "description": "A1c succession de virages, le premier à droite + panonceau « 3 km », sous le A15b"
+   "description": "A15b « passage d'animaux sauvages » + panonceau M2 « 4,6 km » (photo HD lisible ; OSM indique M2[1400], non conforme à la photo de 2025)"
   },
   {
    "categorie": "ponctuel",
@@ -1272,6 +1272,136 @@
    "positionnement": "approximatif (photo, PK ±10 m)",
    "part_signature_lidar": null,
    "description": "barrière blanche en tube métallique au carrefour de la Voie Romaine"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_limitation_tonnage",
+   "cote": "gauche",
+   "pk_photo": 5,
+   "pk_retenu": 5,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "B13 « 19 t » (interdit aux véhicules de plus de 19 t) sur mât, face aux descendants ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_limitation_vitesse",
+   "cote": "gauche",
+   "pk_photo": -20,
+   "pk_retenu": -20,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "B14 « 50 » sur mât, face aux descendants (entrée d'agglomération, vu de loin, PK ±15 m) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "borne_kilometrique",
+   "cote": "gauche",
+   "pk_photo": 110,
+   "pk_retenu": 110,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "plaquette « PR 5 » jaune et blanche sur piquet ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_danger",
+   "cote": "gauche",
+   "pk_photo": 1300,
+   "pk_retenu": 1300,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "A14 « autres dangers » + panonceau jaune temporaire « CHAUSSÉE DÉFORMÉE », face aux descendants, au pied de la paroi (c'est le triangle vu de dos en montée) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "panneau_cedez_le_passage",
+   "cote": "droite",
+   "pk_photo": 2938,
+   "pk_retenu": 2938,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "AB3a « cédez le passage » sur la voie latérale (OSM node/8600296503 : highway=give_way)"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1621,
+   "pk_retenu": 1621,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1624,
+   "pk_retenu": 1624,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1627,
+   "pk_retenu": 1627,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1630,
+   "pk_retenu": 1630,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1633,
+   "pk_retenu": 1633,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1636,
+   "pk_retenu": 1636,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1639,
+   "pk_retenu": 1639,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
+  },
+  {
+   "categorie": "ponctuel",
+   "type": "barriere_plastique",
+   "cote": "gauche",
+   "pk_photo": 1642,
+   "pk_retenu": 1642,
+   "positionnement": "approximatif (photo, PK ±10 m)",
+   "part_signature_lidar": null,
+   "description": "séparateur en plastique rouge et blanc posé au bord de la chaussée devant le mur-parapet (rangée de 8 environ, PK 1620-1645) ; vu sur les planches tournées vers le bas (panneaux destinés aux descendants), 18/11/2026"
   }
  ],
  "compte": {
@@ -1282,6 +1412,7 @@
   "ouvrage | positionné": 1,
   "paroi | positionné": 23,
   "paroi | approximatif": 2,
-  "ponctuel | approximatif": 20
+  "ponctuel | approximatif": 33,
+  "ponctuel | OSM seul": 12
  }
 }

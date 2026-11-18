@@ -2601,7 +2601,15 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
     with open(OUT / "virages_es.csv", encoding="utf-8") as f:
         virages = [v for v in csv.DictReader(f) if float(v["rayon_mini_m"]) <= max(Ep["rayon_max_m"], Ep["pneus_rayon_max_m"])
                    and float(v["angle_deg"]) >= min(Ep["angle_min_deg"], Ep["pneus_angle_min_deg"])]
+    # Relevé de la surface (data/reference/chaussee_surface_releve.json, Panoramax, 18/11/2026) : s'il existe, la gomme et
+    # les traces de pneus ne sont posées que dans les virages où les photos en montrent, plus les traces relevées hors
+    # virage ; ailleurs, rien (dosage d'après les photos, leçon du Grand Caunet : trop de traces jugées gênantes).
+    f_rel = fichier_ref("chaussee_surface_releve.json")
+    releve = json.loads(f_rel.read_text(encoding="utf-8")) if f_rel.exists() else None
     for v in virages:
+        if releve is not None and not any(t["pk"][0] < float(v["pk_fin_m"]) + 8 and t["pk"][1] > float(v["pk_debut_m"]) - 8
+                                          for t in releve.get("traces", []) if not t.get("hors_virage")):
+            continue
         epingle = float(v["rayon_mini_m"]) <= Ep["rayon_max_m"] and float(v["angle_deg"]) >= Ep["angle_min_deg"]
         if not epingle and not (float(v["rayon_mini_m"]) <= Ep["pneus_rayon_max_m"] and float(v["angle_deg"]) >= Ep["pneus_angle_min_deg"]):
             continue
@@ -2634,6 +2642,15 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
             L, W, prof = gabarit("pneus", Ep["pneus_echelle"], (5.0, 11.0), Ep["fleche_max_m"] * 2, s)
             # la trace du jeu est un arc : son ventre doit être tourné vers l'extérieur du virage
             poser("pneus", s, trajectoire(s), L, W, prof, couleur("pneus"), rng.uniform(-4.0, 4.0), sens=1.0 if gauche else -1.0, ordre=3)
+    # 3 bis. traces relevées hors virage (carrefour du PK 2622 : « donuts » ; traces légères)
+    for t in (releve or {}).get("traces", []):
+        if not t.get("hors_virage"):
+            continue
+        for s in np.linspace(t["pk"][0], t["pk"][1], int(t.get("nombre", 1)) + 2)[1:-1]:
+            fam = t["famille"]
+            L, W, prof = gabarit(fam, Ep["pneus_echelle"] if fam == "pneus" else Ep["echelle"], (5.0, 11.0), Ep["fleche_max_m"] * 2, s)
+            poser(fam, float(s), float(t.get("decalage_m", 0.0)), L, W, prof, couleur(fam), rng.uniform(-25.0, 25.0),
+                  ordre=3 if fam == "pneus" else 2)
     # 4. feuilles mortes du jeu sur l'enrobé
     F = FEUILLES
     noms = list(F["maillages"])
