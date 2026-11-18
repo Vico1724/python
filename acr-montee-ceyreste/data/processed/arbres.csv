@@ -267,7 +267,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916765.75,6240971.25,398.57,14.1,9.6,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo02,Forêt fermée à mélange de feuillus prépondérants et conifères,102.2,3441,gauche,apex
 916904.25,6240971.25,399.97,11.6,7.2,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo03,Forêt fermée à mélange de feuillus prépondérants et conifères,87.4,3530,gauche,apex
 916939.25,6240971.25,399.50,13.2,7.4,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo01,Forêt fermée à mélange de feuillus prépondérants et conifères,92.5,3562,gauche,apex
-917048.75,6240971.25,397.81,8.1,7.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,68.5,3711,gauche,apex
+917048.75,6240971.25,397.81,8.1,7.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,68.4,3711,gauche,apex
 916745.75,6240970.75,398.13,13.2,6.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine10,Forêt fermée de pin d'Alep pur,110.5,3433,gauche,apex
 916953.25,6240970.75,399.26,13.4,8.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée à mélange de feuillus prépondérants et conifères,94.6,3614,gauche,apex
 916981.75,6240970.75,398.90,9.0,5.8,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo01,Forêt fermée à mélange de feuillus prépondérants et conifères,87.2,3646,gauche,apex
@@ -1862,7 +1862,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916503.25,6240830.25,363.49,9.6,5.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine07,Forêt fermée de pin d'Alep pur,17.8,3110,gauche,apex
 916675.75,6240830.25,376.71,16.0,6.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,5.9,3295,droite,apex
 916771.25,6240830.25,385.34,15.7,5.5,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine13,Forêt fermée de pin d'Alep pur,27.8,3396,droite,apex
-917091.75,6240830.25,397.93,6.7,5.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,79.0,3710,droite,apex
+917091.75,6240830.25,397.93,6.7,5.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,79.0,3709,droite,apex
 917114.75,6240830.25,398.70,6.3,5.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine01,Forêt fermée de pin d'Alep pur,85.5,3735,droite,apex
 917121.75,6240830.25,399.25,4.9,4.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,87.4,3739,droite,apex
 916317.25,6240829.75,365.72,16.7,7.0,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo02,Forêt fermée de pin d'Alep pur,96.3,2987,gauche,apex
@@ -3379,7 +3379,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916188.75,6240703.75,352.36,4.6,4.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,73.4,2755,gauche,apex
 916535.75,6240703.75,376.82,18.1,12.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,100.5,3159,droite,apex
 916623.75,6240703.75,394.24,5.8,5.4,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree01,Forêt fermée de pin d'Alep pur,97.6,3227,droite,apex
-915965.25,6240703.25,345.73,14.6,10.5,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,107.2,2490,gauche,apex
+915965.25,6240703.25,345.73,14.6,10.5,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,107.2,2491,gauche,apex
 915977.75,6240703.25,345.29,9.3,3.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,101.1,2511,gauche,apex
 916079.75,6240703.25,347.35,14.3,7.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine05,Forêt fermée de pin d'Alep pur,71.9,2564,gauche,apex
 916233.75,6240703.25,346.44,19.3,9.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,49.9,2793,gauche,apex
@@ -3422,7 +3422,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916505.25,6240699.25,372.76,14.8,8.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,Forêt fermée de pin d'Alep pur,110.1,3136,droite,apex
 916661.25,6240699.25,396.30,15.4,8.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine07,Forêt fermée de pin d'Alep pur,108.4,3246,droite,apex
 915895.75,6240698.75,346.84,8.6,3.2,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo02,Forêt fermée de pin d'Alep pur,133.1,2436,gauche,apex
-915968.25,6240698.75,344.22,14.1,7.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,101.9,2496,gauche,apex
+915968.25,6240698.75,344.22,14.1,7.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,101.9,2494,gauche,apex
 916025.75,6240698.75,344.29,14.5,6.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,Forêt fermée de pin d'Alep pur,76.8,2537,gauche,apex
 916384.25,6240698.75,360.27,16.0,4.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine13,hors forêt : abords bâtis (< 40 m),10.0,2922,droite,apex
 915954.75,6240698.25,344.55,15.6,11.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine13,Forêt fermée de pin d'Alep pur,106.9,2478,gauche,apex
@@ -3577,7 +3577,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916215.75,6240684.25,341.59,18.8,9.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine04,Forêt fermée de pin d'Alep pur,42.7,2764,gauche,apex
 916538.25,6240684.25,378.58,20.7,10.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,119.5,3163,droite,apex
 915945.75,6240683.75,340.02,4.0,3.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,97.4,2462,gauche,apex
-915974.25,6240683.75,337.83,14.2,9.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,85.7,2490,gauche,apex
+915974.25,6240683.75,337.83,14.2,9.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,85.7,2491,gauche,apex
 915983.25,6240683.75,337.73,15.6,9.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,81.4,2506,gauche,apex
 916141.25,6240683.75,348.23,16.5,9.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,72.2,2592,gauche,apex
 916500.25,6240683.75,372.87,13.2,5.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine12,Forêt fermée de pin d'Alep pur,119.2,2937,droite,apex
@@ -4940,7 +4940,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916136.25,6240531.25,334.17,5.0,4.5,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree01,Forêt fermée de pin d'Alep pur,61.5,2654,droite,apex
 915581.25,6240530.75,316.52,13.6,6.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,97.2,1646,gauche,apex
 915632.75,6240530.75,314.10,13.6,8.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,87.5,1661,gauche,apex
-915711.75,6240530.75,307.44,14.1,5.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,Forêt fermée de pin d'Alep pur,101.3,1721,gauche,apex
+915711.75,6240530.75,307.44,14.1,5.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,Forêt fermée de pin d'Alep pur,101.3,1720,gauche,apex
 915853.75,6240530.75,314.57,14.8,7.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,Forêt fermée de pin d'Alep pur,85.0,2384,gauche,apex
 915931.75,6240530.75,328.74,15.9,10.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,Forêt fermée de pin d'Alep pur,7.7,2377,gauche,apex
 915972.75,6240530.75,332.97,14.2,5.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine01,Forêt fermée de pin d'Alep pur,27.6,2349,droite,apex
@@ -5140,7 +5140,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916300.75,6240513.75,354.19,4.0,4.4,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,hors forêt : abords bâtis (< 40 m),133.3,2698,droite,apex
 915538.75,6240513.25,313.14,8.7,3.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine04,Forêt fermée de pin d'Alep pur,106.0,1638,gauche,apex
 915698.25,6240513.25,299.58,12.0,7.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,Forêt fermée de pin d'Alep pur,80.9,1703,gauche,apex
-915708.25,6240513.25,300.51,10.4,4.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine07,Forêt fermée de pin d'Alep pur,83.4,1721,gauche,apex
+915708.25,6240513.25,300.51,10.4,4.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine07,Forêt fermée de pin d'Alep pur,83.4,1720,gauche,apex
 915720.25,6240513.25,300.63,10.6,4.5,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,85.6,1733,gauche,apex
 916068.75,6240513.25,328.98,4.2,4.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,12.7,2238,droite,apex
 916134.75,6240513.25,331.56,24.7,9.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,69.0,2227,droite,apex
@@ -5254,7 +5254,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916282.75,6240503.75,353.05,5.2,5.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,Forêt fermée de pin d'Alep pur,126.5,2695,droite,apex
 915505.25,6240503.25,312.07,14.1,8.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,Forêt fermée de pin d'Alep pur,125.3,1633,gauche,apex
 915546.25,6240503.25,309.46,11.9,12.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine04,Forêt fermée de pin d'Alep pur,93.6,1638,gauche,apex
-915706.25,6240503.25,290.02,4.1,3.3,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree01,Forêt fermée de pin d'Alep pur,73.2,1721,gauche,apex
+915706.25,6240503.25,290.02,4.1,3.3,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree01,Forêt fermée de pin d'Alep pur,73.2,1720,gauche,apex
 915902.25,6240503.25,321.40,12.7,9.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,45.3,2368,gauche,apex
 916106.75,6240503.25,327.63,4.9,4.8,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree04,Forêt fermée de pin d'Alep pur,39.3,2226,droite,apex
 916114.25,6240503.25,327.73,6.7,4.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine05,Forêt fermée de pin d'Alep pur,46.5,2226,droite,apex
@@ -6058,7 +6058,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 915441.25,6240425.25,267.11,15.0,5.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,127.4,1308,gauche,apex
 915548.25,6240425.25,274.79,18.7,12.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,Forêt fermée de pin d'Alep pur,54.8,1616,gauche,apex
 915597.75,6240425.25,286.25,13.9,8.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,hors forêt : autre,6.6,1622,gauche,apex
-915954.25,6240425.25,307.64,20.5,11.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,7.5,1991,droite,apex
+915954.25,6240425.25,307.64,20.5,11.6,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,7.5,1990,droite,apex
 915996.75,6240425.25,312.38,21.4,12.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine05,hors forêt : abords bâtis (< 40 m),5.1,2030,gauche,apex
 916092.75,6240425.25,323.26,15.7,7.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,30.5,2125,droite,apex
 915917.75,6240424.75,302.79,20.6,8.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,19.1,1954,droite,apex
@@ -6612,7 +6612,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916100.25,6240371.75,319.69,7.8,5.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine01,Forêt fermée de pin d'Alep pur,44.2,2109,droite,apex
 916134.25,6240371.75,323.85,3.3,4.1,cyprès,Foliage/Trees/Cypress,SM_Cypress03,hors forêt : abords bâtis (< 40 m),74.3,2112,droite,apex
 916190.75,6240371.75,332.31,5.7,4.7,cyprès,Foliage/Trees/Cypress,SM_Cypress03,"hors forêt : haie (BD TOPO, 4 m)",128.3,2115,droite,apex
-915481.75,6240371.25,288.80,12.9,10.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine07,Forêt fermée de pin d'Alep pur,62.0,1329,gauche,apex
+915481.75,6240371.25,288.80,12.9,10.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine07,Forêt fermée de pin d'Alep pur,62.0,1330,gauche,apex
 915546.75,6240371.25,287.21,12.4,3.9,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo03,Forêt fermée de pin d'Alep pur,35.9,1388,gauche,apex
 915593.25,6240371.25,284.85,14.4,5.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine05,Forêt fermée de pin d'Alep pur,18.2,1435,gauche,apex
 915840.75,6240371.25,303.05,13.0,10.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,63.4,1859,droite,apex
@@ -6789,7 +6789,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 915774.25,6240356.25,297.03,15.3,11.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,66.9,1798,droite,apex
 915812.75,6240356.25,300.34,15.7,11.3,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo03,Forêt fermée de pin d'Alep pur,72.6,1830,droite,apex
 915834.75,6240356.25,302.04,5.8,3.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine07,Forêt fermée de pin d'Alep pur,77.0,1850,droite,apex
-915930.25,6240356.25,305.27,13.6,4.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,80.5,1991,droite,apex
+915930.25,6240356.25,305.27,13.6,4.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,80.5,1990,droite,apex
 916033.25,6240356.25,307.11,19.6,10.4,cyprès,Foliage/Trees/Cypress,SM_Cypress01,hors forêt : abords bâtis (< 40 m),38.2,2088,droite,apex
 916041.75,6240356.25,307.43,5.8,6.4,olivier,Foliage/Trees/Olivetree,SM_Olivetree03,hors forêt : abords bâtis (< 40 m),36.0,2093,droite,apex
 915347.75,6240355.75,278.46,7.8,4.5,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine06,Forêt fermée de pin d'Alep pur,125.6,1250,gauche,apex
@@ -6806,7 +6806,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916169.25,6240355.25,324.92,5.3,5.4,olivier,Foliage/Trees/Olivetree,SM_Olivetree02,hors forêt : abords bâtis (< 40 m),113.0,2112,droite,apex
 915390.75,6240354.75,263.42,14.2,5.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine12,Forêt fermée de pin d'Alep pur,93.4,1268,gauche,apex
 915480.75,6240354.75,286.82,11.6,5.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine04,Forêt fermée de pin d'Alep pur,47.3,1323,gauche,apex
-915911.25,6240354.75,305.01,13.2,9.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine04,Forêt fermée de pin d'Alep pur,88.1,1970,droite,apex
+915911.25,6240354.75,305.01,13.2,9.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine04,Forêt fermée de pin d'Alep pur,88.1,1971,droite,apex
 915957.25,6240354.75,304.38,5.0,5.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,74.5,2007,droite,apex
 915438.25,6240354.25,277.12,12.7,7.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine13,Forêt fermée de pin d'Alep pur,64.5,1292,gauche,apex
 915516.25,6240354.25,285.11,12.4,5.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine01,Forêt fermée de pin d'Alep pur,32.9,1357,gauche,apex
@@ -12068,7 +12068,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916799.25,6240951.75,397.43,5.1,2.3,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple06,Forêt fermée de pin d'Alep pur,72.8,3454,gauche,couvert_restant
 916962.75,6240951.75,398.12,7.9,4.8,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple02,Forêt fermée à mélange de feuillus prépondérants et conifères,73.8,3618,gauche,couvert_restant
 916970.75,6240951.75,397.96,8.5,5.1,chêne vert,Foliage/Trees/BlackmapleMonteCarlo,SM_BlackmapleMonteCarlo03,Forêt fermée à mélange de feuillus prépondérants et conifères,72.1,3630,gauche,couvert_restant
-917034.75,6240951.75,397.28,3.7,2.0,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree02,hors forêt : abords bâtis (< 40 m),54.0,3692,gauche,couvert_restant
+917034.75,6240951.75,397.28,3.7,2.0,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree02,hors forêt : abords bâtis (< 40 m),54.0,3691,gauche,couvert_restant
 916614.25,6240951.25,387.13,3.6,2.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,Forêt fermée de pin d'Alep pur,127.6,3313,gauche,couvert_restant
 916693.25,6240951.25,392.22,3.5,2.0,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple03,Forêt fermée à mélange de feuillus prépondérants et conifères,93.9,3343,gauche,couvert_restant
 916710.25,6240951.25,393.81,5.6,2.0,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree02,Forêt fermée de pin d'Alep pur,91.1,3350,gauche,couvert_restant
@@ -13736,7 +13736,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916455.25,6240644.25,371.54,7.6,2.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,98.7,2926,droite,couvert_restant
 916111.75,6240643.75,334.71,6.5,4.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine13,Forêt fermée de pin d'Alep pur,22.8,2588,gauche,couvert_restant
 915953.25,6240643.25,311.88,7.3,2.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,57.4,2456,gauche,couvert_restant
-915996.75,6240643.25,313.63,4.1,2.0,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree04,Forêt fermée de pin d'Alep pur,39.5,2496,gauche,couvert_restant
+915996.75,6240643.25,313.63,4.1,2.0,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree04,Forêt fermée de pin d'Alep pur,39.5,2495,gauche,couvert_restant
 916010.25,6240643.25,318.97,2.9,2.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine01,Forêt fermée de pin d'Alep pur,32.8,2509,gauche,couvert_restant
 916027.25,6240643.25,325.21,6.1,3.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine12,Forêt fermée de pin d'Alep pur,25.0,2522,gauche,couvert_restant
 916135.25,6240642.75,335.75,5.7,5.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine14,Forêt fermée de pin d'Alep pur,34.3,2606,gauche,couvert_restant
@@ -13845,7 +13845,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 915932.25,6240625.75,308.05,5.1,4.2,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple03,Forêt fermée de pin d'Alep pur,51.7,2434,gauche,couvert_restant
 915966.25,6240625.75,321.76,10.6,4.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,36.0,2459,gauche,couvert_restant
 916173.25,6240625.75,339.78,11.5,8.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,34.2,2714,gauche,couvert_restant
-916473.75,6240625.75,378.04,7.8,3.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,124.8,2925,droite,couvert_restant
+916473.75,6240625.75,378.04,7.8,3.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,124.8,2926,droite,couvert_restant
 915830.75,6240625.25,326.69,4.2,2.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,127.3,2408,gauche,couvert_restant
 915877.75,6240624.25,304.59,4.2,2.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine05,Forêt fermée de pin d'Alep pur,87.6,2418,gauche,couvert_restant
 916238.75,6240624.25,351.59,6.7,2.2,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,20.6,2754,droite,couvert_restant
@@ -14068,7 +14068,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 915897.25,6240557.25,321.26,5.3,2.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,41.3,2396,gauche,couvert_restant
 915735.25,6240556.75,315.64,5.1,2.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,131.2,1740,gauche,couvert_restant
 915805.25,6240556.75,305.63,6.5,3.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine13,Forêt fermée de pin d'Alep pur,125.4,1861,gauche,couvert_restant
-915999.75,6240556.75,337.96,2.9,3.5,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,Forêt fermée de pin d'Alep pur,40.6,2462,droite,couvert_restant
+915999.75,6240556.75,337.96,2.9,3.5,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,Forêt fermée de pin d'Alep pur,40.6,2461,droite,couvert_restant
 916204.75,6240556.25,340.23,9.2,3.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,36.6,2685,droite,couvert_restant
 915831.75,6240555.75,299.38,7.3,3.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,Forêt fermée de pin d'Alep pur,106.4,2395,gauche,couvert_restant
 916209.25,6240555.75,340.51,9.2,3.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine01,Forêt fermée de pin d'Alep pur,39.4,2686,droite,couvert_restant
@@ -14862,7 +14862,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916167.25,6240372.75,329.59,4.0,3.2,olivier,Foliage/Trees/Olivetree,SM_Olivetree01,hors forêt : abords bâtis (< 40 m),105.3,2114,droite,couvert_restant
 916172.25,6240372.75,330.75,3.6,2.3,olivier,Foliage/Trees/Olivetree,SM_Olivetree02,hors forêt : abords bâtis (< 40 m),110.1,2114,droite,couvert_restant
 915790.75,6240371.75,297.05,11.9,3.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine03,Forêt fermée de pin d'Alep pur,53.8,1811,droite,couvert_restant
-915819.25,6240371.75,300.51,14.4,6.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine10,Forêt fermée de pin d'Alep pur,58.6,1838,droite,couvert_restant
+915819.25,6240371.75,300.51,14.4,6.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine10,Forêt fermée de pin d'Alep pur,58.6,1837,droite,couvert_restant
 915908.75,6240371.25,308.07,4.1,3.0,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,Forêt fermée de pin d'Alep pur,73.2,1965,droite,couvert_restant
 916050.75,6240371.25,312.98,3.8,2.8,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,hors forêt : autre,19.8,2095,droite,couvert_restant
 916053.25,6240371.25,313.24,3.8,3.7,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree01,hors forêt : autre,19.8,2096,droite,couvert_restant
@@ -15145,7 +15145,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 915697.75,6240319.75,293.87,4.4,2.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,53.7,1501,droite,couvert_restant
 915700.75,6240319.75,294.13,3.4,2.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,Forêt fermée de pin d'Alep pur,55.5,1502,droite,couvert_restant
 915871.75,6240319.75,293.94,6.3,4.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine10,Forêt fermée de pin d'Alep pur,120.2,1878,droite,couvert_restant
-915926.75,6240319.75,295.38,8.4,2.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,116.2,1997,droite,couvert_restant
+915926.75,6240319.75,295.38,8.4,2.4,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine15,Forêt fermée de pin d'Alep pur,116.2,1996,droite,couvert_restant
 915930.75,6240319.75,295.58,8.2,2.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine10,Forêt fermée de pin d'Alep pur,115.0,1999,droite,couvert_restant
 915358.75,6240319.25,260.07,6.7,2.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine01,Forêt fermée de pin d'Alep pur,94.0,1240,gauche,couvert_restant
 915407.75,6240319.25,265.06,6.4,2.8,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple02,Forêt fermée de pin d'Alep pur,56.1,1264,gauche,couvert_restant
@@ -15724,7 +15724,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 915247.25,6240180.75,255.74,7.7,2.9,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,25.9,1031,gauche,couvert_restant
 915182.25,6240179.75,224.74,7.9,4.3,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,49.8,973,gauche,couvert_restant
 915211.25,6240179.75,242.83,5.8,2.3,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree01,Forêt fermée de pin d'Alep pur,37.9,998,gauche,couvert_restant
-915376.25,6240179.25,243.61,6.5,2.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,30.7,1145,droite,couvert_restant
+915376.25,6240179.25,243.61,6.5,2.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine11,Forêt fermée de pin d'Alep pur,30.7,1146,droite,couvert_restant
 915381.25,6240179.25,242.50,6.5,2.1,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine02,Forêt fermée de pin d'Alep pur,33.4,1150,droite,couvert_restant
 915060.75,6240178.75,213.96,7.8,2.5,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine09,Forêt fermée de pin d'Alep pur,117.3,919,gauche,couvert_restant
 915282.75,6240178.75,253.51,10.3,2.8,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine04,Forêt fermée de pin d'Alep pur,9.8,1064,gauche,couvert_restant
@@ -17104,7 +17104,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 915437.75,6239583.75,236.96,4.4,2.9,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple01,"hors forêt : haie (BD TOPO, 4 m)",113.1,15,droite,couvert_restant
 915299.25,6239583.25,210.08,3.2,3.2,olivier,Foliage/Trees/Olivetree,SM_Olivetree02,hors forêt : abords bâtis (< 40 m),17.0,-31,gauche,couvert_restant
 915166.75,6239582.75,194.48,3.2,2.0,olivier,Foliage/Trees/Olivetree,SM_Olivetree03,hors forêt : abords bâtis (< 40 m),102.7,-147,gauche,couvert_restant
-915368.25,6239581.75,222.37,4.8,3.3,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,hors forêt : abords bâtis (< 40 m),48.2,-9,droite,couvert_restant
+915368.25,6239581.75,222.37,4.8,3.3,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,hors forêt : abords bâtis (< 40 m),48.2,-8,droite,couvert_restant
 915378.25,6239580.75,224.42,3.7,3.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine08,hors forêt : abords bâtis (< 40 m),58.0,-7,droite,couvert_restant
 915302.25,6239579.75,210.62,2.7,2.0,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree01,hors forêt : abords bâtis (< 40 m),12.7,-33,gauche,couvert_restant
 915304.25,6239579.75,211.07,2.8,2.2,olivier,Foliage/Trees/Olivetree,SM_Olivetree01,hors forêt : abords bâtis (< 40 m),10.9,-32,gauche,couvert_restant
@@ -17400,7 +17400,7 @@ x_l93,y_l93,z_sol_m,hauteur_m,diametre_houppier_m,essence,famille_jeu,element_je
 916916.25,6240986.75,400.97,5.6,3.2,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree04,Forêt fermée à mélange de feuillus prépondérants et conifères,104.4,3538,gauche,couvert_restant
 916876.25,6240984.75,401.14,5.0,2.1,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree06,Forêt fermée à mélange de feuillus prépondérants et conifères,97.6,3508,gauche,couvert_restant
 916878.25,6240984.75,401.19,5.5,2.9,chêne vert,Foliage/Trees/Smoketree,SM_Smoketree02,Forêt fermée à mélange de feuillus prépondérants et conifères,97.7,3508,gauche,couvert_restant
-916973.25,6240984.25,399.27,5.9,2.0,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple04,Forêt fermée à mélange de feuillus prépondérants et conifères,102.6,3641,gauche,couvert_restant
+916973.25,6240984.25,399.27,5.9,2.0,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple04,Forêt fermée à mélange de feuillus prépondérants et conifères,102.6,3640,gauche,couvert_restant
 916788.25,6240982.75,398.96,6.4,2.0,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine13,Forêt fermée à mélange de feuillus prépondérants et conifères,105.6,3453,gauche,couvert_restant
 917068.25,6240981.75,397.18,10.9,3.7,pin d'Alep,Foliage/Trees/AleppoPine,SM_AleppoPine12,Forêt fermée de pin d'Alep pur,72.9,3730,gauche,couvert_restant
 916665.25,6240980.75,392.68,6.0,3.7,chêne pubescent,Foliage/Trees/Blackmaple,SM_Blackmaple02,Forêt fermée à mélange de feuillus prépondérants et conifères,130.0,3338,gauche,couvert_restant

@@ -1,8 +1,35 @@
-# État du projet (17/11/2026)
+# État du projet (18/11/2026)
 
-« Vérifié » = sortie relue ou figure regardée ici, sur Linux. **Rien n'a tourné dans Unreal ni dans le jeu.**
+**Rien n'a encore tourné dans Unreal ni dans le jeu.** Sur le PC Windows : données régénérées et outils construits (§ PC). Le jeu et Unreal 5.6.1 ne sont pas encore installés.
 
-## Fait et vérifié
+## Sur le PC Windows (17-18/11/2026)
+
+« Vérifié » ici = sortie relue sur le PC. Emplacements : dépôt `F:\Unreal\Projets\python` ; jeu prévu dans `F:\SteamLibrary\steamapps\common\Assetto Corsa Rally` (`ACR_JEU`) ; atelier de la montée `F:\acrxs_ceyreste` (`ACR_ATELIER`) ; journaux dans `F:\acrxs_ceyreste\journaux`. Aucun atelier ni conteneur du Grand Caunet sur ce PC (pas de `Z:\acrxs`).
+
+| Point | État |
+|---|---|
+| Python | celui du PC est un 3.14 **32 bits** (inutilisable : étape 14 à 8 Go) ; environnement 3.12 64 bits `F:\Unreal\Projets\venv-ceyreste`, `requirements.txt` installé. Lancer `F:\Unreal\Projets\venv-ceyreste\Scripts\python.exe`, pas `python` (alias du Microsoft Store) |
+| `1_prerequis` | PowerShell 7.7 et Rust 1.100 installés ; Windows SDK 10.0.26100 installé à part (manquait : voir corrections) ; .NET 10, Git, outils C++ (Visual Studio Community 2022) déjà là |
+| `2_recuperer_acrxs` | ACR Extra Stages au commit `1324f07d`, retouches 0001 à 0006 appliquées, `acr-ref`, `acr-additive`, `retoc` 0.1.5 et `acr-mappings` construits et lancés (aide affichée) |
+| `0_controle`, `3_usmap` | **non faits** : il faut le jeu |
+| Données (`tout_lancer.py`, 01 à 16, `--sol photo`) | régénérées sur le PC ; export : 0 erreur, 533 portes, sol sous toutes, 27 notes sur 27 dans le bon sens, 3 024,39 m ; paquet : 0 erreur, 419 maillages, **263 943 instances** |
+
+Commandes à lancer **depuis PowerShell**, pas depuis Git Bash : depuis Git Bash, `link.exe` désigne l'utilitaire `link` de Git et Rust échoue (« extra operand »).
+
+### Corrections du kit faites sur le PC
+
+- `2_recuperer_acrxs.ps1` n'était pas rejouable : le test « déjà appliquée » par retrait à blanc échoue pour 0005, que 0006 retouche ensuite (`StageBuild.cs`). Il remet maintenant à l'origine les seuls fichiers touchés par nos retouches puis réapplique la série ; toute autre modification l'arrête. Vérifié au 3e et au 4e lancement.
+- `1_prerequis.ps1` ne contrôlait que le compilateur C++ ; Visual Studio déclarait le composant SDK sans ses bibliothèques. Ajout du Windows SDK 10.0.26100, contrôlé par la présence de `kernel32.lib`.
+- Non corrigé, à savoir : l'étape 01 écrit « ECHEC » et continue quand une couche WFS échoue (constaté : `zone_de_vegetation` vide au premier passage). Relire la sortie de 01 avant la suite ; c'est ce qu'a fait la régénération retenue (20 couches, aucune en échec).
+
+### L'écart de 87 instances (cause cherchée le 18/11)
+
+- **Déterministe sur des entrées identiques** : deux passes 02 → 16 sur les mêmes téléchargements donnent le même paquet (263 943 instances, mêmes arbres, même semis) ; seuls diffèrent la date, la durée et l'en-tête gzip de `arbustes.csv.gz`. Le code de l'étape 16 n'est pas en cause.
+- **Sensible aux entrées** : une chaussée qui diffère d'au plus 1 mm sur quelques points (arrondi entre machines) fait changer 21 arbres sur 17 900 ; avec le `chaussee_precise.csv` du cloud, l'étape 10 du PC redonne exactement les arbres du cloud (0 différence). Les 13 arbustes d'écart viennent d'ailleurs (couches BD TOPO retéléchargées, qui ont changé), cause précise non isolée.
+- **Écartée** : l'étape 10 lit `stage.json` de la génération précédente (parc d'assistance) ; sans lui, arbres et instances sont identiques.
+- Conséquence : la route physique, le relevé du placement et le décor doivent sortir **de la même génération**, sans retéléchargement entre les trois. Génération retenue : empreintes dans `F:\acrxs_ceyreste\determinisme\empreintes_B.txt`.
+
+## Fait et vérifié dans le cloud (17/11/2026, Linux)
 
 | Étape | Sortie | Vérification |
 |---|---|---|
@@ -15,13 +42,13 @@
 | 07 / 07b chaussée au mètre | `chaussee_precise.csv` | contrôles de 07b tous passés (cassures > 5° de l'axe : 11 → 0 ; rayons ±0,8 % médian) ; axe juste sur les planches `figures/phase3/planche_*.png` ; **largeur : voir « non vérifié »** |
 | 08 modèle 3D | `modele/route.glb`, `terrain.glb` | raccord route-terrain ≤ 3 mm, normales 100 % vers le haut |
 | 11 route, ouvrages | `modele/route_habillee.glb`, `ouvrages.glb` | rendus `figures/phase4/route_*.png` regardés |
-| 10 arbres | `arbres.csv` (17 902), `arbustes.csv.gz` (31 516) | `figures/phase4/semis_synthese.png` : 75 % pin d'Alep, médiane 9 m |
+| 10 arbres | `arbres.csv` (17 900 dans le fichier versionné), `arbustes.csv.gz` (31 548 ; 31 535 sur le PC) | `figures/phase4/semis_synthese.png` : 75 % pin d'Alep, médiane 9 m |
 | 09 export Stage IR | `export/stage_ir/ceyreste/` | `controle_ceyreste.json` : **aucune erreur** (534 portes, sol sous toutes, 27 notes dans le bon sens, 428 troncs) |
 | 13 lointain | `modele/lointain.glb` | 0 arête de bord manquante ; horizon jusqu'à 38 km |
 | 14 textures de sol | `modele/terrain_sol.glb` | terminé sans erreur |
 | 15 vues de contrôle | `figures/phase5/vue_*.png` | vues de l'épingle du PK 893 et du raccord au Grand Caunet regardées |
 | 15b sols du jeu | `modele/sols_jeu/` | proportions par matière écrites |
-| 16 paquet Unreal (`--sol photo`) | `paquet_unreal/` (non versionné) | `manifeste.json` : 0 erreur, 419 maillages, 263 997 instances (263 910 au passage précédent : écart de 87 instances entre deux passages, cause non cherchée), écart terrain < 0,001 cm |
+| 16 paquet Unreal (`--sol photo`) | `paquet_unreal/` (non versionné) | `manifeste.json` : 0 erreur, 419 maillages, 263 997 instances (263 910 au passage précédent : écart de 87 ; les passes du cloud ne sont pas rejouables, mais le mécanisme est établi sur le PC : § « L'écart de 87 instances »), écart terrain < 0,001 cm |
 | 21 aperçu conducteur | `figures/apercu_conducteur/pk_*.jpg` | regardé |
 | Autonomie | — | chaîne complète relancée avec `acr-grand-caunet/` rendu inaccessible : voir § Autonomie |
 
@@ -44,7 +71,7 @@ Glissières, parapets hors ouvrages, parois rocheuses, mobilier (panneaux, potea
 
 ## À faire sur le PC
 
-Dans l'ordre de `docs/guide_pc.md` : outils dans l'atelier de la montée ; route physique (`4_construire.ps1`) ; relevé du placement ; essai 1 ; puis sol « façon jeu », décor Unreal dans un projet Unreal propre à la montée, cuisson, relecture, essai 2.
+Dans l'ordre de `docs/guide_pc.md`. Faits le 18/11 : outils (sauf `.usmap`), données. Reste : installer le jeu (Steam, `F:\SteamLibrary`) et Unreal 5.6.1 (`F:\Unreal\UE_5.6`, à passer en `-Moteur` à `chaine_decor.ps1`) ; `0_controle` ; `3_usmap` ; route physique (`4_construire.ps1`) ; relevé du placement ; copie complète de `~mods` avant la première bascule ; essai 1 ; puis sol « façon jeu », décor Unreal dans un projet Unreal propre à la montée, cuisson, relecture, essai 2.
 
 ## Coexistence avec le Grand Caunet : impossible avec la voie actuelle
 

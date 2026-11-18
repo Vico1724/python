@@ -41,7 +41,7 @@
     "texture_px_par_dalle": 2048,
     "terrain": {
       "sommets": 180405,
-      "triangles": 351802,
+      "triangles": 351814,
       "dalles": 13,
       "sommets_de_bord": 7826,
       "recalage_bords_mnt_m": {
@@ -72,8 +72,8 @@
       "terrain": {
         "taille_mo": 19.95,
         "maillages": 13,
-        "sommets": 181566,
-        "triangles": 351802,
+        "sommets": 181572,
+        "triangles": 351814,
         "nan": false,
         "bornes_min": [
           -300.79998779296875,
@@ -165,7 +165,7 @@
       }
     }
   },
-  "rendus_webgl": true,
+  "rendus_webgl": false,
   "vues_rapprochees_pk": {
     "pont": [
       2024,

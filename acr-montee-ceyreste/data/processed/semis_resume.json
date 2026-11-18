@@ -93,12 +93,12 @@
   }
  },
  "arbustes": {
-  "nombre": 31548,
+  "nombre": 31535,
   "par_famille_jeu": {
-   "Foliage/Trees/Boxthorn": 21239,
-   "Foliage/GroundCover/BroomCreeper": 10309
+   "Foliage/Trees/Boxthorn": 21237,
+   "Foliage/GroundCover/BroomCreeper": 10298
   },
-  "densite_par_ha_de_vegetation_basse": 5635
+  "densite_par_ha_de_vegetation_basse": 5633
  },
  "par_type_de_formation": {
   "Forêt fermée de pin d'Alep pur": {

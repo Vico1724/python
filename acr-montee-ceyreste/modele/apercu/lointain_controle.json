@@ -58,9 +58,9 @@
   "triangles": 1479556,
   "dalles": 255,
   "bord": {
-   "boucles_de_bord": 5,
+   "boucles_de_bord": 4,
    "sommets_bord_exterieur": 1137,
-   "aretes_de_bord_total": 8976
+   "aretes_de_bord_total": 8974
   },
   "aretes_de_bord_absentes_de_la_triangulation": 0,
   "reprises_triangulation": 0,
@@ -163,5 +163,5 @@
    "sommets_dans_le_couloir": 0
   }
  },
- "duree_s": 124
+ "duree_s": 70
 }
