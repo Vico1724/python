@@ -68,7 +68,7 @@
    "pk_fin_m": 3768,
    "ligne": "axiale",
    "type": "T3",
-   "provenance": "orthophoto IGN 20 cm (scripts/27_verif_trace.py, bandes redressées figures/affinage/verif_largeur_bandes_*.jpg) : traits d'environ 3 m séparés de 1 à 1,5 m aux PK 876, 1156, 1298, 2593 ; axiale discontinue vue sur toutes les planches Panoramax du 08/09/2025. Type uniforme supposé entre les points mesurés ; portions continues éventuelles dans les épingles non relevées."
+   "provenance": "orthophoto IGN 20 cm (scripts/27_verif_trace.py, bandes redressées figures/affinage/verif_largeur_bandes_*.jpg) : traits d'environ 3 m séparés de 1 à 1,5 m aux PK 876, 1156, 1298, 2593 ; axiale discontinue vue sur toutes les planches Panoramax du 08/09/2025. Type uniforme supposé entre les points mesurés ; portions continues éventuelles dans les épingles non relevées. Sixième passe (19/11/2026) : T3 confirmé sur la bande redressée du PK 2000-2050 (43_chaussee_releve.py bandes ; trait / intervalle ≈ 2) ; aucune portion continue vue sur les 73 tronçons de 50 m (chaussee_releve_50m.json)."
   },
   {
    "pk_debut_m": -170,
@@ -76,6 +76,13 @@
    "ligne": "rives",
    "type": "T2",
    "provenance": "Panoramax 08/09/2025 : rives discontinues des deux côtés sur l'ensemble des planches ; orthophoto : rives à 6,0-7,6 m l'une de l'autre (médiane 6,95 m) ; modulation T2 de la norme, non mesurée."
+  },
+  {
+   "pk_debut_m": 3685,
+   "pk_fin_m": 3768,
+   "ligne": "rive_gauche",
+   "type": "continue",
+   "provenance": "Panoramax 08/09/2025, images e48878e8, 1eeb4efc, 2f96ea55 : rive gauche continue le long du caniveau à grille (chaussee_releve_50m.json, sixième passe)"
   }
  ],
  "non_modelise": [
@@ -83,7 +90,9 @@
   "Marquage du carrefour du Lion d'Or (îlot hachuré, ligne d'effet du cédez-le-passage) et des débouchés.",
   "Usure et effacement partiel (rendu uniforme)."
  ],
- "zones_hachurees": [
+ "troncons_du_grand_caunet_ecartes": "Les tronçons repris du Grand Caunet (PK de la D3D et de la D1, carrefour du Lion d'Or) ont été retirés le 18/11/2026 : leurs PK ne correspondent à rien sur la D3 de Ceyreste.",
+ "zones_hachurees": [],
+ "zones_hachurees_ecartees": [
   {
    "nom": "carrefour du Lion d'Or",
    "pk_pointe_m": 3636.3,
@@ -97,8 +106,39 @@
    "pas_m": 1.4,
    "biais_m": 1.2,
    "lecture": "zone en fuseau allongé aux deux bouts arrondis, large de 2 à 2,7 m ; décalages comptés depuis l'axe du ruban, positifs à droite ; contour continu et bandes obliques",
-   "provenance": "pointe et bout repris de la note de la zone 2 de chaussee_corrections.json (nuage de points LiDAR, intensité du marquage : de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0, environ 14 x 2,7 m) ; largeur et écartement des bandes estimés sur la vidéo de reconnaissance (PK 3596 et 3608) ; forme reprise du polygone zone_hachuree de carrefours_annexes.json (points de forte intensité du nuage LiDAR)"
+   "provenance": "pointe et bout repris de la note de la zone 2 de chaussee_corrections.json (nuage de points LiDAR, intensité du marquage : de x = 916747,5 ; y = 6243549,5 à x = 916738,8 ; y = 6243561,0, environ 14 x 2,7 m) ; largeur et écartement des bandes estimés sur la vidéo de reconnaissance (PK 3596 et 3608) ; forme reprise du polygone zone_hachuree de carrefours_annexes.json (points de forte intensité du nuage LiDAR)",
+   "raison": "sixième passe (19/11/2026) : zone du Grand Caunet (coordonnées à 2,7 km au nord du PK 3636 de Ceyreste) ; aucune zone hachurée sur les images 3293697d, 11ee1c29 (chaussee_releve_50m.json)"
   }
  ],
- "troncons_du_grand_caunet_ecartes": "Les tronçons repris du Grand Caunet (PK de la D3D et de la D1, carrefour du Lion d'Or) ont été retirés le 18/11/2026 : leurs PK ne correspondent à rien sur la D3 de Ceyreste."
+ "marques_ponctuelles": [
+  {
+   "genre": "rectangle",
+   "pk_m": 1113,
+   "cote": "les_deux",
+   "longueur_m": 1.0,
+   "largeur_m": 0.5,
+   "depuis_bord_m": 0.35,
+   "provenance": "rectangle blanc peint sur chaque rive au droit de la borne PR 6 (Panoramax e34f1aff)"
+  },
+  {
+   "genre": "rectangle",
+   "pk_m": 3104,
+   "cote": "les_deux",
+   "longueur_m": 1.0,
+   "largeur_m": 0.5,
+   "depuis_bord_m": 0.35,
+   "provenance": "rectangle blanc peint sur chaque rive au droit de la borne PR 8 (Panoramax 2540de5a)"
+  },
+  {
+   "genre": "tirets_le_long",
+   "pk_debut_m": 2934,
+   "pk_fin_m": 2944,
+   "cote": "droite",
+   "trait_m": 0.5,
+   "intervalle_m": 0.5,
+   "largeur_m": 0.5,
+   "depuis_bord_m": -0.4,
+   "provenance": "ligne de cédez-le-passage de la voie latérale au débouché sur la D3, posée au bord de la chaussée (Panoramax a0adfc0d, 0e847466 ; ±2 m)"
+  }
+ ]
 }

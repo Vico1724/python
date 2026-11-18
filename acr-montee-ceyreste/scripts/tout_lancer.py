@@ -44,6 +44,8 @@ ETAPES = [
     (31, "31_bati.py", "bâti en volumes simples : maisons du bord de route, village vu du départ", False),
     (37, "37_clotures.py", "murs, murets, clôtures, portails, haies relevés (data/reference/clotures_murets.json)", False),
     (41, "41_carrefour_depart.py", "carrefour du départ : voie latérale, îlots, trottoir, marquage, panneaux, poteaux, jardins", False),
+    (44, "44_usure_chaussee.py", "usure de la chaussée relevée par tronçon de 50 m (fissures, pièces, traces, bords)", False),
+    (45, "45_vegetation_bord.py", "végétation de bord de route et de jardin relevée (herbes, massifs sur le LiDAR)", False),
     (39, "39_panneaux_neutres.py", "panneaux exacts (mât + plaque) pour l'export neutre", False),
     (10, "10_semis_arbres.py", "semis des arbres et arbustes", False),
     (9, "09_export_stage_ir.py", "export « Stage IR » (ACR Extra Stages)", False),

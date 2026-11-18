@@ -38,7 +38,8 @@ from acr_geo import RAW, ROOT  # noqa: E402
 MOD, PAQ = ROOT / "modele", ROOT / "paquet_unreal"
 DEST = ROOT / "export" / "neutre"
 MODELES = ["terrain_sol.glb", "lointain.glb", "route_habillee.glb", "ouvrages.glb", "annexes.glb", "balisage.glb",
-           "bati_bord.glb", "village.glb", "clotures.glb", "depart.glb", "panneaux_neutres.glb"]
+           "bati_bord.glb", "village.glb", "clotures.glb", "depart.glb", "panneaux_neutres.glb",
+           "usure_chaussee.glb", "vegetation_bord.glb"]
 COLLISIONS = {"ouvrages_collision.glb": MOD, "annexes_collision.glb": MOD, "bati_bord_collision.glb": MOD,
               "clotures_collision.glb": MOD, "depart_collision.glb": MOD,
               "collision.glb": ROOT / "export" / "stage_ir" / "ceyreste",

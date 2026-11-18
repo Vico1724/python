@@ -1,0 +1,3002 @@
+{
+ "note": "Relevé de la chaussée par tronçon de 50 m, du PK 100 à la zone d'arrêt (PK 3750), sixième passe du 19/11/2026. Lu sur les vues tournées vers la descente de chaque image HD Panoramax du 08/09/2025 (Région Sud / Immergis, licence Etalab 2.0), graduées par 43_chaussee_releve.py planches (planches data/raw/panoramax/chaussee/planche_<PK>.jpg, non versionnées) ; chaque élément cite ses images. Voies et bords comptés dans le sens de la montée : « droite » = voie montante, « gauche » = voie descendante, « bord_droit » / « bord_gauche » = bord de l'enrobé. PK lus sur les graduations de l'axe (±3 m), position en travers à la voie près. ATTENTION : état d'un jour ordinaire de septembre 2025. Les « traces_pneus » et la terre sont variables. Lu par 44_usure_chaussee.py (maillages minces à texture ajourée pour l'aperçu et l'export neutre ; décalques du jeu pour le paquet Unreal, par 16).",
+ "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence Etalab 2.0 (data/reference/photos_rue_panoramax.csv)",
+ "genres": {
+  "faiencage": "fissures en réseau (peau de crocodile)",
+  "fissure_longitudinale": "fissure suivant la route",
+  "fissure_transversale": "fissure en travers",
+  "joint_ponte": "fissure ou joint colmaté au bitume (trait noir brillant)",
+  "reprise": "pièce d'enrobé plus sombre (rapiéçage)",
+  "raccord": "changement d'enrobé sur toute la largeur",
+  "bord_effrite": "bord de l'enrobé arraché, gravillons",
+  "gravillons": "gravillons libres sur le bord",
+  "terre": "terre rouge et débris sur le bord",
+  "aiguilles": "aiguilles de pin sur le bord",
+  "traces_pneus": "traces noires de pneus (dérapages, accélérations)"
+ },
+ "methode_marquage": "Axiale : traits rapprochés (T3, 3 m / 1,33 m) vérifiés sur la bande redressée du PK 2000-2050 (43_chaussee_releve.py bandes, images b9a4f318, 7b885a49 : rapport trait / intervalle ≈ 2) et sur l'orthophoto (PK 1050 : traits de 2,5 m, intervalles de 1,6 m) ; rives T2 (3 m / 3,5 m) : intervalles de 2,8 à 4,2 m mesurés sur l'orthophoto aux PK 1050-1100, 2100, 2950, 3250. Les « tirets jaunes » vus sur les planches de la première lecture sont les bords de chaussée de 07 dessinés par l'outil (vérifié sur zoom_ff83d182), pas un marquage.",
+ "troncons": [
+  {
+   "pk": [
+    100,
+    150
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "edfd08bf-b5be-4304-b6ca-e922d593570e",
+    "c559b2b8-7e11-4711-bd90-a311b1613650",
+    "fa1351a2-4bef-4b31-a382-3f1d983ee5dd",
+    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
+    "9e3f4f93-cd2a-427a-bd84-4fabed39e880",
+    "48a9f912-ca25-48ab-bff3-5a6d42503499"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      100.0,
+      112.0
+     ],
+     "voie": "axe",
+     "images": [
+      "fa1351a2-4bef-4b31-a382-3f1d983ee5dd"
+     ],
+     "description": "fissure le long de l'axe, ramifiée"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      100.0,
+      110.0
+     ],
+     "voie": "axe",
+     "images": [
+      "fa1351a2-4bef-4b31-a382-3f1d983ee5dd"
+     ],
+     "description": "faïençage autour de la fissure d'axe"
+    },
+    {
+     "genre": "bord_effrite",
+     "pk": [
+      120.0,
+      150.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
+      "9e3f4f93-cd2a-427a-bd84-4fabed39e880"
+     ],
+     "description": "bord de l'enrobé effrité, gravillons au pied du muret"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    150,
+    200
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "b046281f-1c4b-4321-a97c-2ffb54f8b5d3",
+    "9e3f4f93-cd2a-427a-bd84-4fabed39e880",
+    "48a9f912-ca25-48ab-bff3-5a6d42503499",
+    "d7d5855d-a768-4438-9e0e-4872803a797c",
+    "c6b32cb7-6de1-4b07-b419-1d4ef19c2f5f",
+    "3c96316d-dfd4-4061-a6d5-5eccad8e523a",
+    "8801585d-b9e4-45e3-ba15-433c18a46e7c"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      185.0,
+      200.0
+     ],
+     "voie": "droite",
+     "images": [
+      "3c96316d-dfd4-4061-a6d5-5eccad8e523a"
+     ],
+     "description": "fissure longitudinale au milieu de la voie"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    200,
+    250
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "d7d5855d-a768-4438-9e0e-4872803a797c",
+    "c6b32cb7-6de1-4b07-b419-1d4ef19c2f5f",
+    "3c96316d-dfd4-4061-a6d5-5eccad8e523a",
+    "8801585d-b9e4-45e3-ba15-433c18a46e7c",
+    "b654d53a-aadc-4535-a569-1d7d61580b00",
+    "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b",
+    "fda1798e-0ef9-44d8-b259-fc48ab601880"
+   ],
+   "elements": [
+    {
+     "genre": "terre",
+     "pk": [
+      200.0,
+      215.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "8801585d-b9e4-45e3-ba15-433c18a46e7c",
+      "b654d53a-aadc-4535-a569-1d7d61580b00"
+     ],
+     "description": "terre et gravillons à l'extérieur du virage"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      240.0,
+      250.0
+     ],
+     "voie": "axe",
+     "images": [
+      "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      245.0,
+      255.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b"
+     ],
+     "description": "faïençage dans la voie"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    250,
+    300
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "b654d53a-aadc-4535-a569-1d7d61580b00",
+    "619b5f76-5ca4-4d2b-bed5-1ecb2be2578b",
+    "fda1798e-0ef9-44d8-b259-fc48ab601880",
+    "a46dcdfa-8e92-4fec-a90e-5c2e7aaa0adb",
+    "e2b1240a-b648-4cbb-a404-1d53704486e3",
+    "d8f0fa89-bd06-4b83-b10f-a1768f91fadc"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      250.0,
+      298.0
+     ],
+     "voie": "axe",
+     "images": [
+      "fda1798e-0ef9-44d8-b259-fc48ab601880",
+      "e2b1240a-b648-4cbb-a404-1d53704486e3"
+     ],
+     "description": "fissure continue le long de l'axe"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      255.0,
+      300.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "fda1798e-0ef9-44d8-b259-fc48ab601880",
+      "a46dcdfa-8e92-4fec-a90e-5c2e7aaa0adb"
+     ],
+     "description": "herbe sèche et terre débordant sur le bord"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    300,
+    350
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "a46dcdfa-8e92-4fec-a90e-5c2e7aaa0adb",
+    "e2b1240a-b648-4cbb-a404-1d53704486e3",
+    "d8f0fa89-bd06-4b83-b10f-a1768f91fadc",
+    "3a53fe19-c46f-4f93-b3f3-e91ef4895db3",
+    "306c6cbb-04e2-41c9-8a4a-9e9d4edb2d88",
+    "e2ac9454-1172-45fd-8dbb-593ab876b56c"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      300.0,
+      310.0
+     ],
+     "voie": "axe",
+     "images": [
+      "d8f0fa89-bd06-4b83-b10f-a1768f91fadc"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "gravillons",
+     "pk": [
+      310.0,
+      330.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "3a53fe19-c46f-4f93-b3f3-e91ef4895db3"
+     ],
+     "description": "bord effrité, gravillons clairs"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    350,
+    400
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "3a53fe19-c46f-4f93-b3f3-e91ef4895db3",
+    "306c6cbb-04e2-41c9-8a4a-9e9d4edb2d88",
+    "e2ac9454-1172-45fd-8dbb-593ab876b56c",
+    "706a42a6-d622-4a0f-b910-02e4284b06e3",
+    "1d316dff-635b-4cf3-9a1d-5cf6eabe5bd1",
+    "2ba2815f-d0d2-4e26-a810-856f55733ac6"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      350.0,
+      362.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "e2ac9454-1172-45fd-8dbb-593ab876b56c"
+     ],
+     "description": "faïençage en réseau (peau de crocodile) dans le virage"
+    },
+    {
+     "genre": "reprise",
+     "pk": [
+      358.0,
+      372.0
+     ],
+     "voie": "droite",
+     "images": [
+      "706a42a6-d622-4a0f-b910-02e4284b06e3"
+     ],
+     "description": "voie reprise en enrobé plus sombre"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      378.0,
+      392.0
+     ],
+     "voie": "toute",
+     "images": [
+      "1d316dff-635b-4cf3-9a1d-5cf6eabe5bd1"
+     ],
+     "description": "fissures en réseau sur les deux voies"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    400,
+    450
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "706a42a6-d622-4a0f-b910-02e4284b06e3",
+    "1d316dff-635b-4cf3-9a1d-5cf6eabe5bd1",
+    "2ba2815f-d0d2-4e26-a810-856f55733ac6",
+    "b6cc01c3-bb07-429c-8990-3a3d14b411cf",
+    "fef444f3-310a-4079-bc9e-e9c726369d3c",
+    "3a0d33e4-5b84-4c9a-85d2-2e84e38e81fe",
+    "340a1a43-7b30-47c3-9ea6-08f3bf91ca06"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      405.0,
+      450.0
+     ],
+     "voie": "toute",
+     "images": [
+      "2ba2815f-d0d2-4e26-a810-856f55733ac6",
+      "b6cc01c3-bb07-429c-8990-3a3d14b411cf",
+      "fef444f3-310a-4079-bc9e-e9c726369d3c"
+     ],
+     "description": "faïençage étendu sur toute la largeur"
+    },
+    {
+     "genre": "bord_effrite",
+     "pk": [
+      410.0,
+      440.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "2ba2815f-d0d2-4e26-a810-856f55733ac6",
+      "fef444f3-310a-4079-bc9e-e9c726369d3c"
+     ],
+     "description": "bord effrité, gravillons et terre"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      440.0,
+      470.0
+     ],
+     "voie": "toute",
+     "images": [
+      "3a0d33e4-5b84-4c9a-85d2-2e84e38e81fe",
+      "340a1a43-7b30-47c3-9ea6-08f3bf91ca06"
+     ],
+     "description": "faïençage fort des deux voies (déjà relevé au PK 456)"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      440.0,
+      460.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "340a1a43-7b30-47c3-9ea6-08f3bf91ca06"
+     ],
+     "description": "terre rouge à l'extérieur du virage"
+    }
+   ],
+   "etat": "4 élément(s)"
+  },
+  {
+   "pk": [
+    450,
+    500
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "b6cc01c3-bb07-429c-8990-3a3d14b411cf",
+    "fef444f3-310a-4079-bc9e-e9c726369d3c",
+    "3a0d33e4-5b84-4c9a-85d2-2e84e38e81fe",
+    "340a1a43-7b30-47c3-9ea6-08f3bf91ca06",
+    "f481ecf0-d21c-40e1-8c67-926b1a04e3a0",
+    "d11bb5cc-87aa-4ade-8ce5-a65f024b0243",
+    "615e4eee-6a27-4793-b20e-90b49d81b4fc"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      470.0,
+      480.0
+     ],
+     "voie": "axe",
+     "images": [
+      "f481ecf0-d21c-40e1-8c67-926b1a04e3a0"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      480.0,
+      500.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "d11bb5cc-87aa-4ade-8ce5-a65f024b0243"
+     ],
+     "description": "terre rouge et aiguilles au bord"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    500,
+    550
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "f481ecf0-d21c-40e1-8c67-926b1a04e3a0",
+    "d11bb5cc-87aa-4ade-8ce5-a65f024b0243",
+    "615e4eee-6a27-4793-b20e-90b49d81b4fc",
+    "2a7f0fd2-9c18-4c02-a157-96132459a10b",
+    "622676a0-704b-4390-ba6f-fa781192b0f8",
+    "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      505.0,
+      530.0
+     ],
+     "voie": "axe",
+     "images": [
+      "2a7f0fd2-9c18-4c02-a157-96132459a10b"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      505.0,
+      530.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "2a7f0fd2-9c18-4c02-a157-96132459a10b"
+     ],
+     "description": "terre rouge le long de la glissière"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      530.0,
+      545.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "622676a0-704b-4390-ba6f-fa781192b0f8"
+     ],
+     "description": "faïençage à l'extérieur de l'épingle"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    550,
+    600
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "2a7f0fd2-9c18-4c02-a157-96132459a10b",
+    "622676a0-704b-4390-ba6f-fa781192b0f8",
+    "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e",
+    "3e2bfee7-abad-45aa-9ef9-7e545a3e1305",
+    "7f430736-cd30-404e-9689-93f59d3695d5",
+    "c03fc96f-6817-4a15-9807-db769a6442a1"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      550.0,
+      565.0
+     ],
+     "voie": "droite",
+     "images": [
+      "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e"
+     ],
+     "description": "faïençage dans la voie"
+    },
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      552.0,
+      560.0
+     ],
+     "voie": "droite",
+     "images": [
+      "6da4e77b-167e-41cd-ad90-f6f8f5a2af2e"
+     ],
+     "description": "arcs noirs de pneus"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      555.0,
+      585.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "3e2bfee7-abad-45aa-9ef9-7e545a3e1305"
+     ],
+     "description": "terre rouge au pied du talus"
+    },
+    {
+     "genre": "fissure_transversale",
+     "pk": [
+      594.0,
+      596.0
+     ],
+     "voie": "toute",
+     "images": [
+      "7f430736-cd30-404e-9689-93f59d3695d5"
+     ],
+     "description": "fissure transversale sur toute la largeur"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      585.0,
+      600.0
+     ],
+     "voie": "axe",
+     "images": [
+      "7f430736-cd30-404e-9689-93f59d3695d5"
+     ],
+     "description": "fissure le long de l'axe"
+    }
+   ],
+   "etat": "5 élément(s)"
+  },
+  {
+   "pk": [
+    600,
+    650
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "3e2bfee7-abad-45aa-9ef9-7e545a3e1305",
+    "7f430736-cd30-404e-9689-93f59d3695d5",
+    "c03fc96f-6817-4a15-9807-db769a6442a1",
+    "ad907fae-51c8-414e-a884-ad1cf7604094",
+    "c6c9a241-64db-493a-9de8-dac6270d6108",
+    "bcbd25d7-8df9-47ac-8678-f4e4ce6eb38f"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      600.0,
+      630.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "ad907fae-51c8-414e-a884-ad1cf7604094"
+     ],
+     "description": "fissure longitudinale dans la voie"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      620.0,
+      655.0
+     ],
+     "voie": "axe",
+     "images": [
+      "c6c9a241-64db-493a-9de8-dac6270d6108",
+      "bcbd25d7-8df9-47ac-8678-f4e4ce6eb38f"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      600.0,
+      650.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "c03fc96f-6817-4a15-9807-db769a6442a1",
+      "bcbd25d7-8df9-47ac-8678-f4e4ce6eb38f"
+     ],
+     "description": "terre rouge au pied du talus"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      640.0,
+      700.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "2763dc33-7985-4150-b8a1-a4f71595abe8",
+      "bf283b0a-4b4a-4801-a0ea-744bd878ce4c",
+      "39a25600-040f-4ee7-b419-bb0f381d527f"
+     ],
+     "description": "terre rouge épaisse au pied du talus"
+    }
+   ],
+   "etat": "4 élément(s)"
+  },
+  {
+   "pk": [
+    650,
+    700
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "ad907fae-51c8-414e-a884-ad1cf7604094",
+    "c6c9a241-64db-493a-9de8-dac6270d6108",
+    "bcbd25d7-8df9-47ac-8678-f4e4ce6eb38f",
+    "2763dc33-7985-4150-b8a1-a4f71595abe8",
+    "bf283b0a-4b4a-4801-a0ea-744bd878ce4c",
+    "39a25600-040f-4ee7-b419-bb0f381d527f"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      660.0,
+      675.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "2763dc33-7985-4150-b8a1-a4f71595abe8"
+     ],
+     "description": "faïençage dans la voie"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    700,
+    750
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "2763dc33-7985-4150-b8a1-a4f71595abe8",
+    "bf283b0a-4b4a-4801-a0ea-744bd878ce4c",
+    "39a25600-040f-4ee7-b419-bb0f381d527f",
+    "d76073e0-f42f-45ff-9da2-5eb0f2d4e1a0",
+    "56289bbe-3e00-4cee-a36a-78ee562941dd",
+    "41cdbd1d-d4ea-4aad-b0d2-5eb16141851e"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      705.0,
+      720.0
+     ],
+     "voie": "toute",
+     "images": [
+      "d76073e0-f42f-45ff-9da2-5eb0f2d4e1a0"
+     ],
+     "description": "fissures en réseau dans le virage"
+    },
+    {
+     "genre": "aiguilles",
+     "pk": [
+      700.0,
+      720.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "d76073e0-f42f-45ff-9da2-5eb0f2d4e1a0"
+     ],
+     "description": "aiguilles et terre au pied du mur"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      725.0,
+      740.0
+     ],
+     "voie": "axe",
+     "images": [
+      "56289bbe-3e00-4cee-a36a-78ee562941dd"
+     ],
+     "description": "faïençage au milieu de la chaussée, près du pont"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      740.0,
+      755.0
+     ],
+     "voie": "droite",
+     "images": [
+      "41cdbd1d-d4ea-4aad-b0d2-5eb16141851e"
+     ],
+     "description": "fissures dans la voie (déjà relevées au PK 761)"
+    }
+   ],
+   "etat": "4 élément(s)"
+  },
+  {
+   "pk": [
+    750,
+    800
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "d76073e0-f42f-45ff-9da2-5eb0f2d4e1a0",
+    "56289bbe-3e00-4cee-a36a-78ee562941dd",
+    "41cdbd1d-d4ea-4aad-b0d2-5eb16141851e",
+    "94dcff86-24cc-4ebc-b548-1f2b8f07e2b7",
+    "44ca4d2d-d23f-4512-aff2-fafd748cf88c",
+    "05229626-ceab-44b1-844b-443aed843ba3",
+    "50965cef-36aa-4ec8-923d-3fe3184c818b"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      755.0,
+      770.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "94dcff86-24cc-4ebc-b548-1f2b8f07e2b7"
+     ],
+     "description": "faïençage près de l'axe"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      785.0,
+      800.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "05229626-ceab-44b1-844b-443aed843ba3"
+     ],
+     "description": "terre et poussière au bord"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    800,
+    850
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "94dcff86-24cc-4ebc-b548-1f2b8f07e2b7",
+    "44ca4d2d-d23f-4512-aff2-fafd748cf88c",
+    "05229626-ceab-44b1-844b-443aed843ba3",
+    "50965cef-36aa-4ec8-923d-3fe3184c818b",
+    "28a74547-dedd-49ec-8183-6cd7b349e503",
+    "b89c3981-e050-46db-9fc7-e785ffa73f0b",
+    "c115545b-6c4c-4f61-bb87-cab722cb4333"
+   ],
+   "elements": [
+    {
+     "genre": "terre",
+     "pk": [
+      800.0,
+      815.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "50965cef-36aa-4ec8-923d-3fe3184c818b"
+     ],
+     "description": "terre rouge au bord"
+    },
+    {
+     "genre": "aiguilles",
+     "pk": [
+      820.0,
+      850.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "b89c3981-e050-46db-9fc7-e785ffa73f0b"
+     ],
+     "description": "aiguilles le long de la glissière"
+    },
+    {
+     "genre": "aiguilles",
+     "pk": [
+      820.0,
+      850.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "b89c3981-e050-46db-9fc7-e785ffa73f0b"
+     ],
+     "description": "aiguilles au pied du talus"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    850,
+    900
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "28a74547-dedd-49ec-8183-6cd7b349e503",
+    "b89c3981-e050-46db-9fc7-e785ffa73f0b",
+    "c115545b-6c4c-4f61-bb87-cab722cb4333",
+    "701e21a2-f493-4b1b-9783-04e05c039078",
+    "a7c86442-b91d-490e-82e8-402383df02f8",
+    "e08dc349-4095-4fef-b37c-76c31dc1b758"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      862.0,
+      880.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "701e21a2-f493-4b1b-9783-04e05c039078"
+     ],
+     "description": "fissure longitudinale dans la voie"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      890.0,
+      910.0
+     ],
+     "voie": "droite",
+     "images": [
+      "e08dc349-4095-4fef-b37c-76c31dc1b758"
+     ],
+     "description": "faïençage dans l'épingle"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    900,
+    950
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "701e21a2-f493-4b1b-9783-04e05c039078",
+    "a7c86442-b91d-490e-82e8-402383df02f8",
+    "e08dc349-4095-4fef-b37c-76c31dc1b758",
+    "e47ebc0d-bbab-445e-8fef-b47c1c1fc501",
+    "cc032824-c6c7-4d1b-b4e3-c4720ccdea29",
+    "db9665d5-90ff-4b19-aec0-f80994fb6d01"
+   ],
+   "elements": [
+    {
+     "genre": "aiguilles",
+     "pk": [
+      900.0,
+      935.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "e47ebc0d-bbab-445e-8fef-b47c1c1fc501"
+     ],
+     "description": "aiguilles au bord"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      920.0,
+      950.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "cc032824-c6c7-4d1b-b4e3-c4720ccdea29"
+     ],
+     "description": "terre au pied du talus"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    950,
+    1000
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "e47ebc0d-bbab-445e-8fef-b47c1c1fc501",
+    "cc032824-c6c7-4d1b-b4e3-c4720ccdea29",
+    "db9665d5-90ff-4b19-aec0-f80994fb6d01",
+    "56cc8bf8-27fa-4dc1-91c5-88403c62baa9",
+    "f55bd1c8-fe31-441c-be5c-ca884531eef2"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      955.0,
+      965.0
+     ],
+     "voie": "droite",
+     "images": [
+      "db9665d5-90ff-4b19-aec0-f80994fb6d01"
+     ],
+     "description": "faïençage dans la voie"
+    },
+    {
+     "genre": "reprise",
+     "pk": [
+      985.0,
+      1000.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "f55bd1c8-fe31-441c-be5c-ca884531eef2"
+     ],
+     "description": "pièce d'enrobé plus sombre au bord de la voie"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      980.0,
+      1000.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "f55bd1c8-fe31-441c-be5c-ca884531eef2"
+     ],
+     "description": "terre rouge au bord"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    1000,
+    1050
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "56cc8bf8-27fa-4dc1-91c5-88403c62baa9",
+    "f55bd1c8-fe31-441c-be5c-ca884531eef2",
+    "0a73c4a5-17e5-454e-9001-a920c1f9a716",
+    "2de9a9e3-2e32-4e91-a6c1-97e8fc523180",
+    "9cec2f58-fa6e-4ada-a8fb-6dd7a767137f",
+    "06d9112e-b3bc-4774-aa36-0994a0258f9b"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1000.0,
+      1020.0
+     ],
+     "voie": "droite",
+     "images": [
+      "0a73c4a5-17e5-454e-9001-a920c1f9a716"
+     ],
+     "description": "longue fissure au milieu de la voie"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    1050,
+    1100
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "0a73c4a5-17e5-454e-9001-a920c1f9a716",
+    "2de9a9e3-2e32-4e91-a6c1-97e8fc523180",
+    "9cec2f58-fa6e-4ada-a8fb-6dd7a767137f",
+    "06d9112e-b3bc-4774-aa36-0994a0258f9b",
+    "e96ef4bf-f608-4a48-a9bd-f3767a42aa51",
+    "ccd22b75-47f1-42ac-9739-a158e73c172f",
+    "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+   ],
+   "elements": [
+    {
+     "genre": "terre",
+     "pk": [
+      1060.0,
+      1090.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "06d9112e-b3bc-4774-aa36-0994a0258f9b"
+     ],
+     "description": "terre au bord"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    1100,
+    1150
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "e96ef4bf-f608-4a48-a9bd-f3767a42aa51",
+    "ccd22b75-47f1-42ac-9739-a158e73c172f",
+    "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f",
+    "3a533cfd-51cc-41dc-9609-245ddaa35bae",
+    "95381ebe-d557-4b89-a794-ec76fca5f277",
+    "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1100.0,
+      1110.0
+     ],
+     "voie": "droite",
+     "images": [
+      "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+     ],
+     "description": "fissure longitudinale"
+    },
+    {
+     "genre": "fissure_transversale",
+     "pk": [
+      1107.0,
+      1109.0
+     ],
+     "voie": "toute",
+     "images": [
+      "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+     ],
+     "description": "fissure transversale ramifiée"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      1140.0,
+      1165.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "95381ebe-d557-4b89-a794-ec76fca5f277",
+      "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619"
+     ],
+     "description": "faïençage léger (déjà relevé au PK 1147)"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    1150,
+    1200
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "3a533cfd-51cc-41dc-9609-245ddaa35bae",
+    "95381ebe-d557-4b89-a794-ec76fca5f277",
+    "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619",
+    "652f5917-8e40-4446-aff3-bba094e629bd",
+    "8e34b254-5d2a-4368-8a17-0fe3fccdb14a",
+    "b4d7dc6b-15c0-4819-bee3-4f787f3204a6"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_transversale",
+     "pk": [
+      1154.0,
+      1156.0
+     ],
+     "voie": "toute",
+     "images": [
+      "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619"
+     ],
+     "description": "fissure transversale"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1150.0,
+      1165.0
+     ],
+     "voie": "droite",
+     "images": [
+      "e8cbf415-8ddf-42fb-9a37-7ac5d03d8619"
+     ],
+     "description": "fissure longitudinale"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1200,
+    1250
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "652f5917-8e40-4446-aff3-bba094e629bd",
+    "8e34b254-5d2a-4368-8a17-0fe3fccdb14a",
+    "b4d7dc6b-15c0-4819-bee3-4f787f3204a6",
+    "37024d81-25d9-4110-8edd-8bd65ebde10b",
+    "c3131ad3-6b31-4d60-9468-d4421bc7233f",
+    "a8df3bc2-9925-46af-8a05-a30a0d00a646",
+    "b21fa319-d304-473b-82c3-5eb7f6e2f321"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      1240.0,
+      1290.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "b21fa319-d304-473b-82c3-5eb7f6e2f321",
+      "b354335c-75eb-43bc-8592-ae60c3285bce"
+     ],
+     "description": "faïençage dense dans la voie"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    1250,
+    1300
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "37024d81-25d9-4110-8edd-8bd65ebde10b",
+    "c3131ad3-6b31-4d60-9468-d4421bc7233f",
+    "a8df3bc2-9925-46af-8a05-a30a0d00a646",
+    "b21fa319-d304-473b-82c3-5eb7f6e2f321",
+    "b354335c-75eb-43bc-8592-ae60c3285bce",
+    "7b2904d1-c24d-4b40-8a37-122e9f578269",
+    "4f05c439-db8c-4b33-94aa-5b63cc0d6d60"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      1270.0,
+      1295.0
+     ],
+     "voie": "toute",
+     "images": [
+      "7b2904d1-c24d-4b40-8a37-122e9f578269"
+     ],
+     "description": "faïençage des deux voies dans le virage"
+    },
+    {
+     "genre": "reprise",
+     "pk": [
+      1295.0,
+      1325.0
+     ],
+     "voie": "droite",
+     "images": [
+      "4f05c439-db8c-4b33-94aa-5b63cc0d6d60",
+      "7b2904d1-c24d-4b40-8a37-122e9f578269"
+     ],
+     "description": "voie reprise en enrobé plus sombre (déjà relevée)"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1300,
+    1350
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "b354335c-75eb-43bc-8592-ae60c3285bce",
+    "7b2904d1-c24d-4b40-8a37-122e9f578269",
+    "4f05c439-db8c-4b33-94aa-5b63cc0d6d60",
+    "ebb65d2c-16e2-4e71-ad1b-7b8065b70c9f",
+    "84b2659a-f336-4e05-af54-7d605b7307c2",
+    "91917926-f374-4be4-aaab-3d96390f81b3"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1305.0,
+      1340.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "ebb65d2c-16e2-4e71-ad1b-7b8065b70c9f",
+      "84b2659a-f336-4e05-af54-7d605b7307c2"
+     ],
+     "description": "fissures longitudinales dans la voie"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1330.0,
+      1360.0
+     ],
+     "voie": "axe",
+     "images": [
+      "91917926-f374-4be4-aaab-3d96390f81b3"
+     ],
+     "description": "fissure le long de l'axe"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1350,
+    1400
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "ebb65d2c-16e2-4e71-ad1b-7b8065b70c9f",
+    "84b2659a-f336-4e05-af54-7d605b7307c2",
+    "91917926-f374-4be4-aaab-3d96390f81b3",
+    "b5f0178a-d83d-4c8b-a3ad-0d886674547d",
+    "163245a2-4e36-49e9-a730-3fef7888f7da",
+    "01e02642-d659-4478-896d-250fde7d2efb",
+    "a44a1d50-e84b-4707-a5b6-5511d6faa35d"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1375.0,
+      1400.0
+     ],
+     "voie": "droite",
+     "images": [
+      "163245a2-4e36-49e9-a730-3fef7888f7da",
+      "01e02642-d659-4478-896d-250fde7d2efb"
+     ],
+     "description": "fissure longitudinale"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    1400,
+    1450
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "b5f0178a-d83d-4c8b-a3ad-0d886674547d",
+    "163245a2-4e36-49e9-a730-3fef7888f7da",
+    "01e02642-d659-4478-896d-250fde7d2efb",
+    "a44a1d50-e84b-4707-a5b6-5511d6faa35d",
+    "d14edaba-55b0-4922-966b-bc556b3f0857",
+    "73b0f159-235b-4c3a-b5fa-c72ed5559385",
+    "1ccd2732-509b-42de-8f4f-4a397be2e119"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1415.0,
+      1430.0
+     ],
+     "voie": "axe",
+     "images": [
+      "d14edaba-55b0-4922-966b-bc556b3f0857"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "joint_ponte",
+     "pk": [
+      1438.0,
+      1452.0
+     ],
+     "voie": "axe",
+     "images": [
+      "73b0f159-235b-4c3a-b5fa-c72ed5559385"
+     ],
+     "description": "joint noir ponté le long de l'axe"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1450,
+    1500
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "d14edaba-55b0-4922-966b-bc556b3f0857",
+    "73b0f159-235b-4c3a-b5fa-c72ed5559385",
+    "1ccd2732-509b-42de-8f4f-4a397be2e119",
+    "de034b0d-eeb2-4a19-819a-999add00481c",
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e",
+    "0373ab7c-4f27-4163-9fe8-88adea562baf"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      1480.0,
+      1500.0
+     ],
+     "voie": "toute",
+     "images": [
+      "ca4214f2-36c4-4812-9683-9d2526f05e4e"
+     ],
+     "description": "faïençage à l'entrée de l'épingle"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    1500,
+    1550
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "de034b0d-eeb2-4a19-819a-999add00481c",
+    "ca4214f2-36c4-4812-9683-9d2526f05e4e",
+    "0373ab7c-4f27-4163-9fe8-88adea562baf",
+    "fa96e3fc-4e63-4735-832b-1117897e0fcb",
+    "ea1367d6-4e8c-4229-bde4-7809adc76bc6",
+    "96977cc9-2d73-4869-bb8d-6aa0d9cb4842"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      1500.0,
+      1515.0
+     ],
+     "voie": "toute",
+     "images": [
+      "0373ab7c-4f27-4163-9fe8-88adea562baf"
+     ],
+     "description": "faïençage dans l'épingle (déjà relevé)"
+    },
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      1510.0,
+      1530.0
+     ],
+     "voie": "toute",
+     "images": [
+      "fa96e3fc-4e63-4735-832b-1117897e0fcb"
+     ],
+     "description": "nombreux arcs noirs de dérapage (déjà relevés)"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      1540.0,
+      1560.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "96977cc9-2d73-4869-bb8d-6aa0d9cb4842"
+     ],
+     "description": "terre rouge au pied de la paroi"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      1540.0,
+      1560.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "96977cc9-2d73-4869-bb8d-6aa0d9cb4842"
+     ],
+     "description": "terre rouge"
+    }
+   ],
+   "etat": "4 élément(s)"
+  },
+  {
+   "pk": [
+    1550,
+    1600
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "fa96e3fc-4e63-4735-832b-1117897e0fcb",
+    "ea1367d6-4e8c-4229-bde4-7809adc76bc6",
+    "96977cc9-2d73-4869-bb8d-6aa0d9cb4842",
+    "f6d9857c-3b3b-4413-9f6d-70ff0db8d366",
+    "b2800717-4b44-43f3-8387-75b4d98d8340",
+    "29bb5b34-71bf-458f-9c68-8edf8bfc8ae8"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1560.0,
+      1575.0
+     ],
+     "voie": "axe",
+     "images": [
+      "f6d9857c-3b3b-4413-9f6d-70ff0db8d366"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1575.0,
+      1595.0
+     ],
+     "voie": "droite",
+     "images": [
+      "b2800717-4b44-43f3-8387-75b4d98d8340"
+     ],
+     "description": "fissure longitudinale"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1600,
+    1650
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "f6d9857c-3b3b-4413-9f6d-70ff0db8d366",
+    "b2800717-4b44-43f3-8387-75b4d98d8340",
+    "29bb5b34-71bf-458f-9c68-8edf8bfc8ae8",
+    "d5c7d0ad-109c-4d01-9678-235bff014508",
+    "37dd8072-f561-4dca-8877-d3fe6979db68",
+    "7aba00df-5acd-4b03-a153-b8fa58b6fd89"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      1610.0,
+      1635.0
+     ],
+     "voie": "toute",
+     "images": [
+      "d5c7d0ad-109c-4d01-9678-235bff014508"
+     ],
+     "description": "faïençage fort des deux voies devant les séparateurs"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    1650,
+    1700
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "d5c7d0ad-109c-4d01-9678-235bff014508",
+    "37dd8072-f561-4dca-8877-d3fe6979db68",
+    "7aba00df-5acd-4b03-a153-b8fa58b6fd89",
+    "1d6eb5bc-ea4f-4dd1-afe1-7cd6017a9b6f",
+    "5736dfa1-cecc-419d-b7ca-e4e1c2925b58",
+    "ae90d863-c8ee-4e80-8af0-c988155e4c90"
+   ],
+   "elements": [
+    {
+     "genre": "terre",
+     "pk": [
+      1660.0,
+      1690.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "1d6eb5bc-ea4f-4dd1-afe1-7cd6017a9b6f",
+      "7aba00df-5acd-4b03-a153-b8fa58b6fd89"
+     ],
+     "description": "terre rouge épaisse"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1680.0,
+      1700.0
+     ],
+     "voie": "droite",
+     "images": [
+      "5736dfa1-cecc-419d-b7ca-e4e1c2925b58"
+     ],
+     "description": "fissure longitudinale"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      1695.0,
+      1715.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "ae90d863-c8ee-4e80-8af0-c988155e4c90"
+     ],
+     "description": "faïençage dans la voie"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    1700,
+    1750
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "1d6eb5bc-ea4f-4dd1-afe1-7cd6017a9b6f",
+    "5736dfa1-cecc-419d-b7ca-e4e1c2925b58",
+    "ae90d863-c8ee-4e80-8af0-c988155e4c90",
+    "d6d61b50-eca0-488e-84a5-48daeea67a29",
+    "353cfa11-149f-4a25-94be-200c3305bf91",
+    "f2c7d5f0-e3c0-4351-afa6-fe10d6375266"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1710.0,
+      1730.0
+     ],
+     "voie": "axe",
+     "images": [
+      "d6d61b50-eca0-488e-84a5-48daeea67a29"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1725.0,
+      1760.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "353cfa11-149f-4a25-94be-200c3305bf91",
+      "f2c7d5f0-e3c0-4351-afa6-fe10d6375266"
+     ],
+     "description": "fissures longitudinales dans la voie"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1750,
+    1800
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "d6d61b50-eca0-488e-84a5-48daeea67a29",
+    "353cfa11-149f-4a25-94be-200c3305bf91",
+    "f2c7d5f0-e3c0-4351-afa6-fe10d6375266",
+    "82934593-a9fd-4afd-883f-189fedfb3cb6",
+    "8a84aa4b-020c-4db5-bc51-b6bb29aa20a2",
+    "c23d7015-1268-478c-915a-93918c358057"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      1755.0,
+      1770.0
+     ],
+     "voie": "axe",
+     "images": [
+      "82934593-a9fd-4afd-883f-189fedfb3cb6"
+     ],
+     "description": "faïençage autour de l'axe"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      1770.0,
+      1790.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "8a84aa4b-020c-4db5-bc51-b6bb29aa20a2"
+     ],
+     "description": "fissure longitudinale"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1800,
+    1850
+   ],
+   "enrobe": "ancien gris clair (granulats apparents), fissuré",
+   "images": [
+    "82934593-a9fd-4afd-883f-189fedfb3cb6",
+    "8a84aa4b-020c-4db5-bc51-b6bb29aa20a2",
+    "c23d7015-1268-478c-915a-93918c358057",
+    "073e0167-b165-4556-85d9-d69dc4ba7508",
+    "3fa3871c-40ab-4170-a3f3-ad450494a87d",
+    "1d5fd50b-7795-461f-9d49-027cd05dddc8"
+   ],
+   "elements": [
+    {
+     "genre": "joint_ponte",
+     "pk": [
+      1810.0,
+      1825.0
+     ],
+     "voie": "axe",
+     "images": [
+      "073e0167-b165-4556-85d9-d69dc4ba7508"
+     ],
+     "description": "joint noir ponté le long de l'axe"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      1830.0,
+      1850.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "1d5fd50b-7795-461f-9d49-027cd05dddc8"
+     ],
+     "description": "faïençage de l'enrobé ancien"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    1850,
+    1900
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "073e0167-b165-4556-85d9-d69dc4ba7508",
+    "3fa3871c-40ab-4170-a3f3-ad450494a87d",
+    "1d5fd50b-7795-461f-9d49-027cd05dddc8",
+    "34e70fc8-a7ce-4aab-924c-001f133fffed",
+    "4ce5a421-6986-4788-9d35-eafa2b879547",
+    "ed761789-b762-44d0-a4f6-7ed2b35d8e2e",
+    "69fb0466-5e60-403b-b364-2775592c5372"
+   ],
+   "elements": [
+    {
+     "genre": "raccord",
+     "pk": [
+      1852.0,
+      1858.0
+     ],
+     "voie": "toute",
+     "images": [
+      "34e70fc8-a7ce-4aab-924c-001f133fffed",
+      "c23d7015-1268-478c-915a-93918c358057"
+     ],
+     "description": "passage à l'enrobé récent sombre (déjà relevé)"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    1900,
+    1950
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "34e70fc8-a7ce-4aab-924c-001f133fffed",
+    "4ce5a421-6986-4788-9d35-eafa2b879547",
+    "ed761789-b762-44d0-a4f6-7ed2b35d8e2e",
+    "69fb0466-5e60-403b-b364-2775592c5372",
+    "119cd40a-6437-4eb4-a99a-bb44eb6222ac",
+    "95f08c29-a9ef-4a12-a61c-89319d77e2b9",
+    "f9517c41-53f0-4ac9-8ad8-76cc7ce7d9d1"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    1950,
+    2000
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "119cd40a-6437-4eb4-a99a-bb44eb6222ac",
+    "95f08c29-a9ef-4a12-a61c-89319d77e2b9",
+    "f9517c41-53f0-4ac9-8ad8-76cc7ce7d9d1",
+    "047a72e3-2e0c-42c7-a2cd-99883262f9d4",
+    "1ec01bbe-5eaa-4ab1-94fe-8975032a4e0a",
+    "b6721f3d-3269-4870-bc74-768d6db5bd5a"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      1960.0,
+      1975.0
+     ],
+     "voie": "axe",
+     "images": [
+      "047a72e3-2e0c-42c7-a2cd-99883262f9d4"
+     ],
+     "description": "traces légères près de l'axe (déjà relevées)"
+    },
+    {
+     "genre": "gravillons",
+     "pk": [
+      1985.0,
+      2005.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "b6721f3d-3269-4870-bc74-768d6db5bd5a",
+      "1ec01bbe-5eaa-4ab1-94fe-8975032a4e0a"
+     ],
+     "description": "gravillons clairs le long du bord"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    2000,
+    2050
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "047a72e3-2e0c-42c7-a2cd-99883262f9d4",
+    "1ec01bbe-5eaa-4ab1-94fe-8975032a4e0a",
+    "b6721f3d-3269-4870-bc74-768d6db5bd5a",
+    "b9a4f318-0dd3-4fdf-a9f0-371beba4d0db",
+    "7b885a49-ad02-4340-91ce-e569cb2d91e3",
+    "29a4065a-8333-448d-a578-f7424fc55a7f",
+    "df39fc97-31a6-410e-b5a8-f37ee9f8878e",
+    "ff83d182-fa60-4092-bceb-d775d5587dae",
+    "6ab59068-8431-4f86-a68b-3d92e2fd9d75"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      2045.0,
+      2062.0
+     ],
+     "voie": "axe",
+     "images": [
+      "ff83d182-fa60-4092-bceb-d775d5587dae"
+     ],
+     "description": "traces noires sur l'enrobé récent"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    2050,
+    2100
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "b9a4f318-0dd3-4fdf-a9f0-371beba4d0db",
+    "7b885a49-ad02-4340-91ce-e569cb2d91e3",
+    "29a4065a-8333-448d-a578-f7424fc55a7f",
+    "df39fc97-31a6-410e-b5a8-f37ee9f8878e",
+    "ff83d182-fa60-4092-bceb-d775d5587dae",
+    "6ab59068-8431-4f86-a68b-3d92e2fd9d75",
+    "0cd7702a-982b-4d8e-ac30-c57fdeca6b79",
+    "654381ef-c9df-44fe-be60-115059afe974",
+    "60d008eb-956f-44e6-8a03-c161f2d7e37a"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    2100,
+    2150
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "0cd7702a-982b-4d8e-ac30-c57fdeca6b79",
+    "654381ef-c9df-44fe-be60-115059afe974",
+    "60d008eb-956f-44e6-8a03-c161f2d7e37a",
+    "f807be2e-75df-4d05-aba2-5a3e2fd62495",
+    "35512a9b-84d0-4395-9dd6-9d3bb373bca9",
+    "8f186ec8-0a97-457c-8e28-bf2a8b4647eb",
+    "58af6c06-4b49-48db-999f-55d924d6cd3f",
+    "7be50dd1-eac3-4ed8-a91b-0a1042368dff",
+    "b67a78d5-7ab9-4ae8-bee0-3db757996aaf"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      2130.0,
+      2165.0
+     ],
+     "voie": "axe",
+     "images": [
+      "f807be2e-75df-4d05-aba2-5a3e2fd62495"
+     ],
+     "description": "arcs noirs dans l'épingle (déjà relevés)"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    2150,
+    2200
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "f807be2e-75df-4d05-aba2-5a3e2fd62495",
+    "35512a9b-84d0-4395-9dd6-9d3bb373bca9",
+    "8f186ec8-0a97-457c-8e28-bf2a8b4647eb",
+    "58af6c06-4b49-48db-999f-55d924d6cd3f",
+    "7be50dd1-eac3-4ed8-a91b-0a1042368dff",
+    "b67a78d5-7ab9-4ae8-bee0-3db757996aaf",
+    "ae8122b3-d92a-4ce9-a0a7-8b996212deda",
+    "bf335aba-b753-457f-9145-4ccddade4aba",
+    "b12a5cd9-ab88-429b-9113-0f12817e5d72"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    2200,
+    2250
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "ae8122b3-d92a-4ce9-a0a7-8b996212deda",
+    "bf335aba-b753-457f-9145-4ccddade4aba",
+    "b12a5cd9-ab88-429b-9113-0f12817e5d72",
+    "39135d28-faff-4695-9fac-60d73387858b",
+    "c2d0ce1b-86aa-4613-b314-318df2215bc8",
+    "159a7659-f3e6-4333-9632-ba399b5ae793"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    2250,
+    2300
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "39135d28-faff-4695-9fac-60d73387858b",
+    "c2d0ce1b-86aa-4613-b314-318df2215bc8",
+    "159a7659-f3e6-4333-9632-ba399b5ae793",
+    "0386bf44-6016-44ed-a855-531192ba7d90",
+    "421cb4d6-24c7-40db-ae42-1d00ce2a5036",
+    "a232f421-bbe0-46ca-8505-5a575513f688"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    2300,
+    2350
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "0386bf44-6016-44ed-a855-531192ba7d90",
+    "421cb4d6-24c7-40db-ae42-1d00ce2a5036",
+    "a232f421-bbe0-46ca-8505-5a575513f688",
+    "6343a32b-5b46-42e7-b052-b6a406b3bd1e",
+    "1bf1a857-b728-4c34-b912-d6642a45a0de",
+    "c1005dca-80b9-4946-a071-a2704faaac73"
+   ],
+   "elements": [
+    {
+     "genre": "aiguilles",
+     "pk": [
+      2320.0,
+      2460.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "1bf1a857-b728-4c34-b912-d6642a45a0de",
+      "c1005dca-80b9-4946-a071-a2704faaac73"
+     ],
+     "description": "aiguilles le long de la glissière (déjà relevées)"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    2350,
+    2400
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "6343a32b-5b46-42e7-b052-b6a406b3bd1e",
+    "1bf1a857-b728-4c34-b912-d6642a45a0de",
+    "c1005dca-80b9-4946-a071-a2704faaac73",
+    "7aeeec73-a43a-4943-8e33-27522dd6715e",
+    "5f7b4747-42ac-4b20-9ec2-a6320fa2746a",
+    "5e0f54d8-289d-4c5e-a3ba-8fb584848fed"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      2360.0,
+      2370.0
+     ],
+     "voie": "droite",
+     "images": [
+      "7aeeec73-a43a-4943-8e33-27522dd6715e"
+     ],
+     "description": "arc noir"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    2400,
+    2450
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "7aeeec73-a43a-4943-8e33-27522dd6715e",
+    "5f7b4747-42ac-4b20-9ec2-a6320fa2746a",
+    "5e0f54d8-289d-4c5e-a3ba-8fb584848fed",
+    "f257b290-3350-4e18-8aa2-a54ae32d2bea",
+    "51568e3d-1b01-460f-915a-12dabc03e354",
+    "7eef7b5c-c25a-41d3-9238-f3b65fac1e2c"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      2445.0,
+      2465.0
+     ],
+     "voie": "droite",
+     "images": [
+      "7eef7b5c-c25a-41d3-9238-f3b65fac1e2c"
+     ],
+     "description": "longues traces noires parallèles"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    2450,
+    2500
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "f257b290-3350-4e18-8aa2-a54ae32d2bea",
+    "51568e3d-1b01-460f-915a-12dabc03e354",
+    "7eef7b5c-c25a-41d3-9238-f3b65fac1e2c",
+    "0bc5836c-8801-43d1-ba09-5aa9e4dc36ba",
+    "c7c78864-599c-48b6-b8a3-6f9cabd641e1",
+    "8d5c9409-f98a-42ff-bac5-fcb69bc677d2"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    2500,
+    2550
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "0bc5836c-8801-43d1-ba09-5aa9e4dc36ba",
+    "c7c78864-599c-48b6-b8a3-6f9cabd641e1",
+    "8d5c9409-f98a-42ff-bac5-fcb69bc677d2",
+    "2ec4785e-e74b-4b2e-b7c7-44798a666406",
+    "a8e57708-59e5-44d2-bdde-22d10eb2985b",
+    "2ae9d661-0659-42d7-b252-4e7df302400b"
+   ],
+   "elements": [
+    {
+     "genre": "terre",
+     "pk": [
+      2500.0,
+      2540.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "2ec4785e-e74b-4b2e-b7c7-44798a666406"
+     ],
+     "description": "terre rouge au bord"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      2500.0,
+      2540.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "2ec4785e-e74b-4b2e-b7c7-44798a666406"
+     ],
+     "description": "terre rouge au pied du talus"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    2550,
+    2600
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "2ec4785e-e74b-4b2e-b7c7-44798a666406",
+    "a8e57708-59e5-44d2-bdde-22d10eb2985b",
+    "2ae9d661-0659-42d7-b252-4e7df302400b",
+    "3e944500-2359-4a21-a5b1-73fb3b392925",
+    "f4152a33-3e18-4e09-9f17-ce5d61d0ec69",
+    "c2c25c2e-88ae-4b06-94ba-8548b4703f48",
+    "fa486745-bc98-4c71-816e-b50ebca70ecc"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    2600,
+    2650
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "3e944500-2359-4a21-a5b1-73fb3b392925",
+    "f4152a33-3e18-4e09-9f17-ce5d61d0ec69",
+    "c2c25c2e-88ae-4b06-94ba-8548b4703f48",
+    "fa486745-bc98-4c71-816e-b50ebca70ecc",
+    "53a09c49-2c66-45a2-9c15-39f22f91755f",
+    "76cd2523-c75a-43a6-a125-36c74c25d66d",
+    "45516cd4-3e7c-46a2-9a75-dba10bbfda0d"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      2600.0,
+      2635.0
+     ],
+     "voie": "toute",
+     "images": [
+      "fa486745-bc98-4c71-816e-b50ebca70ecc",
+      "53a09c49-2c66-45a2-9c15-39f22f91755f"
+     ],
+     "description": "traces serpentines et boucles (déjà relevées)"
+    },
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      2625.0,
+      2665.0
+     ],
+     "voie": "toute",
+     "images": [
+      "76cd2523-c75a-43a6-a125-36c74c25d66d",
+      "45516cd4-3e7c-46a2-9a75-dba10bbfda0d"
+     ],
+     "description": "longues traces noires sur les deux voies"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    2650,
+    2700
+   ],
+   "enrobe": "récent sombre, lisse",
+   "images": [
+    "53a09c49-2c66-45a2-9c15-39f22f91755f",
+    "76cd2523-c75a-43a6-a125-36c74c25d66d",
+    "45516cd4-3e7c-46a2-9a75-dba10bbfda0d",
+    "1e51ca99-affe-41f1-bd8b-674f05705165",
+    "f131475a-35a0-407a-953c-3ce215677e8c",
+    "e599d8e3-3d20-4ae9-a426-b79ce3641cee"
+   ],
+   "elements": [
+    {
+     "genre": "raccord",
+     "pk": [
+      2697.0,
+      2703.0
+     ],
+     "voie": "toute",
+     "images": [
+      "e599d8e3-3d20-4ae9-a426-b79ce3641cee",
+      "f131475a-35a0-407a-953c-3ce215677e8c"
+     ],
+     "description": "retour à l'enrobé ancien gris clair (déjà relevé)"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    2700,
+    2750
+   ],
+   "enrobe": "ancien gris clair, fissuré",
+   "images": [
+    "1e51ca99-affe-41f1-bd8b-674f05705165",
+    "f131475a-35a0-407a-953c-3ce215677e8c",
+    "e599d8e3-3d20-4ae9-a426-b79ce3641cee",
+    "373ff645-371c-4471-8058-9446dbd8e97a",
+    "14d74c4b-9674-4e93-9873-396e8b20c83a",
+    "bf5e0dfc-29d1-47e0-8e0c-f59e44dc5572"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      2700.0,
+      2715.0
+     ],
+     "voie": "toute",
+     "images": [
+      "e599d8e3-3d20-4ae9-a426-b79ce3641cee"
+     ],
+     "description": "faïençage fort des deux voies"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      2710.0,
+      2740.0
+     ],
+     "voie": "axe",
+     "images": [
+      "373ff645-371c-4471-8058-9446dbd8e97a",
+      "14d74c4b-9674-4e93-9873-396e8b20c83a"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      2740.0,
+      2760.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "bf5e0dfc-29d1-47e0-8e0c-f59e44dc5572"
+     ],
+     "description": "fissure au milieu de la voie"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    2750,
+    2800
+   ],
+   "enrobe": "ancien gris clair, fissuré",
+   "images": [
+    "373ff645-371c-4471-8058-9446dbd8e97a",
+    "14d74c4b-9674-4e93-9873-396e8b20c83a",
+    "bf5e0dfc-29d1-47e0-8e0c-f59e44dc5572",
+    "b0ba55b5-74f9-4e57-af5e-f673bc173e1a",
+    "af4c60ef-37d2-4322-a882-ba8865712213",
+    "948616e9-8d1a-4df0-9322-ede69b94800b"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      2765.0,
+      2795.0
+     ],
+     "voie": "toute",
+     "images": [
+      "b0ba55b5-74f9-4e57-af5e-f673bc173e1a",
+      "af4c60ef-37d2-4322-a882-ba8865712213"
+     ],
+     "description": "faïençage des deux voies"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      2785.0,
+      2850.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "948616e9-8d1a-4df0-9322-ede69b94800b",
+      "f450a004-ef35-4357-a37f-bb7cbb3686d6",
+      "ec8c7730-72ba-4372-a125-2df2866e8507"
+     ],
+     "description": "longue fissure au milieu de la voie"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    2800,
+    2850
+   ],
+   "enrobe": "ancien gris clair, fissuré",
+   "images": [
+    "b0ba55b5-74f9-4e57-af5e-f673bc173e1a",
+    "af4c60ef-37d2-4322-a882-ba8865712213",
+    "948616e9-8d1a-4df0-9322-ede69b94800b",
+    "09972c6a-b819-4d3f-a542-0a4a1211278a",
+    "d8a786b0-9087-401e-bba6-43d3afc57684",
+    "f450a004-ef35-4357-a37f-bb7cbb3686d6",
+    "5ef148c3-5e47-4d9f-b207-b2b59523642c",
+    "ec8c7730-72ba-4372-a125-2df2866e8507",
+    "42e90e63-7198-4578-a4a7-f36ebbce8d62",
+    "0119a756-daec-4a58-aee8-c2caea538d53",
+    "f0a7b2ba-2bc1-4809-b91e-ea135b56b740",
+    "6a88e7fa-0ab6-41a2-a4e2-809cecf9ce38"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      2815.0,
+      2840.0
+     ],
+     "voie": "toute",
+     "images": [
+      "5ef148c3-5e47-4d9f-b207-b2b59523642c"
+     ],
+     "description": "faïençage"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      2832.0,
+      2840.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "ec8c7730-72ba-4372-a125-2df2866e8507"
+     ],
+     "description": "terre et gravillons au débouché d'un chemin"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      2840.0,
+      2870.0
+     ],
+     "voie": "toute",
+     "images": [
+      "f0a7b2ba-2bc1-4809-b91e-ea135b56b740",
+      "0119a756-daec-4a58-aee8-c2caea538d53"
+     ],
+     "description": "faïençage fort (déjà relevé au PK 2857)"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    2850,
+    2900
+   ],
+   "enrobe": "ancien gris clair, fissuré",
+   "images": [
+    "09972c6a-b819-4d3f-a542-0a4a1211278a",
+    "d8a786b0-9087-401e-bba6-43d3afc57684",
+    "f450a004-ef35-4357-a37f-bb7cbb3686d6",
+    "5ef148c3-5e47-4d9f-b207-b2b59523642c",
+    "ec8c7730-72ba-4372-a125-2df2866e8507",
+    "42e90e63-7198-4578-a4a7-f36ebbce8d62",
+    "0119a756-daec-4a58-aee8-c2caea538d53",
+    "f0a7b2ba-2bc1-4809-b91e-ea135b56b740",
+    "6a88e7fa-0ab6-41a2-a4e2-809cecf9ce38",
+    "d49ca048-5703-4ac3-aff9-031a0e087dcf",
+    "390f878d-8518-447c-8480-5206e644cce6",
+    "2cb4f8c5-45ac-4aaf-be69-4e5b9f6002ef",
+    "905fc8fa-56ad-4024-9f2d-ea4a75bafb6b",
+    "7e2316ae-9541-45d0-aca1-c138c8fdc908",
+    "c270e1ae-bedb-446f-be35-4956e05e0083",
+    "3693681f-2e27-41e8-8ab0-6133add7d79d",
+    "39ab1259-fbb8-4073-8887-147e443c4f9d",
+    "52a1fdb0-3ea0-46ec-9730-ec8950170527"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      2860.0,
+      2875.0
+     ],
+     "voie": "axe",
+     "images": [
+      "390f878d-8518-447c-8480-5206e644cce6"
+     ],
+     "description": "fissure le long de l'axe"
+    },
+    {
+     "genre": "faiencage",
+     "pk": [
+      2880.0,
+      2895.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "7e2316ae-9541-45d0-aca1-c138c8fdc908"
+     ],
+     "description": "faïençage dans la voie"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    2900,
+    2950
+   ],
+   "enrobe": "ancien gris clair, fissuré",
+   "images": [
+    "d49ca048-5703-4ac3-aff9-031a0e087dcf",
+    "390f878d-8518-447c-8480-5206e644cce6",
+    "2cb4f8c5-45ac-4aaf-be69-4e5b9f6002ef",
+    "905fc8fa-56ad-4024-9f2d-ea4a75bafb6b",
+    "7e2316ae-9541-45d0-aca1-c138c8fdc908",
+    "c270e1ae-bedb-446f-be35-4956e05e0083",
+    "3693681f-2e27-41e8-8ab0-6133add7d79d",
+    "39ab1259-fbb8-4073-8887-147e443c4f9d",
+    "52a1fdb0-3ea0-46ec-9730-ec8950170527",
+    "9f14e86c-eb58-4952-a81e-16a61f5fc2d0",
+    "40f4ac23-6c0e-4526-9dc6-988ae0676ddb",
+    "f71b87e9-cbce-4571-9239-e109bfa7eef2",
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "a0adfc0d-cdcd-41d6-bb3c-ed8e06ac4ed0",
+    "0e847466-22ae-4418-ac3e-0341cde1bc81",
+    "76239e33-1ebc-434a-92e4-6945ba19f4f7"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      2900.0,
+      2935.0
+     ],
+     "voie": "toute",
+     "images": [
+      "9f14e86c-eb58-4952-a81e-16a61f5fc2d0",
+      "f71b87e9-cbce-4571-9239-e109bfa7eef2"
+     ],
+     "description": "faïençage dans l'épingle"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      2940.0,
+      2960.0
+     ],
+     "voie": "axe",
+     "images": [
+      "76239e33-1ebc-434a-92e4-6945ba19f4f7"
+     ],
+     "description": "fissure le long de l'axe"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    2950,
+    3000
+   ],
+   "enrobe": "ancien gris clair, fissuré",
+   "images": [
+    "9f14e86c-eb58-4952-a81e-16a61f5fc2d0",
+    "40f4ac23-6c0e-4526-9dc6-988ae0676ddb",
+    "f71b87e9-cbce-4571-9239-e109bfa7eef2",
+    "7a47ca44-706e-4558-9c22-8598bca57de9",
+    "a0adfc0d-cdcd-41d6-bb3c-ed8e06ac4ed0",
+    "0e847466-22ae-4418-ac3e-0341cde1bc81",
+    "76239e33-1ebc-434a-92e4-6945ba19f4f7",
+    "8b10df10-9f0e-41b3-be1a-6f68bcca5a3e",
+    "a00d17d5-e4f8-4295-9d3c-a61d8bfae986",
+    "d7623aaf-64e8-4ca3-8ed9-594bf6569071"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    3000,
+    3050
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "8b10df10-9f0e-41b3-be1a-6f68bcca5a3e",
+    "a00d17d5-e4f8-4295-9d3c-a61d8bfae986",
+    "d7623aaf-64e8-4ca3-8ed9-594bf6569071",
+    "85200ce6-3c88-4808-ada8-2ee2393d0325",
+    "94af0b8a-83bd-4b24-b4a8-c6358b1475b0",
+    "a49c1261-3803-4c49-967b-c4d74938f57c"
+   ],
+   "elements": [
+    {
+     "genre": "reprise",
+     "pk": [
+      3018.0,
+      3030.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "85200ce6-3c88-4808-ada8-2ee2393d0325"
+     ],
+     "description": "pièce d'enrobé sombre irrégulière dans la voie"
+    },
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      3045.0,
+      3075.0
+     ],
+     "voie": "droite",
+     "images": [
+      "a49c1261-3803-4c49-967b-c4d74938f57c",
+      "d0c65618-5be8-4b10-a12a-cf048f8a1e1d",
+      "a6ff84a8-fe6d-49c3-a3bc-02ea66801a4b"
+     ],
+     "description": "longues traces noires parallèles"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    3050,
+    3100
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "85200ce6-3c88-4808-ada8-2ee2393d0325",
+    "94af0b8a-83bd-4b24-b4a8-c6358b1475b0",
+    "a49c1261-3803-4c49-967b-c4d74938f57c",
+    "d0c65618-5be8-4b10-a12a-cf048f8a1e1d",
+    "a6ff84a8-fe6d-49c3-a3bc-02ea66801a4b",
+    "1f995965-1442-4ab7-a79c-577cad1a7f04",
+    "2540de5a-41f4-47c6-ba4f-11455f215faa",
+    "d4b59462-e4db-4d7d-8942-190c4d6a9842"
+   ],
+   "elements": [
+    {
+     "genre": "joint_ponte",
+     "pk": [
+      3074.0,
+      3076.0
+     ],
+     "voie": "toute",
+     "images": [
+      "1f995965-1442-4ab7-a79c-577cad1a7f04"
+     ],
+     "description": "joint transversal ponté sur toute la largeur"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    3100,
+    3150
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "d0c65618-5be8-4b10-a12a-cf048f8a1e1d",
+    "a6ff84a8-fe6d-49c3-a3bc-02ea66801a4b",
+    "1f995965-1442-4ab7-a79c-577cad1a7f04",
+    "2540de5a-41f4-47c6-ba4f-11455f215faa",
+    "d4b59462-e4db-4d7d-8942-190c4d6a9842",
+    "eb21f7db-01d2-4734-998c-e23fa11fd073",
+    "532958a0-e21d-4286-b4a4-3b7da87f9b17",
+    "978841a8-9ee6-4a6e-9c40-ac837d7d6b7c",
+    "3010a9e4-7a95-449d-bf05-ceb3d1160b77",
+    "5a111766-5aea-4f98-be65-e7b67d4c850c",
+    "1f4cc790-babf-4b22-b35e-40d7b203274e"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      3125.0,
+      3140.0
+     ],
+     "voie": "toute",
+     "images": [
+      "532958a0-e21d-4286-b4a4-3b7da87f9b17",
+      "978841a8-9ee6-4a6e-9c40-ac837d7d6b7c"
+     ],
+     "description": "longues traces noires"
+    },
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      3140.0,
+      3180.0
+     ],
+     "voie": "toute",
+     "images": [
+      "1f4cc790-babf-4b22-b35e-40d7b203274e",
+      "726829e6-420d-40df-9861-b969d4ea6ea5",
+      "dd38e147-f509-4bc8-86ce-01b937feac1b"
+     ],
+     "description": "longues traces noires parallèles et arcs"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    3150,
+    3200
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "eb21f7db-01d2-4734-998c-e23fa11fd073",
+    "532958a0-e21d-4286-b4a4-3b7da87f9b17",
+    "978841a8-9ee6-4a6e-9c40-ac837d7d6b7c",
+    "3010a9e4-7a95-449d-bf05-ceb3d1160b77",
+    "5a111766-5aea-4f98-be65-e7b67d4c850c",
+    "1f4cc790-babf-4b22-b35e-40d7b203274e",
+    "726829e6-420d-40df-9861-b969d4ea6ea5",
+    "dd38e147-f509-4bc8-86ce-01b937feac1b",
+    "bb78af47-a2dd-43ea-82ab-470f2336e460",
+    "c9f46809-9adb-4325-91da-c4b7e337736d",
+    "e4dc1127-8b2f-4214-920f-a9cde4be17f9",
+    "be182a52-adc3-4153-8ee9-38d2f0450491",
+    "7c7c6c0c-809f-4728-b6d7-d04853456197",
+    "f2618881-f993-4206-9a41-82a7d2e64864",
+    "c1fe1998-d9b1-416a-937a-4180e1851087"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    3200,
+    3250
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "726829e6-420d-40df-9861-b969d4ea6ea5",
+    "dd38e147-f509-4bc8-86ce-01b937feac1b",
+    "bb78af47-a2dd-43ea-82ab-470f2336e460",
+    "c9f46809-9adb-4325-91da-c4b7e337736d",
+    "e4dc1127-8b2f-4214-920f-a9cde4be17f9",
+    "be182a52-adc3-4153-8ee9-38d2f0450491",
+    "7c7c6c0c-809f-4728-b6d7-d04853456197",
+    "f2618881-f993-4206-9a41-82a7d2e64864",
+    "c1fe1998-d9b1-416a-937a-4180e1851087",
+    "14a5aa34-f1c2-4b65-befc-9e912c9788a1",
+    "17e951b9-e1d4-4689-a50c-1700ff6af84e",
+    "a133f64e-20c4-457c-86b0-ac0b8d3202a8",
+    "882b8969-196a-429d-a8d2-ab138500cb67",
+    "01f6516a-e636-417f-934e-834a5a9a0b28",
+    "06ea7f53-32ec-433e-906c-1abaffff01ce",
+    "3226ad6d-d40f-4e8a-8d2f-d2d9051835f2",
+    "4ca4c4ec-c551-4cea-ad21-84094142cd23"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      3210.0,
+      3230.0
+     ],
+     "voie": "droite",
+     "images": [
+      "14a5aa34-f1c2-4b65-befc-9e912c9788a1"
+     ],
+     "description": "longues traces noires"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    3250,
+    3300
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "14a5aa34-f1c2-4b65-befc-9e912c9788a1",
+    "17e951b9-e1d4-4689-a50c-1700ff6af84e",
+    "a133f64e-20c4-457c-86b0-ac0b8d3202a8",
+    "882b8969-196a-429d-a8d2-ab138500cb67",
+    "01f6516a-e636-417f-934e-834a5a9a0b28",
+    "06ea7f53-32ec-433e-906c-1abaffff01ce",
+    "3226ad6d-d40f-4e8a-8d2f-d2d9051835f2",
+    "4ca4c4ec-c551-4cea-ad21-84094142cd23",
+    "f1b57074-db18-4819-b07f-ad27e03c9d3d",
+    "fa24a98d-f3a4-4d66-957f-a791057c7145",
+    "e3874c85-5c74-407b-86c1-cd1ae80317f6",
+    "3186438c-e4ff-477f-ae1f-587c8b7a8b12",
+    "8b2d3ac5-de3b-419c-ae72-70d36707b0ae",
+    "81fc91ee-5179-4a8d-8f1f-93fa8697c287",
+    "0d8c8459-71cf-4342-8f53-09262b412a49",
+    "01b2fdfb-7f9a-4fbd-a365-ae0b74ddea7c",
+    "af20c5fa-de8c-4ccb-88f0-251eb5766a16"
+   ],
+   "elements": [
+    {
+     "genre": "faiencage",
+     "pk": [
+      3255.0,
+      3265.0
+     ],
+     "voie": "toute",
+     "images": [
+      "4ca4c4ec-c551-4cea-ad21-84094142cd23"
+     ],
+     "description": "faïençage dans le virage"
+    },
+    {
+     "genre": "terre",
+     "pk": [
+      3250.0,
+      3260.0
+     ],
+     "voie": "bord_gauche",
+     "images": [
+      "f1b57074-db18-4819-b07f-ad27e03c9d3d"
+     ],
+     "description": "terre et gravillons au pied du muret"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      3275.0,
+      3290.0
+     ],
+     "voie": "axe",
+     "images": [
+      "3186438c-e4ff-477f-ae1f-587c8b7a8b12"
+     ],
+     "description": "fissures"
+    }
+   ],
+   "etat": "3 élément(s)"
+  },
+  {
+   "pk": [
+    3300,
+    3350
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "f1b57074-db18-4819-b07f-ad27e03c9d3d",
+    "fa24a98d-f3a4-4d66-957f-a791057c7145",
+    "e3874c85-5c74-407b-86c1-cd1ae80317f6",
+    "3186438c-e4ff-477f-ae1f-587c8b7a8b12",
+    "8b2d3ac5-de3b-419c-ae72-70d36707b0ae",
+    "81fc91ee-5179-4a8d-8f1f-93fa8697c287",
+    "0d8c8459-71cf-4342-8f53-09262b412a49",
+    "01b2fdfb-7f9a-4fbd-a365-ae0b74ddea7c",
+    "af20c5fa-de8c-4ccb-88f0-251eb5766a16",
+    "367942e4-6364-415b-ac75-47334c98c753",
+    "a58011e0-9555-49bc-a06c-27ab306a93c7",
+    "e7e0c1a0-d488-4049-a649-5a905d0e831a",
+    "442e05e3-8419-45f0-ab95-d1b898b31dc9",
+    "7795c2c0-ffb5-427f-9366-7971814f7b78",
+    "fb6924e7-6060-4edc-b1dd-9d268e59a292",
+    "c6718930-9347-4cd0-8ddf-cb48dd244f0d",
+    "dc376bfe-b9a5-40af-a4d2-4887b6d3f717"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    3350,
+    3400
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "367942e4-6364-415b-ac75-47334c98c753",
+    "a58011e0-9555-49bc-a06c-27ab306a93c7",
+    "e7e0c1a0-d488-4049-a649-5a905d0e831a",
+    "442e05e3-8419-45f0-ab95-d1b898b31dc9",
+    "7795c2c0-ffb5-427f-9366-7971814f7b78",
+    "fb6924e7-6060-4edc-b1dd-9d268e59a292",
+    "c6718930-9347-4cd0-8ddf-cb48dd244f0d",
+    "dc376bfe-b9a5-40af-a4d2-4887b6d3f717",
+    "3b718cfd-65d1-49ed-bacb-b8640775d20c",
+    "a0a0bb99-62da-4b88-b264-7eeb6cf6e3d4",
+    "95d2f7ba-575e-408c-91a5-30c20f3dbb42",
+    "c31c7d02-49cd-4ac8-929d-1eaa58a8f477",
+    "32cb1b1c-7dde-4c80-89cc-b113f4065246",
+    "30cf4a1a-b576-4408-91c6-72beff270791"
+   ],
+   "elements": [
+    {
+     "genre": "gravillons",
+     "pk": [
+      3385.0,
+      3395.0
+     ],
+     "voie": "bord_droit",
+     "images": [
+      "c31c7d02-49cd-4ac8-929d-1eaa58a8f477"
+     ],
+     "description": "gravillons et terre au débouché d'un chemin"
+    },
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      3395.0,
+      3405.0
+     ],
+     "voie": "gauche",
+     "images": [
+      "30cf4a1a-b576-4408-91c6-72beff270791"
+     ],
+     "description": "fissures"
+    }
+   ],
+   "etat": "2 élément(s)"
+  },
+  {
+   "pk": [
+    3400,
+    3450
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "3b718cfd-65d1-49ed-bacb-b8640775d20c",
+    "a0a0bb99-62da-4b88-b264-7eeb6cf6e3d4",
+    "95d2f7ba-575e-408c-91a5-30c20f3dbb42",
+    "c31c7d02-49cd-4ac8-929d-1eaa58a8f477",
+    "32cb1b1c-7dde-4c80-89cc-b113f4065246",
+    "30cf4a1a-b576-4408-91c6-72beff270791",
+    "9c78e331-0ced-4679-abc0-17570824bc8d",
+    "f6a0068f-5e48-4d34-84bd-b691d49274f3",
+    "c4ae4f77-1018-4808-bb2e-b8f41d3c87ff"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    3450,
+    3500
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "9c78e331-0ced-4679-abc0-17570824bc8d",
+    "f6a0068f-5e48-4d34-84bd-b691d49274f3",
+    "c4ae4f77-1018-4808-bb2e-b8f41d3c87ff",
+    "2acaab65-e87b-4fa8-b655-3411e867a15e",
+    "f1c411df-d4a5-4183-9de2-293b31790a3c",
+    "635c5f76-941b-493e-aa44-06e5bcb3c716",
+    "5e36c019-364e-4cb7-8286-a6303e9ef4d0"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      3470.0,
+      3490.0
+     ],
+     "voie": "droite",
+     "images": [
+      "f1c411df-d4a5-4183-9de2-293b31790a3c"
+     ],
+     "description": "traces sombres légères"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    3500,
+    3550
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "2acaab65-e87b-4fa8-b655-3411e867a15e",
+    "f1c411df-d4a5-4183-9de2-293b31790a3c",
+    "635c5f76-941b-493e-aa44-06e5bcb3c716",
+    "5e36c019-364e-4cb7-8286-a6303e9ef4d0",
+    "a4a603b8-cb82-4a99-97b6-c6c32e4a53e9",
+    "566faba1-a2b0-4263-9c3e-222f9159f68c",
+    "0a2d4774-8a56-4855-a786-dcde64a489bf"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    3550,
+    3600
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "a4a603b8-cb82-4a99-97b6-c6c32e4a53e9",
+    "566faba1-a2b0-4263-9c3e-222f9159f68c",
+    "0a2d4774-8a56-4855-a786-dcde64a489bf",
+    "7f9703b7-ab83-4714-9b7a-2211af1e70d9",
+    "55590307-a0ff-440c-8148-b299befb0f1c",
+    "6f422c65-7e0e-4740-9d2b-9f852eee176d"
+   ],
+   "elements": [],
+   "etat": "rien de notable vu"
+  },
+  {
+   "pk": [
+    3600,
+    3650
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "7f9703b7-ab83-4714-9b7a-2211af1e70d9",
+    "55590307-a0ff-440c-8148-b299befb0f1c",
+    "6f422c65-7e0e-4740-9d2b-9f852eee176d",
+    "f4d3e1b2-b384-48a7-a780-eb9870bb159c",
+    "3293697d-a169-47e9-b400-908c3a1d1242",
+    "11ee1c29-9530-446c-94ac-f426e48da911"
+   ],
+   "elements": [
+    {
+     "genre": "traces_pneus",
+     "pk": [
+      3620.0,
+      3640.0
+     ],
+     "voie": "toute",
+     "images": [
+      "f4d3e1b2-b384-48a7-a780-eb9870bb159c"
+     ],
+     "description": "traces sombres légères"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    3650,
+    3700
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "f4d3e1b2-b384-48a7-a780-eb9870bb159c",
+    "3293697d-a169-47e9-b400-908c3a1d1242",
+    "11ee1c29-9530-446c-94ac-f426e48da911",
+    "dcde5896-00b2-4dad-856b-f4308e86569c",
+    "6f20b24e-fff2-4202-a69e-2b54e83bb30f",
+    "e48878e8-2389-4a2f-a340-a2f92dcbcf37",
+    "1eeb4efc-c52f-4cb6-b246-a2d0fe30a255"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      3660.0,
+      3680.0
+     ],
+     "voie": "droite",
+     "images": [
+      "dcde5896-00b2-4dad-856b-f4308e86569c"
+     ],
+     "description": "fissures longitudinales"
+    }
+   ],
+   "etat": "1 élément(s)"
+  },
+  {
+   "pk": [
+    3700,
+    3750
+   ],
+   "enrobe": "ancien gris moyen",
+   "images": [
+    "dcde5896-00b2-4dad-856b-f4308e86569c",
+    "6f20b24e-fff2-4202-a69e-2b54e83bb30f",
+    "e48878e8-2389-4a2f-a340-a2f92dcbcf37",
+    "1eeb4efc-c52f-4cb6-b246-a2d0fe30a255",
+    "2f96ea55-e977-4c36-a5ec-a0a5491b498d",
+    "dd2dbcb1-b72f-4d81-a433-dda130bc01a3",
+    "f5e338ef-583d-46d2-9f99-4cccb1bff599",
+    "b0f6f8b2-f612-4818-bad3-9f175e982c81",
+    "c8ff5bd3-5a50-4236-b76f-15ae1b438e51",
+    "c5f73324-ddd0-4959-aa93-0e616cd3d4b8",
+    "2c1ba04d-23f9-48a0-9f16-d49a8a5ad4af"
+   ],
+   "elements": [
+    {
+     "genre": "fissure_longitudinale",
+     "pk": [
+      3700.0,
+      3730.0
+     ],
+     "voie": "droite",
+     "images": [
+      "1eeb4efc-c52f-4cb6-b246-a2d0fe30a255"
+     ],
+     "description": "fissures longitudinales"
+    }
+   ],
+   "etat": "1 élément(s)"
+  }
+ ],
+ "marquage": [
+  {
+   "genre": "rectangle_pr",
+   "pk": 1113,
+   "cote": "les_deux",
+   "longueur_m": 1.0,
+   "largeur_m": 0.5,
+   "images": [
+    "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+   ],
+   "description": "rectangle blanc peint sur chaque rive au droit de la borne PR 6 (plaquette « D3 6 » vue sur e34f1aff, côté gauche)"
+  },
+  {
+   "genre": "rectangle_pr",
+   "pk": 3104,
+   "cote": "les_deux",
+   "longueur_m": 1.0,
+   "largeur_m": 0.5,
+   "images": [
+    "2540de5a-41f4-47c6-ba4f-11455f215faa"
+   ],
+   "description": "rectangle blanc peint sur chaque rive au droit de la borne PR 8"
+  },
+  {
+   "genre": "rive_continue",
+   "pk": [
+    3685,
+    3768
+   ],
+   "cote": "gauche",
+   "images": [
+    "e48878e8-2389-4a2f-a340-a2f92dcbcf37",
+    "1eeb4efc-c52f-4cb6-b246-a2d0fe30a255",
+    "2f96ea55-e977-4c36-a5ec-a0a5491b498d"
+   ],
+   "description": "rive gauche continue le long du caniveau à grille (zone d'arrêt)"
+  },
+  {
+   "genre": "ligne_cedez",
+   "pk": [
+    2934,
+    2944
+   ],
+   "cote": "droite",
+   "images": [
+    "a0adfc0d-cdcd-41d6-bb3c-ed8e06ac4ed0",
+    "0e847466-22ae-4418-ac3e-0341cde1bc81"
+   ],
+   "description": "ligne de cédez-le-passage (tirets courts) en travers de la voie latérale, au débouché sur la D3 ; position à ±2 m"
+  },
+  {
+   "genre": "zone_hachuree_retiree",
+   "pk": [
+    3636,
+    3652
+   ],
+   "images": [
+    "3293697d-a169-47e9-b400-908c3a1d1242",
+    "11ee1c29-9530-446c-94ac-f426e48da911"
+   ],
+   "description": "la zone hachurée « carrefour du Lion d'Or » de marquage_route.json venait du Grand Caunet (coordonnées à 2,7 km au nord du PK 3636 de Ceyreste) ; aucune zone hachurée sur les images : retirée"
+  }
+ ],
+ "vu_non_pose": [
+  "taches sombres (huile ?) au PK 2020-2030 (7b885a49) : nature incertaine, non posées",
+  "faïençage fin et micro-fissures de l'enrobé ancien partout entre les éléments relevés : rendu par la texture de l'enrobé, pas par des éléments"
+ ]
+}

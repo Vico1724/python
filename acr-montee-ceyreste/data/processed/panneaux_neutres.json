@@ -2,24 +2,6 @@
  "note": "Panneaux exacts pour l'export neutre : un modèle autonome (mât + plaque texturée) par panneau relevé, posé à sa place.\n\nLe paquet ACR garde ses substituts du jeu (triangles génériques, balises, bornes : mobilier_bord_de_route.json) ; ce\nscript ne sert qu'à l'export neutre (réutilisation dans un autre jeu).\nFaces :\n  - A15b, A1d : dessins de la signalisation française de Wikimedia Commons (auteur Roulex_45, CC BY-SA 3.0),\n    téléchargés le 18/11/2026 dans data/raw/panneaux/ (non versionné) ;\n  - A14, B13, B14, AB3a, J4, EB20, plaques PR, panneau temporaire : REDESSINÉS simplement ici (téléchargement refusé par\n    Wikimedia : « 429 trop de requêtes ») d'après la forme réglementaire et le texte lu sur les photos.\nPositions : PK et côté du relevé (releve_panoramax_2025.json, releve_clotures_2025.json), recul 0,9 m au bord de\nchaussée (±5 m en long). Hauteurs : bas de plaque à 1,0 m (danger, interdiction), 2,3 m pour l'EB20 sur portique.\nSorties : modele/panneaux_neutres.glb (un maillage par panneau : <id>_mat, <id>_plaque, <id>_panonceau),\n          data/processed/panneaux_neutres.json (placements, source de chaque face, licence)",
  "panneaux": [
   {
-   "id": "EB20_m28",
-   "code": "EB20",
-   "pk_m": -28,
-   "cote": "droite",
-   "x_l93": 915319.51,
-   "y_l93": 6239575.98,
-   "z_sol_ngf": 212.85,
-   "bas_plaque_m": 2.3,
-   "largeur_m": 1.3,
-   "panonceau": null,
-   "face": "redessiné ; texte « CEYRESTE » lu sur la photo",
-   "images": [
-    "f9160d60",
-    "ee1447e9"
-   ],
-   "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
-  },
-  {
    "id": "A15b_86",
    "code": "A15b",
    "pk_m": 86,
@@ -35,6 +17,7 @@
     "c03d3e1e",
     "edfd08bf"
    ],
+   "sens": "montee",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -53,6 +36,7 @@
     "c03d3e1e",
     "edfd08bf"
    ],
+   "sens": "montee",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -70,6 +54,7 @@
    "images": [
     "c559b2b8"
    ],
+   "sens": "parallèle à la route",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -88,6 +73,7 @@
     "701e21a2",
     "a7c86442"
    ],
+   "sens": "montee",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -105,6 +91,7 @@
    "images": [
     "a7c86442"
    ],
+   "sens": "montee",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -122,6 +109,7 @@
    "images": [
     "(planche descente)"
    ],
+   "sens": "descente",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -139,6 +127,7 @@
    "images": [
     "654381ef"
    ],
+   "sens": "parallèle à la route",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -157,6 +146,7 @@
     "9f14e86c",
     "7a47ca44"
    ],
+   "sens": "chemin",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   },
   {
@@ -174,6 +164,80 @@
    "images": [
     "1f995965"
    ],
+   "sens": "parallèle à la route",
+   "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
+  },
+  {
+   "id": "PR6_1113",
+   "code": "PR",
+   "pk_m": 1113,
+   "cote": "gauche",
+   "x_l93": 915330.1,
+   "y_l93": 6240193.28,
+   "z_sol_ngf": 255.62,
+   "bas_plaque_m": 0.5,
+   "largeur_m": 0.25,
+   "panonceau": null,
+   "face": "redessiné ; « D3 » et le numéro lus sur la photo (PR 8 : probable)",
+   "images": [
+    "e34f1aff"
+   ],
+   "sens": "parallèle à la route",
+   "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
+  },
+  {
+   "id": "A15b_3672",
+   "code": "A15b",
+   "pk_m": 3672,
+   "cote": "gauche",
+   "x_l93": 917031.18,
+   "y_l93": 6240898.79,
+   "z_sol_ngf": 389.67,
+   "bas_plaque_m": 2.5,
+   "largeur_m": 1.0,
+   "panonceau": null,
+   "face": "Wikimedia Commons, « France road sign A15b », auteur Roulex_45, CC BY-SA 3.0",
+   "images": [
+    "dcde5896"
+   ],
+   "sens": "descente",
+   "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
+  },
+  {
+   "id": "A1c_3672",
+   "code": "A1c",
+   "pk_m": 3672.3,
+   "cote": "gauche",
+   "x_l93": 917031.46,
+   "y_l93": 6240898.86,
+   "z_sol_ngf": 389.67,
+   "bas_plaque_m": 1.4,
+   "largeur_m": 1.0,
+   "panonceau": null,
+   "face": "Wikimedia Commons, « France road sign A1d », auteur Roulex_45, CC BY-SA 3.0 ; retourné (A1c)",
+   "images": [
+    "dcde5896"
+   ],
+   "sens": "descente",
+   "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
+  },
+  {
+   "id": "AB3a_3198",
+   "code": "AB3a",
+   "pk_m": 3198,
+   "cote": "droite",
+   "x_l93": 916587.49,
+   "y_l93": 6240796.62,
+   "z_sol_ngf": 372.84,
+   "bas_plaque_m": 1.3,
+   "largeur_m": 0.9,
+   "panonceau": null,
+   "face": "redessiné (Wikimedia : 429)",
+   "images": [
+    "7c7c6c0c",
+    "be182a52"
+   ],
+   "sens": "chemin",
    "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"
   }
  ]

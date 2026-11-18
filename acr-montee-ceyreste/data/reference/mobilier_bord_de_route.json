@@ -505,6 +505,35 @@
    "statut": "OSM seul : non confirmé poteau par poteau sur photo",
    "confiance": "faible",
    "positionnement": "OSM (±2-5 m)"
+  },
+  {
+   "type": "borne_kilometrique",
+   "pk_m": 1113,
+   "cote": "gauche",
+   "decalage_m": 0.6,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images e34f1aff",
+   "images": [
+    "e34f1aff-9ee9-4fe3-84b8-82eaf3d7501f"
+   ],
+   "statut": "vu sur Panoramax (sixième passe, 19/11/2026)",
+   "positionnement": "approximatif (photo, PK ±5 m)",
+   "confiance": "moyenne",
+   "description": "plaquette « D3 6 » (PR 6) sur piquet, au pied de la paroi ; rectangles blancs peints sur les deux rives au même PK"
+  },
+  {
+   "type": "panneau_danger",
+   "pk_m": 3672,
+   "cote": "gauche",
+   "decalage_m": 0.9,
+   "source": "Panoramax, Région Sud / Immergis, 08/09/2025, images 360°, licence etalab-2.0 (data/reference/photos_rue_panoramax.csv) ; images dcde5896",
+   "images": [
+    "dcde5896-00b2-4dad-856b-f4308e86569c"
+   ],
+   "statut": "vu sur Panoramax (sixième passe, 19/11/2026)",
+   "positionnement": "approximatif (photo, PK ±5 m)",
+   "confiance": "moyenne",
+   "description": "A15b « passage d'animaux sauvages » au-dessus d'un A1c, face aux descendants (le jeu n'a qu'un triangle générique)",
+   "lacet_en_plus_deg": 180.0
   }
  ],
  "non_poses": [

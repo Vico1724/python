@@ -808,7 +808,7 @@ def _batiment(e, lot, mnt, mns, ref):
             return z_ref + H - pente * np.maximum(np.abs(D @ v), np.abs(D @ u) - demi_faitage)
         return z_ref + H - pente * np.abs(D @ v)
 
-    z_bas = float(mnt.z(*_anneau(P).T).min()) - ZD_ENFOUI
+    z_bas = float(mnt.z(*np.asarray(P.exterior.segmentize(0.4).coords)[:, :2].T).min()) - ZD_ENFOUI   # tous les 0,4 m (sixième passe)
     mm, mt = e.get("materiau_murs", "enduit_maison"), e.get("materiau_toit", "tuile")
     # murs
     W = _anneau(P, ligne)

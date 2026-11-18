@@ -2295,6 +2295,17 @@ DETAILS = {
                                (-19.0, 1.0, 1.0, 1.0), (-6.16, 1.0, 1.0, 1.0), (-2.74, 1.0, 1.0, 1.0)]},
         "pneus": {"materiau": f"{DECALQUES}/MI_AsphaltTiresMarksDecal", "gabarits": [(1458, 512, 26)],
                   "couleurs": [(5.14, 1.0, 1.0, 1.0)]},
+        # Sixième passe (19/11/2026) : usure relevée tronçon par tronçon (data/reference/chaussee_releve_50m.json). Variantes
+        # de fissures et de raccord du jeu (AlsaceShared, même maître M_MasterDecals_WorldSpace que les autres) ; leur emploi
+        # par le studio n'a pas été relevé : gabarits et couleurs SUPPOSÉS (taille prise sur l'élément relevé, couleur
+        # neutre 1, 1, 1, 1). À regarder en jeu.
+        "fissures": {"materiau": f"{DECALQUES}/MI_AsphaltDecalCracks_01", "gabarits": [(400, 300, 30)],
+                     "couleurs": [(1.0, 1.0, 1.0, 1.0)]},
+        "fissures_b": {"materiau": f"{DECALQUES}/MI_AsphaltDecalCracks_02", "comme": "fissures"},
+        "fissures_longues": {"materiau": f"{DECALQUES}/MI_AsphaltDecalCracksLong_01", "gabarits": [(800, 120, 30)],
+                             "couleurs": [(1.0, 1.0, 1.0, 1.0)]},
+        "raccord": {"materiau": "/Game/Environments/AlsaceS4Saverne/DecalMaterialInstances/MI_AsphaltTransitionDecal", "gabarits": [(700, 120, 30)],
+                    "couleurs": [(1.0, 1.0, 1.0, 1.0)]},
     },
     # litière du bord : terre et débris, ou aiguilles sous les pins. Paquets de 2 à 4 boîtes qui se chevauchent le long
     # du bord, tirés au sort d'après le couvert des arbres du semis et la courbure (bonus dans les virages serrés, et
@@ -2677,6 +2688,56 @@ def details_de_chaussee(P, ref, ch, sol, chaussee, marquage, ruban):
             L, W, prof = gabarit(fam, Ep["pneus_echelle"] if fam == "pneus" else Ep["echelle"], (5.0, 11.0), Ep["fleche_max_m"] * 2, s)
             poser(fam, float(s), float(t.get("decalage_m", 0.0)), L, W, prof, couleur(fam), rng.uniform(-25.0, 25.0),
                   ordre=3 if fam == "pneus" else 2)
+    # 3 ter. usure relevée par tronçon de 50 m (sixième passe, 43_chaussee_releve.py, data/reference/chaussee_releve_50m.json) :
+    # fissures, faïençage, joints, raccords, traces, terre, gravillons et aiguilles, à leur PK et dans leur voie. Tirage à
+    # graine propre (n'altère pas les tirages qui suivent). Les éléments marqués « déjà relevé » dont la famille est déjà
+    # posée par 3 bis ou par les épingles (traces, terre, aiguilles) ne sont pas doublés. Pièces d'enrobé (« reprise ») :
+    # aucun décalque de pièce sûr dans le jeu, non posées dans le paquet (l'aperçu et l'export neutre les ont, 44).
+    f_u = REF / "chaussee_releve_50m.json"
+    if f_u.exists():
+        ru = np.random.default_rng(DETAILS["graine"] + 7)
+        UR = json.loads(f_u.read_text(encoding="utf-8"))
+        for t in UR["troncons"]:
+            for e in t["elements"]:
+                g_, (a_, b_), v_ = e["genre"], e["pk"], e["voie"]
+                deja = "déjà relev" in e.get("description", "")
+                if g_ in ("traces_pneus", "terre", "aiguilles") and deja:
+                    continue
+                a_, b_ = max(a_, s_min + 1), min(b_, s_max - 1)
+                if b_ <= a_:
+                    continue
+
+                def centre_(s_, v_=v_):
+                    hd, hg = float(bande.demi(s_, "droite")[0]), float(bande.demi(s_, "gauche")[0])
+                    return {"droite": hd / 2, "gauche": -hg / 2, "bord_droit": hd - 0.5, "bord_gauche": -(hg - 0.5)}.get(v_, 0.0), hd + hg
+                if g_ in ("faiencage",):
+                    for s_ in np.arange(a_ + 1.5, b_ - 0.5 if b_ - a_ > 3 else a_ + 1.6, 3.2):
+                        c_, w_ = centre_(s_)
+                        W_ = (w_ - 0.6) if v_ == "toute" else (w_ / 2 - 0.4 if v_ in ("droite", "gauche") else 1.8)
+                        poser("fissures" if ru.random() < 0.5 else "fissures_b", float(s_), c_ + ru.uniform(-0.2, 0.2), 3.8, max(W_, 1.2),
+                              0.3, (1.0, 1.0, 1.0, 1.0), ru.uniform(-8, 8), sens=1.0 if ru.random() < 0.5 else -1.0, ordre=1)
+                elif g_ in ("fissure_longitudinale", "joint_ponte") and b_ - a_ > 2.5:
+                    for s_ in np.arange(a_ + 3.5, b_ + 0.1, 7.0) if b_ - a_ > 7 else [(a_ + b_) / 2]:
+                        c_, _ = centre_(s_)
+                        poser("fissures_longues", float(s_), c_ + ru.uniform(-0.3, 0.3), min(7.5, b_ - a_ + 0.5), 1.0, 0.3,
+                              (1.0, 1.0, 1.0, 1.0), ru.uniform(-3, 3), sens=1.0 if ru.random() < 0.5 else -1.0, ordre=1)
+                elif g_ in ("fissure_transversale", "joint_ponte"):
+                    s_ = (a_ + b_) / 2; _, w_ = centre_(s_)
+                    poser("fissures_longues", float(s_), 0.0, w_ - 0.3, 0.8, 0.3, (1.0, 1.0, 1.0, 1.0), 90.0 + ru.uniform(-6, 6), ordre=1)
+                elif g_ == "raccord":
+                    s_ = (a_ + b_) / 2; _, w_ = centre_(s_)
+                    poser("raccord", float(s_), 0.0, w_, 1.2, 0.3, (1.0, 1.0, 1.0, 1.0), 90.0, ordre=1)
+                elif g_ == "traces_pneus":
+                    for s_ in np.arange(a_ + 4.0, b_ + 0.1, 7.0) if b_ - a_ > 8 else [(a_ + b_) / 2]:
+                        c_, _ = centre_(s_)
+                        poser("pneus", float(s_), c_ + ru.uniform(-0.6, 0.6), ru.uniform(6.0, 9.0), 2.0, 0.26, couleur("pneus"),
+                              ru.uniform(-6, 6), sens=1.0 if ru.random() < 0.5 else -1.0, ordre=3)
+                elif g_ in ("terre", "gravillons", "aiguilles", "bord_effrite"):
+                    role_ = {"bord_effrite": "gravillons"}.get(g_, g_)
+                    for s_ in np.arange(a_ + 4.0, b_ + 0.1, 8.0) if b_ - a_ > 8 else [(a_ + b_) / 2]:
+                        c_, _ = centre_(s_)
+                        poser(role_, float(s_), c_, ru.uniform(7.0, 10.0), ru.uniform(2.0, 3.0), 0.5, couleur(role_),
+                              ru.uniform(-4, 4), ordre=2)
     # 4. feuilles mortes du jeu sur l'enrobé
     F = FEUILLES
     noms = list(F["maillages"])
@@ -3703,7 +3764,10 @@ def main():
     # rouges, marquage, panneaux, poteaux et lignes, coffrets, végétation des jardins ; acteurs StaticMesh, famille
     # « depart » (StartJunction/Meshes) ; sol de roulage et obstacles par 09 (depart_collision.glb)
     dep = lire_glb(MOD / "depart.glb") if (MOD / "depart.glb").exists() else []
-    mats = materiaux_modele(P, [route, ouvr, annx, bali, bati, vill, clot, dep], f"{UE}/Shared/Textures",
+    # Massifs de jardin et petits éléments relevés (45_vegetation_bord.py, sixième passe) : acteurs StaticMesh, famille
+    # « abords » (Roadside/Meshes), sans collision ; l'herbe des accotements reste celle du jeu (herbes_du_bord)
+    jar = lire_glb(MOD / "abords.glb") if (MOD / "abords.glb").exists() else []
+    mats = materiaux_modele(P, [route, ouvr, annx, bali, bati, vill, clot, dep, jar], f"{UE}/Shared/Textures",
                             f"{UE}/Shared/Materials", "")
     mi = lambda mat: mats[mat]                                            # noqa: E731
     chaussee = [m for m in route if m["mat"]["nom"] == "enrobe"]
@@ -3718,7 +3782,8 @@ def main():
             "batiments": par_troncon(P, pkf, bati, "Building", "batiments", f"{UE}/Buildings/Meshes", mi, args),
             "village": par_troncon(P, pkf, vill, "Village", "village", f"{UE}/Village/Meshes", mi, args),
             "clotures": par_troncon(P, pkf, clot, "Fence", "clotures", f"{UE}/Fences/Meshes", mi, args),
-            "depart": par_troncon(P, pkf, dep, "StartJunction", "depart", f"{UE}/StartJunction/Meshes", mi, args)}
+            "depart": par_troncon(P, pkf, dep, "StartJunction", "depart", f"{UE}/StartJunction/Meshes", mi, args),
+            "abords": par_troncon(P, pkf, jar, "Roadside", "abords", f"{UE}/Roadside/Meshes", mi, args)}
     print("anneau lointain…", flush=True)
     n_loin = lointain(P, ref, args, pkf)
     print("instances…", flush=True)

@@ -115,7 +115,7 @@ def face_commons(code):
 
 # (id, code, PK, côté, face, panonceau, largeur plaque m, bas de plaque m, nb de mâts, images)
 PANNEAUX = [
-    ("EB20_m28", "EB20", -28, "droite", "eb20", None, 1.3, 2.3, 2, ["f9160d60", "ee1447e9"]),
+    # EB20_m28 : retiré à la sixième passe (19/11/2026) ; 37_clotures.py le pose en travers avec l'EB10 au dos (doublon)
     # B14 « 50 » et B13 « 19 t » : posés depuis le 19/11/2026 par 41_carrefour_depart.py (positions par visées croisées,
     # depart.glb, qui va aussi dans l'export neutre) ; ils étaient ici aux PK -20 et 5, lus de loin
     ("A15b_86", "A15b", 86, "droite", "A15b", "4,6 km", 1.0, 1.4, 1, ["c03d3e1e", "edfd08bf"]),
@@ -127,7 +127,18 @@ PANNEAUX = [
     ("PR7_2111", "PR", 2111, "gauche", "PR7", None, 0.25, 0.5, 1, ["654381ef"]),
     ("AB3a_2938", "AB3a", 2938, "droite", "AB3a", None, 0.9, 1.3, 1, ["9f14e86c", "7a47ca44"]),
     ("PR8_3112", "PR", 3112, "gauche", "PR8", None, 0.25, 0.5, 1, ["1f995965"]),
+    # sixième passe (19/11/2026), lus sur les vues de 43_chaussee_releve.py et leurs zooms
+    ("PR6_1113", "PR", 1113, "gauche", "PR6", None, 0.25, 0.5, 1, ["e34f1aff"]),
+    ("A15b_3672", "A15b", 3672, "gauche", "A15b", None, 1.0, 2.5, 1, ["dcde5896"]),
+    ("A1c_3672", "A1c", 3672.3, "gauche", "A1c", None, 1.0, 1.4, 0, ["dcde5896"]),
+    ("AB3a_3198", "AB3a", 3198, "droite", "AB3a", None, 0.9, 1.3, 1, ["7c7c6c0c", "be182a52"]),
 ]
+# Sens de la face (sixième passe : les plaques étaient toutes posées parallèles à la route, face tournée vers la chaussée,
+# alors qu'un panneau de police regarde les usagers qui arrivent) : « montee » = face aux usagers qui montent (PK
+# croissants), « descente » = face aux descendants, « chemin » = face aux usagers de la voie latérale (vers l'extérieur),
+# absent = parallèle à la route (plaques de PR, vues de côté sur les photos)
+SENS = {"A15b_86": "montee", "A1d_86": "montee", "J4_902": "montee", "J4_913": "montee", "A14_1300": "descente",
+        "AB3a_2938": "chemin", "A15b_3672": "descente", "A1c_3672": "descente", "AB3a_3198": "chemin"}
 
 
 def faces():
@@ -135,13 +146,16 @@ def faces():
     for code in ("A15b", "A1d"):
         im, src = face_commons(code)
         out[code] = (im, src) if im is not None else (triangle("!"), "redessiné (téléchargement absent)")
+    # A1c (premier virage à droite) : image miroir de l'A1d (même pictogramme retourné), vu sur dcde5896
+    im, src = out["A1d"]
+    out["A1c"] = (im.transpose(Image.FLIP_LEFT_RIGHT), (src or "") + " ; retourné (A1c)")
     out["A14"] = (triangle("!"), "redessiné (Wikimedia : 429)")
     out["B13"] = (rond("19t"), "redessiné (Wikimedia : 429) ; texte « 19 t » lu sur la photo")
     out["B14"] = (rond("50"), "redessiné (Wikimedia : 429) ; texte « 50 » lu sur la photo")
     out["AB3a"] = (cedez(), "redessiné (Wikimedia : 429)")
     out["J4"] = (j4(), "redessiné (Wikimedia : 429)")
     out["eb20"] = (eb20(), "redessiné ; texte « CEYRESTE » lu sur la photo")
-    for k in ("PR5", "PR7", "PR8"):
+    for k in ("PR5", "PR6", "PR7", "PR8"):
         out[k] = (pr(k[2:]), "redessiné ; « D3 » et le numéro lus sur la photo (PR 8 : probable)")
     return out
 
@@ -157,6 +171,14 @@ def main():
         t = np.array([np.interp(pk + 1, B.pk, B.A[:, 0]) - np.interp(pk - 1, B.pk, B.A[:, 0]),
                       np.interp(pk + 1, B.pk, B.A[:, 1]) - np.interp(pk - 1, B.pk, B.A[:, 1])]); t /= np.linalg.norm(t)
         nn = np.array([[-t[1], t[0]]] * 2) * (1 if cote == "gauche" else -1)
+        ax = t                                          # axe de la largeur de la plaque
+        sens = SENS.get(i)
+        if sens:
+            nl = np.array([-t[1], t[0]]) * (1 if cote == "gauche" else -1)      # vers l'extérieur de la route
+            f = {"montee": -t, "descente": t, "chemin": nl}[sens]               # vers l'usager regardé
+            nn = np.array([-f] * 2)
+            ax = np.array([f[1], -f[0]])                                        # gauche -> droite vu par l'usager
+            ax = -ax
         im, src = F[face]
         ratio = im.size[1] / im.size[0]; H = larg * ratio
         mf = f"face_{face}"
@@ -165,10 +187,10 @@ def main():
             b = io.BytesIO(); (im if alpha else im.convert("RGB")).save(b, "PNG" if alpha else "JPEG", quality=90)
             mats[mf] = {"img": b.getvalue(), "mime": "image/png" if alpha else "image/jpeg", "alpha": alpha, "double": False,
                         "rough": 0.4}
-        Q = np.array([P0 - t * larg / 2, P0 + t * larg / 2])
+        Q = np.array([P0 - ax * larg / 2, P0 + ax * larg / 2])
         # plaque : face côté route (la face de la boîte tournée vers -n), UV 0..1 sur cette face
         pl = c37.ruban(Q, nn, -0.04, -0.02, np.full(2, zz + bas), np.full(2, zz + bas + H), ref, 1.0)
-        pl["uv"] = uv_plaque(pl, ref, P0, t, larg, zz + bas, H, cote)
+        pl["uv"] = uv_plaque(pl, ref, P0, ax, larg, zz + bas, H, cote if not sens else "face")
         meshes.append(dict(pl, name=f"{i}_plaque", mat=mf))
         haut = bas + H
         if pano:
@@ -178,16 +200,16 @@ def main():
             mats[mp] = {"img": b.getvalue(), "mime": "image/jpeg", "rough": 0.4}
             hp = larg * 0.3
             pp = c37.ruban(Q, nn, -0.04, -0.02, np.full(2, zz + bas - hp - 0.05), np.full(2, zz + bas - 0.05), ref, 1.0)
-            pp["uv"] = uv_plaque(pp, ref, P0, t, larg, zz + bas - hp - 0.05, hp, cote)
+            pp["uv"] = uv_plaque(pp, ref, P0, ax, larg, zz + bas - hp - 0.05, hp, cote if not sens else "face")
             meshes.append(dict(pp, name=f"{i}_panonceau", mat=mp))
         for s in ((-larg / 2 + 0.08, larg / 2 - 0.08) if nmats == 2 else (0.0,) if nmats == 1 else ()):
-            c = P0 + t * s
-            m = c37.ruban(np.array([c - t * 0.03, c + t * 0.03]), nn, -0.01, 0.05, np.full(2, zz - 0.4),
+            c = P0 + ax * s
+            m = c37.ruban(np.array([c - ax * 0.03, c + ax * 0.03]), nn, -0.01, 0.05, np.full(2, zz - 0.4),
                           np.full(2, zz + haut + 0.05), ref, 1.0)
             meshes.append(dict(m, name=f"{i}_mat{s:+.1f}", mat="mat_vert" if code == "EB20" else "mat_galva"))
         bilan.append({"id": i, "code": code, "pk_m": pk, "cote": cote, "x_l93": round(float(P0[0]), 2),
                       "y_l93": round(float(P0[1]), 2), "z_sol_ngf": round(zz, 2), "bas_plaque_m": bas, "largeur_m": larg,
-                      "panonceau": pano, "face": src, "images": imgs,
+                      "panonceau": pano, "face": src, "images": imgs, "sens": SENS.get(i, "parallèle à la route"),
                       "paquet_acr": "substitut du jeu inchangé (mobilier_bord_de_route.json) ou non posé"})
     if "A1d_86" in [b["id"] for b in bilan]:
         pass
@@ -204,7 +226,7 @@ def uv_plaque(m, ref, P0, t, larg, z0, H, cote):
     G = m["pos"].astype(np.float64)
     x = G[:, 0] + ref["x0"]; y = -G[:, 2] + ref["y0"]; z = G[:, 1] + ref["z0"]
     s = (x - P0[0]) * t[0] + (y - P0[1]) * t[1]
-    sg = 1.0 if cote == "droite" else -1.0          # vu depuis la route, la gauche de la plaque est vers -t (à droite)
+    sg = {"droite": 1.0, "gauche": -1.0, "face": -1.0}[cote]   # vu depuis la route, la gauche de la plaque est vers -t (à droite)
     u = 0.5 + sg * s / larg
     v = 1.0 - (z - z0) / H
     return np.column_stack([u, v])

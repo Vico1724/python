@@ -35,6 +35,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ICI = Path(__file__).resolve().parent
 sys.path.insert(0, str(ICI))
 from acr_geo import OUT, RAW, REF, ROOT  # noqa: E402
+import variation  # noqa: E402
 
 _s = importlib.util.spec_from_file_location("route_ouvrages", ICI / "11_route_ouvrages.py")
 m11 = importlib.util.module_from_spec(_s); _s.loader.exec_module(m11)
@@ -164,7 +165,9 @@ def ecrire_glb(path, meshes, mats):
             gl.setdefault("samplers", [{"magFilter": 9729, "minFilter": 9987, "wrapS": 10497, "wrapT": 10497}])
             gl.setdefault("textures", []).append({"sampler": 0, "source": len(gl["images"]) - 1})
             m["pbrMetallicRoughness"]["baseColorTexture"] = {"index": len(gl["textures"]) - 1}
-        if d.get("alpha"):
+        if d.get("alpha") == "BLEND":            # transparence progressive (usure de la chaussée, 44_usure_chaussee.py)
+            m["alphaMode"] = "BLEND"
+        elif d.get("alpha"):
             m["alphaMode"] = "MASK"; m["alphaCutoff"] = 0.5
         if d.get("double"):
             m["doubleSided"] = True
@@ -173,7 +176,8 @@ def ecrire_glb(path, meshes, mats):
         pos = me["pos"].astype(np.float32); nrm = me["nrm"].astype(np.float32)
         uv = me["uv"].astype(np.float32); idx = me["idx"].astype(np.uint32).ravel()
         pr = {"attributes": {"POSITION": acc(pos, "VEC3", 5126, 34962, True), "NORMAL": acc(nrm, "VEC3", 5126, 34962),
-                             "TEXCOORD_0": acc(uv, "VEC2", 5126, 34962)},
+                             "TEXCOORD_0": acc(uv, "VEC2", 5126, 34962),
+                             **({"COLOR_0": acc(c_, "VEC3", 5126, 34962)} if (c_ := variation.couleurs(pos, me["mat"])) is not None else {})},
               "indices": acc(idx, "SCALAR", 5125, 34963), "material": idx_mat[me["mat"]], "mode": 4}
         gl["meshes"].append({"name": me["name"], "primitives": [pr]})
         gl["nodes"].append({"name": me["name"], "mesh": len(gl["meshes"]) - 1})

@@ -15,3 +15,7 @@ modele/village.glb
 export/neutre/modeles/
 export/neutre/collisions/
 export/neutre/placements/
+# sixième passe : régénérés par 44 et 45 dans la chaîne (lourds)
+modele/vegetation_bord.glb
+modele/abords.glb
+modele/usure_chaussee.glb

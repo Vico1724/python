@@ -58,38 +58,38 @@
   },
   "par_essence": {
    "pin d'Alep": {
-    "nombre": 13451,
-    "pct": 75.2,
+    "nombre": 13443,
+    "pct": 75.1,
     "hauteur_mediane_m": 11.7
    },
    "chêne vert": {
-    "nombre": 2885,
+    "nombre": 2883,
     "pct": 16.1,
     "hauteur_mediane_m": 5.6
    },
    "olivier": {
-    "nombre": 663,
+    "nombre": 660,
     "pct": 3.7,
     "hauteur_mediane_m": 4.6
    },
    "cyprès": {
-    "nombre": 493,
+    "nombre": 497,
     "pct": 2.8,
-    "hauteur_mediane_m": 5.6
+    "hauteur_mediane_m": 5.7
    },
    "chêne pubescent": {
-    "nombre": 406,
+    "nombre": 415,
     "pct": 2.3,
     "hauteur_mediane_m": 5.9
    }
   },
   "par_famille_jeu": {
-   "Foliage/Trees/AleppoPine": 13451,
-   "Foliage/Trees/Smoketree": 1622,
-   "Foliage/Trees/BlackmapleMonteCarlo": 1263,
-   "Foliage/Trees/Olivetree": 663,
-   "Foliage/Trees/Cypress": 493,
-   "Foliage/Trees/Blackmaple": 406
+   "Foliage/Trees/AleppoPine": 13443,
+   "Foliage/Trees/Smoketree": 1621,
+   "Foliage/Trees/BlackmapleMonteCarlo": 1262,
+   "Foliage/Trees/Olivetree": 660,
+   "Foliage/Trees/Cypress": 497,
+   "Foliage/Trees/Blackmaple": 415
   }
  },
  "arbustes": {
@@ -102,8 +102,8 @@
  },
  "par_type_de_formation": {
   "Forêt fermée de pin d'Alep pur": {
-   "surface_ha": 66.3,
-   "arbres": 14486,
+   "surface_ha": 66.2,
+   "arbres": 14476,
    "arbres_par_ha": 219,
    "couvert_sup_2m_pct": 79.2,
    "part_couvert_dans_houppiers_pct": 89.4,
@@ -156,9 +156,9 @@
   },
   "hors forêt : abords bâtis (< 40 m)": {
    "surface_ha": 12.0,
-   "arbres": 2093,
+   "arbres": 2088,
    "arbres_par_ha": 175,
-   "couvert_sup_2m_pct": 38.3,
+   "couvert_sup_2m_pct": 38.2,
    "part_couvert_dans_houppiers_pct": 78.4,
    "hauteur_mediane_m": 4.6,
    "essences_tirees_pct": {
@@ -192,6 +192,18 @@
     "olivier": 50,
     "chêne vert": 29,
     "pin d'Alep": 21
+   }
+  },
+  "relevé : jardin du PK 3226 (Panoramax)": {
+   "surface_ha": 0.0,
+   "arbres": 15,
+   "arbres_par_ha": 356,
+   "couvert_sup_2m_pct": 82.7,
+   "part_couvert_dans_houppiers_pct": 89.7,
+   "hauteur_mediane_m": 6.4,
+   "essences_tirees_pct": {
+    "chêne pubescent": 67,
+    "cyprès": 33
    }
   }
  },
@@ -265,6 +277,10 @@
    "olivier": 0.55,
    "chene_vert": 0.3,
    "pin_alep": 0.15
+  },
+  "relevé : jardin du PK 3226 (Panoramax)": {
+   "chene_pubescent": 0.75,
+   "cypres": 0.25
   }
  },
  "correspondance_jeu": {

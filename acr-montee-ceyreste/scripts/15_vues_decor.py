@@ -536,7 +536,7 @@ def main():
     try:
         (tmp / "rendu.js").write_text(RENDER_JS, encoding="utf-8")
         communs = ["route_habillee.glb", "ouvrages.glb", "annexes.glb", "balisage.glb"]
-        communs += [f for f in ("bati_bord.glb", "village.glb", "clotures.glb", "depart.glb") if (MOD / f).exists()]   # 31, 37, 41
+        communs += [f for f in ("bati_bord.glb", "village.glb", "clotures.glb", "depart.glb", "usure_chaussee.glb", "vegetation_bord.glb", "panneaux_neutres.glb") if (MOD / f).exists()]   # 31, 37, 41
         noms = [n for n in choix if not seules or n in seules]
         for nom in noms:
             pk, visee = choix[nom]

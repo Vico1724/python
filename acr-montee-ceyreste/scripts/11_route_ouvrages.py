@@ -38,6 +38,9 @@ from shapely.geometry import LineString, Polygon
 
 from acr_geo import FIG, OUT, REF, ROOT, l93, fichier_ref, param
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import variation  # noqa: E402
+
 _spec = importlib.util.spec_from_file_location("modele_3d", Path(__file__).with_name("08_modele_3d.py"))
 m08 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(m08)
@@ -93,7 +96,9 @@ def tex_enrobe(n, seed=11):
     """Béton bitumineux usé : marbrure lente, grain, gravillons clairs, pores sombres."""
     rng = np.random.default_rng(seed)
     px = S_ENROBE / n
-    v = 0.36 + 0.015 * bruit(n, rng, 2.0) + 0.015 * bruit(n, rng, 1.0)
+    # base 0,36 jusqu'à la cinquième passe : l'enrobé ancien des photos est gris clair (sixième passe : 0,44) ; l'enrobé
+    # récent sombre du PK 1855-2700 est une nappe de 44_usure_chaussee.py
+    v = 0.44 + 0.015 * bruit(n, rng, 2.0) + 0.015 * bruit(n, rng, 1.0)
     v += 0.05 * flou(rng.standard_normal((n, n)), 0.6)
     grav = flou((rng.random((n, n)) < 0.035 * (px / 0.004) ** 2).astype(float), 0.004 / px * 0.6)
     pores = flou((rng.random((n, n)) < 0.02 * (px / 0.004) ** 2).astype(float), 0.004 / px * 0.5)
@@ -210,6 +215,9 @@ def ecrire_glb(path, meshes, mats):
         attrs = {"POSITION": acc(m["pos"].astype(np.float32), "VEC3", 34962, True),
                  "NORMAL": acc(m["nrm"].astype(np.float32), "VEC3", 34962),
                  "TEXCOORD_0": acc(m["uv"].astype(np.float32), "VEC2", 34962)}
+        col = variation.couleurs(m["pos"], m["mat"])     # teinte par sommet contre la répétition (sixième passe)
+        if col is not None:
+            attrs["COLOR_0"] = acc(col, "VEC3", 34962)
         idx = m["idx"].ravel().astype(np.uint16 if len(m["pos"]) < 65536 else np.uint32)   # 16 bits si possible
         prim = {"attributes": attrs, "indices": acc(idx, "SCALAR", 34963),
                 "material": index[m["mat"]], "mode": 4}
@@ -463,6 +471,28 @@ def marquage(ch, ref, rg, cfg, decks, ruban):
             bande_libre(Sd - zh["bande_m"] / 2, o, Sd + zh["bande_m"] / 2, o)
             n_bandes += 1
         stats[f"zone hachurée : {zh['nom']}"] = {"bandes": n_bandes, "longueur_m": round(s1 - s0, 1)}
+    # marques ponctuelles relevées (sixième passe, chaussee_releve_50m.json) : rectangles blancs des PR sur les rives,
+    # ligne de cédez-le-passage d'une voie latérale (tirets le long du bord). « depuis_bord_m » : du bord de chaussée au
+    # bord extérieur de la marque (négatif : au-delà du bord)
+    n_ponct = 0
+    for mp in cfg.get("marques_ponctuelles", []):
+        cotes = ("gauche", "droite") if mp["cote"] == "les_deux" else (mp["cote"],)
+        if mp["genre"] == "rectangle":
+            morceaux = [(mp["pk_m"] - mp["longueur_m"] / 2, mp["pk_m"] + mp["longueur_m"] / 2)]
+        else:
+            morceaux = [(x, x + mp["trait_m"]) for x in np.arange(mp["pk_debut_m"], mp["pk_fin_m"], mp["trait_m"] + mp["intervalle_m"])]
+        for cote in cotes:
+            for a, b in morceaux:
+                Sm = np.linspace(a, b, 3)
+                _, _, _, hG, hD = rg(Sm)
+                h = hD if cote == "droite" else hG
+                ext = h - mp["depuis_bord_m"]
+                inn = ext - mp["largeur_m"]
+                sg = 1.0 if cote == "droite" else -1.0
+                bande_libre(Sm, sg * inn, Sm, sg * ext)
+                n_ponct += 1
+    if n_ponct:
+        stats["marques ponctuelles (PR, cédez-le-passage)"] = {"marques": n_ponct}
     return fusion(parts, "marquage", "marquage"), stats
 
 

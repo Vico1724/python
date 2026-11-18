@@ -1,0 +1,141 @@
+{
+ "herbes": [
+  {
+   "pk": [
+    100,
+    250
+   ],
+   "cote": "droite",
+   "touffes": 504
+  },
+  {
+   "pk": [
+    100,
+    250
+   ],
+   "cote": "gauche",
+   "touffes": 360
+  },
+  {
+   "pk": [
+    250,
+    350
+   ],
+   "cote": "gauche",
+   "touffes": 480
+  },
+  {
+   "pk": [
+    290,
+    350
+   ],
+   "cote": "droite",
+   "touffes": 120
+  },
+  {
+   "pk": [
+    1985,
+    2110
+   ],
+   "cote": "gauche",
+   "touffes": 750
+  },
+  {
+   "pk": [
+    1990,
+    2060
+   ],
+   "cote": "droite",
+   "touffes": 140
+  },
+  {
+   "pk": [
+    2240,
+    2300
+   ],
+   "cote": "gauche",
+   "touffes": 172
+  },
+  {
+   "pk": [
+    2830,
+    2850
+   ],
+   "cote": "droite",
+   "touffes": 72
+  },
+  {
+   "pk": [
+    3360,
+    3400
+   ],
+   "cote": "gauche",
+   "touffes": 192
+  },
+  {
+   "pk": [
+    3600,
+    3750
+   ],
+   "cote": "gauche",
+   "touffes": 756
+  },
+  {
+   "pk": [
+    3620,
+    3750
+   ],
+   "cote": "droite",
+   "touffes": 468
+  }
+ ],
+ "massifs": [
+  {
+   "pk": [
+    3205,
+    3232
+   ],
+   "cote": "droite",
+   "espece": "haie",
+   "massifs": 3
+  },
+  {
+   "pk": [
+    2838,
+    2870
+   ],
+   "cote": "droite",
+   "espece": "haie",
+   "massifs": 1
+  },
+  {
+   "pk": [
+    110,
+    200
+   ],
+   "cote": "gauche",
+   "espece": "haie",
+   "massifs": 12
+  }
+ ],
+ "massifs_ecartes_sur_bati": 4,
+ "petits_elements": [
+  {
+   "genre": "bac",
+   "pk": 1527,
+   "cote": "droite"
+  },
+  {
+   "genre": "bac",
+   "pk": 1527.8,
+   "cote": "droite"
+  },
+  {
+   "genre": "bac",
+   "pk": 2625,
+   "cote": "droite"
+  }
+ ],
+ "touffes": 4014,
+ "massifs_total": 16
+}

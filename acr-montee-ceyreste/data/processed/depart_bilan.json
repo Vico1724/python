@@ -113,7 +113,7 @@
  "coffrets": 3,
  "potelets": 2,
  "massifs": {
-  "haie_jardins (MNS - MNT)": 82,
+  "haie_jardins (MNS - MNT)": 75,
   "muret_blanc_jardin (m)": 20.9,
   "bougainvillier_jardin": 1,
   "laurier_rose_abri": 1
@@ -128,7 +128,7 @@
   "mosaïque et panneau d'affichage de l'abribus, antennes de télévision : inchangé (quatrième passe)"
  ],
  "maillages": 83,
- "triangles": 19712,
+ "triangles": 35336,
  "collision": {
   "cloture": 12,
   "beton": 3

@@ -2,12 +2,12 @@
  "verdict": "CONFORME",
  "ecarts": [],
  "alertes": [
-  "arbres : 1287 flottants > 0,3 m et 192 enterrés > 0,5 m sur 31506",
+  "arbres : 1287 flottants > 0,3 m et 192 enterrés > 0,5 m sur 31505",
   "versants : 14174 flottants > 0,3 m et 740 enterrés > 0,5 m sur 91654",
   "garrigue : 1130 flottants > 0,3 m et 453 enterrés > 0,5 m sur 23168",
   "arbustes : 848 flottants > 0,3 m et 447 enterrés > 0,5 m sur 28872",
   "glissieres : 2 flottants > 0,3 m et 0 enterrés > 0,5 m sur 118",
-  "mobilier : 1 flottants > 0,3 m et 0 enterrés > 0,5 m sur 29",
+  "mobilier : 1 flottants > 0,3 m et 0 enterrés > 0,5 m sur 31",
   "rocaille : 100 flottants > 0,3 m et 0 enterrés > 0,5 m sur 4723",
   "herbes : 81 flottants > 0,3 m et 15 enterrés > 0,5 m sur 54322"
  ],
@@ -18,8 +18,8 @@
    "collisions/annexes_collision.glb"
   ],
   "arbres": {
-   "objets": 31506,
-   "controles": 31506,
+   "objets": 31505,
+   "controles": 31505,
    "ecart_au_mnt_m": {
     "mediane": 0.004,
     "p1": -0.41,
@@ -73,12 +73,12 @@
    "enterres_sup_0_5_m": 0
   },
   "mobilier": {
-   "objets": 29,
-   "controles": 29,
+   "objets": 31,
+   "controles": 31,
    "ecart_au_mnt_m": {
-    "mediane": -0.044,
+    "mediane": -0.029,
     "p1": -0.26,
-    "p99": 0.54
+    "p99": 0.53
    },
    "flottants_sup_0_3_m": 1,
    "enterres_sup_0_5_m": 0

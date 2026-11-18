@@ -338,7 +338,16 @@ class Batisseur:
         ligne = (c, vv) if forme == "deux_pans" else None
         # murs (le pied enterré sous le MNT le plus bas)
         Ring = np.asarray(Pv.exterior.coords)[:-1]
-        z_bas = float(self.mnt.z(Ring[:, 0], Ring[:, 1]).min()) - ENFOUI
+        # MNT pris tous les 0,4 m du contour (sixième passe : aux seuls sommets, un creux au milieu d'un long mur
+        # laissait le pied jusqu'à 1,5 m au-dessus du sol ; 42_controle_bati.py, test d'assise refait)
+        Rd = np.asarray(Pv.exterior.segmentize(0.4).coords)
+        z_bas = float(self.mnt.z(Rd[:, 0], Rd[:, 1]).min()) - ENFOUI
+        # et jamais au-dessus du pied du bâtiment entier : un volume bordé par un jardin en contrebas (PK -52) restait
+        # perché au-dessus du sol ; la partie enterrée du côté haut ne se voit pas
+        if not hasattr(self, "_z_pied_dense"):
+            Pd = np.asarray(self.P.exterior.segmentize(0.4).coords)
+            self._z_pied_dense = min(float(self.z0), float(self.mnt.z(Pd[:, 0], Pd[:, 1]).min()))
+        z_bas = min(z_bas, self._z_pied_dense - ENFOUI)
         W = self._anneau(Ring, ligne)
         haut_plat = forme == "plat"
         if v.get("ruine"):                           # ruine de pierre sèche : murs épais, arases irrégulières, sans toit

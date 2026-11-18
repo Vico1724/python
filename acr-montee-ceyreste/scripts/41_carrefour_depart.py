@@ -388,12 +388,16 @@ def boite(c, cap_deg, lx, ly, z0, z1, ref, s_uv=1.0):
 def massif(c, z0, rx, ry, h, ref, seed, s_uv=1.5):
     """Massif de feuillage : ellipsoïde bosselé (bruit à graine fixe), pied à z0, haut de h."""
     rng = np.random.default_rng(seed)
-    nu, nv = 12, 7
+    # sixième passe : bosses lisses (somme de quelques ondes) au lieu d'un bruit par sommet, qui donnait des « dents »
+    # régulières (planche du départ) ; maillage plus fin
+    nu, nv = 20, 10
     th = np.linspace(0, 2 * np.pi, nu + 1)
     ph = np.linspace(-0.25 * np.pi, 0.5 * np.pi, nv)
     TH, PH = np.meshgrid(th, ph)
-    bos = 1 + 0.18 * rng.standard_normal(TH.shape)
-    bos[:, -1] = bos[:, 0]
+    bos = np.ones_like(TH)
+    for k in range(4):
+        m_, n_ = int(rng.integers(2, 6)), int(rng.integers(1, 4))
+        bos += rng.uniform(0.03, 0.08) * np.sin(m_ * TH + rng.uniform(0, 6.3)) * np.cos(n_ * PH + rng.uniform(0, 6.3))
     bos[-1, :] = 1.0
     X = c[0] + rx * np.cos(PH) * np.cos(TH) * bos
     Y = c[1] + ry * np.cos(PH) * np.sin(TH) * bos
@@ -524,7 +528,7 @@ def faces_panneaux():
 def matieres_depart():
     img = lambda im, rough=0.9, metal=0.0: {"img": m37._jpeg(im), "mime": "image/jpeg", "rough": rough, "metal": metal}  # noqa: E731
     M = {"enrobe_neuf": img(_bruit_rgb((62, 63, 65), 512, 10, 3, 0.8), 0.85),
-         "enrobe_rouge": img(_bruit_rgb((106, 60, 55), 512, 9, 5, 0.8), 0.85),   # rouge éteint de la photo (89d3561a)
+         "enrobe_rouge": img(_bruit_rgb((112, 80, 74), 512, 9, 5, 0.8), 0.85),   # rouge éteint de la photo (89d3561a) ; (106, 60, 55) jusqu'à la cinquième passe : trop vif sur la planche
          "bordure_beton": img(m37.tex_cc0("white_plaster_rough_01", (196, 194, 188), 256)),
          "peinture_blanche": img(_bruit_rgb((236, 236, 232), 64, 5, 7), 0.6),
          "peinture_jaune": img(_bruit_rgb((222, 176, 38), 64, 5, 8), 0.6),
@@ -540,8 +544,8 @@ def matieres_depart():
          "coffret_blanc": img(m37.tex_unie((226, 226, 220)), 0.6),
          "boite_jaune": img(m37.tex_unie((228, 186, 30)), 0.5),
          "potelet_vert": img(m37.tex_unie((38, 88, 62)), 0.5),
-         "feuillage_haie": img(tex_fleurs((92, 116, 62), (92, 116, 62), 0.0, 13)),   # vert plus clair que la haie taillée de 37 (photos)
-         "feuillage_bougainvillier": img(tex_fleurs((74, 100, 54), (196, 40, 132), 0.008, 17)),
+         "feuillage_haie": img(tex_fleurs((106, 128, 70), (106, 128, 70), 0.0, 13)),   # vert plus clair que la haie taillée de 37 (photos)
+         "feuillage_bougainvillier": img(tex_fleurs((80, 104, 58), (176, 52, 118), 0.0035, 17)),
          "feuillage_laurier_rose": img(tex_fleurs((58, 82, 50), (214, 70, 100), 0.012, 19))}
     for k, im in faces_panneaux().items():
         M["panneau_" + k.replace(" ", "_")] = img(im, 0.45)
@@ -752,7 +756,9 @@ def construire():
         nk = sous_polyligne(nw, hj["de_k"], hj["a_k"])
         Lc = np.concatenate([[0], np.cumsum(np.linalg.norm(np.diff(Pk, axis=0), axis=1))])
         parts, rng = [], np.random.default_rng(41)
-        for sdist in np.arange(0.5, Lc[-1], 1.3):
+        for sdist in np.cumsum(np.r_[0.5, np.random.default_rng(42).uniform(0.9, 1.8, 400)]):
+            if sdist >= Lc[-1]:
+                break
             q = np.array([np.interp(sdist, Lc, Pk[:, 0]), np.interp(sdist, Lc, Pk[:, 1])])
             nq = np.array([np.interp(sdist, Lc, nk[:, 0]), np.interp(sdist, Lc, nk[:, 1])]); nq /= np.linalg.norm(nq)
             for o in np.arange(hj["recul_derriere_pied_m"][0], hj["recul_derriere_pied_m"][1] + 1e-6, 1.4):
@@ -762,8 +768,8 @@ def construire():
                 if h < hj["hauteur_min_m"]:
                     continue
                 h = min(h, hj["hauteur_max_m"])
-                r = rng.uniform(0.8, 1.15)
-                parts += massif(Q, zg, r, r, h, ref, int(rng.integers(1e6)))
+                r = rng.uniform(0.7, 1.35)
+                parts += massif(Q, zg, r, r * rng.uniform(0.75, 1.1), h * rng.uniform(0.85, 1.05), ref, int(rng.integers(1e6)))
                 n_haie += 1
         ajoute(parts, "haie_jardins", "feuillage_haie")
     bilan["massifs"]["haie_jardins (MNS - MNT)"] = n_haie
